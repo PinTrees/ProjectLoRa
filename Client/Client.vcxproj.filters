@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="FreamWork">
+      <UniqueIdentifier>{0ab30d3c-9d3c-464f-8b93-b067cd7db424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\01. Header">
+      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\02. Core">
+      <UniqueIdentifier>{2f3345fc-354c-4df0-a342-b413e988a7ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager">
+      <UniqueIdentifier>{15b2c071-34da-43f2-9d5c-65846d99375f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\04. Object">
+      <UniqueIdentifier>{f8c96f15-a61f-422a-909d-90a1b10f8b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\KeyMgr">
+      <UniqueIdentifier>{bfe427de-453e-4ac9-ac43-c91950f6d548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\TimeMgr">
+      <UniqueIdentifier>{76443bb8-4b92-4de5-bd76-c639779c17c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\05. Scene">
+      <UniqueIdentifier>{2f03a008-9e50-4a0e-ad69-c325758b0128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\SceneMgr">
+      <UniqueIdentifier>{911c0394-9cbd-46a3-82d3-ba67b8402741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\04. Object\Player">
+      <UniqueIdentifier>{771295e1-f463-45b7-9d1f-08042b013765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\04. Object\Monster">
+      <UniqueIdentifier>{1af77d7f-d0a5-4d06-8519-500be666a025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\04. Object\Missile">
+      <UniqueIdentifier>{1dab1dbd-d309-4742-b3ad-4b02ac9a9112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\06. Resource">
+      <UniqueIdentifier>{b5bdd32b-0fd5-414b-a78b-2b798a73ca0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\06. Resource\Texture">
+      <UniqueIdentifier>{e529e953-bc50-4ccf-ab01-2e87d4fc0c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\06. Resource\Sound">
+      <UniqueIdentifier>{53ec3dde-1301-464d-bc16-f5081b44705e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\PathMgr">
+      <UniqueIdentifier>{ed1ccc23-7cc6-4033-ac2e-e5b327790603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\ResourceMgr">
+      <UniqueIdentifier>{66dd22d9-c81b-4579-8249-76945ef4564f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CCore.h">
+      <Filter>FreamWork\02. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>FreamWork\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CKeyMgr.h">
+      <Filter>FreamWork\03. Manager\KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>FreamWork\03. Manager\TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_start.h">
+      <Filter>FreamWork\05. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>FreamWork\05. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>FreamWork\03. Manager\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>FreamWork\04. Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>FreamWork\04. Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>FreamWork\04. Object\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="CGuidMissile.h" />
+    <ClInclude Include="MyVec2.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CRes.h">
+      <Filter>FreamWork\06. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CTexture.h">
+      <Filter>FreamWork\06. Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="CSound.h">
+      <Filter>FreamWork\06. Resource\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="CPathMgr.h">
+      <Filter>FreamWork\03. Manager\PathMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Client.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CCore.cpp">
+      <Filter>FreamWork\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>FreamWork\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CKeyMgr.cpp">
+      <Filter>FreamWork\03. Manager\KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>FreamWork\03. Manager\TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_start.cpp">
+      <Filter>FreamWork\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>FreamWork\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>FreamWork\03. Manager\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>FreamWork\04. Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>FreamWork\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>FreamWork\04. Object\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="CGuidMissile.cpp" />
+    <ClCompile Include="CRes.cpp">
+      <Filter>FreamWork\06. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CTexture.cpp">
+      <Filter>FreamWork\06. Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="CSound.cpp">
+      <Filter>FreamWork\06. Resource\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathMgr.cpp">
+      <Filter>FreamWork\03. Manager\PathMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
