@@ -1,6 +1,28 @@
-﻿  CCollider.cpp
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(56,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(55,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(54,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(53,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿cl : command line  warning D9030: '/Yc' is incompatible with multiprocessing; ignoring /MP switch
+  CAnimation.cpp
+  CAnimator.cpp
+  CCamera.cpp
+  CCollider.cpp
+  CCollisionMgr.cpp
+  CCore.cpp
+  CEventMgr.cpp
+  CGuidMissile.cpp
+  CKeyMgr.cpp
+  CMissile.cpp
+  CMonster.cpp
+  CObject.cpp
+  CPathMgr.cpp
+  CPlayer.cpp
+  CRes.cpp
+  CResMgr.cpp
+  CScene.cpp
+  CSceneMgr.cpp
+  CScene_Tool.cpp
+  CScene_start.cpp
+  CSound.cpp
+  CTexture.cpp
+  CTimeMgr.cpp
+  Client.cpp
+  SelectGDI.cpp
+  func.cpp
   Client.vcxproj -> C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe

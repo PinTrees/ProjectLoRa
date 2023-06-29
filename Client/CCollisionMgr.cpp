@@ -79,7 +79,7 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 			//충돌 정보가 미 등록된 상태인 경우 최초 등록 ( 충돌하지 않았다로)
 			if (mMapColInfo.end() == iter)
 			{
-				mMapColInfo.insert(make_pair(ID.ID,false));
+				mMapColInfo.insert(make_pair(ID.ID, false));
 				iter = mMapColInfo.find(ID.ID);
 			}
 
@@ -89,17 +89,29 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 				if (iter->second)
 				{
 					// 이전에도 충돌중이였다.
-					pLeftCol->OnCollision(pRightCol);
-					pRightCol->OnCollision(pLeftCol);
+					if (vecLeft[i]->IsDead() || vecRight[j]->IsDead())
+					{
+						// 근데 둘중 하나가 삭제 예정이라면 충돌 해제시켜준다.
+						pLeftCol->OnCollisionExit(pRightCol);
+						pRightCol->OnCollisionExit(pLeftCol);
+						iter->second = false;
+					}
+					else
+					{
+						pLeftCol->OnCollision(pRightCol);
+						pRightCol->OnCollision(pLeftCol);
+					}
 				}
 				else
 				{
 					// 이전에는 충돌하지 않았다.
-					// 이번에 충돌이 시작되었다.
-					pLeftCol->OnCollisionEnter(pRightCol);
-					pRightCol->OnCollisionEnter(pLeftCol);
-					iter->second = true;
-
+					if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
+					{
+						// 이번에 충돌이 시작되었다.
+						pLeftCol->OnCollisionEnter(pRightCol);
+						pRightCol->OnCollisionEnter(pLeftCol);
+						iter->second = true;
+					}
 				}
 			}
 			else
@@ -112,13 +124,6 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 					pRightCol->OnCollisionExit(pLeftCol);
 					iter->second = false;
 				}
-				else
-				{
-					// 이전에는 충돌하지 않았다.
-					// 이번에 충돌이 시작되었다.
-
-				}
-
 			}
 		}
 	}
@@ -151,8 +156,8 @@ void CCollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 	if (iCol < iRow)
 	{
-		UINT iRow = (UINT)_eRight;
-		UINT iCol = (UINT)_eLeft;
+		iRow = (UINT)_eRight;
+		iCol = (UINT)_eLeft;
 	}
 
 	if (mArrCheck[iRow] & (1 << iCol))

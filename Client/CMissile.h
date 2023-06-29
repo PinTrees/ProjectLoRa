@@ -5,8 +5,7 @@ class CMissile :
 {
 private:
 	float     m_tTheta; // 이동 방향
-
-
+	 
 	Vec2		m_vDir;
 public:
 	void SetDir(float _tTheta) { m_tTheta = _tTheta; }
@@ -18,7 +17,10 @@ public:
 public:
 	virtual void Update() override;
 	virtual void Render(HDC _dc) override;
+	CLONE(CMissile);
 
+public:
+	virtual void OnCollisionEnter(CCollider* _pOther);
 public:
 	CMissile();
 	~CMissile();

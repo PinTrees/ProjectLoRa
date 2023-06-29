@@ -22,6 +22,8 @@ public:
 	Vec2 GetOffsetPos() { return mvOffsetPos; }
 	Vec2 GetScale() { return mvScale; }
 	
+	CObject* GetObj() { return mpOwner; }
+
 	UINT GetID() { return miID; }
 
 public:

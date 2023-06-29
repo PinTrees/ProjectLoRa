@@ -14,17 +14,32 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 #include "CCollider.h"
+#include "CAnimator.h"
+#include "CAnimation.h"
 
 CPlayer::CPlayer()
-	:mPTex(nullptr)
 {
-	// Texture 로딩하기
-	mPTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
+	// Texture 로딩하기 [더미코드]
+	//mPTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
 
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
 	GetCollider()->SetScale(Vec2(20.f, 40.f));
 
+
+	// Texture 로딩하기
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\link.bmp");
+
+	CreateAnimator();
+	GetAnimator()->CreateAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.07f, 10);
+	GetAnimator()->Play(L"WALK_DOWN",true);
+
+	CAnimation* pAnim = GetAnimator()->FindAnimation(L"WALK_DOWN");
+	for (UINT i = 0; i < pAnim->GetMaxFrame(); i++)
+	{
+		pAnim->GetFrame(i).vOffset = Vec2(0.f, -20.f);
+
+	}
 }
 
 CPlayer::~CPlayer()
@@ -62,27 +77,13 @@ void CPlayer::Update()
 	}
 
 	SetPos(vPos);
+	GetAnimator()->Update();
+
 }
 
 void CPlayer::Render(HDC _dc)
 {
-	int iWidth = (int)mPTex->Width();
-	int iHeigth = (int)mPTex->Heigth();
 
-	Vec2 vPos = GetPos();
-
-	//BitBlt(_dc
-	//	, (int)(vPos.x - (float)(iWidth / 2))
-	//	, (int)(vPos.y - (float)(iHeigth / 2))
-	//	, iWidth, iHeigth, mPTex->GetDC(), 0, 0, SRCCOPY);
-
-	TransparentBlt(_dc
-		, (int)(vPos.x - (float)(iWidth / 2))
-		, (int)(vPos.y - (float)(iHeigth / 2))
-		, iWidth, iHeigth
-		, mPTex->GetDC()
-		, 0, 0, iWidth, iHeigth
-		, RGB(255, 0, 255));
 
 	//컴포넌트 ( 충돌체 , ect...	) 가 있는경우 랜더
 	CompnentRender(_dc);
@@ -98,9 +99,10 @@ void CPlayer::createMissile()
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(25.f, 25.f));
 	pMissile->SetDir(Vec2(0.f, -1.f));
+	pMissile->SetName(L"Missile_Player");
 
-	CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
-	pCurScene->AddObject(pMissile, GROUP_TYPE::DEFAULT);
+	//*** setPos setScale 는 인자로 받아서 설정하게 수정필요
+	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
 }
 
 
