@@ -11,26 +11,25 @@
 
 #include "CMissile.h"
 
-#include "CPathMgr.h"
+#include "CResMgr.h"
 #include "CTexture.h"
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 	:mPTex(nullptr)
 {
 	// Texture 로딩하기
-	mPTex = new CTexture();
+	mPTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\Player.bmp");
 
-	wstring strFilepath = CPathMgr::GetI()->GetContentPath();
-	strFilepath += L"texture\\Player.bmp";
-	mPTex->Load(strFilepath);
-
+	CreateCollider();
+	GetCollider()->SetOffsetPos(Vec2(0.f, 12.f));
+	GetCollider()->SetScale(Vec2(20.f, 40.f));
 
 }
 
 CPlayer::~CPlayer()
 {
-	if (nullptr != mPTex)
-		delete mPTex;
+
 }
 
 void CPlayer::Update()
@@ -57,9 +56,9 @@ void CPlayer::Update()
 
 	}
 
-	if (KEY_HOLD(KEY::SPACE))
+	if (KEY_TAP(KEY::SPACE))
 	{
-		CreateMissile();
+		createMissile();
 	}
 
 	SetPos(vPos);
@@ -84,9 +83,12 @@ void CPlayer::Render(HDC _dc)
 		, mPTex->GetDC()
 		, 0, 0, iWidth, iHeigth
 		, RGB(255, 0, 255));
+
+	//컴포넌트 ( 충돌체 , ect...	) 가 있는경우 랜더
+	CompnentRender(_dc);
 }
 
-void CPlayer::CreateMissile()
+void CPlayer::createMissile()
 {
 	Vec2 vMissilePos = GetPos();
 	vMissilePos.y -= GetScale().y / 2.f;
