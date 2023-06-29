@@ -19,6 +19,8 @@ CMonster::~CMonster()
 
 void CMonster::Update()
 {
+	//***삭제
+	return;
 	Vec2 vCurPos = GetPos(); // 현재 위치는 부모에있는 함수로 받아올수있다.
 
 

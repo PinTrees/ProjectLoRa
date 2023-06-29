@@ -1,25 +1,6 @@
 ﻿  CCollider.cpp
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(49,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(48,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(47,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(46,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  CCollisionMgr.cpp
-  CCore.cpp
-  CGuidMissile.cpp
-  CKeyMgr.cpp
-  CMissile.cpp
-  CMonster.cpp
-  CObject.cpp
-  CPathMgr.cpp
-  CPlayer.cpp
-  CRes.cpp
-  CResMgr.cpp
-  CScene.cpp
-  CSceneMgr.cpp
-  CScene_start.cpp
-  CSound.cpp
-  CTexture.cpp
-  CTimeMgr.cpp
-  Client.cpp
-  SelectGDI.cpp
-  Client.vcxproj -> C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Output\bin_debug\Client.exe
+C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(56,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(55,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(54,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(53,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Client.vcxproj -> C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe

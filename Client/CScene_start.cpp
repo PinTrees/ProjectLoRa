@@ -32,7 +32,7 @@ void CScene_start::Enter()
 	
 
 	//몬스터 배치
-	int iMonCount = 5;
+	int iMonCount = 2;
 	float fMoveDist = 125.f;
 	float fObjScale = 50.f;
 
