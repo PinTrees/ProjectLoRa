@@ -53,8 +53,17 @@
     <Filter Include="FreamWork\03. Manager\PathMgr">
       <UniqueIdentifier>{ed1ccc23-7cc6-4033-ac2e-e5b327790603}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\03. Manager\ResourceMgr">
+    <Filter Include="FreamWork\03. Manager\ResMgr">
       <UniqueIdentifier>{66dd22d9-c81b-4579-8249-76945ef4564f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\07. Compnent">
+      <UniqueIdentifier>{196c1f8e-9e99-4d95-a543-658b70ff519d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\08. Module">
+      <UniqueIdentifier>{4d6ed337-e0ad-46fb-b5ea-8ab98806f762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\CollisionMgr">
+      <UniqueIdentifier>{8e3a98f7-e3d3-4e94-a23e-bfeeff5a20bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +131,18 @@
     <ClInclude Include="CPathMgr.h">
       <Filter>FreamWork\03. Manager\PathMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CResMgr.h">
+      <Filter>FreamWork\03. Manager\ResMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>FreamWork\07. Compnent</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>FreamWork\08. Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollisionMgr.h">
+      <Filter>FreamWork\03. Manager\CollisionMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -180,6 +201,18 @@
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
       <Filter>FreamWork\03. Manager\PathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CResMgr.cpp">
+      <Filter>FreamWork\03. Manager\ResMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>FreamWork\07. Compnent</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectGDI.cpp">
+      <Filter>FreamWork\08. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollisionMgr.cpp">
+      <Filter>FreamWork\03. Manager\CollisionMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

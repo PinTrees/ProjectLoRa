@@ -2,17 +2,20 @@
 #include "CObject.h"
 
 class CTexture;
+
 class CPlayer :
 	public CObject
 {
 
 private:
 	CTexture* mPTex;
+
 public:
 	virtual void Update()override;
 	virtual void Render(HDC _dc) override;
+
 private:
-	void CreateMissile();
+	void createMissile();
 
 public:
 	CPlayer();

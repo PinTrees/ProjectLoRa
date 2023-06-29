@@ -15,8 +15,10 @@ public:
     UINT Heigth () { return mBitInfo.bmHeight; }
 
     HDC GetDC() { return mDC; }
-public:
+private:
     CTexture();
     ~CTexture();
+
+    friend class CResMgr;
 };
 

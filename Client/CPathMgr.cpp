@@ -16,7 +16,7 @@ void CPathMgr::Init()
 {
 	GetCurrentDirectory(255, mSzContentPath);
 
-	int iLen = wcslen(mSzContentPath);
+	int iLen = (int)wcslen(mSzContentPath);
 
 	//상위 폴더로
 	for (int i = iLen-1; 0 <= i; --i)

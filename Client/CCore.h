@@ -10,14 +10,25 @@ private:
 
 	HBITMAP mhBit;
 	HDC		mMemDC;
+
+	// 자주 사용하는 GDI Object
+	HBRUSH mArrBrush[(UINT)BRUSH_TYPE::END];
+	HPEN mArrPen[(UINT)PEN_TYPE::END];
+
 public:
 
 	int Initialize(HWND _hWnd, POINT _ptResolution);
 	void Run();
 
+private:
+	// 자주 사용할 브러쉬 밑 펜 설정
+	void CreateBrushPen();
+
 public:
 	HWND	GetMainHwnd() { return mhWnd; }
 	HDC		GetMainDC() { return mhDC; }
 	POINT	GetResolution() { return mPtResolution; }
+	HBRUSH GetBrush(BRUSH_TYPE _eType) {return mArrBrush[(UINT)_eType]; }
+	HPEN GetPen(PEN_TYPE _eType) { return mArrPen[(UINT)_eType]; }
 };
 
