@@ -2,10 +2,23 @@
 
 #include <Windows.h>
 #include <iostream>
-#include <string>
-using std::wstring;
+
+
+
+
+
 #include <vector>
 using std::vector;
+
+#include <map>	
+using std::map;
+using std::make_pair;
+
+
+
+#include <string>
+using std::wstring;
+
 #include <fstream>
 #include <tchar.h>
 

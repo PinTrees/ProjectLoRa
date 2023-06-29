@@ -22,6 +22,11 @@
 
 #define PI 3.1415926535f
 
+#define SELECT_GDI(_dc,TYPE) SelectGDI __UNREFERENCED = SelectGDI(_dc, TYPE)
+
+
+
+
 enum class GROUP_TYPE
 {
 	DEFAULT,
@@ -40,3 +45,18 @@ enum class SCENE_TYPE
 
 	END,
 };
+
+enum class BRUSH_TYPE
+{
+	HOLLOW,
+	END,
+
+};
+enum class PEN_TYPE
+{
+	RED,
+	GREEN,
+	BLUE,
+	END,
+};
+
