@@ -4,9 +4,11 @@
 ## 에셋
 캐릭터 
 - https://assetstore.unity.com/packages/2d/characters/bounty-hunter-197550
+- 
 이펙트
 - https://assetstore.unity.com/publishers/18720
 - https://ansimuz.itch.io/
+- 
 배경
 - https://assetstore.unity.com/packages/2d/environments/rpg-worlds-ancient-forest-194771
 - https://assetstore.unity.com/packages/2d/environments/2d-magic-lands-set1-178030
