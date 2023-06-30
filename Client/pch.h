@@ -18,7 +18,6 @@ using std::make_pair;
 
 #include <string>
 using std::wstring;
-using std::string;
 
 #include <fstream>
 #include <tchar.h>

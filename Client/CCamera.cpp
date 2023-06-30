@@ -12,7 +12,7 @@ CCamera::CCamera()
 	:mpTargetObj(nullptr)
 	, mfTime(1.f)
 	, mfSpeed(0.f)
-	,mfAccTime(0.f)
+	,mfAccTime(0.5f)
 {
 }
 

@@ -89,6 +89,9 @@
     <Filter Include="FreamWork\03. Manager\Camera">
       <UniqueIdentifier>{b4a75ea7-90e3-4cba-b1be-b4d42bd06591}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\04. Object\Tile">
+      <UniqueIdentifier>{11027ab6-1418-4750-a31f-4d5d1569632e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -187,6 +190,12 @@
     <ClInclude Include="CCamera.h">
       <Filter>FreamWork\03. Manager\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>FreamWork\04. Object\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -275,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
       <Filter>FreamWork\03. Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>FreamWork\04. Object\Tile</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

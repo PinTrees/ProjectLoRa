@@ -25,7 +25,11 @@
 #define	MOUSE_POS CKeyMgr::GetI()->GetMousePos()
 #define PI 3.1415926535f
 
-#define SELECT_GDI(_dc,TYPE) SelectGDI __UNREFERENCED = SelectGDI(_dc, TYPE)
+
+#define TILE_SIZE 64
+
+
+//#define SELECT_GDI(_dc,TYPE) SelectGDI __UNREFERENCED = SelectGDI(_dc, TYPE)
 
 
 
@@ -33,6 +37,7 @@
 enum class GROUP_TYPE
 {
 	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
 	PROJ_PLAYER,
