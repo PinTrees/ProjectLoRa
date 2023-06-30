@@ -12,9 +12,9 @@ public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
 
-	void Update();
-	void FinalUpdate();
-	void Render(HDC _dc);
+	virtual void Update();
+	virtual void FinalUpdate();
+	virtual void Render(HDC _dc);
 
 	virtual void Enter() = 0; //해당 씬 진입시 호출
 	virtual void Exit() = 0;  // 해당씬 탈출시 호출
@@ -24,7 +24,8 @@ public:
 	void DeleteObject(CObject* _pObj, GROUP_TYPE _eType);
 
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eTYpe) { return mArrObj[(UINT)_eTYpe]; }
-
+	void DeleteGroup(GROUP_TYPE _eTarget);
+	void DeleteAll();
 public:
 	CScene();
 	virtual ~CScene();

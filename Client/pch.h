@@ -18,6 +18,7 @@ using std::make_pair;
 
 #include <string>
 using std::wstring;
+using std::string;
 
 #include <fstream>
 #include <tchar.h>
@@ -30,3 +31,4 @@ using std::wstring;
 
 #include "define.h"
 #include "MyVec2.h"
+#include "func.h"

@@ -65,14 +65,32 @@
     <Filter Include="FreamWork\03. Manager\CollisionMgr">
       <UniqueIdentifier>{8e3a98f7-e3d3-4e94-a23e-bfeeff5a20bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\03. Manager\EvenMgr">
+      <UniqueIdentifier>{8f05edba-f49f-4862-8012-e050128d5e4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{532d00c4-0f81-449d-b72e-6d1ed4acb678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\05. Scene\Scene_start">
+      <UniqueIdentifier>{639227a7-f654-445d-bd9a-b40a71bd3fda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\05. Scene\Scene_Tool">
+      <UniqueIdentifier>{52e38cc8-db68-48af-be92-b245c7d37e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\07. Compnent\Animator">
+      <UniqueIdentifier>{285a0671-e26e-4686-b505-b6451b1fd028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\07. Compnent\Collider">
+      <UniqueIdentifier>{330de395-3341-4ded-bca9-25db5c483649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\07. Compnent\Animator\Animation">
+      <UniqueIdentifier>{192c16c4-c722-420c-8308-28feb9d3e6d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\Camera">
+      <UniqueIdentifier>{b4a75ea7-90e3-4cba-b1be-b4d42bd06591}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
     <ClInclude Include="CCore.h">
       <Filter>FreamWork\02. Core</Filter>
     </ClInclude>
@@ -82,23 +100,8 @@
     <ClInclude Include="CKeyMgr.h">
       <Filter>FreamWork\03. Manager\KeyMgr</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>FreamWork\03. Manager\TimeMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CScene_start.h">
-      <Filter>FreamWork\05. Scene</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
       <Filter>FreamWork\05. Scene</Filter>
@@ -115,10 +118,6 @@
     <ClInclude Include="CMissile.h">
       <Filter>FreamWork\04. Object\Missile</Filter>
     </ClInclude>
-    <ClInclude Include="CGuidMissile.h" />
-    <ClInclude Include="MyVec2.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
     <ClInclude Include="CRes.h">
       <Filter>FreamWork\06. Resource</Filter>
     </ClInclude>
@@ -134,14 +133,59 @@
     <ClInclude Include="CResMgr.h">
       <Filter>FreamWork\03. Manager\ResMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CCollider.h">
-      <Filter>FreamWork\07. Compnent</Filter>
-    </ClInclude>
     <ClInclude Include="SelectGDI.h">
       <Filter>FreamWork\08. Module</Filter>
     </ClInclude>
     <ClInclude Include="CCollisionMgr.h">
       <Filter>FreamWork\03. Manager\CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CEventMgr.h">
+      <Filter>FreamWork\03. Manager\EvenMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVec2.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_start.h">
+      <Filter>FreamWork\05. Scene\Scene_start</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>FreamWork\05. Scene\Scene_Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="CGuidMissile.h">
+      <Filter>FreamWork\04. Object\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>FreamWork\07. Compnent\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>FreamWork\07. Compnent\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>FreamWork\07. Compnent\Animator\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>FreamWork\03. Manager\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,9 +215,6 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>FreamWork\03. Manager\TimeMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CScene_start.cpp">
-      <Filter>FreamWork\05. Scene</Filter>
-    </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>FreamWork\05. Scene</Filter>
     </ClCompile>
@@ -189,7 +230,6 @@
     <ClCompile Include="CMissile.cpp">
       <Filter>FreamWork\04. Object\Missile</Filter>
     </ClCompile>
-    <ClCompile Include="CGuidMissile.cpp" />
     <ClCompile Include="CRes.cpp">
       <Filter>FreamWork\06. Resource</Filter>
     </ClCompile>
@@ -205,14 +245,36 @@
     <ClCompile Include="CResMgr.cpp">
       <Filter>FreamWork\03. Manager\ResMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CCollider.cpp">
-      <Filter>FreamWork\07. Compnent</Filter>
-    </ClCompile>
     <ClCompile Include="SelectGDI.cpp">
       <Filter>FreamWork\08. Module</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
       <Filter>FreamWork\03. Manager\CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventMgr.cpp">
+      <Filter>FreamWork\03. Manager\EvenMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="CScene_start.cpp">
+      <Filter>FreamWork\05. Scene\Scene_start</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>FreamWork\05. Scene\Scene_Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="CGuidMissile.cpp">
+      <Filter>FreamWork\04. Object\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>FreamWork\07. Compnent\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>FreamWork\07. Compnent\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>FreamWork\07. Compnent\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>FreamWork\03. Manager\Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

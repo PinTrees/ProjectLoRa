@@ -1,11 +1,13 @@
 #include "pch.h"
 #include "CMissile.h"
 
-#include "CTimeMgr.h"
 #include "CScene.h"
 #include "CSceneMgr.h"
 
+#include "CTimeMgr.h"
 #include "CCollider.h"
+
+
 
 CMissile::CMissile()
 	:m_tTheta(PI / 4.f)
@@ -13,7 +15,7 @@ CMissile::CMissile()
 {
 	m_vDir.Normalize();
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(18.f,18.f));
+	GetCollider()->SetScale(Vec2(15,15));
 }
 
 CMissile::~CMissile()
@@ -33,7 +35,7 @@ void CMissile::Update()
 	vPos.y += 300.f * m_vDir.y * fDT;
 
 	if (vPos.y < 110)
-		pCurScene->DeleteObject(this, GROUP_TYPE::DEFAULT);
+		pCurScene->DeleteObject(this, GROUP_TYPE::PROJ_PLAYER);
 
 	SetPos(vPos);
 }
@@ -46,4 +48,15 @@ void CMissile::Render(HDC _dc)
 		, (int)(vPos.x + vScale.x / 2.f), (int)(vPos.y + vScale.y / 2.f));
 
 	CompnentRender(_dc);
+}
+
+void CMissile::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		DeleteObject(this);
+	}
+	
 }

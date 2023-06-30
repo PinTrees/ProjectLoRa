@@ -1,5 +1,6 @@
 #pragma once
 #include "CRes.h"
+
 class CTexture :
     public CRes
 {
@@ -17,7 +18,7 @@ public:
     HDC GetDC() { return mDC; }
 private:
     CTexture();
-    ~CTexture();
+    virtual ~CTexture();
 
     friend class CResMgr;
 };

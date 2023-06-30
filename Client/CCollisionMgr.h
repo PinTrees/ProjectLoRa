@@ -10,14 +10,14 @@ union COLLIDER_ID
 		UINT Left_id;
 		UINT RIght_id;
 	};
-	LONGLONG ID;
+	ULONGLONG ID;
 };
 
 class CCollisionMgr
 {
 	SINGLE(CCollisionMgr)
 private:
-	map<LONGLONG, bool> mMapColInfo;						// 충돌체 간의 이전 프레임 충돌 정보  
+	map<ULONGLONG, bool> mMapColInfo;						// 충돌체 간의 이전 프레임 충돌 정보  
 	UINT				mArrCheck[(UINT)GROUP_TYPE::END];	// 그룹간의 충돌 체크 매트릭스
 
 public:

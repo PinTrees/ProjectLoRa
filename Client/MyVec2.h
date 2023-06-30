@@ -16,9 +16,13 @@ public:
 	Vec2& Normalize()
 	{
 		float fLen = Length();
-		assert(fLen != 0.f);
-		x /= fLen;
-		y /= fLen;
+		if(fLen != 0.f)
+		{
+			x /= fLen;
+			y /= fLen;
+			return *this;
+		}
+
 		return *this;
 	}
 public:
@@ -32,6 +36,11 @@ public:
 	{
 		return Vec2(x + _vOther.x, y + _vOther.y);
 	}
+	void operator += (Vec2 _vOther)
+	{
+		x += _vOther.x;
+		y += _vOther.y;
+	}
 
 	Vec2 operator - (Vec2 _vOther)
 	{
@@ -42,12 +51,28 @@ public:
 	{
 		return Vec2(x * _vOther.x, y * _vOther.y);
 	}
-
+	Vec2 operator * (int _i)
+	{
+		return Vec2(x * (float)_i, y * (float)_i);
+	}
+	Vec2 operator*(float _f)
+	{
+		return Vec2(x * _f, y * _f);
+	}
 	Vec2 operator / (Vec2 _vOther)
 	{
 		assert(!(0.f == _vOther.x || 0.f == _vOther.y));
 		return Vec2(x / _vOther.x , y / _vOther.y);
 	}
+	Vec2 operator / (float _f)
+	{
+		assert(!(0.f == _f));
+		return Vec2(x / _f, y / _f);
+	}
+
+
+
+
 public:
 	Vec2()
 		: x(0.f)
@@ -70,6 +95,5 @@ public:
 	{}
 };
 
-Vec2 Lerp(Vec2 a, Vec2 b, float amount);
 
-Vec2 BezierCurve(Vec2 a, Vec2 b, Vec2 c, float amount);
+

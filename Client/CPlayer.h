@@ -8,7 +8,6 @@ class CPlayer :
 {
 
 private:
-	CTexture* mPTex;
 
 public:
 	virtual void Update()override;
@@ -16,6 +15,8 @@ public:
 
 private:
 	void createMissile();
+
+	CLONE(CPlayer);
 
 public:
 	CPlayer();

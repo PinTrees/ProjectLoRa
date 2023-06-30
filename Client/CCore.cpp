@@ -5,7 +5,9 @@
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
-#include <CCollisionMgr.h>
+#include "CCollisionMgr.h"
+#include "CEventMgr.h"
+#include "CCamera.h"
 
 CCore::CCore()
 	:mhWnd(0)
@@ -63,18 +65,30 @@ void CCore::Run()
 	//manager update
 	CTimeMgr::GetI()->Update();
 	CKeyMgr::GetI()->Update();
-
-
-	///씬 업데이트 후 충돌체크후  memdc 클리어 하고나서 씬 랜더 실행후 bitblt 실행
+	CCamera::GetI()->Update();
+	//	============
+	//	Scene Update
+	//	============
 	CSceneMgr::GetI()->Update();
+
+	///충돌체크
 	CCollisionMgr::GetI()->Update();
 
+	//	========
+	//	Rendering
+	//	========
+	//	화면 Clear
+	//	========
 	Rectangle(mMemDC, -1, -1, mPtResolution.x + 1, mPtResolution.y + 1);
 	CSceneMgr::GetI()->Render(mMemDC);
 	BitBlt(mhDC, 0, 0, mPtResolution.x, mPtResolution.y, mMemDC, 0, 0, SRCCOPY);
-
 	CTimeMgr::GetI()->Render();
 
+	//	============
+	//	이벤트 지연처리
+	//	============
+
+	CEventMgr::GetI()->Update();
 }
 
 //
