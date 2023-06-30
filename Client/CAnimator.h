@@ -12,8 +12,11 @@ private:
 	CAnimation*					mpCurAnim;
 	CObject*					mpOwner;
 	bool						mbRepeat;
+
+
 public:
 	CObject* GetObj() { return mpOwner; }
+	CAnimation* GetCurAnimation() { return mpCurAnim; }
 
 public:
 	void CreateAnimation(const wstring& _strName , CTexture* _pTex

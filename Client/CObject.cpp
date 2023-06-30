@@ -4,7 +4,7 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 
-
+#include "SelectGDI.h"
 
 CObject::CObject()
 	: mvPos{}
@@ -12,17 +12,23 @@ CObject::CObject()
 	, mpCollider(nullptr)
 	, mpAnimator(nullptr)
 	, mbAlive(true)
+	, mAngle(0.f)
+	, mAngleOffset(0.f)
+	, mFlip(false)
 {
 
 }
 
 CObject::CObject(const CObject& _origin)
-	:mStrName(_origin.mStrName)
-	,mvPos(_origin.mvPos)
-	,mvScale(_origin.mvScale)
-	,mpAnimator(nullptr)
-	,mpCollider(nullptr)
-	,mbAlive(true)
+	: mStrName(_origin.mStrName)
+	, mvPos(_origin.mvPos)
+	, mvScale(_origin.mvScale)
+	, mpAnimator(nullptr)
+	, mpCollider(nullptr)
+	, mbAlive(true)
+	, mAngle(0.f)
+	, mAngleOffset(0.f)
+	, mFlip(false)
 {
 	if (_origin.mpCollider)
 	{
@@ -60,8 +66,6 @@ void CObject::FinalUpdate()
 
 void CObject::Render(HDC _dc)
 {
-
-
 	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
 
 	Rectangle(_dc,	(int)(vRenderPos.x - mvScale.x / 2.f),
@@ -70,8 +74,8 @@ void CObject::Render(HDC _dc)
 					(int)(vRenderPos.y + mvScale.y / 2.f));
 
 	CompnentRender(_dc);
-
 }
+
 
 void CObject::CompnentRender(HDC _dc)
 {
@@ -84,13 +88,24 @@ void CObject::CompnentRender(HDC _dc)
 	{
 		mpAnimator->Render(_dc);
 	}
+
+	SelectGDI p(_dc, PEN_TYPE::RED);
+	SelectGDI b(_dc, BRUSH_TYPE::RED);
+
+	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos + mvPivot);
+	float pivotSize = 6.f;
+
+	Ellipse(_dc
+		, (int)(vRenderPos.x - pivotSize * 0.5f)
+		, (int)(vRenderPos.y - pivotSize * 0.5f)
+		, (int)(vRenderPos.x + pivotSize * 0.5f)
+		, (int)(vRenderPos.y + pivotSize * 0.5f));
 }
 
 void CObject::CreateCollider()
 {
 	mpCollider = new CCollider;
 	mpCollider->mpOwner = this;
-
 }
 
 void CObject::CreateAnimator()
@@ -98,5 +113,15 @@ void CObject::CreateAnimator()
 	mpAnimator = new CAnimator;
 	mpAnimator->mpOwner = this;
 }
+
+//void CObject::DeleteCollider()
+//{
+//	if (mpCollider != nullptr)
+//	{
+//		delete mpCollider;
+//	}
+//
+//	mpCollider = nullptr;
+//}
 
 

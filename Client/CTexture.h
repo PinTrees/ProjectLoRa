@@ -16,6 +16,8 @@ public:
     UINT Heigth () { return mBitInfo.bmHeight; }
 
     HDC GetDC() { return mDC; }
+
+    HBITMAP GetHBitmap() { return mhBit; }
 private:
     CTexture();
     virtual ~CTexture();

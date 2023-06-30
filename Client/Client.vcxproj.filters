@@ -17,9 +17,6 @@
     <Filter Include="FreamWork\03. Manager">
       <UniqueIdentifier>{15b2c071-34da-43f2-9d5c-65846d99375f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\04. Object">
-      <UniqueIdentifier>{f8c96f15-a61f-422a-909d-90a1b10f8b0c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FreamWork\03. Manager\KeyMgr">
       <UniqueIdentifier>{bfe427de-453e-4ac9-ac43-c91950f6d548}</UniqueIdentifier>
     </Filter>
@@ -31,15 +28,6 @@
     </Filter>
     <Filter Include="FreamWork\03. Manager\SceneMgr">
       <UniqueIdentifier>{911c0394-9cbd-46a3-82d3-ba67b8402741}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\04. Object\Player">
-      <UniqueIdentifier>{771295e1-f463-45b7-9d1f-08042b013765}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\04. Object\Monster">
-      <UniqueIdentifier>{1af77d7f-d0a5-4d06-8519-500be666a025}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\04. Object\Missile">
-      <UniqueIdentifier>{1dab1dbd-d309-4742-b3ad-4b02ac9a9112}</UniqueIdentifier>
     </Filter>
     <Filter Include="FreamWork\06. Resource">
       <UniqueIdentifier>{b5bdd32b-0fd5-414b-a78b-2b798a73ca0e}</UniqueIdentifier>
@@ -89,13 +77,37 @@
     <Filter Include="FreamWork\03. Manager\Camera">
       <UniqueIdentifier>{b4a75ea7-90e3-4cba-b1be-b4d42bd06591}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{2e7d1ff8-8340-4366-8f72-27c82929808f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object">
+      <UniqueIdentifier>{f8c96f15-a61f-422a-909d-90a1b10f8b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Player">
+      <UniqueIdentifier>{771295e1-f463-45b7-9d1f-08042b013765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Monster">
+      <UniqueIdentifier>{1af77d7f-d0a5-4d06-8519-500be666a025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Missile">
+      <UniqueIdentifier>{1dab1dbd-d309-4742-b3ad-4b02ac9a9112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Particle">
+      <UniqueIdentifier>{5a26727d-6771-4128-b193-38a6ee616850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Environment">
+      <UniqueIdentifier>{3f433775-b5dd-4a72-a240-3dd4c49c3870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Gold">
+      <UniqueIdentifier>{b66dd6fb-76be-4c04-a201-226229c7cb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Bullet">
+      <UniqueIdentifier>{e045afaf-6396-4eb6-857f-7dc22ef63594}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
       <Filter>FreamWork\02. Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>FreamWork\04. Object</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
       <Filter>FreamWork\03. Manager\KeyMgr</Filter>
@@ -110,13 +122,13 @@
       <Filter>FreamWork\03. Manager\SceneMgr</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>FreamWork\04. Object\Player</Filter>
+      <Filter>Game\04. Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="CMonster.h">
-      <Filter>FreamWork\04. Object\Monster</Filter>
+      <Filter>Game\04. Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="CMissile.h">
-      <Filter>FreamWork\04. Object\Missile</Filter>
+      <Filter>Game\04. Object\Missile</Filter>
     </ClInclude>
     <ClInclude Include="CRes.h">
       <Filter>FreamWork\06. Resource</Filter>
@@ -154,7 +166,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="MyVec2.h">
+    <ClInclude Include="Vec2.h">
       <Filter>FreamWork\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
@@ -173,7 +185,7 @@
       <Filter>FreamWork\05. Scene\Scene_Tool</Filter>
     </ClInclude>
     <ClInclude Include="CGuidMissile.h">
-      <Filter>FreamWork\04. Object\Missile</Filter>
+      <Filter>Game\04. Object\Missile</Filter>
     </ClInclude>
     <ClInclude Include="CCollider.h">
       <Filter>FreamWork\07. Compnent\Collider</Filter>
@@ -186,6 +198,18 @@
     </ClInclude>
     <ClInclude Include="CCamera.h">
       <Filter>FreamWork\03. Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Game\04. Object\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Gold.h">
+      <Filter>Game\04. Object\Gold</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>FreamWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Game\04. Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +230,6 @@
     <ClCompile Include="CCore.cpp">
       <Filter>FreamWork\02. Core</Filter>
     </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>FreamWork\04. Object</Filter>
-    </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
       <Filter>FreamWork\03. Manager\KeyMgr</Filter>
     </ClCompile>
@@ -222,13 +243,13 @@
       <Filter>FreamWork\03. Manager\SceneMgr</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>FreamWork\04. Object\Player</Filter>
+      <Filter>Game\04. Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
-      <Filter>FreamWork\04. Object\Monster</Filter>
+      <Filter>Game\04. Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CMissile.cpp">
-      <Filter>FreamWork\04. Object\Missile</Filter>
+      <Filter>Game\04. Object\Missile</Filter>
     </ClCompile>
     <ClCompile Include="CRes.cpp">
       <Filter>FreamWork\06. Resource</Filter>
@@ -254,7 +275,6 @@
     <ClCompile Include="CEventMgr.cpp">
       <Filter>FreamWork\03. Manager\EvenMgr</Filter>
     </ClCompile>
-    <ClCompile Include="func.cpp" />
     <ClCompile Include="CScene_start.cpp">
       <Filter>FreamWork\05. Scene\Scene_start</Filter>
     </ClCompile>
@@ -262,7 +282,7 @@
       <Filter>FreamWork\05. Scene\Scene_Tool</Filter>
     </ClCompile>
     <ClCompile Include="CGuidMissile.cpp">
-      <Filter>FreamWork\04. Object\Missile</Filter>
+      <Filter>Game\04. Object\Missile</Filter>
     </ClCompile>
     <ClCompile Include="CCollider.cpp">
       <Filter>FreamWork\07. Compnent\Collider</Filter>
@@ -275,6 +295,24 @@
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
       <Filter>FreamWork\03. Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Game\04. Object\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Gold.cpp">
+      <Filter>Game\04. Object\Gold</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>FreamWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Game\04. Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>FreamWork\01. Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

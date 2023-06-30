@@ -32,6 +32,9 @@ public:
 		mfAccTime = 0.f;
 	}
 
+	void SetAllFrameOffet(Vec2 _vOffset);
+	
+
 	tAnimFrm& GetFrame(int _iIdx) { return mVecFrm[_iIdx]; }
 	UINT GetMaxFrame() { return (UINT)mVecFrm.size(); }
 	

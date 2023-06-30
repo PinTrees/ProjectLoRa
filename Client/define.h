@@ -23,7 +23,7 @@
 #define KEY_AWAY(key) KEY_CHECK(key,KEY_STATE::AWAY )
 #define KEY_NONE(key) KEY_CHECK(key,KEY_STATE::NONE )
 #define	MOUSE_POS CKeyMgr::GetI()->GetMousePos()
-#define PI 3.1415926535f
+#define PI 3.14159265358979323846f
 
 #define SELECT_GDI(_dc,TYPE) SelectGDI __UNREFERENCED = SelectGDI(_dc, TYPE)
 
@@ -33,10 +33,17 @@
 enum class GROUP_TYPE
 {
 	DEFAULT,
+
+	BACK,
+	ENV,
+
 	PLAYER,
 	MONSTER,
 	PROJ_PLAYER,
 	PROJ_MONSTER,
+
+	GOLD,
+
 	END = 32,
 };
 
@@ -53,8 +60,8 @@ enum class SCENE_TYPE
 enum class BRUSH_TYPE
 {
 	HOLLOW,
+	RED,
 	END,
-
 };
 enum class PEN_TYPE
 {

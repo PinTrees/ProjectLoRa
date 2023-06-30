@@ -75,7 +75,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             CCore::GetI()->Run();
         }
-
     }
 
     return (int) msg.wParam;

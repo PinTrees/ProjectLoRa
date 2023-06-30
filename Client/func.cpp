@@ -44,3 +44,24 @@ Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
 
 	return Vec2(x, y);
 }
+
+
+
+
+
+void FlipImage(HDC _dc, int _x, int _y, int _width, int _height)
+{
+	HDC hMemDC = CreateCompatibleDC(_dc);
+	HBITMAP hBitmap = CreateCompatibleBitmap(_dc, _width, _height);
+	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+
+	// 이미지를 플립하여 복사
+	StretchBlt(hMemDC, 0, 0, _width, _height, _dc, _x + _width, _y, -_width, _height, SRCCOPY);
+
+	// 플립된 이미지를 원래 위치로 복사
+	BitBlt(_dc, _x, _y, _width, _height, hMemDC, 0, 0, SRCCOPY);
+
+	SelectObject(hMemDC, hOldBitmap);
+	DeleteObject(hBitmap);
+	DeleteDC(hMemDC);
+}

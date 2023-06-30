@@ -22,7 +22,10 @@ void CEventMgr::Update()
 
 	for (size_t i = 0; i < mVecDeadObj.size(); ++i)
 	{
+		if (nullptr != mVecDeadObj[i])
+		{
 			delete mVecDeadObj[i];
+		}
 	}
 	mVecDeadObj.clear();
 	//	========
@@ -70,4 +73,18 @@ void CEventMgr::excute(const tEvent& _eve)
 		CSceneMgr::GetI()->ChangeScene((SCENE_TYPE)_eve.lParam);
 		break;
 	}
+}
+
+void CEventMgr::AddEvent(const tEvent& _eve)
+{
+	for (int i = 0; i < mVecEvent.size(); ++i)
+	{
+		if (_eve.eEven == DELETE_OBJECT 
+			&& (CObject*)mVecEvent[i].lParam == (CObject*)_eve.lParam)
+		{
+			return;
+		}
+	}
+
+	mVecEvent.push_back(_eve);
 }

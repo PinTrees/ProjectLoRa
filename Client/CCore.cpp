@@ -95,6 +95,8 @@ void CCore::Run()
 void CCore::CreateBrushPen()
 {
 	mArrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+	mArrBrush[(UINT)BRUSH_TYPE::RED] = (HBRUSH)GetStockObject(RGB(255, 0, 0));
+
 	mArrPen[(UINT)PEN_TYPE::RED] = (HPEN)CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
 	mArrPen[(UINT)PEN_TYPE::GREEN] = (HPEN)CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
 	mArrPen[(UINT)PEN_TYPE::BLUE] = (HPEN)CreatePen(PS_SOLID, 1, RGB(0, 0, 255));

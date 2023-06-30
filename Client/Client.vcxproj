@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CCamera.h" />
@@ -169,15 +170,18 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="Environment.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
-    <ClInclude Include="MyVec2.h" />
+    <ClInclude Include="Gold.h" />
+    <ClInclude Include="Vec2.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SelectGDI.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CCamera.cpp" />
@@ -202,8 +206,11 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="Gold.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
+    <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

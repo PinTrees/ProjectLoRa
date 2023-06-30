@@ -32,8 +32,6 @@ void CAnimator::Render(HDC _dc)
 {
 	if (nullptr != mpCurAnim)
 		mpCurAnim->Render(_dc);
-
-
 }
 
 void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
@@ -66,4 +64,9 @@ void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 {
 	mpCurAnim =  FindAnimation(_strName);
 	mbRepeat = _bRepeat;
+
+	if (!_bRepeat)
+	{
+		mpCurAnim->SetFrame(0);
+	}
 }

@@ -11,18 +11,34 @@ private:
 
 	Vec2		mvPos;
 	Vec2		mvScale;
+	Vec2		mvPivot;	// 오브젝트의 피봇 위치 입니다.
 
-	CCollider*	mpCollider;
-	CAnimator*	mpAnimator;
+	CCollider* mpCollider;
+	CAnimator* mpAnimator;
 
 	bool		mbAlive;
+
+	/// 변경된 코드
+	float		mAngle;
+	float		mAngleOffset;
+
+	bool		mFlip;
 
 public:
 	void SetPos(Vec2 _vPos) { mvPos = _vPos; }
 	void SetScale(Vec2 _vScale) { mvScale = _vScale; }
+	void SetPivot(Vec2 _vPivot) { mvPivot = _vPivot; }
+	void SetAngle(float _angle) { mAngle = _angle; }
+	void SetAngleOffset(float _angle) { mAngleOffset = _angle; }
+
+	void SetFlip(bool _f) { mFlip = _f; }
+	bool GetFlip() { return mFlip; }
 
 	Vec2 GetPos() { return mvPos; }
 	Vec2 GetScale() { return mvScale; }
+	Vec2 GetPivot() { return mvPivot; }
+	Vec2 GetLocalPos() { return mvPos + mvPivot; }
+	float GetAngle() { return mAngle + mAngleOffset; }
 
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }
@@ -34,6 +50,8 @@ public:
 
 	void CreateCollider();
 	void CreateAnimator();
+
+	//void DeleteCollider();
 
 	// 충돌 시점 함수
 	virtual void OnCollision(CCollider* _pOther) {}		// 충돌 중인 경우 호출되는 함수

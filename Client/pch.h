@@ -3,8 +3,7 @@
 #include <Windows.h>
 #include <iostream>
 
-
-
+#include <future>
 
 
 #include <vector>
@@ -30,5 +29,5 @@ using std::string;
 #pragma comment(lib,"Msimg32.lib")
 
 #include "define.h"
-#include "MyVec2.h"
+#include "Vec2.h"
 #include "func.h"

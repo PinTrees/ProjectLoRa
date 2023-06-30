@@ -35,3 +35,10 @@ void Safe_Delete_Map(map<T1, T2>& _map)
 
 
 Vec2 curvesCircle(Vec2 c1, float _radius, float _amount);
+
+
+
+
+
+
+void FlipImage(HDC _dc, int _x, int _y, int _width, int _height);
