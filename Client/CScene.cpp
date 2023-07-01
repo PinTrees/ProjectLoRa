@@ -1,6 +1,28 @@
 #include "pch.h"
 #include "CScene.h"
 #include "CObject.h"
+#include "CTile.h"
+#include "CResMgr.h"
+
+
+
+CScene::CScene()
+	:miTileX(0)
+	, miTileY(0)
+{
+}
+
+CScene::~CScene()
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; i++)
+	{
+		for (size_t j = 0; j < mArrObj[i].size(); j++)
+		{
+			//그룹별 CObject 삭제
+			delete mArrObj[i][j];
+		}
+	}
+}
 
 void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
 {
@@ -21,26 +43,12 @@ void CScene::DeleteObject(CObject* _pObj, GROUP_TYPE _eType)
 }
 
 
-CScene::CScene()
-{
-}
 
-CScene::~CScene()
-{
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; i++)
-	{
-		for (size_t j = 0; j < mArrObj[i].size(); j++)
-		{
-			//그룹별 CObject 삭제
-			delete mArrObj[i][j];
-		}
-	}
-}
 void CScene::Update()
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		for (size_t j = 0; j < mArrObj[i].size();++j)
+		for (size_t j = 0; j < mArrObj[i].size(); ++j)
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
@@ -67,7 +75,7 @@ void CScene::Render(HDC _dc)
 	{
 
 		vector<CObject*>::iterator iter = mArrObj[i].begin();
-		for (;iter != mArrObj[i].end();)
+		for (; iter != mArrObj[i].end();)
 		{
 			if (!(*iter)->IsDead())
 			{
@@ -93,5 +101,25 @@ void CScene::DeleteAll()
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
 		DeleteGroup((GROUP_TYPE)i);
+	}
+}
+
+void CScene::CreateTile(UINT _iXCount, UINT _iYCount)
+{
+	miTileX = _iXCount;
+	miTileY = _iYCount;
+
+
+	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"Tile", L"texture\\tile\\TILE.bmp");
+
+	for (UINT i = 0; i < _iYCount; ++i)
+	{
+		for (UINT j = 0; j < _iXCount; ++j)
+		{
+			CTile* pTile = new CTile();
+			pTile->SetPos(Vec2((float)(j * TILE_SIZE), (float)(i * TILE_SIZE)));
+			pTile->SetTexture(pTileTex);
+			AddObject(pTile, GROUP_TYPE::TILE);
+		}
 	}
 }

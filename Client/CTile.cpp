@@ -5,7 +5,7 @@
 
 CTile::CTile()
 	:mpTileTex(nullptr)
-	, miIdx(33)  
+	, miImgIdx(0)
 {
 	SetScale(Vec2(TILE_SIZE, TILE_SIZE));
 }
@@ -20,7 +20,7 @@ void CTile::Update()
 
 void CTile::Render(HDC _dc)
 {
-	if (nullptr == mpTileTex || -1 == miIdx) //텍스쳐가 없으면 안그림
+	if (nullptr == mpTileTex || -1 == miImgIdx) //텍스쳐가 없으면 안그림
 		return;
 
 	UINT iWidth =  mpTileTex->Width();
@@ -29,8 +29,8 @@ void CTile::Render(HDC _dc)
 	UINT iMaxCol = (UINT)iWidth / TILE_SIZE;
 	UINT iMaxRow = (UINT)iHeight / TILE_SIZE;
 
-	UINT iCurRow = miIdx / iMaxCol;
-	UINT iCurCol = miIdx % iMaxCol;
+	UINT iCurRow = miImgIdx / iMaxCol;
+	UINT iCurCol = miImgIdx % iMaxCol;
 
 	if (iMaxRow <= iCurRow)
 		assert(nullptr);

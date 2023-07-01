@@ -7,6 +7,12 @@ struct Vec2
 	float y;
 
 public:
+	bool IsZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		return false;
+	}
 
 	float Length()
 	{
@@ -16,12 +22,10 @@ public:
 	Vec2& Normalize()
 	{
 		float fLen = Length();
-		if(fLen != 0.f)
-		{
-			x /= fLen;
-			y /= fLen;
-			return *this;
-		}
+		assert(fLen != 0.f);
+
+		x /= fLen;
+		y /= fLen;
 
 		return *this;
 	}
@@ -62,7 +66,7 @@ public:
 	Vec2 operator / (Vec2 _vOther)
 	{
 		assert(!(0.f == _vOther.x || 0.f == _vOther.y));
-		return Vec2(x / _vOther.x , y / _vOther.y);
+		return Vec2(x / _vOther.x, y / _vOther.y);
 	}
 	Vec2 operator / (float _f)
 	{

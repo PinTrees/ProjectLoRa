@@ -5,6 +5,8 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+#include "CUIMgr.h"
+
 CEventMgr::CEventMgr()
 {
 
@@ -67,7 +69,12 @@ void CEventMgr::excute(const tEvent& _eve)
 		break;
 	case SCENE_CHANGE:
 		//lParam : NEXT SCENE TYPE
+		// Scene 변경
 		CSceneMgr::GetI()->ChangeScene((SCENE_TYPE)_eve.lParam);
+
+		// 포커스 UI해제 (이전 Scene의 UI를 가르키고있기때문
+		CUIMgr::GetI()->SetFocusedUI(nullptr);
+
 		break;
 	}
 }

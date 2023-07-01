@@ -92,6 +92,18 @@
     <Filter Include="FreamWork\04. Object\Tile">
       <UniqueIdentifier>{11027ab6-1418-4750-a31f-4d5d1569632e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\04. Object\UI">
+      <UniqueIdentifier>{9479ef96-a981-4ad9-9e54-a1d9996b53be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\UIMgr">
+      <UniqueIdentifier>{011cb9f7-f6f3-4908-8a31-e32d319c96bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\04. Object\UI\PanelUI">
+      <UniqueIdentifier>{68a84a6e-6eaf-4626-a9d2-96765238e2a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\04. Object\UI\ButtonUI">
+      <UniqueIdentifier>{ae9319c2-1c9c-47c0-a055-94ac3896c366}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -196,6 +208,18 @@
     <ClInclude Include="global.h">
       <Filter>FreamWork\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>FreamWork\04. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>FreamWork\03. Manager\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>FreamWork\04. Object\UI\PanelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -287,6 +311,18 @@
     </ClCompile>
     <ClCompile Include="CTile.cpp">
       <Filter>FreamWork\04. Object\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>FreamWork\04. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>FreamWork\03. Manager\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>FreamWork\04. Object\UI\PanelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

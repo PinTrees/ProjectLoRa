@@ -8,11 +8,15 @@ class CTile :
 {
 private:
 	CTexture*	mpTileTex;
-	int			miIdx;
+	int			miImgIdx;
 
 public:
 	void SetTexture(CTexture* _pTex) { mpTileTex = _pTex; }
 
+	void AddImgIdx()
+	{
+		++miImgIdx;
+	}
 
 private:
 	virtual void Update();

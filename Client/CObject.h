@@ -1,4 +1,5 @@
 #pragma once
+#include "global.h"
 #include "CCamera.h"
 
 class CCollider;
@@ -46,7 +47,7 @@ private:
 
 public:
 	virtual void Update() = 0;
-	virtual void FinalUpdate() final;
+	virtual void FinalUpdate();
 	virtual void Render(HDC _dc);
 
 	void CompnentRender(HDC _dc);

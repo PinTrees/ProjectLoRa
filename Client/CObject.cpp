@@ -56,6 +56,9 @@ void CObject::FinalUpdate()
 {
 	if (mpCollider)
 		mpCollider->FinalUpdate();
+
+	if (mpAnimator)
+		mpAnimator->FinalUpdate();
 }
 
 void CObject::Render(HDC _dc)
