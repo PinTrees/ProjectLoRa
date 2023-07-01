@@ -49,19 +49,38 @@ Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
 
 
 
-void FlipImage(HDC _dc, int _x, int _y, int _width, int _height)
+void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight)
 {
-	HDC hMemDC = CreateCompatibleDC(_dc);
-	HBITMAP hBitmap = CreateCompatibleBitmap(_dc, _width, _height);
-	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+    // 플립된 이미지를 그릴 메모리 DC 생성
+    HDC flipDC = CreateCompatibleDC(hdc);
+    HBITMAP flipBitmap = CreateCompatibleBitmap(hdc, width, height);
+    HBITMAP oldBitmap = (HBITMAP)SelectObject(flipDC, flipBitmap);
 
-	// 이미지를 플립하여 복사
-	StretchBlt(hMemDC, 0, 0, _width, _height, _dc, _x + _width, _y, -_width, _height, SRCCOPY);
+    // 이미지를 수평으로 뒤집기 위한 변환 행렬 생성
+    XFORM transform;
+    transform.eM11 = -1.0f;
+    transform.eM12 = 0.0f;
+    transform.eM21 = 0.0f;
+    transform.eM22 = 1.0f;
+    transform.eDx = srcWidth;
+    transform.eDy = 0.0f;
 
-	// 플립된 이미지를 원래 위치로 복사
-	BitBlt(_dc, _x, _y, _width, _height, hMemDC, 0, 0, SRCCOPY);
+    // 변환 행렬 설정
+    SetGraphicsMode(flipDC, GM_ADVANCED);
+    SetWorldTransform(flipDC, &transform);
 
-	SelectObject(hMemDC, hOldBitmap);
-	DeleteObject(hBitmap);
-	DeleteDC(hMemDC);
+    // 원본 이미지를 플립된 메모리 DC에 그리기
+    BitBlt(flipDC, 0, 0, width, height, srcDC, srcX, srcY, SRCCOPY);
+
+    // 변환 행렬 초기화
+    ModifyWorldTransform(flipDC, nullptr, MWT_IDENTITY);
+    SetWorldTransform(flipDC, nullptr);
+
+    // 플립된 이미지를 출력
+    TransparentBlt(hdc, x, y, width, height, flipDC, 0, 0, srcWidth, srcHeight, RGB(255, 0, 255));
+
+    // 메모리 해제
+    SelectObject(flipDC, oldBitmap);
+    DeleteObject(flipBitmap);
+    DeleteDC(flipDC);
 }

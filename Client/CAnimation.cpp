@@ -83,11 +83,21 @@ void CAnimation::Render(HDC _dc)
 
 	if (pObj->GetAngle() <= 0.1f)
 	{
-		if (pObj->GetFlip())
+		/*if (pObj->GetFlip())
 		{
-
+			FlipImage(_dc
+				, (int)(vPos.x - vScale.x * 0.5f)
+				, (int)(vPos.y - vScale.y * 0.5f)
+				, (int)(vScale.x)
+				, (int)(vScale.y)
+				, mpTex->GetDC()
+				, (int)(mVecFrm[miCurFrm].vLT.x)
+				, (int)(mVecFrm[miCurFrm].vLT.y)
+				, (int)(mVecFrm[miCurFrm].vSlice.x)
+				, (int)(mVecFrm[miCurFrm].vSlice.y)
+			);
 		}
-		else
+		else*/
 		{
 			TransparentBlt(_dc
 				, (int)(vPos.x - vScale.x * 0.5f)

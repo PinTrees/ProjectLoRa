@@ -35,14 +35,20 @@ enum class GROUP_TYPE
 	DEFAULT,
 
 	BACK,
+
 	ENV,
+	GOLD,
+
 
 	PLAYER,
 	MONSTER,
 	PROJ_PLAYER,
 	PROJ_MONSTER,
 
-	GOLD,
+
+	EFFECT,
+
+	UI,
 
 	END = 32,
 };

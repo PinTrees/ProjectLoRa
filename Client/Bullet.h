@@ -24,7 +24,6 @@ public:
 			angle += 360.0f;
 
 		SetAngle(angle);
-		SetAngleOffset(180);
 	}
 	void SetType(const wstring& _str) { mType = _str; }
 

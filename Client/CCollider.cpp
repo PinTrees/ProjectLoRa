@@ -57,20 +57,18 @@ void CCollider::Render(HDC _dc)
 		, (int)(vRenderPos.y - mvScale.y / 2.f)
 		, (int)(vRenderPos.x + mvScale.x / 2.f)
 		, (int)(vRenderPos.y + mvScale.y / 2.f));
-
 }
 
 
 
 
-void CCollider::OnCollision(CCollider* _pOther)
+void CCollider::OnCollisionStay(CCollider* _pOther)
 {
-	mpOwner->OnCollision(_pOther);
+	mpOwner->OnCollisionStay(_pOther);
 }
 
 void CCollider::OnCollisionEnter(CCollider* _pOther)
 {
-
 	++miCol;
 	mpOwner->OnCollisionEnter(_pOther);
 

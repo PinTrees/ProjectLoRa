@@ -98,8 +98,8 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 					}
 					else
 					{
-						pLeftCol->OnCollision(pRightCol);
-						pRightCol->OnCollision(pLeftCol);
+						pLeftCol->OnCollisionStay(pRightCol);
+						pRightCol->OnCollisionStay(pLeftCol);
 					}
 				}
 				else

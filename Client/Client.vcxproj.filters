@@ -104,6 +104,12 @@
     <Filter Include="Game\04. Object\Bullet">
       <UniqueIdentifier>{e045afaf-6396-4eb6-857f-7dc22ef63594}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\07. Compnent\RigidBody">
+      <UniqueIdentifier>{aacc3fed-e4d3-43f8-b6eb-796ef24a5d21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\03. Manager\UIMgr">
+      <UniqueIdentifier>{e3ffa790-a82f-4f29-88b5-432f2b2cd4f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -211,6 +217,21 @@
     <ClInclude Include="Bullet.h">
       <Filter>Game\04. Object\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>FreamWork\07. Compnent\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>FreamWork\07. Compnent\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMgr.h">
+      <Filter>FreamWork\03. Manager\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>FreamWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Game\04. Object\Particle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -313,6 +334,21 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>FreamWork\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>FreamWork\07. Compnent\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>FreamWork\07. Compnent\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMgr.cpp">
+      <Filter>FreamWork\03. Manager\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>FreamWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Game\04. Object\Particle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

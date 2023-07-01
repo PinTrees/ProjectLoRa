@@ -3,8 +3,13 @@
 
 #include "CCollider.h"
 #include "CAnimator.h"
+#include "RigidBody.h"
+#include "Gravity.h"
 
 #include "SelectGDI.h"
+
+
+
 
 CObject::CObject()
 	: mvPos{}
@@ -64,6 +69,7 @@ void CObject::FinalUpdate()
 		mpCollider->FinalUpdate();
 }
 
+
 void CObject::Render(HDC _dc)
 {
 	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
@@ -112,6 +118,18 @@ void CObject::CreateAnimator()
 {
 	mpAnimator = new CAnimator;
 	mpAnimator->mpOwner = this;
+}
+
+void CObject::CreateRigidBody()
+{
+	mpRigidBody = new CRigidBody();
+	mpRigidBody->p_owner = this;
+}
+
+void CObject::CreateGravity()
+{
+	mpGravity = new CGravity();
+	mpGravity->p_owner = this;
 }
 
 //void CObject::DeleteCollider()

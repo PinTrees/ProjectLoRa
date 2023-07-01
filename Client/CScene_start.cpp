@@ -83,7 +83,6 @@ void CScene_start::Enter()
 	mPlayer = new CPlayer;
 	mPlayer->SetName(L"Player");
 	mPlayer->SetPos(Vec2(640.f, 384.f));
-	mPlayer->SetScale(Vec2(180.f, 168.f));
 	AddObject(mPlayer, GROUP_TYPE::PLAYER);
 
 	CCamera::GetI()->SetTarget(mPlayer);

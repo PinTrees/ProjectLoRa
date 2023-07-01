@@ -7,6 +7,8 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
+#include "UIMgr.h"
+
 #include "CCamera.h"
 
 CCore::CCore()
@@ -62,32 +64,35 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 
 void CCore::Run()
 {
-	//manager update
+	// ============
+	// Manager Update
+	// ============
 	CTimeMgr::GetI()->Update();
 	CKeyMgr::GetI()->Update();
 	CCamera::GetI()->Update();
-	//	============
-	//	Scene Update
-	//	============
+
+	// ============
+	// Scene Update
+	// ============
 	CSceneMgr::GetI()->Update();
 
-	///충돌체크
+	// ================
+	// Collision Update
+	// ================
 	CCollisionMgr::GetI()->Update();
+	CUIMgr::GetI()->Update();
 
-	//	========
-	//	Rendering
-	//	========
-	//	화면 Clear
-	//	========
+	// ========
+	// Rendering Clear
+	// ========
 	Rectangle(mMemDC, -1, -1, mPtResolution.x + 1, mPtResolution.y + 1);
 	CSceneMgr::GetI()->Render(mMemDC);
 	BitBlt(mhDC, 0, 0, mPtResolution.x, mPtResolution.y, mMemDC, 0, 0, SRCCOPY);
 	CTimeMgr::GetI()->Render();
 
-	//	============
-	//	이벤트 지연처리
-	//	============
-
+	// ============
+	// 이벤트 지연처리
+	// ============
 	CEventMgr::GetI()->Update();
 }
 

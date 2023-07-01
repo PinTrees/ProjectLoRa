@@ -32,8 +32,8 @@ public:
 
 public:
 	// 충돌 시점 함수
-	void OnCollision(CCollider* _pOther); // 충돌 중인 경우 호출되는 함수
 	void OnCollisionEnter(CCollider* _pOther); // 충돌 진입시
+	void OnCollisionStay(CCollider* _pOther); // 충돌 중인 경우 호출되는 함수
 	void OnCollisionExit(CCollider* _pOther); // 충돌 해제시
 
 

@@ -41,4 +41,4 @@ Vec2 curvesCircle(Vec2 c1, float _radius, float _amount);
 
 
 
-void FlipImage(HDC _dc, int _x, int _y, int _width, int _height);
+void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight);

@@ -11,6 +11,7 @@ enum class PLAYER_STATE
 	Attack,
 	Run,
 	Die,
+	Dash,
 };
 
 
@@ -22,6 +23,8 @@ class CPlayer :
 private:
 	float mfDelay;
 	float mfCurDelay;
+
+	Vec2 mvDashDir;
 
 	PLAYER_STATE mState;
 

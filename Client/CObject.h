@@ -3,6 +3,8 @@
 
 class CCollider;
 class CAnimator;
+class CRigidBody;
+class CGravity;
 
 class CObject
 {
@@ -15,6 +17,8 @@ private:
 
 	CCollider* mpCollider;
 	CAnimator* mpAnimator;
+	CRigidBody* mpRigidBody;
+	CGravity*   mpGravity;
 
 	bool		mbAlive;
 
@@ -45,16 +49,19 @@ public:
 
 	CCollider* GetCollider() { return mpCollider; }
 	CAnimator* GetAnimator() { return mpAnimator; }
+	CRigidBody* GetRigidBody() { return mpRigidBody; }
 
 	bool	IsDead() { return !mbAlive; }
 
 	void CreateCollider();
 	void CreateAnimator();
+	void CreateRigidBody();
+	void CreateGravity();
 
 	//void DeleteCollider();
 
 	// 충돌 시점 함수
-	virtual void OnCollision(CCollider* _pOther) {}		// 충돌 중인 경우 호출되는 함수
+	virtual void OnCollisionStay(CCollider* _pOther) {}		// 충돌 중인 경우 호출되는 함수
 	virtual void OnCollisionEnter(CCollider* _pOther) {}// 충돌 진입시
 	virtual void OnCollisionExit(CCollider* _pOther) {} // 충돌 해제시
 
@@ -64,7 +71,7 @@ private:
 
 public:
 	virtual void Update() = 0;
-	virtual void FinalUpdate() final;
+	virtual void FinalUpdate();
 	virtual void Render(HDC _dc);
 
 	void CompnentRender(HDC _dc);
