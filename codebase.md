@@ -78,6 +78,13 @@ Bullet::Bullet()
 	SetScale(Vec2(48.f, 32.f) * 1.5f);
 	SetAngleOffset(180);
 }
+
+
+void Bullet::Update()
+{
+	// 애니메이션이 적용된 오브젝트는 필수 작성
+	GetAnimator()->Update();
+}
 ```
 
 
