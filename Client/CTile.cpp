@@ -48,3 +48,13 @@ void CTile::Render(HDC _dc)
 		, iCurRow * TILE_SIZE
 		, SRCCOPY);
 }
+
+void CTile::Save(FILE* _pFile)
+{
+	fwrite(&miImgIdx, sizeof(int), 1, _pFile);
+}
+
+void CTile::Load(FILE* _pFile)
+{
+	fread(&miImgIdx, sizeof(int), 1, _pFile);
+}

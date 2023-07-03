@@ -37,6 +37,8 @@ public:
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();
 	void CreateTile(UINT _iXCount, UINT _iYCount);
+	void LoadTile(const wstring& _strRelativePath);
+
 
 	vector<CObject*>& GetUIGroup() { return mArrObj[(UINT)GROUP_TYPE::UI]; }
 

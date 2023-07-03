@@ -18,6 +18,9 @@ public:
 	void SetTileIdx();
 
 
+	void SaveTileData();
+	void SaveTile(const wstring& _strRelativePath);
+
 public:
 	CScene_Tool();
 	~CScene_Tool();
