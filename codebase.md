@@ -85,6 +85,13 @@ void Bullet::Update()
 	// 애니메이션이 적용된 오브젝트는 필수 작성
 	GetAnimator()->Update();
 }
+
+
+void Bullet::Render(HDC _dc)
+{
+	// 애니메이션이 적용된 오브젝트는 필수 작성
+	CompnentRender(_dc);
+}
 ```
 
 
