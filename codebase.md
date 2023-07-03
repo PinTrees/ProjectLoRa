@@ -43,6 +43,14 @@ public:
 	CreateObject(pBullet, GROUP_TYPE::DEFAULT);
 ```
 
+### 생성된 오브젝트를 제거
+```c++
+	// 게임오브젝트 클래스 내에서 자기 자신을 제거
+  	DeleteObject(this);
+	// 객체를 소유하고 있는 위치에서 제거
+  	DeleteObject(pPlayer);
+```
+
 
 ### 스프라이트 애니메이션
 ```c++
