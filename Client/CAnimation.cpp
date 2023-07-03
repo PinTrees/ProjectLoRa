@@ -68,18 +68,6 @@ void CAnimation::Render(HDC _dc)
 
 	Vec2 vScale = pObj->GetScale();
 
-	/*TransparentBlt(_dc
-		, (int)(vPos.x - mVecFrm[miCurFrm].vSlice.x / 2.f)
-		, (int)(vPos.y  - mVecFrm[miCurFrm].vSlice.y / 2.f)
-		, (int)(mVecFrm[miCurFrm].vSlice.x)
-		, (int)(mVecFrm[miCurFrm].vSlice.y)
-		, mpTex->GetDC()
-		, (int)(mVecFrm[miCurFrm].vLT.x)
-		, (int)(mVecFrm[miCurFrm].vLT.y)
-		, (int)(mVecFrm[miCurFrm].vSlice.x)
-		, (int)(mVecFrm[miCurFrm].vSlice.y)
-		, RGB(255, 0, 255)
-	);*/
 
 	if (pObj->GetAngle() <= 0.1f)
 	{
@@ -117,12 +105,27 @@ void CAnimation::Render(HDC _dc)
 	{
 		// 이미지 회전을 위한 변환 행렬 생성
 		XFORM transform;
-		transform.eM11 = cosf(pObj->GetAngle() * PI / 180.0f);
+		float angleRad = pObj->GetAngle() * PI / 180.0f;
+		float cosAngle = cosf(angleRad);
+		float sinAngle = sinf(angleRad);
+
+		// 기준점 위치 계산
+		Vec2 pivot = pObj->GetPivot();  // 기준점 좌표 (pivot)
+		float dx = pivot.x * cosAngle - pivot.y * sinAngle + vPos.x;
+		float dy = pivot.x * sinAngle + pivot.y * cosAngle + vPos.y;
+
+		transform.eM11 = cosAngle;
+		transform.eM12 = sinAngle;
+		transform.eM21 = -sinAngle;
+		transform.eM22 = cosAngle;
+		transform.eDx = dx;
+		transform.eDy = dy;
+		/*transform.eM11 = cosf(pObj->GetAngle() * PI / 180.0f);
 		transform.eM12 = sinf(pObj->GetAngle() * PI / 180.0f);
 		transform.eM21 = -sinf(pObj->GetAngle() * PI / 180.0f);
 		transform.eM22 = cosf(pObj->GetAngle() * PI / 180.0f);
 		transform.eDx = vPos.x;
-		transform.eDy = vPos.y;
+		transform.eDy = vPos.y;*/
 
 		// 변환 행렬 설정
 		SetGraphicsMode(_dc, GM_ADVANCED);

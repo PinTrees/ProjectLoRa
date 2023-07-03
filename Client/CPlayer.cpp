@@ -11,6 +11,7 @@
 
 #include "CMissile.h"
 #include "Bullet.h"
+#include "Gun.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
@@ -23,6 +24,7 @@ CPlayer::CPlayer()
 	, mfDelay(0.03f)
 	, mState(PLAYER_STATE::None)
 	, mvDashDir(Vec2(0.f, 0.f))
+	, mCurGun(nullptr)
 {
 	SetPivot(Vec2(-30.f, 35.f));
 
@@ -52,6 +54,10 @@ CPlayer::CPlayer()
 	GetAnimator()->FindAnimation(L"DASH_R")->SetAllFrameOffet(Vec2(0.f, -20.f));
 
 	SetScale(Vec2(73.f, 54.f) * 2.5f);
+
+	mCurGun = new Gun(L"1");
+	mCurGun->SetOwner(this);
+	CreateObject(mCurGun, GROUP_TYPE::PLAYER);
 }
 
 
@@ -64,6 +70,7 @@ CPlayer::~CPlayer()
 void CPlayer::Update()
 {
 	GetAnimator()->Update();
+
 
 	mfCurDelay += fDT;
 	Vec2 vPos = GetPos();
@@ -179,12 +186,17 @@ void CPlayer::createMissile()
 
 	// Missile Object
 	Bullet* pMissile = new Bullet(L"3");
-	pMissile->SetPos(vMissilePos);
+	pMissile->SetPos(vMissilePos + vDir.Normalize() * 50.f);
 	pMissile->SetDir(vDir);
 	pMissile->SetName(L"Missile_Player");
 
 	//*** setPos setScale 는 인자로 받아서 설정하게 수정필요
 	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
+
+	if (mCurGun != nullptr)
+	{
+		mCurGun->SetAngle(vDir.ToAngle());
+	}
 }
 
 

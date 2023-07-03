@@ -110,6 +110,18 @@
     <Filter Include="FreamWork\03. Manager\UIMgr">
       <UniqueIdentifier>{e3ffa790-a82f-4f29-88b5-432f2b2cd4f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\07. Compnent\UI">
+      <UniqueIdentifier>{da02c518-700b-4799-9bb4-314520c65c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\07. Compnent\UI\Button">
+      <UniqueIdentifier>{4919d559-0ef9-42ee-bffc-08efddcb8506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\07. Compnent\UI\Panel">
+      <UniqueIdentifier>{cc24355e-07d5-4708-803b-38b01616c12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\04. Object\Gun">
+      <UniqueIdentifier>{b79e24fc-ba7a-48cf-a49a-652323f10426}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -232,6 +244,15 @@
     <ClInclude Include="Particle.h">
       <Filter>Game\04. Object\Particle</Filter>
     </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>FreamWork\07. Compnent\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>FreamWork\07. Compnent\UI\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Game\04. Object\Gun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -349,6 +370,15 @@
     </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>Game\04. Object\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>FreamWork\07. Compnent\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>FreamWork\07. Compnent\UI\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Game\04. Object\Gun</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

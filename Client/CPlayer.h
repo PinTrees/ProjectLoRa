@@ -2,7 +2,7 @@
 #include "CObject.h"
 
 class CTexture;
-
+class Gun;
 
 enum class PLAYER_STATE
 {
@@ -25,6 +25,8 @@ private:
 	float mfCurDelay;
 
 	Vec2 mvDashDir;
+
+	Gun* mCurGun;
 
 	PLAYER_STATE mState;
 

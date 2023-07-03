@@ -1,0 +1,36 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map_1.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "map_1.tmx": {
+            "scale": 0.3908,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 391.5046059365404,
+                "y": 589.8157625383828
+            }
+        },
+        "tiles_001.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.16
+        }
+    },
+    "last.imagePath": "/Users/ijingyo/Desktop",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "tiles_001.tsx",
+        "map_1.tmx"
+    ],
+    "project": "test1.tiled-project",
+    "recentFiles": [
+        "tiles_001.tsx",
+        "map_1.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.useTransparentColor": true
+}

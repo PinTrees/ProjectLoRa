@@ -61,6 +61,17 @@ public:
 		return *this;
 	}
 
+	float ToAngle()
+	{
+		Normalize();
+
+		float angle = atan2f(y, x) * 180.0f / PI;
+		if (angle < 0.0f)
+		{
+			angle += 360.0f;
+		}
+		return angle;
+	}
 
 public:
 	Vec2& operator =  (POINT _pt)

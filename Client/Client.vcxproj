@@ -147,6 +147,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CBtnUI.h" />
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CObject.h" />
+    <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CRes.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="func.h" />
     <ClInclude Include="Gold.h" />
     <ClInclude Include="Gravity.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
@@ -189,6 +192,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CBtnUI.cpp" />
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
@@ -200,6 +204,7 @@
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CRes.cpp" />
@@ -215,6 +220,7 @@
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Gravity.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
