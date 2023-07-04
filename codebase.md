@@ -37,6 +37,7 @@ public:
   	// CObject 를 상속받은 객체 생성
 	Bullet* pBullet = new Bullet(L"3");
 	pBullet->SetPos(Vec2(0.f, 0.f));
+	// 오브젝트 구분자 (필수)
 	pBullet->SetName(L"Bullet_Player");
 
   	// 객체를 관리되는 항목에 추가
@@ -153,6 +154,13 @@ void CPlayer::Update()
 	if (KEY_HOLD(KEY::D)) vDir += Vec2::right;
 }
 ```
+
+### 마우스 위치 변환
+```c++
+// 마우스 위치를 화면좌표에서 월드좌표로 변환
+Vec2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS);
+```
+
 
 ### 오브젝트의 위치, 각도, 피봇 변경
 ```c++
