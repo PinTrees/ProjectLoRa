@@ -129,6 +129,18 @@ void Bullet::OnCollisionExit(CCollider* _pOther)
 }
 ```
 
+### 오브젝트에 겹침 불가 충돌체 추가 (강체) RigidBody
+```c++
+// 강체가 필요하다고 판단될 경우 생성자에서 초기화
+Bullet::Bullet()
+{
+	// 강체의 기준 콜라이더 생성
+	CreateCollider();
+	// 강체 생성 (기준 콜라이더 필요) 추후 리스트로 받아 여러 충돌체를 기준으로 강체 설정
+	this->CreateRigidBody(GetCollider());
+	// 강체는 콜라이더의 정보를 공유하며 해당 값을 기준으로 계산됩니다.
+}
+```
 
 ### 오브젝트에 키 및 마우스 이벤트 추가
 ```c++
