@@ -219,6 +219,13 @@ void CSceneStart::Update()
 }
 ```
 
+### 리소스 로드
+```c++
+	// Texture 로드 ( 저장명, 경로 )
+	// (추후 같은 값으로 로드를 요청할 경우 미리 생성된 리소스 반환)
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"ENV_" + mType, L"texture\\map\\" + mType + L".bmp");
 
+	// 사운드 개발중
+```
 
 
