@@ -58,10 +58,6 @@ public:
 // 해당 오브젝트에 애니메이션이 필요하다고 판단될 경우 생성자에서 초기화
 Bullet::Bullet()
 {
-	// 충돌체 생성
-	CreateCollider();
-	GetCollider()->SetScale(Vec2(15, 15));
-
 	// 애니메이션에 사용될 텍스쳐 로드
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Effect" + _type, L"texture\\bullet\\" + _type + L".bmp");
 	// 애니메이터 생성
@@ -91,6 +87,44 @@ void Bullet::Render(HDC _dc)
 {
 	// 애니메이션이 적용된 오브젝트는 필수 작성
 	CompnentRender(_dc);
+}
+```
+
+### 오브젝트에 충돌체 추가
+```c++
+// 오브젝트에 충돌처리가 필요하다고 판단될 경우 생성자에서 초기화
+Bullet::Bullet()
+{
+	// 충돌체 생성
+	CreateCollider();
+	// 충돌체의 크기 설정
+	GetCollider()->SetScale(Vec2(15.f, 15.f));
+	// 충돌체의 오프셋 설정
+	GetCollider()->SetOffsetPos(Vec2(0.f, 0.f));
+}
+
+// 충돌이 시작된 시점
+void Bullet::OnCollisionEnter(CCollider* _pOther)
+{
+
+	CObject* pOtherObj = _pOther->GetObj();
+	// 객체를 판별. 이름 또는 태그로 구분
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		// 충돌에 필요한 로직을 작성
+	}
+}
+
+// 충돌이 진행중인 상태 (매 프레임마다 호출)
+void Bullet::OnCollisionStay(CCollider* _pOther)
+{
+	// 충돌에 필요한 로직을 작성
+}
+
+// 충돌이 끝난 시점
+void Bullet::OnCollisionExit(CCollider* _pOther)
+{
+	// 충돌에 필요한 로직을 작성
 }
 ```
 
