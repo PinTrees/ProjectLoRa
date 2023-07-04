@@ -154,9 +154,24 @@ void CPlayer::Update()
 }
 ```
 
-### 오브젝트의 위치 변경
+### 오브젝트의 위치, 각도, 피봇 변경
 ```c++
+Bullet* pObject = new Bullet(L"3");
+// 위치 변경
+pObject->SetPos(Vec2(0.f, 0.f));
+// 피봇 변경
+pObject->SetPivot(Vec2(0.f, 0.f));
+// 각도 변경
+pObject->SetAngle(180.f);
+// 각도 오프셋 변경
+pObject->SetAngleOffset(100.f);
 
+// 오브젝트의 월드 좌표 획득
+pObject->GetLocalPos();
+
+// 벡터의 방향을 각도로 변환
+Vec2 vDir = Vec2(50.f, 50.f);
+vDir.ToAngle();
 ```
 
 
