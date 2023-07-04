@@ -194,6 +194,31 @@ Vec2 vDir = Vec2(50.f, 50.f);
 vDir.ToAngle();
 ```
 
+### 카메라 제어 - 게임 특성상 여러 카메라의 생성이 필요하지 않으므로 프레임워크에 고려되지 않음 (싱글톤 클래스)
+- 월드좌표와 렌더링 좌표 분리 ()
+```c++
+// 카메라의 위치 설정 - 월드좌표로 입력
+CCamera::GetI()->SetLookAt(vResolution / 2.f);
+
+// 카메라가 항상 따라다니는 타겟 지정 (오브젝트*)
+// 많이 사용되는 패턴으로 프레임워크에 추가됨
+// 타겟이 지정되었을 경우 타겟을 최우선으로 이동
+CCamera::GetI()->SetTarget(mPlayer);
+
+// 반복자에서 카메라 제어
+void CSceneStart::Update()
+{
+	CScene::Update();
+	if (KEY_HOLD(KEY::LBTN)) 
+	{
+		// 월드좌표를 획득
+		Vec2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
+		// 카메라의 좌표를 변환
+		CCamera::GetI()->SetLookAt(vLookAt);
+	}
+}
+```
+
 
 
 
