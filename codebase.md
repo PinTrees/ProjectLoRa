@@ -129,5 +129,36 @@ void Bullet::OnCollisionExit(CCollider* _pOther)
 ```
 
 
+### 오브젝트에 키 및 마우스 이벤트 추가
+```c++
+// 매 프레임마다 호출
+void CPlayer::Update()
+{
+	// 키보드 입력을 1회 감지지
+	if (KEY_TAP(KEY::SPACE))
+	{
+		// 필요한 로직을 작성
+	}
+
+	// 키보드 입력을 매 프레임마다 감지
+	if (KEY_HOLD(KEY::RBTN))
+	{
+		// 필요한 로직을 작성
+	}
+
+	Vec2 vDir = Vec2::zero;
+	if (KEY_HOLD(KEY::W)) vDir = Vec2::up; 
+	if (KEY_HOLD(KEY::S)) vDir += Vec2::down;
+	if (KEY_HOLD(KEY::A)) vDir += Vec2::left;
+	if (KEY_HOLD(KEY::D)) vDir += Vec2::right;
+}
+```
+
+### 오브젝트의 위치 변경
+```c++
+
+```
+
+
 
 
