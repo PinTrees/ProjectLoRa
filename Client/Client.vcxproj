@@ -179,6 +179,7 @@
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="UIMgr.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />

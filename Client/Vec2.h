@@ -26,6 +26,16 @@ public:
 	}
 
 
+	static Vec2 FromAngle(float angle)
+	{
+		float radian = angle * PI / 180.0f;  // 각도를 라디안으로 변환
+
+		float x = cos(radian);  // x축 좌표 계산
+		float y = sin(radian);  // y축 좌표 계산
+
+		return Vec2(x, y);
+	}
+
 
 public:
 	float Length()

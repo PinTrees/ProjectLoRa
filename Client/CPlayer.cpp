@@ -19,6 +19,8 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+#include "Random.h"
+
 CPlayer::CPlayer()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
@@ -78,14 +80,24 @@ void CPlayer::Update()
 
 	if (mState == PLAYER_STATE::Dash)
 	{
+		mCurGun->SetVisible(false);
+
 		vPos += mvDashDir * 500.f * fDT;
 		SetPos(vPos);
 
 		if (GetAnimator()->GetCurAnimation()->IsFinish())
 		{
+			mCurGun->SetVisible(true);
 			mState = PLAYER_STATE::Idle;
 		}
+
 		return;
+	}
+
+	if (mCurGun != nullptr)
+	{
+		Vec2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
+		mCurGun->SetAngle(vDir.ToAngle());
 	}
 
 	if (KEY_TAP(KEY::SPACE))
@@ -99,7 +111,7 @@ void CPlayer::Update()
 		return;
 	}
 
-	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > 0.05f)
+	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > 0.01f)
 	{
 		mfCurDelay = 0.f;
 
@@ -109,14 +121,7 @@ void CPlayer::Update()
 		}
 
 		Vec2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
-		if (pos.x > vPos.x)
-		{
-			GetAnimator()->Play(L"ATK_R", false);
-		}
-		else
-		{
-			GetAnimator()->Play(L"ATK_L", false);
-		}
+		GetAnimator()->Play(pos.x > vPos.x ? L"ATK_R" : L"ATK_L", false);
 
 		mState = PLAYER_STATE::Attack;
 	}
@@ -127,7 +132,6 @@ void CPlayer::Update()
 		{
 			mState = PLAYER_STATE::Idle;
 		}
-		return;
 	}
 
 	else if (mState == PLAYER_STATE::Idle)
@@ -181,7 +185,7 @@ void CPlayer::createMissile()
 
 	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
 	int launchAngle = 30;
-	float angle = (rand() % launchAngle) - launchAngle * 0.5f; // -30도부터 30도 사이의 랜덤한 각도
+	float angle = (float)CRandom::GetI()->Next(-15, 15); // -30도부터 30도 사이의 랜덤한 각도
 	vDir.Rotate(angle); // 방향 벡터를 해당 각도만큼 회전시킵니다.
 
 	// Missile Object
@@ -192,11 +196,6 @@ void CPlayer::createMissile()
 
 	//*** setPos setScale 는 인자로 받아서 설정하게 수정필요
 	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
-
-	if (mCurGun != nullptr)
-	{
-		mCurGun->SetAngle(vDir.ToAngle());
-	}
 }
 
 

@@ -18,6 +18,7 @@
 #include "CTimeMgr.h"
 
 #include "CCamera.h"
+#include "CCollider.h"
 
 
 CScene_start::CScene_start()
@@ -59,7 +60,6 @@ void CScene_start::Update()
 
 void CScene_start::Enter()
 {
-	srand(GetTickCount64());
 
 	/*Environment* pBackObj = new Environment(L"back_1");
 	pBackObj->SetName(L"BACK");
@@ -111,6 +111,8 @@ void CScene_start::Enter()
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GOLD);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::ENV);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
 
 	// Camera Look ÁöÁ¤
 	Vec2 vResolution = CCore::GetI()->GetResolution();
@@ -159,6 +161,7 @@ void CScene_start::CreateMonster()
 	pMonsterObj->SetCenterPos(Vec2(0.f, 0.f));
 	pMonsterObj->SetScale(Vec2(280.f, 180.f));
 	pMonsterObj->SetTarget(mPlayer);
+	pMonsterObj->GetCollider()->SetTrigger(false);
 	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 }
 
@@ -179,7 +182,7 @@ void CScene_start::createEnvi()
 	pEnvObj = new Environment(L"101");
 	pEnvObj->SetName(L"ENV");
 	pEnvObj->SetPos(vCreatePos);
-
+	pEnvObj->GetCollider()->SetTrigger(false);
 	AddObject(pEnvObj, GROUP_TYPE::ENV);
 }
 

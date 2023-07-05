@@ -20,6 +20,9 @@ CObject::CObject()
 	, mAngle(0.f)
 	, mAngleOffset(0.f)
 	, mFlip(false)
+	, mVisible(true)
+	, mpGravity(nullptr)
+	, mpRigidBody(nullptr)
 {
 
 }
@@ -34,6 +37,9 @@ CObject::CObject(const CObject& _origin)
 	, mAngle(0.f)
 	, mAngleOffset(0.f)
 	, mFlip(false)
+	, mVisible(true)
+	, mpGravity(nullptr)
+	, mpRigidBody(nullptr)
 {
 	if (_origin.mpCollider)
 	{
@@ -85,6 +91,9 @@ void CObject::Render(HDC _dc)
 
 void CObject::CompnentRender(HDC _dc)
 {
+	if (!mVisible)
+		return;
+
 	if (nullptr != mpCollider)
 	{
 		mpCollider->Render(_dc);

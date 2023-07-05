@@ -253,6 +253,9 @@
     <ClInclude Include="Gun.h">
       <Filter>Game\04. Object\Gun</Filter>
     </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>FreamWork\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -379,6 +382,9 @@
     </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>Game\04. Object\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>FreamWork\01. Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

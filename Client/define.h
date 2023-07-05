@@ -77,10 +77,15 @@ enum class PEN_TYPE
 	END,
 };
 
-enum EVENT_TYPE
+enum class EVENT_TYPE
 {
 	CREATE_OBJECT,//오브젝트 생성
 	DELETE_OBJECT,// 오브젝트 삭제
 	SCENE_CHANGE,//씬 체인지 이벤트
 	END,
+};
+
+enum class BULLET_STATE
+{
+
 };

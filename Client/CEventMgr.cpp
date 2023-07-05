@@ -45,7 +45,7 @@ void CEventMgr::excute(const tEvent& _eve)
 
 	switch (_eve.eEven)
 	{
-	case CREATE_OBJECT:
+	case EVENT_TYPE::CREATE_OBJECT:
 	{
 		// lParam : object Adress
 		// wParam : Group TYPE
@@ -56,7 +56,7 @@ void CEventMgr::excute(const tEvent& _eve)
 		CSceneMgr::GetI()->GetCurScene()->AddObject(pNewObj, eType);
 	}
 		break;
-	case DELETE_OBJECT:
+	case EVENT_TYPE::DELETE_OBJECT:
 	{
 		// lParam : object Adress
 		// Object 를 Dead 상태로 변경
@@ -68,18 +68,18 @@ void CEventMgr::excute(const tEvent& _eve)
 	}
 
 		break;
-	case SCENE_CHANGE:
+	case EVENT_TYPE::SCENE_CHANGE:
 		//lParam : NEXT SCENE TYPE
 		CSceneMgr::GetI()->ChangeScene((SCENE_TYPE)_eve.lParam);
 		break;
-	}
+	} 
 }
 
 void CEventMgr::AddEvent(const tEvent& _eve)
 {
 	for (int i = 0; i < mVecEvent.size(); ++i)
 	{
-		if (_eve.eEven == DELETE_OBJECT 
+		if (_eve.eEven == EVENT_TYPE::DELETE_OBJECT
 			&& (CObject*)mVecEvent[i].lParam == (CObject*)_eve.lParam)
 		{
 			return;

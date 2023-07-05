@@ -4,6 +4,7 @@
 
 class CPlayer;
 
+
 class Gun :
 	public CObject
 {
@@ -15,6 +16,14 @@ private:
 
 	float		mDelay;
 	float		mCurDelay;
+
+	float	mAtkDamage;		// 공격력
+	float	mAtkSpeed;		// 공격스피드
+	float	mAtkRange;		// 사거리
+	float	mShotSpeed;		// 총알 속도
+	float	mReloadSpeed;	// 장전속도
+	float	mShotAngle;		// 발사 각도(명중률)
+	UINT	mPenetration;	// 관통 수
 
 
 public:

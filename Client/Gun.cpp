@@ -31,6 +31,8 @@ Gun::Gun(const wstring& _type)
 		SetScale(Vec2(28.f, 16.f) * 1.5f);
 		SetPivot(Vec2(-30.f, 0.f));
 		SetAngleOffset(180);
+
+
 	}
 
 

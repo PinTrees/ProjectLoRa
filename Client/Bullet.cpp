@@ -3,6 +3,7 @@
 
 #include "CScene.h"
 #include "CSceneMgr.h"
+#include "CCore.h"
 
 #include "CTimeMgr.h"
 #include "CCollider.h"
@@ -13,12 +14,15 @@
 #include "CResMgr.h"
 
 #include "Particle.h"
+#include "Random.h"
 
 Bullet::Bullet(const wstring& _type)
 	: m_tTheta(PI / 4.f)
 	, m_vDir(Vec2(1.f, 1.f))
-	, mDelay(1.f)
+	, mDelay(2.f)
 	, mCurDelay(0.f)
+	, mPenetrationCount(3)
+	, mDivideCount(3)
 {
 	m_vDir.Normalize();
 	CreateCollider();
@@ -51,6 +55,8 @@ Bullet::Bullet(const wstring& _type)
 
 
 
+
+
 Bullet::~Bullet()
 {
 
@@ -68,11 +74,25 @@ void Bullet::Update()
 	Vec2 vPos = GetPos();
 	CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
 
+	Vec2 vRes = CCore::GetI()->GetResolution();
+	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+
+	if (vRes.y < vRenderPos.y
+		|| 0 > vRenderPos.y)
+	{
+		m_vDir = m_vDir * Vec2(1.f, -1.f);
+		SetAngle(m_vDir.ToAngle());
+	}
+
+	if (vRes.x < vRenderPos.x
+		|| 0 > vRenderPos.x)
+	{
+		m_vDir = m_vDir * Vec2(-1.f, 1.f);
+		SetAngle(m_vDir.ToAngle());
+	}
+
 	vPos.x += 700.f * m_vDir.x * fDT;
 	vPos.y += 700.f * m_vDir.y * fDT;
-
-	if (vPos.y < 110)
-		pCurScene->DeleteObject(this, GROUP_TYPE::PROJ_PLAYER);
 
 	SetPos(vPos);
 	GetAnimator()->Update();
@@ -92,14 +112,32 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->GetName() == L"Monster")
 	{
-		DeleteObject(this);
+		if (--mPenetrationCount <= 0)
+		{
+			DeleteObject(this);
+		}
 
 		int randPos = 50;
-
 		Particle* pEff = new Particle(L"4");
 		pEff->SetPos(GetPos() + Vec2(rand() % randPos - randPos, rand() % randPos - randPos) + m_vDir * 25.f);
 		pEff->SetName(L"Particle");
 		CreateObject(pEff, GROUP_TYPE::EFFECT);
+
+		if (mDivideCount > 0)
+		{
+			for (int i = 0; i < mDivideCount; ++i)
+			{
+				int angle = CRandom::GetI()->Next(0, 360);
+				Bullet* pDiv = new Bullet(L"3");
+				pDiv->SetPenetrationCount(0);
+				pDiv->SetDivideCount(0);
+				pDiv->SetPos(GetPos());
+				pDiv->SetScale(GetScale() * 0.65f);
+				pDiv->SetAngle(angle);
+				pDiv->SetDir(Vec2::FromAngle(angle).Normalize());
+				CreateObject(pDiv, GROUP_TYPE::PROJ_PLAYER);
+			}
+		}
 	}
 
 	if (pOtherObj->GetName() == L"ENV")

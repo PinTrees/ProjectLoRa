@@ -2,6 +2,8 @@
 #include "CScene.h"
 #include "CObject.h"
 
+#include "CCore.h"
+
 void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
 {
 	mArrObj[(UINT)_eType].push_back(_pObj);
@@ -63,14 +65,27 @@ void CScene::FinalUpdate()
 
 void CScene::Render(HDC _dc)
 {
+	Vec2 vRes = CCore::GetI()->GetResolution();
+
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-
 		vector<CObject*>::iterator iter = mArrObj[i].begin();
+
 		for (;iter != mArrObj[i].end();)
 		{
 			if (!(*iter)->IsDead())
 			{
+				Vec2 vRenderPos = CCamera::GetI()->GetRenderPos((*iter)->GetLocalPos());
+				Vec2 vSize = (*iter)->GetScale();
+				if (vRenderPos.y < vSize.y * -1.f
+					|| vRenderPos.y > vRes.y + vSize.y
+					|| vRenderPos.x < vSize.x * -1.f
+					|| vRenderPos.x > vRes.x + vSize.x)
+				{
+					++iter;
+					continue;
+				}
+
 				(*iter)->Render(_dc);
 				++iter;
 			}

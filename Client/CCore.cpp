@@ -11,6 +11,8 @@
 
 #include "CCamera.h"
 
+#include "Random.h"
+
 CCore::CCore()
 	:mhWnd(0)
 	, mPtResolution{}
@@ -58,6 +60,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CTimeMgr::GetI()->Init();
 	CKeyMgr::GetI()->Init();
 	CSceneMgr::GetI()->Init();
+	CRandom::GetI()->Init();
 
 	return S_OK;
 }

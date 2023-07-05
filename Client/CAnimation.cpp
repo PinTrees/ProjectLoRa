@@ -133,8 +133,8 @@ void CAnimation::Render(HDC _dc)
 
 		// 이미지 출력
 		TransparentBlt(_dc
-			, -vScale.x * 0.5f
-			, -vScale.y * 0.5f
+			, (int)(-vScale.x * 0.5f)
+			, (int)(-vScale.y * 0.5f)
 			, (int)(vScale.x)
 			, (int)(vScale.y)
 			, mpTex->GetDC()

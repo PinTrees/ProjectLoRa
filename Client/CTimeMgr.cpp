@@ -51,7 +51,7 @@ void CTimeMgr::Render()
 		m_iCallCount = 0;
 
 		wchar_t szBuffer[255] = {};
-		//swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDT);
+		swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDT);
 		SetWindowText(CCore::GetI()->GetMainHwnd(), szBuffer);
 
 	}
