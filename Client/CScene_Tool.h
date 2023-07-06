@@ -1,10 +1,16 @@
 #pragma once
 #include "CScene.h"
 
-class CScene_Tool :
+class CUI;
+
+class Scene_Tool :
 	public CScene
 {
 private:
+	CUI* mpUI;
+
+	UINT	mTileX;
+	UINT	mTileY;
 
 public:
 	virtual void Update();
@@ -12,7 +18,22 @@ public:
 	virtual void Exit();
 
 public:
-	CScene_Tool();
-	~CScene_Tool();
+	void SetTileIdx();
+
+	void SetTileX(UINT x) { mTileX = x; }
+	void SetTileY(UINT y) { mTileY = y; }
+
+	UINT GetTileX() { return mTileX; }
+	UINT GetTileY() { return mTileY; }
+
+	void SaveTileData();
+	void LoadTIleData();
+
+	void SaveTile(const wstring& _strRelativePath);
+	void LoadTile(const wstring& _strRelativePath);
+
+public:
+	Scene_Tool();
+	~Scene_Tool();
 };
 

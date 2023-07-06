@@ -30,5 +30,7 @@ using std::string;
 #pragma comment(lib,"Msimg32.lib")
 
 #include "define.h"
+#include "register.h"
+
 #include "Vec2.h"
 #include "func.h"

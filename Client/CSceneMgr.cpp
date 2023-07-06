@@ -26,13 +26,13 @@ CSceneMgr::~CSceneMgr()
 void CSceneMgr::Init()
 {
 	// ¾À »ý¼º
-	m_arrScene[(UINT)SCENE_TYPE::START] = new CScene_start;
+	m_arrScene[(UINT)SCENE_TYPE::START] = new Scene_Start;
 	m_arrScene[(UINT)SCENE_TYPE::START]->SetName(L"Start Scene");
 
-	m_arrScene[(UINT)SCENE_TYPE::TOOL] = new CScene_Tool;
+	m_arrScene[(UINT)SCENE_TYPE::TOOL] = new Scene_Tool;
 	m_arrScene[(UINT)SCENE_TYPE::TOOL]->SetName(L"Tool Scene");
-	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = new CScene_start;
-	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = new CScene_start;
+	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = new Scene_Start;
+	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = new Scene_Start;
 
 
 	//ÇöÀç ¾À ÁöÁ¤

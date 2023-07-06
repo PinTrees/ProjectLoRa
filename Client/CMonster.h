@@ -2,37 +2,39 @@
 #include "CObject.h"
 
 
-
-enum class MONSTER_STATE
+struct tMonsterInfo
 {
-	None,
-	Create,
-	Death,
-	Attack,
+	float		speed;			// 이동속도
+	float		hp;				// 체력
+	float		recogRange;		// 인지범위
+	float		atkRange;		// 공격거리
+	float		atk;			// 공격력
 };
+
+class AI;
+class MonsterFactory;
+
+
 
 
 class CMonster :
 	public CObject
 {
 private:
-	Vec2        m_vCenterPos;
-	float       m_fSpeed;
-	float       m_fMaxDistance;
-	int			m_iDir;	//1,-1
+	tMonsterInfo	mtInfo;
+	AI*				mAI;
 
-	int			mHp;
+	int				m_iDir;	//1,-1
 
-	CObject*	mpTarget;
+	CObject*		mpTarget;
 
-	MONSTER_STATE mState;
 
 public:
-	float GetSpeed() { return m_fSpeed; }
-	void SetSpeed(float _fspeed) { m_fSpeed = _fspeed; }
-	void SetMoveDistance(float _f) { m_fMaxDistance = _f; }
-	void SetCenterPos(Vec2 _vPos) { m_vCenterPos = _vPos; }
+	float GetSpeed() { return mtInfo.speed; }
+	void SetSpeed(float _fspeed) { mtInfo.speed = _fspeed; }
 	void SetTarget(CObject* _object) { mpTarget = _object; }
+
+	void SetAI(AI* pAI);
 
 
 public:
@@ -49,10 +51,13 @@ private:
 	void death();
 	void attack();
 
+	void setMonsterInfo(const tMonsterInfo& info) { mtInfo = info; }
+
 public:
 	CMonster();
 	~CMonster();
 
 	// Inherited via CObject
+	friend class MonsterFactory;
 };
 

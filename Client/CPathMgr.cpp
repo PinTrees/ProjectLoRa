@@ -33,3 +33,17 @@ void CPathMgr::Init()
 
 	// SetWindowText(CCore::GetI()->GetMainHwnd(), mSzContentPath);
 }
+
+
+wstring CPathMgr::GetRelativePath(const wchar_t* filePath)
+{
+	wstring strFilePath = filePath;
+
+	size_t absoluteLength = wcslen(mSzContentPath);
+	size_t fullLength = strFilePath.length();
+
+	wstring strRelativePath = strFilePath.substr(absoluteLength, fullLength - absoluteLength);
+
+	return strRelativePath;
+}
+ 

@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "CScene.h"
 #include "CObject.h"
+#include "Background.h"
 
 #include "CCore.h"
+
 
 void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
 {
@@ -63,24 +65,57 @@ void CScene::FinalUpdate()
 	}
 }
 
+
+
+#define CUR_TILE_SIZE 500
+
+
+void CScene::_render_parallax(HDC dc)
+{
+	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
+
+	Vec2 vCamPos = CCamera::GetI()->GetLookAt();
+	Vec2 vRes = CCore::GetI()->GetResolution();
+
+	Vec2 vLeftTop = vCamPos - vRes * 0.5f;
+
+	for (int i = 0; i < parallaxs.size(); i++)
+	{
+		Background* parallax = (Background*)parallaxs[i];
+		parallax->Render(dc, vLeftTop, vRes);
+	}
+}
+
+
+
 void CScene::Render(HDC _dc)
 {
+	Vec2 vCamPos = CCamera::GetI()->GetLookAt();
 	Vec2 vRes = CCore::GetI()->GetResolution();
+	Vec2 vLeftTop = vCamPos - vRes * 0.5f;
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
+		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		{
+			_render_parallax(_dc);
+			continue;
+		}
+
 		vector<CObject*>::iterator iter = mArrObj[i].begin();
 
 		for (;iter != mArrObj[i].end();)
 		{
 			if (!(*iter)->IsDead())
 			{
-				Vec2 vRenderPos = CCamera::GetI()->GetRenderPos((*iter)->GetLocalPos());
+				Vec2 vPos = (*iter)->GetLocalPos();
 				Vec2 vSize = (*iter)->GetScale();
-				if (vRenderPos.y < vSize.y * -1.f
-					|| vRenderPos.y > vRes.y + vSize.y
-					|| vRenderPos.x < vSize.x * -1.f
-					|| vRenderPos.x > vRes.x + vSize.x)
+
+				// 화면을 벗어난 오브젝트인지 확인
+				if (vPos.y < vLeftTop.y - vSize.y
+					|| vPos.y > vLeftTop.y + vRes.y
+					|| vPos.x < vLeftTop.x - vSize.x
+					|| vPos.x > vLeftTop.x + vRes.x)
 				{
 					++iter;
 					continue;

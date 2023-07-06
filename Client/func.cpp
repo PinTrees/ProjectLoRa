@@ -2,6 +2,14 @@
 #include "func.h"
 
 #include "CEventMgr.h"
+#include "CScene.h"
+
+#include "CTexture.h"
+#include "CResMgr.h"
+#include "CPathMgr.h"
+
+#include "Tile.h"
+#include "Background.h"
 
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
@@ -49,6 +57,10 @@ Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
 
 
 
+
+
+
+
 void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight)
 {
     // 플립된 이미지를 그릴 메모리 DC 생성
@@ -83,4 +95,73 @@ void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX
     SelectObject(flipDC, oldBitmap);
     DeleteObject(flipBitmap);
     DeleteDC(flipDC);
+}
+
+
+
+
+
+
+
+
+
+
+void LoadTile(CScene* pScene, const wstring& _fullPath)
+{
+	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
+	strFilePath += _fullPath;
+
+	FILE* pFile = nullptr;
+
+	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
+
+	assert(pFile);
+
+	UINT xCount = 0;
+	UINT yCount = 0;
+
+	fread(&xCount, sizeof(UINT), 1, pFile);
+	fread(&yCount, sizeof(UINT), 1, pFile);
+
+
+	Background* pParallax = new Background();
+	pParallax->CreateParallaxTexture(xCount * TILE_SIZE, yCount * TILE_SIZE);
+
+	HDC dc = pParallax->GetParallaxDC();
+
+	CreateTile(pScene, xCount, yCount);
+	const vector<CObject*>& vecTile = pScene->GetGroupObject(GROUP_TYPE::TILE);
+
+	for (size_t i = 0; i < vecTile.size(); i++)
+	{
+		Tile* tile = (Tile*)(vecTile[i]);
+		tile->Load(pFile);
+		tile->Render(dc);
+	}
+
+	pScene->AddObject(pParallax, GROUP_TYPE::PARALLAX);
+	pScene->DeleteGroup(GROUP_TYPE::TILE);
+
+	fclose(pFile);
+}
+
+void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
+{
+	pScene->DeleteGroup(GROUP_TYPE::TILE);
+
+	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_1", L"texture\\tiles\\1.bmp");
+
+	for (UINT i = 0; i < yCount; ++i)
+	{
+		for (UINT j = 0; j < xCount; ++j)
+		{
+			Tile* pTile = new Tile();
+
+			pTile->SetScale(Vec2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+			pTile->SetPos(Vec2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+			pTile->SetTexture(pTileTex);
+
+			pScene->AddObject(pTile, GROUP_TYPE::TILE);
+		}
+	}
 }

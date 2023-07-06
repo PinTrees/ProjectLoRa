@@ -2,9 +2,10 @@
 #include "CBtnUI.h"
 
 
-
-CBtnUI::CBtnUI() 
-	:CUI(false)
+CBtnUI::CBtnUI()
+	: CUI(false)
+	, mSceneFunc(nullptr)
+	, mScene(nullptr)
 {
 
 }
@@ -26,10 +27,23 @@ void CBtnUI::MouseLbtnUp()
 {
 }
 
-void CBtnUI::MouseLbtnClicked()
+void CBtnUI::MouseLbtnClick()
 {
 	if (nullptr != mpFunc)
 	{
 		mpFunc(mparam1, mparam2);
 	}
+
+	if (mSceneFunc && mScene)
+	{
+		(mScene->*mSceneFunc)();
+	}
+}
+
+
+
+void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func)
+{
+	mSceneFunc = func;
+	mScene = scene;
 }

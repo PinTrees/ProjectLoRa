@@ -46,7 +46,7 @@ public:
 	void Update();
 	void Render(HDC _dc);
 
-	void Create(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFreamCount);
+	void CREATE(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFreamCount);
 
 public:
 	CAnimation();

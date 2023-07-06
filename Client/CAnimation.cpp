@@ -71,38 +71,34 @@ void CAnimation::Render(HDC _dc)
 
 	if (pObj->GetAngle() <= 0.1f)
 	{
-		/*if (pObj->GetFlip())
-		{
-			FlipImage(_dc
-				, (int)(vPos.x - vScale.x * 0.5f)
-				, (int)(vPos.y - vScale.y * 0.5f)
-				, (int)(vScale.x)
-				, (int)(vScale.y)
-				, mpTex->GetDC()
-				, (int)(mVecFrm[miCurFrm].vLT.x)
-				, (int)(mVecFrm[miCurFrm].vLT.y)
-				, (int)(mVecFrm[miCurFrm].vSlice.x)
-				, (int)(mVecFrm[miCurFrm].vSlice.y)
-			);
-		}
-		else*/
-		{
-			TransparentBlt(_dc
-				, (int)(vPos.x - vScale.x * 0.5f)
-				, (int)(vPos.y - vScale.y * 0.5f)
-				, (int)(vScale.x)
-				, (int)(vScale.y)
-				, mpTex->GetDC()
-				, (int)(mVecFrm[miCurFrm].vLT.x)
-				, (int)(mVecFrm[miCurFrm].vLT.y)
-				, (int)(mVecFrm[miCurFrm].vSlice.x)
-				, (int)(mVecFrm[miCurFrm].vSlice.y)
-				, RGB(255, 0, 255)
-			);
-		}
+		BLENDFUNCTION bf = {};
+
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = pObj->GetAlpha();
+
+		AlphaBlend(_dc
+			, (int)(vPos.x - vScale.x * 0.5f)
+			, (int)(vPos.y - vScale.y * 0.5f)
+			, (int)(vScale.x)
+			, (int)(vScale.y)
+			, mpTex->GetDC()
+			, (int)(mVecFrm[miCurFrm].vLT.x)
+			, (int)(mVecFrm[miCurFrm].vLT.y)
+			, (int)(mVecFrm[miCurFrm].vSlice.x)
+			, (int)(mVecFrm[miCurFrm].vSlice.y)
+			, bf);
 	}
 	else
 	{
+		BLENDFUNCTION bf = {};
+
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = pObj->GetAlpha();
+
 		// 이미지 회전을 위한 변환 행렬 생성
 		XFORM transform;
 		float angleRad = pObj->GetAngle() * PI / 180.0f;
@@ -120,19 +116,13 @@ void CAnimation::Render(HDC _dc)
 		transform.eM22 = cosAngle;
 		transform.eDx = dx;
 		transform.eDy = dy;
-		/*transform.eM11 = cosf(pObj->GetAngle() * PI / 180.0f);
-		transform.eM12 = sinf(pObj->GetAngle() * PI / 180.0f);
-		transform.eM21 = -sinf(pObj->GetAngle() * PI / 180.0f);
-		transform.eM22 = cosf(pObj->GetAngle() * PI / 180.0f);
-		transform.eDx = vPos.x;
-		transform.eDy = vPos.y;*/
-
+		
 		// 변환 행렬 설정
 		SetGraphicsMode(_dc, GM_ADVANCED);
 		SetWorldTransform(_dc, &transform);
 
 		// 이미지 출력
-		TransparentBlt(_dc
+		AlphaBlend(_dc
 			, (int)(-vScale.x * 0.5f)
 			, (int)(-vScale.y * 0.5f)
 			, (int)(vScale.x)
@@ -142,8 +132,7 @@ void CAnimation::Render(HDC _dc)
 			, (int)(mVecFrm[miCurFrm].vLT.y)
 			, (int)(mVecFrm[miCurFrm].vSlice.x)
 			, (int)(mVecFrm[miCurFrm].vSlice.y)
-			, RGB(255, 0, 255)
-		);
+			, bf);
 
 		// 변환 행렬 초기화
 		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);
@@ -151,7 +140,7 @@ void CAnimation::Render(HDC _dc)
 	}
 }
 
-void CAnimation::Create(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize
+void CAnimation::CREATE(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize
 	, Vec2 _vStep, float _fDuration, UINT _iFreamCount)
 {
 	mpTex = _pTex;

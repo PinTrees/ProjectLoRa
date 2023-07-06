@@ -1,17 +1,15 @@
 #pragma once
 #include "CScene.h"
 
-class CPlayer;
+class Player;
 
-class CScene_start :
+class Scene_Start :
 	public CScene
 {
 
 private:
 	float		mfMstrDelay;
 	float		mfCurDelay;
-
-	CPlayer*	mPlayer;
 
 public:
 	virtual void Update();
@@ -24,7 +22,7 @@ private:
 	void createEnvi();
 
 public:
-	CScene_start();
-	~CScene_start();
+	Scene_Start();
+	~Scene_Start();
 };
 

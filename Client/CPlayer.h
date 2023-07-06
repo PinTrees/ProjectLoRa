@@ -6,9 +6,9 @@ class Gun;
 
 enum class PLAYER_STATE
 {
-	None,
+	NONE,
 	Idle,
-	Attack,
+	ATTACK,
 	Run,
 	Die,
 	Dash,
@@ -16,7 +16,7 @@ enum class PLAYER_STATE
 
 
 
-class CPlayer :
+class Player :
 	public CObject
 {
 
@@ -37,10 +37,10 @@ public:
 private:
 	void createMissile();
 
-	CLONE(CPlayer);
+	CLONE(Player);
 
 public:
-	CPlayer();
-	~CPlayer();
+	Player();
+	~Player();
 };
 

@@ -23,6 +23,7 @@ CObject::CObject()
 	, mVisible(true)
 	, mpGravity(nullptr)
 	, mpRigidBody(nullptr)
+	, mAlpha(255)
 {
 
 }
@@ -40,6 +41,7 @@ CObject::CObject(const CObject& _origin)
 	, mVisible(true)
 	, mpGravity(nullptr)
 	, mpRigidBody(nullptr)
+	, mAlpha(_origin.mAlpha)
 {
 	if (_origin.mpCollider)
 	{

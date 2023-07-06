@@ -23,6 +23,7 @@ Bullet::Bullet(const wstring& _type)
 	, mCurDelay(0.f)
 	, mPenetrationCount(3)
 	, mDivideCount(3)
+	, mBounceCount(3)
 {
 	m_vDir.Normalize();
 	CreateCollider();
@@ -77,18 +78,22 @@ void Bullet::Update()
 	Vec2 vRes = CCore::GetI()->GetResolution();
 	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
 
-	if (vRes.y < vRenderPos.y
-		|| 0 > vRenderPos.y)
+	if (mBounceCount > 0)
 	{
-		m_vDir = m_vDir * Vec2(1.f, -1.f);
-		SetAngle(m_vDir.ToAngle());
-	}
-
-	if (vRes.x < vRenderPos.x
-		|| 0 > vRenderPos.x)
-	{
-		m_vDir = m_vDir * Vec2(-1.f, 1.f);
-		SetAngle(m_vDir.ToAngle());
+		if (vRes.y < vRenderPos.y
+			|| 0 > vRenderPos.y)
+		{
+			m_vDir = m_vDir * Vec2(1.f, -1.f);
+			SetAngle(m_vDir.ToAngle());
+			--mBounceCount;
+		}
+		else if (vRes.x < vRenderPos.x
+			|| 0 > vRenderPos.x)
+		{
+			m_vDir = m_vDir * Vec2(-1.f, 1.f);
+			SetAngle(m_vDir.ToAngle());
+			--mBounceCount;
+		}
 	}
 
 	vPos.x += 700.f * m_vDir.x * fDT;
@@ -112,7 +117,8 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->GetName() == L"Monster")
 	{
-		if (--mPenetrationCount <= 0)
+		--mPenetrationCount;
+		if (mPenetrationCount <= 0)
 		{
 			DeleteObject(this);
 		}
@@ -131,6 +137,7 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 				Bullet* pDiv = new Bullet(L"3");
 				pDiv->SetPenetrationCount(0);
 				pDiv->SetDivideCount(0);
+				pDiv->SetBounceCount(0);
 				pDiv->SetPos(GetPos());
 				pDiv->SetScale(GetScale() * 0.65f);
 				pDiv->SetAngle(angle);

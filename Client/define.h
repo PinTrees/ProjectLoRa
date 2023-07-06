@@ -27,14 +27,17 @@
 
 #define SELECT_GDI(_dc,TYPE) SelectGDI __UNREFERENCED = SelectGDI(_dc, TYPE)
 
-
+#define TILE_SIZE 32
+#define TILE_SIZE_RENDER 64
 
 
 enum class GROUP_TYPE
 {
+	PARALLAX,
 	DEFAULT,
 
 	BACK,
+	TILE,
 
 	ENV,
 	GOLD,
@@ -66,6 +69,7 @@ enum class SCENE_TYPE
 enum class BRUSH_TYPE
 {
 	HOLLOW,
+	BLACK,
 	RED,
 	END,
 };
@@ -88,4 +92,18 @@ enum class EVENT_TYPE
 enum class BULLET_STATE
 {
 
+};
+
+
+
+
+
+// Monster State
+enum class MONSTER_STATE
+{
+	IDLE,
+	TRACE,
+	CREATE,
+	DEAD,
+	ATTACK,
 };

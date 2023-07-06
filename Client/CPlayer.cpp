@@ -21,14 +21,15 @@
 
 #include "Random.h"
 
-CPlayer::CPlayer()
+Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
-	, mState(PLAYER_STATE::None)
+	, mState(PLAYER_STATE::NONE)
 	, mvDashDir(Vec2(0.f, 0.f))
 	, mCurGun(nullptr)
 {
 	SetPivot(Vec2(-30.f, 35.f));
+	SetAlpha(100);
 
 	CreateCollider();
 	GetCollider()->SetOffsetPos(GetPivot() - Vec2(0.f, 15.f));
@@ -63,13 +64,13 @@ CPlayer::CPlayer()
 }
 
 
-CPlayer::~CPlayer()
+Player::~Player()
 {
 
 }
 
 
-void CPlayer::Update()
+void Player::Update()
 {
 	GetAnimator()->Update();
 
@@ -123,10 +124,10 @@ void CPlayer::Update()
 		Vec2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
 		GetAnimator()->Play(pos.x > vPos.x ? L"ATK_R" : L"ATK_L", false);
 
-		mState = PLAYER_STATE::Attack;
+		mState = PLAYER_STATE::ATTACK;
 	}
 
-	if (mState == PLAYER_STATE::Attack)
+	if (mState == PLAYER_STATE::ATTACK)
 	{
 		if (GetAnimator()->GetCurAnimation()->IsFinish())
 		{
@@ -170,13 +171,13 @@ void CPlayer::Update()
 	SetPos(vPos);
 }
 
-void CPlayer::Render(HDC _dc)
+void Player::Render(HDC _dc)
 {
 	//컴포넌트 ( 충돌체 , ect...	) 가 있는경우 랜더
 	CompnentRender(_dc);
 }
 
-void CPlayer::createMissile()
+void Player::createMissile()
 {
 	Vec2 vMissilePos = GetLocalPos() + Vec2(0.f, -50.f);
 

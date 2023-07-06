@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
@@ -169,19 +170,28 @@
     <ClInclude Include="CScene_start.h" />
     <ClInclude Include="CScene_Tool.h" />
     <ClInclude Include="CSound.h" />
+    <ClInclude Include="CState.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="FileMgr.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="Gold.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="IdleState.h" />
+    <ClInclude Include="MonsterFactory.h" />
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="PlayerMgr.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="register.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TraceState.h" />
     <ClInclude Include="UIMgr.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="pch.h" />
@@ -190,6 +200,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
@@ -215,18 +226,26 @@
     <ClCompile Include="CScene_start.cpp" />
     <ClCompile Include="CScene_Tool.cpp" />
     <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CState.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="FileMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="MonsterFactory.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="PlayerMgr.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TraceState.cpp" />
     <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>

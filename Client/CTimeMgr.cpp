@@ -33,8 +33,8 @@ void CTimeMgr::Update()
 	m_PrevCount = m_CurCount;
 
 #ifdef _DEBUG
-	if (m_dDT > (1. / 60.))
-		m_dDT = (1. / 60.);
+	//if (m_dDT > (1. / 60.))
+	//	m_dDT = (1. / 60.);
 #endif // DEBUG
 
 }

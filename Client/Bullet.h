@@ -22,10 +22,12 @@ private:
 
 	int			mPenetrationCount;
 	int			mDivideCount;
+	int			mBounceCount;
 
 public:
 	void SetDivideCount(int _count) { mDivideCount = _count; }
 	void SetPenetrationCount(int _count) { mPenetrationCount = _count; }
+	void SetBounceCount(int _count) { mBounceCount = _count; }
 
 	void SetDir(float _tTheta) { m_tTheta = _tTheta; }
 	void SetDir(Vec2	_vDir)

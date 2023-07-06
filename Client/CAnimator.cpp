@@ -45,7 +45,7 @@ void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
 
 	pAnim->SetName(_strName);
 	pAnim->mpAnimator = this;
-	pAnim->Create(_pTex, _vLT, _vSliceSize, _vStep, _fDuration, _iFreamCount);
+	pAnim->CREATE(_pTex, _vLT, _vSliceSize, _vStep, _fDuration, _iFreamCount);
 
 	mMapAnim.insert(make_pair(_strName, pAnim));
 }

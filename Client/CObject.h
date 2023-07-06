@@ -26,6 +26,7 @@ private:
 	float		mAngle;
 	float		mAngleOffset;
 
+	UINT		mAlpha;
 	bool		mFlip;
 	bool		mVisible;
 
@@ -44,6 +45,9 @@ public:
 
 	void SetFlip(bool _f) { mFlip = _f; }
 	bool GetFlip() { return mFlip; }
+
+	void SetAlpha(int alpha) { mAlpha = alpha; }
+	int GetAlpha() { return (int)mAlpha; }
 
 	void SetVisible(bool _visible) { mVisible = _visible; }
 	bool GetVisible() { return mVisible; }

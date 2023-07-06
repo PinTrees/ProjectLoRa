@@ -1,6 +1,7 @@
 #pragma once
 
 class CObject;
+class CScene;
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(CObject* _pObj);
@@ -42,3 +43,7 @@ Vec2 curvesCircle(Vec2 c1, float _radius, float _amount);
 
 
 void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight);
+
+
+void LoadTile(CScene* pScene, const wstring& _fullPath);
+void CreateTile(CScene* pScene, UINT xCount, UINT yCount);

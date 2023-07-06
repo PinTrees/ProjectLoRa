@@ -2,7 +2,7 @@
 
 #include "CObject.h"
 
-class CPlayer;
+class Player;
 
 
 class Gun :
@@ -12,7 +12,7 @@ private:
 	float     m_tTheta; // 이동 방향
 	wstring		mType;
 
-	CPlayer*	mOwner;
+	Player*	mOwner;
 
 	float		mDelay;
 	float		mCurDelay;
@@ -28,7 +28,7 @@ private:
 
 public:
 	void SetType(const wstring& _str) { mType = _str; }
-	void SetOwner(CPlayer* _owner) { mOwner = _owner; }
+	void SetOwner(Player* _owner) { mOwner = _owner; }
 
 
 public:

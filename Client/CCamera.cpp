@@ -8,11 +8,16 @@
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 
+#include "CResMgr.h"
+#include "CTexture.h"
+
+
 CCamera::CCamera()
 	:mpTargetObj(nullptr)
 	, mfTime(1.f)
 	, mfSpeed(0.f)
-	,mfAccTime(0.f)
+	, mfAccTime(0.f)
+	, mEffectTex(nullptr)
 {
 }
 
@@ -21,9 +26,16 @@ CCamera::~CCamera()
 }
 
 
+void CCamera::Init()
+{
+    Vec2 vRes =	CCore::GetI()->GetResolution();
+	mEffectTex = CResMgr::GetI()->CreateTexture(L"CamEffectTex", (UINT)vRes.x, (UINT)vRes.y);
+}
+
+
 void CCamera::Update()
 {
-	if (mpTargetObj)
+	if (nullptr != mpTargetObj)
 	{
 		if (mpTargetObj->IsDead())
 		{
@@ -49,6 +61,61 @@ void CCamera::Update()
 	// 화면 중앙좌표와 카메라 LookAt 좌표간의 차이값 계산
 	calDiff();
 }
+
+
+void CCamera::Render(HDC dc)
+{
+	if (mEffects.empty())
+		return;
+
+	tCamEffect& effect = mEffects.front();
+	effect.time += fDT;
+
+	float amount = (float)(effect.time / effect.duration);
+
+	if (amount > 1.f) amount = 1.f;
+	if (amount < 0.f) amount = 0.f;
+
+	int alpha = 0;	
+
+	if (CAM_EFFECT::FADE_OUT == effect.effect)
+	{
+		alpha = (int)(255.f * amount);
+	}
+	else if (CAM_EFFECT::FADE_IN == effect.effect)
+	{
+		alpha = (int)(255.f * (1.f - amount));
+	}
+
+
+	// =============
+	// Effect Render
+	// =============
+	BLENDFUNCTION bf = {};
+
+	bf.BlendOp = AC_SRC_OVER;
+	bf.BlendFlags = 0;
+	bf.AlphaFormat = 0;
+	bf.SourceConstantAlpha = alpha;
+
+	AlphaBlend(dc
+		, 0, 0
+		, mEffectTex->Width()
+		, mEffectTex->Heigth()
+		, mEffectTex->GetDC()
+		, 0, 0
+		, mEffectTex->Width()
+		, mEffectTex->Heigth()
+		, bf);
+
+
+	// Effect Delete
+	if (effect.duration < effect.time)
+	{
+		mEffects.pop_front();
+	}
+}
+
 
 void CCamera::calDiff()
 {
