@@ -2,6 +2,12 @@
 
 class CObject;
 
+enum class CAM_EFFECT
+{
+	FADE_IN,
+	FADE_OUT,
+	NONE,
+};
 
 class CCamera
 {
@@ -18,6 +24,8 @@ private:
 	float		mfSpeed;	//따라가는속도
 	float		mfAccTime;	//누적시간
 
+
+	CAM_EFFECT	meEffect;
 public:
 	void SetLookAt(Vec2 _vLook) 
 	{ 

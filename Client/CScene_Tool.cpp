@@ -14,6 +14,8 @@
 #include "CUIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "CImgBtnUI.h"
+
 
 void ChangeScene(DWORD_PTR, DWORD_PTR);
 
@@ -43,8 +45,20 @@ void CScene_Tool::Enter()
 	pBtnUI->SetName(L"ChildUI");
 	pBtnUI->SetScale(Vec2(100.f, 40.f));
 	pBtnUI->SetPos(Vec2(0.f, 0.f));
+	((CBtnUI*)pBtnUI)->SetClickedCallBack(this, (SCENE_MEMFUNC)&CScene_Tool::SaveTileData);
 	pPanelUI->AddChild(pBtnUI);
+	//AddObject(pPanelUI, GROUP_TYPE::UI);
+
+	CImgBtnUI;
+
+	CImgBtnUI* pImgBtnUI = new CImgBtnUI;
+	pImgBtnUI->SetName(L"ChildButtonUI");
+	pImgBtnUI->SetScale(Vec2(100.f, 40.f));
+	pImgBtnUI->SetPos(Vec2(100.f, 0.f));
+	pPanelUI->AddChild(pImgBtnUI);
 	AddObject(pPanelUI, GROUP_TYPE::UI);
+	//이미지 UI 만들기
+
 
 	//복사본 UI
 	/*CUI* pClonePanel = pPanelUI->Clone();
@@ -70,15 +84,17 @@ void CScene_Tool::Update()
 
 	SetTileIdx();
 
-	if (KEY_TAP(KEY::LSHIFT))
-	{
-		//CUIMgr::GetI()->SetFocusedUI(mpUI);
-		SaveTile(L"tile\\Test.tile");
-	}
+	//if (KEY_TAP(KEY::LSHIFT))
+	//{
+	//	//CUIMgr::GetI()->SetFocusedUI(mpUI);
+
+	//	SaveTileData();
+
+	//}
 	if (KEY_TAP(KEY::CTRL))
 	{
 		//CUIMgr::GetI()->SetFocusedUI(mpUI);
-		LoadTile(L"tile\\Test.tile");
+		LoadTileData();
 	}
 }
 
@@ -111,17 +127,39 @@ void CScene_Tool::SetTileIdx()
 
 void CScene_Tool::SaveTileData()
 {
+	wchar_t szName[256] = {};
+
+	OPENFILENAME ofn = {};
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();
+	ofn.lpstrFile = szName;
+	ofn.nMaxFile = sizeof(szName);
+	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile\0";
+	ofn.nFilterIndex = 0;
+	ofn.lpstrFileTitle = nullptr;
+	ofn.nMaxFileTitle = 0;
+
+	wstring strTileFolder = CPathMgr::GetI()->GetContentPath();
+	strTileFolder += L"tile";
+
+	ofn.lpstrInitialDir = strTileFolder.c_str();
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	// Modal
+	if (GetSaveFileName(&ofn))
+	{
+
+		SaveTile(szName);
+	}
 }
 
 void CScene_Tool::SaveTile(const wstring& _strRelativePath)
 {
-
-	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
-	strFilePath += _strRelativePath;
 	//커널 오브젝트
 	FILE* pFile = nullptr;
 
-	_wfopen_s(&pFile, strFilePath.c_str(), L"wb");
+	_wfopen_s(&pFile, _strRelativePath.c_str(), L"wb");
 
 	assert(pFile);
 
@@ -143,6 +181,33 @@ void CScene_Tool::SaveTile(const wstring& _strRelativePath)
 
 
 	fclose(pFile);
+}
+
+void CScene_Tool::LoadTileData()
+{
+	wchar_t szName[256] = {};
+
+	OPENFILENAME ofn = {};
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();
+	ofn.lpstrFile = szName;
+	ofn.nMaxFile = sizeof(szName);
+	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile\0";
+	ofn.nFilterIndex = 0;
+	ofn.lpstrFileTitle = nullptr;
+	ofn.nMaxFileTitle = 0;
+	wstring strTileFolder = CPathMgr::GetI()->GetContentPath();
+	strTileFolder += L"tile";
+	ofn.lpstrInitialDir = strTileFolder.c_str();
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+	// Modal
+	if (GetOpenFileName(&ofn))
+	{
+		wstring strRelativePath = CPathMgr::GetI()->GetRelativePath(szName);
+		LoadTile(strRelativePath);
+	}
 }
 
 

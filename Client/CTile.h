@@ -3,6 +3,7 @@
 #include "CObject.h"
 
 class CTexture;
+
 class CTile :
 	public CObject
 {

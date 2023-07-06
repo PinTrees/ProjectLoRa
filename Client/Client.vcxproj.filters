@@ -220,6 +220,9 @@
     <ClInclude Include="CBtnUI.h">
       <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
     </ClInclude>
+    <ClInclude Include="CImgBtnUI.h">
+      <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -322,6 +325,9 @@
       <Filter>FreamWork\04. Object\UI\PanelUI</Filter>
     </ClCompile>
     <ClCompile Include="CBtnUI.cpp">
+      <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CImgBtnUI.cpp">
       <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
     </ClCompile>
   </ItemGroup>
