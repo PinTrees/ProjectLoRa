@@ -1,12 +1,13 @@
 ﻿  CCollider.cpp
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(49,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(48,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(47,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(46,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(49,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(48,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(47,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(46,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CCollisionMgr.cpp
   CCore.cpp
   CGuidMissile.cpp
   CKeyMgr.cpp
+  Client.cpp
   CMissile.cpp
   CMonster.cpp
   CObject.cpp
@@ -20,6 +21,5 @@ C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(46,18): warni
   CSound.cpp
   CTexture.cpp
   CTimeMgr.cpp
-  Client.cpp
   SelectGDI.cpp
-  Client.vcxproj -> C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Output\bin_debug\Client.exe
+  Client.vcxproj -> C:\Users\user\Documents\GitHub\ProjectLoRa\Output\bin_debug\Client.exe

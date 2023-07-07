@@ -5,7 +5,7 @@
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
-#include <CCollisionMgr.h>
+#include "CCollisionMgr.h"
 
 CCore::CCore()
 	:mhWnd(0)
