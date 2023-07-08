@@ -84,7 +84,7 @@ void Player::Update()
 
 	CRigidBody* pRigid = GetRigidBody();
 
-	mfCurDelay += fDT;
+	mfCurDelay += DT;
 
 	if (mState == PLAYER_STATE::Dash)
 	{

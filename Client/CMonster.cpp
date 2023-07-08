@@ -21,8 +21,8 @@ CMonster::CMonster()
 	, mAI(nullptr)
 {
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(40.f, 60.f));
-	GetCollider()->SetOffsetPos(Vec2(75.f, 50.f));
+	GetCollider()->SetScale(Vec2(40.f, 40.f));
+	GetCollider()->SetOffsetPos(Vec2(75.f, 35.f));
 	SetPivot(Vec2(75.f, 35.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_1", L"texture\\monster\\1.bmp");
@@ -73,10 +73,10 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 		mtInfo.curHp -= 5;
 
 		tForce fc = {};
-		fc.radius = 75.f;
-		fc.force = 200.f;
-		fc.speed = 3.f;
-		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 5.f;
+		fc.radius = 60.f;
+		fc.force = 150.f;
+		fc.speed = 2.5f;
+		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
 
 		CreateForce(fc);
 	}

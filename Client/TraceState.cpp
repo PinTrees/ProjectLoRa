@@ -41,7 +41,7 @@ void TraceState::Update()
 	Vec2 vMonsterPos = GetMonster()->GetLocalPos();
 	Vec2 vMonsterDir = (vPlayerPos - vMonsterPos).Normalize();
 
-	Vec2 vPos = vMonsterDir * GetMonster()->GetInfo().speed * fDT;
+	Vec2 vPos = vMonsterDir * GetMonster()->GetInfo().speed * DT;
 	GetMonster()->SetPos(vPos + GetMonster()->GetPos());
 
 	// 플레이어가 몬스터의 인식범위 내부로 진입

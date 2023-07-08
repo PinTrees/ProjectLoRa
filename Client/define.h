@@ -11,7 +11,7 @@
 								~type();
 
 
-#define fDT CTimeMgr::GetI()->GetfDT()
+#define DT CTimeMgr::GetI()->GetfDT()
 #define DELTATIME CTimeMgr::GetI()->GetDT()
 
 #define CLONE(type) type* Clone() {return new type(*this);}

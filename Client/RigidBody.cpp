@@ -9,6 +9,7 @@ CRigidBody::CRigidBody()
 	, mMass(1.f)
 	, mFrictCoeff(200.f)
 	, mvMaxVelocity(Vec2(400.f, 1200.f))
+	, mKinematic(false)
 {
 }
 
@@ -44,7 +45,7 @@ void CRigidBody::FinalUpdate()
 	mvAccel += mvAccelAlpha; // 추가 가속도를 더한다.
 
 	// Calculate Velocity From Final Accel With DT
-	mvVelocity += mvAccel * fDT;
+	mvVelocity += mvAccel * DT;
 
 	// Have Velocity
 	if (mvVelocity != Vec2::zero)
@@ -53,7 +54,7 @@ void CRigidBody::FinalUpdate()
 		Vec2 vel = mvVelocity;
 		vel.Normalize();
 
-		Vec2 friction = (vel * -1.f) * mFrictCoeff * fDT;
+		Vec2 friction = (vel * -1.f) * mFrictCoeff * DT;
 
 		// Friction Over Velocity
 		if (mvVelocity.Length() <= friction.Length())
@@ -98,7 +99,17 @@ void CRigidBody::Move()
 	dir.Normalize();
 
 	Vec2 pos = mpOwner->GetPos();
-	pos += dir * speed * fDT;
+	pos += dir * speed * DT;
 
 	mpOwner->SetPos(pos);
 }
+
+
+void CRigidBody::AddForce(Vec2 force)
+{
+	if (mKinematic)
+		return;
+
+	mvForce += force; 
+}
+

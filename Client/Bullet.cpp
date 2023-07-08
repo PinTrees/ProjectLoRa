@@ -66,7 +66,7 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-	mCurDelay += fDT;
+	mCurDelay += DT;
 	if (mCurDelay > mDelay)
 	{
 		DeleteObject(this);
@@ -97,8 +97,8 @@ void Bullet::Update()
 		}
 	}
 
-	vPos.x += 500.f * m_vDir.x * fDT;
-	vPos.y += 500.f * m_vDir.y * fDT;
+	vPos.x += 500.f * m_vDir.x * DT;
+	vPos.y += 500.f * m_vDir.y * DT;
 
 	SetPos(vPos);
 	GetAnimator()->Update();

@@ -36,7 +36,7 @@ void CAnimation::Update()
 	if (mbFinish)
 		return;
 
-	mfAccTime += fDT;
+	mfAccTime += DT;
 	
 	if ( mVecFrm[miCurFrm].fDuration < mfAccTime)
 	{

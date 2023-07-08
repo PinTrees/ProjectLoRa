@@ -51,7 +51,7 @@ void Scene_Start::Update()
 		CCamera::GetI()->SetLookAt(vLookAt);
 	}
 
-	mfCurDelay += fDT;
+	mfCurDelay += DT;
 	if (mfCurDelay > mfMstrDelay)
 	{
 		mfCurDelay = 0.f;

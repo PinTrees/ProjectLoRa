@@ -54,7 +54,7 @@ void CScene::Update()
 {
 	for (int i = mArrForce.size() - 1; i >= 0; --i)
 	{
-		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * fDT;
+		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
 
 		if (mArrForce[i].curRadius > mArrForce[i].radius)
 		{
