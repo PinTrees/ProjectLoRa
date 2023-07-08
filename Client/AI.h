@@ -16,6 +16,9 @@ private:
 public:
 	void AddState(CState* pState);
 	CState* GetState(MONSTER_STATE key);
+	void ChangeState(MONSTER_STATE nextState);
+
+	CMonster* GetOwner() { return mOwner; }	
 
 	void SetCurState(MONSTER_STATE target);
 

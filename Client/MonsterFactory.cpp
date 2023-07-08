@@ -4,8 +4,17 @@
 #include "CMonster.h"
 #include "AI.h"
 
+// Include Components
+#include "RigidBody.h"
+
+// Include Monster State
 #include "IdleState.h"
 #include "TraceState.h"
+#include "DeadState.h"
+#include "AtkState.h"
+
+
+
 
 CMonster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vec2 pos)
 {
@@ -22,14 +31,19 @@ CMonster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vec2 pos)
 		info.atk = 10.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.hp = 100.f;
-		info.speed = 300.f;
+		info.curHp = info.hp = 100.f;
+		info.speed = 70.f;
 
 		pMonster->setMonsterInfo(info);
 		
-		AI* pAI = new AI;
+		pMonster->CreateRigidBody();
+		pMonster->GetRigidBody()->SetMess(1.f);
+
+		AI* pAI = new AI;	
 		pAI->AddState(new IdleState);
 		pAI->AddState(new TraceState);
+		pAI->AddState(new DeadState);
+		pAI->AddState(new AtkState);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 
 		pMonster->SetAI(pAI);

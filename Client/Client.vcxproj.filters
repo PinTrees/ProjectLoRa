@@ -158,6 +158,12 @@
     <Filter Include="FreamWork\Object\Background">
       <UniqueIdentifier>{80131dd4-1e77-42a9-b503-d7c91b2eeca9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\CState\DeadState">
+      <UniqueIdentifier>{98e9219a-2a37-4efe-bed4-d2825ec7f910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\CState\AtkState">
+      <UniqueIdentifier>{8deb5ff9-62cf-4925-bf4b-f768335855f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -322,6 +328,12 @@
     <ClInclude Include="PlayerMgr.h">
       <Filter>Game\Manager\PlayerMgr</Filter>
     </ClInclude>
+    <ClInclude Include="DeadState.h">
+      <Filter>Game\FSM\CState\DeadState</Filter>
+    </ClInclude>
+    <ClInclude Include="AtkState.h">
+      <Filter>Game\FSM\CState\AtkState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -478,6 +490,12 @@
     </ClCompile>
     <ClCompile Include="PlayerMgr.cpp">
       <Filter>Game\Manager\PlayerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="DeadState.cpp">
+      <Filter>Game\FSM\CState\DeadState</Filter>
+    </ClCompile>
+    <ClCompile Include="AtkState.cpp">
+      <Filter>Game\FSM\CState\AtkState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

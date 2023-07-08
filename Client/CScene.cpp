@@ -4,30 +4,18 @@
 #include "Background.h"
 
 #include "CCore.h"
+#include "SelectGDI.h"
 
+#include "CTimeMgr.h"
 
-void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
-{
-	mArrObj[(UINT)_eType].push_back(_pObj);
-}
-
-void CScene::DeleteObject(CObject* _pObj, GROUP_TYPE _eType)
-{
-	//for (int i = 0; i < m_arrObj[(UINT)_eType].size(); ++i)
-	//{
-	//	if (_pObj == m_arrObj[(UINT)_eType][i])   
-	//	{
-	//		m_arrObj[(UINT)_eType].erase(m_arrObj[(UINT)_eType].begin() + i);
-	//		
-	//		break;
-	//	}
-	//}
-}
+// Include Components
+#include "RigidBody.h"
 
 
 CScene::CScene()
 {
 }
+
 
 CScene::~CScene()
 {
@@ -40,18 +28,71 @@ CScene::~CScene()
 		}
 	}
 }
+
+
+void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
+{
+	mArrObj[(UINT)_eType].push_back(_pObj);
+}
+
+void CScene::DeleteObject(CObject* _pObj, GROUP_TYPE _eType)
+{
+}
+
+
+void CScene::AddForce(tForce& force)
+{
+	mArrForce.push_back(force);
+}
+
+void CScene::DeleteForce(tForce force)
+{
+}
+
+
 void CScene::Update()
 {
+	for (int i = mArrForce.size() - 1; i >= 0; --i)
+	{
+		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * fDT;
+
+		if (mArrForce[i].curRadius > mArrForce[i].radius)
+		{
+			mArrForce.erase(mArrForce.begin() + i);
+		}
+	}
+
+
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
 		for (size_t j = 0; j < mArrObj[i].size();++j)
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
+				// 오브젝트에 폭발력 전달
+				for (int f = mArrForce.size() - 1; f >= 0; --f)
+				{
+					Vec2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
+					float len = vDiff.Length();
+
+					if (len < mArrForce[f].radius)
+					{
+						float ratio = 1.f - (len / mArrForce[f].radius);
+						float force = mArrForce[f].force * ratio;
+
+						if (mArrObj[i][j]->GetRigidBody())
+						{
+							mArrObj[i][j]->GetRigidBody()->AddForce(vDiff.Normalize() * force * -1.f);
+						}
+					}
+				}
+
 				mArrObj[i][j]->Update();
 			}
 		}
 	}
+
+
 }
 
 void CScene::FinalUpdate()
@@ -129,6 +170,21 @@ void CScene::Render(HDC _dc)
 				iter = mArrObj[i].erase(iter);
 			}
 		}
+	}
+
+	// [Debug] Render Force Object
+	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
+	SelectGDI p(_dc, PEN_TYPE::BLUE);
+
+	for (int i = mArrForce.size() - 1; i >= 0; --i)
+	{
+		Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
+
+		Ellipse(_dc
+			, vRenderPos.x - mArrForce[i].curRadius
+			, vRenderPos.y - mArrForce[i].curRadius
+			, vRenderPos.x + mArrForce[i].curRadius
+			, vRenderPos.y + mArrForce[i].curRadius );
 	}
 }
 

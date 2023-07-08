@@ -28,6 +28,7 @@ Bullet::Bullet(const wstring& _type)
 	m_vDir.Normalize();
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(15, 15));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 0.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Effect" + _type, L"texture\\bullet\\" + _type + L".bmp");
 	CreateAnimator();
@@ -96,8 +97,8 @@ void Bullet::Update()
 		}
 	}
 
-	vPos.x += 700.f * m_vDir.x * fDT;
-	vPos.y += 700.f * m_vDir.y * fDT;
+	vPos.x += 500.f * m_vDir.x * fDT;
+	vPos.y += 500.f * m_vDir.y * fDT;
 
 	SetPos(vPos);
 	GetAnimator()->Update();

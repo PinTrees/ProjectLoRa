@@ -2,10 +2,16 @@
 
 class CObject;
 class CScene;
+class AI;
+
+struct tForce;
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(CObject* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
+void ChangeAIState(AI* pAI, MONSTER_STATE nextState);
+void CreateForce(tForce& force);
+
 
 template<typename T>
 void Safe_Delete_Vec(vector<T>& _vec)

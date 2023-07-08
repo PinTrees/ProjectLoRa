@@ -139,7 +139,6 @@ void Scene_Start::CreateMonster()
 	CMonster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
 	pMonsterObj->SetName(L"Monster");
 	pMonsterObj->SetScale(Vec2(280.f, 180.f));
-	pMonsterObj->SetTarget(PlayerMgr::GetI()->GetPlayer());
 	pMonsterObj->GetCollider()->SetTrigger(false);
 
 	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);

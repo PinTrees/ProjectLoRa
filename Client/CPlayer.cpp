@@ -1,25 +1,27 @@
 #include "pch.h"
 #include "CPlayer.h"
 
-#include "CScene.h"
-#include "CSceneMgr.h"
-
-
+// Include Manager Header
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "CSceneMgr.h"
+#include "Random.h"
 
-
-#include "CMissile.h"
-#include "Bullet.h"
-#include "Gun.h"
-
+// Include Component Header
 #include "CResMgr.h"
 #include "CTexture.h"
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
+#include "RigidBody.h"
 
-#include "Random.h"
+#include "CScene.h"
+#include "CMissile.h"
+#include "Bullet.h"
+#include "Gun.h"
+
+
+
 
 Player::Player()
 	: mfCurDelay(0.f)
@@ -28,17 +30,21 @@ Player::Player()
 	, mvDashDir(Vec2(0.f, 0.f))
 	, mCurGun(nullptr)
 {
-	SetPivot(Vec2(-30.f, 35.f));
-	SetAlpha(100);
-
+	// Init Object Component
+	// Create Collider Component
 	CreateCollider();
 	GetCollider()->SetOffsetPos(GetPivot() - Vec2(0.f, 15.f));
 	GetCollider()->SetScale(Vec2(40.f, 35.f));
 
+	// Create RigidBody Component
+	CreateRigidBody();
+	GetRigidBody()->SetMess(1.f);
+	GetRigidBody()->SetMaxVelocity(Vec2(200.f, 200.f));
+	GetRigidBody()->SetAccelAlpha(Vec2(100.f, 100.f));
 
-	// Texture 로딩하기
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\character.bmp");
 
+	// Create Animator Component
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(73.f, 54.f), Vec2(73.f, 0.f), 0.1f, 8);
 	GetAnimator()->CreateAnimation(L"RUN_R", pTex, Vec2(0.f, 54.f * 2), Vec2(73.f, 54.f), Vec2(73.f, 0.f), 0.07f, 8);
@@ -47,8 +53,6 @@ Player::Player()
 	GetAnimator()->CreateAnimation(L"ATK_L", pTex, Vec2(0.f, 54.f * 31), Vec2(73.f, 54.f), Vec2(73.f, 0.f), 0.05f, 3);
 	GetAnimator()->CreateAnimation(L"DASH_R", pTex, Vec2(0.f, 54.f * 23), Vec2(73.f, 54.f), Vec2(73.f, 0.f), 0.05f, 7);
 
-	GetAnimator()->Play(L"IDLE",true);
-
 	GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vec2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"RUN_R")->SetAllFrameOffet(Vec2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"RUN_L")->SetAllFrameOffet(Vec2(0.f, -20.f));
@@ -56,7 +60,11 @@ Player::Player()
 	GetAnimator()->FindAnimation(L"ATK_R")->SetAllFrameOffet(Vec2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"DASH_R")->SetAllFrameOffet(Vec2(0.f, -20.f));
 
+	GetAnimator()->Play(L"IDLE", true);
+
 	SetScale(Vec2(73.f, 54.f) * 2.5f);
+	SetPivot(Vec2(-30.f, 35.f));
+	SetAlpha(100);
 
 	mCurGun = new Gun(L"1");
 	mCurGun->SetOwner(this);
@@ -74,17 +82,15 @@ void Player::Update()
 {
 	GetAnimator()->Update();
 
+	CRigidBody* pRigid = GetRigidBody();
 
 	mfCurDelay += fDT;
-	Vec2 vPos = GetPos();
-	Vec2 vDir = Vec2::zero;
 
 	if (mState == PLAYER_STATE::Dash)
 	{
 		mCurGun->SetVisible(false);
 
-		vPos += mvDashDir * 500.f * fDT;
-		SetPos(vPos);
+		pRigid->AddForce(mvDashDir * 2000.f);
 
 		if (GetAnimator()->GetCurAnimation()->IsFinish())
 		{
@@ -122,7 +128,7 @@ void Player::Update()
 		}
 
 		Vec2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
-		GetAnimator()->Play(pos.x > vPos.x ? L"ATK_R" : L"ATK_L", false);
+		GetAnimator()->Play(pos.x > GetLocalPos().x ? L"ATK_R" : L"ATK_L", false);
 
 		mState = PLAYER_STATE::ATTACK;
 	}
@@ -140,17 +146,29 @@ void Player::Update()
 		GetAnimator()->Play(L"IDLE", true);
 	}
 
+	Vec2 vDir = Vec2::zero;
+	Vec2 vStartDir = Vec2::zero;
 
-	if (KEY_HOLD(KEY::W)) vDir = Vec2::up; 
+	if (KEY_TAP(KEY::W)) vStartDir += Vec2::up;
+	if (KEY_TAP(KEY::S)) vStartDir += Vec2::down;
+	if (KEY_TAP(KEY::A)) vStartDir += Vec2::left;
+	if (KEY_TAP(KEY::D)) vStartDir += Vec2::right;
+
+	if (KEY_HOLD(KEY::W)) vDir += Vec2::up;
 	if (KEY_HOLD(KEY::S)) vDir += Vec2::down;
 	if (KEY_HOLD(KEY::A)) vDir += Vec2::left;
 	if (KEY_HOLD(KEY::D)) vDir += Vec2::right;
 
 
+	if (vStartDir != Vec2::zero)
+	{
+		pRigid->AddVeloctiy(vStartDir * 150.f);
+	}
+
 	if (vDir != Vec2::zero)
 	{
-		vPos += vDir * 200.f * fDT;
 		mState = PLAYER_STATE::Run;
+		pRigid->AddForce(vDir * 500.f);
 
 		if (vDir.x < 1)
 		{
@@ -167,8 +185,6 @@ void Player::Update()
 	{
 		mState = PLAYER_STATE::Idle;
 	}
-	
-	SetPos(vPos);
 }
 
 void Player::Render(HDC _dc)

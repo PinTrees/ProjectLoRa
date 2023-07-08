@@ -5,7 +5,7 @@ class CObject;
 class CGravity
 {
 private:
-	CObject*		p_owner;
+	CObject*		mpOwner;
 	bool		_ground;
 
 public:

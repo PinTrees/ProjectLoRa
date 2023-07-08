@@ -35,12 +35,12 @@ public:
 
 		return Vec2(x, y);
 	}
+	static Vec2 FromAngle(int angle) { return Vec2::FromAngle((float)angle); }
 
 
 public:
 	float Length()
 	{
-
 		return sqrt(x * x + y * y);
 	}
 	Vec2& Normalize()

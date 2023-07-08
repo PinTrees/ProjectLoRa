@@ -54,6 +54,12 @@ CObject::CObject(const CObject& _origin)
 		mpAnimator = new CAnimator(*_origin.mpAnimator);
 		mpAnimator->mpOwner = this;
 	}
+
+	if (_origin.mpRigidBody)
+	{
+		mpRigidBody = new CRigidBody(*_origin.mpRigidBody);
+		mpRigidBody->mpOwner = this;
+	}
 }
 
 CObject::~CObject()
@@ -67,6 +73,11 @@ CObject::~CObject()
 	{
 		delete mpAnimator;
 	}
+
+	if (nullptr != mpRigidBody)
+	{
+		delete mpRigidBody;
+	}
 }
 
 
@@ -75,6 +86,10 @@ void CObject::FinalUpdate()
 {
 	if (mpCollider)
 		mpCollider->FinalUpdate();
+	/*if (mpAnimator)
+		mpAnimator->Fi*/
+	if (mpRigidBody)
+		mpRigidBody->FinalUpdate();
 }
 
 
@@ -106,11 +121,11 @@ void CObject::CompnentRender(HDC _dc)
 		mpAnimator->Render(_dc);
 	}
 
-	SelectGDI p(_dc, PEN_TYPE::RED);
 	SelectGDI b(_dc, BRUSH_TYPE::RED);
-
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos + mvPivot);
-	float pivotSize = 6.f;
+	SelectGDI p(_dc, PEN_TYPE::RED);
+	  
+	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+	float pivotSize = 4.f;
 
 	Ellipse(_dc
 		, (int)(vRenderPos.x - pivotSize * 0.5f)
@@ -134,13 +149,13 @@ void CObject::CreateAnimator()
 void CObject::CreateRigidBody()
 {
 	mpRigidBody = new CRigidBody();
-	mpRigidBody->p_owner = this;
+	mpRigidBody->mpOwner = this;
 }
 
 void CObject::CreateGravity()
 {
 	mpGravity = new CGravity();
-	mpGravity->p_owner = this;
+	mpGravity->mpOwner = this;
 }
 
 //void CObject::DeleteCollider()

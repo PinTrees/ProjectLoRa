@@ -4,6 +4,7 @@
 #include "CObject.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
+#include "AI.h"
 
 CEventMgr::CEventMgr()
 {
@@ -66,7 +67,15 @@ void CEventMgr::excute(const tEvent& _eve)
 		mVecDeadObj.push_back(pDeadObj);
 
 	}
-
+		break;
+	case EVENT_TYPE::CHANGE_AI_STATE:
+	{
+		// lParam : AI
+		// wParam : Next State
+		AI* pAI = (AI*)_eve.lParam;
+		MONSTER_STATE nextState = (MONSTER_STATE)_eve.wParam;
+		pAI->ChangeState(nextState);
+	}
 		break;
 	case EVENT_TYPE::SCENE_CHANGE:
 		//lParam : NEXT SCENE TYPE

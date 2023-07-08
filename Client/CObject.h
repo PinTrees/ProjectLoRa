@@ -31,7 +31,7 @@ private:
 	bool		mVisible;
 
 public:
-	void SetPos(Vec2 _vPos) { mvPos = _vPos; }
+	void SetPos(Vec2 _vPos)		{ mvPos = _vPos; }
 	void SetScale(Vec2 _vScale) { mvScale = _vScale; }
 	void SetPivot(Vec2 _vPivot) { mvPivot = _vPivot; }
 	void SetAngle(float _angle) { mAngle = _angle; }

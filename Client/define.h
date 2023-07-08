@@ -83,9 +83,11 @@ enum class PEN_TYPE
 
 enum class EVENT_TYPE
 {
-	CREATE_OBJECT,//오브젝트 생성
-	DELETE_OBJECT,// 오브젝트 삭제
-	SCENE_CHANGE,//씬 체인지 이벤트
+	CREATE_OBJECT,		// 오브젝트 생성
+	DELETE_OBJECT,		// 오브젝트 삭제
+	SCENE_CHANGE,		// 씬 체인지 이벤트
+	CHANGE_AI_STATE,	// AI 상태 변경
+
 	END,
 };
 
