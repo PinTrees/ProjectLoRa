@@ -23,7 +23,15 @@ void DeleteObject(CObject* _pObj)
 
 	CEventMgr::GetI()->AddEvent(evn);
 }
+Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
+{
+	float angle = _amount * 2 * PI;
 
+	float x = c1.x + _radius * cos(angle);
+	float y = c1.y + _radius * sin(angle);
+
+	return Vec2(x, y);
+}
 
 void ChangeScene(SCENE_TYPE _eNext)
 {
@@ -34,13 +42,15 @@ void ChangeScene(SCENE_TYPE _eNext)
 	CEventMgr::GetI()->AddEvent(evn);
 }
 
-
-Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
+void ChangeAIState(AI* _pAI, MON_STATE _eNextState)
 {
-	float angle = _amount * 2 * PI;
 
-	float x = c1.x + _radius * cos(angle);
-	float y = c1.y + _radius * sin(angle);
+	tEvent evn = {};
+	evn.eEven = EVENT_TYPE::CHANGE_AI_STATE;
+	evn.lParam = (DWORD_PTR)_pAI;
+	evn.wParam = (DWORD_PTR)_eNextState;
 
-	return Vec2(x, y);
+	CEventMgr::GetI()->AddEvent(evn);
 }
+
+

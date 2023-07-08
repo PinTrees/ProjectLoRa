@@ -11,7 +11,7 @@ private:
 
 public:
     void Load(const wstring& strFilePath);
-
+    void Create(UINT _iWidth, UINT _iHeight);
     UINT Width() { return mBitInfo.bmWidth; }
     UINT Heigth () { return mBitInfo.bmHeight; }
 

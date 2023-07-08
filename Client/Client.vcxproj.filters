@@ -104,6 +104,30 @@
     <Filter Include="FreamWork\04. Object\UI\ButtonUI">
       <UniqueIdentifier>{ae9319c2-1c9c-47c0-a055-94ac3896c366}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\08. Module\AI">
+      <UniqueIdentifier>{a893539e-015b-4346-9f34-bdd73d2d6d8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\08. Module\AI\CState">
+      <UniqueIdentifier>{0767a51c-a925-4e79-b694-9ac39e218ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\08. Module\AI\CState\Idle">
+      <UniqueIdentifier>{55d514fe-8739-4062-9038-a02fd870b7fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\08. Module\AI\CState\Attack">
+      <UniqueIdentifier>{b373e9e6-02e1-49b9-aa2b-109eee0c662a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\08. Module\AI\CState\Dead">
+      <UniqueIdentifier>{d803f99a-fafa-4d91-b9f7-98c629544d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\08. Module\AI\CState\Trace">
+      <UniqueIdentifier>{f9447d09-bf6b-44d8-8769-204b54c8224b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\09. Factory">
+      <UniqueIdentifier>{a34ae8a4-7c5b-408b-a6e1-0900066bdcb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\09. Factory\MonFactory">
+      <UniqueIdentifier>{5450589f-604d-4eb3-aa5e-d1b1b8d2eadf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -223,6 +247,21 @@
     <ClInclude Include="CImgBtnUI.h">
       <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
     </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>FreamWork\08. Module\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>FreamWork\08. Module\AI\CState</Filter>
+    </ClInclude>
+    <ClInclude Include="CIdleState.h">
+      <Filter>FreamWork\08. Module\AI\CState\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="CTraceState.h">
+      <Filter>FreamWork\08. Module\AI\CState\Trace</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonFactory.h">
+      <Filter>FreamWork\09. Factory\MonFactory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -329,6 +368,21 @@
     </ClCompile>
     <ClCompile Include="CImgBtnUI.cpp">
       <Filter>FreamWork\04. Object\UI\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>FreamWork\08. Module\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>FreamWork\08. Module\AI\CState</Filter>
+    </ClCompile>
+    <ClCompile Include="CIdleState.cpp">
+      <Filter>FreamWork\08. Module\AI\CState\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="CTraceState.cpp">
+      <Filter>FreamWork\08. Module\AI\CState\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonFactory.cpp">
+      <Filter>FreamWork\09. Factory\MonFactory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

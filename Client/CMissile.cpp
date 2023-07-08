@@ -34,8 +34,7 @@ void CMissile::Update()
 	vPos.x += 300.f * m_vDir.x * fDT;
 	vPos.y += 300.f * m_vDir.y * fDT;
 
-	if (vPos.y < 110)
-		pCurScene->DeleteObject(this, GROUP_TYPE::PROJ_PLAYER);
+
 
 	SetPos(vPos);
 }

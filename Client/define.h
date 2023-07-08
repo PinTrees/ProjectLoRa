@@ -63,6 +63,7 @@ enum class SCENE_TYPE
 enum class BRUSH_TYPE
 {
 	HOLLOW,
+	BLACK,
 	END,
 
 };
@@ -74,10 +75,23 @@ enum class PEN_TYPE
 	END,
 };
 
-enum EVENT_TYPE
+enum class EVENT_TYPE
 {
 	CREATE_OBJECT,//오브젝트 생성
 	DELETE_OBJECT,// 오브젝트 삭제
 	SCENE_CHANGE,//씬 체인지 이벤트
+	CHANGE_AI_STATE,
 	END,
+};
+
+enum class MON_STATE
+{
+	IDLE,
+	PATROL,
+	TRACE,
+	ATT,
+	RUN,
+	DEAD,
+
+
 };

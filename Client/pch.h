@@ -7,6 +7,9 @@
 
 
 
+#include <list>
+using std::list;
+
 #include <vector>
 using std::vector;
 

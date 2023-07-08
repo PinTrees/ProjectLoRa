@@ -4,12 +4,15 @@
 #include "CTile.h"
 #include "CResMgr.h"
 #include "CPathMgr.h"
+#include "CCamera.h"
+#include "CCore.h"
 
 
 
 CScene::CScene()
 	:miTileX(0)
 	, miTileY(0)
+	, mpPlayer(nullptr)
 {
 }
 
@@ -29,20 +32,6 @@ void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
 {
 	mArrObj[(UINT)_eType].push_back(_pObj);
 }
-
-void CScene::DeleteObject(CObject* _pObj, GROUP_TYPE _eType)
-{
-	//for (int i = 0; i < m_arrObj[(UINT)_eType].size(); ++i)
-	//{
-	//	if (_pObj == m_arrObj[(UINT)_eType][i])   
-	//	{
-	//		m_arrObj[(UINT)_eType].erase(m_arrObj[(UINT)_eType].begin() + i);
-	//		
-	//		break;
-	//	}
-	//}
-}
-
 
 
 void CScene::Update()
@@ -74,6 +63,11 @@ void CScene::Render(HDC _dc)
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
+		if ((UINT)GROUP_TYPE::TILE == i)
+		{
+			Render_Tile(_dc);
+			continue;
+		}
 
 		vector<CObject*>::iterator iter = mArrObj[i].begin();
 		for (; iter != mArrObj[i].end();)
@@ -89,6 +83,46 @@ void CScene::Render(HDC _dc)
 			}
 		}
 	}
+}
+
+void CScene::Render_Tile(HDC _dc)
+{
+
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+
+	Vec2 vCamLook = CCamera::GetI()->GetLookAt();
+	Vec2 vResolution = CCore::GetI()->GetResolution();
+	Vec2 vLeftTop = vCamLook - vResolution / 2.f;
+
+	int iTileSize = TILE_SIZE;
+
+	int iLTCol = (int)vLeftTop.x / iTileSize;
+	int iLTRow = (int)vLeftTop.y / iTileSize;
+	int iLTIdx = (miTileX * iLTRow) + iLTCol;
+
+	int iClientWidth = ((int)vResolution.x / iTileSize)+1;
+	int iClientheight = ((int)vResolution.y/ iTileSize)+1;
+
+
+	for (int iCurRow = iLTRow; iCurRow<(iLTRow+iClientheight);++iCurRow)
+	{
+		for (int iCurCol = iLTCol; iCurCol < (iLTCol+iClientWidth); ++iCurCol)
+		{
+
+			if (iCurCol < 0 || miTileX <= iCurCol
+				|| iCurRow < 0 || miTileY <= iCurRow)
+			{
+				continue;
+			}
+
+
+			int iIdx = (miTileX * iCurRow) + iCurCol;
+
+			vecTile[iIdx]->Render(_dc);
+		}
+	}
+
 }
 
 

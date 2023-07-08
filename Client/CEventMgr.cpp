@@ -5,6 +5,9 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+#include "AI.h"
+#include "CState.h"
+
 #include "CUIMgr.h"
 
 CEventMgr::CEventMgr()
@@ -17,14 +20,14 @@ CEventMgr::~CEventMgr()
 }
 
 void CEventMgr::Update()
-{	
+{
 	//	==============================================
 	//	이전 프레임에서 등록해둔 DeadObject 들을 삭제한다.
 	//	==============================================
 
 	for (size_t i = 0; i < mVecDeadObj.size(); ++i)
 	{
-			delete mVecDeadObj[i];
+		delete mVecDeadObj[i];
 	}
 	mVecDeadObj.clear();
 	//	========
@@ -44,7 +47,7 @@ void CEventMgr::excute(const tEvent& _eve)
 
 	switch (_eve.eEven)
 	{
-	case CREATE_OBJECT:
+	case EVENT_TYPE::CREATE_OBJECT:
 	{
 		// lParam : object Adress
 		// wParam : Group TYPE
@@ -54,8 +57,8 @@ void CEventMgr::excute(const tEvent& _eve)
 
 		CSceneMgr::GetI()->GetCurScene()->AddObject(pNewObj, eType);
 	}
-		break;
-	case DELETE_OBJECT:
+	break;
+	case EVENT_TYPE::DELETE_OBJECT:
 	{
 		// lParam : object Adress
 		// Object 를 Dead 상태로 변경
@@ -66,8 +69,8 @@ void CEventMgr::excute(const tEvent& _eve)
 
 	}
 
-		break;
-	case SCENE_CHANGE:
+	break;
+	case EVENT_TYPE::SCENE_CHANGE:
 		//lParam : NEXT SCENE TYPE
 		// Scene 변경
 		CSceneMgr::GetI()->ChangeScene((SCENE_TYPE)_eve.lParam);
@@ -76,5 +79,16 @@ void CEventMgr::excute(const tEvent& _eve)
 		CUIMgr::GetI()->SetFocusedUI(nullptr);
 
 		break;
+
+	case EVENT_TYPE::CHANGE_AI_STATE:
+	{
+		// lParam : AI
+		// wParam : Next Type
+		AI* pAI = (AI*)_eve.lParam;
+		MON_STATE eNextState = (MON_STATE)_eve.wParam;
+		pAI->ChangeState(eNextState);
 	}
+	}
+
 }
+
