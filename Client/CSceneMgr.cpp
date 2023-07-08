@@ -1,7 +1,10 @@
 #include "pch.h"
 #include "CSceneMgr.h"
-#include "CScene_start.h"
 
+#include "CScene_start.h"
+#include "CScene_Tool.h"
+#include "CScene_Menu.h"
+#include "CEventMgr.h"
 
 CSceneMgr::CSceneMgr()
 	:m_arrScene{}
@@ -24,16 +27,20 @@ CSceneMgr::~CSceneMgr()
 void CSceneMgr::Init()
 {
 	// ¾À »ı¼º
-	m_arrScene[(UINT)SCENE_TYPE::START] = new CScene_start;
+	m_arrScene[(UINT)SCENE_TYPE::START] = new Scene_Start;
 	m_arrScene[(UINT)SCENE_TYPE::START]->SetName(L"Start Scene");
 
-	//m_arrScene[(UINT)SCENE_TYPE::TOOL] = new CScene_start;
-	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = new CScene_start;
-	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = new CScene_start;
+	m_arrScene[(UINT)SCENE_TYPE::TOOL] = new Scene_Tool;
+	m_arrScene[(UINT)SCENE_TYPE::TOOL]->SetName(L"Tool Scene");
+
+	m_arrScene[(UINT)SCENE_TYPE::MENU] = new CScene_Menu;
+	m_arrScene[(UINT)SCENE_TYPE::MENU]->SetName(L"Menu Scene");
+	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = new Scene_Start;
+	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = new Scene_Start;
 
 
 	//ÇöÀç ¾À ÁöÁ¤
-	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::START];
+	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::MENU];
 	m_pCurScene->Enter();
 }
 
@@ -49,3 +56,14 @@ void CSceneMgr::Render(HDC _dc)
 	m_pCurScene->Render(_dc);
 
 }
+
+void CSceneMgr::ChangeScene(SCENE_TYPE _eNext)
+{
+	m_pCurScene->Exit();
+
+	m_pCurScene = m_arrScene[(UINT)_eNext];
+
+	m_pCurScene->Enter();
+}
+
+

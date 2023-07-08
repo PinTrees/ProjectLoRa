@@ -3,8 +3,7 @@
 #include <Windows.h>
 #include <iostream>
 
-
-
+#include <future>
 
 
 #include <vector>
@@ -14,10 +13,12 @@ using std::vector;
 using std::map;
 using std::make_pair;
 
-
+#include <list>
+using std::list;
 
 #include <string>
 using std::wstring;
+using std::string;
 
 #include <fstream>
 #include <tchar.h>
@@ -29,4 +30,7 @@ using std::wstring;
 #pragma comment(lib,"Msimg32.lib")
 
 #include "define.h"
-#include "MyVec2.h"
+#include "register.h"
+
+#include "Vec2.h"
+#include "func.h"

@@ -48,6 +48,7 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 	CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
 	const vector<CObject*>& vecLeft = pCurScene->GetGroupObject(_eLeft);
 	const vector<CObject*>& vecRight = pCurScene->GetGroupObject(_eRight);
+	map<ULONGLONG, bool>::iterator iter;
 
 	for (size_t i = 0; i < vecLeft.size(); ++i)
 	{
@@ -65,21 +66,64 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 				continue;
 			}
 
-			// 두 충돌체
+			CCollider* pLeftCol = vecLeft[i]->GetCollider();
+			CCollider* pRightCol = vecRight[j]->GetCollider();
+
+			// 두 충돌체 조합 아이디 생성
 			COLLIDER_ID ID;
-			ID.Left_id = vecLeft[i]->GetCollider()->GetID();
-			ID.RIght_id = vecLeft[j]->GetCollider()->GetID();
+			ID.Left_id = pLeftCol->GetID();
+			ID.RIght_id = pRightCol->GetID();
 
+			iter = mMapColInfo.find(ID.ID);
 
-			ID.ID; 
-
-			if (isCollision(vecLeft[i]->GetCollider(), vecRight[j]->GetCollider()))
+			//충돌 정보가 미 등록된 상태인 경우 최초 등록 ( 충돌하지 않았다로)
+			if (mMapColInfo.end() == iter)
 			{
-				
+				mMapColInfo.insert(make_pair(ID.ID, false));
+				iter = mMapColInfo.find(ID.ID);
+			}
+
+			if (isCollision(pLeftCol, pRightCol))
+			{
+				// 현재 충돌 중이다.
+				if (iter->second)
+				{
+					// 이전에도 충돌중이였다.
+					if (vecLeft[i]->IsDead() || vecRight[j]->IsDead())
+					{
+						// 근데 둘중 하나가 삭제 예정이라면 충돌 해제시켜준다.
+						pLeftCol->OnCollisionExit(pRightCol);
+						pRightCol->OnCollisionExit(pLeftCol);
+						iter->second = false;
+					}
+					else
+					{
+						pLeftCol->OnCollisionStay(pRightCol);
+						pRightCol->OnCollisionStay(pLeftCol);
+					}
+				}
+				else
+				{
+					// 이전에는 충돌하지 않았다.
+					if (!vecLeft[i]->IsDead() && !vecRight[j]->IsDead())
+					{
+						// 이번에 충돌이 시작되었다.
+						pLeftCol->OnCollisionEnter(pRightCol);
+						pRightCol->OnCollisionEnter(pLeftCol);
+						iter->second = true;
+					}
+				}
 			}
 			else
 			{
-
+				// 현재 충돌하지 않고있다.
+				if (iter->second)
+				{
+					// 이전에는 충돌중이였다.
+					pLeftCol->OnCollisionExit(pRightCol);
+					pRightCol->OnCollisionExit(pLeftCol);
+					iter->second = false;
+				}
 			}
 		}
 	}
@@ -87,6 +131,17 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 bool CCollisionMgr::isCollision(CCollider* _pLeftCol, CCollider* _pRightCol)
 {
+	Vec2 vLeftPos = _pLeftCol->GetFinalPos();
+	Vec2 vLeftScale = _pLeftCol->GetScale();
+
+	Vec2 vRightPos = _pRightCol->GetFinalPos();
+	Vec2 vRightScale = _pRightCol->GetScale();
+
+	if (abs(vRightPos.x - vLeftPos.x) < (vLeftScale.x + vRightScale.x) / 2.f
+		&& abs(vRightPos.y - vLeftPos.y) < (vLeftScale.y + vRightScale.y) / 2.f)
+	{
+		return true;
+	}
 
 	return false;
 }
@@ -101,8 +156,8 @@ void CCollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 	if (iCol < iRow)
 	{
-		UINT iRow = (UINT)_eRight;
-		UINT iCol = (UINT)_eLeft;
+		iRow = (UINT)_eRight;
+		iCol = (UINT)_eLeft;
 	}
 
 	if (mArrCheck[iRow] & (1 << iCol))

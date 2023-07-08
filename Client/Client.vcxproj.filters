@@ -8,140 +8,331 @@
     <Filter Include="FreamWork">
       <UniqueIdentifier>{0ab30d3c-9d3c-464f-8b93-b067cd7db424}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\01. Header">
-      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
+    <Filter Include="Default">
+      <UniqueIdentifier>{532d00c4-0f81-449d-b72e-6d1ed4acb678}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\02. Core">
-      <UniqueIdentifier>{2f3345fc-354c-4df0-a342-b413e988a7ba}</UniqueIdentifier>
+    <Filter Include="Game">
+      <UniqueIdentifier>{2e7d1ff8-8340-4366-8f72-27c82929808f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\03. Manager">
-      <UniqueIdentifier>{15b2c071-34da-43f2-9d5c-65846d99375f}</UniqueIdentifier>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{12201b8d-a722-45a7-ad68-a8b995b06208}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\04. Object">
+    <Filter Include="Game\Object">
       <UniqueIdentifier>{f8c96f15-a61f-422a-909d-90a1b10f8b0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\03. Manager\KeyMgr">
-      <UniqueIdentifier>{bfe427de-453e-4ac9-ac43-c91950f6d548}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\03. Manager\TimeMgr">
-      <UniqueIdentifier>{76443bb8-4b92-4de5-bd76-c639779c17c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\05. Scene">
-      <UniqueIdentifier>{2f03a008-9e50-4a0e-ad69-c325758b0128}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\03. Manager\SceneMgr">
-      <UniqueIdentifier>{911c0394-9cbd-46a3-82d3-ba67b8402741}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\04. Object\Player">
+    <Filter Include="Game\Object\Player">
       <UniqueIdentifier>{771295e1-f463-45b7-9d1f-08042b013765}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\04. Object\Monster">
+    <Filter Include="Game\Object\Monster">
       <UniqueIdentifier>{1af77d7f-d0a5-4d06-8519-500be666a025}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\04. Object\Missile">
+    <Filter Include="Game\Object\Missile">
       <UniqueIdentifier>{1dab1dbd-d309-4742-b3ad-4b02ac9a9112}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\06. Resource">
-      <UniqueIdentifier>{b5bdd32b-0fd5-414b-a78b-2b798a73ca0e}</UniqueIdentifier>
+    <Filter Include="Game\Object\Particle">
+      <UniqueIdentifier>{5a26727d-6771-4128-b193-38a6ee616850}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\06. Resource\Texture">
-      <UniqueIdentifier>{e529e953-bc50-4ccf-ab01-2e87d4fc0c5a}</UniqueIdentifier>
+    <Filter Include="Game\Object\Environment">
+      <UniqueIdentifier>{3f433775-b5dd-4a72-a240-3dd4c49c3870}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\06. Resource\Sound">
-      <UniqueIdentifier>{53ec3dde-1301-464d-bc16-f5081b44705e}</UniqueIdentifier>
+    <Filter Include="Game\Object\Gold">
+      <UniqueIdentifier>{b66dd6fb-76be-4c04-a201-226229c7cb25}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\03. Manager\PathMgr">
-      <UniqueIdentifier>{ed1ccc23-7cc6-4033-ac2e-e5b327790603}</UniqueIdentifier>
+    <Filter Include="Game\Object\Bullet">
+      <UniqueIdentifier>{e045afaf-6396-4eb6-857f-7dc22ef63594}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\03. Manager\ResMgr">
-      <UniqueIdentifier>{66dd22d9-c81b-4579-8249-76945ef4564f}</UniqueIdentifier>
+    <Filter Include="Game\Object\Gun">
+      <UniqueIdentifier>{b79e24fc-ba7a-48cf-a49a-652323f10426}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\07. Compnent">
-      <UniqueIdentifier>{196c1f8e-9e99-4d95-a543-658b70ff519d}</UniqueIdentifier>
+    <Filter Include="Game\Scene\Scene_Tool">
+      <UniqueIdentifier>{52e38cc8-db68-48af-be92-b245c7d37e60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\08. Module">
+    <Filter Include="FreamWork\UI">
+      <UniqueIdentifier>{da02c518-700b-4799-9bb4-314520c65c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Button">
+      <UniqueIdentifier>{4919d559-0ef9-42ee-bffc-08efddcb8506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Panel">
+      <UniqueIdentifier>{cc24355e-07d5-4708-803b-38b01616c12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Module">
       <UniqueIdentifier>{4d6ed337-e0ad-46fb-b5ea-8ab98806f762}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\03. Manager\CollisionMgr">
+    <Filter Include="FreamWork\Compnent">
+      <UniqueIdentifier>{196c1f8e-9e99-4d95-a543-658b70ff519d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Compnent\Animator">
+      <UniqueIdentifier>{285a0671-e26e-4686-b505-b6451b1fd028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Compnent\Animator\Animation">
+      <UniqueIdentifier>{192c16c4-c722-420c-8308-28feb9d3e6d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Compnent\Collider">
+      <UniqueIdentifier>{330de395-3341-4ded-bca9-25db5c483649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Compnent\RigidBody">
+      <UniqueIdentifier>{aacc3fed-e4d3-43f8-b6eb-796ef24a5d21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Resource">
+      <UniqueIdentifier>{b5bdd32b-0fd5-414b-a78b-2b798a73ca0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Resource\Texture">
+      <UniqueIdentifier>{e529e953-bc50-4ccf-ab01-2e87d4fc0c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Resource\Sound">
+      <UniqueIdentifier>{53ec3dde-1301-464d-bc16-f5081b44705e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Scene">
+      <UniqueIdentifier>{2f03a008-9e50-4a0e-ad69-c325758b0128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager">
+      <UniqueIdentifier>{15b2c071-34da-43f2-9d5c-65846d99375f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\KeyMgr">
+      <UniqueIdentifier>{bfe427de-453e-4ac9-ac43-c91950f6d548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\TimeMgr">
+      <UniqueIdentifier>{76443bb8-4b92-4de5-bd76-c639779c17c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\SceneMgr">
+      <UniqueIdentifier>{911c0394-9cbd-46a3-82d3-ba67b8402741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\PathMgr">
+      <UniqueIdentifier>{ed1ccc23-7cc6-4033-ac2e-e5b327790603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\ResMgr">
+      <UniqueIdentifier>{66dd22d9-c81b-4579-8249-76945ef4564f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\CollisionMgr">
       <UniqueIdentifier>{8e3a98f7-e3d3-4e94-a23e-bfeeff5a20bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\EvenMgr">
+      <UniqueIdentifier>{8f05edba-f49f-4862-8012-e050128d5e4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\Camera">
+      <UniqueIdentifier>{b4a75ea7-90e3-4cba-b1be-b4d42bd06591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\UIMgr">
+      <UniqueIdentifier>{e3ffa790-a82f-4f29-88b5-432f2b2cd4f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Core">
+      <UniqueIdentifier>{2f3345fc-354c-4df0-a342-b413e988a7ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Header">
+      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Module\FileMgr">
+      <UniqueIdentifier>{27936c97-bd36-4965-8d31-be8a8814d6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Start">
+      <UniqueIdentifier>{639227a7-f654-445d-bd9a-b40a71bd3fda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\TIle">
+      <UniqueIdentifier>{83d1aff7-6d76-4b2a-9faa-0040ee743856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM">
+      <UniqueIdentifier>{0aef73f3-04bf-494c-8954-b9c9ef861b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\CState">
+      <UniqueIdentifier>{86a85e6a-6ef3-44c3-811a-e501f902ddb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\CState\IdleState">
+      <UniqueIdentifier>{2177eeb4-cde2-4502-a6d1-609fc21013b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\CState\TraceState">
+      <UniqueIdentifier>{fe8b6f0a-6ac5-4aa3-ae26-0f6a1b420b62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\MonsterFactory">
+      <UniqueIdentifier>{8d7ae67f-8e01-4d85-add0-c47fb6c0c607}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager">
+      <UniqueIdentifier>{2d407a80-d7e9-4bc2-b438-07c6767b8de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\PlayerMgr">
+      <UniqueIdentifier>{8a03eb3e-8129-4d27-94d4-345ffcdcb8a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Object">
+      <UniqueIdentifier>{6aa5d498-ec0d-4c37-8385-91ecd37b4f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Object\Background">
+      <UniqueIdentifier>{80131dd4-1e77-42a9-b503-d7c91b2eeca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Compnent\HP">
+      <UniqueIdentifier>{4f57d897-0620-4352-98f8-d9675de21254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Menu">
+      <UniqueIdentifier>{626e1ffc-6dac-47a4-a082-f49d196eb584}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
     <ClInclude Include="CCore.h">
-      <Filter>FreamWork\02. Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>FreamWork\04. Object</Filter>
+      <Filter>FreamWork\Core</Filter>
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
-      <Filter>FreamWork\03. Manager\KeyMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>FreamWork\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>FreamWork\01. Header</Filter>
+      <Filter>FreamWork\Manager\KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="CTimeMgr.h">
-      <Filter>FreamWork\03. Manager\TimeMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CScene_start.h">
-      <Filter>FreamWork\05. Scene</Filter>
+      <Filter>FreamWork\Manager\TimeMgr</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
-      <Filter>FreamWork\05. Scene</Filter>
+      <Filter>FreamWork\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CSceneMgr.h">
-      <Filter>FreamWork\03. Manager\SceneMgr</Filter>
+      <Filter>FreamWork\Manager\SceneMgr</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
-      <Filter>FreamWork\04. Object\Player</Filter>
+      <Filter>Game\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="CMonster.h">
-      <Filter>FreamWork\04. Object\Monster</Filter>
+      <Filter>Game\Object\Monster</Filter>
     </ClInclude>
     <ClInclude Include="CMissile.h">
-      <Filter>FreamWork\04. Object\Missile</Filter>
-    </ClInclude>
-    <ClInclude Include="CGuidMissile.h" />
-    <ClInclude Include="MyVec2.h">
-      <Filter>FreamWork\01. Header</Filter>
+      <Filter>Game\Object\Missile</Filter>
     </ClInclude>
     <ClInclude Include="CRes.h">
-      <Filter>FreamWork\06. Resource</Filter>
+      <Filter>FreamWork\Resource</Filter>
     </ClInclude>
     <ClInclude Include="CTexture.h">
-      <Filter>FreamWork\06. Resource\Texture</Filter>
+      <Filter>FreamWork\Resource\Texture</Filter>
     </ClInclude>
     <ClInclude Include="CSound.h">
-      <Filter>FreamWork\06. Resource\Sound</Filter>
+      <Filter>FreamWork\Resource\Sound</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
-      <Filter>FreamWork\03. Manager\PathMgr</Filter>
+      <Filter>FreamWork\Manager\PathMgr</Filter>
     </ClInclude>
     <ClInclude Include="CResMgr.h">
-      <Filter>FreamWork\03. Manager\ResMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CCollider.h">
-      <Filter>FreamWork\07. Compnent</Filter>
+      <Filter>FreamWork\Manager\ResMgr</Filter>
     </ClInclude>
     <ClInclude Include="SelectGDI.h">
-      <Filter>FreamWork\08. Module</Filter>
+      <Filter>FreamWork\Module</Filter>
     </ClInclude>
     <ClInclude Include="CCollisionMgr.h">
-      <Filter>FreamWork\03. Manager\CollisionMgr</Filter>
+      <Filter>FreamWork\Manager\CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CEventMgr.h">
+      <Filter>FreamWork\Manager\EvenMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>FreamWork\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>FreamWork\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>FreamWork\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>FreamWork\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_start.h">
+      <Filter>Game\Scene\Scene_Start</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>Game\Scene\Scene_Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="CGuidMissile.h">
+      <Filter>Game\Object\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>FreamWork\Compnent\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>FreamWork\Compnent\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>FreamWork\Compnent\Animator\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>FreamWork\Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Game\Object\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Gold.h">
+      <Filter>Game\Object\Gold</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>FreamWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Game\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>FreamWork\Compnent\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>FreamWork\Compnent\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMgr.h">
+      <Filter>FreamWork\Manager\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>FreamWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Game\Object\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>FreamWork\UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>FreamWork\UI\Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>Game\Object\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>FreamWork\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="FileMgr.h">
+      <Filter>FreamWork\Module\FileMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Game\Object\TIle</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>FreamWork\Object\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Game\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Game\FSM\CState</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Game\FSM\CState\IdleState</Filter>
+    </ClInclude>
+    <ClInclude Include="TraceState.h">
+      <Filter>Game\FSM\CState\TraceState</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterFactory.h">
+      <Filter>Game\MonsterFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="register.h">
+      <Filter>FreamWork\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMgr.h">
+      <Filter>Game\Manager\PlayerMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CHP.h">
+      <Filter>FreamWork\Compnent\HP</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Menu.h">
+      <Filter>Game\Scene\Scene_Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,59 +351,151 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CCore.cpp">
-      <Filter>FreamWork\02. Core</Filter>
-    </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>FreamWork\04. Object</Filter>
+      <Filter>FreamWork\Core</Filter>
     </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
-      <Filter>FreamWork\03. Manager\KeyMgr</Filter>
+      <Filter>FreamWork\Manager\KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
-      <Filter>FreamWork\03. Manager\TimeMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="CScene_start.cpp">
-      <Filter>FreamWork\05. Scene</Filter>
+      <Filter>FreamWork\Manager\TimeMgr</Filter>
     </ClCompile>
     <ClCompile Include="CScene.cpp">
-      <Filter>FreamWork\05. Scene</Filter>
+      <Filter>FreamWork\Scene</Filter>
     </ClCompile>
     <ClCompile Include="CSceneMgr.cpp">
-      <Filter>FreamWork\03. Manager\SceneMgr</Filter>
+      <Filter>FreamWork\Manager\SceneMgr</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
-      <Filter>FreamWork\04. Object\Player</Filter>
+      <Filter>Game\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
-      <Filter>FreamWork\04. Object\Monster</Filter>
+      <Filter>Game\Object\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CMissile.cpp">
-      <Filter>FreamWork\04. Object\Missile</Filter>
+      <Filter>Game\Object\Missile</Filter>
     </ClCompile>
-    <ClCompile Include="CGuidMissile.cpp" />
     <ClCompile Include="CRes.cpp">
-      <Filter>FreamWork\06. Resource</Filter>
+      <Filter>FreamWork\Resource</Filter>
     </ClCompile>
     <ClCompile Include="CTexture.cpp">
-      <Filter>FreamWork\06. Resource\Texture</Filter>
+      <Filter>FreamWork\Resource\Texture</Filter>
     </ClCompile>
     <ClCompile Include="CSound.cpp">
-      <Filter>FreamWork\06. Resource\Sound</Filter>
+      <Filter>FreamWork\Resource\Sound</Filter>
     </ClCompile>
     <ClCompile Include="CPathMgr.cpp">
-      <Filter>FreamWork\03. Manager\PathMgr</Filter>
+      <Filter>FreamWork\Manager\PathMgr</Filter>
     </ClCompile>
     <ClCompile Include="CResMgr.cpp">
-      <Filter>FreamWork\03. Manager\ResMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="CCollider.cpp">
-      <Filter>FreamWork\07. Compnent</Filter>
+      <Filter>FreamWork\Manager\ResMgr</Filter>
     </ClCompile>
     <ClCompile Include="SelectGDI.cpp">
-      <Filter>FreamWork\08. Module</Filter>
+      <Filter>FreamWork\Module</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
-      <Filter>FreamWork\03. Manager\CollisionMgr</Filter>
+      <Filter>FreamWork\Manager\CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventMgr.cpp">
+      <Filter>FreamWork\Manager\EvenMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_start.cpp">
+      <Filter>Game\Scene\Scene_Start</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>Game\Scene\Scene_Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="CGuidMissile.cpp">
+      <Filter>Game\Object\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>FreamWork\Compnent\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>FreamWork\Compnent\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>FreamWork\Compnent\Animator\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>FreamWork\Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Game\Object\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Gold.cpp">
+      <Filter>Game\Object\Gold</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>FreamWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Game\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>FreamWork\Header</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>FreamWork\Header</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>FreamWork\Compnent\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>FreamWork\Compnent\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMgr.cpp">
+      <Filter>FreamWork\Manager\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>FreamWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Game\Object\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>FreamWork\UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>FreamWork\UI\Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>Game\Object\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>FreamWork\Header</Filter>
+    </ClCompile>
+    <ClCompile Include="FileMgr.cpp">
+      <Filter>FreamWork\Module\FileMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Game\Object\TIle</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>FreamWork\Object\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Game\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Game\FSM\CState</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Game\FSM\CState\IdleState</Filter>
+    </ClCompile>
+    <ClCompile Include="TraceState.cpp">
+      <Filter>Game\FSM\CState\TraceState</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterFactory.cpp">
+      <Filter>Game\MonsterFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMgr.cpp">
+      <Filter>Game\Manager\PlayerMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CHP.cpp">
+      <Filter>FreamWork\Compnent\HP</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Menu.cpp">
+      <Filter>Game\Scene\Scene_Menu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,25 +1,3 @@
-﻿  CCollider.cpp
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(49,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(48,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(47,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client\CCollider.cpp(46,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  CCollisionMgr.cpp
-  CCore.cpp
-  CGuidMissile.cpp
-  CKeyMgr.cpp
-  CMissile.cpp
-  CMonster.cpp
-  CObject.cpp
-  CPathMgr.cpp
-  CPlayer.cpp
-  CRes.cpp
-  CResMgr.cpp
-  CScene.cpp
-  CSceneMgr.cpp
-  CScene_start.cpp
-  CSound.cpp
-  CTexture.cpp
-  CTimeMgr.cpp
-  Client.cpp
-  SelectGDI.cpp
-  Client.vcxproj -> C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Output\bin_debug\Client.exe
+﻿  CScene_Tool.cpp
+  LINK : C:\Users\user\Desktop\ProjectLoRa-pintree\ProjectLoRa-pintree\Output\bin_debug\Client.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
+  Client.vcxproj -> C:\Users\user\Desktop\ProjectLoRa-pintree\ProjectLoRa-pintree\Output\bin_debug\Client.exe
