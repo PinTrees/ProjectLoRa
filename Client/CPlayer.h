@@ -1,8 +1,6 @@
 #pragma once
 #include "CObject.h"
 
-class CTexture;
-class Gun;
 
 enum class PLAYER_STATE
 {
@@ -13,6 +11,12 @@ enum class PLAYER_STATE
 	Die,
 	Dash,
 };
+
+
+class CTexture;
+class Gun;
+class BarUI;
+
 
 
 
@@ -30,14 +34,35 @@ private:
 
 	PLAYER_STATE mState;
 
+	int		mLevel;
+
+	float	mExp;
+	BarUI*	mExpBar;
+
+
+public:
+	float GetMaxExp() { return 10.f * mLevel + 10.f; };
+	float GetExp() { return mExp; };
+	void  AddExp(float exp) { mExp += exp; }
+
+
 public:
 	virtual void Update()override;
 	virtual void Render(HDC _dc) override;
 
 private:
-	void createMissile();
+	void	createMissile();
+	void	calExp()
+	{
+		if (mExp >= GetMaxExp())
+		{
+			++mLevel;
+			mExp = 0;
+		}
+	}
 
 	CLONE(Player);
+
 
 public:
 	Player();

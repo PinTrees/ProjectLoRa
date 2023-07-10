@@ -164,6 +164,12 @@
     <Filter Include="Game\FSM\CState\AtkState">
       <UniqueIdentifier>{8deb5ff9-62cf-4925-bf4b-f768335855f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI">
+      <UniqueIdentifier>{563e5912-4022-4cf2-b9a6-321569068555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Main">
+      <UniqueIdentifier>{5f60a7f1-978f-451b-8fc0-fe1cec6a5105}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -334,6 +340,12 @@
     <ClInclude Include="AtkState.h">
       <Filter>Game\FSM\CState\AtkState</Filter>
     </ClInclude>
+    <ClInclude Include="HpBar.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Main.h">
+      <Filter>Game\Scene\Scene_Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -496,6 +508,12 @@
     </ClCompile>
     <ClCompile Include="AtkState.cpp">
       <Filter>Game\FSM\CState\AtkState</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBar.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Main.cpp">
+      <Filter>Game\Scene\Scene_Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -60,6 +60,7 @@ enum class SCENE_TYPE
 {
 	TOOL,
 	START,
+	MAIN,
 	STAGE_01,
 	STAGE_02,
 

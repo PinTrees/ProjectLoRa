@@ -1,19 +1,24 @@
 #include "pch.h"
 #include "CMonster.h"
 
-#include "CTimeMgr.h"
-#include "CCollider.h"
-
-#include "CTexture.h"
-#include "CResMgr.h"
-#include "CAnimation.h"
-#include "CAnimator.h"
-#include "CScene.h"
-
 #include "CCore.h"
 
-#include "Gold.h"
+// Include Manager
+#include "CTimeMgr.h"
+#include "CResMgr.h"
+
+// Include Componets
+#include "CCollider.h"
+#include "CAnimation.h"
+#include "CAnimator.h"
+#include "CTexture.h"
+#include "CScene.h"
 #include "AI.h"
+#include "Gold.h"
+
+// Include UI
+#include "HpBar.h"
+
 
 
 CMonster::CMonster()
@@ -34,6 +39,12 @@ CMonster::CMonster()
 	GetAnimator()->CreateAnimation(L"CREATE", pTex, Vec2(0.f, 93 * 8.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 8);
 
 	GetAnimator()->Play(L"IDLE", true);
+
+	mHpBar = new BarUI;
+	mHpBar->SetPivot(Vec2(70.f, -25.f));
+	mHpBar->SetScale(Vec2(50.f, 4.f));
+	mHpBar->SetColor(RGB(255, 0, 0));
+	CreateObject(mHpBar, GROUP_TYPE::UI);
 }
 
 CMonster::~CMonster()
@@ -55,6 +66,12 @@ void CMonster::Update()
 
 	if (nullptr != mAI)
 		mAI->Update();
+
+	if (nullptr != mHpBar)
+	{
+		mHpBar->SetAmount((float)mtInfo.curHp / (float)mtInfo.hp);
+		mHpBar->SetPos(GetPos());
+	}
 }
 
 void CMonster::SetAI(AI* pAI)
@@ -71,6 +88,7 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 	if (pOtherObj->GetName() == L"Missile_Player")
 	{
 		mtInfo.curHp -= 5;
+		if (mtInfo.curHp < 0) mtInfo.curHp = 0;
 
 		tForce fc = {};
 		fc.radius = 60.f;
@@ -80,5 +98,11 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 
 		CreateForce(fc);
 	}
+}
+
+
+void CMonster::OnDestroy()
+{
+	DeleteObject(mHpBar);
 }
 

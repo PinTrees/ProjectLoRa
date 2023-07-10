@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "CSceneMgr.h"
 
+// Include Scene
 #include "CScene_start.h"
 #include "CScene_Tool.h"
+#include "Scene_Main.h"
 #include "CEventMgr.h"
 
 CSceneMgr::CSceneMgr()
@@ -31,12 +33,12 @@ void CSceneMgr::Init()
 
 	m_arrScene[(UINT)SCENE_TYPE::TOOL] = new Scene_Tool;
 	m_arrScene[(UINT)SCENE_TYPE::TOOL]->SetName(L"Tool Scene");
-	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = new Scene_Start;
-	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = new Scene_Start;
 
+	m_arrScene[(UINT)SCENE_TYPE::MAIN] = new Scene_Main;
+	m_arrScene[(UINT)SCENE_TYPE::MAIN]->SetName(L"Main Scene");
 
 	//ÇöÀç ¾À ÁöÁ¤
-	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::START];
+	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::MAIN];
 	m_pCurScene->Enter();
 }
 

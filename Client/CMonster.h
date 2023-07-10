@@ -15,7 +15,7 @@ struct tMonsterInfo
 
 class AI;
 class MonsterFactory;
-
+class BarUI;
 
 
 
@@ -25,6 +25,8 @@ class CMonster :
 private:
 	tMonsterInfo	mtInfo;
 	AI*				mAI;
+
+	BarUI*			mHpBar;
 
 
 public:
@@ -38,7 +40,7 @@ public:
 
 public:
 	virtual void OnCollisionEnter(CCollider* _pOther) override;
-
+	virtual void OnDestroy() override;
 
 public:
 	virtual void Update() override;

@@ -35,18 +35,10 @@ void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
 	mArrObj[(UINT)_eType].push_back(_pObj);
 }
 
-void CScene::DeleteObject(CObject* _pObj, GROUP_TYPE _eType)
-{
-}
-
 
 void CScene::AddForce(tForce& force)
 {
 	mArrForce.push_back(force);
-}
-
-void CScene::DeleteForce(tForce force)
-{
 }
 
 
@@ -131,9 +123,9 @@ void CScene::_render_parallax(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
-	Vec2 vCamPos = CCamera::GetI()->GetLookAt();
-	Vec2 vRes = CCore::GetI()->GetResolution();
-	Vec2 vLeftTop = vCamPos - vRes * 0.5f;
+	//Vec2 vCamPos = CCamera::GetI()->GetLookAt();
+	//Vec2 vRes = CCore::GetI()->GetResolution();
+	//Vec2 vLeftTop = vCamPos - vRes * 0.5f;
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
@@ -149,24 +141,25 @@ void CScene::Render(HDC _dc)
 		{
 			if (!(*iter)->IsDead())
 			{
-				Vec2 vPos = (*iter)->GetLocalPos();
-				Vec2 vSize = (*iter)->GetScale();
+				//Vec2 vPos = (*iter)->GetLocalPos();
+				//Vec2 vSize = (*iter)->GetScale();
 
-				// 화면을 벗어난 오브젝트인지 확인
-				if (vPos.y < vLeftTop.y - vSize.y
-					|| vPos.y > vLeftTop.y + vRes.y
-					|| vPos.x < vLeftTop.x - vSize.x
-					|| vPos.x > vLeftTop.x + vRes.x)
-				{
-					++iter;
-					continue;
-				}
+				//// 화면을 벗어난 오브젝트인지 확인
+				//if (vPos.y < vLeftTop.y - vSize.y
+				//	|| vPos.y > vLeftTop.y + vRes.y
+				//	|| vPos.x < vLeftTop.x - vSize.x
+				//	|| vPos.x > vLeftTop.x + vRes.x)
+				//{
+				//	++iter;
+				//	continue;
+				//}
 
 				(*iter)->Render(_dc);
 				++iter;
 			}
 			else
 			{
+				(*iter)->OnDestroy();
 				iter = mArrObj[i].erase(iter);
 			}
 		}

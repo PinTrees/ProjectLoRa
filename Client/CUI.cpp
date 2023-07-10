@@ -8,33 +8,33 @@
 #include "CScene.h"
 
 CUI::CUI(bool cameraAffected)
-	:
-	_vecChildUI{},
-	p_parentUI(nullptr),
-	_finalPos{},
-	_cameraAffected(cameraAffected),
-	_onMouseCheck(false)
+	: mVecChildUI{}
+	, mpParentUI(nullptr)
+	, mvFinalPos{}
+	, mCameraAffected(cameraAffected)
+	, mOnMouseCheck(false)
+	, mText(L"")
 {
 
 }
 
 CUI::CUI(const CUI& origin)
-	:
-	CObject(origin),
-	p_parentUI(nullptr),
-	_cameraAffected(origin._cameraAffected),
-	_onMouseCheck(false),
-	_lbtnDown(false)
+	: CObject(origin)
+	, mpParentUI(nullptr)
+	, mCameraAffected(origin.mCameraAffected)
+	, mOnMouseCheck(false)
+	, mLbtnDown(false)
+	, mText(origin.mText)
 {
-	for (size_t i = 0; i < origin._vecChildUI.size(); ++i)
+	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
-		AddChild(origin._vecChildUI[i]->Clone());
+		AddChild(origin.mVecChildUI[i]->Clone());
 	}
 }
 
 CUI::~CUI()
 {
-	Safe_Delete_Vec(_vecChildUI);
+	Safe_Delete_Vec(mVecChildUI);
 }
 
 void CUI::Update()
@@ -50,12 +50,12 @@ void CUI::FinalUpdate()
 	CObject::FinalUpdate();
 
 	// UI의 최종좌표를 구한다.
-	_finalPos = GetPos(); // 부모 좌표를 finalPos로 인식
+	mvFinalPos = GetPos(); // 부모 좌표를 finalPos로 인식
 
 	if (GetParentUI())
 	{
 		Vec2 parentPos = GetParentUI()->GetFinalPos();
-		_finalPos += parentPos;
+		mvFinalPos += parentPos;
 	}
 
 	// UI Mouse체크
@@ -69,19 +69,19 @@ void CUI::OnMouseCheck()
 	Vec2 mousePos = MOUSE_POS;
 	Vec2 uiScale = GetScale();
 
-	if (_cameraAffected)
+	if (mCameraAffected)
 	{
 		CCamera::GetI()->GetRealPos(mousePos);
 	}
 
-	if (_finalPos.x <= mousePos.x && mousePos.x <= _finalPos.x + uiScale.x &&
-		_finalPos.y <= mousePos.y && mousePos.y <= _finalPos.y + uiScale.y)
+	if (mvFinalPos.x <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x &&
+		mvFinalPos.y <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y)
 	{
-		_onMouseCheck = true;
+		mOnMouseCheck = true;
 	}
 	else
 	{
-		_onMouseCheck = false;
+		mOnMouseCheck = false;
 	}
 }
 
@@ -90,12 +90,12 @@ void CUI::Render(HDC dc)
 	Vec2 pos = GetFinalPos();
 	Vec2 scale = GetScale();
 
-	if (_cameraAffected)
+	if (mCameraAffected)
 	{
 		pos = CCamera::GetI()->GetRenderPos(pos);
 	}
 
-	if (_lbtnDown)
+	if (mLbtnDown)
 	{
 		SelectGDI p(dc, PEN_TYPE::GREEN);
 		Rectangle
@@ -119,31 +119,36 @@ void CUI::Render(HDC dc)
 		);
 	}
 
+	if (mText != L"")
+	{
+		TextOut(dc, (int)(pos.x + mvContentOffset.x), (int)(pos.y + mvContentOffset.y), mText.c_str(), mText.size());
+	}
+
 	// child render
 	RenderChild(dc);
 }
 
 void CUI::UpdateChild()
 {
-	for (size_t i = 0; i < _vecChildUI.size(); ++i)
+	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
-		_vecChildUI[i]->Update();
+		mVecChildUI[i]->Update();
 	}
 }
 
 void CUI::FinalUpdateChild()
 {
-	for (size_t i = 0; i < _vecChildUI.size(); ++i)
+	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
-		_vecChildUI[i]->FinalUpdate();
+		mVecChildUI[i]->FinalUpdate();
 	}
 }
 
 void CUI::RenderChild(HDC dc)
 {
-	for (size_t i = 0; i < _vecChildUI.size(); ++i)
+	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
-		_vecChildUI[i]->Render(dc);
+		mVecChildUI[i]->Render(dc);
 	}
 }
 
@@ -166,4 +171,20 @@ void CUI::MouseLbtnUp()
 void CUI::MouseLbtnClick()
 {
 
+}
+
+CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
+{
+	for (UINT i = 0; i < parentUI->GetChild().size(); ++i)
+	{
+		if (parentUI->GetChild()[i]->GetName() == childUI)
+		{
+			if (parentUI->GetChild()[i] == nullptr)
+				assert(nullptr);
+
+			return parentUI->GetChild()[i];
+		}
+	}
+
+	return nullptr;
 }

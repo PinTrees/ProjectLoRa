@@ -92,7 +92,7 @@ void CMissile::Update()
 	vPos.y += 500.f * m_vDir.y * DT;
 
 	if (vPos.y < 110)
-		pCurScene->DeleteObject(this, GROUP_TYPE::PROJ_PLAYER);
+		DeleteObject(this);
 
 	SetPos(vPos);
 	GetAnimator()->Update();

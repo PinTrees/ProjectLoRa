@@ -183,6 +183,7 @@
     <ClInclude Include="Gold.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="HpBar.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MonsterFactory.h" />
     <ClInclude Include="Background.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="register.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
+    <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TraceState.h" />
     <ClInclude Include="UIMgr.h" />
@@ -239,6 +241,7 @@
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MonsterFactory.cpp" />
     <ClCompile Include="Background.cpp" />
@@ -246,6 +249,7 @@
     <ClCompile Include="PlayerMgr.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="Scene_Main.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="Tile.cpp" />

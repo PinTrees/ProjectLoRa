@@ -73,6 +73,10 @@ public:
 	virtual void OnCollisionEnter(CCollider* _pOther) {}// 충돌 진입시
 	virtual void OnCollisionExit(CCollider* _pOther) {} // 충돌 해제시
 
+	// 시점 함수
+	virtual void OnDestroy() {}	// 삭제 시점
+
+
 private:
 	void	SetDead() { mbAlive = false; }
 

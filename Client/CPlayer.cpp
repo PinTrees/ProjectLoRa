@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CPlayer.h"
 
+#include "CCore.h"
+
 // Include Manager Header
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
@@ -20,7 +22,7 @@
 #include "Bullet.h"
 #include "Gun.h"
 
-
+#include "HpBar.h"
 
 
 Player::Player()
@@ -29,6 +31,9 @@ Player::Player()
 	, mState(PLAYER_STATE::NONE)
 	, mvDashDir(Vec2(0.f, 0.f))
 	, mCurGun(nullptr)
+	, mExpBar(nullptr)
+	, mLevel(0)
+	, mExp(0.f)
 {
 	// Init Object Component
 	// Create Collider Component
@@ -69,6 +74,15 @@ Player::Player()
 	mCurGun = new Gun(L"1");
 	mCurGun->SetOwner(this);
 	CreateObject(mCurGun, GROUP_TYPE::PLAYER);
+
+	Vec2 vRes = CCore::GetI()->GetResolution();
+
+	mExpBar = new BarUI;
+	mExpBar->SetCameraAffected(true);
+	mExpBar->SetScale(Vec2(vRes.x, 6.f));
+	mExpBar->SetPos(Vec2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
+	mExpBar->SetColor(RGB(255, 222, 0));
+	CreateObject(mExpBar, GROUP_TYPE::UI);
 }
 
 
@@ -80,17 +94,20 @@ Player::~Player()
 
 void Player::Update()
 {
+	calExp();
+
 	GetAnimator()->Update();
 
-	CRigidBody* pRigid = GetRigidBody();
-
 	mfCurDelay += DT;
+	
+	Vec2 vPos = GetPos();
+	mExpBar->SetAmount(GetExp() / GetMaxExp());
 
 	if (mState == PLAYER_STATE::Dash)
 	{
 		mCurGun->SetVisible(false);
 
-		pRigid->AddForce(mvDashDir * 2000.f);
+		SetPos(vPos + mvDashDir * 1000.f * DT);
 
 		if (GetAnimator()->GetCurAnimation()->IsFinish())
 		{
@@ -149,26 +166,15 @@ void Player::Update()
 	Vec2 vDir = Vec2::zero;
 	Vec2 vStartDir = Vec2::zero;
 
-	if (KEY_TAP(KEY::W)) vStartDir += Vec2::up;
-	if (KEY_TAP(KEY::S)) vStartDir += Vec2::down;
-	if (KEY_TAP(KEY::A)) vStartDir += Vec2::left;
-	if (KEY_TAP(KEY::D)) vStartDir += Vec2::right;
-
 	if (KEY_HOLD(KEY::W)) vDir += Vec2::up;
 	if (KEY_HOLD(KEY::S)) vDir += Vec2::down;
 	if (KEY_HOLD(KEY::A)) vDir += Vec2::left;
 	if (KEY_HOLD(KEY::D)) vDir += Vec2::right;
 
-
-	if (vStartDir != Vec2::zero)
-	{
-		pRigid->AddVeloctiy(vStartDir * 150.f);
-	}
-
 	if (vDir != Vec2::zero)
 	{
 		mState = PLAYER_STATE::Run;
-		pRigid->AddForce(vDir * 500.f);
+		SetPos(vPos + vDir * 250.f * DT);
 
 		if (vDir.x < 1)
 		{

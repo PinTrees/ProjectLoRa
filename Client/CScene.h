@@ -42,10 +42,10 @@ public:
 
 public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _eType);
-	void DeleteObject(CObject* _pObj, GROUP_TYPE _eType);
-
 	void AddForce(tForce& force);
-	void DeleteForce(tForce force);
+
+	//void DeleteObject(CObject* _pObj, GROUP_TYPE _eType);
+	//void DeleteForce(tForce force);
 
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eTYpe) { return mArrObj[(UINT)_eTYpe]; }
 	vector<CObject*>& GetUIGroups(const GROUP_TYPE& type) { return mArrObj[static_cast<UINT>(GROUP_TYPE::UI)]; }

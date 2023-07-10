@@ -2,9 +2,12 @@
 #include "DeadState.h"
 
 #include "CMonster.h"
+#include "CPlayer.h"
 
 #include "CAnimator.h"
 #include "CAnimation.h"
+
+#include "PlayerMgr.h"
 
 
 DeadState::DeadState()
@@ -21,6 +24,7 @@ DeadState::~DeadState()
 void DeadState::Enter()
 {
 	GetMonster()->GetAnimator()->Play(L"DEAD", false);
+	PlayerMgr::GetI()->GetPlayer()->AddExp(2.f);
 }
 
 
