@@ -42,10 +42,13 @@ void CCamera::Update()
 
 	if (KEY_HOLD(KEY::UP))
 		mvLookAt.y -= fDT * 500.f;
+	
 	if (KEY_HOLD(KEY::DOWN))
 		mvLookAt.y += fDT * 500.f;
+	
 	if (KEY_HOLD(KEY::LEFT))
 		mvLookAt.x -= fDT * 500.f;
+
 	if (KEY_HOLD(KEY::RIGHT))
 		mvLookAt.x += fDT * 500.f;
 

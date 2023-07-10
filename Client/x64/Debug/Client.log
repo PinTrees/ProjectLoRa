@@ -1,6 +1,24 @@
-﻿  unity_QMZAQAMHCDYVJ5OP.cpp
-C:\PorojectM\ProjectLoRa\Client\CTile.cpp(45,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CTile.cpp(44,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CTile.cpp(43,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CTile.cpp(42,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  unity_177T96FY0DGOY736.cpp
+  unity_7XP72HUW0XNVQB23.cpp
+  unity_BEKB3YZSSEFZ7LSG.cpp
+  unity_DKY28OTMA0U10B4A.cpp
+  unity_G228DH1GZQ0PI08J.cpp
+  unity_NQPWGQ3VDVFMSVPC.cpp
+  unity_NTX625BKLJZT5Q9O.cpp
+  unity_OXWHOX22TDHWWJE5.cpp
+  unity_QL7XLSN64ADLF2FA.cpp
+  unity_T5V8ISTYPEMNHGAQ.cpp
+  unity_XEWHPI9GJSBFQCNY.cpp
+  unity_XOBZECJT3R7ZAX5I.cpp
+C:\PorojectM\ProjectLoRa\Client\CTile.cpp(45,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_NTX625BKLJZT5Q9O.cpp)
+C:\PorojectM\ProjectLoRa\Client\CTile.cpp(44,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_NTX625BKLJZT5Q9O.cpp)
+C:\PorojectM\ProjectLoRa\Client\CTile.cpp(43,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_NTX625BKLJZT5Q9O.cpp)
+C:\PorojectM\ProjectLoRa\Client\CTile.cpp(42,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_NTX625BKLJZT5Q9O.cpp)
+C:\PorojectM\ProjectLoRa\Client\CScene.cpp(113,31): warning C4018: '<=': signed/unsigned mismatch (compiling source file x64\Debug\unity_T5V8ISTYPEMNHGAQ.cpp)
+C:\PorojectM\ProjectLoRa\Client\CScene.cpp(114,31): warning C4018: '<=': signed/unsigned mismatch (compiling source file x64\Debug\unity_T5V8ISTYPEMNHGAQ.cpp)
+C:\PorojectM\ProjectLoRa\Client\CImgBtnUI.cpp(70,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_177T96FY0DGOY736.cpp)
+C:\PorojectM\ProjectLoRa\Client\CImgBtnUI.cpp(69,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_177T96FY0DGOY736.cpp)
+C:\PorojectM\ProjectLoRa\Client\CImgBtnUI.cpp(68,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_177T96FY0DGOY736.cpp)
+C:\PorojectM\ProjectLoRa\Client\CImgBtnUI.cpp(67,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_177T96FY0DGOY736.cpp)
+  unity_YK4RRTEBRDSGM4EF.cpp
   Client.vcxproj -> C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe

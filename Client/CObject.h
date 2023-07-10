@@ -4,6 +4,8 @@
 
 class CCollider;
 class CAnimator;
+class CRigidBody;
+
 
 class CObject
 {
@@ -13,8 +15,9 @@ private:
 	Vec2		mvPos;
 	Vec2		mvScale;
 
-	CCollider*	mpCollider;
-	CAnimator*	mpAnimator;
+	CCollider* mpCollider;
+	CAnimator* mpAnimator;
+	CRigidBody* mpRigidBody;
 
 	bool		mbAlive;
 
@@ -30,11 +33,13 @@ public:
 
 	CCollider* GetCollider() { return mpCollider; }
 	CAnimator* GetAnimator() { return mpAnimator; }
+	CRigidBody* GetRigidBody() { return mpRigidBody; }
 
 	bool	IsDead() { return !mbAlive; }
 
 	void CreateCollider();
 	void CreateAnimator();
+	void CreateRigidBody();
 
 	// 충돌 시점 함수
 	virtual void OnCollision(CCollider* _pOther) {}		// 충돌 중인 경우 호출되는 함수

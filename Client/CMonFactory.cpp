@@ -28,12 +28,11 @@ CMonster* CMonFactory::CreateMonster(MON_TYPE _eType, Vec2 _vPos)
 
 		pMon->SetMonInfo(info);
 
-		AI* pAI = new AI;
+		/*AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
 		pAI->SetCurState(MON_STATE::IDLE);
-
-		pMon->SetAI(pAI);
+		pMon->SetAI(pAI);*/
 	}
 
 	break;
