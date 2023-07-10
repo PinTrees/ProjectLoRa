@@ -57,7 +57,7 @@ CTexture* CResMgr::CreateTexture(const wstring& strKey, UINT width, UINT height,
 	}
 
 	pTex = new CTexture;
-	pTex->CREATE(width, height, color);
+	pTex->Create(width, height, color);
 	pTex->SetKey(strKey);
 
 	mMapTex.insert(make_pair(strKey, pTex));

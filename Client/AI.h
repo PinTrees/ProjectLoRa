@@ -1,7 +1,8 @@
 #pragma once
 
 
-class CMonster;
+class CObject;
+class Monster;
 class CState;
 
 class AI
@@ -10,7 +11,7 @@ private:
 	map<MONSTER_STATE, CState*>	mMapState;
 	CState*						mCurState;
 		
-	CMonster*				mOwner;
+	CObject*				mOwner;
 
 
 public:
@@ -18,7 +19,8 @@ public:
 	CState* GetState(MONSTER_STATE key);
 	void ChangeState(MONSTER_STATE nextState);
 
-	CMonster* GetOwner() { return mOwner; }	
+	void SetOwner(CObject* owner) { mOwner = owner; }
+	CObject* GetOwner() { return mOwner; }
 
 	void SetCurState(MONSTER_STATE target);
 
@@ -31,6 +33,6 @@ public:
 	AI();
 	~AI();
 
-	friend class CMonster;
+	friend class CObject;
 };
 

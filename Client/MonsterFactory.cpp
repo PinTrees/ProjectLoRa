@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MonsterFactory.h"
 
-#include "CMonster.h"
+#include "Monster.h"
 #include "AI.h"
 
 // Include Components
@@ -16,15 +16,15 @@
 
 
 
-CMonster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vec2 pos)
+Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 {
-	CMonster* pMonster = nullptr;
+	Monster* pMonster = nullptr;
 
 	switch (type)
 	{
 	case MONSTER_TYPE::NORMAL:
 	{
-		pMonster = new CMonster;
+		pMonster = new Monster;
 		pMonster->SetPos(pos);
 
 		tMonsterInfo info = {};

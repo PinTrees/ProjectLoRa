@@ -8,7 +8,7 @@
 BarUI::BarUI()
 	: CUI(false)
 {
-	SetScale(Vec2(45.f, 6.f));
+	SetScale(Vect2(45.f, 6.f));
 }
 
 
@@ -26,8 +26,8 @@ void BarUI::Render(HDC _dc)
 {
 	SelectGDI b(_dc, BRUSH_TYPE::BLACK);
 
-	Vec2 vRenderPos = GetLocalPos();
-	Vec2 vSize = GetScale();
+	Vect2 vRenderPos = GetLocalPos();
+	Vect2 vSize = GetScale();
 
 	if (!GetCameraAffected())
 	{

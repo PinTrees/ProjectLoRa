@@ -20,7 +20,7 @@ HDC Background::GetParallaxDC()
 }
 
 
-void Background::Render(HDC dc, Vec2 ltPos, Vec2 size)
+void Background::Render(HDC dc, Vect2 ltPos, Vect2 size)
 {
 	if (nullptr == mParallaxTex)
 		return;

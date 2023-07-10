@@ -2,19 +2,19 @@
 
 
 
-struct Vec2
+struct Vect2
 {
 	float x;
 	float y;
 
-	static Vec2 zero;
-	static Vec2 up;
-	static Vec2 down;
-	static Vec2 left;
-	static Vec2 right;
+	static Vect2 zero;
+	static Vect2 up;
+	static Vect2 down;
+	static Vect2 left;
+	static Vect2 right;
 
 public:
-	static float Distance(const Vec2& a, const Vec2& b)
+	static float Distance(const Vect2& a, const Vect2& b)
 	{
 		float dx = b.x - a.x;
 		float dy = b.y - a.y;
@@ -26,16 +26,16 @@ public:
 	}
 
 
-	static Vec2 FromAngle(float angle)
+	static Vect2 FromAngle(float angle)
 	{
 		float radian = angle * PI / 180.0f;  // 각도를 라디안으로 변환
 
 		float x = cos(radian);  // x축 좌표 계산
 		float y = sin(radian);  // y축 좌표 계산
 
-		return Vec2(x, y);
+		return Vect2(x, y);
 	}
-	static Vec2 FromAngle(int angle) { return Vec2::FromAngle((float)angle); }
+	static Vect2 FromAngle(int angle) { return Vect2::FromAngle((float)angle); }
 
 
 public:
@@ -43,7 +43,7 @@ public:
 	{
 		return sqrt(x * x + y * y);
 	}
-	Vec2& Normalize()
+	Vect2& Normalize()
 	{
 		float fLen = Length();
 		if(fLen != 0.f)
@@ -55,7 +55,7 @@ public:
 
 		return *this;
 	}
-	Vec2& Rotate(float angleDegrees)
+	Vect2& Rotate(float angleDegrees)
 	{
 		float angleRadians = angleDegrees * (PI / 180.0f); // 각도를 라디안으로 변환
 
@@ -84,83 +84,83 @@ public:
 	}
 
 public:
-	Vec2& operator =  (POINT _pt)
+	Vect2& operator =  (POINT _pt)
 	{
 		x = (float)_pt.x;
 		y = (float)_pt.y;
 	}
 
-	Vec2 operator + (Vec2 _vOther)
+	Vect2 operator + (Vect2 _vOther)
 	{
-		return Vec2(x + _vOther.x, y + _vOther.y);
+		return Vect2(x + _vOther.x, y + _vOther.y);
 	}
-	void operator += (Vec2 _vOther)
+	void operator += (Vect2 _vOther)
 	{
 		x += _vOther.x;
 		y += _vOther.y;
 	}
-	void operator -= (Vec2 _vOther)
+	void operator -= (Vect2 _vOther)
 	{
 		x -= _vOther.x;
 		y -= _vOther.y;
 	}
 
-	Vec2 operator - (Vec2 _vOther)
+	Vect2 operator - (Vect2 _vOther)
 	{
-		return Vec2(x - _vOther.x, y - _vOther.y);
+		return Vect2(x - _vOther.x, y - _vOther.y);
 	}
 
-	Vec2 operator * (Vec2 _vOther)
+	Vect2 operator * (Vect2 _vOther)
 	{
-		return Vec2(x * _vOther.x, y * _vOther.y);
+		return Vect2(x * _vOther.x, y * _vOther.y);
 	}
-	Vec2 operator * (int _i)
+	Vect2 operator * (int _i)
 	{
-		return Vec2(x * (float)_i, y * (float)_i);
+		return Vect2(x * (float)_i, y * (float)_i);
 	}
-	Vec2 operator*(float _f)
+	Vect2 operator*(float _f)
 	{
-		return Vec2(x * _f, y * _f);
+		return Vect2(x * _f, y * _f);
 	}
-	Vec2 operator / (Vec2 _vOther)
+	Vect2 operator / (Vect2 _vOther)
 	{
 		assert(!(0.f == _vOther.x || 0.f == _vOther.y));
-		return Vec2(x / _vOther.x , y / _vOther.y);
+		return Vect2(x / _vOther.x , y / _vOther.y);
 	}
-	Vec2 operator / (float _f)
+	Vect2 operator / (float _f)
 	{
 		assert(!(0.f == _f));
-		return Vec2(x / _f, y / _f);
+		return Vect2(x / _f, y / _f);
 	}
 
 
 
-	bool operator == (Vec2 _vOther)
+	bool operator == (Vect2 _vOther)
 	{
 		return x == _vOther.x && y == _vOther.y;
 	}
 
-	bool operator != (Vec2 _vOther)
+	bool operator != (Vect2 _vOther)
 	{
 		return !(x == _vOther.x && y == _vOther.y);
 	}
 public:
-	Vec2()
+	Vect2()
 		: x(0.f)
 		, y(0.f)
 	{}
 
-	Vec2(float _x, float _y)
+	Vect2(float _x, float _y)
 		: x(_x)
 		, y(_y)
 	{}
 
-	Vec2(int _x, int _y)
+	Vect2(int _x, int _y)
 		: x(static_cast<float>(_x))
 		, y(static_cast<float>(_y))
 	{}
 
-	Vec2(const POINT& _pt)
+	Vect2(const POINT& _pt)
 		:x((float)_pt.x)
 		, y((float)_pt.y)
 	{}

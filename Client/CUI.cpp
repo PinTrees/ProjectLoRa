@@ -7,6 +7,9 @@
 #include "SelectGDI.h"
 #include "CScene.h"
 
+#include "CTexture.h"
+
+
 CUI::CUI(bool cameraAffected)
 	: mVecChildUI{}
 	, mpParentUI(nullptr)
@@ -54,7 +57,7 @@ void CUI::FinalUpdate()
 
 	if (GetParentUI())
 	{
-		Vec2 parentPos = GetParentUI()->GetFinalPos();
+		Vect2 parentPos = GetParentUI()->GetFinalPos();
 		mvFinalPos += parentPos;
 	}
 
@@ -66,16 +69,16 @@ void CUI::FinalUpdate()
 
 void CUI::OnMouseCheck()
 {
-	Vec2 mousePos = MOUSE_POS;
-	Vec2 uiScale = GetScale();
+	Vect2 mousePos = MOUSE_POS;
+	Vect2 uiScale = GetScale();
 
 	if (mCameraAffected)
 	{
 		CCamera::GetI()->GetRealPos(mousePos);
 	}
 
-	if (mvFinalPos.x <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x &&
-		mvFinalPos.y <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y)
+	if (mvFinalPos.x - uiScale.x * 0.5f <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x * 0.5f &&
+		mvFinalPos.y - uiScale.x * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
 	{
 		mOnMouseCheck = true;
 	}
@@ -87,41 +90,95 @@ void CUI::OnMouseCheck()
 
 void CUI::Render(HDC dc)
 {
-	Vec2 pos = GetFinalPos();
-	Vec2 scale = GetScale();
+	Vect2 vPos = GetFinalPos();
+	Vect2 vScale = GetScale();
 
 	if (mCameraAffected)
 	{
-		pos = CCamera::GetI()->GetRenderPos(pos);
+		vPos = CCamera::GetI()->GetRenderPos(vPos);
 	}
 
 	if (mLbtnDown)
 	{
 		SelectGDI p(dc, PEN_TYPE::GREEN);
+	}
+
+	if(nullptr == mpTexture)
+	{
 		Rectangle
 		(
 			dc,
-			int(pos.x),
-			int(pos.y),
-			int(pos.x + scale.x),
-			int(pos.y + scale.y)
+			int(vPos.x),
+			int(vPos.y),
+			int(vPos.x + vScale.x),
+			int(vPos.y + vScale.y)
 		);
 	}
 	else
 	{
-		Rectangle
-		(
-			dc,
-			int(pos.x),
-			int(pos.y),
-			int(pos.x + scale.x),
-			int(pos.y + scale.y)
-		);
+		float fWidth = (float)mpTexture->Width();
+		float fHeight = (float)mpTexture->Heigth();
+
+		if (mLbtnDown)
+		{
+			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, fWidth, fHeight);
+			HDC hdcPressedMem = CreateCompatibleDC(dc);
+			HBITMAP hOldPressedBitmap = (HBITMAP)SelectObject(hdcPressedMem, hPressedBitmap);
+
+			// 비트맵 복사
+			BitBlt(hdcPressedMem, 0, 0, fWidth, fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
+
+			for (int y = 0; y < fWidth; ++y)
+			{
+				for (int x = 0; x < fHeight; ++x)
+				{
+					COLORREF pixel = GetPixel(hdcPressedMem, x, y);
+
+					BYTE r = GetRValue(pixel);
+					BYTE g = GetGValue(pixel);
+					BYTE b = GetBValue(pixel);
+
+					r = (BYTE)(((float)r * 200) / 255);				// 색상 곱하기
+					g = (BYTE)(((float)g * 200) / 255);
+					b = (BYTE)(((float)b * 200) / 255);
+
+					COLORREF newPixel = RGB(r, g, b);
+					SetPixel(hdcPressedMem, x, y, newPixel);
+				}
+			}
+
+			TransparentBlt(dc,
+				(int)(vPos.x - vScale.x * 0.5f),
+				(int)(vPos.y - vScale.y * 0.5f),
+				(int)vScale.x,
+				(int)vScale.y,
+				hdcPressedMem,
+				0, 0,
+				(int)fWidth, (int)fHeight,
+				RGB(255, 0, 255));
+
+			SelectObject(hdcPressedMem, hOldPressedBitmap);			// 메모리 해제 및 정리
+			DeleteDC(hdcPressedMem);
+			DeleteObject(hPressedBitmap);
+		}
+		else
+		{
+			TransparentBlt(dc
+				, (int)(vPos.x - vScale.x * 0.5f)
+				, (int)(vPos.y - vScale.y * 0.5f)
+				, (int)vScale.x
+				, (int)vScale.y
+				, mpTexture->GetDC()
+				, 0, 0
+				, (int)fWidth, (int)fHeight
+				, RGB(255, 0, 255));
+		}
 	}
 
 	if (mText != L"")
 	{
-		TextOut(dc, (int)(pos.x + mvContentOffset.x), (int)(pos.y + mvContentOffset.y), mText.c_str(), mText.size());
+		SetBkMode(dc, TRANSPARENT);
+		TextOut(dc, (int)(vPos.x + mvContentOffset.x), (int)(vPos.y + mvContentOffset.y), mText.c_str(), mText.size());
 	}
 
 	// child render

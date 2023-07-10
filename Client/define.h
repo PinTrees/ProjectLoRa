@@ -30,6 +30,8 @@
 #define TILE_SIZE 32
 #define TILE_SIZE_RENDER 64
 
+#define DEBUG true
+
 
 enum class GROUP_TYPE
 {
@@ -106,7 +108,7 @@ enum class MONSTER_STATE
 {
 	IDLE,
 	TRACE,
-	CREATE,
+	Create,
 	DEAD,
 	ATTACK,
 };

@@ -4,7 +4,6 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "RigidBody.h"
-#include "Gravity.h"
 
 #include "SelectGDI.h"
 
@@ -21,11 +20,9 @@ CObject::CObject()
 	, mAngleOffset(0.f)
 	, mFlip(false)
 	, mVisible(true)
-	, mpGravity(nullptr)
 	, mpRigidBody(nullptr)
 	, mAlpha(255)
 {
-
 }
 
 CObject::CObject(const CObject& _origin)
@@ -39,7 +36,6 @@ CObject::CObject(const CObject& _origin)
 	, mAngleOffset(0.f)
 	, mFlip(false)
 	, mVisible(true)
-	, mpGravity(nullptr)
 	, mpRigidBody(nullptr)
 	, mAlpha(_origin.mAlpha)
 {
@@ -95,7 +91,7 @@ void CObject::FinalUpdate()
 
 void CObject::Render(HDC _dc)
 {
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
 
 	Rectangle(_dc,	(int)(vRenderPos.x - mvScale.x / 2.f),
 					(int)(vRenderPos.y - mvScale.y / 2.f),
@@ -109,7 +105,7 @@ void CObject::Render(HDC _dc)
 void CObject::CompnentRender(HDC _dc)
 {
 	if (!mVisible)
-		return;
+		return; 
 
 	if (nullptr != mpCollider)
 	{
@@ -121,11 +117,14 @@ void CObject::CompnentRender(HDC _dc)
 		mpAnimator->Render(_dc);
 	}
 
+	if (!DEBUG)
+		return;
+
 	SelectGDI b(_dc, BRUSH_TYPE::RED);
 	SelectGDI p(_dc, PEN_TYPE::RED);
 	  
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
-	float pivotSize = 4.f;
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+	float pivotSize = 3.f;
 
 	Ellipse(_dc
 		, (int)(vRenderPos.x - pivotSize * 0.5f)
@@ -133,6 +132,7 @@ void CObject::CompnentRender(HDC _dc)
 		, (int)(vRenderPos.x + pivotSize * 0.5f)
 		, (int)(vRenderPos.y + pivotSize * 0.5f));
 }
+
 
 void CObject::CreateCollider()
 {
@@ -151,21 +151,4 @@ void CObject::CreateRigidBody()
 	mpRigidBody = new CRigidBody();
 	mpRigidBody->mpOwner = this;
 }
-
-void CObject::CreateGravity()
-{
-	mpGravity = new CGravity();
-	mpGravity->mpOwner = this;
-}
-
-//void CObject::DeleteCollider()
-//{
-//	if (mpCollider != nullptr)
-//	{
-//		delete mpCollider;
-//	}
-//
-//	mpCollider = nullptr;
-//}
-
 

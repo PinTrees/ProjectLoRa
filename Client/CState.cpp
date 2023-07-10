@@ -28,7 +28,7 @@ void CState::Exit()
 }
 
 
-CMonster* CState::GetMonster()
+CObject* CState::GetOwner()
 {
 	return mpAI->GetOwner();
 }

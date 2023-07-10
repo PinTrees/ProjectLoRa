@@ -1,6 +1,6 @@
 #pragma once
 
-class CMonster;
+class Monster;
 
 enum class MONSTER_TYPE
 {
@@ -12,7 +12,7 @@ enum class MONSTER_TYPE
 class MonsterFactory
 {
 public:
-	static CMonster* CreateMonster(MONSTER_TYPE type, Vec2 pos);
+	static Monster* CreateMonster(MONSTER_TYPE type, Vect2 pos);
 
 
 // 생성형 객체가 아니므로 제거

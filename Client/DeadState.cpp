@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "DeadState.h"
 
-#include "CMonster.h"
-#include "CPlayer.h"
+// Include GameObject Header
+#include "Monster.h"
+#include "Player.h"
 
+// Include Components Header
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+// Include Manager Header
 #include "PlayerMgr.h"
 
 
@@ -23,16 +26,16 @@ DeadState::~DeadState()
 
 void DeadState::Enter()
 {
-	GetMonster()->GetAnimator()->Play(L"DEAD", false);
+	GetOwner()->GetAnimator()->Play(L"DEAD", false);
 	PlayerMgr::GetI()->GetPlayer()->AddExp(2.f);
 }
 
 
 void DeadState::Update()
 {
-	if (GetMonster()->GetAnimator()->GetCurAnimation()->IsFinish())
+	if (GetOwner()->GetAnimator()->GetCurAnimation()->IsFinish())
 	{
-		DeleteObject(GetMonster());
+		DeleteObject(GetOwner());
 	}
 }
 

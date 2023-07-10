@@ -39,7 +39,7 @@ CCollider::~CCollider()
 void CCollider::FinalUpdate()
 {
 	// object의 위치를 따라간다.
-	Vec2 vObejctPos = mpOwner->GetPos();
+	Vect2 vObejctPos = mpOwner->GetPos();
 	mvFinalPos = vObejctPos + mvOffsetPos;
 
 	assert(0 <= miCol);
@@ -47,21 +47,19 @@ void CCollider::FinalUpdate()
 
 void CCollider::Render(HDC _dc)
 {
-	PEN_TYPE ePen = PEN_TYPE::GREEN;
+	if (!DEBUG)
+		return;
 
-	if (miCol)
-		ePen = PEN_TYPE::RED;
-
-	SelectGDI p(_dc, ePen);
+	SelectGDI p(_dc, miCol > 0 ? PEN_TYPE::RED : PEN_TYPE::GREEN);
 	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvFinalPos);
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvFinalPos);
 
 	Rectangle(_dc
-		, (int)(vRenderPos.x - mvScale.x / 2.f)
-		, (int)(vRenderPos.y - mvScale.y / 2.f)
-		, (int)(vRenderPos.x + mvScale.x / 2.f)
-		, (int)(vRenderPos.y + mvScale.y / 2.f));
+		, (int)(vRenderPos.x - mvScale.x * 0.5f)
+		, (int)(vRenderPos.y - mvScale.y * 0.5f)
+		, (int)(vRenderPos.x + mvScale.x * 0.5f)
+		, (int)(vRenderPos.y + mvScale.y * 0.5f));
 }
 
 
@@ -77,7 +75,7 @@ void CCollider::OnCollisionStay(CCollider* _pOther)
 		if (mpOwner->GetRigidBody()->IsKinematic())
 			return;
 
-		Vec2 vDis = (mpOwner->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
+		Vect2 vDis = (mpOwner->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
 		mpOwner->SetPos(mpOwner->GetPos() + vDis * 100.f * DT);
 		//mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
 	}

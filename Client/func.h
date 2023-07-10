@@ -41,7 +41,7 @@ void Safe_Delete_Map(map<T1, T2>& _map)
 
 
 
-Vec2 curvesCircle(Vec2 c1, float _radius, float _amount);
+Vect2 curvesCircle(Vect2 c1, float _radius, float _amount);
 
 
 

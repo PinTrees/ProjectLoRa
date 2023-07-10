@@ -22,7 +22,7 @@ public:
 
 
 public:
-	void Render(HDC dc, Vec2 ltPos, Vec2 size);
+	void Render(HDC dc, Vect2 ltPos, Vect2 size);
 	void CreateParallaxTexture(int width, int height);	// Create Background Texture;
 
 

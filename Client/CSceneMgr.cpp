@@ -5,13 +5,19 @@
 #include "CScene_start.h"
 #include "CScene_Tool.h"
 #include "Scene_Main.h"
+
+// System Manager Header
 #include "CEventMgr.h"
+#include "CTimeMgr.h"
+#include "CObject.h"
+
 
 CSceneMgr::CSceneMgr()
 	:m_arrScene{}
 	, m_pCurScene(nullptr)
 {
 }
+
 CSceneMgr::~CSceneMgr()
 {
 	// ¾À ÀüºÎ »èÁ¦
@@ -44,10 +50,35 @@ void CSceneMgr::Init()
 
 void CSceneMgr::Update()
 {
+	if (!CTimeMgr::GetI()->IsPlay())
+	{
+		vector<CObject*> arrUI = m_pCurScene->GetGroupObject(GROUP_TYPE::UI);
+		for (int i = 0; i < arrUI.size(); ++i)
+		{
+			arrUI[i]->Update();
+		}
+		return;
+	}
+
 	m_pCurScene->Update();
-	
+}
+
+
+void CSceneMgr::FinalUpdate()
+{
+	if (!CTimeMgr::GetI()->IsPlay())
+	{
+		vector<CObject*> arrUI = m_pCurScene->GetGroupObject(GROUP_TYPE::UI);
+		for (int i = 0; i < arrUI.size(); ++i)
+		{
+			arrUI[i]->FinalUpdate();
+		}
+		return;
+	}
+
 	m_pCurScene->FinalUpdate();
 }
+
 
 void CSceneMgr::Render(HDC _dc)
 {

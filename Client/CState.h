@@ -2,8 +2,10 @@
 
 
 class AI;
-class CMonster;
+class CObject;
 
+
+//template <typename T>
 class CState
 {
 private:
@@ -14,7 +16,7 @@ public:
 	AI* GetAI() { return mpAI; }
 	MONSTER_STATE GetType() { return mState; }
 
-	CMonster* GetMonster();
+	CObject* GetOwner();
 
 public:
 	virtual void Update() = 0;

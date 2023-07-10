@@ -9,6 +9,8 @@
 #include "CCamera.h"
 
 
+
+
 CAnimation::CAnimation()
 	:mpAnimator(nullptr)
 	, mpTex(nullptr)
@@ -22,7 +24,8 @@ CAnimation::~CAnimation()
 {
 }
 
-void CAnimation::SetAllFrameOffet(Vec2 _vOffset)
+
+void CAnimation::SetAllFrameOffet(Vect2 _vOffset)
 {
 	for (int i = 0; i < mVecFrm.size(); i++)
 	{
@@ -38,7 +41,7 @@ void CAnimation::Update()
 
 	mfAccTime += DT;
 	
-	if ( mVecFrm[miCurFrm].fDuration < mfAccTime)
+	if (mVecFrm[miCurFrm].fDuration < mfAccTime)
 	{
 		++miCurFrm;
 
@@ -50,7 +53,6 @@ void CAnimation::Update()
 			return;
 		}
 		mfAccTime = mfAccTime - mVecFrm[miCurFrm].fDuration;
-
 	}
 }
 
@@ -60,15 +62,13 @@ void CAnimation::Render(HDC _dc)
 	if (mbFinish)
 		return;
 
-	CObject* pObj = mpAnimator->GetObj();
-	Vec2 vPos = pObj->GetPos();
-	vPos += mVecFrm[miCurFrm].vOffset;	// Object Position 에 Offset 만큼 추가 이동위치
+	CObject* pObj = mpAnimator->GetObj();   
+	Vect2 vPos = pObj->GetPos() + mVecFrm[miCurFrm].vOffset; // Add Animation Frame Offset
 
-	// 렌더링 좌표로 변환
+	// Convert LocalPos to RenderPos
 	vPos = CCamera::GetI()->GetRenderPos(vPos);
 
-	Vec2 vScale = pObj->GetScale();
-
+	Vect2 vScale = pObj->GetScale();
 
 	if (pObj->GetAngle() <= 0.1f)
 	{
@@ -107,22 +107,24 @@ void CAnimation::Render(HDC _dc)
 		float sinAngle = sinf(angleRad);
 
 		// 기준점 위치 계산
-		Vec2 pivot = pObj->GetPivot();  // 기준점 좌표 (pivot)
+		Vect2 pivot = pObj->GetPivot();  // 기준점 좌표 (pivot)
 		float dx = pivot.x * cosAngle - pivot.y * sinAngle + vPos.x;
 		float dy = pivot.x * sinAngle + pivot.y * cosAngle + vPos.y;
 
+		// 회전 스케일 설정
 		transform.eM11 = cosAngle;
 		transform.eM12 = sinAngle;
 		transform.eM21 = -sinAngle;
 		transform.eM22 = cosAngle;
+		// 변환 좌표이동 설정
 		transform.eDx = dx;
 		transform.eDy = dy;
 		
-		// 변환 행렬 설정
+		// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
 		SetGraphicsMode(_dc, GM_ADVANCED);
+		// 변환 행렬 설정
 		SetWorldTransform(_dc, &transform);
 
-		// 이미지 출력
 		AlphaBlend(_dc
 			, (int)(-vScale.x * 0.5f)
 			, (int)(-vScale.y * 0.5f)
@@ -135,15 +137,16 @@ void CAnimation::Render(HDC _dc)
 			, (int)(mVecFrm[miCurFrm].vSlice.y)
 			, bf);
 
-		// 변환 행렬 초기화
+		// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
 		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);
+		// 변환 행렬 해제
 		SetWorldTransform(_dc, nullptr);
 	}
 }
 
 
-void CAnimation::CREATE(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize
-	, Vec2 _vStep, float _fDuration, UINT _iFreamCount)
+void CAnimation::Create(CTexture* _pTex, Vect2 _vLT, Vect2 _vSliceSize
+	, Vect2 _vStep, float _fDuration, UINT _iFreamCount)
 {
 	mpTex = _pTex;
 

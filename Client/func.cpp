@@ -66,14 +66,14 @@ void CreateForce(tForce& force)
 
 
 
-Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
+Vect2 curvesCircle(Vect2 c1, float _radius, float _amount)
 {
 	float angle = _amount * 2 * PI;
 
 	float x = c1.x + _radius * cos(angle);
 	float y = c1.y + _radius * sin(angle);
 
-	return Vec2(x, y);
+	return Vect2(x, y);
 }
 
 
@@ -179,8 +179,8 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 		{
 			Tile* pTile = new Tile();
 
-			pTile->SetScale(Vec2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-			pTile->SetPos(Vec2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
 			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);

@@ -42,8 +42,11 @@ void CScene::AddForce(tForce& force)
 }
 
 
+
+
 void CScene::Update()
 {
+	// Physical Force Update
 	for (int i = mArrForce.size() - 1; i >= 0; --i)
 	{
 		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
@@ -61,10 +64,10 @@ void CScene::Update()
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
-				// 오브젝트에 폭발력 전달
+				// Object Physical Force Calculation
 				for (int f = mArrForce.size() - 1; f >= 0; --f)
 				{
-					Vec2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
+					Vect2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
 					float len = vDiff.Length();
 
 					if (len < mArrForce[f].radius)
@@ -83,12 +86,21 @@ void CScene::Update()
 			}
 		}
 	}
-
-
 }
 
 void CScene::FinalUpdate()
 {
+	if (!CTimeMgr::GetI()->IsPlay())
+	{
+		vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
+		for (int i = 0; i < arrUI.size(); ++i)
+		{
+			arrUI[i]->FinalUpdate();
+		}
+
+		return;
+	}
+
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
 		for (size_t j = 0; j < mArrObj[i].size(); ++j)
@@ -103,14 +115,14 @@ void CScene::FinalUpdate()
 #define CUR_TILE_SIZE 500
 
 
-void CScene::_render_parallax(HDC dc)
+void CScene::render_parallax(HDC dc)
 {
 	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
 
-	Vec2 vCamPos = CCamera::GetI()->GetLookAt();
-	Vec2 vRes = CCore::GetI()->GetResolution();
+	Vect2 vCamPos = CCamera::GetI()->GetLookAt();
+	Vect2 vRes = CCore::GetI()->GetResolution();
 
-	Vec2 vLeftTop = vCamPos - vRes * 0.5f;
+	Vect2 vLeftTop = vCamPos - vRes * 0.5f;
 
 	for (int i = 0; i < parallaxs.size(); i++)
 	{
@@ -123,15 +135,12 @@ void CScene::_render_parallax(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
-	//Vec2 vCamPos = CCamera::GetI()->GetLookAt();
-	//Vec2 vRes = CCore::GetI()->GetResolution();
-	//Vec2 vLeftTop = vCamPos - vRes * 0.5f;
-
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
+		// Render Background
 		if ((UINT)GROUP_TYPE::PARALLAX == i)
 		{
-			_render_parallax(_dc);
+			render_parallax(_dc);
 			continue;
 		}
 
@@ -139,24 +148,13 @@ void CScene::Render(HDC _dc)
 
 		for (;iter != mArrObj[i].end();)
 		{
+			// Render Object
 			if (!(*iter)->IsDead())
 			{
-				//Vec2 vPos = (*iter)->GetLocalPos();
-				//Vec2 vSize = (*iter)->GetScale();
-
-				//// 화면을 벗어난 오브젝트인지 확인
-				//if (vPos.y < vLeftTop.y - vSize.y
-				//	|| vPos.y > vLeftTop.y + vRes.y
-				//	|| vPos.x < vLeftTop.x - vSize.x
-				//	|| vPos.x > vLeftTop.x + vRes.x)
-				//{
-				//	++iter;
-				//	continue;
-				//}
-
 				(*iter)->Render(_dc);
 				++iter;
 			}
+			// Delete Object
 			else
 			{
 				(*iter)->OnDestroy();
@@ -165,19 +163,23 @@ void CScene::Render(HDC _dc)
 		}
 	}
 
+
 	// [Debug] Render Force Object
-	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
-	SelectGDI p(_dc, PEN_TYPE::BLUE);
-
-	for (int i = mArrForce.size() - 1; i >= 0; --i)
+	if (DEBUG)
 	{
-		Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
+		SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
+		SelectGDI p(_dc, PEN_TYPE::BLUE);
 
-		Ellipse(_dc
-			, vRenderPos.x - mArrForce[i].curRadius
-			, vRenderPos.y - mArrForce[i].curRadius
-			, vRenderPos.x + mArrForce[i].curRadius
-			, vRenderPos.y + mArrForce[i].curRadius );
+		for (int i = mArrForce.size() - 1; i >= 0; --i)
+		{
+			Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
+
+			Ellipse(_dc
+				, vRenderPos.x - mArrForce[i].curRadius
+				, vRenderPos.y - mArrForce[i].curRadius
+				, vRenderPos.x + mArrForce[i].curRadius
+				, vRenderPos.y + mArrForce[i].curRadius);
+		}
 	}
 }
 
@@ -186,6 +188,7 @@ void CScene::DeleteGroup(GROUP_TYPE _eTarget)
 {
 	Safe_Delete_Vec<CObject*>(mArrObj[(UINT)_eTarget]);
 }
+
 
 void CScene::DeleteAll()
 {

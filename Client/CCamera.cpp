@@ -28,7 +28,7 @@ CCamera::~CCamera()
 
 void CCamera::Init()
 {
-    Vec2 vRes =	CCore::GetI()->GetResolution();
+    Vect2 vRes =	CCore::GetI()->GetResolution();
 	mEffectTex = CResMgr::GetI()->CreateTexture(L"CamEffectTex", (UINT)vRes.x, (UINT)vRes.y);
 }
 
@@ -89,7 +89,7 @@ void CCamera::Render(HDC dc)
 
 
 	// =============
-	// Effect Render
+	// tEffectLv Render
 	// =============
 	BLENDFUNCTION bf = {};
 
@@ -109,7 +109,7 @@ void CCamera::Render(HDC dc)
 		, bf);
 
 
-	// Effect Delete
+	// tEffectLv Delete
 	if (effect.duration < effect.time)
 	{
 		mEffects.pop_front();
@@ -129,7 +129,7 @@ void CCamera::calDiff()
 	}
 	else
 	{
-		Vec2 vLookDir = mvLookAt - mvPrevLookAt;
+		Vect2 vLookDir = mvLookAt - mvPrevLookAt;
 		mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * mfSpeed * DT;
 	}
 
@@ -138,8 +138,8 @@ void CCamera::calDiff()
 
 
 
-	Vec2 vResolution = CCore::GetI()->GetResolution();
-	Vec2 vCenter = vResolution / 2;
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vCenter = vResolution / 2;
 
 	mvDiff = mvCurLookAt - vCenter;
 	mvPrevLookAt = mvCurLookAt;

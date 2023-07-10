@@ -12,7 +12,7 @@ private:
 public:
     void Load(const wstring& strFilePath);
 
-    void CREATE(UINT width, UINT hieght, COLORREF color = NULL);
+    void Create(UINT width, UINT hieght, COLORREF color = NULL);
 
     UINT Width() { return mBitInfo.bmWidth; }
     UINT Heigth () { return mBitInfo.bmHeight; }

@@ -7,7 +7,7 @@ struct tForce
 	float curRadius = 0;	// 현재 반경
 	float speed;			// 폭발 속도
 	float force;			// 폭발력
-	Vec2  pos;				// 폭발 지점
+	Vect2  pos;				// 폭발 지점
 };
 
 
@@ -25,12 +25,14 @@ private:
 
 
 protected:
-	void _render_parallax(HDC dc);
+	void render_parallax(HDC dc);
 
 
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
+
+	void UpdateOnlyUI();
 
 	virtual void Update();
 	virtual void FinalUpdate();

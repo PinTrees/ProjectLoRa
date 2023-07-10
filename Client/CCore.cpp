@@ -46,7 +46,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	// =================================
 	// Window Resolution Size Initialize
 	// =================================
-	ChangeWindowSize(Vec2((float)_ptResolution.x, (float)_ptResolution.y), false);	// menubar height size not include
+	ChangeWindowSize(Vect2((float)_ptResolution.x, (float)_ptResolution.y), false);	// menubar height size not include
 
 	// Menu bar Create from ID;
 	mhMenu = LoadMenu(nullptr, MAKEINTRESOURCEW(IDR_MENU1));
@@ -85,21 +85,20 @@ void CCore::Run()
 	// UI Update
 	CUIMgr::GetI()->Update();
 
+	// ==================
+	// Scene Update Block
+	// ==================
+	CSceneMgr::GetI()->Update();
+	CSceneMgr::GetI()->FinalUpdate();
 
+	// ======================
+	// Collision Update Block
+	// ======================
 	if (CTimeMgr::GetI()->IsPlay())
 	{
-		// ==================
-		// Scene Update Block
-		// ==================
-		CSceneMgr::GetI()->Update();
-
-
-		// ======================
-		// Collision Update Block
-		// ======================
 		CCollisionMgr::GetI()->Update();
 	}
-
+	
 
 	// ===============
 	// Rendering Block
@@ -155,7 +154,7 @@ void CCore::SetActiveMenu(bool active)
 }
 
 
-void CCore::ChangeWindowSize(Vec2 vResoulution, bool menuActive)
+void CCore::ChangeWindowSize(Vect2 vResoulution, bool menuActive)
 {
 	RECT rt = { 0,0,vResoulution.x,vResoulution.y };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, menuActive);	// menubar height size not include

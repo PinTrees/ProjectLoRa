@@ -35,7 +35,7 @@ void CTexture::Load(const wstring& strFilePath)
 }
 
 
-void CTexture::CREATE(UINT width, UINT heigth, COLORREF color)
+void CTexture::Create(UINT width, UINT heigth, COLORREF color)
 {
 	HDC mainDc = CCore::GetI()->GetMainDC();
 

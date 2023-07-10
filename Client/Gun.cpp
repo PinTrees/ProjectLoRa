@@ -14,7 +14,7 @@
 
 #include "Particle.h"
 
-#include "CPlayer.h"
+#include "Player.h"
 
 Gun::Gun(const wstring& _type)
 	: m_tTheta(PI / 4.f)
@@ -27,9 +27,9 @@ Gun::Gun(const wstring& _type)
 
 	if (_type == L"1")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(28.f, 16.f), Vec2(28.f, 0.f), 5.f, 1);
-		SetScale(Vec2(28.f, 16.f) * 1.5f);
-		SetPivot(Vec2(-30.f, 0.f));
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(28.f, 16.f), Vect2(28.f, 0.f), 5.f, 1);
+		SetScale(Vect2(28.f, 16.f) * 1.5f);
+		SetPivot(Vect2(-30.f, 0.f));
 		SetAngleOffset(180);
 
 
@@ -56,13 +56,13 @@ void Gun::Update()
 		return;
 	}
 
-	SetPos(mOwner->GetLocalPos() + Vec2(0.f, -45.f));
+	SetPos(mOwner->GetLocalPos() + Vect2(0.f, -45.f));
 }
 
 void Gun::Render(HDC _dc)
 {
-	Vec2 vPos = GetPos();
-	Vec2 vScale = GetScale();
+	Vect2 vPos = GetPos();
+	Vect2 vScale = GetScale();
 
 	CompnentRender(_dc);
 }

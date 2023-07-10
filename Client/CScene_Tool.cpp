@@ -41,17 +41,17 @@ void Scene_Tool::Enter()
 
 	CreateTile(this, 5, 5);
 
-	Vec2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	CUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
-	pPanelUI->SetScale(Vec2(300.f, 150.f));
-	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
+	pPanelUI->SetScale(Vect2(300.f, 150.f));
+	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
-	pBtnUI->SetScale(Vec2(100.f, 40.f));
-	pBtnUI->SetPos(Vec2(0.f, 0.f));
+	pBtnUI->SetScale(Vect2(100.f, 40.f));
+	pBtnUI->SetPos(Vect2(0.f, 0.f));
 
 	// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
 	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
@@ -90,7 +90,7 @@ void Scene_Tool::SetTileIdx()
 {
 	if (KEY_TAP(KEY::LBTN))
 	{
-		Vec2 vMousePos = MOUSE_POS;
+		Vect2 vMousePos = MOUSE_POS;
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
 		int iTileX = (int)GetTileX();
@@ -299,8 +299,8 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 		{
 			Tile* pTile = new Tile();
 			
-			pTile->SetScale(Vec2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-			pTile->SetPos(Vec2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
 			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);

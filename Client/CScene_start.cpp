@@ -2,26 +2,32 @@
 #include "CScene_start.h"
 
 #include "CObject.h"
-
-#include "CPlayer.h"
-#include "CMonster.h"
-#include "Environment.h"
-
 #include "CCore.h"
-#include "CTexture.h"
-#include "CPathMgr.h"
 
+// GameObject Header
+#include "Environment.h"
+#include "Monster.h"
+#include "Player.h"
+
+// System Manager Header
 #include "CCollisionMgr.h"
-
-#include "CKeyMgr.h"
 #include "CSceneMgr.h"
 #include "CTimeMgr.h"
+#include "CPathMgr.h"
+#include "CKeyMgr.h"
 
-#include "CCamera.h"
+// Manager Header
+#include "PlayerMgr.h"
+
+// Components Header
 #include "CCollider.h"
+#include "CTexture.h"
+#include "CCamera.h"
 
 #include "MonsterFactory.h"
-#include "PlayerMgr.h"
+
+
+
 
 Scene_Start::Scene_Start()
 	: mfMstrDelay(1.f)
@@ -47,7 +53,7 @@ void Scene_Start::Update()
 	if (KEY_HOLD(KEY::LBTN)) 
 	{
 		
-		Vec2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
+		Vect2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
 		CCamera::GetI()->SetLookAt(vLookAt);
 	}
 
@@ -65,7 +71,7 @@ void Scene_Start::Enter()
 
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(Vec2(640.f, 384.f));
+	pPlayer->SetPos(Vect2(640.f, 384.f));
 	AddObject(pPlayer, GROUP_TYPE::PLAYER);
 
 	PlayerMgr::GetI()->SetPlayer(pPlayer);
@@ -96,7 +102,7 @@ void Scene_Start::Enter()
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
 
 	// Camera Look 지정
-	Vec2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 	CCamera::GetI()->FadeOut(2.f);
 	CCamera::GetI()->FadeIn(2.f);
@@ -117,28 +123,28 @@ void Scene_Start::Exit()
 
 void Scene_Start::CreateMonster()
 {
-	Vec2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	// 몬스터를 소환할 가장자리 위치 설정
 	float edgeDistance = 100.f;				// 가장자리로부터의 거리
 	float xPos = rand() % (int)(vResolution.x - 2 * edgeDistance) + edgeDistance; // x 좌표 범위: edgeDistance부터 (가로 해상도 - 2 * edgeDistance)까지
 	float yPos = rand() % (int)(vResolution.y - 2 * edgeDistance) + edgeDistance; // y 좌표 범위: edgeDistance부터 (세로 해상도 - 2 * edgeDistance)까지
 
-	Vec2 vCreatePos;
+	Vect2 vCreatePos;
 	// 가장자리 위치 계산
 	// 상하 가장자리
 	if (rand() % 2 == 0) 
-		vCreatePos = Vec2(xPos, rand() % 2 == 0 ? edgeDistance : vResolution.y - edgeDistance);
+		vCreatePos = Vect2(xPos, rand() % 2 == 0 ? edgeDistance : vResolution.y - edgeDistance);
 	// 좌우 가장자리
 	else 
-		vCreatePos = Vec2(rand() % 2 == 0 ? edgeDistance : vResolution.x - edgeDistance, yPos);
+		vCreatePos = Vect2(rand() % 2 == 0 ? edgeDistance : vResolution.x - edgeDistance, yPos);
 	
 	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
 
 
-	CMonster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
+	Monster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
 	pMonsterObj->SetName(L"Monster");
-	pMonsterObj->SetScale(Vec2(280.f, 180.f));
+	pMonsterObj->SetScale(Vect2(280.f, 180.f));
 	pMonsterObj->GetCollider()->SetTrigger(false);
 
 	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
@@ -149,11 +155,11 @@ void Scene_Start::CreateMonster()
 
 void Scene_Start::createEnvi()
 {
-	Vec2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	float xPos = rand() % (int)(vResolution.x);
 	float yPos = rand() % (int)(vResolution.y); 
-	Vec2 vCreatePos = Vec2(xPos, yPos);
+	Vect2 vCreatePos = Vect2(xPos, yPos);
 
 	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
 

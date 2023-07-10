@@ -15,6 +15,7 @@ CAnimator::~CAnimator()
 	Safe_Delete_Map(mMapAnim);
 }
 
+
 void CAnimator::Update()
 {
 	if (nullptr != mpCurAnim)
@@ -28,14 +29,16 @@ void CAnimator::Update()
 	}
 }
 
+
 void CAnimator::Render(HDC _dc)
 {
 	if (nullptr != mpCurAnim)
 		mpCurAnim->Render(_dc);
 }
 
+
 void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
-	, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFreamCount)
+	, Vect2 _vLT, Vect2 _vSliceSize, Vect2 _vStep, float _fDuration, UINT _iFreamCount)
 {
 
 	CAnimation* pAnim  = FindAnimation(_strName);
@@ -45,10 +48,11 @@ void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
 
 	pAnim->SetName(_strName);
 	pAnim->mpAnimator = this;
-	pAnim->CREATE(_pTex, _vLT, _vSliceSize, _vStep, _fDuration, _iFreamCount);
+	pAnim->Create(_pTex, _vLT, _vSliceSize, _vStep, _fDuration, _iFreamCount);
 
 	mMapAnim.insert(make_pair(_strName, pAnim));
 }
+
 
 CAnimation* CAnimator::FindAnimation(const wstring& _strName)
 {
@@ -59,6 +63,7 @@ CAnimation* CAnimator::FindAnimation(const wstring& _strName)
 
 	return iter->second;
 }
+
 
 void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 {

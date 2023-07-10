@@ -34,7 +34,7 @@ private:
 
 public:
 	void SetActiveMenu(bool active);
-	void ChangeWindowSize(Vec2 vResoulution, bool menuActive);
+	void ChangeWindowSize(Vect2 vResoulution, bool menuActive);
 
 
 public:

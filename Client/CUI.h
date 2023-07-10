@@ -13,9 +13,9 @@ private:
 
 	CTexture*		mpTexture;
 	wstring			mText;
-	Vec2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
+	Vect2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
 
-	Vec2			mvFinalPos;
+	Vect2			mvFinalPos;
 
 	COLORREF		mColor;		// 텍스쳐의 색상 비율값입니다.
 
@@ -53,14 +53,14 @@ public:
 
 public:
 	CUI*	GetParentUI() { return mpParentUI; }
-	Vec2	GetFinalPos() { return mvFinalPos; }
+	Vect2	GetFinalPos() { return mvFinalPos; }
 	const vector<CUI*> GetChild() { return mVecChildUI; }
 
 	bool GetLbtnDown() { return mLbtnDown; }
 	bool GetIsMouseOn() { return mOnMouseCheck; }
 
 	CUI*		GetFindChild(CUI* parentUI, const wstring& childUI);
-	void		SetContentOffset(Vec2 _offset) { mvContentOffset = _offset; }
+	void		SetContentOffset(Vect2 _offset) { mvContentOffset = _offset; }
 
 	CTexture*	GetTextrue() { return mpTexture; }
 	void		SetTextrue(CTexture* _texture) { mpTexture = _texture; }

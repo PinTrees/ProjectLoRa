@@ -8,7 +8,7 @@ CRigidBody::CRigidBody()
 	: mpOwner(nullptr)
 	, mMass(1.f)
 	, mFrictCoeff(200.f)
-	, mvMaxVelocity(Vec2(400.f, 1200.f))
+	, mvMaxVelocity(Vect2(400.f, 1200.f))
 	, mKinematic(false)
 {
 }
@@ -48,18 +48,18 @@ void CRigidBody::FinalUpdate()
 	mvVelocity += mvAccel * DT;
 
 	// Have Velocity
-	if (mvVelocity != Vec2::zero)
+	if (mvVelocity != Vect2::zero)
 	{
 		// Velocity Flip Direction
-		Vec2 vel = mvVelocity;
+		Vect2 vel = mvVelocity;
 		vel.Normalize();
 
-		Vec2 friction = (vel * -1.f) * mFrictCoeff * DT;
+		Vect2 friction = (vel * -1.f) * mFrictCoeff * DT;
 
 		// Friction Over Velocity
 		if (mvVelocity.Length() <= friction.Length())
 		{
-			mvVelocity = Vec2(0.f, 0.f);
+			mvVelocity = Vect2(0.f, 0.f);
 		}
 		else
 		{
@@ -81,9 +81,9 @@ void CRigidBody::FinalUpdate()
 	Move();
 
 	// Clear Force Vector
-	mvForce = Vec2(0.f, 0.f);			// 힘 초기화
-	mvAccelAlpha = Vec2(0.f, 0.f);		// 추가 가속도 누적량 초기화
-	mvAccel = Vec2(0.f, 0.f);			// 가속도 초기화
+	mvForce = Vect2(0.f, 0.f);			// 힘 초기화
+	mvAccelAlpha = Vect2(0.f, 0.f);		// 추가 가속도 누적량 초기화
+	mvAccel = Vect2(0.f, 0.f);			// 가속도 초기화
 }
 
 void CRigidBody::Move()
@@ -95,17 +95,17 @@ void CRigidBody::Move()
 		return;
 
 	// Force Direction
-	Vec2 dir = mvVelocity;
+	Vect2 dir = mvVelocity;
 	dir.Normalize();
 
-	Vec2 pos = mpOwner->GetPos();
+	Vect2 pos = mpOwner->GetPos();
 	pos += dir * speed * DT;
 
 	mpOwner->SetPos(pos);
 }
 
 
-void CRigidBody::AddForce(Vec2 force)
+void CRigidBody::AddForce(Vect2 force)
 {
 	if (mKinematic)
 		return;

@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "AtkState.h"
 
-#include "CMonster.h"
+// Components Header
 #include "CAnimator.h"
 #include "CAnimation.h"
+
+#include "Monster.h"
 
 
 
@@ -21,13 +23,13 @@ AtkState::~AtkState()
 
 void AtkState::Enter()
 {
-	GetMonster()->GetAnimator()->Play(L"ATK", false);
+	GetOwner()->GetAnimator()->Play(L"ATK", false);
 }
 
 
 void AtkState::Update()
 {
-	if (GetMonster()->GetAnimator()->GetCurAnimation()->IsFinish())
+	if (GetOwner()->GetAnimator()->GetCurAnimation()->IsFinish())
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
 	}
