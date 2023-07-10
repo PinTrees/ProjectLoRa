@@ -122,9 +122,6 @@
     <Filter Include="FreamWork\Header">
       <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\Module\FileMgr">
-      <UniqueIdentifier>{27936c97-bd36-4965-8d31-be8a8814d6c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\Scene_Start">
       <UniqueIdentifier>{639227a7-f654-445d-bd9a-b40a71bd3fda}</UniqueIdentifier>
     </Filter>
@@ -169,6 +166,9 @@
     </Filter>
     <Filter Include="Game\Scene\Scene_Main">
       <UniqueIdentifier>{5f60a7f1-978f-451b-8fc0-fe1cec6a5105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\FileMgr">
+      <UniqueIdentifier>{27936c97-bd36-4965-8d31-be8a8814d6c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -271,9 +271,6 @@
     <ClInclude Include="Gold.h">
       <Filter>Game\Object\Gold</Filter>
     </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>FreamWork</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Game\Object\Bullet</Filter>
     </ClInclude>
@@ -285,9 +282,6 @@
     </ClInclude>
     <ClInclude Include="UIMgr.h">
       <Filter>FreamWork\Manager\UIMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CUI.h">
-      <Filter>FreamWork</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Game\Object\Particle</Filter>
@@ -305,7 +299,7 @@
       <Filter>FreamWork\Header</Filter>
     </ClInclude>
     <ClInclude Include="FileMgr.h">
-      <Filter>FreamWork\Module\FileMgr</Filter>
+      <Filter>FreamWork\Manager\FileMgr</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Game\Object\TIle</Filter>
@@ -340,11 +334,17 @@
     <ClInclude Include="AtkState.h">
       <Filter>Game\FSM\CState\AtkState</Filter>
     </ClInclude>
-    <ClInclude Include="HpBar.h">
+    <ClInclude Include="BarUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Main.h">
       <Filter>Game\Scene\Scene_Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>FreamWork\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>FreamWork\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -437,9 +437,6 @@
     <ClCompile Include="Gold.cpp">
       <Filter>Game\Object\Gold</Filter>
     </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>FreamWork</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Game\Object\Bullet</Filter>
     </ClCompile>
@@ -458,9 +455,6 @@
     <ClCompile Include="UIMgr.cpp">
       <Filter>FreamWork\Manager\UIMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CUI.cpp">
-      <Filter>FreamWork</Filter>
-    </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>Game\Object\Particle</Filter>
     </ClCompile>
@@ -477,7 +471,7 @@
       <Filter>FreamWork\Header</Filter>
     </ClCompile>
     <ClCompile Include="FileMgr.cpp">
-      <Filter>FreamWork\Module\FileMgr</Filter>
+      <Filter>FreamWork\Manager\FileMgr</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Game\Object\TIle</Filter>
@@ -509,11 +503,17 @@
     <ClCompile Include="AtkState.cpp">
       <Filter>Game\FSM\CState\AtkState</Filter>
     </ClCompile>
-    <ClCompile Include="HpBar.cpp">
+    <ClCompile Include="BarUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Main.cpp">
       <Filter>Game\Scene\Scene_Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>FreamWork\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>FreamWork\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

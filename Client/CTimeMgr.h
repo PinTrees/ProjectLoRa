@@ -15,6 +15,13 @@ private:
 	UINT		m_iFPS; //프레임
 	//DeltaTime구현
 
+	bool		mbStoped;
+
+
+public:
+	void Stop() { mbStoped = true; };
+	void Play() { mbStoped = false; };
+	bool IsPlay() { return !mbStoped; }
 
 public:
 	void Init();

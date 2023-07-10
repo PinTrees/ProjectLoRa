@@ -183,7 +183,7 @@
     <ClInclude Include="Gold.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Gun.h" />
-    <ClInclude Include="HpBar.h" />
+    <ClInclude Include="BarUI.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MonsterFactory.h" />
     <ClInclude Include="Background.h" />
@@ -241,7 +241,7 @@
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Gun.cpp" />
-    <ClCompile Include="HpBar.cpp" />
+    <ClCompile Include="BarUI.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MonsterFactory.cpp" />
     <ClCompile Include="Background.cpp" />

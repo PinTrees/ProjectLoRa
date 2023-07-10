@@ -52,14 +52,7 @@ public:
 
 private:
 	void	createMissile();
-	void	calExp()
-	{
-		if (mExp >= GetMaxExp())
-		{
-			++mLevel;
-			mExp = 0;
-		}
-	}
+	void	calExp();
 
 	CLONE(Player);
 

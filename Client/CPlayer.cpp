@@ -22,7 +22,7 @@
 #include "Bullet.h"
 #include "Gun.h"
 
-#include "HpBar.h"
+#include "BarUI.h"
 
 
 Player::Player()
@@ -219,6 +219,18 @@ void Player::createMissile()
 
 	//*** setPos setScale 는 인자로 받아서 설정하게 수정필요
 	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
+}
+
+
+void Player::calExp()
+{
+	if (mExp >= GetMaxExp())
+	{
+		++mLevel;
+		mExp = 0;
+
+		CTimeMgr::GetI()->Stop();
+	}
 }
 
 

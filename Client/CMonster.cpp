@@ -17,7 +17,7 @@
 #include "Gold.h"
 
 // Include UI
-#include "HpBar.h"
+#include "BarUI.h"
 
 
 

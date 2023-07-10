@@ -82,17 +82,23 @@ void CCore::Run()
 	CKeyMgr::GetI()->Update();
 	CCamera::GetI()->Update();
 
-	// ==================
-	// Scene Update Block
-	// ==================
-	CSceneMgr::GetI()->Update();
-
-
-	// ======================
-	// Collision Update Block
-	// ======================
-	CCollisionMgr::GetI()->Update();
+	// UI Update
 	CUIMgr::GetI()->Update();
+
+
+	if (CTimeMgr::GetI()->IsPlay())
+	{
+		// ==================
+		// Scene Update Block
+		// ==================
+		CSceneMgr::GetI()->Update();
+
+
+		// ======================
+		// Collision Update Block
+		// ======================
+		CCollisionMgr::GetI()->Update();
+	}
 
 
 	// ===============
