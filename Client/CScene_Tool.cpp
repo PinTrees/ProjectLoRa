@@ -14,11 +14,12 @@
 #include "UIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "CFont.h"
+#include "CTexture.h"
 
 #include "FileMgr.h"
 #include "CPathMgr.h"
 
-#include "CTexture.h"
 
 // function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
@@ -48,16 +49,16 @@ void Scene_Tool::Enter()
 	pPanelUI->SetName(L"ParentUI");
 	pPanelUI->SetScale(Vec2(300.f, 150.f));
 	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
-	pPanelUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"TestTexture", L"texture\\gold\\bronze_1.bmp"));
-	pPanelUI->GetTextrue()->SetSize(Vec2(50.f, 50.f));
-	pPanelUI->SetContentOffset(Vec2(50.f, 50.f));
+	pPanelUI->SetFont(CResMgr::GetI()->LoadFont(L"Ramche", L"texture\\Ramche.ttf", 20, true));
+	pPanelUI->SetContentOffset(Vec2(0.f, 50.f));
+	pPanelUI->GetFont()->SetInnerColor(RGB(0, 255, 0));
+	pPanelUI->GetFont()->SetOuterColor(RGB(255, 255, 0));
+	pPanelUI->GetFont()->SetWord(L"테스트중입니다.");
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
 	pBtnUI->SetScale(Vec2(100.f, 40.f));
 	pBtnUI->SetPos(Vec2(0.f, 0.f));
-	pBtnUI->SetText(L"테스트");
-	pBtnUI->SetContentOffset(Vec2(20.f, 10.f));
 
 	// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
 	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
@@ -208,7 +209,7 @@ void Scene_Tool::SaveTile(const wstring& _fullPath)
 		}
 	}
 
-	FileMgr::WirteByteFullPath(_fullPath, data.data(), (int)data.size());
+	FileMgr::WirteByteFullPath(_fullPath, data.data(), data.size());
 }
 
 void Scene_Tool::LoadTile(const wstring& _fullPath)

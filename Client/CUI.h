@@ -2,29 +2,28 @@
 #include "CObject.h"
 
 class CTexture;
+class CFont;
 
 class CUI : public CObject
 {
 	virtual CUI* Clone() = 0;
 
 private:
-	vector<CUI*>	_vecChildUI; // 깊은 복사 진행 해야함.
-	CUI*			p_parentUI;
+	vector<CUI*>	mVecChildUI; // 깊은 복사 진행 해야함.
+	CUI*			mpParentUI;
 
 	CTexture*		mpTexture;
-	wstring			mText;
+	CFont*			mFont;
 	Vec2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
 
-	Vec2			_finalPos;
+	Vec2			mvFinalPos;
 
-	bool			_cameraAffected; 
-	bool			_onMouseCheck;
-	bool			_lbtnDown;
+	COLORREF		mColor;		// 텍스쳐의 색상 비율값입니다.
 
-public:
-	CUI(bool cameraAffected);
-	CUI(const CUI& origin);
-	virtual ~CUI() override;
+	bool			mCameraAffected;
+	bool			mOnMouseCheck;
+	bool			mLbtnDown;
+
 
 public:
 	virtual void Update() override;
@@ -37,8 +36,8 @@ public:
 
 public:
 	void OnMouseCheck();
-	bool IsMouseOn() { return _onMouseCheck; };
-	bool IsLbtnDown() { return _lbtnDown; }
+	bool IsMouseOn() { return mOnMouseCheck; };
+	bool IsLbtnDown() { return mLbtnDown; }
 
 public:
 	virtual void MouseOn();
@@ -49,41 +48,38 @@ public:
 public:
 	void AddChild(CUI* ui)
 	{
-		_vecChildUI.push_back(ui);
-		ui->p_parentUI = this;
+		mVecChildUI.push_back(ui);
+		ui->mpParentUI = this;
 	}
 
 public:
-	CUI* GetParentUI() { return p_parentUI; }
-	Vec2	GetFinalPos() { return _finalPos; }
-	const vector<CUI*> GetChild() { return _vecChildUI; }
+	CUI*	GetParentUI() { return mpParentUI; }
+	Vec2	GetFinalPos() { return mvFinalPos; }
+	const vector<CUI*> GetChild() { return mVecChildUI; }
 
-	bool GetLbtnDown() { return _lbtnDown; }
-	bool GetIsMouseOn() { return _onMouseCheck; }
+	bool GetLbtnDown() { return mLbtnDown; }
+	bool GetIsMouseOn() { return mOnMouseCheck; }
 
-	CUI* GetFindChild(CUI* parentUI, const wstring& childUI)
-	{
-		for (UINT i = 0; i < parentUI->GetChild().size(); ++i)
-		{
-			if (parentUI->GetChild()[i]->GetName() == childUI)
-			{
-				if (parentUI->GetChild()[i] == nullptr)
-					assert(nullptr);
+	CUI*		GetFindChild(CUI* parentUI, const wstring& childUI);
+	void		SetContentOffset(Vec2 _offset) { mvContentOffset = _offset; }
 
-				return parentUI->GetChild()[i];
-			}
-		}
+	CTexture*	GetTextrue() { return mpTexture; }
+	void		SetTextrue(CTexture* _texture) { mpTexture = _texture; }
 
-		return nullptr;
-	}
+	void		SetColor(COLORREF color) { mColor = color; }
+	COLORREF	GetColor() { return mColor; }
 
-	void SetContentOffset(Vec2 _offset) { mvContentOffset = _offset; }
+	void	SetCameraAffected(bool active) { mCameraAffected = active; };
+	bool	GetCameraAffected() { return mCameraAffected; };
 
-	CTexture* GetTextrue() { return mpTexture; }
-	void SetTextrue(CTexture* _texture) { mpTexture = _texture; }
+	CFont* GetFont() { return mFont; }
+	void	SetFont(CFont* _text) { mFont = _text; }
 
-	wstring GetText() { return mText; }
-	void SetText(const wstring& _text) { mText = _text; }
+
+public:
+	CUI(bool cameraAffected);
+	CUI(const CUI& origin);
+	virtual ~CUI() override;
 
 	friend class CUIMgr;
 };

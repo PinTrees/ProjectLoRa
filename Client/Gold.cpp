@@ -35,7 +35,7 @@ Gold::~Gold()
 
 void Gold::Update()
 {
-	mCurDelay += fDT;
+	mCurDelay += DT;
 	if (mCurDelay > mDeleteDelay)
 	{
 		DeleteObject(this);

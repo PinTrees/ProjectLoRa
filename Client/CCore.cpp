@@ -24,8 +24,6 @@ CCore::CCore()
 	, mhDC(0)
 	, mArrBrush{}
 	, mArrPen{}
-	, mhMenu(0)
-	, mpMemTex(nullptr)
 {
 }
 
@@ -38,7 +36,7 @@ CCore::~CCore()
 		DeleteObject(mArrPen[i]);
 	}
 
-	DestroyMenu(mhMenu);
+	DestroyMenu(mhMenu); 
 }
 int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 {
@@ -58,6 +56,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	// ============================
 	mhDC = GetDC(mhWnd);
 	mpMemTex = CResMgr::GetI()->CreateTexture(L"BackBuffer", (UINT)mPtResolution.x, (UINT)mPtResolution.y);
+	SetBkMode(mpMemTex->GetDC(), TRANSPARENT);
 	CreateBrushPen();
 	
 
@@ -153,7 +152,7 @@ void CCore::SetActiveMenu(bool active)
 
 void CCore::ChangeWindowSize(Vec2 vResoulution, bool menuActive)
 {
-	RECT rt = { 0,0,(int)vResoulution.x,(int)vResoulution.y };
+	RECT rt = { 0,0,vResoulution.x,vResoulution.y };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, menuActive);	// menubar height size not include
 	SetWindowPos(mhWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 }

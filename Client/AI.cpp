@@ -42,6 +42,16 @@ CState* AI::GetState(MONSTER_STATE key)
 	return iter->second;
 }
 
+void AI::ChangeState(MONSTER_STATE nextState)
+{
+	CState* pNextState = GetState(nextState);
+	assert(pNextState != mCurState);
+
+	mCurState->Exit();
+	mCurState = pNextState;
+	mCurState->Enter();
+}
+
 void AI::SetCurState(MONSTER_STATE target)
 {
 	mCurState = GetState(target);

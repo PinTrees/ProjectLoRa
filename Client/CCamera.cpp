@@ -49,13 +49,13 @@ void CCamera::Update()
 
 	
 	if (KEY_HOLD(KEY::UP))
-		mvLookAt.y -= fDT * 500.f;
+		mvLookAt.y -= DT * 500.f;
 	if (KEY_HOLD(KEY::DOWN))
-		mvLookAt.y += fDT * 500.f;
+		mvLookAt.y += DT * 500.f;
 	if (KEY_HOLD(KEY::LEFT))
-		mvLookAt.x -= fDT * 500.f;
+		mvLookAt.x -= DT * 500.f;
 	if (KEY_HOLD(KEY::RIGHT))
-		mvLookAt.x += fDT * 500.f;
+		mvLookAt.x += DT * 500.f;
 
 
 	// 화면 중앙좌표와 카메라 LookAt 좌표간의 차이값 계산
@@ -69,7 +69,7 @@ void CCamera::Render(HDC dc)
 		return;
 
 	tCamEffect& effect = mEffects.front();
-	effect.time += fDT;
+	effect.time += DT;
 
 	float amount = (float)(effect.time / effect.duration);
 
@@ -121,7 +121,7 @@ void CCamera::calDiff()
 {
 	// 이전 LookAt 과 현재 look 의 차이값을 보정해서 현재의 LookAt을 구한다.
 	
-	mfAccTime += fDT;
+	mfAccTime += DT;
 
 	if (mfTime <= mfAccTime )
 	{
@@ -130,7 +130,7 @@ void CCamera::calDiff()
 	else
 	{
 		Vec2 vLookDir = mvLookAt - mvPrevLookAt;
-		mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * mfSpeed * fDT;
+		mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * mfSpeed * DT;
 	}
 
 

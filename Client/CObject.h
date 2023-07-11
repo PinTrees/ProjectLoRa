@@ -5,7 +5,6 @@ class CCollider;
 class CAnimator;
 class CRigidBody;
 class CGravity;
-class CHP;
 
 class CObject
 {
@@ -16,27 +15,23 @@ private:
 	Vec2		mvScale;
 	Vec2		mvPivot;	// 오브젝트의 피봇 위치 입니다.
 
-	CCollider*	mpCollider;
-	CAnimator*	mpAnimator;
+	CCollider* mpCollider;
+	CAnimator* mpAnimator;
 	CRigidBody* mpRigidBody;
-	CGravity*	mpGravity;
+	CGravity*   mpGravity;
 
 	bool		mbAlive;
 
 	/// 변경된 코드
 	float		mAngle;
 	float		mAngleOffset;
-	float		mHP;		// 체력
-	float		mFullHP;	// 최대 체력
 
 	UINT		mAlpha;
 	bool		mFlip;
 	bool		mVisible;
 
-	CHP*		mpHPbar;	// 체력바
-
 public:
-	void SetPos(Vec2 _vPos) { mvPos = _vPos; }
+	void SetPos(Vec2 _vPos)		{ mvPos = _vPos; }
 	void SetScale(Vec2 _vScale) { mvScale = _vScale; }
 	void SetPivot(Vec2 _vPivot) { mvPivot = _vPivot; }
 	void SetAngle(float _angle) { mAngle = _angle; }
@@ -60,15 +55,9 @@ public:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }
 
-	void SetHP(float _HP) { mHP = _HP; }
-	void SetFullHP(float _hp) { mFullHP = _hp; mHP = _hp; }
-	float GetHP() { return mHP; }
-	float GetFullHP() { return mFullHP; }
-
 	CCollider* GetCollider() { return mpCollider; }
 	CAnimator* GetAnimator() { return mpAnimator; }
 	CRigidBody* GetRigidBody() { return mpRigidBody; }
-	CHP* GetHPbar() { return mpHPbar; }
 
 	bool	IsDead() { return !mbAlive; }
 
@@ -76,7 +65,6 @@ public:
 	void CreateAnimator();
 	void CreateRigidBody();
 	void CreateGravity();
-	void CreateHPbar();
 
 	//void DeleteCollider();
 
@@ -84,6 +72,10 @@ public:
 	virtual void OnCollisionStay(CCollider* _pOther) {}		// 충돌 중인 경우 호출되는 함수
 	virtual void OnCollisionEnter(CCollider* _pOther) {}// 충돌 진입시
 	virtual void OnCollisionExit(CCollider* _pOther) {} // 충돌 해제시
+
+	// 시점 함수
+	virtual void OnDestroy() {}	// 삭제 시점
+
 
 private:
 	void	SetDead() { mbAlive = false; }

@@ -9,11 +9,13 @@ struct tMonsterInfo
 	float		recogRange;		// 인지범위
 	float		atkRange;		// 공격거리
 	float		atk;			// 공격력
+
+	float		curHp;
 };
 
 class AI;
 class MonsterFactory;
-
+class BarUI;
 
 
 
@@ -24,22 +26,21 @@ private:
 	tMonsterInfo	mtInfo;
 	AI*				mAI;
 
-	int				m_iDir;	//1,-1
-
-	CObject*		mpTarget;
+	BarUI*			mHpBar;
 
 
 public:
 	float GetSpeed() { return mtInfo.speed; }
 	void SetSpeed(float _fspeed) { mtInfo.speed = _fspeed; }
-	void SetTarget(CObject* _object) { mpTarget = _object; }
+
+	const tMonsterInfo GetInfo() { return mtInfo; }
 
 	void SetAI(AI* pAI);
 
 
 public:
 	virtual void OnCollisionEnter(CCollider* _pOther) override;
-
+	virtual void OnDestroy() override;
 
 public:
 	virtual void Update() override;
@@ -48,10 +49,8 @@ public:
 
 
 private:
-	void death();
-	void attack();
-
 	void setMonsterInfo(const tMonsterInfo& info) { mtInfo = info; }
+
 
 public:
 	CMonster();

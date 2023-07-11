@@ -9,8 +9,6 @@ private:
     HBITMAP     mhBit;
     BITMAP      mBitInfo;
 
-    Vec2        mvSize;
-
 public:
     void Load(const wstring& strFilePath);
 
@@ -22,9 +20,6 @@ public:
     HDC GetDC() { return mDC; }
 
     HBITMAP GetHBitmap() { return mhBit; }
-
-    Vec2 GetSize() { return mvSize; }
-    void SetSize(Vec2 _vSize) { mvSize = _vSize; }
 private:
     CTexture();
     virtual ~CTexture();

@@ -1,16 +1,10 @@
 #include "pch.h"
 #include "CState.h"
 
+#include "AI.h"
 
 
 
-void CState::Enter()
-{
-}
-
-void CState::Exit()
-{
-}
 
 CState::CState(MONSTER_STATE state)
 	: mState(state)
@@ -18,6 +12,23 @@ CState::CState(MONSTER_STATE state)
 {
 }
 
+
 CState::~CState()
 {
+}
+
+
+void CState::Enter()
+{
+}
+
+
+void CState::Exit()
+{
+}
+
+
+CMonster* CState::GetMonster()
+{
+	return mpAI->GetOwner();
 }

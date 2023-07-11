@@ -75,7 +75,7 @@ CMissile::~CMissile()
 
 void CMissile::Update()
 {
-	mCurDelay += fDT;
+	mCurDelay += DT;
 	if (mCurDelay > mDelay)
 	{
 		DeleteObject(this);
@@ -85,14 +85,14 @@ void CMissile::Update()
 	Vec2 vPos = GetPos();
 	CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
 
-	//vPos.x += 800.f * cosf(m_tTheta) * fDT;
-	//vPos.y -= 800.f * sinf(m_tTheta) * fDT;
+	//vPos.x += 800.f * cosf(m_tTheta) * DT;
+	//vPos.y -= 800.f * sinf(m_tTheta) * DT;
 
-	vPos.x += 500.f * m_vDir.x * fDT;
-	vPos.y += 500.f * m_vDir.y * fDT;
+	vPos.x += 500.f * m_vDir.x * DT;
+	vPos.y += 500.f * m_vDir.y * DT;
 
 	if (vPos.y < 110)
-		pCurScene->DeleteObject(this, GROUP_TYPE::PROJ_PLAYER);
+		DeleteObject(this);
 
 	SetPos(vPos);
 	GetAnimator()->Update();

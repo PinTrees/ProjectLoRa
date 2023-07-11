@@ -51,7 +51,7 @@ void Scene_Start::Update()
 		CCamera::GetI()->SetLookAt(vLookAt);
 	}
 
-	mfCurDelay += fDT;
+	mfCurDelay += DT;
 	if (mfCurDelay > mfMstrDelay)
 	{
 		mfCurDelay = 0.f;
@@ -66,7 +66,6 @@ void Scene_Start::Enter()
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(Vec2(640.f, 384.f));
-	pPlayer->SetFullHP(100.f);
 	AddObject(pPlayer, GROUP_TYPE::PLAYER);
 
 	PlayerMgr::GetI()->SetPlayer(pPlayer);
@@ -140,7 +139,6 @@ void Scene_Start::CreateMonster()
 	CMonster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
 	pMonsterObj->SetName(L"Monster");
 	pMonsterObj->SetScale(Vec2(280.f, 180.f));
-	pMonsterObj->SetTarget(PlayerMgr::GetI()->GetPlayer());
 	pMonsterObj->GetCollider()->SetTrigger(false);
 
 	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
@@ -153,8 +151,8 @@ void Scene_Start::createEnvi()
 {
 	Vec2 vResolution = CCore::GetI()->GetResolution();
 
-	float xPos = (float)(rand() % (int)(vResolution.x));
-	float yPos = (float)(rand() % (int)(vResolution.y)); 
+	float xPos = rand() % (int)(vResolution.x);
+	float yPos = rand() % (int)(vResolution.y); 
 	Vec2 vCreatePos = Vec2(xPos, yPos);
 
 	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);

@@ -40,20 +40,20 @@ void CUIMgr::Update()
 		if (tapLbtn)
 		{
 			targetUI->MouseLbtnDown();
-			targetUI->_lbtnDown = true;
+			targetUI->mLbtnDown = true;
 		}
 		else if (awayLbtn)
 		{
 			targetUI->MouseLbtnUp();
 
-			if (targetUI->_lbtnDown)
+			if (targetUI->mLbtnDown)
 			{
 				// 마우스 올라가있는 상태에서 때진것이라면은 클릭이다.
 				targetUI->MouseLbtnClick();
 			}
 
 			// 왼쪽버튼 때면, 눌렀던 체크를 다시 해제한다.
-			targetUI->_lbtnDown = false;
+			targetUI->mLbtnDown = false;
 		}
 	}
 }
@@ -176,7 +176,7 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 	{
 		for (size_t i = 0; i < vecNoneTargetUI.size(); ++i)
 		{
-			vecNoneTargetUI[i]->_lbtnDown = false;
+			vecNoneTargetUI[i]->mLbtnDown = false;
 		}
 	}
 

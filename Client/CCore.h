@@ -16,11 +16,13 @@ private:
 	HBRUSH	mArrBrush[(UINT)BRUSH_TYPE::END];
 	HPEN	mArrPen[(UINT)PEN_TYPE::END];
 
+	map<COLORREF, HBRUSH> mMapBrush;
+		 
 	// Title Menu Object
 	HMENU	mhMenu;
 
 public:
-	int Initialize(HWND _hWnd, POINT _ptResolution);
+	int  Initialize(HWND _hWnd, POINT _ptResolution);
 	void Run();
 	void Clear();
 
@@ -41,7 +43,25 @@ public:
 	POINT	GetResolution() { return mPtResolution; }
 	HMENU   GetMenu() { return mhMenu; }
 
+	HBRUSH GetBrush(COLORREF color) 
+	{
+		 map<COLORREF, HBRUSH>::iterator iter = mMapBrush.find(color);
+
+		 if (iter != mMapBrush.end()) 
+		 {
+			 return iter->second;
+		 }
+		 else
+		 {
+			 HBRUSH brush = (HBRUSH)CreateSolidBrush(color);
+			 mMapBrush.insert(make_pair(color, brush));
+		 
+			 return brush;
+		 }
+	}
+
 	HBRUSH GetBrush(BRUSH_TYPE _eType) {return mArrBrush[(UINT)_eType]; }
 	HPEN GetPen(PEN_TYPE _eType) { return mArrPen[(UINT)_eType]; }
+	CTexture* GetTexture() { return mpMemTex; }
 };
 

@@ -158,11 +158,20 @@
     <Filter Include="FreamWork\Object\Background">
       <UniqueIdentifier>{80131dd4-1e77-42a9-b503-d7c91b2eeca9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\Compnent\HP">
-      <UniqueIdentifier>{4f57d897-0620-4352-98f8-d9675de21254}</UniqueIdentifier>
+    <Filter Include="Game\FSM\CState\DeadState">
+      <UniqueIdentifier>{98e9219a-2a37-4efe-bed4-d2825ec7f910}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\Scene_Menu">
-      <UniqueIdentifier>{626e1ffc-6dac-47a4-a082-f49d196eb584}</UniqueIdentifier>
+    <Filter Include="Game\FSM\CState\AtkState">
+      <UniqueIdentifier>{8deb5ff9-62cf-4925-bf4b-f768335855f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI">
+      <UniqueIdentifier>{563e5912-4022-4cf2-b9a6-321569068555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Main">
+      <UniqueIdentifier>{5f60a7f1-978f-451b-8fc0-fe1cec6a5105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Resource\CFont">
+      <UniqueIdentifier>{e8c93c31-53c3-458b-b2f9-baf687b63ee0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -328,11 +337,20 @@
     <ClInclude Include="PlayerMgr.h">
       <Filter>Game\Manager\PlayerMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CHP.h">
-      <Filter>FreamWork\Compnent\HP</Filter>
+    <ClInclude Include="DeadState.h">
+      <Filter>Game\FSM\CState\DeadState</Filter>
     </ClInclude>
-    <ClInclude Include="CScene_Menu.h">
-      <Filter>Game\Scene\Scene_Menu</Filter>
+    <ClInclude Include="AtkState.h">
+      <Filter>Game\FSM\CState\AtkState</Filter>
+    </ClInclude>
+    <ClInclude Include="HpBar.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Main.h">
+      <Filter>Game\Scene\Scene_Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CFont.h">
+      <Filter>FreamWork\Resource\CFont</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,11 +509,20 @@
     <ClCompile Include="PlayerMgr.cpp">
       <Filter>Game\Manager\PlayerMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CHP.cpp">
-      <Filter>FreamWork\Compnent\HP</Filter>
+    <ClCompile Include="DeadState.cpp">
+      <Filter>Game\FSM\CState\DeadState</Filter>
     </ClCompile>
-    <ClCompile Include="CScene_Menu.cpp">
-      <Filter>Game\Scene\Scene_Menu</Filter>
+    <ClCompile Include="AtkState.cpp">
+      <Filter>Game\FSM\CState\AtkState</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBar.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Main.cpp">
+      <Filter>Game\Scene\Scene_Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CFont.cpp">
+      <Filter>FreamWork\Resource\CFont</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

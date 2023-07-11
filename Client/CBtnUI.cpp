@@ -5,10 +5,7 @@
 CBtnUI::CBtnUI()
 	: CUI(false)
 	, mSceneFunc(nullptr)
-	, mpFunc(nullptr)
 	, mScene(nullptr)
-	, mparam1(0)
-	, mparam2(0)
 {
 
 }

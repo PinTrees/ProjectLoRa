@@ -36,7 +36,7 @@ void CAnimation::Update()
 	if (mbFinish)
 		return;
 
-	mfAccTime += fDT;
+	mfAccTime += DT;
 	
 	if ( mVecFrm[miCurFrm].fDuration < mfAccTime)
 	{
@@ -53,6 +53,7 @@ void CAnimation::Update()
 
 	}
 }
+
 
 void CAnimation::Render(HDC _dc)  
 {
@@ -139,6 +140,7 @@ void CAnimation::Render(HDC _dc)
 		SetWorldTransform(_dc, nullptr);
 	}
 }
+
 
 void CAnimation::CREATE(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize
 	, Vec2 _vStep, float _fDuration, UINT _iFreamCount)

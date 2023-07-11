@@ -1,41 +1,50 @@
 #include "pch.h"
 #include "CMonster.h"
 
-#include "CTimeMgr.h"
-#include "CCollider.h"
-#include "CEventMgr.h"
-
-#include "CTexture.h"
-#include "CResMgr.h"
-#include "CAnimation.h"
-#include "CAnimator.h"
-
 #include "CCore.h"
 
-#include "Gold.h"
+// Include Manager
+#include "CTimeMgr.h"
+#include "CResMgr.h"
+
+// Include Componets
+#include "CCollider.h"
+#include "CAnimation.h"
+#include "CAnimator.h"
+#include "CTexture.h"
+#include "CScene.h"
 #include "AI.h"
+#include "Gold.h"
+
+// Include UI
+#include "HpBar.h"
+
 
 
 CMonster::CMonster()
 	: mtInfo({})
-	, m_iDir(1)
-	, mpTarget(nullptr)
 	, mAI(nullptr)
 {
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(40.f, 30.f));
-	GetCollider()->SetOffsetPos(Vec2(56.f, 50.f));
+	GetCollider()->SetScale(Vec2(40.f, 40.f));
+	GetCollider()->SetOffsetPos(Vec2(75.f, 35.f));
+	SetPivot(Vec2(75.f, 35.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_1", L"texture\\monster\\1.bmp");
-	CreateHPbar();
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 8);
 	GetAnimator()->CreateAnimation(L"RUN", pTex, Vec2(0.f, 93 * 1.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 8);
 	GetAnimator()->CreateAnimation(L"ATK", pTex, Vec2(0.f, 93 * 2.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 8);
-	GetAnimator()->CreateAnimation(L"DIE", pTex, Vec2(0.f, 93 * 4.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 7);
+	GetAnimator()->CreateAnimation(L"DEAD", pTex, Vec2(0.f, 93 * 4.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 7);
 	GetAnimator()->CreateAnimation(L"CREATE", pTex, Vec2(0.f, 93 * 8.f), Vec2(140.f, 93.f), Vec2(140.f, 0.f), 0.07f, 8);
 
 	GetAnimator()->Play(L"IDLE", true);
+
+	mHpBar = new BarUI;
+	mHpBar->SetPivot(Vec2(70.f, -25.f));
+	mHpBar->SetScale(Vec2(50.f, 4.f));
+	mHpBar->SetColor(RGB(255, 0, 0));
+	CreateObject(mHpBar, GROUP_TYPE::UI);
 }
 
 CMonster::~CMonster()
@@ -58,67 +67,11 @@ void CMonster::Update()
 	if (nullptr != mAI)
 		mAI->Update();
 
-	//if (mState == MONSTER_STATE::DEAD)
-	//{
-	//	if (GetAnimator()->GetCurAnimation()->IsFinish())
-	//	{
-	//		Vec2 vGoldPos = GetLocalPos() + Vec2(0.f, -50.f);
-
-	//		Gold* pGold = new Gold();
-	//		pGold->SetPos(vGoldPos);
-	//		pGold->SetScale(Vec2(35.f, 35.f));
-	//		pGold->SetName(L"Gold");
-	//		CreateObject(pGold, GROUP_TYPE::GOLD);
-
-	//		DeleteObject(this);
-	//	}
-	//	return;
-	//}
-
-	//if (mState == MONSTER_STATE::CREATE)
-	//{
-	//	if (GetAnimator()->GetCurAnimation()->IsFinish())
-	//	{
-	//		mState = MONSTER_STATE::NONE;
-	//	}
-	//	return;
-	//}
-
-
-	//if (mState == MONSTER_STATE::ATTACK)
-	//{
-	//	if (GetAnimator()->GetCurAnimation()->IsFinish())
-	//	{
-	//		mState = MONSTER_STATE::NONE;
-	//	}
-	//	return;
-	//}
-
-
-	//Vec2 vCurPos = GetPos(); // 현재 위치는 부모에있는 함수로 받아올수있다.
-
-	//if (mpTarget == nullptr)
-	//{
-	//	return;
-	//}
-	//else if (mpTarget->IsDead())
-	//{
-	//	mpTarget = nullptr;
-	//	return;
-	//}
-
-	//if (Vec2::Distance(mpTarget->GetLocalPos(), vCurPos) < 100.f)
-	//{
-	//	attack();
-	//}
-	//else
-	//{
-	//	Vec2 vDir = mpTarget->GetLocalPos() - vCurPos;
-	//	vDir.Normalize();
-
-	//	SetPos(vCurPos + vDir * 100.f * fDT);
-	//	GetAnimator()->Play(L"RUN", true);
-	//}
+	if (nullptr != mHpBar)
+	{
+		mHpBar->SetAmount((float)mtInfo.curHp / (float)mtInfo.hp);
+		mHpBar->SetPos(GetPos());
+	}
 }
 
 void CMonster::SetAI(AI* pAI)
@@ -134,34 +87,22 @@ void CMonster::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->GetName() == L"Missile_Player")
 	{
-		float hp = GetHP() - 10.f;
-		if (hp <= 0.f)
-		{
-			DeleteObject(this);
-		}
-		SetHP(hp);
-		/*if (mState != MONSTER_STATE::DEAD)
-		{
-			mHp -= 1;
-			if (mHp <= 0)
-			{
-				death();
-			}   
-		}*/
+		mtInfo.curHp -= 5;
+		if (mtInfo.curHp < 0) mtInfo.curHp = 0;
+
+		tForce fc = {};
+		fc.radius = 60.f;
+		fc.force = 150.f;
+		fc.speed = 2.5f;
+		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
+
+		CreateForce(fc);
 	}
 }
 
 
-void CMonster::death()
+void CMonster::OnDestroy()
 {
-	GetAnimator()->Play(L"DIE", false);
-	//mState = MONSTER_STATE::DEAD;
+	DeleteObject(mHpBar);
 }
 
-
-
-void CMonster::attack()
-{
-	GetAnimator()->Play(L"ATK", false);
-	//mState = MONSTER_STATE::ATTACK;
-}

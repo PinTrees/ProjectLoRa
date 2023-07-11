@@ -5,7 +5,6 @@
 #include "CAnimator.h"
 #include "RigidBody.h"
 #include "Gravity.h"
-#include "CHP.h"
 
 #include "SelectGDI.h"
 
@@ -20,13 +19,10 @@ CObject::CObject()
 	, mbAlive(true)
 	, mAngle(0.f)
 	, mAngleOffset(0.f)
-	, mFullHP(0.f)
-	, mHP(0.f)
 	, mFlip(false)
 	, mVisible(true)
 	, mpGravity(nullptr)
 	, mpRigidBody(nullptr)
-	, mpHPbar(nullptr)
 	, mAlpha(255)
 {
 
@@ -41,13 +37,10 @@ CObject::CObject(const CObject& _origin)
 	, mbAlive(true)
 	, mAngle(0.f)
 	, mAngleOffset(0.f)
-	, mFullHP(0.f)
-	, mHP(0.f)
 	, mFlip(false)
 	, mVisible(true)
 	, mpGravity(nullptr)
 	, mpRigidBody(nullptr)
-	, mpHPbar(nullptr)
 	, mAlpha(_origin.mAlpha)
 {
 	if (_origin.mpCollider)
@@ -60,6 +53,12 @@ CObject::CObject(const CObject& _origin)
 	{
 		mpAnimator = new CAnimator(*_origin.mpAnimator);
 		mpAnimator->mpOwner = this;
+	}
+
+	if (_origin.mpRigidBody)
+	{
+		mpRigidBody = new CRigidBody(*_origin.mpRigidBody);
+		mpRigidBody->mpOwner = this;
 	}
 }
 
@@ -79,16 +78,6 @@ CObject::~CObject()
 	{
 		delete mpRigidBody;
 	}
-
-	if (nullptr != mpGravity)
-	{
-		delete mpGravity;
-	}
-
-	if (nullptr != mpHPbar)
-	{
-		delete mpHPbar;
-	}
 }
 
 
@@ -97,9 +86,10 @@ void CObject::FinalUpdate()
 {
 	if (mpCollider)
 		mpCollider->FinalUpdate();
-
-	if (mpHPbar)
-		mpHPbar->FinalUpdate();
+	/*if (mpAnimator)
+		mpAnimator->Fi*/
+	if (mpRigidBody)
+		mpRigidBody->FinalUpdate();
 }
 
 
@@ -131,16 +121,11 @@ void CObject::CompnentRender(HDC _dc)
 		mpAnimator->Render(_dc);
 	}
 
-	if (nullptr != mpHPbar)
-	{
-		mpHPbar->Render(_dc);
-	}
-
-	SelectGDI p(_dc, PEN_TYPE::RED);
 	SelectGDI b(_dc, BRUSH_TYPE::RED);
-
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos + mvPivot);
-	float pivotSize = 6.f;
+	SelectGDI p(_dc, PEN_TYPE::RED);
+	  
+	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+	float pivotSize = 4.f;
 
 	Ellipse(_dc
 		, (int)(vRenderPos.x - pivotSize * 0.5f)
@@ -164,19 +149,13 @@ void CObject::CreateAnimator()
 void CObject::CreateRigidBody()
 {
 	mpRigidBody = new CRigidBody();
-	mpRigidBody->p_owner = this;
+	mpRigidBody->mpOwner = this;
 }
 
 void CObject::CreateGravity()
 {
 	mpGravity = new CGravity();
-	mpGravity->p_owner = this;
-}
-
-void CObject::CreateHPbar()
-{
-	mpHPbar = new CHP;
-	mpHPbar->mpOwner = this;
+	mpGravity->mpOwner = this;
 }
 
 //void CObject::DeleteCollider()

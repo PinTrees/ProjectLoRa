@@ -53,7 +53,7 @@ Particle::~Particle()
 
 void Particle::Update()
 {
-	mCurDelay += fDT;
+	mCurDelay += DT;
 
 	GetAnimator()->Update();
 

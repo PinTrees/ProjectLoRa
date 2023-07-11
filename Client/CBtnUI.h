@@ -3,8 +3,6 @@
 
 #include "CScene.h"
 #include "CObject.h"
-#include "CSceneMgr.h"
-
 
 typedef void(*BTN_FUNC) (DWORD_PTR, DWORD_PTR);
 typedef void(CScene::*SCENE_FUNC) (void);
@@ -21,6 +19,7 @@ private:
 
 	SCENE_FUNC		mSceneFunc;
 	CScene*			mScene;
+
 
 public:
 	virtual void MouseOn();

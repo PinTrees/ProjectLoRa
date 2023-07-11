@@ -11,7 +11,7 @@
 								~type();
 
 
-#define fDT CTimeMgr::GetI()->GetfDT()
+#define DT CTimeMgr::GetI()->GetfDT()
 #define DELTATIME CTimeMgr::GetI()->GetDT()
 
 #define CLONE(type) type* Clone() {return new type(*this);}
@@ -43,8 +43,8 @@ enum class GROUP_TYPE
 	GOLD,
 
 
-	MONSTER,
 	PLAYER,
+	MONSTER,
 	PROJ_PLAYER,
 	PROJ_MONSTER,
 
@@ -58,9 +58,9 @@ enum class GROUP_TYPE
 
 enum class SCENE_TYPE
 {
-	MENU,
 	TOOL,
 	START,
+	MAIN,
 	STAGE_01,
 	STAGE_02,
 
@@ -84,9 +84,11 @@ enum class PEN_TYPE
 
 enum class EVENT_TYPE
 {
-	CREATE_OBJECT,//오브젝트 생성
-	DELETE_OBJECT,// 오브젝트 삭제
-	SCENE_CHANGE,//씬 체인지 이벤트
+	CREATE_OBJECT,		// 오브젝트 생성
+	DELETE_OBJECT,		// 오브젝트 삭제
+	SCENE_CHANGE,		// 씬 체인지 이벤트
+	CHANGE_AI_STATE,	// AI 상태 변경
+
 	END,
 };
 

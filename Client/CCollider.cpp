@@ -8,6 +8,9 @@
 #include "SelectGDI.h"
 #include "CTimeMgr.h"
 
+// Include Components
+#include "RigidBody.h"
+
 UINT CCollider::giNextID = 0;
 
 CCollider::CCollider()
@@ -67,11 +70,16 @@ void CCollider::Render(HDC _dc)
 void CCollider::OnCollisionStay(CCollider* _pOther)
 {
 	mpOwner->OnCollisionStay(_pOther);
-	if (!mIsTrigger && !_pOther->GetTrigger())
+
+	if (!mIsTrigger && !_pOther->GetTrigger() 
+		&& mpOwner->GetRigidBody())
 	{
-		Vec2 vDis = mpOwner->GetPos() - _pOther->GetObj()->GetPos();
-		vDis.Normalize();
-		mpOwner->SetPos(mpOwner->GetPos() + vDis * 100.f * fDT);
+		if (mpOwner->GetRigidBody()->IsKinematic())
+			return;
+
+		Vec2 vDis = (mpOwner->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
+		mpOwner->SetPos(mpOwner->GetPos() + vDis * 100.f * DT);
+		//mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
 	}
 }
 

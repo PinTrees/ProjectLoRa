@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "func.h"
 
-#include "CEventMgr.h"
-#include "CScene.h"
-
-#include "CTexture.h"
-#include "CResMgr.h"
+// Include Manager
 #include "CPathMgr.h"
+#include "CEventMgr.h"
+#include "CResMgr.h"
+#include "CSceneMgr.h"
+
+#include "CScene.h"
+#include "CTexture.h"
 
 #include "Tile.h"
 #include "Background.h"
@@ -43,6 +45,27 @@ void ChangeScene(SCENE_TYPE _eNext)
 }
 
 
+void ChangeAIState(AI* pAI, MONSTER_STATE nextState)
+{
+	tEvent evn = {};
+	evn.eEven = EVENT_TYPE::CHANGE_AI_STATE;
+	evn.lParam = (DWORD_PTR)pAI;
+	evn.wParam = (DWORD_PTR)nextState;
+
+	CEventMgr::GetI()->AddEvent(evn);
+}
+
+
+void CreateForce(tForce& force)
+{
+	CScene* pScene = CSceneMgr::GetI()->GetCurScene();
+	pScene->AddForce(force);
+}
+
+
+
+
+
 Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
 {
 	float angle = _amount * 2 * PI;
@@ -52,7 +75,6 @@ Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
 
 	return Vec2(x, y);
 }
-
 
 
 
@@ -74,7 +96,7 @@ void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX
     transform.eM12 = 0.0f;
     transform.eM21 = 0.0f;
     transform.eM22 = 1.0f;
-    transform.eDx = (FLOAT)srcWidth;
+    transform.eDx = srcWidth;
     transform.eDy = 0.0f;
 
     // 변환 행렬 설정

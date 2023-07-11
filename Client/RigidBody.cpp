@@ -5,106 +5,111 @@
 #include "CObject.h"
 
 CRigidBody::CRigidBody()
-	:
-	p_owner(nullptr),
-	_mass(1.f),
-	_frictCoeff(250.f),
-	_maxVelocity(Vec2(400.f, 1200.f))
+	: mpOwner(nullptr)
+	, mMass(1.f)
+	, mFrictCoeff(200.f)
+	, mvMaxVelocity(Vec2(400.f, 1200.f))
+	, mKinematic(false)
 {
-
 }
+
 
 CRigidBody::~CRigidBody()
 {
-
 }
+
 
 void CRigidBody::Update()
 {
 
 }
 
+
 void CRigidBody::FinalUpdate()
 {
-	// 순수 힘의 크기
-	float force = _force.Length();
+	// Force Vector Size
+	float force = mvForce.Length();
 
+	// Have Force
 	if (0.f != force)
 	{
-		// 방향
-		_force.Normalize();
-
-		float accel = force / _mass;
-
-		_accel = _force * accel;
+		// Force Direction Normalize 
+		mvForce.Normalize();
+		
+		// Get Accel 
+		float accel = force / mMass;
+		mvAccel = mvForce * accel;
 	}
 
-	// ============================================
-	// 힘이 있든 없든  추가 가속도를 계산을 해야한다.
-	// ============================================
-	_accel += _accelAlpha; // 추가 가속도를 더한다.
+	// OffserAccel Calculate
+	mvAccel += mvAccelAlpha; // 추가 가속도를 더한다.
 
-	 // 속도 (방향 + 속력) 한번 붙은 속도는 초기화 할 필요가 없다.
-	_velocity += _accel * fDT;
+	// Calculate Velocity From Final Accel With DT
+	mvVelocity += mvAccel * DT;
 
-	// =================
-	// 마찰력 적용
-	// =================
-	// 마찰력에 의한 반대방향으로의 가속도
-	if (_velocity != Vec2::zero)
+	// Have Velocity
+	if (mvVelocity != Vec2::zero)
 	{
-		Vec2 vel = _velocity;
+		// Velocity Flip Direction
+		Vec2 vel = mvVelocity;
 		vel.Normalize();
-		Vec2 friction = (vel * -1.f) * _frictCoeff * fDT;
 
-		if (_velocity.Length() <= friction.Length())
+		Vec2 friction = (vel * -1.f) * mFrictCoeff * DT;
+
+		// Friction Over Velocity
+		if (mvVelocity.Length() <= friction.Length())
 		{
-			// 마찰 가속도가 본래 속도보다 더 큰 경우
-			_velocity = Vec2(0.f, 0.f);
+			mvVelocity = Vec2(0.f, 0.f);
 		}
 		else
 		{
-			_velocity += friction;
+			// Calculate Velocity With Friction
+			mvVelocity += friction;
 		}
 	}
 
-	// 최대속도 제한 (속도 제한 검사)
-	if (abs(_maxVelocity.x) < abs(_velocity.x))
+	// Limit Velocity
+	if (abs(mvMaxVelocity.x) < abs(mvVelocity.x))
 	{
-		_velocity.x = (_velocity.x / abs(_velocity.x)) * abs(_maxVelocity.x);
+		mvVelocity.x = (mvVelocity.x / abs(mvVelocity.x)) * abs(mvMaxVelocity.x);
 	}
-
-	if (abs(_maxVelocity.y) < abs(_velocity.y))
+	if (abs(mvMaxVelocity.y) < abs(mvVelocity.y))
 	{
-		_velocity.y = (_velocity.y / abs(_velocity.y)) * abs(_maxVelocity.y);
+		mvVelocity.y = (mvVelocity.y / abs(mvVelocity.y)) * abs(mvMaxVelocity.y);
 	}
 
 	Move();
 
-	// 힘 초기화
-	_force = Vec2(0.f, 0.f);
-
-	// 추가 가속도 누적량 초기화
-	_accelAlpha = Vec2(0.f, 0.f);
-
-	// 가속도 초기화
-	_accel = Vec2(0.f, 0.f);
+	// Clear Force Vector
+	mvForce = Vec2(0.f, 0.f);			// 힘 초기화
+	mvAccelAlpha = Vec2(0.f, 0.f);		// 추가 가속도 누적량 초기화
+	mvAccel = Vec2(0.f, 0.f);			// 가속도 초기화
 }
 
 void CRigidBody::Move()
 {
-	// 이동 속력
-	float speed = _velocity.Length();
+	// Speed
+	float speed = mvVelocity.Length();
 
-	if (0.f != speed)
-	{
-		// 이동 방향
-		Vec2 dir = _velocity;
-		dir.Normalize();
+	if (0.f == speed)
+		return;
 
-		Vec2 pos = p_owner->GetPos();
-		pos += dir * speed * fDT;
+	// Force Direction
+	Vec2 dir = mvVelocity;
+	dir.Normalize();
 
-		p_owner->SetPos(pos);
-	}
+	Vec2 pos = mpOwner->GetPos();
+	pos += dir * speed * DT;
+
+	mpOwner->SetPos(pos);
 }
+
+
+void CRigidBody::AddForce(Vec2 force)
+{
+	if (mKinematic)
+		return;
+
+	mvForce += force; 
+}
+

@@ -28,6 +28,7 @@ Bullet::Bullet(const wstring& _type)
 	m_vDir.Normalize();
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(15, 15));
+	GetCollider()->SetOffsetPos(Vec2(0.f, 0.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Effect" + _type, L"texture\\bullet\\" + _type + L".bmp");
 	CreateAnimator();
@@ -65,7 +66,7 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-	mCurDelay += fDT;
+	mCurDelay += DT;
 	if (mCurDelay > mDelay)
 	{
 		DeleteObject(this);
@@ -96,8 +97,8 @@ void Bullet::Update()
 		}
 	}
 
-	vPos.x += 700.f * m_vDir.x * fDT;
-	vPos.y += 700.f * m_vDir.y * fDT;
+	vPos.x += 500.f * m_vDir.x * DT;
+	vPos.y += 500.f * m_vDir.y * DT;
 
 	SetPos(vPos);
 	GetAnimator()->Update();
@@ -140,8 +141,8 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 				pDiv->SetBounceCount(0);
 				pDiv->SetPos(GetPos());
 				pDiv->SetScale(GetScale() * 0.65f);
-				pDiv->SetAngle((float)angle);
-				pDiv->SetDir(Vec2::FromAngle((float)angle).Normalize());
+				pDiv->SetAngle(angle);
+				pDiv->SetDir(Vec2::FromAngle(angle).Normalize());
 				CreateObject(pDiv, GROUP_TYPE::PROJ_PLAYER);
 			}
 		}

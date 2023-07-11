@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="AtkState.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
@@ -155,7 +156,6 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CGuidMissile.h" />
-    <ClInclude Include="CHP.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CMissile.h" />
@@ -168,13 +168,14 @@
     <ClInclude Include="CResMgr.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
-    <ClInclude Include="CScene_Menu.h" />
     <ClInclude Include="CScene_start.h" />
     <ClInclude Include="CScene_Tool.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CState.h" />
+    <ClInclude Include="CFont.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
+    <ClInclude Include="DeadState.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="FileMgr.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Gold.h" />
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="HpBar.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MonsterFactory.h" />
     <ClInclude Include="Background.h" />
@@ -192,6 +194,7 @@
     <ClInclude Include="register.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
+    <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TraceState.h" />
     <ClInclude Include="UIMgr.h" />
@@ -203,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
@@ -213,7 +217,6 @@
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CGuidMissile.cpp" />
-    <ClCompile Include="CHP.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CMissile.cpp" />
@@ -226,19 +229,21 @@
     <ClCompile Include="CResMgr.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
-    <ClCompile Include="CScene_Menu.cpp" />
     <ClCompile Include="CScene_start.cpp" />
     <ClCompile Include="CScene_Tool.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CState.cpp" />
+    <ClCompile Include="CFont.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="DeadState.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="FileMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MonsterFactory.cpp" />
     <ClCompile Include="Background.cpp" />
@@ -246,6 +251,7 @@
     <ClCompile Include="PlayerMgr.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="Scene_Main.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="Tile.cpp" />
