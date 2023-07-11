@@ -140,6 +140,10 @@ Bullet::Bullet()
 	this->CreateRigidBody(GetCollider());
 	// 강체는 콜라이더의 정보를 공유하며 해당 값을 기준으로 계산됩니다.
 }
+
+Monster* pMonster = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
+// 겹침 불가 설정을 위해 충돌 트리거이벤트를 사용안함으로 설정
+pMonster->GetCollider()->SetTrigger(false);
 ```
 
 ### 오브젝트에 키 및 마우스 이벤트 추가
@@ -227,5 +231,36 @@ void CSceneStart::Update()
 
 	// 사운드 개발중
 ```
+
+### UI 버튼 생성
+```c++
+// 버튼 오브젝트 생성
+CBtnUI* pBtn = new CBtnUI;
+// 위치 설정 - (중앙 포지션 Not Left Top)
+pBtn->SetPos(Vect2(0.f, 100.f));
+// 크기 설정
+pBtn->SetScale(Vect2(200.f, 50.f));
+// 이미지 설정
+pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+// 클릭 이벤트 설정 - 항상 참조로 전달
+pBtn->SetClickedCallBack(this, (OBJECT_FUNC)&Player::SelectLevelUp);
+
+// 오브젝트 멤버 함수, 씬 멤버 함수, 전역함수만 등록할 수 있습니다.
+함수규약 : 오브젝트 멤버 함수 OBJECT_FUNC, 씬 멤버 함수 SCENE_FUNC
+
+OBJECT_FUNC void(void)
+SCENE_FUNC void(void)
+```
+
+### 시간 스케일 조절
+```c++
+// 시간 스케일 0
+CTimeMgr::GetI()->Stop();
+// 시간 스케일 1
+CTimeMgr::GetI()->Play();
+```
+
+
+
 
 
