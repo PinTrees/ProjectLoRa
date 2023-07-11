@@ -96,7 +96,7 @@ void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX
     transform.eM12 = 0.0f;
     transform.eM21 = 0.0f;
     transform.eM22 = 1.0f;
-    transform.eDx = srcWidth;
+    transform.eDx = (FLOAT)srcWidth;
     transform.eDy = 0.0f;
 
     // 변환 행렬 설정

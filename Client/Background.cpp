@@ -29,10 +29,13 @@ void Background::Render(HDC dc, Vect2 ltPos, Vect2 size)
 	// 타일의 사이즈와 비트맵의 사이즈가 다르므로 텍스쳐의 크롭 영역 벡터인자가 추가로 필요합니다.
 	StretchBlt(dc
 		, 0, 0
-		, size.x, size.y
+		, (int)size.x
+		, (int)size.y
 		, mParallaxTex->GetDC()
-		, ltPos.x, ltPos.y
-		, size.x, size.y
+		, (int)ltPos.x
+		, (int)ltPos.y
+		, (int)size.x
+		, (int)size.y
 		, SRCCOPY);
 }
 

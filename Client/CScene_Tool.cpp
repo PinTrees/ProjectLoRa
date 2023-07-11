@@ -202,7 +202,7 @@ void Scene_Tool::SaveTile(const wstring& _fullPath)
 		}
 	}
 
-	FileMgr::WirteByteFullPath(_fullPath, data.data(), data.size());
+	FileMgr::WirteByteFullPath(_fullPath, data.data(), (int)data.size());
 }
 
 void Scene_Tool::LoadTile(const wstring& _fullPath)

@@ -185,6 +185,12 @@
     <Filter Include="Game\FSM\Player">
       <UniqueIdentifier>{7e2da7ad-9443-4772-8647-9ae352af28b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\Resource\Font">
+      <UniqueIdentifier>{00b6f29f-3be2-4821-8cd8-e120968cc4bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Text">
+      <UniqueIdentifier>{0a902a05-40d7-4e2b-a467-d8f26d5fa6fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -352,6 +358,12 @@
     <ClInclude Include="func.h">
       <Filter>FreamWork\Header\Func</Filter>
     </ClInclude>
+    <ClInclude Include="CFont.h">
+      <Filter>FreamWork\Resource\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="TextUI.h">
+      <Filter>FreamWork\UI\Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -511,6 +523,12 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>FreamWork\Header\Func</Filter>
+    </ClCompile>
+    <ClCompile Include="CFont.cpp">
+      <Filter>FreamWork\Resource\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="TextUI.cpp">
+      <Filter>FreamWork\UI\Text</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

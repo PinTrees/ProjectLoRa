@@ -141,7 +141,7 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 				pDiv->SetBounceCount(0);
 				pDiv->SetPos(GetPos());
 				pDiv->SetScale(GetScale() * 0.65f);
-				pDiv->SetAngle(angle);
+				pDiv->SetAngle((float)angle);
 				pDiv->SetDir(Vect2::FromAngle(angle).Normalize());
 				CreateObject(pDiv, GROUP_TYPE::PROJ_PLAYER);
 			}

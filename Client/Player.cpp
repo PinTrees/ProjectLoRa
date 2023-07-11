@@ -26,6 +26,7 @@
 #include "BarUI.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "TextUI.h"
 
 
 
@@ -246,6 +247,12 @@ void Player::calExp()
 		pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 		pBtn->SetClickedCallBack(this, (OBJECT_FUNC)&Player::SelectLevelUp);
 		pPanel->AddChild(pBtn);
+
+		TextUI* pText = new TextUI;
+		pText->SetPos(Vect2(0.f, 100.f));
+		pText->SetText(L"AAAA");
+		pPanel->AddChild(pText);
+
 
 		CTimeMgr::GetI()->Stop();
 	}

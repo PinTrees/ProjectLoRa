@@ -156,7 +156,7 @@ void CCore::SetActiveMenu(bool active)
 
 void CCore::ChangeWindowSize(Vect2 vResoulution, bool menuActive)
 {
-	RECT rt = { 0,0,vResoulution.x,vResoulution.y };
+	RECT rt = { 0,0, (LONG)vResoulution.x, (LONG)vResoulution.y };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, menuActive);	// menubar height size not include
 	SetWindowPos(mhWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 }
