@@ -1,33 +1,38 @@
 #pragma once
 
-class CMonster;
-class CState;
 
+class CObject;
+class Monster;
+class CState;
 
 class AI
 {
 private:
-	map<MON_STATE, CState*>	mMapState;
-	CState*					mpCurstate;
-	CMonster*				mpOwner;
+	map<MONSTER_STATE, CState*>	mMapState;
+	CState*						mCurState;
+		
+	CObject*				mOwner;
+
+
+public:
+	void AddState(CState* pState);
+	CState* GetState(MONSTER_STATE key);
+	void ChangeState(MONSTER_STATE nextState);
+
+	void SetOwner(CObject* owner) { mOwner = owner; }
+	CObject* GetOwner() { return mOwner; }
+
+	void SetCurState(MONSTER_STATE target);
+
 
 public:
 	void Update();
 
 
-
-public:
-	void AddState(CState* _pState);
-	CState* GetState(MON_STATE _eState);
-	void SetCurState(MON_STATE _eState);
-
-	void ChangeState(MON_STATE _eNextState);
-
-	CMonster* GetOwner() { return mpOwner; }
 public:
 	AI();
 	~AI();
 
-	friend class CMonster;
+	friend class CObject;
 };
 

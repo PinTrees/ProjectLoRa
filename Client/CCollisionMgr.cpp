@@ -98,8 +98,8 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 					}
 					else
 					{
-						pLeftCol->OnCollision(pRightCol);
-						pRightCol->OnCollision(pLeftCol);
+						pLeftCol->OnCollisionStay(pRightCol);
+						pRightCol->OnCollisionStay(pLeftCol);
 					}
 				}
 				else
@@ -131,11 +131,11 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 bool CCollisionMgr::isCollision(CCollider* _pLeftCol, CCollider* _pRightCol)
 {
-	Vec2 vLeftPos = _pLeftCol->GetFinalPos();
-	Vec2 vLeftScale = _pLeftCol->GetScale();
+	Vect2 vLeftPos = _pLeftCol->GetFinalPos();
+	Vect2 vLeftScale = _pLeftCol->GetScale();
 
-	Vec2 vRightPos = _pRightCol->GetFinalPos();
-	Vec2 vRightScale = _pRightCol->GetScale();
+	Vect2 vRightPos = _pRightCol->GetFinalPos();
+	Vect2 vRightScale = _pRightCol->GetScale();
 
 	if (abs(vRightPos.x - vLeftPos.x) < (vLeftScale.x + vRightScale.x) / 2.f
 		&& abs(vRightPos.y - vLeftPos.y) < (vLeftScale.y + vRightScale.y) / 2.f)

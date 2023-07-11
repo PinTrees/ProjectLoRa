@@ -3,7 +3,10 @@
 
 #include "CCollider.h"
 #include "CAnimator.h"
-#include "CRigidBody.h"
+#include "RigidBody.h"
+
+#include "SelectGDI.h"
+
 
 
 
@@ -12,20 +15,29 @@ CObject::CObject()
 	, mvScale{}
 	, mpCollider(nullptr)
 	, mpAnimator(nullptr)
-	,mpRigidBody(nullptr)
 	, mbAlive(true)
+	, mAngle(0.f)
+	, mAngleOffset(0.f)
+	, mFlip(false)
+	, mVisible(true)
+	, mpRigidBody(nullptr)
+	, mAlpha(255)
 {
-
 }
 
 CObject::CObject(const CObject& _origin)
-	:mStrName(_origin.mStrName)
-	,mvPos(_origin.mvPos)
-	,mvScale(_origin.mvScale)
-	,mpAnimator(nullptr)
-	,mpCollider(nullptr)
+	: mStrName(_origin.mStrName)
+	, mvPos(_origin.mvPos)
+	, mvScale(_origin.mvScale)
+	, mpAnimator(nullptr)
+	, mpCollider(nullptr)
+	, mbAlive(true)
+	, mAngle(0.f)
+	, mAngleOffset(0.f)
+	, mFlip(false)
+	, mVisible(true)
 	, mpRigidBody(nullptr)
-	,mbAlive(true)
+	, mAlpha(_origin.mAlpha)
 {
 	if (_origin.mpCollider)
 	{
@@ -70,19 +82,16 @@ void CObject::FinalUpdate()
 {
 	if (mpCollider)
 		mpCollider->FinalUpdate();
-
-	if (mpAnimator)
-		mpAnimator->FinalUpdate();
-
+	/*if (mpAnimator)
+		mpAnimator->Fi*/
 	if (mpRigidBody)
 		mpRigidBody->FinalUpdate();
 }
 
+
 void CObject::Render(HDC _dc)
 {
-
-
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
 
 	Rectangle(_dc,	(int)(vRenderPos.x - mvScale.x / 2.f),
 					(int)(vRenderPos.y - mvScale.y / 2.f),
@@ -90,11 +99,14 @@ void CObject::Render(HDC _dc)
 					(int)(vRenderPos.y + mvScale.y / 2.f));
 
 	CompnentRender(_dc);
-
 }
+
 
 void CObject::CompnentRender(HDC _dc)
 {
+	if (!mVisible)
+		return; 
+
 	if (nullptr != mpCollider)
 	{
 		mpCollider->Render(_dc);
@@ -104,13 +116,28 @@ void CObject::CompnentRender(HDC _dc)
 	{
 		mpAnimator->Render(_dc);
 	}
+
+	if (!DEBUG)
+		return;
+
+	SelectGDI b(_dc, BRUSH_TYPE::RED);
+	SelectGDI p(_dc, PEN_TYPE::RED);
+	  
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+	float pivotSize = 3.f;
+
+	Ellipse(_dc
+		, (int)(vRenderPos.x - pivotSize * 0.5f)
+		, (int)(vRenderPos.y - pivotSize * 0.5f)
+		, (int)(vRenderPos.x + pivotSize * 0.5f)
+		, (int)(vRenderPos.y + pivotSize * 0.5f));
 }
+
 
 void CObject::CreateCollider()
 {
 	mpCollider = new CCollider;
 	mpCollider->mpOwner = this;
-
 }
 
 void CObject::CreateAnimator()
@@ -121,8 +148,7 @@ void CObject::CreateAnimator()
 
 void CObject::CreateRigidBody()
 {
-	mpRigidBody = new CRigidBody;
+	mpRigidBody = new CRigidBody();
 	mpRigidBody->mpOwner = this;
 }
-
 

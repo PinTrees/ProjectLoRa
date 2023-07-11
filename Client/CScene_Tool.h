@@ -3,11 +3,14 @@
 
 class CUI;
 
-class CScene_Tool :
+class Scene_Tool :
 	public CScene
 {
 private:
 	CUI* mpUI;
+
+	UINT	mTileX;
+	UINT	mTileY;
 
 public:
 	virtual void Update();
@@ -17,13 +20,20 @@ public:
 public:
 	void SetTileIdx();
 
+	void SetTileX(UINT x) { mTileX = x; }
+	void SetTileY(UINT y) { mTileY = y; }
+
+	UINT GetTileX() { return mTileX; }
+	UINT GetTileY() { return mTileY; }
 
 	void SaveTileData();
-	void SaveTile(const wstring& _strFilePath);
-	void LoadTileData();
+	void LoadTIleData();
+
+	void SaveTile(const wstring& _strRelativePath);
+	void LoadTile(const wstring& _strRelativePath);
 
 public:
-	CScene_Tool();
-	~CScene_Tool();
+	Scene_Tool();
+	~Scene_Tool();
 };
 

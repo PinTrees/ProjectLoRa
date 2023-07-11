@@ -1,29 +1,28 @@
 #pragma once
 #include "CScene.h"
 
-class CScene_start :
+class Player;
+
+class Scene_Start :
 	public CScene
 {
+
 private:
-	Vec2	mvForcePos;
-	float	mfForceRadius;
-	float	mfCurRadius;
-	float mfForce;
-	bool	mbUseForce;
+	float		mfMstrDelay;
+	float		mfCurDelay;
 
 public:
 	virtual void Update();
-	virtual void Render(HDC _dc);
-
 	virtual void Enter();
 	virtual void Exit();
 
 
-public:
-	void CreateForce();
+private:
+	void CreateMonster();
+	void createEnvi();
 
 public:
-	CScene_start();
-	~CScene_start();
+	Scene_Start();
+	~Scene_Start();
 };
 

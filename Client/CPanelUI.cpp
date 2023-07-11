@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "CPanelUI.h"
-
 #include "CKeyMgr.h"
 
 CPanelUI::CPanelUI()
@@ -27,10 +27,9 @@ void CPanelUI::MouseOn()
 {
 	if (IsLbtnDown())
 	{
-	 	Vec2 vDiff =(MOUSE_POS - mvDragStartPos);
+	 	Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
 
-
-		Vec2 vCurPos = GetPos();
+		Vect2 vCurPos = GetPos();
 		vCurPos += vDiff;
 		SetPos(vCurPos);
 		mvDragStartPos = MOUSE_POS;

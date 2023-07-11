@@ -1,12 +1,17 @@
 #pragma once
 
 class CObject;
+class CScene;
 class AI;
+
+struct tForce;
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(CObject* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
-void ChangeAIState(AI* _pAI, MON_STATE _eNextState);
+void ChangeAIState(AI* pAI, MONSTER_STATE nextState);
+void CreateForce(tForce& force);
+
 
 template<typename T>
 void Safe_Delete_Vec(vector<T>& _vec)
@@ -36,4 +41,15 @@ void Safe_Delete_Map(map<T1, T2>& _map)
 
 
 
-Vec2 curvesCircle(Vec2 c1, float _radius, float _amount);
+Vect2 curvesCircle(Vect2 c1, float _radius, float _amount);
+
+
+
+
+
+
+void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight);
+
+
+void LoadTile(CScene* pScene, const wstring& _fullPath);
+void CreateTile(CScene* pScene, UINT xCount, UINT yCount);

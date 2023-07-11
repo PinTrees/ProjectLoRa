@@ -11,11 +11,15 @@ private:
 
 public:
     void Load(const wstring& strFilePath);
-    void Create(UINT _iWidth, UINT _iHeight);
+
+    void Create(UINT width, UINT hieght, COLORREF color = NULL);
+
     UINT Width() { return mBitInfo.bmWidth; }
     UINT Heigth () { return mBitInfo.bmHeight; }
 
     HDC GetDC() { return mDC; }
+
+    HBITMAP GetHBitmap() { return mhBit; }
 private:
     CTexture();
     virtual ~CTexture();

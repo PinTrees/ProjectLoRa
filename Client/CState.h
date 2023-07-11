@@ -1,21 +1,22 @@
 #pragma once
 
+
 class AI;
-class CMonster;
+class CObject;
 
 
+//template <typename T>
 class CState
 {
 private:
-	AI* mpAI;
-	MON_STATE meState;
-
-
+	AI*				mpAI;
+	MONSTER_STATE	mState;
 
 public:
 	AI* GetAI() { return mpAI; }
-	MON_STATE GetType() { return meState; }
-	CMonster* GetMonster();
+	MONSTER_STATE GetType() { return mState; }
+
+	CObject* GetOwner();
 
 public:
 	virtual void Update() = 0;
@@ -24,7 +25,7 @@ public:
 
 
 public:
-	CState(MON_STATE _eState);
+	CState(MONSTER_STATE state);
 	virtual ~CState();
 
 	friend class AI;

@@ -2,194 +2,174 @@
 #include "CScene_start.h"
 
 #include "CObject.h"
-
-#include "CPlayer.h"
-#include "CMonster.h"
-
 #include "CCore.h"
-#include "CTexture.h"
-#include "CPathMgr.h"
 
+// GameObject Header
+#include "Environment.h"
+#include "Monster.h"
+#include "Player.h"
+
+// System Manager Header
 #include "CCollisionMgr.h"
-
-#include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "CTimeMgr.h"
+#include "CPathMgr.h"
+#include "CKeyMgr.h"
 
+// Manager Header
+#include "PlayerMgr.h"
+
+// Components Header
+#include "CCollider.h"
+#include "CTexture.h"
 #include "CCamera.h"
 
-
-#include "AI.h"
-#include "CIdleState.h"
-#include "CTraceState.h"
-
-#include "CRigidBody.h"
-#include "SelectGDI.h"
-#include "CTimeMgr.h"
+#include "MonsterFactory.h"
 
 
 
-CScene_start::CScene_start()
-	:mbUseForce(false)
-	, mfForceRadius(500.f)
-	, mfCurRadius(0.f)
-	, mfForce(500.f)
+
+Scene_Start::Scene_Start()
+	: mfMstrDelay(1.f)
+	, mfCurDelay(0.f)
 {
 }
 
-CScene_start::~CScene_start()
+Scene_Start::~Scene_Start()
 {
 }
 
-void CScene_start::Update()
+
+
+void Scene_Start::Update()
 {
-	if (KEY_HOLD(KEY::RBTN))
-	{
-		mbUseForce = true;
-		CreateForce();
-	}
-	else
-	{
-		mbUseForce = false;
-	}
-
-
-
-
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
-	{
-		const vector<CObject*>& vecObj = GetGroupObject((GROUP_TYPE)i);
-		for (size_t j = 0; j < vecObj.size(); ++j)
-		{
-			if (!vecObj[j]->IsDead())
-			{
-				if (mbUseForce && vecObj[j]->GetRigidBody())
-				{
-					Vec2 vDiff = vecObj[j]->GetPos() - mvForcePos;
-					float fLen = vDiff.Length();
-					if (fLen < mfForceRadius)
-					{
-
-						float fRatio = 1.f - (fLen / mfForceRadius);
-						float fForce = mfForce * fRatio;
-						vecObj[j]->GetRigidBody()->AddForce(vDiff.Normalize() * fForce);
-					}
-				}
-				vecObj[j]->Update();
-			}
-		}
-	}
-
-
-
-
-
-
-
-
+	CScene::Update();
 
 	if (KEY_TAP(KEY::ENTER))
 	{
 		ChangeScene(SCENE_TYPE::TOOL);
 	}
 
-	if (KEY_HOLD(KEY::LBTN))
+	if (KEY_HOLD(KEY::LBTN)) 
 	{
-
-		Vec2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
+		
+		Vect2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
 		CCamera::GetI()->SetLookAt(vLookAt);
 	}
 
-
-}
-
-void CScene_start::Render(HDC _dc)
-{
-	CScene::Render(_dc);
-
-	if (!mbUseForce)
-		return;
-
-	SelectGDI gdi1(_dc, BRUSH_TYPE::HOLLOW);
-	SelectGDI gdi2(_dc, PEN_TYPE::GREEN);
-
-	mfCurRadius += mfForceRadius * 3.f * fDT;
-
-	if (mfCurRadius > mfForceRadius)
+	mfCurDelay += DT;
+	if (mfCurDelay > mfMstrDelay)
 	{
-		mfCurRadius = 0.f;
+		mfCurDelay = 0.f;
+		CreateMonster();
 	}
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvForcePos);
-
-	Ellipse(_dc
-		, vRenderPos.x - mfCurRadius
-		, vRenderPos.y - mfCurRadius
-		, vRenderPos.x + mfCurRadius
-		, vRenderPos.y + mfCurRadius);
-
-
-
 }
 
-void CScene_start::Enter()
+void Scene_Start::Enter()
 {
+	LoadTile(this, L"database\\map_1.tile");
 
+	Player* pPlayer = new Player;
+	pPlayer->SetName(L"Player");
+	pPlayer->SetPos(Vect2(640.f, 384.f));
+	AddObject(pPlayer, GROUP_TYPE::PLAYER);
 
-	//  Object 추가
-	CObject* pObj = new CPlayer;
-	pObj->SetPos(Vec2(640.f, 384.f));
-	pObj->SetScale(Vec2(100.f, 100.f));
-	AddObject(pObj, GROUP_TYPE::PLAYER);
-
-	RegisterPlayer(pObj);
-	// CObject* pOtherPlayer = pObj->Clone();
-	// pOtherPlayer->SetPos(Vec2(640.f, 314.f));
-	// AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
-
-	// CCamera::GetI()->SetTarget(pObj);
-
+	PlayerMgr::GetI()->SetPlayer(pPlayer);
+	CCamera::GetI()->SetTarget(pPlayer);
 
 	//몬스터 배치
-	Vec2 vResolution = CCore::GetI()->GetResolution();
-	CMonster* pMon = CMonFactory::CreateMonster(MON_TYPE::NORMAL, vResolution / 2.f - Vec2(0.f, 300.f));
-	AddObject(pMon, GROUP_TYPE::MONSTER);
+	int iMonCount = 8;
+	for (int i = 0; i < iMonCount; i++)
+	{
+		CreateMonster();
+	}
 
-	// CreateObject(pMon, GROUP_TYPE::MONSTER);
 
-	// 타일로딩
-	// Loadtile
-
+	int iEnvCount = 8;
+	for (int i = 0; i < iEnvCount; i++)
+	{
+		createEnvi();
+	}
 
 
 	// 충돌 지정
-	// Player 그룹과 Monster 그룹 간의 충돌체크
+	//  Player 그룹과 Monster 그룹 간의 충돌체크
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::MONSTER);
-
-
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GOLD);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::ENV);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
 
 	// Camera Look 지정
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
-
-
-
-	// 카메로 효과 지정
-
-	CCamera::GetI()->FadeOut(1.f);
-	CCamera::GetI()->FadeIn(1.f);
+	CCamera::GetI()->FadeOut(2.f);
+	CCamera::GetI()->FadeIn(2.f);
 }
 
 
 //현재씬을 나갈때 실행되는 함수
-void CScene_start::Exit()
+void Scene_Start::Exit()
 {
 	DeleteAll();
-
 	CCollisionMgr::GetI()->Reset();
-
+	CCamera::GetI()->SetTarget(nullptr);
 }
 
 
-void CScene_start::CreateForce()
+
+
+
+void Scene_Start::CreateMonster()
 {
-	mvForcePos = CCamera::GetI()->GetRealPos(MOUSE_POS);
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+
+	// 몬스터를 소환할 가장자리 위치 설정
+	float edgeDistance = 100.f;				// 가장자리로부터의 거리
+	float xPos = rand() % (int)(vResolution.x - 2 * edgeDistance) + edgeDistance; // x 좌표 범위: edgeDistance부터 (가로 해상도 - 2 * edgeDistance)까지
+	float yPos = rand() % (int)(vResolution.y - 2 * edgeDistance) + edgeDistance; // y 좌표 범위: edgeDistance부터 (세로 해상도 - 2 * edgeDistance)까지
+
+	Vect2 vCreatePos;
+	// 가장자리 위치 계산
+	// 상하 가장자리
+	if (rand() % 2 == 0) 
+		vCreatePos = Vect2(xPos, rand() % 2 == 0 ? edgeDistance : vResolution.y - edgeDistance);
+	// 좌우 가장자리
+	else 
+		vCreatePos = Vect2(rand() % 2 == 0 ? edgeDistance : vResolution.x - edgeDistance, yPos);
+	
+	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
+
+
+	Monster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
+	pMonsterObj->SetName(L"Monster");
+	pMonsterObj->SetScale(Vect2(280.f, 180.f));
+	pMonsterObj->GetCollider()->SetTrigger(false);
+
+	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 }
+
+
+
+
+void Scene_Start::createEnvi()
+{
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+
+	float xPos = rand() % (int)(vResolution.x);
+	float yPos = rand() % (int)(vResolution.y); 
+	Vect2 vCreatePos = Vect2(xPos, yPos);
+
+	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
+
+	Environment* pEnvObj = nullptr;
+	pEnvObj = new Environment(L"101");
+	pEnvObj->SetName(L"ENV");
+	pEnvObj->SetPos(vCreatePos);
+	pEnvObj->GetCollider()->SetTrigger(false);
+	AddObject(pEnvObj, GROUP_TYPE::ENV);
+}
+
+
+

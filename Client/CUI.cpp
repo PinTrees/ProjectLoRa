@@ -1,27 +1,37 @@
+#include "pch.h"
 #include "CUI.h"
 
-#include "CKeyMgr.h"
 #include "CCamera.h"
+#include "CKeyMgr.h"
 
 #include "SelectGDI.h"
+#include "CScene.h"
 
-CUI::CUI(bool _bCamAff)
-	:mpParentUI(nullptr)
-	,mbCamAffected(_bCamAff)
-	, mbMouseOn(false)
+#include "CTexture.h"
+
+
+CUI::CUI(bool cameraAffected)
+	: mVecChildUI{}
+	, mpParentUI(nullptr)
+	, mvFinalPos{}
+	, mCameraAffected(cameraAffected)
+	, mOnMouseCheck(false)
+	, mText(L"")
 {
+
 }
 
-CUI::CUI(const CUI& _origin)
-	:CObject(_origin)
-	,mpParentUI(nullptr)
-	,mbCamAffected(_origin.mbCamAffected)
-	,mbMouseOn(false)
-	,mbLbtnDown(false)
+CUI::CUI(const CUI& origin)
+	: CObject(origin)
+	, mpParentUI(nullptr)
+	, mCameraAffected(origin.mCameraAffected)
+	, mOnMouseCheck(false)
+	, mLbtnDown(false)
+	, mText(origin.mText)
 {
-	for (size_t i = 0; i < _origin.mVecChildUI.size(); i++)
+	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
-		AddChild(_origin.mVecChildUI[i]->Clone());
+		AddChild(origin.mVecChildUI[i]->Clone());
 	}
 }
 
@@ -32,76 +42,150 @@ CUI::~CUI()
 
 void CUI::Update()
 {
-	// child ui update
-	update_child();
+	// child update
+	UpdateChild();
 }
 
 void CUI::FinalUpdate()
 {
-	// ui도 콜라이더나 애니메이션있을수있으니 부모쪽으로 해서 실행함
+	// 부모의 finalUpdate호출 해야한다.
+	// UI가 애니매이션 가질 수도 있기 때문에
 	CObject::FinalUpdate();
 
+	// UI의 최종좌표를 구한다.
+	mvFinalPos = GetPos(); // 부모 좌표를 finalPos로 인식
 
-	// UI 의 최종 좌표를 구한다.
-	mvFinalPos = GetPos();
-
-	if (GetParent())
+	if (GetParentUI())
 	{
-		Vec2 vParentPos = GetParent()->GetFinalPos();
-		mvFinalPos += vParentPos;
+		Vect2 parentPos = GetParentUI()->GetFinalPos();
+		mvFinalPos += parentPos;
 	}
 
-	// UI Mouse 체크
-	MouseOnCheck();
+	// UI Mouse체크
+	OnMouseCheck();
 
-	finalupdate_child();
+	FinalUpdateChild();
 }
 
-void CUI::Render(HDC _dc)
+void CUI::OnMouseCheck()
 {
-	Vec2 vPos = GetFinalPos();
-	Vec2 vScale = GetScale();
+	Vect2 mousePos = MOUSE_POS;
+	Vect2 uiScale = GetScale();
 
-	if (mbCamAffected)
+	if (mCameraAffected)
+	{
+		CCamera::GetI()->GetRealPos(mousePos);
+	}
+
+	if (mvFinalPos.x - uiScale.x * 0.5f <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x * 0.5f &&
+		mvFinalPos.y - uiScale.x * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
+	{
+		mOnMouseCheck = true;
+	}
+	else
+	{
+		mOnMouseCheck = false;
+	}
+}
+
+void CUI::Render(HDC dc)
+{
+	Vect2 vPos = GetFinalPos();
+	Vect2 vScale = GetScale();
+
+	if (mCameraAffected)
 	{
 		vPos = CCamera::GetI()->GetRenderPos(vPos);
 	}
 
-	if (mbLbtnDown)
+	if (mLbtnDown)
 	{
-		SelectGDI select(_dc, PEN_TYPE::GREEN);
+		SelectGDI p(dc, PEN_TYPE::GREEN);
+	}
 
-		Rectangle(_dc
-			, int(vPos.x)
-			, int(vPos.y)
-			, int(vPos.x + vScale.x)
-			, int(vPos.y + vScale.y));
+	if(nullptr == mpTexture)
+	{
+		Rectangle
+		(
+			dc,
+			int(vPos.x),
+			int(vPos.y),
+			int(vPos.x + vScale.x),
+			int(vPos.y + vScale.y)
+		);
 	}
 	else
 	{
-		Rectangle(_dc
-			, int(vPos.x)
-			, int(vPos.y)
-			, int(vPos.x + vScale.x)
-			, int(vPos.y + vScale.y));
+		float fWidth = (float)mpTexture->Width();
+		float fHeight = (float)mpTexture->Heigth();
+
+		if (mLbtnDown)
+		{
+			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, fWidth, fHeight);
+			HDC hdcPressedMem = CreateCompatibleDC(dc);
+			HBITMAP hOldPressedBitmap = (HBITMAP)SelectObject(hdcPressedMem, hPressedBitmap);
+
+			// 비트맵 복사
+			BitBlt(hdcPressedMem, 0, 0, fWidth, fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
+
+			for (int y = 0; y < fWidth; ++y)
+			{
+				for (int x = 0; x < fHeight; ++x)
+				{
+					COLORREF pixel = GetPixel(hdcPressedMem, x, y);
+
+					BYTE r = GetRValue(pixel);
+					BYTE g = GetGValue(pixel);
+					BYTE b = GetBValue(pixel);
+
+					r = (BYTE)(((float)r * 200) / 255);				// 색상 곱하기
+					g = (BYTE)(((float)g * 200) / 255);
+					b = (BYTE)(((float)b * 200) / 255);
+
+					COLORREF newPixel = RGB(r, g, b);
+					SetPixel(hdcPressedMem, x, y, newPixel);
+				}
+			}
+
+			TransparentBlt(dc,
+				(int)(vPos.x - vScale.x * 0.5f),
+				(int)(vPos.y - vScale.y * 0.5f),
+				(int)vScale.x,
+				(int)vScale.y,
+				hdcPressedMem,
+				0, 0,
+				(int)fWidth, (int)fHeight,
+				RGB(255, 0, 255));
+
+			SelectObject(hdcPressedMem, hOldPressedBitmap);			// 메모리 해제 및 정리
+			DeleteDC(hdcPressedMem);
+			DeleteObject(hPressedBitmap);
+		}
+		else
+		{
+			TransparentBlt(dc
+				, (int)(vPos.x - vScale.x * 0.5f)
+				, (int)(vPos.y - vScale.y * 0.5f)
+				, (int)vScale.x
+				, (int)vScale.y
+				, mpTexture->GetDC()
+				, 0, 0
+				, (int)fWidth, (int)fHeight
+				, RGB(255, 0, 255));
+		}
 	}
 
-	
-
-	// child ui render
-	render_child(_dc);
-
-}
-
-void CUI::render_child(HDC _dc)
-{
-	for (size_t i = 0; i < mVecChildUI.size(); ++i)
+	if (mText != L"")
 	{
-		mVecChildUI[i]->Render(_dc);
+		SetBkMode(dc, TRANSPARENT);
+		TextOut(dc, (int)(vPos.x + mvContentOffset.x), (int)(vPos.y + mvContentOffset.y), mText.c_str(), mText.size());
 	}
+
+	// child render
+	RenderChild(dc);
 }
 
-void CUI::update_child()
+void CUI::UpdateChild()
 {
 	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
@@ -109,7 +193,7 @@ void CUI::update_child()
 	}
 }
 
-void CUI::finalupdate_child()
+void CUI::FinalUpdateChild()
 {
 	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
@@ -117,27 +201,14 @@ void CUI::finalupdate_child()
 	}
 }
 
-
-
-void CUI::MouseOnCheck()
+void CUI::RenderChild(HDC dc)
 {
-	Vec2 vMousePos = MOUSE_POS;
-	Vec2 vScale = GetScale();
-	if (mbCamAffected)
+	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
-		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
-	}
-
-	if (mvFinalPos.x <= vMousePos.x && vMousePos.x <= mvFinalPos.x + vScale.x
-		&& mvFinalPos.y <= vMousePos.y && vMousePos.y <= mvFinalPos.y + vScale.y)
-	{
-		mbMouseOn = true;
-	}
-	else
-	{
-		mbMouseOn = false;
+		mVecChildUI[i]->Render(dc);
 	}
 }
+
 void CUI::MouseOn()
 {
 
@@ -150,10 +221,27 @@ void CUI::MouseLbtnDown()
 
 void CUI::MouseLbtnUp()
 {
+	// 밖에서 누르고 안에서 땟을 때도 인식이 된다.
 
 }
 
-void CUI::MouseLbtnClicked()
+void CUI::MouseLbtnClick()
 {
 
+}
+
+CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
+{
+	for (UINT i = 0; i < parentUI->GetChild().size(); ++i)
+	{
+		if (parentUI->GetChild()[i]->GetName() == childUI)
+		{
+			if (parentUI->GetChild()[i] == nullptr)
+				assert(nullptr);
+
+			return parentUI->GetChild()[i];
+		}
+	}
+
+	return nullptr;
 }

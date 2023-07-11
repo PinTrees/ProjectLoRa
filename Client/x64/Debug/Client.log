@@ -1,8 +1,1 @@
-﻿  unity_T5V8ISTYPEMNHGAQ.cpp
-C:\PorojectM\ProjectLoRa\Client\CScene.cpp(113,31): warning C4018: '<=': signed/unsigned mismatch
-C:\PorojectM\ProjectLoRa\Client\CScene.cpp(114,31): warning C4018: '<=': signed/unsigned mismatch
-C:\PorojectM\ProjectLoRa\Client\CScene_start.cpp(131,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CScene_start.cpp(130,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CScene_start.cpp(129,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CScene_start.cpp(128,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Client.vcxproj -> C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe
+﻿  Client.vcxproj -> C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe

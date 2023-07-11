@@ -1,13 +1,11 @@
+#include "pch.h"
 #include "CBtnUI.h"
 
 
 CBtnUI::CBtnUI()
-	:CUI(false)
-	,mpFunc(nullptr)
-	,mparam1(0)
-	,mparam2(0)
-	, mpSceneFunc(nullptr)
-	, mpSceneInst(nullptr)
+	: CUI(false)
+	, mSceneFunc(nullptr)
+	, mScene(nullptr)
 {
 
 }
@@ -29,21 +27,34 @@ void CBtnUI::MouseLbtnUp()
 {
 }
 
-void CBtnUI::MouseLbtnClicked()
+void CBtnUI::MouseLbtnClick()
 {
 	if (nullptr != mpFunc)
 	{
 		mpFunc(mparam1, mparam2);
 	}
 
-	if (mpSceneInst && mpSceneFunc)
+	if (mSceneFunc && mScene)
 	{
-		(mpSceneInst->*mpSceneFunc)();
+		(mScene->*mSceneFunc)();
+	}
+
+	if (mObjectFunc && mObject)
+	{
+		(mObject->*mObjectFunc)();
 	}
 }
 
-void CBtnUI::SetClickedCallBack(CScene* _pScene, SCENE_MEMFUNC _pSceneFunc)
+
+
+void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func)
 {
-	mpSceneInst = _pScene;
-	mpSceneFunc = _pSceneFunc;
+	mSceneFunc = func;
+	mScene = scene;
+}
+
+void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC func)
+{
+	mObjectFunc = func;
+	mObject = object;
 }

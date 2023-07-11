@@ -30,21 +30,21 @@ void CTexture::Load(const wstring& strFilePath)
 	HBITMAP hPrevBit = (HBITMAP)SelectObject(mDC, mhBit);
 	DeleteObject(hPrevBit);
 
-	// ºñÆ®¸Ê Á¤º¸
+	// Bitmap Info Data Setting
 	GetObject(mhBit, sizeof(BITMAP), &mBitInfo);
 }
 
-void CTexture::Create(UINT _iWidth, UINT _iHeight)
-{
-	HDC maindc = CCore::GetI()->GetMainDC();
 
-	mhBit = CreateCompatibleBitmap(maindc, _iWidth, _iHeight);
-	mDC = CreateCompatibleDC(maindc);
+void CTexture::Create(UINT width, UINT heigth, COLORREF color)
+{
+	HDC mainDc = CCore::GetI()->GetMainDC();
+
+	mhBit = CreateCompatibleBitmap(mainDc, width, heigth);
+	mDC = CreateCompatibleDC(mainDc);
 
 	HBITMAP hOldBit = (HBITMAP)SelectObject(mDC, mhBit);
 	DeleteObject(hOldBit);
-	
 
+	// Bitmap Info Data Setting
 	GetObject(mhBit, sizeof(BITMAP), &mBitInfo);
-
 }

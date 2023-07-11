@@ -1,11 +1,15 @@
-#include "pch.h"	
+#include "pch.h"
 #include "AI.h"
 
 #include "CState.h"
+#include "IdleState.h"
+#include "TraceState.h"
+
+
 
 AI::AI()
-	:mpCurstate(nullptr)
-	, mpOwner(nullptr)
+	: mCurState(nullptr)
+	, mOwner(nullptr)
 {
 }
 
@@ -15,47 +19,51 @@ AI::~AI()
 }
 
 
-void AI::Update()
+
+
+void AI::AddState(CState* pState)
 {
-	mpCurstate->Update();
+	CState* state = GetState(pState->GetType());
+	if (nullptr != state)
+		return;
+
+	mMapState.insert(make_pair(pState->GetType(), pState));
+	pState->mpAI = this;
 }
 
-void AI::AddState(CState* _pState)
-{
-	CState* pState = GetState(_pState->GetType());
-	assert(!pState);
 
-	mMapState.insert(make_pair(_pState->GetType(), _pState));
-	_pState->mpAI = this;
-	
-}
-
-CState* AI::GetState(MON_STATE _eState)
+CState* AI::GetState(MONSTER_STATE key)
 {
-	map<MON_STATE, CState*>::iterator iter = mMapState.find(_eState);
+	map<MONSTER_STATE, CState*>::iterator iter = mMapState.find(key);
+
 	if (iter == mMapState.end())
 		return nullptr;
 
 	return iter->second;
 }
 
-void AI::SetCurState(MON_STATE _eState)
+void AI::ChangeState(MONSTER_STATE nextState)
 {
+	CState* pNextState = GetState(nextState);
+	assert(pNextState != mCurState);
 
-	mpCurstate =GetState(_eState);
-	assert(mpCurstate);
-
+	mCurState->Exit();
+	mCurState = pNextState;
+	mCurState->Enter();
 }
 
-void AI::ChangeState(MON_STATE _eNextState)
+void AI::SetCurState(MONSTER_STATE target)
 {
-	CState* pNextState = GetState(_eNextState);
-
-	assert(pNextState != mpCurstate);
-
-	mpCurstate->Exit();
-	mpCurstate = pNextState;
-
-	mpCurstate->Enter();
-
+	mCurState = GetState(target);
+	//assert(!mCurState);
 }
+
+
+void AI::Update()
+{
+	if (nullptr != mCurState)
+	{
+		mCurState->Update();
+	}
+}	
+

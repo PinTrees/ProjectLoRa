@@ -1,8 +1,8 @@
-#include "pch.h"
+Ôªø#include "pch.h"
 #include "CScene_Tool.h"
 
 #include "CKeyMgr.h"
-#include "CTile.h"
+#include "Tile.h"
 
 #include "CCore.h"
 #include "CResMgr.h"
@@ -11,112 +11,93 @@
 
 #include "resource.h"
 
-#include "CUIMgr.h"
+#include "UIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
-#include "CImgBtnUI.h"
+
+#include "FileMgr.h"
+#include "CPathMgr.h"
 
 
+// function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
+void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 
-CScene_Tool::CScene_Tool()
-	:mpUI(nullptr)
+
+Scene_Tool::Scene_Tool()
+	: mpUI(nullptr)
+	, mTileX(1)
+	, mTileY(1)
 {
 }
 
-CScene_Tool::~CScene_Tool()
+Scene_Tool::~Scene_Tool()
 {
 }
 
-void CScene_Tool::Enter()
+void Scene_Tool::Enter()
 {
-	
-	// ≈¯ Scene ø°º≠ ªÁøÎ«“ ∏ﬁ¥∫∏¶ ∫Ÿ¿Œ¥Ÿ.
-	CCore::GetI()->DockMenu();
+	CCore::GetI()->SetActiveMenu(true);
 
+	CreateTile(this, 5, 5);
 
-	//≈∏¿œ ª˝º∫
-	CreateTile(5, 5);
-
-	// UI «œ≥™ ∏∏µÈæÓ∫∏±‚
-	Vec2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	CUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
-	pPanelUI->SetScale(Vec2(300.f, 150.f));
-	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
+	pPanelUI->SetScale(Vect2(300.f, 150.f));
+	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
-	pBtnUI->SetScale(Vec2(100.f, 40.f));
-	pBtnUI->SetPos(Vec2(0.f, 0.f));
-	((CBtnUI*)pBtnUI)->SetClickedCallBack(this, (SCENE_MEMFUNC)&CScene_Tool::SaveTileData);
-	pPanelUI->AddChild(pBtnUI);
-	//AddObject(pPanelUI, GROUP_TYPE::UI);
+	pBtnUI->SetScale(Vect2(100.f, 40.f));
+	pBtnUI->SetPos(Vect2(0.f, 0.f));
 
-
-	CImgBtnUI* pImgBtnUI = new CImgBtnUI;
-	pImgBtnUI->SetName(L"ChildButtonUI");
-	pImgBtnUI->SetScale(Vec2(100.f, 40.f));
-	pImgBtnUI->SetPos(Vec2(100.f, 0.f));
-	pPanelUI->AddChild(pImgBtnUI);
+	// Ìï®ÏàòÎ•º Ïù∏ÏûêÎ°ú ÎÑ£ÏùÑÍ≤ΩÏö∞ Î™ÖÏãúÏ†Å Ï£ºÏÜåÌëúÏãú (Ï†ÑÏó≠Ìï®ÏàòÎßå ÏÉùÎûµ Í∞ÄÎä•)
+	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
+	pPanelUI->AddChild(pBtnUI); 
 	AddObject(pPanelUI, GROUP_TYPE::UI);
-	//¿ÃπÃ¡ˆ UI ∏∏µÈ±‚
 
-
-	//∫πªÁ∫ª UI
-	/*CUI* pClonePanel = pPanelUI->Clone();
-	pClonePanel->SetPos(pClonePanel->GetPos() + Vec2(-299.f, 0.f));
-	AddObject(pClonePanel, GROUP_TYPE::UI);
-
-	mpUI = pClonePanel;*/
-
-	// Camera Look ¡ˆ¡§
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 }
 
-void CScene_Tool::Exit()
+void Scene_Tool::Exit()
 {
-	// ∏ﬁ¥∫¡¶∞≈
-	CCore::GetI()->DivideMenu();
-
+	CCore::GetI()->SetActiveMenu(false);
 	DeleteAll();
 }
 
 
 
-void CScene_Tool::Update()
+void Scene_Tool::Update()
 {
 	CScene::Update();
 
 	SetTileIdx();
 
-	//if (KEY_TAP(KEY::LSHIFT))
-	//{
-	//	//CUIMgr::GetI()->SetFocusedUI(mpUI);
-
-	//	SaveTileData();
-
-	//}
+	if (KEY_TAP(KEY::LSHIFT))
+	{
+		SaveTileData();
+	}
 	if (KEY_TAP(KEY::CTRL))
 	{
 		//CUIMgr::GetI()->SetFocusedUI(mpUI);
-		LoadTileData();
+		LoadTIleData();
 	}
 }
 
-void CScene_Tool::SetTileIdx()
+void Scene_Tool::SetTileIdx()
 {
 	if (KEY_TAP(KEY::LBTN))
 	{
-		Vec2 vMousePos = MOUSE_POS;
+		Vect2 vMousePos = MOUSE_POS;
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
 		int iTileX = (int)GetTileX();
 		int iTileY = (int)GetTileY();
 
-		int iCol = (int)vMousePos.x / TILE_SIZE;
-		int iRow = (int)vMousePos.y / TILE_SIZE;
+		int iCol = (int)vMousePos.x / TILE_SIZE_RENDER;
+		int iRow = (int)vMousePos.y / TILE_SIZE_RENDER;
 
 		if (vMousePos.x < 0.f || iTileX <= iCol
 			|| vMousePos.y < 0.f || iTileY <= iRow)
@@ -127,70 +108,43 @@ void CScene_Tool::SetTileIdx()
 		UINT iIdx = iRow * iTileX + iCol;
 
 		const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
-		((CTile*)vecTile[iIdx])->AddImgIdx();
-
+		((Tile*)vecTile[iIdx])->AddImgIdx();
 	}
 }
 
-void CScene_Tool::SaveTileData()
+
+
+void Scene_Tool::SaveTileData()
 {
 	wchar_t szName[256] = {};
 
 	OPENFILENAME ofn = {};
 
 	ofn.lStructSize = sizeof(OPENFILENAME);
-	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();
+	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();  
 	ofn.lpstrFile = szName;
 	ofn.nMaxFile = sizeof(szName);
-	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile\0";
+	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile";
 	ofn.nFilterIndex = 0;
 	ofn.lpstrFileTitle = nullptr;
 	ofn.nMaxFileTitle = 0;
+		
+	wstring strTitleFolder = CPathMgr::GetI()->GetContentPath();
+	strTitleFolder += L"database";
 
-	wstring strTileFolder = CPathMgr::GetI()->GetContentPath();
-	strTileFolder += L"tile";
-
-	ofn.lpstrInitialDir = strTileFolder.c_str();
+	ofn.lpstrInitialDir = strTitleFolder.c_str();
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
-	// Modal
+	// Modal Dialog
 	if (GetSaveFileName(&ofn))
 	{
-
 		SaveTile(szName);
 	}
 }
 
-void CScene_Tool::SaveTile(const wstring& _strRelativePath)
-{
-	//ƒø≥Œ ø¿∫Í¡ß∆Æ
-	FILE* pFile = nullptr;
-
-	_wfopen_s(&pFile, _strRelativePath.c_str(), L"wb");
-
-	assert(pFile);
-
-	// ≈∏¿œ ∞°∑Œºº∑Œ ∞≥ºˆ ¿˙¿Â
-
-	UINT xCount = GetTileX();
-	UINT yCount = GetTileY();
-
-	fwrite(&xCount, sizeof(UINT), 1, pFile);
-	fwrite(&yCount, sizeof(UINT), 1, pFile);
-
-	// ∏µÁ ≈∏¿œµÈ¿ª ∞≥∫∞¿˚¿∏∑Œ ¿˙¿Â«“ µ•¿Ã≈Õ∏¶ ¿˙¿Â«œ∞‘ «‘
-	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
-
-	for (size_t i = 0; i < vecTile.size(); i++)
-	{
-		((CTile*)vecTile[i])->Save(pFile);
-	}
 
 
-	fclose(pFile);
-}
-
-void CScene_Tool::LoadTileData()
+void Scene_Tool::LoadTIleData()
 {
 	wchar_t szName[256] = {};
 
@@ -200,22 +154,87 @@ void CScene_Tool::LoadTileData()
 	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();
 	ofn.lpstrFile = szName;
 	ofn.nMaxFile = sizeof(szName);
-	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile\0";
+	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile";
 	ofn.nFilterIndex = 0;
 	ofn.lpstrFileTitle = nullptr;
 	ofn.nMaxFileTitle = 0;
-	wstring strTileFolder = CPathMgr::GetI()->GetContentPath();
-	strTileFolder += L"tile";
-	ofn.lpstrInitialDir = strTileFolder.c_str();
+
+	wstring strTitleFolder = CPathMgr::GetI()->GetContentPath();
+	strTitleFolder += L"database";
+
+	ofn.lpstrInitialDir = strTitleFolder.c_str();
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
-	// Modal
+	// Modal Dialog
 	if (GetOpenFileName(&ofn))
 	{
-		wstring strRelativePath = CPathMgr::GetI()->GetRelativePath(szName);
-		LoadTile(strRelativePath);
+		wstring path = CPathMgr::GetI()->GetRelativePath(szName);
+		LoadTile(path);
 	}
 }
+
+
+
+
+
+
+
+void Scene_Tool::SaveTile(const wstring& _fullPath)
+{
+	vector<uint8_t> data;  // Î∞îÏù¥Ìä∏ Î∞∞Ïó¥ÏùÑ Ï†ÄÏû•Ìï† Î≤°ÌÑ∞ ÏÉùÏÑ±
+
+	UINT xCount = GetTileX();
+	UINT yCount = GetTileY();
+
+	// xCountÏôÄ yCountÎ•º Î≤°ÌÑ∞Ïóê Ï∂îÍ∞Ä
+	data.insert(data.end(), reinterpret_cast<uint8_t*>(&xCount), reinterpret_cast<uint8_t*>(&xCount) + sizeof(UINT));
+	data.insert(data.end(), reinterpret_cast<uint8_t*>(&yCount), reinterpret_cast<uint8_t*>(&yCount) + sizeof(UINT));
+
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	for (size_t i = 0; i < vecTile.size(); i++)
+	{
+		Tile* tile = dynamic_cast<Tile*>(vecTile[i]);
+		if (tile) {
+			// Tile Í∞ùÏ≤¥Ïùò Îç∞Ïù¥ÌÑ∞Î•º Î≤°ÌÑ∞Ïóê Ï∂îÍ∞Ä
+			vector<uint8_t> tileData = tile->Save();
+			data.insert(data.end(), tileData.begin(), tileData.end());
+		}
+	}
+
+	FileMgr::WirteByteFullPath(_fullPath, data.data(), (int)data.size());
+}
+
+void Scene_Tool::LoadTile(const wstring& _fullPath)
+{
+	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
+	strFilePath += _fullPath;
+
+	FILE* pFile = nullptr;
+
+	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
+
+	assert(pFile);
+
+	UINT xCount = 0;
+	UINT yCount = 0;
+
+	fread(&xCount, sizeof(UINT), 1, pFile);
+	fread(&yCount, sizeof(UINT), 1, pFile);
+
+	CreateTile(this, xCount, yCount);
+
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	for (size_t i = 0; i < vecTile.size(); i++)
+	{
+		((Tile*)(vecTile[i]))->Load(pFile);
+	}
+
+	fclose(pFile);
+}
+
+
 
 
 
@@ -227,9 +246,9 @@ void ChangeScene(DWORD_PTR, DWORD_PTR)
 
 
 
-// ===================================
+// ======================
 // Tile Count Window Proc
-// ========================
+// ======================
 INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	UNREFERENCED_PARAMETER(lParam);
@@ -246,11 +265,11 @@ INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 
 			CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
 
-			CScene_Tool* pToolScene = dynamic_cast<CScene_Tool*>(pCurScene);
+			Scene_Tool* pToolScene = dynamic_cast<Scene_Tool*>(pCurScene);
 			assert(pToolScene);
 
 			pToolScene->DeleteGroup(GROUP_TYPE::TILE);
-			pToolScene->CreateTile(iXCount, iYCount);
+			CreateTile(pToolScene, iXCount, iYCount);
 
 			EndDialog(hDlg, LOWORD(wParam));
 			return (INT_PTR)TRUE;
@@ -262,4 +281,29 @@ INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 		}
 	}
 	return (INT_PTR)FALSE;
+}
+
+
+void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
+{
+	pScene->DeleteGroup(GROUP_TYPE::TILE);
+
+	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_1", L"texture\\tiles\\1.bmp");
+
+	pScene->SetTileX(xCount);
+	pScene->SetTileY(yCount);
+
+	for (UINT i = 0; i < yCount; ++i)
+	{
+		for (UINT j = 0; j < xCount; ++j)
+		{
+			Tile* pTile = new Tile();
+			
+			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+			pTile->SetTexture(pTileTex);
+
+			pScene->AddObject(pTile, GROUP_TYPE::TILE);
+		}
+	}
 }
