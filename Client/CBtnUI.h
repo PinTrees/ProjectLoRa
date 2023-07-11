@@ -20,6 +20,9 @@ private:
 	SCENE_FUNC		mSceneFunc;
 	CScene*			mScene;
 
+	OBJECT_FUNC		mObjectFunc;
+	CObject*		mObject;
+
 
 public:
 	virtual void MouseOn();
@@ -35,6 +38,7 @@ public:
 	}
 
 	void SetClickedCallBack(CScene* scene, SCENE_FUNC func);
+	void SetClickedCallBack(CObject* object, OBJECT_FUNC func);
 
 	CLONE(CBtnUI);
 

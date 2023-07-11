@@ -1,7 +1,14 @@
-﻿  CUI.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CUI.cpp(124,64): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CUI.cpp(124,56): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CUI.cpp(129,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CUI.cpp(129,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CUI.cpp(181,112): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe
+﻿cl : 명령줄  warning D9030: '/Yc'이(가) 다중 처리와 호환되지 않습니다. /MP 스위치를 무시합니다.
+  CBtnUI.cpp
+  CScene_Tool.cpp
+C:\Users\pc\Desktop\ProjectLoRa-pintree\Client\CScene_Tool.cpp(205,64): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CScene_start.cpp
+C:\Users\pc\Desktop\ProjectLoRa-pintree\Client\CScene_start.cpp(160,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\pc\Desktop\ProjectLoRa-pintree\Client\CScene_start.cpp(161,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  DeadState.cpp
+  Gun.cpp
+  IdleState.cpp
+  Player.cpp
+  Scene_Main.cpp
+  TraceState.cpp
+  Client.vcxproj -> C:\Users\pc\Desktop\ProjectLoRa-pintree\Output\bin_debug\Client.exe

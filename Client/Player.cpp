@@ -212,10 +212,10 @@ void Player::createMissile()
 
 	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
 	int launchAngle = 30;
-	float angle = (float)CRandom::GetI()->Next(-15, 15); // -30도부터 30도 사이의 랜덤한 각도
+	float angle = (float)CRandom::GetI()->Next(-15, 15); // 랜덤한 각도
 	vDir.Rotate(angle); // 방향 벡터를 해당 각도만큼 회전시킵니다.
 
-	// Missile Object
+	// 총알 오브젝트
 	Bullet* pMissile = new Bullet(L"3");
 	pMissile->SetPos(vMissilePos + vDir.Normalize() * 50.f);
 	pMissile->SetDir(vDir);
@@ -244,11 +244,15 @@ void Player::calExp()
 		pBtn->SetPos(Vect2(0.f, 100.f));
 		pBtn->SetScale(Vect2(200.f, 50.f));
 		pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+		pBtn->SetClickedCallBack(this, (OBJECT_FUNC)&Player::SelectLevelUp);
 		pPanel->AddChild(pBtn);
-
 
 		CTimeMgr::GetI()->Stop();
 	}
 }
 
 
+void Player::SelectLevelUp()
+{
+	CTimeMgr::GetI()->Play();
+}

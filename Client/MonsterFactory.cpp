@@ -18,15 +18,15 @@
 
 Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 {
-	Monster* pMonster = nullptr;
+	Monster* pMonster = new Monster;
+
+	pMonster->SetPos(pos);
+	pMonster->CreateRigidBody();
 
 	switch (type)
 	{
 	case MONSTER_TYPE::NORMAL:
 	{
-		pMonster = new Monster;
-		pMonster->SetPos(pos);
-
 		tMonsterInfo info = {};
 		info.atk = 10.f;
 		info.atkRange = 50.f;
@@ -35,8 +35,6 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.speed = 70.f;
 
 		pMonster->setMonsterInfo(info);
-		
-		pMonster->CreateRigidBody();
 		pMonster->GetRigidBody()->SetMess(1.f);
 
 		AI* pAI = new AI;	
@@ -50,6 +48,8 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 	}
 		break;
 	case MONSTER_TYPE::BOSS:
+	{
+	}
 		break;
 	}
 

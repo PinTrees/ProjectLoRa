@@ -66,7 +66,6 @@ Environment::Environment(const wstring& _type)
 	}
 
 
-
 	GetAnimator()->Play(L"IDLE", true);
 }
 

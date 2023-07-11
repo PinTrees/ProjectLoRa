@@ -41,6 +41,10 @@ private:
 
 
 public:
+	void SelectLevelUp();
+
+
+public:
 	float GetMaxExp() { return 10.f * mLevel + 10.f; };
 	float GetExp() { return mExp; };
 	void  AddExp(float exp) { mExp += exp; }

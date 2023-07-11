@@ -38,6 +38,11 @@ void CBtnUI::MouseLbtnClick()
 	{
 		(mScene->*mSceneFunc)();
 	}
+
+	if (mObjectFunc && mObject)
+	{
+		(mObject->*mObjectFunc)();
+	}
 }
 
 
@@ -46,4 +51,10 @@ void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func)
 {
 	mSceneFunc = func;
 	mScene = scene;
+}
+
+void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC func)
+{
+	mObjectFunc = func;
+	mObject = object;
 }

@@ -18,7 +18,7 @@ class CScene
 {
 private:
 	vector<CObject*> mArrObj[(UINT)GROUP_TYPE::END];
-	wstring			 m_strName; //Scene 이름
+	wstring			 mStrName;		//Scene 이름
 
 	// 씬 오브젝트 물리 폭발 관리
 	vector<tForce> mArrForce;
@@ -29,17 +29,16 @@ protected:
 
 
 public:
-	void SetName(const wstring& _strName) { m_strName = _strName; }
-	const wstring& GetName() { return m_strName; }
+	void SetName(const wstring& _strName) { mStrName = _strName; }
+	const wstring& GetName() { return mStrName; }
 
-	void UpdateOnlyUI();
-
-	virtual void Update();
-	virtual void FinalUpdate();
-	virtual void Render(HDC _dc);
-
-	virtual void Enter() = 0; // 해당 씬 진입시 호출
-	virtual void Exit() = 0;  // 해당씬 탈출시 호출
+	// Life Cycle Point Function
+	virtual void Update();			// 매 프레임 마다 호출
+	virtual void FinalUpdate();		// 매 마지막 프레임 마다 호츨
+	virtual void Render(HDC _dc);	// 매 렌더링 프레임 마다 호출
+	
+	virtual void Enter() = 0;		// 씬 진입시 호출
+	virtual void Exit() = 0;		// 씬 탈출시 호출
 
 
 public:
