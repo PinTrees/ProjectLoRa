@@ -22,8 +22,17 @@
 #include "CIdleState.h"
 #include "CTraceState.h"
 
+#include "CRigidBody.h"
+#include "SelectGDI.h"
+#include "CTimeMgr.h"
+
+
 
 CScene_start::CScene_start()
+	:mbUseForce(false)
+	, mfForceRadius(500.f)
+	, mfCurRadius(0.f)
+	, mfForce(500.f)
 {
 }
 
@@ -33,7 +42,50 @@ CScene_start::~CScene_start()
 
 void CScene_start::Update()
 {
-	CScene::Update();
+	if (KEY_HOLD(KEY::RBTN))
+	{
+		mbUseForce = true;
+		CreateForce();
+	}
+	else
+	{
+		mbUseForce = false;
+	}
+
+
+
+
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		const vector<CObject*>& vecObj = GetGroupObject((GROUP_TYPE)i);
+		for (size_t j = 0; j < vecObj.size(); ++j)
+		{
+			if (!vecObj[j]->IsDead())
+			{
+				if (mbUseForce && vecObj[j]->GetRigidBody())
+				{
+					Vec2 vDiff = vecObj[j]->GetPos() - mvForcePos;
+					float fLen = vDiff.Length();
+					if (fLen < mfForceRadius)
+					{
+
+						float fRatio = 1.f - (fLen / mfForceRadius);
+						float fForce = mfForce * fRatio;
+						vecObj[j]->GetRigidBody()->AddForce(vDiff.Normalize() * fForce);
+					}
+				}
+				vecObj[j]->Update();
+			}
+		}
+	}
+
+
+
+
+
+
+
+
 
 	if (KEY_TAP(KEY::ENTER))
 	{
@@ -42,10 +94,40 @@ void CScene_start::Update()
 
 	if (KEY_HOLD(KEY::LBTN))
 	{
-		
+
 		Vec2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
 		CCamera::GetI()->SetLookAt(vLookAt);
 	}
+
+
+}
+
+void CScene_start::Render(HDC _dc)
+{
+	CScene::Render(_dc);
+
+	if (!mbUseForce)
+		return;
+
+	SelectGDI gdi1(_dc, BRUSH_TYPE::HOLLOW);
+	SelectGDI gdi2(_dc, PEN_TYPE::GREEN);
+
+	mfCurRadius += mfForceRadius * 3.f * fDT;
+
+	if (mfCurRadius > mfForceRadius)
+	{
+		mfCurRadius = 0.f;
+	}
+	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvForcePos);
+
+	Ellipse(_dc
+		, vRenderPos.x - mfCurRadius
+		, vRenderPos.y - mfCurRadius
+		, vRenderPos.x + mfCurRadius
+		, vRenderPos.y + mfCurRadius);
+
+
+
 }
 
 void CScene_start::Enter()
@@ -68,7 +150,7 @@ void CScene_start::Enter()
 
 	//몬스터 배치
 	Vec2 vResolution = CCore::GetI()->GetResolution();
-	CMonster* pMon = CMonFactory::CreateMonster(MON_TYPE::NORMAL,vResolution / 2.f -Vec2(0.f,300.f));
+	CMonster* pMon = CMonFactory::CreateMonster(MON_TYPE::NORMAL, vResolution / 2.f - Vec2(0.f, 300.f));
 	AddObject(pMon, GROUP_TYPE::MONSTER);
 
 	// CreateObject(pMon, GROUP_TYPE::MONSTER);
@@ -107,3 +189,7 @@ void CScene_start::Exit()
 }
 
 
+void CScene_start::CreateForce()
+{
+	mvForcePos = CCamera::GetI()->GetRealPos(MOUSE_POS);
+}
