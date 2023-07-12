@@ -12,7 +12,6 @@ private:
 	CUI*			mpParentUI;
 
 	CTexture*		mpTexture;
-	wstring			mText;
 	Vect2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
 
 	Vect2			mvFinalPos;
@@ -29,9 +28,12 @@ public:
 	virtual void FinalUpdate() override;
 	virtual void Render(HDC _dc) override;
 
+	virtual void OnDestroy() override;
+
 	void UpdateChild();
 	void FinalUpdateChild();
 	void RenderChild(HDC dc);
+
 
 public:
 	void OnMouseCheck();
@@ -43,6 +45,9 @@ public:
 	virtual void MouseLbtnDown();
 	virtual void MouseLbtnUp();
 	virtual void MouseLbtnClick();
+
+private:
+	virtual void SetDead() override;
 
 public:
 	void AddChild(CUI* ui)
@@ -71,14 +76,11 @@ public:
 	void	SetCameraAffected(bool active) { mCameraAffected = active; };
 	bool	GetCameraAffected() { return mCameraAffected; };
 
-	wstring GetText() { return mText; }
-	void	SetText(const wstring& _text) { mText = _text; }
-
 
 public:
 	CUI(bool cameraAffected);
 	CUI(const CUI& origin);
-	virtual ~CUI() override;
+	virtual ~CUI();
 
 	friend class CUIMgr;
 };

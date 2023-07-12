@@ -5,7 +5,6 @@
 
 #include <future>
 
-
 #include <vector>
 using std::vector;
 
@@ -19,6 +18,9 @@ using std::list;
 #include <string>
 using std::wstring;
 using std::string;
+
+#include <sstream>
+using std::wstringstream;
 
 #include <fstream>
 #include <tchar.h>

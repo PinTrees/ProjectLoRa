@@ -50,13 +50,6 @@ void Scene_Start::Update()
 		ChangeScene(SCENE_TYPE::TOOL);
 	}
 
-	if (KEY_HOLD(KEY::LBTN)) 
-	{
-		
-		Vect2 vLookAt = CCamera::GetI()->GetRealPos(MOUSE_POS);
-		CCamera::GetI()->SetLookAt(vLookAt);
-	}
-
 	mfCurDelay += DT;
 	if (mfCurDelay > mfMstrDelay)
 	{

@@ -46,6 +46,7 @@ void Scene_Main::Enter()
 
 void Scene_Main::Exit()
 {
+	DeleteAll();
 }
 
 void ChangeSceneStart(DWORD_PTR, DWORD_PTR)

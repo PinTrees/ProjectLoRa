@@ -72,11 +72,11 @@ CTexture* CResMgr::CreateTexture(const wstring& strKey, UINT width, UINT height,
 
 CFont* CResMgr::LoadFont(const wstring& _strKey, const wstring& _strRelativePath, int _size, bool _border)
 {
-	CFont* pTex = FindFont(_strKey);
-	if (nullptr != pTex)
+	CFont* pFont = FindFont(_strKey);
+	if (nullptr != pFont)
 	{
-		pTex->SelectFont(_size, _strKey, _border);
-		return pTex;
+		pFont->SelectFont(_size, _strKey, _border);
+		return pFont;
 	}
 
 	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
@@ -84,14 +84,14 @@ CFont* CResMgr::LoadFont(const wstring& _strKey, const wstring& _strRelativePath
 
 	HDC dc = CCore::GetI()->GetMainDC();
 
-	pTex = new CFont(dc);
-	pTex->Create(strFilePath);
-	pTex->SelectFont(_size, _strKey, _border);
-	pTex->SetKey(_strKey);
-	pTex->SetRelativePath(_strRelativePath);
+	pFont = new CFont(dc);
+	pFont->Create(strFilePath);
+	pFont->SelectFont(_size, _strKey, _border);
+	pFont->SetKey(_strKey);
+	pFont->SetRelativePath(_strRelativePath);
 
-	mMapTex.insert(make_pair(_strKey, pTex));
-	return pTex;
+	mMapTex.insert(make_pair(_strKey, pFont));
+	return pFont;
 }
 
 CFont* CResMgr::FindFont(const wstring& _strKey)

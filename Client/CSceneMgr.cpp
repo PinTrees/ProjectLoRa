@@ -50,16 +50,6 @@ void CSceneMgr::Init()
 
 void CSceneMgr::Update()
 {
-	if (!CTimeMgr::GetI()->IsPlay())
-	{
-		vector<CObject*> arrUI = m_pCurScene->GetGroupObject(GROUP_TYPE::UI);
-		for (int i = 0; i < arrUI.size(); ++i)
-		{
-			arrUI[i]->Update();
-		}
-		return;
-	}
-
 	m_pCurScene->Update();
 }
 
@@ -83,7 +73,6 @@ void CSceneMgr::FinalUpdate()
 void CSceneMgr::Render(HDC _dc)
 {
 	m_pCurScene->Render(_dc);
-
 }
 
 void CSceneMgr::ChangeScene(SCENE_TYPE _eNext)

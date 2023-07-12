@@ -19,6 +19,8 @@
 // Include UI
 #include "BarUI.h"
 
+#include "CombatText.h"
+
 
 
 Monster::Monster()
@@ -89,6 +91,12 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 	{
 		mtInfo.curHp -= 5;
 		if (mtInfo.curHp < 0) mtInfo.curHp = 0;
+
+		CombatText* pCbTex = new CombatText;
+		pCbTex->SetPos(GetLocalPos());
+		pCbTex->SetCameraAffected(false);
+		pCbTex->SetText(std::to_wstring(5));
+		CreateObject(pCbTex, GROUP_TYPE::UI);
 
 		tForce fc = {};
 		fc.radius = 60.f;

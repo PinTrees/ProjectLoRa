@@ -6,14 +6,16 @@ CBtnUI::CBtnUI()
 	: CUI(false)
 	, mSceneFunc(nullptr)
 	, mScene(nullptr)
+	, mText(nullptr)
 {
-
+	mText = new TextUI;
+	this->AddChild(mText);
 }
 
 CBtnUI::~CBtnUI()
 {
-
 }
+
 
 void CBtnUI::MouseOn()
 {
@@ -44,7 +46,6 @@ void CBtnUI::MouseLbtnClick()
 		(mObject->*mObjectFunc)();
 	}
 }
-
 
 
 void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func)

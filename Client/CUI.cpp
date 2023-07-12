@@ -16,7 +16,6 @@ CUI::CUI(bool cameraAffected)
 	, mvFinalPos{}
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
-	, mText(L"")
 {
 
 }
@@ -27,7 +26,6 @@ CUI::CUI(const CUI& origin)
 	, mCameraAffected(origin.mCameraAffected)
 	, mOnMouseCheck(false)
 	, mLbtnDown(false)
-	, mText(origin.mText)
 {
 	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
@@ -121,12 +119,12 @@ void CUI::Render(HDC dc)
 
 		if (mLbtnDown)
 		{
-			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, fWidth, fHeight);
+			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, (int)fWidth, (int)fHeight);
 			HDC hdcPressedMem = CreateCompatibleDC(dc);
 			HBITMAP hOldPressedBitmap = (HBITMAP)SelectObject(hdcPressedMem, hPressedBitmap);
 
 			// ºñÆ®¸Ê º¹»ç
-			BitBlt(hdcPressedMem, 0, 0, fWidth, fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
+			BitBlt(hdcPressedMem, 0, 0, (int)fWidth, (int)fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
 
 			for (int y = 0; y < fWidth; ++y)
 			{
@@ -175,12 +173,6 @@ void CUI::Render(HDC dc)
 		}
 	}
 
-	if (mText != L"")
-	{
-		SetBkMode(dc, TRANSPARENT);
-		TextOut(dc, (int)(vPos.x + mvContentOffset.x), (int)(vPos.y + mvContentOffset.y), mText.c_str(), mText.size());
-	}
-
 	// child render
 	RenderChild(dc);
 }
@@ -209,6 +201,13 @@ void CUI::RenderChild(HDC dc)
 	}
 }
 
+
+
+
+void CUI::OnDestroy()
+{
+}
+
 void CUI::MouseOn()
 {
 
@@ -228,6 +227,16 @@ void CUI::MouseLbtnUp()
 void CUI::MouseLbtnClick()
 {
 
+}
+
+
+void CUI::SetDead()
+{
+	CObject::SetDead();
+	for (int i = 0; i < mVecChildUI.size(); ++i)
+	{
+		mVecChildUI[i]->SetDead();
+	}
 }
 
 CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)

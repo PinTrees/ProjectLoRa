@@ -83,7 +83,7 @@ public:
 
 
 private:
-	void	SetDead() { mbAlive = false; }
+	virtual void SetDead() { mbAlive = false; }
 
 
 public:
@@ -101,5 +101,6 @@ public:
 	virtual ~CObject();
 
 	friend class CEventMgr;
+	friend class CUI;
 };
 

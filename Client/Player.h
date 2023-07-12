@@ -1,6 +1,7 @@
 #pragma once
 #include "CObject.h"
 
+
 // 스테이트 패턴으로 변경 필요
 enum class PLAYER_STATE
 {
@@ -16,6 +17,7 @@ enum class PLAYER_STATE
 class CTexture;
 class Gun;
 class BarUI;
+class CPanelUI;
 
 
 
@@ -38,6 +40,8 @@ private:
 
 	float	mExp;
 	BarUI*	mExpBar;
+
+	CPanelUI*	mLevelupUI;
 
 
 public:

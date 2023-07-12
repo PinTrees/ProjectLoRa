@@ -34,7 +34,10 @@ void CUIMgr::Update()
 
 	if (nullptr != targetUI)
 	{
-		// UI위에있다고 얼려준다.
+		if (targetUI->IsDead())
+			return;
+
+		// UI위에있다고 알려준다.
 		targetUI->MouseOn();
 
 		if (tapLbtn)
@@ -46,9 +49,9 @@ void CUIMgr::Update()
 		{
 			targetUI->MouseLbtnUp();
 
+			// 마우스 올라가있는 상태에서 때진것이라면은 클릭이다.
 			if (targetUI->mLbtnDown)
 			{
-				// 마우스 올라가있는 상태에서 때진것이라면은 클릭이다.
 				targetUI->MouseLbtnClick();
 			}
 
@@ -57,6 +60,7 @@ void CUIMgr::Update()
 		}
 	}
 }
+
 
 void CUIMgr::SetFocusUI(CUI* ui)
 {
@@ -71,7 +75,7 @@ void CUIMgr::SetFocusUI(CUI* ui)
 	_focusedUI = ui;
 
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
-	vector<CObject*>& vecUI = curScene->GetUIGroups(GROUP_TYPE::UI);
+	vector<CObject*>& vecUI = curScene->GetUIGroups();
 
 	vector<CObject*>::iterator iter = vecUI.begin();
 
@@ -90,7 +94,7 @@ void CUIMgr::SetFocusUI(CUI* ui)
 CUI* CUIMgr::GetFocusUI()
 {
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
-	vector<CObject*>& vecUI = curScene->GetUIGroups(GROUP_TYPE::UI);
+	vector<CObject*>& vecUI = curScene->GetUIGroups();
 
 	bool tapLbtn = KEY_TAP(KEY::LBTN);
 
@@ -157,7 +161,6 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 			{
 				vecNoneTargetUI.push_back(targetUI);
 			}
-
 			targetUI = ui;
 		}
 		else
@@ -165,6 +168,7 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 			vecNoneTargetUI.push_back(ui);
 		}
 
+		// 자식 UI를 다음 검사 목록에 추가
 		const vector<CUI*>& vecChild = ui->GetChild();
 		for (size_t i = 0; i < vecChild.size(); ++i)
 		{

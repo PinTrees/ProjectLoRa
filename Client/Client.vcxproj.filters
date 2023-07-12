@@ -364,6 +364,9 @@
     <ClInclude Include="TextUI.h">
       <Filter>FreamWork\UI\Text</Filter>
     </ClInclude>
+    <ClInclude Include="CombatText.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -529,6 +532,9 @@
     </ClCompile>
     <ClCompile Include="TextUI.cpp">
       <Filter>FreamWork\UI\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

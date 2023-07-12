@@ -9,6 +9,7 @@
 #include "CSceneMgr.h"
 #include "CResMgr.h"
 #include "Random.h"
+#include "UIMgr.h"
 
 // Include Component Header
 #include "CTexture.h"
@@ -23,6 +24,7 @@
 #include "Gun.h"
 
 // Include UI Object Header
+#include "CUI.h"
 #include "BarUI.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
@@ -40,6 +42,7 @@ Player::Player()
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
+	, mLevelupUI(nullptr)
 {
 	// Init Object Component
 	// Create Collider Component
@@ -235,24 +238,20 @@ void Player::calExp()
 
 		Vect2 vRes = CCore::GetI()->GetResolution();
 
-		CPanelUI* pPanel = new CPanelUI;
-		pPanel->SetPos(Vect2(175.f, vRes.y * 0.5f));
-		pPanel->SetScale(Vect2(300.f, 300.f));
-		pPanel->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
-		CreateObject(pPanel, GROUP_TYPE::UI);
+		mLevelupUI = new CPanelUI;
+		mLevelupUI->SetPos(vRes * 0.5f);
+		mLevelupUI->SetScale(Vect2(300.f, 300.f));
+		mLevelupUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
+		CreateObject(mLevelupUI, GROUP_TYPE::UI);
 
 		CBtnUI* pBtn = new CBtnUI;
 		pBtn->SetPos(Vect2(0.f, 100.f));
 		pBtn->SetScale(Vect2(200.f, 50.f));
+		pBtn->SetText(L"¼±ÅÃ");
 		pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 		pBtn->SetClickedCallBack(this, (OBJECT_FUNC)&Player::SelectLevelUp);
-		pPanel->AddChild(pBtn);
-
-		TextUI* pText = new TextUI;
-		pText->SetPos(Vect2(0.f, 100.f));
-		pText->SetText(L"AAAA");
-		pPanel->AddChild(pText);
-
+		//CreateObject(pBtn, GROUP_TYPE::UI);
+		mLevelupUI->AddChild(pBtn);
 
 		CTimeMgr::GetI()->Stop();
 	}
@@ -262,4 +261,10 @@ void Player::calExp()
 void Player::SelectLevelUp()
 {
 	CTimeMgr::GetI()->Play();
+
+	if (nullptr != mLevelupUI)
+	{
+		CUIMgr::GetI()->SetFocusUI(nullptr);
+		DeleteObject(mLevelupUI);
+	}
 }

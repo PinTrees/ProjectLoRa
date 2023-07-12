@@ -112,10 +112,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MaxFilesInUnityFile>10</MaxFilesInUnityFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -158,6 +159,7 @@
     <ClInclude Include="CFont.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CombatText.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -217,6 +219,7 @@
     <ClCompile Include="CFont.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="Monster.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
