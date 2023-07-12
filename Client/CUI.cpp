@@ -76,7 +76,7 @@ void CUI::OnMouseCheck()
 	}
 
 	if (mvFinalPos.x - uiScale.x * 0.5f <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x * 0.5f &&
-		mvFinalPos.y - uiScale.x * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
+		mvFinalPos.y - uiScale.y * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
 	{
 		mOnMouseCheck = true;
 	}
@@ -106,10 +106,10 @@ void CUI::Render(HDC dc)
 		Rectangle
 		(
 			dc,
-			int(vPos.x),
-			int(vPos.y),
-			int(vPos.x + vScale.x),
-			int(vPos.y + vScale.y)
+			int(vPos.x - vScale.x * 0.5f),
+			int(vPos.y - vScale.y * 0.5f),
+			int(vPos.x + vScale.x * 0.5f),
+			int(vPos.y + vScale.y * 0.5f)
 		);
 	}
 	else
@@ -117,60 +117,15 @@ void CUI::Render(HDC dc)
 		float fWidth = (float)mpTexture->Width();
 		float fHeight = (float)mpTexture->Heigth();
 
-		if (mLbtnDown)
-		{
-			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, (int)fWidth, (int)fHeight);
-			HDC hdcPressedMem = CreateCompatibleDC(dc);
-			HBITMAP hOldPressedBitmap = (HBITMAP)SelectObject(hdcPressedMem, hPressedBitmap);
-
-			// 비트맵 복사
-			BitBlt(hdcPressedMem, 0, 0, (int)fWidth, (int)fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
-
-			for (int y = 0; y < fWidth; ++y)
-			{
-				for (int x = 0; x < fHeight; ++x)
-				{
-					COLORREF pixel = GetPixel(hdcPressedMem, x, y);
-
-					BYTE r = GetRValue(pixel);
-					BYTE g = GetGValue(pixel);
-					BYTE b = GetBValue(pixel);
-
-					r = (BYTE)(((float)r * 200) / 255);				// 색상 곱하기
-					g = (BYTE)(((float)g * 200) / 255);
-					b = (BYTE)(((float)b * 200) / 255);
-
-					COLORREF newPixel = RGB(r, g, b);
-					SetPixel(hdcPressedMem, x, y, newPixel);
-				}
-			}
-
-			TransparentBlt(dc,
-				(int)(vPos.x - vScale.x * 0.5f),
-				(int)(vPos.y - vScale.y * 0.5f),
-				(int)vScale.x,
-				(int)vScale.y,
-				hdcPressedMem,
-				0, 0,
-				(int)fWidth, (int)fHeight,
-				RGB(255, 0, 255));
-
-			SelectObject(hdcPressedMem, hOldPressedBitmap);			// 메모리 해제 및 정리
-			DeleteDC(hdcPressedMem);
-			DeleteObject(hPressedBitmap);
-		}
-		else
-		{
-			TransparentBlt(dc
-				, (int)(vPos.x - vScale.x * 0.5f)
-				, (int)(vPos.y - vScale.y * 0.5f)
-				, (int)vScale.x
-				, (int)vScale.y
-				, mpTexture->GetDC()
-				, 0, 0
-				, (int)fWidth, (int)fHeight
-				, RGB(255, 0, 255));
-		}
+		TransparentBlt(dc
+			, (int)(vPos.x - vScale.x * 0.5f)
+			, (int)(vPos.y - vScale.y * 0.5f)
+			, (int)vScale.x
+			, (int)vScale.y
+			, mpTexture->GetDC()
+			, 0, 0
+			, (int)fWidth, (int)fHeight
+			, RGB(255, 0, 255));
 	}
 
 	// child render

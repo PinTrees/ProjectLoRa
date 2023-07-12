@@ -74,9 +74,12 @@ void CEventMgr::excute(const tEvent& _eve)
 	{
 		// lParam : AI
 		// wParam : Next State
-		AI* pAI = (AI*)_eve.lParam;
-		MONSTER_STATE nextState = (MONSTER_STATE)_eve.wParam;
-		pAI->ChangeState(nextState);
+
+		/*using RealType = decltype(_eve.wParam);
+
+		AI<RealType>* pAI = (AI<RealType>*)_eve.lParam;
+		RealType nextState = (RealType)_eve.wParam;
+		pAI->ChangeState(nextState);*/
 	}
 		break;
 	case EVENT_TYPE::SCENE_CHANGE:

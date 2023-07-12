@@ -1,9 +1,12 @@
 #include "pch.h"
+#include "CState.cpp"
+
 #include "DeadState.h"
 
 // Include GameObject Header
 #include "Monster.h"
 #include "Player.h"
+#include "Gold.h"
 
 // Include Components Header
 #include "CAnimator.h"
@@ -36,6 +39,11 @@ void DeadState::Update()
 	if (GetOwner()->GetAnimator()->GetCurAnimation()->IsFinish())
 	{
 		DeleteObject(GetOwner());
+
+		Gold* pGold = new Gold;
+		pGold->SetPos(GetOwner()->GetLocalPos());
+		pGold->SetScale(Vect2(36.f, 36.f));
+		CreateObject(pGold, GROUP_TYPE::GOLD);
 	}
 }
 

@@ -1,22 +1,27 @@
 #pragma once
+#include "AI.h"
 
-
-class AI;
 class CObject;
 
+template <typename T>
+class AI;
 
-//template <typename T>
+
+
+template <typename T>
 class CState
 {
 private:
-	AI*				mpAI;
-	MONSTER_STATE	mState;
+	AI<T>*			mpAI;
+	T				mState;
+
 
 public:
-	AI* GetAI() { return mpAI; }
-	MONSTER_STATE GetType() { return mState; }
+	AI<T>* GetAI() { return mpAI; }
+	T GetType() { return mState; }
 
-	CObject* GetOwner();
+	CObject* GetOwner() { return mpAI->GetOwner(); }
+
 
 public:
 	virtual void Update() = 0;
@@ -25,9 +30,13 @@ public:
 
 
 public:
-	CState(MONSTER_STATE state);
-	virtual ~CState();
+	CState(T state)
+		: mState(state)
+		, mpAI(nullptr)
+	{}
+	virtual ~CState()	{}
 
-	friend class AI;
+
+	friend class AI<T>;
 };
 

@@ -76,7 +76,7 @@ void Monster::Update()
 	}
 }
 
-void Monster::SetAI(AI* pAI)
+void Monster::SetAI(AI<MONSTER_STATE>* pAI)
 {
 	mAI = pAI;
 	mAI->SetOwner(this);

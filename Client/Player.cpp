@@ -96,7 +96,6 @@ Player::Player()
 
 Player::~Player()
 {
-
 }
 
 
@@ -120,7 +119,7 @@ void Player::Update()
 		if (GetAnimator()->GetCurAnimation()->IsFinish())
 		{
 			mCurGun->SetVisible(true);
-			mState = PLAYER_STATE::Idle;
+			mState = PLAYER_STATE::IDLE;
 		}
 
 		return;
@@ -143,7 +142,7 @@ void Player::Update()
 		return;
 	}
 
-	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > 0.01f)
+	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > mCurGun->GetInfo().mReloadSpeed)
 	{
 		mfCurDelay = 0.f;
 
@@ -162,11 +161,11 @@ void Player::Update()
 	{
 		if (GetAnimator()->GetCurAnimation()->IsFinish())
 		{
-			mState = PLAYER_STATE::Idle;
+			mState = PLAYER_STATE::IDLE;
 		}
 	}
 
-	else if (mState == PLAYER_STATE::Idle)
+	else if (mState == PLAYER_STATE::IDLE)
 	{
 		GetAnimator()->Play(L"IDLE", true);
 	}
@@ -197,7 +196,7 @@ void Player::Update()
 	}
 	else
 	{
-		mState = PLAYER_STATE::Idle;
+		mState = PLAYER_STATE::IDLE;
 	}
 }
 
@@ -229,6 +228,7 @@ void Player::createMissile()
 }
 
 
+
 void Player::calExp()
 {
 	if (mExp >= GetMaxExp())
@@ -240,25 +240,36 @@ void Player::calExp()
 
 		mLevelupUI = new CPanelUI;
 		mLevelupUI->SetPos(vRes * 0.5f);
-		mLevelupUI->SetScale(Vect2(300.f, 300.f));
-		mLevelupUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
+		mLevelupUI->SetScale(vRes);
 		CreateObject(mLevelupUI, GROUP_TYPE::UI);
 
-		CBtnUI* pBtn = new CBtnUI;
-		pBtn->SetPos(Vect2(0.f, 100.f));
-		pBtn->SetScale(Vect2(200.f, 50.f));
-		pBtn->SetText(L"선택");
-		pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
-		pBtn->SetClickedCallBack(this, (OBJECT_FUNC)&Player::SelectLevelUp);
-		//CreateObject(pBtn, GROUP_TYPE::UI);
-		mLevelupUI->AddChild(pBtn);
+		for (int i = 0; i < 3; ++i)
+		{
+			float spacing = vRes.x / 3;
+
+			CPanelUI* pPanel = new CPanelUI;
+			pPanel->SetPos(Vect2(spacing * i - spacing, 0.f));
+			pPanel->SetScale(Vect2(300.f, 300.f));
+			pPanel->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
+			mLevelupUI->AddChild(pPanel);
+
+			tUpgrad a = {};
+
+			CBtnUI* pBtn = new CBtnUI;
+			pBtn->SetPos(Vect2(0.f, 100.f));
+			pBtn->SetScale(Vect2(200.f, 50.f));
+			pBtn->SetText(L"선택");
+			pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+			pBtn->SetClickedCallBack(this, (OBJECT_FUNC_P)&Player::SelectLevelUp, (DWORD_PTR)&a);
+			pPanel->AddChild(pBtn);
+		}
 
 		CTimeMgr::GetI()->Stop();
 	}
 }
 
 
-void Player::SelectLevelUp()
+void Player::SelectLevelUp(DWORD_PTR param)
 {
 	CTimeMgr::GetI()->Play();
 

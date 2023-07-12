@@ -19,7 +19,7 @@ private:
 	COLORREF		mColor;		// 텍스쳐의 색상 비율값입니다.
 
 	bool			mCameraAffected;
-	bool			mOnMouseCheck;
+	bool			mOnMouseCheck;	
 	bool			mLbtnDown;
 
 

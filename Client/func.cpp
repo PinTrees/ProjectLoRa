@@ -3,7 +3,6 @@
 
 // Include Manager
 #include "CPathMgr.h"
-#include "CEventMgr.h"
 #include "CResMgr.h"
 #include "CSceneMgr.h"
 
@@ -12,6 +11,8 @@
 
 #include "Tile.h"
 #include "Background.h"
+
+#include "AI.h"
 
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
@@ -45,15 +46,7 @@ void ChangeScene(SCENE_TYPE _eNext)
 }
 
 
-void ChangeAIState(AI* pAI, MONSTER_STATE nextState)
-{
-	tEvent evn = {};
-	evn.eEven = EVENT_TYPE::CHANGE_AI_STATE;
-	evn.lParam = (DWORD_PTR)pAI;
-	evn.wParam = (DWORD_PTR)nextState;
 
-	CEventMgr::GetI()->AddEvent(evn);
-}
 
 
 void CreateForce(tForce& force)

@@ -191,6 +191,9 @@
     <Filter Include="FreamWork\UI\Text">
       <UniqueIdentifier>{0a902a05-40d7-4e2b-a467-d8f26d5fa6fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\Player\Idle">
+      <UniqueIdentifier>{cfd7de57-f5d4-448c-838f-0fa793e4f37f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -367,6 +370,9 @@
     <ClInclude Include="CombatText.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
+    <ClInclude Include="PIdleState.h">
+      <Filter>Game\FSM\Player\Idle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -535,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="CombatText.cpp">
       <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PIdleState.cpp">
+      <Filter>Game\FSM\Player\Idle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

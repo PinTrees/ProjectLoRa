@@ -1,12 +1,20 @@
 #include "pch.h"
 #include "CBtnUI.h"
 
+#include "CResMgr.h"
+#include "CTexture.h"
+#include "CCore.h"
+
+
+
 
 CBtnUI::CBtnUI()
 	: CUI(false)
 	, mSceneFunc(nullptr)
 	, mScene(nullptr)
 	, mText(nullptr)
+	, mpVeilTex(nullptr)
+	, mpChangeTex(nullptr)
 {
 	mText = new TextUI;
 	this->AddChild(mText);
@@ -16,6 +24,23 @@ CBtnUI::~CBtnUI()
 {
 }
 
+
+
+
+void CBtnUI::Render(HDC dc)
+{
+	CUI::Render(dc);
+
+	if (IsMouseOn())
+	{
+		ApplyAlphaBlend(dc, 64);
+	}
+
+	if (IsLbtnDown())
+	{
+		ApplyAlphaBlend(dc, 128);
+	}
+}
 
 void CBtnUI::MouseOn()
 {
@@ -45,6 +70,20 @@ void CBtnUI::MouseLbtnClick()
 	{
 		(mObject->*mObjectFunc)();
 	}
+
+	if (mObjectFuncP && mObject)
+	{
+		(mObject->*mObjectFuncP)(mparam1);
+	}
+
+
+	if (nullptr != mpChangeTex)
+	{
+		//mpChangeTex->SetSize(GetTextrue()->GetSize());
+		CTexture* temp = mpChangeTex;
+		mpChangeTex = GetTextrue();
+		SetTextrue(temp);
+	}
 }
 
 
@@ -58,4 +97,36 @@ void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC func)
 {
 	mObjectFunc = func;
 	mObject = object;
+}
+
+void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC_P func, DWORD_PTR param)
+{
+	mObject = object;
+	mObjectFuncP = func;
+	mparam1 = param;
+}
+
+
+void CBtnUI::ApplyAlphaBlend(HDC _dc, int _alpha)
+{
+	Vect2 vSize = GetScale();
+	Vect2 vPos = GetFinalPos();
+	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
+
+	BLENDFUNCTION bf = {};
+
+	bf.BlendOp = AC_SRC_OVER;
+	bf.BlendFlags = 0;
+	bf.AlphaFormat = 0;
+	bf.SourceConstantAlpha = _alpha;
+
+	AlphaBlend(_dc
+		, (int)vPos.x - vSize.x * 0.5f
+		, (int)vPos.y - vSize.y * 0.5f
+		, (int)vSize.x
+		, (int)vSize.y
+		, mpVeilTex->GetDC()
+		, 0, 0
+		, (int)mpVeilTex->Width()
+		, (int)mpVeilTex->Heigth(), bf);
 }

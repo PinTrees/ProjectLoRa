@@ -21,7 +21,17 @@ Gun::Gun(const wstring& _type)
 	, mDelay(1.f)
 	, mCurDelay(0.f)
 	, mOwner(nullptr)
+	, mInfo({})
 {
+	// 파일 처리
+	mInfo.mAtkDamage = 10.f;
+	mInfo.mAtkRange = 1000.f;
+	mInfo.mAtkSpeed = 300.f;
+	mInfo.mPenetration = 3;
+	mInfo.mReloadSpeed = 0.3f;
+	mInfo.mShotAngle = 30.f;
+	mInfo.mShotSpeed = 0.3f;
+
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"GUN" + _type, L"texture\\gun\\" + _type + L".bmp");
 	CreateAnimator();
 
@@ -35,7 +45,6 @@ Gun::Gun(const wstring& _type)
 
 	}
 
-
 	GetAnimator()->Play(L"IDLE", true);
 }
 
@@ -46,6 +55,13 @@ Gun::~Gun()
 {
 
 }
+
+
+void Gun::Shot()
+{
+	
+}
+
 
 void Gun::Update()
 {

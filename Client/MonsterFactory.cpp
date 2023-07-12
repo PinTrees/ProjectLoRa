@@ -37,7 +37,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
 
-		AI* pAI = new AI;	
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
 		pAI->AddState(new IdleState);
 		pAI->AddState(new TraceState);
 		pAI->AddState(new DeadState);

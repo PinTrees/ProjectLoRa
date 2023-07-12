@@ -3,9 +3,8 @@
 
 
 class IdleState :
-    public CState
+    public CState<MONSTER_STATE>
 {
-
 
 
 

@@ -24,6 +24,9 @@
 #include "CTexture.h"
 #include "CCamera.h"
 
+#include "AI.h"
+#include "PIdleState.h"
+
 #include "MonsterFactory.h"
 
 
@@ -62,10 +65,18 @@ void Scene_Start::Enter()
 {
 	LoadTile(this, L"database\\map_1.tile");
 
+	
+
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(Vect2(640.f, 384.f));
 	AddObject(pPlayer, GROUP_TYPE::PLAYER);
+
+	AI<PLAYER_STATE>* pAI = new AI<PLAYER_STATE>;
+	pAI->AddState(new PIdleState);
+	pAI->SetCurState(PLAYER_STATE::IDLE);
+
+	pPlayer->SetAI(pAI);
 
 	PlayerMgr::GetI()->SetPlayer(pPlayer);
 	CCamera::GetI()->SetTarget(pPlayer);
