@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "CObject.h"
 
+#include "CCompnent.h"
 #include "CCollider.h"
 #include "CAnimator.h"
-#include "RigidBody.h"
-
+#include "CRigidBody.h"
 #include "SelectGDI.h"
 
 
@@ -41,7 +41,7 @@ CObject::CObject(const CObject& _origin)
 {
 	if (_origin.mpCollider)
 	{
-		mpCollider = new CCollider(*_origin.mpCollider);
+		mpCollider = new CCollider((CCollider&)*_origin.mpCollider);
 		mpCollider->mpOwner = this;
 	}
 

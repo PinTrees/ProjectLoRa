@@ -9,7 +9,7 @@
 #include "CTimeMgr.h"
 
 // Include Components
-#include "RigidBody.h"
+#include "CRigidBody.h"
 
 
 CScene::CScene()

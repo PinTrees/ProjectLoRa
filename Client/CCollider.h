@@ -1,13 +1,12 @@
 #pragma once
+#include "CCompnent.h"
 
 class CObject;
 
-class CCollider
+class CCollider : public CCompnent
 {
 private:
 	static UINT giNextID;
-
-	CObject*	mpOwner;		// collider  를 소유하고 있는 오브젝트
 	Vect2		mvOffsetPos;	// 오브젝트로 부터 상대적인 위치
 	Vect2		mvFinalPos;		// finalupdate 에서 매프레임마다 계산
 	Vect2		mvScale;		// 충돌체의 크기정보
@@ -29,14 +28,14 @@ public:
 	Vect2 GetOffsetPos() { return mvOffsetPos; }
 	Vect2 GetScale() { return mvScale; }
 	
-	CObject* GetObj() { return mpOwner; }
+	CObject* GetObj() { return GetO(); }
 
 	UINT GetID() { return miID; }
 
 
 public:
-	void FinalUpdate();
-	void Render(HDC _dc);
+	virtual void FinalUpdate() override;
+	virtual void Render(HDC _dc) override;
 
 
 public:
@@ -52,8 +51,7 @@ public:
 public:
 	CCollider();
 	CCollider(const CCollider& _origin);
-	~CCollider();
+	virtual ~CCollider() override;
 
-	friend class CObject;
 };
 

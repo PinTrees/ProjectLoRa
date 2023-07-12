@@ -5,11 +5,7 @@
       <FullPath>C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles>
-    <ContentFile>
-      <FullPath>C:\PorojectM\ProjectLoRa\Client\Monster.cpp</FullPath>
-    </ContentFile>
-  </ContentFiles>
+  <ContentFiles />
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

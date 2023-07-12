@@ -5,7 +5,7 @@
 #include "AI.h"
 
 // Include Components
-#include "RigidBody.h"
+#include "CRigidBody.h"
 
 // Include Monster State
 #include "IdleState.h"

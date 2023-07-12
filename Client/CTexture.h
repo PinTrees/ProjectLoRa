@@ -11,7 +11,6 @@ private:
 
 public:
     void Load(const wstring& strFilePath);
-
     void Create(UINT width, UINT hieght, COLORREF color = NULL);
 
     UINT Width() { return mBitInfo.bmWidth; }

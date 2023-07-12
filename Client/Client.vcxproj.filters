@@ -113,9 +113,6 @@
     <Filter Include="FreamWork\Core">
       <UniqueIdentifier>{2f3345fc-354c-4df0-a342-b413e988a7ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\Header">
-      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\Scene_Start">
       <UniqueIdentifier>{639227a7-f654-445d-bd9a-b40a71bd3fda}</UniqueIdentifier>
     </Filter>
@@ -161,12 +158,6 @@
     <Filter Include="FreamWork\Module\GDI">
       <UniqueIdentifier>{7f56ca5a-7161-45b6-b055-6cdd028a906c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\Header\Vector">
-      <UniqueIdentifier>{6e0115db-24d9-4e50-a664-d10ac1e2d4f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\Header\Func">
-      <UniqueIdentifier>{4c6db5c9-a146-44ed-9d6b-03036d86d6d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\FSM\Monster">
       <UniqueIdentifier>{9de5b94a-f550-4440-b671-be7c28c177a7}</UniqueIdentifier>
     </Filter>
@@ -190,6 +181,15 @@
     </Filter>
     <Filter Include="FreamWork\UI\Text">
       <UniqueIdentifier>{0a902a05-40d7-4e2b-a467-d8f26d5fa6fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\01. Header">
+      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\01. Header\Vector">
+      <UniqueIdentifier>{6e0115db-24d9-4e50-a664-d10ac1e2d4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\01. Header\Func">
+      <UniqueIdentifier>{4c6db5c9-a146-44ed-9d6b-03036d86d6d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -248,10 +248,10 @@
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>FreamWork\Header</Filter>
+      <Filter>FreamWork\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>FreamWork\Header</Filter>
+      <Filter>FreamWork\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="CScene_start.h">
       <Filter>Game\Scene\Scene_Start</Filter>
@@ -280,7 +280,7 @@
     <ClInclude Include="Bullet.h">
       <Filter>Game\Object\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="RigidBody.h">
+    <ClInclude Include="CRigidBody.h">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="UIMgr.h">
@@ -323,7 +323,7 @@
       <Filter>Game\MonsterFactory</Filter>
     </ClInclude>
     <ClInclude Include="register.h">
-      <Filter>FreamWork\Header</Filter>
+      <Filter>FreamWork\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMgr.h">
       <Filter>Game\Manager\PlayerMgr</Filter>
@@ -353,16 +353,19 @@
       <Filter>FreamWork\Module\GDI</Filter>
     </ClInclude>
     <ClInclude Include="Vec2.h">
-      <Filter>FreamWork\Header\Vector</Filter>
+      <Filter>FreamWork\01. Header\Vector</Filter>
     </ClInclude>
     <ClInclude Include="func.h">
-      <Filter>FreamWork\Header\Func</Filter>
+      <Filter>FreamWork\01. Header\Func</Filter>
     </ClInclude>
     <ClInclude Include="CFont.h">
       <Filter>FreamWork\Resource\Font</Filter>
     </ClInclude>
     <ClInclude Include="TextUI.h">
       <Filter>FreamWork\UI\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="CCompnent.h">
+      <Filter>FreamWork\Compnent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -449,7 +452,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Game\Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="RigidBody.cpp">
+    <ClCompile Include="CRigidBody.cpp">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClCompile>
     <ClCompile Include="UIMgr.cpp">
@@ -519,16 +522,19 @@
       <Filter>FreamWork\Module\GDI</Filter>
     </ClCompile>
     <ClCompile Include="Vec2.cpp">
-      <Filter>FreamWork\Header\Vector</Filter>
+      <Filter>FreamWork\01. Header\Vector</Filter>
     </ClCompile>
     <ClCompile Include="func.cpp">
-      <Filter>FreamWork\Header\Func</Filter>
+      <Filter>FreamWork\01. Header\Func</Filter>
     </ClCompile>
     <ClCompile Include="CFont.cpp">
       <Filter>FreamWork\Resource\Font</Filter>
     </ClCompile>
     <ClCompile Include="TextUI.cpp">
       <Filter>FreamWork\UI\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="CCompnent.cpp">
+      <Filter>FreamWork\Compnent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

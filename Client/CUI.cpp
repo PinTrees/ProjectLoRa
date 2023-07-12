@@ -121,12 +121,12 @@ void CUI::Render(HDC dc)
 
 		if (mLbtnDown)
 		{
-			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, fWidth, fHeight);
+			HBITMAP hPressedBitmap = CreateCompatibleBitmap(dc, (int)fWidth, (int)fHeight);
 			HDC hdcPressedMem = CreateCompatibleDC(dc);
 			HBITMAP hOldPressedBitmap = (HBITMAP)SelectObject(hdcPressedMem, hPressedBitmap);
 
 			// ºñÆ®¸Ê º¹»ç
-			BitBlt(hdcPressedMem, 0, 0, fWidth, fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
+			BitBlt(hdcPressedMem, 0, 0, (int)fWidth, (int)fHeight, mpTexture->GetDC(), 0, 0, SRCCOPY);
 
 			for (int y = 0; y < fWidth; ++y)
 			{
@@ -178,7 +178,7 @@ void CUI::Render(HDC dc)
 	if (mText != L"")
 	{
 		SetBkMode(dc, TRANSPARENT);
-		TextOut(dc, (int)(vPos.x + mvContentOffset.x), (int)(vPos.y + mvContentOffset.y), mText.c_str(), mText.size());
+		TextOut(dc, (int)(vPos.x + mvContentOffset.x), (int)(vPos.y + mvContentOffset.y), mText.c_str(), (int)mText.size());
 	}
 
 	// child render

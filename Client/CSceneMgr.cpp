@@ -44,7 +44,7 @@ void CSceneMgr::Init()
 	m_arrScene[(UINT)SCENE_TYPE::MAIN]->SetName(L"Main Scene");
 
 	//ÇöÀç ¾À ÁöÁ¤
-	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::MAIN];
+	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::START];
 	m_pCurScene->Enter();
 }
 

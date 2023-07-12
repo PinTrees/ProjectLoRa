@@ -88,6 +88,8 @@ public:
 	{
 		x = (float)_pt.x;
 		y = (float)_pt.y;
+
+		return *this;
 	}
 
 	Vect2 operator + (Vect2 _vOther)

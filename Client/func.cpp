@@ -139,11 +139,11 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 
 	assert(pFile);
 
-	UINT xCount = 0;
-	UINT yCount = 0;
+	UINT xCount = 10;
+	UINT yCount = 10;
 
-	fread(&xCount, sizeof(UINT), 1, pFile);
-	fread(&yCount, sizeof(UINT), 1, pFile);
+	//fread(&xCount, sizeof(UINT), 1, pFile);
+	//fread(&yCount, sizeof(UINT), 1, pFile);
 
 
 	Background* pParallax = new Background();
@@ -186,4 +186,45 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);
 		}
 	}
+}
+
+void SaveWString(const wstring& _str, FILE* _pFile)
+{
+
+	// Animation 의 이름을 저장한다.
+	const wchar_t* pStrName = _str.c_str();
+	size_t iLen = _str.length();
+
+	// 문자 길이 저장
+	fwrite(&iLen, sizeof(size_t), 1, _pFile);
+
+	// 문자열 저장
+	fwrite(&pStrName, sizeof(wchar_t), iLen, _pFile);
+
+
+}
+
+void LoadWString(wstring& _str, FILE* _pFile)
+{
+	size_t iLen = 0;
+	fread(&iLen, sizeof(size_t), 1, _pFile);
+	wchar_t szBuff[256] = {};
+	fread(szBuff, sizeof(wchar_t), (int)iLen, _pFile);
+	_str = szBuff;
+}
+
+void FScanf(char* _pOutBuff, FILE* _pFile)
+{
+	int i = 0;
+	while (true)
+	{
+		char c = (char)getc(_pFile);
+		if (c == '\n')
+		{
+			_pOutBuff[i++] = '\0';
+			break;
+		}
+		_pOutBuff[i++] = c;
+	}
+
 }
