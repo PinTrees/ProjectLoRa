@@ -38,11 +38,11 @@ Gun::Gun(const wstring& _type)
 	mInfo.atkSpeed = 300.f;
 	mInfo.penetration = 3;
 	
-	mInfo.reloadSpeed = 1.f;
-	mInfo.shotDelay = 0.3f;
+	mInfo.reloadSpeed = 0.1f;
+	mInfo.shotDelay = 0.1f;
 
 	mInfo.shotAngle = 30.f;
-	mInfo.shotCount = 2;
+	mInfo.shotCount = 10;
 	mInfo.shotSpeed = 0.3f;
 	mInfo.texture = L"1";
 	mInfo.bulletType = L"3";
@@ -66,12 +66,8 @@ Gun::Gun(const wstring& _type)
 	GetAnimator()->Play(L"IDLE", true);
 }
 
-
-
-
 Gun::~Gun()
 {
-
 }
 
 
@@ -97,12 +93,16 @@ void Gun::Shot()
 
 
 	// 총알 오브젝트
+	tBullet bInfo = {};
+	bInfo.damage = mInfo.atkDamage;
+	bInfo.bounceCount = mInfo.bouncCount;
+	bInfo.penetrationCount = mInfo.penetration;
+	bInfo.splitCount = mInfo.splitCount;
+
 	Bullet* pBullet = new Bullet(mInfo.bulletType);
 	pBullet->SetPos(vShotPos + vDir.Normalize() * 35.f);
 	pBullet->SetDir(vDir);
-	pBullet->SetPenetrationCount(mInfo.penetration);
-	pBullet->SetBounceCount(mInfo.bouncCount);
-	pBullet->SetDivideCount(mInfo.splitCount);
+	pBullet->SetInfo(bInfo);
 	pBullet->SetName(L"Missile_Player");
 	    
 	CreateObject(pBullet, GROUP_TYPE::PROJ_PLAYER);

@@ -1,3 +1,6 @@
-﻿  unity_LFIHCRW623KUP4PT.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(94,16): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  unity_POKQZT93YBU3MRXP.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(90,16): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(98,27): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(99,32): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(100,26): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

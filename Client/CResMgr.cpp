@@ -75,7 +75,6 @@ CFont* CResMgr::LoadFont(const wstring& _strKey, const wstring& _strRelativePath
 	CFont* pFont = FindFont(_strKey);
 	if (nullptr != pFont)
 	{
-		pFont->SelectFont(_size, _strKey, _border);
 		return pFont;
 	}
 

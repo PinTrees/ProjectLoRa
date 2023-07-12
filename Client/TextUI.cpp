@@ -10,7 +10,7 @@ TextUI::TextUI()
 	, mText(L"")
 {
 	// Base Font Setting
-	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", 24, false);
+	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", 28, false);
 }
 
 TextUI::~TextUI()
@@ -31,7 +31,7 @@ void TextUI::Render(HDC dc)
 
 	Vect2 vRenderPos = GetFinalPos();
 
-	if (!GetCameraAffected())
+	if (!IsCameraAffected())
 	{
 		vRenderPos = CCamera::GetI()->GetRenderPos(vRenderPos);
 	}

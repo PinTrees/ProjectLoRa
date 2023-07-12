@@ -74,7 +74,7 @@ public:
 	COLORREF	GetColor() { return mColor; }
 
 	void	SetCameraAffected(bool active) { mCameraAffected = active; };
-	bool	GetCameraAffected() { return mCameraAffected; };
+	bool	IsCameraAffected() { return mCameraAffected; };
 
 
 public:

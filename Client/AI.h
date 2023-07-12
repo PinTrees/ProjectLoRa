@@ -1,4 +1,5 @@
 #pragma once
+#include "CState.h"
 
 
 class CObject;

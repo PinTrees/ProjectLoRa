@@ -29,7 +29,7 @@ void BarUI::Render(HDC _dc)
 	Vect2 vRenderPos = GetLocalPos();
 	Vect2 vSize = GetScale();
 
-	if (!GetCameraAffected())
+	if (!IsCameraAffected())
 	{
 		vRenderPos = CCamera::GetI()->GetRenderPos(vRenderPos);
 	}
