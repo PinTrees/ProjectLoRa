@@ -14,10 +14,21 @@ private:
 	UINT		m_iCallCount; // 초당 호출 횟수
 	UINT		m_iFPS; //프레임
 	//DeltaTime구현
+
+	bool		mbStoped;
+
+
+public:
+	void Stop() { mbStoped = true; };
+	void Play() { mbStoped = false; };
+	bool IsPlay() { return !mbStoped; }
+
 public:
 	void Init();
 	void Update();
 	void Render();
+
+
 public:
 	double GetDT() { return m_dDT; }
 	float GetfDT() { return (float)m_dDT; }

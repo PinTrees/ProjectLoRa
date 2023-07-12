@@ -1,25 +1,11 @@
-﻿  CCollider.cpp
-C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(49,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(48,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(47,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Documents\GitHub\ProjectLoRa\Client\CCollider.cpp(46,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CCollisionMgr.cpp
-  CCore.cpp
-  CGuidMissile.cpp
-  CKeyMgr.cpp
-  Client.cpp
-  CMissile.cpp
-  CMonster.cpp
-  CObject.cpp
-  CPathMgr.cpp
-  CPlayer.cpp
-  CRes.cpp
-  CResMgr.cpp
-  CScene.cpp
-  CSceneMgr.cpp
-  CScene_start.cpp
-  CSound.cpp
-  CTexture.cpp
-  CTimeMgr.cpp
-  SelectGDI.cpp
-  Client.vcxproj -> C:\Users\user\Documents\GitHub\ProjectLoRa\Output\bin_debug\Client.exe
+﻿  unity_EM9R6RRNSFPYH3OM.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(50,2): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(68,5): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(173,3): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(181,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(180,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(179,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(178,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(164,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(165,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

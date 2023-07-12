@@ -1,14 +1,28 @@
 #pragma once
 #include "CScene.h"
 
-class CScene_start :
-    public CScene
+class Player;
+
+class Scene_Start :
+	public CScene
 {
+
+private:
+	float		mfMstrDelay;
+	float		mfCurDelay;
+
 public:
-   virtual void Enter();
-   virtual void Exit();
+	virtual void Update();
+	virtual void Enter();
+	virtual void Exit();
+
+
+private:
+	void CreateMonster();
+	void createEnvi();
+
 public:
-    CScene_start();
-    ~CScene_start();
+	Scene_Start();
+	~Scene_Start();
 };
 

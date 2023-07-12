@@ -12,6 +12,7 @@ private:
 public:
 	SelectGDI(HDC _dc, PEN_TYPE _ePenTYPE);
 	SelectGDI(HDC _dc, BRUSH_TYPE _eBrushTYPE);
+	SelectGDI(HDC _dc, COLORREF p, COLORREF b);
 	~SelectGDI();
 };
 
