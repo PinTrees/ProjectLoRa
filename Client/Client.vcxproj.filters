@@ -194,6 +194,9 @@
     <Filter Include="Game\FSM\Player\Idle">
       <UniqueIdentifier>{cfd7de57-f5d4-448c-838f-0fa793e4f37f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\Manager\SoundMgr">
+      <UniqueIdentifier>{ea53a28b-3cbf-4603-a88f-9be7f3175bee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -373,6 +376,9 @@
     <ClInclude Include="PIdleState.h">
       <Filter>Game\FSM\Player\Idle</Filter>
     </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>FreamWork\Manager\SoundMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -544,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="PIdleState.cpp">
       <Filter>Game\FSM\Player\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>FreamWork\Manager\SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

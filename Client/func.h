@@ -13,6 +13,8 @@ void DeleteObject(CObject* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
 void CreateForce(tForce& force);
 
+void FScanf(char* _pOutBuff, FILE* _pFile);
+
 template <typename T>
 void ChangeAIState(AI<T>* pAI, MONSTER_STATE nextState)
 {

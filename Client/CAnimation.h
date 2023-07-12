@@ -57,6 +57,11 @@ public:
 
 
 public:
+	void Save(const wstring& _strRelativePath);
+	void Load(const wstring& _strRelativePath);
+
+
+public:
 	CAnimation();
 	~CAnimation();
 

@@ -171,7 +171,6 @@ void Player::Update()
 	}
 
 	Vect2 vDir = Vect2::zero;
-	Vect2 vStartDir = Vect2::zero;
 
 	if (KEY_HOLD(KEY::W)) vDir += Vect2::up;
 	if (KEY_HOLD(KEY::S)) vDir += Vect2::down;
@@ -181,7 +180,7 @@ void Player::Update()
 	if (vDir != Vect2::zero)
 	{
 		mState = PLAYER_STATE::Run;
-		SetPos(vPos + vDir * 250.f * DT);
+		SetPos(vPos + vDir.Normalize() * 250.f * DT);
 
 		if (vDir.x < 1)
 		{

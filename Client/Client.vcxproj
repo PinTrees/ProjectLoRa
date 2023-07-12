@@ -160,6 +160,7 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatText.h" />
+    <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatText.cpp" />
+    <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="Monster.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
