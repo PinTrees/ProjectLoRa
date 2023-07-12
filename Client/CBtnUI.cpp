@@ -31,15 +31,20 @@ void CBtnUI::Render(HDC dc)
 {
 	CUI::Render(dc);
 
-	if (IsMouseOn())
-	{
-		ApplyAlphaBlend(dc, 64);
-	}
-
 	if (IsLbtnDown())
 	{
-		ApplyAlphaBlend(dc, 128);
+		SetAlpha(128);
 	}
+	else if (IsMouseOn())
+	{
+		SetAlpha(32);
+	}
+	else
+	{
+		SetAlpha(0);
+	}
+
+	ApplyAlphaBlend(dc);
 }
 
 void CBtnUI::MouseOn()
@@ -107,7 +112,7 @@ void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC_P func, DWORD_PTR p
 }
 
 
-void CBtnUI::ApplyAlphaBlend(HDC _dc, int _alpha)
+void CBtnUI::ApplyAlphaBlend(HDC _dc)
 {
 	Vect2 vSize = GetScale();
 	Vect2 vPos = GetFinalPos();
@@ -118,7 +123,7 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc, int _alpha)
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
 	bf.AlphaFormat = 0;
-	bf.SourceConstantAlpha = _alpha;
+	bf.SourceConstantAlpha = GetAlpha();
 
 	AlphaBlend(_dc
 		, (int)vPos.x - vSize.x * 0.5f

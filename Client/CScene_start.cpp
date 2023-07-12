@@ -24,8 +24,12 @@
 #include "CTexture.h"
 #include "CCamera.h"
 
+// Player State Header
 #include "AI.h"
 #include "PIdleState.h"
+#include "PRunState.h"
+#include "PDashState.h"
+#include "PAtkState.h"
 
 #include "MonsterFactory.h"
 
@@ -65,21 +69,7 @@ void Scene_Start::Enter()
 {
 	LoadTile(this, L"database\\map_1.tile");
 
-	
-
-	Player* pPlayer = new Player;
-	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(Vect2(640.f, 384.f));
-	AddObject(pPlayer, GROUP_TYPE::PLAYER);
-
-	AI<PLAYER_STATE>* pAI = new AI<PLAYER_STATE>;
-	pAI->AddState(new PIdleState);
-	pAI->SetCurState(PLAYER_STATE::IDLE);
-
-	pPlayer->SetAI(pAI);
-
-	PlayerMgr::GetI()->SetPlayer(pPlayer);
-	CCamera::GetI()->SetTarget(pPlayer);
+	createPlayer();
 
 	//몬스터 배치
 	int iMonCount = 8;
@@ -173,6 +163,31 @@ void Scene_Start::createEnvi()
 	pEnvObj->SetPos(vCreatePos);
 	pEnvObj->GetCollider()->SetTrigger(false);
 	AddObject(pEnvObj, GROUP_TYPE::ENV);
+}
+
+
+
+void Scene_Start::createPlayer()
+{
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+
+	Player* pPlayer = new Player;
+	pPlayer->SetName(L"Player");
+	pPlayer->SetPos(vResolution * 0.5f);
+	AddObject(pPlayer, GROUP_TYPE::PLAYER);
+
+	AI<PLAYER_STATE>* pAI = new AI<PLAYER_STATE>;
+
+	pAI->AddState(new PIdleState);
+	pAI->AddState(new PRunState);
+	pAI->AddState(new PDashState);
+	pAI->AddState(new PAtkState);
+	pAI->SetCurState(PLAYER_STATE::IDLE);
+
+	pPlayer->SetAI(pAI);
+
+	PlayerMgr::GetI()->SetPlayer(pPlayer);
+	CCamera::GetI()->SetTarget(pPlayer);
 }
 
 

@@ -3,7 +3,7 @@
 
 #include "CCore.h"
 
-// Include Manager Header
+// Core Manager Header
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CSceneMgr.h"
@@ -11,7 +11,7 @@
 #include "Random.h"
 #include "UIMgr.h"
 
-// Include Component Header
+// Component Header
 #include "CTexture.h"
 #include "CCollider.h"
 #include "CAnimator.h"
@@ -19,16 +19,18 @@
 #include "RigidBody.h"
 #include "CScene.h"
 
-// Include GameObject Header
+// GameObject Header
 #include "Bullet.h"
 #include "Gun.h"
 
-// Include UI Object Header
+// UI Object Header
 #include "CUI.h"
 #include "BarUI.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 #include "TextUI.h"
+
+#include "CState.h"
 
 
 
@@ -36,13 +38,13 @@
 Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
-	, mState(PLAYER_STATE::NONE)
-	, mvDashDir(Vect2(0.f, 0.f))
+	, mvDir(Vect2(0.f, 0.f))
 	, mCurGun(nullptr)
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
 	, mLevelupUI(nullptr)
+	, mAI(nullptr)
 {
 	// Init Object Component
 	// Create Collider Component
@@ -101,31 +103,20 @@ Player::~Player()
 
 void Player::Update()
 {
-	calExp();
-
+	if (mAI)
+		mAI->Update();
 	GetAnimator()->Update();
 
+	calExp();
 	mfCurDelay += DT;
 	
 	Vect2 vPos = GetPos();
 	mExpBar->SetAmount(GetExp() / GetMaxExp());
 
-	if (mState == PLAYER_STATE::Dash)
-	{
-		mCurGun->SetVisible(false);
-
-		SetPos(vPos + mvDashDir * 1000.f * DT);
-
-		if (GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			mCurGun->SetVisible(true);
-			mState = PLAYER_STATE::IDLE;
-		}
-
+	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
-	}
 
-	if (mCurGun != nullptr)
+	if (nullptr !=  mCurGun)
 	{
 		Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
 		mCurGun->SetAngle(vDir.ToAngle());
@@ -133,69 +124,34 @@ void Player::Update()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		GetAnimator()->Play(L"DASH_R", false);
-
-		mvDashDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-		mvDashDir.Normalize();
-
-		mState = PLAYER_STATE::Dash;
+		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}
 
-	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > mCurGun->GetInfo().mReloadSpeed)
+	if (KEY_HOLD(KEY::RBTN)
+		&& mfCurDelay > mCurGun->GetInfo().shotDelay
+		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		mfCurDelay = 0.f;
-
-		for (int i = 0; i < 2; ++i)
-		{
-			createMissile();
-		}
-
-		Vect2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
-		GetAnimator()->Play(pos.x > GetLocalPos().x ? L"ATK_R" : L"ATK_L", false);
-
-		mState = PLAYER_STATE::ATTACK;
+		ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
 	}
 
-	if (mState == PLAYER_STATE::ATTACK)
+	mvDir = Vect2::zero;
+
+	if (KEY_HOLD(KEY::W)) mvDir += Vect2::up;
+	if (KEY_HOLD(KEY::S)) mvDir += Vect2::down;
+	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
+	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
+
+	if (mvDir != Vect2::zero)
 	{
-		if (GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			mState = PLAYER_STATE::IDLE;
-		}
+		if(GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
+			ChangeAIState(GetAI(), PLAYER_STATE::RUN);
 	}
-
-	else if (mState == PLAYER_STATE::IDLE)
+	else if(GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
+		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
-		GetAnimator()->Play(L"IDLE", true);
-	}
-
-	Vect2 vDir = Vect2::zero;
-
-	if (KEY_HOLD(KEY::W)) vDir += Vect2::up;
-	if (KEY_HOLD(KEY::S)) vDir += Vect2::down;
-	if (KEY_HOLD(KEY::A)) vDir += Vect2::left;
-	if (KEY_HOLD(KEY::D)) vDir += Vect2::right;
-
-	if (vDir != Vect2::zero)
-	{
-		mState = PLAYER_STATE::Run;
-		SetPos(vPos + vDir.Normalize() * 250.f * DT);
-
-		if (vDir.x < 1)
-		{
-			GetAnimator()->Play(L"RUN_L", true);
-		}
-		else
-		{
-			GetAnimator()->Play(L"RUN_R", true);
-		} 
-
-		SetFlip(vDir.x < 1);
-	}
-	else
-	{
-		mState = PLAYER_STATE::IDLE;
+		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
 	}
 }
 
@@ -205,7 +161,7 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-void Player::createMissile()
+void Player::CreateMissile()
 {
 	Vect2 vMissilePos = GetLocalPos() + Vect2(0.f, -50.f);
 

@@ -120,7 +120,7 @@ enum class PLAYER_STATE
 	NONE,
 	IDLE,
 	ATTACK,
-	Run,
+	RUN,
 	Die,
-	Dash,
+	DASH,
 };

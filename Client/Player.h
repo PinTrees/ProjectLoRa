@@ -26,11 +26,9 @@ private:
 	float mfDelay;
 	float mfCurDelay;
 
-	Vect2 mvDashDir;
+	Vect2 mvDir;
 
 	Gun* mCurGun;
-
-	PLAYER_STATE mState;
 
 	int		mLevel;
 
@@ -38,11 +36,13 @@ private:
 	BarUI*	mExpBar;
 
 	CUI*	mLevelupUI;
+
 	AI<PLAYER_STATE>* mAI;
 
 
 public:
 	void SelectLevelUp(DWORD_PTR param);
+	void CreateMissile();
 
 
 public:
@@ -50,7 +50,11 @@ public:
 	float GetExp() { return mExp; };
 	void  AddExp(float exp) { mExp += exp; }
 
+	Vect2 GetRunDir() { return mvDir; }
+	Gun* GetCurGun() { return mCurGun; }
+
 	void SetAI(AI<PLAYER_STATE>* pAI) { mAI = pAI; mAI->SetOwner(this); }
+	AI<PLAYER_STATE>* GetAI() { return mAI; }
 
 
 public:
@@ -59,7 +63,6 @@ public:
 
 
 private:
-	void createMissile();
 	void calExp();
 
 	CLONE(Player);

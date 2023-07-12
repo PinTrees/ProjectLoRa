@@ -73,7 +73,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 }
 
 
-void CCore::Run()
+void CCore::RUN()
 {
 	// ====================
 	// Manager Update Block

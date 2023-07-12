@@ -54,7 +54,7 @@ public:
 
 
 public:
-	void ApplyAlphaBlend(HDC _dc, int _alpha);
+	void ApplyAlphaBlend(HDC _dc);
 
 
 public:

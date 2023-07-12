@@ -197,6 +197,15 @@
     <Filter Include="FreamWork\Manager\SoundMgr">
       <UniqueIdentifier>{ea53a28b-3cbf-4603-a88f-9be7f3175bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\Player\Run">
+      <UniqueIdentifier>{93ed4508-7361-492b-9d6e-49fddbf4c13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Dash">
+      <UniqueIdentifier>{ccf33ff1-4372-4d6e-a604-e3fa8a98e727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Atk">
+      <UniqueIdentifier>{42dc398b-eed7-46b8-85bd-8433c2bc1d42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -379,6 +388,15 @@
     <ClInclude Include="CSoundMgr.h">
       <Filter>FreamWork\Manager\SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="PRunState.h">
+      <Filter>Game\FSM\Player\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PDashState.h">
+      <Filter>Game\FSM\Player\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="PAtkState.h">
+      <Filter>Game\FSM\Player\Atk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -553,6 +571,15 @@
     </ClCompile>
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>FreamWork\Manager\SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="PRunState.cpp">
+      <Filter>Game\FSM\Player\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PDashState.cpp">
+      <Filter>Game\FSM\Player\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="PAtkState.cpp">
+      <Filter>Game\FSM\Player\Atk</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
