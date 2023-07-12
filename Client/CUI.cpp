@@ -7,6 +7,7 @@
 #include "SelectGDI.h"
 #include "CScene.h"
 #include "CFont.h"
+#include "CTexture.h"
 
 CUI::CUI(bool cameraAffected)
 	: mVecChildUI{}
@@ -123,6 +124,23 @@ void CUI::Render(HDC dc)
 			int(pos.x + scale.x),
 			int(pos.y + scale.y)
 		);
+	}
+
+	if (mpTexture != nullptr)
+	{
+		Vec2 size = mpTexture->GetSize();
+
+		float fWidth = mpTexture->Width();
+		float fHeight = mpTexture->Heigth();
+
+		TransparentBlt(dc
+			, (int)(pos.x + mvContentOffset.x)
+			, (int)(pos.y + mvContentOffset.y)
+			, (int)size.x , (int)size.y
+			, mpTexture->GetDC()
+			, 0, 0
+			, (int)fWidth, (int)fHeight
+			, RGB(255, 0, 255));
 	}
 
 	if (mFont != nullptr)

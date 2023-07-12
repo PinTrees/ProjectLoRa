@@ -9,6 +9,8 @@ private:
     HBITMAP     mhBit;
     BITMAP      mBitInfo;
 
+    Vec2        mvRelativeSize;
+
 public:
     void Load(const wstring& strFilePath);
 
@@ -16,6 +18,9 @@ public:
 
     UINT Width() { return mBitInfo.bmWidth; }
     UINT Heigth () { return mBitInfo.bmHeight; }
+
+    void SetSize(Vec2 _size) { mvRelativeSize = _size; }
+    Vec2 GetSize() { return mvRelativeSize; }
 
     HDC GetDC() { return mDC; }
 

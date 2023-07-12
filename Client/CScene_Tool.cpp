@@ -49,7 +49,7 @@ void Scene_Tool::Enter()
 	pPanelUI->SetName(L"ParentUI");
 	pPanelUI->SetScale(Vec2(300.f, 150.f));
 	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
-	pPanelUI->SetFont(CResMgr::GetI()->LoadFont(L"Ramche", L"texture\\Ramche.ttf", 20, true));
+	pPanelUI->SetFont(CResMgr::GetI()->LoadFont(L"Ramche", L"font\\Ramche.ttf", 20, true));
 	pPanelUI->SetContentOffset(Vec2(0.f, 50.f));
 	pPanelUI->GetFont()->SetInnerColor(RGB(0, 255, 0));
 	pPanelUI->GetFont()->SetOuterColor(RGB(255, 255, 0));
@@ -59,6 +59,9 @@ void Scene_Tool::Enter()
 	pBtnUI->SetName(L"ChildUI");
 	pBtnUI->SetScale(Vec2(100.f, 40.f));
 	pBtnUI->SetPos(Vec2(0.f, 0.f));
+	pBtnUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"Gold", L"texture\\gold\\gold_1.bmp"));
+	pBtnUI->SetChangeTex(CResMgr::GetI()->LoadTexture(L"Bronze", L"texture\\gold\\bronze_1.bmp"));
+	pBtnUI->GetTextrue()->SetSize(Vec2(25.f, 25.f)); // 출력할 텍스쳐의 사이즈세팅
 
 	// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
 	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
