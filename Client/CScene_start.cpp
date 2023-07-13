@@ -102,6 +102,43 @@ void Scene_Start::Enter()
 	CCamera::GetI()->FadeIn(2.f);
 }
 
+void Scene_Start::Render(HDC _dc)
+{
+
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		if ((UINT)GROUP_TYPE::TILE == i)
+		{
+			continue;
+		}
+		// Render Background
+		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		{
+			render_parallax(_dc);
+			continue;
+		}
+
+		vector<CObject*>::iterator iter = mArrObj[i].begin();
+
+		for (; iter != mArrObj[i].end();)
+		{
+			// Render Object
+			if (!(*iter)->IsDead())
+			{
+				(*iter)->Render(_dc);
+				++iter;
+			}
+			// Delete Object
+			else
+			{
+				(*iter)->OnDestroy();
+				iter = mArrObj[i].erase(iter);
+			}
+		}
+	}
+
+}
+
 
 //현재씬을 나갈때 실행되는 함수
 void Scene_Start::Exit()

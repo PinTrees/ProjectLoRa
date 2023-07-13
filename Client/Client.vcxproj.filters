@@ -206,9 +206,6 @@
     <Filter Include="Game\FSM\Player\Atk">
       <UniqueIdentifier>{42dc398b-eed7-46b8-85bd-8433c2bc1d42}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\UI\Image">
-      <UniqueIdentifier>{4526c255-9048-41b1-9055-118c8595dc32}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -400,9 +397,6 @@
     <ClInclude Include="PAtkState.h">
       <Filter>Game\FSM\Player\Atk</Filter>
     </ClInclude>
-    <ClInclude Include="CImageUI.h">
-      <Filter>FreamWork\UI\Image</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -586,9 +580,6 @@
     </ClCompile>
     <ClCompile Include="PAtkState.cpp">
       <Filter>Game\FSM\Player\Atk</Filter>
-    </ClCompile>
-    <ClCompile Include="CImageUI.cpp">
-      <Filter>FreamWork\UI\Image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

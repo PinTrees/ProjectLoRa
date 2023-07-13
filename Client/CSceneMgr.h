@@ -18,6 +18,7 @@ public:
 
 public:
 	CScene* GetCurScene() { return m_pCurScene; }
+	CScene* GetScene(SCENE_TYPE _eScene) { return m_arrScene[(UINT)_eScene]; }
 
 
 private:

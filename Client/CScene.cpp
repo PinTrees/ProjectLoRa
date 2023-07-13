@@ -7,7 +7,8 @@
 #include "SelectGDI.h"
 
 #include "CTimeMgr.h"
-
+#include "CSceneMgr.h"
+#include "CScene_Tool.h"
 // Include Components
 #include "RigidBody.h"
 
@@ -60,7 +61,7 @@ void CScene::Update()
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		for (size_t j = 0; j < mArrObj[i].size();++j)
+		for (size_t j = 0; j < mArrObj[i].size(); ++j)
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
@@ -135,33 +136,6 @@ void CScene::render_parallax(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
-	{
-		// Render Background
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
-		{
-			render_parallax(_dc);
-			continue;
-		}
-
-		vector<CObject*>::iterator iter = mArrObj[i].begin();
-
-		for (;iter != mArrObj[i].end();)
-		{
-			// Render Object
-			if (!(*iter)->IsDead())
-			{
-				(*iter)->Render(_dc);
-				++iter;
-			}
-			// Delete Object
-			else
-			{
-				(*iter)->OnDestroy();
-				iter = mArrObj[i].erase(iter);
-			}
-		}
-	}
 
 
 	// [Debug] Render Force Object
@@ -170,18 +144,19 @@ void CScene::Render(HDC _dc)
 		SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 		SelectGDI p(_dc, PEN_TYPE::BLUE);
 
-		for (int i =(int) mArrForce.size() - 1; i >= 0; --i)
+		for (int i = (int)mArrForce.size() - 1; i >= 0; --i)
 		{
 			Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
 
 			Ellipse(_dc
-				,(int)( vRenderPos.x - mArrForce[i].curRadius)
-				,(int)( vRenderPos.y - mArrForce[i].curRadius)
-				,(int)( vRenderPos.x + mArrForce[i].curRadius)
-				,(int)( vRenderPos.y + mArrForce[i].curRadius));
+				, (int)(vRenderPos.x - mArrForce[i].curRadius)
+				, (int)(vRenderPos.y - mArrForce[i].curRadius)
+				, (int)(vRenderPos.x + mArrForce[i].curRadius)
+				, (int)(vRenderPos.y + mArrForce[i].curRadius));
 		}
 	}
 }
+
 
 
 void CScene::DeleteGroup(GROUP_TYPE _eTarget)

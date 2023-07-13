@@ -15,6 +15,7 @@ private:
 public:
 	virtual void Update();
 	virtual void Enter();
+	virtual void Render(HDC _dc);
 	virtual void Exit();
 
 public:
@@ -32,6 +33,8 @@ public:
 	void SaveTile(const wstring& _strRelativePath);
 	void LoadTile(const wstring& _strRelativePath);
 
+private:
+	void render_tile(HDC _dc);
 public:
 	Scene_Tool();
 	~Scene_Tool();

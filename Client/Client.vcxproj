@@ -157,7 +157,6 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CFont.h" />
-    <ClInclude Include="CImageUI.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatText.h" />
@@ -223,7 +222,6 @@
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CFont.cpp" />
-    <ClCompile Include="CImageUI.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatText.cpp" />

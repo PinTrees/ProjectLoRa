@@ -12,12 +12,12 @@ struct tForce
 
 
 class CObject;
-class Background;
 
 class CScene
 {
-private:
+protected:
 	vector<CObject*> mArrObj[(UINT)GROUP_TYPE::END];
+private:
 	wstring			 mStrName;		//Scene 이름
 
 	// 씬 오브젝트 물리 폭발 관리
@@ -36,7 +36,6 @@ public:
 	virtual void Update();			// 매 프레임 마다 호출
 	virtual void FinalUpdate();		// 매 마지막 프레임 마다 호츨
 	virtual void Render(HDC _dc);	// 매 렌더링 프레임 마다 호출
-	
 	virtual void Enter() = 0;		// 씬 진입시 호출
 	virtual void Exit() = 0;		// 씬 탈출시 호출
 

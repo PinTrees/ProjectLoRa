@@ -87,7 +87,7 @@ void Gun::Shot()
 	Vect2 vShotPos = GetPos();
 
 	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-	int shotAngle = mInfo.shotAngle * 0.5f;
+	int shotAngle = (int)(mInfo.shotAngle * 0.5f);
 	float angle = GetAngleOrg() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
 	Vect2 vDir = Vect2::FromAngle(angle);
 
@@ -95,9 +95,9 @@ void Gun::Shot()
 	// 총알 오브젝트
 	tBullet bInfo = {};
 	bInfo.damage = mInfo.atkDamage;
-	bInfo.bounceCount = mInfo.bouncCount;
-	bInfo.penetrationCount = mInfo.penetration;
-	bInfo.splitCount = mInfo.splitCount;
+	bInfo.bounceCount = (float)mInfo.bouncCount;
+	bInfo.penetrationCount = (float)mInfo.penetration;
+	bInfo.splitCount = (float)mInfo.splitCount;
 
 	Bullet* pBullet = new Bullet(mInfo.bulletType);
 	pBullet->SetPos(vShotPos + vDir.Normalize() * 35.f);
