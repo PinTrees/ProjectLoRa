@@ -5,7 +5,7 @@
 
 
 class DeadState :
-    public CState
+    public CState<MONSTER_STATE>
 {
 private:
 

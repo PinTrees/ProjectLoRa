@@ -1,10 +1,12 @@
 #pragma once
 #include "CCamera.h"
 
-class CCompnent;
-class CAnimator;
 class CCollider;
+class CAnimator;
 class CRigidBody;
+
+
+
 
 class CObject
 {
@@ -46,6 +48,7 @@ public:
 	Vect2 GetPivot() { return mvPivot; }
 	Vect2 GetLocalPos() { return mvPos + mvPivot; }
 	float GetAngle() { return mAngle + mAngleOffset; }
+	float GetAngleOrg() { return mAngle; }
 
 	void SetFlip(bool _f) { mFlip = _f; }
 	bool GetFlip() { return mFlip; }
@@ -81,7 +84,7 @@ public:
 
 
 private:
-	void	SetDead() { mbAlive = false; }
+	virtual void SetDead() { mbAlive = false; }
 
 
 public:
@@ -99,5 +102,6 @@ public:
 	virtual ~CObject();
 
 	friend class CEventMgr;
+	friend class CUI;
 };
 

@@ -116,6 +116,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\Users\Jomanky\Desktop\C++과제\WinApiLect\Client;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MaxFilesInUnityFile>10</MaxFilesInUnityFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -132,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -153,16 +154,21 @@
     <ClInclude Include="CCamera.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCollisionMgr.h" />
-    <ClInclude Include="CCompnent.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CFont.h" />
+    <ClInclude Include="CImageUI.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CombatText.h" />
+    <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="PAtkState.h" />
+    <ClInclude Include="PDashState.h" />
+    <ClInclude Include="PIdleState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="CRes.h" />
     <ClInclude Include="CResMgr.h" />
@@ -188,9 +194,10 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="PlayerMgr.h" />
+    <ClInclude Include="PRunState.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="register.h" />
-    <ClInclude Include="CRigidBody.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="TextUI.h" />
@@ -213,18 +220,23 @@
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCollisionMgr.cpp" />
-    <ClCompile Include="CCompnent.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CFont.cpp" />
+    <ClCompile Include="CImageUI.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CombatText.cpp" />
+    <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="Monster.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="PAtkState.cpp" />
+    <ClCompile Include="PDashState.cpp" />
+    <ClCompile Include="PIdleState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="CRes.cpp" />
     <ClCompile Include="CResMgr.cpp" />
@@ -248,8 +260,9 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PlayerMgr.cpp" />
+    <ClCompile Include="PRunState.cpp" />
     <ClCompile Include="Random.cpp" />
-    <ClCompile Include="CRigidBody.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Scene_Main.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />

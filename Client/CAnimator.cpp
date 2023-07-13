@@ -4,7 +4,8 @@
 #include "CAnimation.h"
 
 CAnimator::CAnimator()
-	: mpCurAnim(nullptr)
+	: mpOwner(nullptr)
+	, mpCurAnim(nullptr)
 	, mbRepeat(false)
 {
 }
@@ -26,10 +27,6 @@ void CAnimator::Update()
 			mpCurAnim->SetFrame(0);
 		}
 	}
-}
-
-void CAnimator::FinalUpdate()
-{
 }
 
 
@@ -56,6 +53,7 @@ void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
 	mMapAnim.insert(make_pair(_strName, pAnim));
 }
 
+
 void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 {
 	CAnimation* pAnim = new CAnimation;
@@ -63,7 +61,6 @@ void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 	pAnim->mpAnimator = this;
 
 	mMapAnim.insert(make_pair(pAnim->GetName(), pAnim));
-
 }
 
 

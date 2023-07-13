@@ -1,21 +1,19 @@
 #pragma once
 #include "CObject.h"
+#include "AI.h"
 
-// 스테이트 패턴으로 변경 필요
-enum class PLAYER_STATE
+
+
+struct tUpgrad
 {
-	NONE,
-	Idle,
-	ATTACK,
-	Run,
-	Die,
-	Dash,
+
 };
 
 
 class CTexture;
 class Gun;
 class BarUI;
+class CUI;
 
 
 
@@ -28,20 +26,23 @@ private:
 	float mfDelay;
 	float mfCurDelay;
 
-	Vect2 mvDashDir;
+	Vect2 mvDir;
 
 	Gun* mCurGun;
-
-	PLAYER_STATE mState;
 
 	int		mLevel;
 
 	float	mExp;
 	BarUI*	mExpBar;
 
+	CUI*	mLevelupUI;
+
+	AI<PLAYER_STATE>* mAI;
+
 
 public:
-	void SelectLevelUp();
+	void SelectLevelUp(DWORD_PTR param);
+	void CreateMissile();
 
 
 public:
@@ -49,13 +50,19 @@ public:
 	float GetExp() { return mExp; };
 	void  AddExp(float exp) { mExp += exp; }
 
+	Vect2 GetRunDir() { return mvDir; }
+	Gun* GetCurGun() { return mCurGun; }
+
+	void SetAI(AI<PLAYER_STATE>* pAI) { mAI = pAI; mAI->SetOwner(this); }
+	AI<PLAYER_STATE>* GetAI() { return mAI; }
+
 
 public:
 	virtual void Update() override;
 	virtual void Render(HDC _dc) override;
 
+
 private:
-	void createMissile();
 	void calExp();
 
 	CLONE(Player);

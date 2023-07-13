@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\PorojectM\ProjectLoRa\Output\bin_debug\Client.exe</FullPath>
+      <FullPath>C:\git\ProjectLoRa\Output\bin_debug\Client.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

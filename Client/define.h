@@ -108,7 +108,19 @@ enum class MONSTER_STATE
 {
 	IDLE,
 	TRACE,
-	CREATE,
+	Create,
 	DEAD,
 	ATTACK,
+};
+
+
+// 스테이트 패턴으로 변경 필요
+enum class PLAYER_STATE
+{
+	NONE,
+	IDLE,
+	ATTACK,
+	RUN,
+	Die,
+	DASH,
 };

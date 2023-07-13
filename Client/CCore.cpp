@@ -73,7 +73,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 }
 
 
-void CCore::Run()
+void CCore::RUN()
 {
 	// ====================
 	// Manager Update Block
@@ -85,11 +85,16 @@ void CCore::Run()
 	// UI Update
 	CUIMgr::GetI()->Update();
 
+
 	// ==================
 	// Scene Update Block
 	// ==================
-	CSceneMgr::GetI()->Update();
+	if(CTimeMgr::GetI()->IsPlay())
+	{
+		CSceneMgr::GetI()->Update();
+	}
 	CSceneMgr::GetI()->FinalUpdate();
+
 
 	// ======================
 	// Collision Update Block

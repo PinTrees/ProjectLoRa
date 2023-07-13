@@ -2,9 +2,10 @@
 
 #include <Windows.h>
 #include <iostream>
-
 #include <future>
 
+#include <utility>
+#include <typeinfo>
 
 #include <vector>
 using std::vector;
@@ -20,6 +21,9 @@ using std::list;
 using std::wstring;
 using std::string;
 
+#include <sstream>
+using std::wstringstream;
+
 #include <fstream>
 #include <tchar.h>
 
@@ -34,3 +38,4 @@ using std::string;
 
 #include "Vec2.h"
 #include "func.h"
+//#include "func.cpp"

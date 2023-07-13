@@ -1,11 +1,12 @@
 #include "pch.h"
-#include "CRigidBody.h"
+#include "RigidBody.h"
 
 #include "CTimeMgr.h"
 #include "CObject.h"
 
 CRigidBody::CRigidBody()
-	: mMass(1.f)
+	: mpOwner(nullptr)
+	, mMass(1.f)
 	, mFrictCoeff(200.f)
 	, mvMaxVelocity(Vect2(400.f, 1200.f))
 	, mKinematic(false)
@@ -97,10 +98,10 @@ void CRigidBody::Move()
 	Vect2 dir = mvVelocity;
 	dir.Normalize();
 
-	Vect2 pos = GetO()->GetPos();
+	Vect2 pos = mpOwner->GetPos();
 	pos += dir * speed * DT;
 
-	GetO()->SetPos(pos);
+	mpOwner->SetPos(pos);
 }
 
 

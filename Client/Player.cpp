@@ -3,30 +3,34 @@
 
 #include "CCore.h"
 
-// Include Manager Header
+// Core Manager Header
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CSceneMgr.h"
 #include "CResMgr.h"
 #include "Random.h"
+#include "UIMgr.h"
 
-// Include Component Header
+// Component Header
 #include "CTexture.h"
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
-#include "CRigidBody.h"
+#include "RigidBody.h"
 #include "CScene.h"
 
-// Include GameObject Header
+// GameObject Header
 #include "Bullet.h"
 #include "Gun.h"
 
-// Include UI Object Header
+// UI Object Header
+#include "CUI.h"
 #include "BarUI.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 #include "TextUI.h"
+
+#include "CState.h"
 
 
 
@@ -34,12 +38,13 @@
 Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
-	, mState(PLAYER_STATE::NONE)
-	, mvDashDir(Vect2(0.f, 0.f))
+	, mvDir(Vect2(0.f, 0.f))
 	, mCurGun(nullptr)
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
+	, mLevelupUI(nullptr)
+	, mAI(nullptr)
 {
 	// Init Object Component
 	// Create Collider Component
@@ -54,18 +59,38 @@ Player::Player()
 	GetRigidBody()->SetAccelAlpha(Vect2(100.f, 100.f));
 
 
-
 	// Create Animator Component
 	CreateAnimator();
 
+	GetAnimator()->LoadAnimation(L"animation\\player_idle.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_run_r.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_run_l.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
 
-	GetAnimator()->LoadAnimation(L"animation\\player_idle_none.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_run_right.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_run_left.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_atk_right.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_atk_left.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_dash_right.anim");
+	//CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\character.bmp");
 
+	//GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f, 8);
+	//GetAnimator()->CreateAnimation(L"RUN_R", pTex, Vect2(0.f, 54.f * 2), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
+	//GetAnimator()->CreateAnimation(L"RUN_L", pTex, Vect2(0.f, 54.f * 30), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
+	//GetAnimator()->CreateAnimation(L"ATK_R", pTex, Vect2(0.f, 54.f * 14), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 3);
+	//GetAnimator()->CreateAnimation(L"ATK_L", pTex, Vect2(0.f, 54.f * 31), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 3);
+	//GetAnimator()->CreateAnimation(L"DASH_R", pTex, Vect2(0.f, 54.f * 23), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 7);
+
+	//GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
+	//GetAnimator()->FindAnimation(L"RUN_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
+	//GetAnimator()->FindAnimation(L"RUN_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
+	//GetAnimator()->FindAnimation(L"ATK_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
+	//GetAnimator()->FindAnimation(L"ATK_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
+	//GetAnimator()->FindAnimation(L"DASH_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
+
+	//GetAnimator()->FindAnimation(L"IDLE")->Save(L"animation\\player_idle.anim");
+	//GetAnimator()->FindAnimation(L"RUN_R")->Save(L"animation\\player_run_r.anim");
+	//GetAnimator()->FindAnimation(L"RUN_L")->Save(L"animation\\player_run_l.anim");
+	//GetAnimator()->FindAnimation(L"ATK_L")->Save(L"animation\\player_atk_r.anim");
+	//GetAnimator()->FindAnimation(L"ATK_R")->Save(L"animation\\player_atk_l.anim");
+	//GetAnimator()->FindAnimation(L"DASH_R")->Save(L"animation\\player_dash_r.anim");
 
 	GetAnimator()->Play(L"IDLE", true);
 
@@ -89,37 +114,25 @@ Player::Player()
 
 Player::~Player()
 {
-
 }
 
 
 void Player::Update()
 {
-	calExp();
-
+	if (mAI)
+		mAI->Update();
 	GetAnimator()->Update();
 
+	calExp();
 	mfCurDelay += DT;
 	
 	Vect2 vPos = GetPos();
 	mExpBar->SetAmount(GetExp() / GetMaxExp());
 
-	if (mState == PLAYER_STATE::Dash)
-	{
-		mCurGun->SetVisible(false);
-
-		SetPos(vPos + mvDashDir * 1000.f * DT);
-
-		if (GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			mCurGun->SetVisible(true);
-			mState = PLAYER_STATE::Idle;
-		}
-
+	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
-	}
 
-	if (mCurGun != nullptr)
+	if (nullptr !=  mCurGun)
 	{
 		Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
 		mCurGun->SetAngle(vDir.ToAngle());
@@ -127,70 +140,34 @@ void Player::Update()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		GetAnimator()->Play(L"DASH_R", false);
-
-		mvDashDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-		mvDashDir.Normalize();
-
-		mState = PLAYER_STATE::Dash;
+		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}
 
-	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > 0.01f)
+	if (KEY_HOLD(KEY::RBTN)
+		&& mfCurDelay > mCurGun->GetInfo().shotDelay
+		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		mfCurDelay = 0.f;
-
-		for (int i = 0; i < 2; ++i)
-		{
-			createMissile();
-		}
-
-		Vect2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
-		GetAnimator()->Play(pos.x > GetLocalPos().x ? L"ATK_R" : L"ATK_L", false);
-
-		mState = PLAYER_STATE::ATTACK;
+		ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
 	}
 
-	if (mState == PLAYER_STATE::ATTACK)
+	mvDir = Vect2::zero;
+
+	if (KEY_HOLD(KEY::W)) mvDir += Vect2::up;
+	if (KEY_HOLD(KEY::S)) mvDir += Vect2::down;
+	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
+	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
+
+	if (mvDir != Vect2::zero)
 	{
-		if (GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			mState = PLAYER_STATE::Idle;
-		}
+		if(GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
+			ChangeAIState(GetAI(), PLAYER_STATE::RUN);
 	}
-
-	else if (mState == PLAYER_STATE::Idle)
+	else if(GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
+		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
-		GetAnimator()->Play(L"IDLE", true);
-	}
-
-	Vect2 vDir = Vect2::zero;
-	Vect2 vStartDir = Vect2::zero;
-
-	if (KEY_HOLD(KEY::W)) vDir += Vect2::up;
-	if (KEY_HOLD(KEY::S)) vDir += Vect2::down;
-	if (KEY_HOLD(KEY::A)) vDir += Vect2::left;
-	if (KEY_HOLD(KEY::D)) vDir += Vect2::right;
-
-	if (vDir != Vect2::zero)
-	{
-		mState = PLAYER_STATE::Run;
-		SetPos(vPos + vDir * 250.f * DT);
-
-		if (vDir.x < 1)
-		{
-			GetAnimator()->Play(L"RUN_L", true);
-		}
-		else
-		{
-			GetAnimator()->Play(L"RUN_R", true);
-		} 
-
-		SetFlip(vDir.x < 1);
-	}
-	else
-	{
-		mState = PLAYER_STATE::Idle;
+		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
 	}
 }
 
@@ -200,7 +177,7 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-void Player::createMissile()
+void Player::CreateMissile()
 {
 	Vect2 vMissilePos = GetLocalPos() + Vect2(0.f, -50.f);
 
@@ -222,6 +199,7 @@ void Player::createMissile()
 }
 
 
+
 void Player::calExp()
 {
 	if (mExp >= GetMaxExp())
@@ -231,31 +209,44 @@ void Player::calExp()
 
 		Vect2 vRes = CCore::GetI()->GetResolution();
 
-		CPanelUI* pPanel = new CPanelUI;
-		pPanel->SetPos(Vect2(175.f, vRes.y * 0.5f));
-		pPanel->SetScale(Vect2(300.f, 300.f));
-		pPanel->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
-		CreateObject(pPanel, GROUP_TYPE::UI);
+		mLevelupUI = new CPanelUI;
+		mLevelupUI->SetPos(vRes * 0.5f);
+		mLevelupUI->SetScale(vRes);
+		CreateObject(mLevelupUI, GROUP_TYPE::UI);
 
-		CBtnUI* pBtn = new CBtnUI;
-		pBtn->SetPos(Vect2(0.f, 100.f));
-		pBtn->SetScale(Vect2(200.f, 50.f));
-		pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
-		pBtn->SetClickedCallBack(this, (OBJECT_FUNC)&Player::SelectLevelUp);
-		pPanel->AddChild(pBtn);
+		for (int i = 0; i < 3; ++i)
+		{
+			float spacing = vRes.x / 3;
 
-		TextUI* pText = new TextUI;
-		pText->SetPos(Vect2(0.f, 100.f));
-		pText->SetText(L"AAAA");
-		pPanel->AddChild(pText);
+			CPanelUI* pPanel = new CPanelUI;
+			pPanel->SetPos(Vect2(spacing * i - spacing, 0.f));
+			pPanel->SetScale(Vect2(300.f, 300.f));
+			pPanel->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
+			mLevelupUI->AddChild(pPanel);
 
+			tUpgrad a = {};
+
+			CBtnUI* pBtn = new CBtnUI;
+			pBtn->SetPos(Vect2(0.f, 100.f));
+			pBtn->SetScale(Vect2(200.f, 50.f));
+			pBtn->SetText(L"¼±ÅÃ");
+			pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+			pBtn->SetClickedCallBack(this, (OBJECT_FUNC_P)&Player::SelectLevelUp, (DWORD_PTR)&a);
+			pPanel->AddChild(pBtn);
+		}
 
 		CTimeMgr::GetI()->Stop();
 	}
 }
 
 
-void Player::SelectLevelUp()
+void Player::SelectLevelUp(DWORD_PTR param)
 {
 	CTimeMgr::GetI()->Play();
+
+	if (nullptr != mLevelupUI)
+	{
+		CUIMgr::GetI()->SetFocusUI(nullptr);
+		DeleteObject(mLevelupUI);
+	}
 }

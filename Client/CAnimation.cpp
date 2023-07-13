@@ -1,20 +1,22 @@
 #include "pch.h"
 #include "CAnimation.h"
 
+// Manager Header
 #include "CTimeMgr.h"
+#include "CResMgr.h"
+#include "CPathMgr.h"
 
 #include "CAnimator.h"
 #include "CTexture.h"
 #include "CObject.h"
 #include "CCamera.h"
 
-#include "CPathMgr.h"
-#include "CResMgr.h"
+
 
 
 CAnimation::CAnimation()
 	:mpAnimator(nullptr)
-	, mpTex(nullptr)
+	, mpTexture(nullptr)
 	, miCurFrm(0)
 	, mfAccTime(0.f)
 	, mbFinish(false)
@@ -85,7 +87,7 @@ void CAnimation::Render(HDC _dc)
 			, (int)(vPos.y - vScale.y * 0.5f)
 			, (int)(vScale.x)
 			, (int)(vScale.y)
-			, mpTex->GetDC()
+			, mpTexture->GetDC()
 			, (int)(mVecFrm[miCurFrm].vLT.x)
 			, (int)(mVecFrm[miCurFrm].vLT.y)
 			, (int)(mVecFrm[miCurFrm].vSlice.x)
@@ -131,7 +133,7 @@ void CAnimation::Render(HDC _dc)
 			, (int)(-vScale.y * 0.5f)
 			, (int)(vScale.x)
 			, (int)(vScale.y)
-			, mpTex->GetDC()
+			, mpTexture->GetDC()
 			, (int)(mVecFrm[miCurFrm].vLT.x)
 			, (int)(mVecFrm[miCurFrm].vLT.y)
 			, (int)(mVecFrm[miCurFrm].vSlice.x)
@@ -149,7 +151,7 @@ void CAnimation::Render(HDC _dc)
 void CAnimation::Create(CTexture* _pTex, Vect2 _vLT, Vect2 _vSliceSize
 	, Vect2 _vStep, float _fDuration, UINT _iFreamCount)
 {
-	mpTex = _pTex;
+	mpTexture = _pTex;
 
 	tAnimFrm frm = {};
 	for (UINT i = 0; i < _iFreamCount; ++i)
@@ -161,6 +163,8 @@ void CAnimation::Create(CTexture* _pTex, Vect2 _vLT, Vect2 _vSliceSize
 		mVecFrm.push_back(frm);
 	}
 }
+
+
 
 void CAnimation::Save(const wstring& _strRelativePath)
 {
@@ -180,12 +184,12 @@ void CAnimation::Save(const wstring& _strRelativePath)
 
 	// Animation이 사용하는 텍스쳐
 	fprintf(pFile, "[Texture Name]\n");
-	strName = string(mpTex->GetKey().begin(), mpTex->GetKey().end());
+	strName = string(mpTexture->GetKey().begin(), mpTexture->GetKey().end());
 	fprintf(pFile, strName.c_str());
 	fprintf(pFile, "\n");
 
 	fprintf(pFile, "[Texture Path]\n");
-	strName = string(mpTex->GetRelativePath().begin(), mpTex->GetRelativePath().end());
+	strName = string(mpTexture->GetRelativePath().begin(), mpTexture->GetRelativePath().end());
 	fprintf(pFile, strName.c_str());
 	fprintf(pFile, "\n");
 
@@ -219,7 +223,6 @@ void CAnimation::Save(const wstring& _strRelativePath)
 	}
 
 	fclose(pFile);
-
 }
 
 void CAnimation::Load(const wstring& _strRelativePath)
@@ -251,7 +254,7 @@ void CAnimation::Load(const wstring& _strRelativePath)
 	str = szBuff;
 	wstring strTexPath = wstring(str.begin(), str.end());
 
-	mpTex = CResMgr::GetI()->LoadTexture(strTexKey, strTexPath);
+	mpTexture = CResMgr::GetI()->LoadTexture(strTexKey, strTexPath);
 
 
 	//// 프레임 개수
@@ -300,8 +303,5 @@ void CAnimation::Load(const wstring& _strRelativePath)
 		mVecFrm.push_back(frm);
 	}
 
-
 	fclose(pFile);
-
-
 }

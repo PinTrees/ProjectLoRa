@@ -1,6 +1,6 @@
 #pragma once
 #include "CObject.h"
-
+#include "AI.h"
 
 struct tMonsterInfo
 {
@@ -13,7 +13,7 @@ struct tMonsterInfo
 	float		curHp;
 };
 
-class AI;
+
 class MonsterFactory;
 class BarUI;
 
@@ -23,10 +23,10 @@ class Monster :
 	public CObject
 {
 private:
-	tMonsterInfo	mtInfo;
-	AI*				mAI;
+	tMonsterInfo		mtInfo;
+	AI<MONSTER_STATE>*	mAI;
 
-	BarUI*			mHpBar;
+	BarUI*				mHpBar;
 
 
 public:
@@ -35,7 +35,9 @@ public:
 
 	const tMonsterInfo GetInfo() { return mtInfo; }
 
-	void SetAI(AI* pAI);
+	void SetAI(AI<MONSTER_STATE>* pAI);
+
+	void AddDamage(float damage);
 
 
 public:

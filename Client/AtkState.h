@@ -2,10 +2,8 @@
 #include "CState.h"
 
 
-
-
 class AtkState :
-    public CState
+    public CState<MONSTER_STATE>
 {
 private:
 

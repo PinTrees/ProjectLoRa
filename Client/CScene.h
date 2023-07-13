@@ -49,7 +49,7 @@ public:
 	//void DeleteForce(tForce force);
 
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eTYpe) { return mArrObj[(UINT)_eTYpe]; }
-	vector<CObject*>& GetUIGroups(const GROUP_TYPE& type) { return mArrObj[static_cast<UINT>(GROUP_TYPE::UI)]; }
+	vector<CObject*>& GetUIGroups() { return mArrObj[(UINT)GROUP_TYPE::UI]; }
 
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();

@@ -3,7 +3,6 @@
 
 // Include Manager
 #include "CPathMgr.h"
-#include "CEventMgr.h"
 #include "CResMgr.h"
 #include "CSceneMgr.h"
 
@@ -12,6 +11,8 @@
 
 #include "Tile.h"
 #include "Background.h"
+
+#include "AI.h"
 
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
@@ -45,15 +46,7 @@ void ChangeScene(SCENE_TYPE _eNext)
 }
 
 
-void ChangeAIState(AI* pAI, MONSTER_STATE nextState)
-{
-	tEvent evn = {};
-	evn.eEven = EVENT_TYPE::CHANGE_AI_STATE;
-	evn.lParam = (DWORD_PTR)pAI;
-	evn.wParam = (DWORD_PTR)nextState;
 
-	CEventMgr::GetI()->AddEvent(evn);
-}
 
 
 void CreateForce(tForce& force)
@@ -137,13 +130,17 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 
 	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
 
-	assert(pFile);
+	if (nullptr == pFile)
+	{
+		fclose(pFile);
+		assert(pFile);
+	}
 
-	UINT xCount = 10;
-	UINT yCount = 10;
+	UINT xCount = 0;
+	UINT yCount = 0;
 
-	//fread(&xCount, sizeof(UINT), 1, pFile);
-	//fread(&yCount, sizeof(UINT), 1, pFile);
+	fread(&xCount, sizeof(UINT), 1, pFile);
+	fread(&yCount, sizeof(UINT), 1, pFile);
 
 
 	Background* pParallax = new Background();
@@ -158,7 +155,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 	{
 		Tile* tile = (Tile*)(vecTile[i]);
 		tile->Load(pFile);
-		tile->Render(dc);
+		tile->RenderBacgrounnd(dc);
 	}
 
 	pScene->AddObject(pParallax, GROUP_TYPE::PARALLAX);
@@ -188,30 +185,6 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 	}
 }
 
-void SaveWString(const wstring& _str, FILE* _pFile)
-{
-
-	// Animation 의 이름을 저장한다.
-	const wchar_t* pStrName = _str.c_str();
-	size_t iLen = _str.length();
-
-	// 문자 길이 저장
-	fwrite(&iLen, sizeof(size_t), 1, _pFile);
-
-	// 문자열 저장
-	fwrite(&pStrName, sizeof(wchar_t), iLen, _pFile);
-
-
-}
-
-void LoadWString(wstring& _str, FILE* _pFile)
-{
-	size_t iLen = 0;
-	fread(&iLen, sizeof(size_t), 1, _pFile);
-	wchar_t szBuff[256] = {};
-	fread(szBuff, sizeof(wchar_t), (int)iLen, _pFile);
-	_str = szBuff;
-}
 
 void FScanf(char* _pOutBuff, FILE* _pFile)
 {
@@ -226,5 +199,4 @@ void FScanf(char* _pOutBuff, FILE* _pFile)
 		}
 		_pOutBuff[i++] = c;
 	}
-
 }

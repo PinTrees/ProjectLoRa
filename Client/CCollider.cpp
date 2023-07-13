@@ -9,21 +9,21 @@
 #include "CTimeMgr.h"
 
 // Include Components
-#include "CRigidBody.h"
+#include "RigidBody.h"
 
 UINT CCollider::giNextID = 0;
 
 CCollider::CCollider()
-	
-	: miID(giNextID++)
+	:mpOwner(nullptr)
+	, miID(giNextID++)
 	, miCol(0)
 	, mIsTrigger(true)
 {
 }
 
 CCollider::CCollider(const CCollider& _origin)
-	
-	: mvOffsetPos(_origin.mvOffsetPos)
+	:mpOwner(nullptr)
+	, mvOffsetPos(_origin.mvOffsetPos)
 	, mvScale(_origin.mvScale)
 	, miID(giNextID++)
 	, miCol(0)
@@ -39,7 +39,7 @@ CCollider::~CCollider()
 void CCollider::FinalUpdate()
 {
 	// object의 위치를 따라간다.
-	Vect2 vObejctPos = GetO()->GetPos();
+	Vect2 vObejctPos = mpOwner->GetPos();
 	mvFinalPos = vObejctPos + mvOffsetPos;
 
 	assert(0 <= miCol);
@@ -67,16 +67,16 @@ void CCollider::Render(HDC _dc)
 
 void CCollider::OnCollisionStay(CCollider* _pOther)
 {
-	GetO()->OnCollisionStay(_pOther);
+	mpOwner->OnCollisionStay(_pOther);
 
 	if (!mIsTrigger && !_pOther->GetTrigger() 
-		&& GetO()->GetRigidBody())
+		&& mpOwner->GetRigidBody())
 	{
-		if (GetO()->GetRigidBody()->IsKinematic())
+		if (mpOwner->GetRigidBody()->IsKinematic())
 			return;
 
-		Vect2 vDis = (GetO()->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
-		GetO()->SetPos(GetO()->GetPos() + vDis * 100.f * DT);
+		Vect2 vDis = (mpOwner->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
+		mpOwner->SetPos(mpOwner->GetPos() + vDis * 100.f * DT);
 		//mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
 	}
 }
@@ -84,13 +84,13 @@ void CCollider::OnCollisionStay(CCollider* _pOther)
 void CCollider::OnCollisionEnter(CCollider* _pOther)
 {
 	++miCol;
-	GetO()->OnCollisionEnter(_pOther);
+	mpOwner->OnCollisionEnter(_pOther);
 }
 
 void CCollider::OnCollisionExit(CCollider* _pOther)
 {
 	--miCol;
-	GetO()->OnCollisionExit(_pOther);
+	mpOwner->OnCollisionExit(_pOther);
 
 }
 

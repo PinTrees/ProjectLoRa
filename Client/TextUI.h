@@ -31,6 +31,6 @@ public:
 
 public:
 	TextUI();
-	~TextUI();
+	virtual ~TextUI() override;
 };
 

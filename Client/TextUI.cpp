@@ -5,12 +5,12 @@
 #include "CResMgr.h"
 
 TextUI::TextUI()
-	: CUI(false)
+	: CUI(true)
 	, mFont(nullptr)
 	, mText(L"")
 {
 	// Base Font Setting
-	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", 24, 0);
+	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", 28, false);
 }
 
 TextUI::~TextUI()
@@ -21,16 +21,22 @@ TextUI::~TextUI()
 void TextUI::SetText(const wstring& text)
 {
 	mText = text;
-	mFont->SetWord(mText);
 }
 
 
 void TextUI::Render(HDC dc)
 {
-	if (nullptr != mFont && mText != L"")
+	if (nullptr == mFont || mText == L"")
+		return;
+
+	Vect2 vRenderPos = GetFinalPos();
+
+	if (!IsCameraAffected())
 	{
-		mFont->PrintWord(dc, GetFinalPos());
+		vRenderPos = CCamera::GetI()->GetRenderPos(vRenderPos);
 	}
+
+	mFont->PrintWord(dc, vRenderPos, mText);
 }
 
 void TextUI::MouseOn()

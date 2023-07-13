@@ -1,12 +1,11 @@
 #pragma once
-#include "CCompnent.h"
 
 class CObject;
 
-class CRigidBody 
-	:public CCompnent
+class CRigidBody
 {
 private: 
+	CObject* mpOwner;
 
 	Vect2	mvForce;		// 크기, 방향
 	Vect2	mvAccel;		// 가속도 
@@ -21,8 +20,8 @@ private:
 
 
 public:
-	virtual void Update() override;
-	virtual void FinalUpdate() override;
+	void Update();
+	void FinalUpdate();
 
 
 private:
@@ -51,7 +50,7 @@ public:
 
 public:
 	CRigidBody();
-	virtual ~CRigidBody();
+	~CRigidBody();
 
 	friend class CObject;
 };

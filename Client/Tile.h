@@ -22,6 +22,7 @@ public:
 public:
 	virtual void Update() override;
 	virtual void Render(HDC _dc) override;
+	virtual void RenderBacgrounnd(HDC _dc);
 
 	CLONE(Tile);
 

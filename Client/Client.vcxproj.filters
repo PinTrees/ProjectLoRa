@@ -113,6 +113,9 @@
     <Filter Include="FreamWork\Core">
       <UniqueIdentifier>{2f3345fc-354c-4df0-a342-b413e988a7ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\Header">
+      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Scene\Scene_Start">
       <UniqueIdentifier>{639227a7-f654-445d-bd9a-b40a71bd3fda}</UniqueIdentifier>
     </Filter>
@@ -158,6 +161,12 @@
     <Filter Include="FreamWork\Module\GDI">
       <UniqueIdentifier>{7f56ca5a-7161-45b6-b055-6cdd028a906c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\Header\Vector">
+      <UniqueIdentifier>{6e0115db-24d9-4e50-a664-d10ac1e2d4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Header\Func">
+      <UniqueIdentifier>{4c6db5c9-a146-44ed-9d6b-03036d86d6d3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\FSM\Monster">
       <UniqueIdentifier>{9de5b94a-f550-4440-b671-be7c28c177a7}</UniqueIdentifier>
     </Filter>
@@ -182,14 +191,23 @@
     <Filter Include="FreamWork\UI\Text">
       <UniqueIdentifier>{0a902a05-40d7-4e2b-a467-d8f26d5fa6fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\01. Header">
-      <UniqueIdentifier>{bc5091fe-8161-4f07-be34-585f4327c6e2}</UniqueIdentifier>
+    <Filter Include="Game\FSM\Player\Idle">
+      <UniqueIdentifier>{cfd7de57-f5d4-448c-838f-0fa793e4f37f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\01. Header\Vector">
-      <UniqueIdentifier>{6e0115db-24d9-4e50-a664-d10ac1e2d4f0}</UniqueIdentifier>
+    <Filter Include="FreamWork\Manager\SoundMgr">
+      <UniqueIdentifier>{ea53a28b-3cbf-4603-a88f-9be7f3175bee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\01. Header\Func">
-      <UniqueIdentifier>{4c6db5c9-a146-44ed-9d6b-03036d86d6d3}</UniqueIdentifier>
+    <Filter Include="Game\FSM\Player\Run">
+      <UniqueIdentifier>{93ed4508-7361-492b-9d6e-49fddbf4c13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Dash">
+      <UniqueIdentifier>{ccf33ff1-4372-4d6e-a604-e3fa8a98e727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Atk">
+      <UniqueIdentifier>{42dc398b-eed7-46b8-85bd-8433c2bc1d42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Image">
+      <UniqueIdentifier>{4526c255-9048-41b1-9055-118c8595dc32}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -248,10 +266,10 @@
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>FreamWork\01. Header</Filter>
+      <Filter>FreamWork\Header</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>FreamWork\01. Header</Filter>
+      <Filter>FreamWork\Header</Filter>
     </ClInclude>
     <ClInclude Include="CScene_start.h">
       <Filter>Game\Scene\Scene_Start</Filter>
@@ -280,7 +298,7 @@
     <ClInclude Include="Bullet.h">
       <Filter>Game\Object\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="CRigidBody.h">
+    <ClInclude Include="RigidBody.h">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClInclude>
     <ClInclude Include="UIMgr.h">
@@ -323,7 +341,7 @@
       <Filter>Game\MonsterFactory</Filter>
     </ClInclude>
     <ClInclude Include="register.h">
-      <Filter>FreamWork\01. Header</Filter>
+      <Filter>FreamWork\Header</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMgr.h">
       <Filter>Game\Manager\PlayerMgr</Filter>
@@ -353,10 +371,10 @@
       <Filter>FreamWork\Module\GDI</Filter>
     </ClInclude>
     <ClInclude Include="Vec2.h">
-      <Filter>FreamWork\01. Header\Vector</Filter>
+      <Filter>FreamWork\Header\Vector</Filter>
     </ClInclude>
     <ClInclude Include="func.h">
-      <Filter>FreamWork\01. Header\Func</Filter>
+      <Filter>FreamWork\Header\Func</Filter>
     </ClInclude>
     <ClInclude Include="CFont.h">
       <Filter>FreamWork\Resource\Font</Filter>
@@ -364,8 +382,26 @@
     <ClInclude Include="TextUI.h">
       <Filter>FreamWork\UI\Text</Filter>
     </ClInclude>
-    <ClInclude Include="CCompnent.h">
-      <Filter>FreamWork\Compnent</Filter>
+    <ClInclude Include="CombatText.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PIdleState.h">
+      <Filter>Game\FSM\Player\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>FreamWork\Manager\SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="PRunState.h">
+      <Filter>Game\FSM\Player\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PDashState.h">
+      <Filter>Game\FSM\Player\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="PAtkState.h">
+      <Filter>Game\FSM\Player\Atk</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageUI.h">
+      <Filter>FreamWork\UI\Image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -452,7 +488,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Game\Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="CRigidBody.cpp">
+    <ClCompile Include="RigidBody.cpp">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClCompile>
     <ClCompile Include="UIMgr.cpp">
@@ -522,10 +558,10 @@
       <Filter>FreamWork\Module\GDI</Filter>
     </ClCompile>
     <ClCompile Include="Vec2.cpp">
-      <Filter>FreamWork\01. Header\Vector</Filter>
+      <Filter>FreamWork\Header\Vector</Filter>
     </ClCompile>
     <ClCompile Include="func.cpp">
-      <Filter>FreamWork\01. Header\Func</Filter>
+      <Filter>FreamWork\Header\Func</Filter>
     </ClCompile>
     <ClCompile Include="CFont.cpp">
       <Filter>FreamWork\Resource\Font</Filter>
@@ -533,8 +569,26 @@
     <ClCompile Include="TextUI.cpp">
       <Filter>FreamWork\UI\Text</Filter>
     </ClCompile>
-    <ClCompile Include="CCompnent.cpp">
-      <Filter>FreamWork\Compnent</Filter>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PIdleState.cpp">
+      <Filter>Game\FSM\Player\Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>FreamWork\Manager\SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="PRunState.cpp">
+      <Filter>Game\FSM\Player\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PDashState.cpp">
+      <Filter>Game\FSM\Player\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="PAtkState.cpp">
+      <Filter>Game\FSM\Player\Atk</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageUI.cpp">
+      <Filter>FreamWork\UI\Image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

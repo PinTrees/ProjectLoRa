@@ -1,25 +1,21 @@
 #pragma once
-
 #include "CState.h"
 
 
-class CIdleState :
-    public CState
+class PAtkState :
+    public CState<PLAYER_STATE>
 {
 private:
+    Vect2 mvDir;
+
 
 public:
     virtual void Update() override;
     virtual void Enter() override;
     virtual void Exit() override;
 
+
 public:
-    CIdleState();
-    ~CIdleState() override;
-
-
-
-
-
+    PAtkState();
+    ~PAtkState();
 };
-

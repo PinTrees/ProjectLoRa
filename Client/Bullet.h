@@ -10,27 +10,32 @@ struct tEffectLv
 };
 
 
+struct tBullet
+{
+	float	damage;
+	float	penetrationCount;
+	float	splitCount;
+	float	bounceCount;
+};
+
+
 class Bullet :
 	public CObject
 {
 private:
-	float		m_tTheta; // 이동 방향
 	Vect2		m_vDir;
 	wstring		mType;
 
 	float		mDelay;
 	float		mCurDelay;
 
-	int			mPenetrationCount;
-	int			mDivideCount;
-	int			mBounceCount;
+	tBullet		mInfo;
+
 
 public:
-	void SetDivideCount(int _count) { mDivideCount = _count; }
-	void SetPenetrationCount(int _count) { mPenetrationCount = _count; }
-	void SetBounceCount(int _count) { mBounceCount = _count; }
+	void SetInfo(const tBullet& info) { mInfo = info; }
+	tBullet& GetInfo() { return mInfo; }
 
-	void SetDir(float _tTheta) { m_tTheta = _tTheta; }
 	void SetDir(Vect2	_vDir)
 	{
 		m_vDir = _vDir.Normalize();

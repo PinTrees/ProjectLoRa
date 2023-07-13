@@ -18,6 +18,7 @@ CCamera::CCamera()
 	, mfSpeed(0.f)
 	, mfAccTime(0.f)
 	, mEffectTex(nullptr)
+	
 {
 }
 

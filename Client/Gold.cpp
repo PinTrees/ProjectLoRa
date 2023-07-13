@@ -18,10 +18,10 @@ Gold::Gold()
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(55.f, 55.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Gold_1", L"texture\\gold\\gold_1.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Gold_1", L"texture\\gold\\coin_1.bmp");
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(128.f, 128.f), Vect2(128.f, 128.f), 0.1f, 1);
+	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(128.f, 128.f), Vect2(128.f, 0.f), 0.05f, 6);
 	GetAnimator()->Play(L"IDLE", true);
 
 	GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));

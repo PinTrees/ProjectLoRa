@@ -3,6 +3,7 @@
 
 #include "CCamera.h"
 #include "CTexture.h"
+#include "CSceneMgr.h"
 
 Tile::Tile()
 	: mpTileTex(nullptr)
@@ -42,7 +43,44 @@ void Tile::Render(HDC _dc)
 	if (maxRow <= curRow)
 		return;
 
-	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetPos());
+	Vect2 vLocalPos = GetLocalPos();
+
+	Vect2 vScale = GetScale();
+
+	TransparentBlt(_dc
+		, (int)vRenderPos.x
+		, (int)vRenderPos.y
+		, (int)(vScale.x)
+		, (int)(vScale.y)
+		, mpTileTex->GetDC()
+		, (int)(curCol * TILE_SIZE)
+		, (int)(curRow * TILE_SIZE)
+		, TILE_SIZE
+		, TILE_SIZE
+		, RGB(255, 0, 255));
+}
+
+
+
+void Tile::RenderBacgrounnd(HDC _dc)
+{
+	if (nullptr == mpTileTex || -1 == mIdx)
+		return;
+
+	UINT width = mpTileTex->Width();
+	UINT height = mpTileTex->Heigth();
+
+	UINT maxCol = width / TILE_SIZE;
+	UINT maxRow = height / TILE_SIZE;
+
+	UINT curRow = (UINT)mIdx / maxCol;
+	UINT curCol = (UINT)mIdx % maxCol;
+
+	if (maxRow <= curRow)
+		return;
+
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetPos());
 	Vect2 vLocalPos = GetLocalPos();
 
 	Vect2 vScale = GetScale();

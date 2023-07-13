@@ -42,11 +42,12 @@ void Scene_Tool::Enter()
 	CreateTile(this, 5, 5);
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();
+	CCamera::GetI()->SetLookAt(vResolution * 0.5f); //카메라 이동
 
 	CUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
 	pPanelUI->SetScale(Vect2(300.f, 150.f));
-	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
+	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 100.f));
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
@@ -58,7 +59,6 @@ void Scene_Tool::Enter()
 	pPanelUI->AddChild(pBtnUI); 
 	AddObject(pPanelUI, GROUP_TYPE::UI);
 
-	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 }
 
 void Scene_Tool::Exit()

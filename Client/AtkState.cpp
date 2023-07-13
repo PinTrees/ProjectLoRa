@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "CState.cpp"
+
 #include "AtkState.h"
 
 // Components Header
