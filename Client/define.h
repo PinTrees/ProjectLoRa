@@ -1,13 +1,17 @@
 #pragma once
 
-#define SINGLE(type) public:								\
+#define SINGLE_HEADER(type) type* type::pInst = nullptr;
+#define SINGLE(type) private:								\
+						static type* pInst;					\
+					 public:								\
 						static type* GetI()					\
 						{									\
-							static type mgr;				\
-							return &mgr;					\
-						}\
-						private:\
-								type();\
+							if(pInst == nullptr)			\
+								pInst = new type;			\
+							return pInst;					\
+						}									\
+						private:							\
+								type();						\
 								~type();
 
 
@@ -124,3 +128,9 @@ enum class PLAYER_STATE
 	Die,
 	DASH,
 };
+
+
+
+
+
+

@@ -3,7 +3,7 @@
 
 class FileMgr
 {
-	SINGLE(FileMgr);
+	SINGLE(FileMgr)
 
 public:
 	static void Wirte(const wstring& filePath, const wstring str);

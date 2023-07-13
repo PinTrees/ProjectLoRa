@@ -8,6 +8,9 @@
 #include "CFont.h"
 
 
+SINGLE_HEADER(CResMgr);
+
+
 CResMgr::CResMgr()
 {
 

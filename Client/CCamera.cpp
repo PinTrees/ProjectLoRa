@@ -11,6 +11,7 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+SINGLE_HEADER(CCamera);
 
 CCamera::CCamera()
 	:mpTargetObj(nullptr)

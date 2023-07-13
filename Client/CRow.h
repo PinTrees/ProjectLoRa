@@ -7,7 +7,12 @@ class CRow :
 	public CUI
 {
 private:
+	ALIGNMENT		mAlignment;
 
+
+public:
+	void SetAlignment(ALIGNMENT alignment) { mAlignment = alignment; }
+	ALIGNMENT GetAlignment() { return mAlignment; }
 
 
 public:

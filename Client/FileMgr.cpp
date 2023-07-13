@@ -2,6 +2,10 @@
 #include "FileMgr.h"
 #include "CPathMgr.h"
 
+
+SINGLE_HEADER(FileMgr);
+
+
 void FileMgr::Wirte(const wstring& filePath, const wstring str)
 {
 	wstring strFilePath = CPathMgr::GetI()->GetContentPath();

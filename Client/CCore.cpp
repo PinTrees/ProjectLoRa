@@ -18,6 +18,8 @@
 #include "SelectGDI.h"
 #include "resource.h"
 
+SINGLE_HEADER(CCore);
+
 CCore::CCore()
 	:mhWnd(0)
 	, mPtResolution{}

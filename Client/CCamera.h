@@ -20,7 +20,6 @@ struct tCamEffect
 
 
 
-
 class CCamera
 {
 	SINGLE(CCamera);

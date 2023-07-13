@@ -5,6 +5,8 @@
 
 #include "CCore.h"
 
+SINGLE_HEADER(CSoundMgr);
+
 CSoundMgr::CSoundMgr()
 	: m_pSound(nullptr)
 	, m_pBGM(nullptr)

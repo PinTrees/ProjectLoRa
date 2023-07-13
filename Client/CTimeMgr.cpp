@@ -3,7 +3,7 @@
 #include "CCore.h"
 
 
-
+SINGLE_HEADER(CTimeMgr);
 
 CTimeMgr::CTimeMgr()
 	:m_CurCount{}
@@ -12,6 +12,7 @@ CTimeMgr::CTimeMgr()
 	, m_dDT(0.0f)
 	, m_iCallCount(0)
 	, m_dAcc(0)
+	, mbStoped(false)
 {
 }
 

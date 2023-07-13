@@ -9,6 +9,9 @@
 #include "UIMgr.h"
 
 
+SINGLE_HEADER(CEventMgr);
+
+
 CEventMgr::CEventMgr()
 {
 

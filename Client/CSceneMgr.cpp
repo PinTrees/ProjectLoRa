@@ -12,6 +12,9 @@
 #include "CObject.h"
 
 
+SINGLE_HEADER(CSceneMgr);
+
+
 CSceneMgr::CSceneMgr()
 	:m_arrScene{}
 	, m_pCurScene(nullptr)

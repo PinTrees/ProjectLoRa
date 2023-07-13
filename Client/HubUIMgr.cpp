@@ -12,6 +12,8 @@
 #include "CRow.h"
 #include "CImageUI.h"
 
+SINGLE_HEADER(HubUIMgr);
+
 
 HubUIMgr::HubUIMgr()
 	: mBulletUI(nullptr)

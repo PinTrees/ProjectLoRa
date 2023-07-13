@@ -5,7 +5,8 @@
 
 CRow::CRow()
 	: CUI(false)
-{ 
+	, mAlignment(ALIGNMENT::CENTER)
+{
 }
 
 CRow::~CRow()
