@@ -149,7 +149,7 @@ void Player::Update()
 	}
 
 	if (KEY_HOLD(KEY::RBTN)
-		&& mfCurDelay > mCurGun->GetInfo().shotDelay
+		&& mfCurDelay >= mCurGun->GetInfo().shotDelay
 		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		mfCurDelay = 0.f;

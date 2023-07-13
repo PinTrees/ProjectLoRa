@@ -163,7 +163,8 @@ void CUI::RenderChild(HDC dc)
 {
 	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
-		mVecChildUI[i]->Render(dc);
+		if (mVecChildUI[i]->IsVisible())
+			mVecChildUI[i]->Render(dc);
 	}
 }
 

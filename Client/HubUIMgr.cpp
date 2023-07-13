@@ -9,6 +9,7 @@
 
 #include "CUI.h"
 #include "CPanelUI.h"
+#include "CRow.h"
 #include "CImageUI.h"
 
 
@@ -32,16 +33,15 @@ void HubUIMgr::CreateBulletUI()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
-	mBulletUI = new CPanelUI;
-	mBulletUI->SetPos(vRes - Vect2(200.f, 50.f));
-	mBulletUI->SetScale(Vect2(200.f, 50.f));
+	mBulletUI = new CRow;
+	mBulletUI->SetPos(vRes - Vect2(175.f, 50.f));
+	mBulletUI->SetScale(Vect2(300.f, 50.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"UI_B1", L"texture\\ui\\bullet_1.bmp"); 
 
 	for (int i = 0; i < 10; ++i)
 	{
 		CImageUI* bImg = new CImageUI;
-		bImg->SetPos(Vect2(100.f * i, 0.f));
 		bImg->SetScale(Vect2(40.f, 60.f));
 
 		bImg->CreateAnimator();
@@ -54,6 +54,18 @@ void HubUIMgr::CreateBulletUI()
 }
 
 
-void HubUIMgr::SetBulletUI()
+void HubUIMgr::SetBulletUI(UINT count)
 {
+	vector<CUI*> vecBulletUI = mBulletUI->GetChild();
+	for (int i = 0; i < vecBulletUI.size(); ++i)
+	{
+		if (i >= count)
+		{
+			vecBulletUI[i]->SetVisible(false);
+		}
+		else
+		{
+			vecBulletUI[i]->SetVisible(true);
+		}
+	}
 }
