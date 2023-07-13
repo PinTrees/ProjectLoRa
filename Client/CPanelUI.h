@@ -8,7 +8,6 @@ class CPanelUI :
 private:
     Vect2    mvDragStartPos;
 
-
 public:
     virtual void Update();
     virtual void Render(HDC _dc);
@@ -16,6 +15,7 @@ public:
     virtual void MouseLbtnDown();
     virtual void MouseLbtnUp();
 
+public:
     CLONE(CPanelUI);
 
 public:

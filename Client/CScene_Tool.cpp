@@ -37,27 +37,27 @@ Scene_Tool::~Scene_Tool()
 
 void Scene_Tool::Enter()
 {
-	CCore::GetI()->SetActiveMenu(true);
+	//CCore::GetI()->SetActiveMenu(true);
 
-	CreateTile(this, 5, 5);
+	//CreateTile(this, 5, 5);
 
-	Vect2 vResolution = CCore::GetI()->GetResolution();
-	CCamera::GetI()->SetLookAt(vResolution * 0.5f); //카메라 이동
+	//Vect2 vResolution = CCore::GetI()->GetResolution();
+	//CCamera::GetI()->SetLookAt(vResolution * 0.5f); //카메라 이동
 
-	CUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetName(L"ParentUI");
-	pPanelUI->SetScale(Vect2(300.f, 150.f));
-	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 100.f));
+	//CUI* pPanelUI = new CPanelUI;
+	//pPanelUI->SetName(L"ParentUI");
+	//pPanelUI->SetScale(Vect2(300.f, 150.f));
+	//pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 100.f));
 
-	CBtnUI* pBtnUI = new CBtnUI;
-	pBtnUI->SetName(L"ChildUI");
-	pBtnUI->SetScale(Vect2(100.f, 40.f));
-	pBtnUI->SetPos(Vect2(0.f, 0.f));
+	//CBtnUI* pBtnUI = new CBtnUI;
+	//pBtnUI->SetName(L"ChildUI");
+	//pBtnUI->SetScale(Vect2(100.f, 40.f));
+	//pBtnUI->SetPos(Vect2(0.f, 0.f));
 
-	// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
-	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
-	pPanelUI->AddChild(pBtnUI); 
-	AddObject(pPanelUI, GROUP_TYPE::UI);
+	//// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
+	//pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
+	//pPanelUI->AddChild(pBtnUI); 
+	//AddObject(pPanelUI, GROUP_TYPE::UI);
 
 }
 

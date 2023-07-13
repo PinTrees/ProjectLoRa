@@ -151,8 +151,8 @@ void Scene_Start::createEnvi()
 {
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
-	float xPos = rand() % (int)(vResolution.x);
-	float yPos = rand() % (int)(vResolution.y); 
+	float xPos = (float)(rand() % (int)(vResolution.x));
+	float yPos = (float)(rand() % (int)(vResolution.y));
 	Vect2 vCreatePos = Vect2(xPos, yPos);
 
 	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);

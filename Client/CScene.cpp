@@ -47,7 +47,7 @@ void CScene::AddForce(tForce& force)
 void CScene::Update()
 {
 	// Physical Force Update
-	for (int i = mArrForce.size() - 1; i >= 0; --i)
+	for (int i = (int)mArrForce.size() - 1; i >= 0; --i)
 	{
 		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
 
@@ -65,7 +65,7 @@ void CScene::Update()
 			if (!mArrObj[i][j]->IsDead())
 			{
 				// Object Physical Force Calculation
-				for (int f = mArrForce.size() - 1; f >= 0; --f)
+				for (int f = (int)mArrForce.size() - 1; f >= 0; --f)
 				{
 					Vect2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
 					float len = vDiff.Length();
@@ -170,15 +170,15 @@ void CScene::Render(HDC _dc)
 		SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 		SelectGDI p(_dc, PEN_TYPE::BLUE);
 
-		for (int i = mArrForce.size() - 1; i >= 0; --i)
+		for (int i =(int) mArrForce.size() - 1; i >= 0; --i)
 		{
 			Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
 
 			Ellipse(_dc
-				, vRenderPos.x - mArrForce[i].curRadius
-				, vRenderPos.y - mArrForce[i].curRadius
-				, vRenderPos.x + mArrForce[i].curRadius
-				, vRenderPos.y + mArrForce[i].curRadius);
+				,(int)( vRenderPos.x - mArrForce[i].curRadius)
+				,(int)( vRenderPos.y - mArrForce[i].curRadius)
+				,(int)( vRenderPos.x + mArrForce[i].curRadius)
+				,(int)( vRenderPos.y + mArrForce[i].curRadius));
 		}
 	}
 }
