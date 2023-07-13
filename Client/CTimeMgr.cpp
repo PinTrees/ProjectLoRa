@@ -41,10 +41,6 @@ void CTimeMgr::Update()
 	//if (m_dDT > (1. / 60.))
 	//	m_dDT = (1. / 60.);
 #endif // DEBUG
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 }
 
 void CTimeMgr::Render()

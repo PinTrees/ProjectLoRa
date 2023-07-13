@@ -34,11 +34,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 메모리 누수 체크
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-<<<<<<< Updated upstream
-    //_CrtSetBreakAlloc(442);
-=======
     //_CrtSetBreakAlloc(501703);
->>>>>>> Stashed changes
 
 
     // TODO: Place code here.

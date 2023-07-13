@@ -29,11 +29,8 @@
 
 #define TILE_SIZE 32
 #define TILE_SIZE_RENDER 64
-<<<<<<< Updated upstream
-=======
 
 #define DEBUG true
->>>>>>> Stashed changes
 
 
 enum class GROUP_TYPE
@@ -111,12 +108,6 @@ enum class MONSTER_STATE
 {
 	IDLE,
 	TRACE,
-<<<<<<< Updated upstream
-	CREATE,
-	DEAD,
-	ATTACK,
-};
-=======
 	Create,
 	DEAD,
 	ATTACK,
@@ -153,4 +144,3 @@ enum class LEVELUP_EFFECT
 
 	END
 };
->>>>>>> Stashed changes

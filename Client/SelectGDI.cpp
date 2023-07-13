@@ -2,10 +2,6 @@
 #include "SelectGDI.h"
 
 #include "CCore.h"
-#include "CPathMgr.h"
-
-
-
 
 
 
@@ -48,10 +44,7 @@ SelectGDI::SelectGDI(HDC _dc, COLORREF pColor=NULL, COLORREF bColor=NULL)
 	}
 }
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 SelectGDI::~SelectGDI()
 {
 	SelectObject(mhDC, mhDefaultBrush);

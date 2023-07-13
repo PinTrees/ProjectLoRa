@@ -2,11 +2,6 @@
 
 #include "CObject.h"
 
-<<<<<<< Updated upstream
-class Player;
-
-
-=======
 
 struct tGunInfo
 {
@@ -27,7 +22,6 @@ class Player;
 
 
 
->>>>>>> Stashed changes
 class Gun :
 	public CObject
 {
@@ -40,31 +34,18 @@ private:
 	float		mDelay;
 	float		mCurDelay;
 
-<<<<<<< Updated upstream
-	float	mAtkDamage;		// 공격력
-	float	mAtkSpeed;		// 공격스피드
-	float	mAtkRange;		// 사거리
-	float	mShotSpeed;		// 총알 속도
-	float	mReloadSpeed;	// 장전속도
-	float	mShotAngle;		// 발사 각도(명중률)
-	UINT	mPenetration;	// 관통 수
-=======
 	tGunInfo	mInfo;
->>>>>>> Stashed changes
 
 
 public:
 	void SetType(const wstring& _str) { mType = _str; }
 	void SetOwner(Player* _owner) { mOwner = _owner; }
 
-<<<<<<< Updated upstream
-=======
 	const tGunInfo& GetInfo() { return mInfo; }
 
 public:
 	void Shot();
 
->>>>>>> Stashed changes
 
 public:
 	virtual void Update() override;

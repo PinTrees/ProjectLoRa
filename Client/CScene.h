@@ -7,11 +7,7 @@ struct tForce
 	float curRadius = 0;	// 현재 반경
 	float speed;			// 폭발 속도
 	float force;			// 폭발력
-<<<<<<< Updated upstream
-	Vec2  pos;				// 폭발 지점
-=======
 	Vect2  pos;				// 폭발 지점
->>>>>>> Stashed changes
 };
 
 
@@ -22,36 +18,20 @@ class CScene
 {
 private:
 	vector<CObject*> mArrObj[(UINT)GROUP_TYPE::END];
-<<<<<<< Updated upstream
-	wstring			 m_strName; //Scene 이름
-=======
 	wstring			 mStrName;		//Scene 이름
->>>>>>> Stashed changes
 
 	// 씬 오브젝트 물리 폭발 관리
 	vector<tForce> mArrForce;
 
 
 protected:
-<<<<<<< Updated upstream
-	void _render_parallax(HDC dc);
-=======
 	void render_parallax(HDC dc);
->>>>>>> Stashed changes
 
 
 public:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }
 
-<<<<<<< Updated upstream
-	virtual void Update();
-	virtual void FinalUpdate();
-	virtual void Render(HDC _dc);
-
-	virtual void Enter() = 0; // 해당 씬 진입시 호출
-	virtual void Exit() = 0;  // 해당씬 탈출시 호출
-=======
 	// Life Cycle Point Function
 	virtual void Update();			// 매 프레임 마다 호출
 	virtual void FinalUpdate();		// 매 마지막 프레임 마다 호츨
@@ -59,8 +39,6 @@ public:
 	
 	virtual void Enter() = 0;		// 씬 진입시 호출
 	virtual void Exit() = 0;		// 씬 탈출시 호출
-
->>>>>>> Stashed changes
 
 
 public:
@@ -71,11 +49,7 @@ public:
 	//void DeleteForce(tForce force);
 
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eTYpe) { return mArrObj[(UINT)_eTYpe]; }
-<<<<<<< Updated upstream
-	vector<CObject*>& GetUIGroups(const GROUP_TYPE& type) { return mArrObj[static_cast<UINT>(GROUP_TYPE::UI)]; }
-=======
 	vector<CObject*>& GetUIGroups() { return mArrObj[(UINT)GROUP_TYPE::UI]; }
->>>>>>> Stashed changes
 
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();

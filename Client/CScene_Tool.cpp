@@ -14,11 +14,6 @@
 #include "UIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
-<<<<<<< Updated upstream
-#include "CFont.h"
-#include "CTexture.h"
-=======
->>>>>>> Stashed changes
 
 #include "FileMgr.h"
 #include "CPathMgr.h"
@@ -46,27 +41,6 @@ void Scene_Tool::Enter()
 
 	CreateTile(this, 5, 5);
 
-<<<<<<< Updated upstream
-	Vec2 vResolution = CCore::GetI()->GetResolution();
-
-	CUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetName(L"ParentUI");
-	pPanelUI->SetScale(Vec2(300.f, 150.f));
-	pPanelUI->SetPos(Vec2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
-	pPanelUI->SetFont(CResMgr::GetI()->LoadFont(L"Ramche", L"font\\Ramche.ttf", 20, true));
-	pPanelUI->SetContentOffset(Vec2(0.f, 50.f));
-	pPanelUI->GetFont()->SetInnerColor(RGB(0, 255, 0));
-	pPanelUI->GetFont()->SetOuterColor(RGB(255, 255, 0));
-	pPanelUI->GetFont()->SetWord(L"테스트중입니다.");
-
-	CBtnUI* pBtnUI = new CBtnUI;
-	pBtnUI->SetName(L"ChildUI");
-	pBtnUI->SetScale(Vec2(100.f, 40.f));
-	pBtnUI->SetPos(Vec2(0.f, 0.f));
-	pBtnUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"Gold", L"texture\\gold\\gold_1.bmp"));
-	pBtnUI->SetChangeTex(CResMgr::GetI()->LoadTexture(L"Bronze", L"texture\\gold\\bronze_1.bmp"));
-	pBtnUI->GetTextrue()->SetSize(Vec2(25.f, 25.f)); // 출력할 텍스쳐의 사이즈세팅
-=======
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	CUI* pPanelUI = new CPanelUI;
@@ -78,7 +52,6 @@ void Scene_Tool::Enter()
 	pBtnUI->SetName(L"ChildUI");
 	pBtnUI->SetScale(Vect2(100.f, 40.f));
 	pBtnUI->SetPos(Vect2(0.f, 0.f));
->>>>>>> Stashed changes
 
 	// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
 	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
@@ -117,11 +90,7 @@ void Scene_Tool::SetTileIdx()
 {
 	if (KEY_TAP(KEY::LBTN))
 	{
-<<<<<<< Updated upstream
-		Vec2 vMousePos = MOUSE_POS;
-=======
 		Vect2 vMousePos = MOUSE_POS;
->>>>>>> Stashed changes
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
 		int iTileX = (int)GetTileX();
@@ -233,11 +202,7 @@ void Scene_Tool::SaveTile(const wstring& _fullPath)
 		}
 	}
 
-<<<<<<< Updated upstream
-	FileMgr::WirteByteFullPath(_fullPath, data.data(), data.size());
-=======
 	FileMgr::WirteByteFullPath(_fullPath, data.data(), (int)data.size());
->>>>>>> Stashed changes
 }
 
 void Scene_Tool::LoadTile(const wstring& _fullPath)
@@ -334,13 +299,8 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 		{
 			Tile* pTile = new Tile();
 			
-<<<<<<< Updated upstream
-			pTile->SetScale(Vec2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-			pTile->SetPos(Vec2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
-=======
 			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
->>>>>>> Stashed changes
 			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);

@@ -1,22 +1,4 @@
 #pragma once
-<<<<<<< Updated upstream
-
-
-class AI;
-class CMonster;
-
-class CState
-{
-private:
-	AI*				mpAI;
-	MONSTER_STATE	mState;
-
-public:
-	AI* GetAI() { return mpAI; }
-	MONSTER_STATE GetType() { return mState; }
-
-	CMonster* GetMonster();
-=======
 #include "AI.h"
 
 class CObject;
@@ -40,7 +22,6 @@ public:
 
 	CObject* GetOwner() { return mpAI->GetOwner(); }
 
->>>>>>> Stashed changes
 
 public:
 	virtual void Update() = 0;
@@ -49,12 +30,6 @@ public:
 
 
 public:
-<<<<<<< Updated upstream
-	CState(MONSTER_STATE state);
-	virtual ~CState();
-
-	friend class AI;
-=======
 	CState(T state)
 		: mState(state)
 		, mpAI(nullptr)
@@ -63,6 +38,5 @@ public:
 
 
 	friend class AI<T>;
->>>>>>> Stashed changes
 };
 

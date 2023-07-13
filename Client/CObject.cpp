@@ -4,10 +4,6 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "RigidBody.h"
-<<<<<<< Updated upstream
-#include "Gravity.h"
-=======
->>>>>>> Stashed changes
 
 #include "SelectGDI.h"
 
@@ -24,48 +20,9 @@ CObject::CObject()
 	, mAngleOffset(0.f)
 	, mFlip(false)
 	, mVisible(true)
-<<<<<<< Updated upstream
-	, mpGravity(nullptr)
-=======
->>>>>>> Stashed changes
 	, mpRigidBody(nullptr)
 	, mAlpha(255)
 {
-
-}
-
-CObject::CObject(const CObject& _origin)
-	: mStrName(_origin.mStrName)
-	, mvPos(_origin.mvPos)
-	, mvScale(_origin.mvScale)
-	, mpAnimator(nullptr)
-	, mpCollider(nullptr)
-	, mbAlive(true)
-	, mAngle(0.f)
-	, mAngleOffset(0.f)
-	, mFlip(false)
-	, mVisible(true)
-	, mpGravity(nullptr)
-	, mpRigidBody(nullptr)
-	, mAlpha(_origin.mAlpha)
-{
-	if (_origin.mpCollider)
-	{
-		mpCollider = new CCollider(*_origin.mpCollider);
-		mpCollider->mpOwner = this;
-	}
-
-	if (_origin.mpAnimator)
-	{
-		mpAnimator = new CAnimator(*_origin.mpAnimator);
-		mpAnimator->mpOwner = this;
-	}
-
-	if (_origin.mpRigidBody)
-	{
-		mpRigidBody = new CRigidBody(*_origin.mpRigidBody);
-		mpRigidBody->mpOwner = this;
-	}
 }
 
 CObject::CObject(const CObject& _origin)
@@ -134,11 +91,7 @@ void CObject::FinalUpdate()
 
 void CObject::Render(HDC _dc)
 {
-<<<<<<< Updated upstream
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
-=======
 	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
->>>>>>> Stashed changes
 
 	Rectangle(_dc,	(int)(vRenderPos.x - mvScale.x / 2.f),
 					(int)(vRenderPos.y - mvScale.y / 2.f),
@@ -152,11 +105,7 @@ void CObject::Render(HDC _dc)
 void CObject::CompnentRender(HDC _dc)
 {
 	if (!mVisible)
-<<<<<<< Updated upstream
-		return;
-=======
 		return; 
->>>>>>> Stashed changes
 
 	if (nullptr != mpCollider)
 	{
@@ -168,13 +117,6 @@ void CObject::CompnentRender(HDC _dc)
 		mpAnimator->Render(_dc);
 	}
 
-<<<<<<< Updated upstream
-	SelectGDI b(_dc, BRUSH_TYPE::RED);
-	SelectGDI p(_dc, PEN_TYPE::RED);
-	  
-	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
-	float pivotSize = 4.f;
-=======
 	if (!DEBUG)
 		return;
 
@@ -183,7 +125,6 @@ void CObject::CompnentRender(HDC _dc)
 	  
 	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
 	float pivotSize = 3.f;
->>>>>>> Stashed changes
 
 	Ellipse(_dc
 		, (int)(vRenderPos.x - pivotSize * 0.5f)
@@ -210,24 +151,4 @@ void CObject::CreateRigidBody()
 	mpRigidBody = new CRigidBody();
 	mpRigidBody->mpOwner = this;
 }
-<<<<<<< Updated upstream
-
-void CObject::CreateGravity()
-{
-	mpGravity = new CGravity();
-	mpGravity->mpOwner = this;
-}
-
-//void CObject::DeleteCollider()
-//{
-//	if (mpCollider != nullptr)
-//	{
-//		delete mpCollider;
-//	}
-//
-//	mpCollider = nullptr;
-//}
-
-=======
->>>>>>> Stashed changes
 

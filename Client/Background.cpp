@@ -20,11 +20,7 @@ HDC Background::GetParallaxDC()
 }
 
 
-<<<<<<< Updated upstream
-void Background::Render(HDC dc, Vec2 ltPos, Vec2 size)
-=======
 void Background::Render(HDC dc, Vect2 ltPos, Vect2 size)
->>>>>>> Stashed changes
 {
 	if (nullptr == mParallaxTex)
 		return;
@@ -33,12 +29,6 @@ void Background::Render(HDC dc, Vect2 ltPos, Vect2 size)
 	// 타일의 사이즈와 비트맵의 사이즈가 다르므로 텍스쳐의 크롭 영역 벡터인자가 추가로 필요합니다.
 	StretchBlt(dc
 		, 0, 0
-<<<<<<< Updated upstream
-		, size.x, size.y
-		, mParallaxTex->GetDC()
-		, ltPos.x, ltPos.y
-		, size.x, size.y
-=======
 		, (int)size.x
 		, (int)size.y
 		, mParallaxTex->GetDC()
@@ -46,7 +36,6 @@ void Background::Render(HDC dc, Vect2 ltPos, Vect2 size)
 		, (int)ltPos.y
 		, (int)size.x
 		, (int)size.y
->>>>>>> Stashed changes
 		, SRCCOPY);
 }
 

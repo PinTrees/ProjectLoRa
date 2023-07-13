@@ -1,14 +1,4 @@
 #include "pch.h"
-<<<<<<< Updated upstream
-#include "DeadState.h"
-
-#include "CMonster.h"
-#include "CPlayer.h"
-
-#include "CAnimator.h"
-#include "CAnimation.h"
-
-=======
 #include "CState.cpp"
 
 #include "DeadState.h"
@@ -23,7 +13,6 @@
 #include "CAnimation.h"
 
 // Include Manager Header
->>>>>>> Stashed changes
 #include "PlayerMgr.h"
 
 
@@ -40,22 +29,13 @@ DeadState::~DeadState()
 
 void DeadState::Enter()
 {
-<<<<<<< Updated upstream
-	GetMonster()->GetAnimator()->Play(L"DEAD", false);
-=======
 	GetOwner()->GetAnimator()->Play(L"DEAD", false);
->>>>>>> Stashed changes
 	PlayerMgr::GetI()->GetPlayer()->AddExp(2.f);
 }
 
 
 void DeadState::Update()
 {
-<<<<<<< Updated upstream
-	if (GetMonster()->GetAnimator()->GetCurAnimation()->IsFinish())
-	{
-		DeleteObject(GetMonster());
-=======
 	if (GetOwner()->GetAnimator()->GetCurAnimation()->IsFinish())
 	{
 		DeleteObject(GetOwner());
@@ -64,7 +44,6 @@ void DeadState::Update()
 		pGold->SetPos(GetOwner()->GetLocalPos());
 		pGold->SetScale(Vect2(36.f, 36.f));
 		CreateObject(pGold, GROUP_TYPE::GOLD);
->>>>>>> Stashed changes
 	}
 }
 

@@ -34,11 +34,7 @@ private:
 
 public:
 	void SetActiveMenu(bool active);
-<<<<<<< Updated upstream
-	void ChangeWindowSize(Vec2 vResoulution, bool menuActive);
-=======
 	void ChangeWindowSize(Vect2 vResoulution, bool menuActive);
->>>>>>> Stashed changes
 
 
 public:
@@ -66,6 +62,5 @@ public:
 
 	HBRUSH GetBrush(BRUSH_TYPE _eType) {return mArrBrush[(UINT)_eType]; }
 	HPEN GetPen(PEN_TYPE _eType) { return mArrPen[(UINT)_eType]; }
-	CTexture* GetTexture() { return mpMemTex; }
 };
 

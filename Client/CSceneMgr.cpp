@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "CSceneMgr.h"
-<<<<<<< Updated upstream
-=======
 
 // Include Scene
 #include "CScene_start.h"
@@ -12,13 +10,7 @@
 #include "CEventMgr.h"
 #include "CTimeMgr.h"
 #include "CObject.h"
->>>>>>> Stashed changes
 
-// Include Scene
-#include "CScene_start.h"
-#include "CScene_Tool.h"
-#include "Scene_Main.h"
-#include "CEventMgr.h"
 
 CSceneMgr::CSceneMgr()
 	:m_arrScene{}
@@ -52,11 +44,7 @@ void CSceneMgr::Init()
 	m_arrScene[(UINT)SCENE_TYPE::MAIN]->SetName(L"Main Scene");
 
 	//현재 씬 지정
-<<<<<<< Updated upstream
-	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::TOOL];
-=======
 	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::MAIN];
->>>>>>> Stashed changes
 	m_pCurScene->Enter();
 }
 

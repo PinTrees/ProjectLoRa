@@ -42,16 +42,11 @@ void CScene::AddForce(tForce& force)
 }
 
 
-<<<<<<< Updated upstream
-void CScene::Update()
-{
-=======
 
 
 void CScene::Update()
 {
 	// Physical Force Update
->>>>>>> Stashed changes
 	for (int i = mArrForce.size() - 1; i >= 0; --i)
 	{
 		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
@@ -69,17 +64,10 @@ void CScene::Update()
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
-<<<<<<< Updated upstream
-				// 오브젝트에 폭발력 전달
-				for (int f = mArrForce.size() - 1; f >= 0; --f)
-				{
-					Vec2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
-=======
 				// Object Physical Force Calculation
 				for (int f = mArrForce.size() - 1; f >= 0; --f)
 				{
 					Vect2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
->>>>>>> Stashed changes
 					float len = vDiff.Length();
 
 					if (len < mArrForce[f].radius)
@@ -98,8 +86,6 @@ void CScene::Update()
 			}
 		}
 	}
-
-
 }
 
 void CScene::FinalUpdate()
@@ -129,16 +115,6 @@ void CScene::FinalUpdate()
 #define CUR_TILE_SIZE 500
 
 
-<<<<<<< Updated upstream
-void CScene::_render_parallax(HDC dc)
-{
-	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
-
-	Vec2 vCamPos = CCamera::GetI()->GetLookAt();
-	Vec2 vRes = CCore::GetI()->GetResolution();
-
-	Vec2 vLeftTop = vCamPos - vRes * 0.5f;
-=======
 void CScene::render_parallax(HDC dc)
 {
 	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
@@ -147,7 +123,6 @@ void CScene::render_parallax(HDC dc)
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
 	Vect2 vLeftTop = vCamPos - vRes * 0.5f;
->>>>>>> Stashed changes
 
 	for (int i = 0; i < parallaxs.size(); i++)
 	{
@@ -160,77 +135,8 @@ void CScene::render_parallax(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
-	//Vec2 vCamPos = CCamera::GetI()->GetLookAt();
-	//Vec2 vRes = CCore::GetI()->GetResolution();
-	//Vec2 vLeftTop = vCamPos - vRes * 0.5f;
-
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
-		{
-			_render_parallax(_dc);
-			continue;
-		}
-
-		vector<CObject*>::iterator iter = mArrObj[i].begin();
-
-		for (;iter != mArrObj[i].end();)
-		{
-			if (!(*iter)->IsDead())
-			{
-				//Vec2 vPos = (*iter)->GetLocalPos();
-				//Vec2 vSize = (*iter)->GetScale();
-
-				//// 화면을 벗어난 오브젝트인지 확인
-				//if (vPos.y < vLeftTop.y - vSize.y
-				//	|| vPos.y > vLeftTop.y + vRes.y
-				//	|| vPos.x < vLeftTop.x - vSize.x
-				//	|| vPos.x > vLeftTop.x + vRes.x)
-				//{
-				//	++iter;
-				//	continue;
-				//}
-
-				(*iter)->Render(_dc);
-				++iter;
-			}
-			else
-			{
-				(*iter)->OnDestroy();
-				iter = mArrObj[i].erase(iter);
-			}
-		}
-	}
-
-	// [Debug] Render Force Object
-	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
-	SelectGDI p(_dc, PEN_TYPE::BLUE);
-
-	for (int i = mArrForce.size() - 1; i >= 0; --i)
-	{
-		Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
-
-		Ellipse(_dc
-			, vRenderPos.x - mArrForce[i].curRadius
-			, vRenderPos.y - mArrForce[i].curRadius
-			, vRenderPos.x + mArrForce[i].curRadius
-			, vRenderPos.y + mArrForce[i].curRadius );
-	}
-}
-
-
-void CScene::DeleteGroup(GROUP_TYPE _eTarget)
-{
-	Safe_Delete_Vec<CObject*>(mArrObj[(UINT)_eTarget]);
-}
-
-void CScene::DeleteAll()
-{
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
-	{
-<<<<<<< Updated upstream
-		DeleteGroup((GROUP_TYPE)i);
-=======
 		// Render Background
 		if ((UINT)GROUP_TYPE::PARALLAX == i)
 		{
@@ -274,7 +180,6 @@ void CScene::DeleteAll()
 				, vRenderPos.x + mArrForce[i].curRadius
 				, vRenderPos.y + mArrForce[i].curRadius);
 		}
->>>>>>> Stashed changes
 	}
 }
 

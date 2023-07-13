@@ -14,22 +14,6 @@ private:
 
 	UINT		miID;			// 충돌체 고유한 ID 값
 	int			miCol;			
-<<<<<<< Updated upstream
-
-	bool		mIsTrigger;		// 해당 충돌체의 겹침 여부 
-
-
-public:
-	void SetOffsetPos(Vec2 _vPos) { mvOffsetPos = _vPos; }
-	void SetScale(Vec2 _vScale) { mvScale= _vScale; }
-
-	void SetTrigger(bool _trigger) { mIsTrigger = _trigger; }
-	bool GetTrigger() { return mIsTrigger; }
-
-	Vec2 GetFinalPos() { return mvFinalPos; }
-	Vec2 GetOffsetPos() { return mvOffsetPos; }
-	Vec2 GetScale() { return mvScale; }
-=======
 
 	bool		mIsTrigger;		// 해당 충돌체의 겹침 여부 
 
@@ -44,7 +28,6 @@ public:
 	Vect2 GetFinalPos() { return mvFinalPos; }
 	Vect2 GetOffsetPos() { return mvOffsetPos; }
 	Vect2 GetScale() { return mvScale; }
->>>>>>> Stashed changes
 	
 	CObject* GetObj() { return mpOwner; }
 

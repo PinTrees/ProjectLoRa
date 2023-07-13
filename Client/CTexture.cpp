@@ -35,11 +35,7 @@ void CTexture::Load(const wstring& strFilePath)
 }
 
 
-<<<<<<< Updated upstream
-void CTexture::CREATE(UINT width, UINT heigth, COLORREF color)
-=======
 void CTexture::Create(UINT width, UINT heigth, COLORREF color)
->>>>>>> Stashed changes
 {
 	HDC mainDc = CCore::GetI()->GetMainDC();
 

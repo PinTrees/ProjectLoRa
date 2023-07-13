@@ -19,31 +19,13 @@ Particle::Particle(const wstring& _type)
 	, mCurDelay(0.f)
 {
 	CreateCollider();
-<<<<<<< Updated upstream
-	GetCollider()->SetScale(Vec2(15, 15));
-=======
 	GetCollider()->SetScale(Vect2(15, 15));
->>>>>>> Stashed changes
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Effect" + _type, L"texture\\effect\\" + _type + L".bmp");
 	CreateAnimator();
 
 	if (_type == L"1")
 	{
-<<<<<<< Updated upstream
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(70.f, 52.f), Vec2(70.f, 0.f), 0.05f, 6);
-		SetScale(Vec2(70.f, 52.f) * 1.5f);
-	}
-	else if (_type == L"4")
-	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 0.03f, 11);
-		SetScale(Vec2(48.f, 48.f) * 1.5f);
-	}
-	else if (_type == L"5")
-	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(48.f, 48.f), Vec2(48.f, 0.f), 0.03f, 9);
-		SetScale(Vec2(48.f, 48.f) * 1.5f);
-=======
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(70.f, 52.f), Vect2(70.f, 0.f), 0.05f, 6);
 		SetScale(Vect2(70.f, 52.f) * 1.5f);
 	}
@@ -56,7 +38,6 @@ Particle::Particle(const wstring& _type)
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.03f, 9);
 		SetScale(Vect2(48.f, 48.f) * 1.5f);
->>>>>>> Stashed changes
 	}
 
 	GetAnimator()->Play(L"IDLE", false);
@@ -85,13 +66,8 @@ void Particle::Update()
 
 void Particle::Render(HDC _dc)
 {
-<<<<<<< Updated upstream
-	Vec2 vPos = GetPos();
-	Vec2 vScale = GetScale();
-=======
 	Vect2 vPos = GetPos();
 	Vect2 vScale = GetScale();
->>>>>>> Stashed changes
 
 	CompnentRender(_dc);
 }

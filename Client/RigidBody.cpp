@@ -8,11 +8,7 @@ CRigidBody::CRigidBody()
 	: mpOwner(nullptr)
 	, mMass(1.f)
 	, mFrictCoeff(200.f)
-<<<<<<< Updated upstream
-	, mvMaxVelocity(Vec2(400.f, 1200.f))
-=======
 	, mvMaxVelocity(Vect2(400.f, 1200.f))
->>>>>>> Stashed changes
 	, mKinematic(false)
 {
 }
@@ -52,15 +48,6 @@ void CRigidBody::FinalUpdate()
 	mvVelocity += mvAccel * DT;
 
 	// Have Velocity
-<<<<<<< Updated upstream
-	if (mvVelocity != Vec2::zero)
-	{
-		// Velocity Flip Direction
-		Vec2 vel = mvVelocity;
-		vel.Normalize();
-
-		Vec2 friction = (vel * -1.f) * mFrictCoeff * DT;
-=======
 	if (mvVelocity != Vect2::zero)
 	{
 		// Velocity Flip Direction
@@ -68,16 +55,11 @@ void CRigidBody::FinalUpdate()
 		vel.Normalize();
 
 		Vect2 friction = (vel * -1.f) * mFrictCoeff * DT;
->>>>>>> Stashed changes
 
 		// Friction Over Velocity
 		if (mvVelocity.Length() <= friction.Length())
 		{
-<<<<<<< Updated upstream
-			mvVelocity = Vec2(0.f, 0.f);
-=======
 			mvVelocity = Vect2(0.f, 0.f);
->>>>>>> Stashed changes
 		}
 		else
 		{
@@ -99,15 +81,9 @@ void CRigidBody::FinalUpdate()
 	Move();
 
 	// Clear Force Vector
-<<<<<<< Updated upstream
-	mvForce = Vec2(0.f, 0.f);			// 힘 초기화
-	mvAccelAlpha = Vec2(0.f, 0.f);		// 추가 가속도 누적량 초기화
-	mvAccel = Vec2(0.f, 0.f);			// 가속도 초기화
-=======
 	mvForce = Vect2(0.f, 0.f);			// 힘 초기화
 	mvAccelAlpha = Vect2(0.f, 0.f);		// 추가 가속도 누적량 초기화
 	mvAccel = Vect2(0.f, 0.f);			// 가속도 초기화
->>>>>>> Stashed changes
 }
 
 void CRigidBody::Move()
@@ -119,28 +95,17 @@ void CRigidBody::Move()
 		return;
 
 	// Force Direction
-<<<<<<< Updated upstream
-	Vec2 dir = mvVelocity;
-	dir.Normalize();
-
-	Vec2 pos = mpOwner->GetPos();
-=======
 	Vect2 dir = mvVelocity;
 	dir.Normalize();
 
 	Vect2 pos = mpOwner->GetPos();
->>>>>>> Stashed changes
 	pos += dir * speed * DT;
 
 	mpOwner->SetPos(pos);
 }
 
 
-<<<<<<< Updated upstream
-void CRigidBody::AddForce(Vec2 force)
-=======
 void CRigidBody::AddForce(Vect2 force)
->>>>>>> Stashed changes
 {
 	if (mKinematic)
 		return;

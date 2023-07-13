@@ -47,11 +47,7 @@ class CKeyMgr
 
 private:
 	vector<tKeyInfo>	m_vecKey;
-<<<<<<< Updated upstream
-	Vec2				mvCurMousePos;
-=======
 	Vect2				mvCurMousePos;
->>>>>>> Stashed changes
 
 public:
 	void Init();
@@ -59,10 +55,6 @@ public:
 
 public:
 	KEY_STATE GetKeyState(KEY _eKey) { return m_vecKey[(int)_eKey].eState; };
-<<<<<<< Updated upstream
-	Vec2		GetMousePos() { return mvCurMousePos; }
-=======
 	Vect2		GetMousePos() { return mvCurMousePos; }
->>>>>>> Stashed changes
 };
 

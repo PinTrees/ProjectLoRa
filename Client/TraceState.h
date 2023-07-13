@@ -3,11 +3,7 @@
 
 
 class TraceState :
-<<<<<<< Updated upstream
-    public CState
-=======
     public CState<MONSTER_STATE>
->>>>>>> Stashed changes
 {
 private:
 

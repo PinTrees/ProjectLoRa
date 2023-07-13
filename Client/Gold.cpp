@@ -16,17 +16,6 @@ Gold::Gold()
 	, mCurDelay(0.f)
 {
 	CreateCollider();
-<<<<<<< Updated upstream
-	GetCollider()->SetScale(Vec2(55.f, 55.f));
-
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Gold_1", L"texture\\gold\\gold_1.bmp");
-
-	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vec2(0.f, 0.f), Vec2(128.f, 128.f), Vec2(128.f, 128.f), 0.1f, 1);
-	GetAnimator()->Play(L"IDLE", true);
-
-	GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vec2(0.f, 0.f));
-=======
 	GetCollider()->SetScale(Vect2(55.f, 55.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Gold_1", L"texture\\gold\\coin_1.bmp");
@@ -36,7 +25,6 @@ Gold::Gold()
 	GetAnimator()->Play(L"IDLE", true);
 
 	GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
->>>>>>> Stashed changes
 }
 
 

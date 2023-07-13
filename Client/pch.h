@@ -4,13 +4,8 @@
 #include <iostream>
 #include <future>
 
-<<<<<<< Updated upstream
-#include <future>
-
-=======
 #include <utility>
 #include <typeinfo>
->>>>>>> Stashed changes
 
 #include <vector>
 using std::vector;
@@ -25,12 +20,9 @@ using std::list;
 #include <string>
 using std::wstring;
 using std::string;
-<<<<<<< Updated upstream
-=======
 
 #include <sstream>
 using std::wstringstream;
->>>>>>> Stashed changes
 
 #include <fstream>
 #include <tchar.h>
@@ -46,7 +38,4 @@ using std::wstringstream;
 
 #include "Vec2.h"
 #include "func.h"
-<<<<<<< Updated upstream
-=======
 //#include "func.cpp"
->>>>>>> Stashed changes

@@ -3,12 +3,9 @@
 class CTexture;
 class CFont;
 class CRes;
-<<<<<<< Updated upstream
-=======
 
 
 
->>>>>>> Stashed changes
 
 class CResMgr
 {
