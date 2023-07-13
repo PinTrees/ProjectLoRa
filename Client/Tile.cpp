@@ -8,7 +8,11 @@ Tile::Tile()
 	: mpTileTex(nullptr)
 	, mIdx(0)
 {
+<<<<<<< Updated upstream
 	SetScale(Vec2(TILE_SIZE * 2, TILE_SIZE * 2));
+=======
+	SetScale(Vect2(TILE_SIZE * 2, TILE_SIZE * 2));
+>>>>>>> Stashed changes
 }
 
 
@@ -42,10 +46,17 @@ void Tile::Render(HDC _dc)
 	if (maxRow <= curRow)
 		return;
 
+<<<<<<< Updated upstream
 	Vec2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
 	Vec2 vLocalPos = GetLocalPos();
 
 	Vec2 vScale = GetScale();
+=======
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+	Vect2 vLocalPos = GetLocalPos();
+
+	Vect2 vScale = GetScale();
+>>>>>>> Stashed changes
 
 	TransparentBlt(_dc
 		, (int)vLocalPos.x

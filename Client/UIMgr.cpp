@@ -34,7 +34,14 @@ void CUIMgr::Update()
 
 	if (nullptr != targetUI)
 	{
+<<<<<<< Updated upstream
 		// UI위에있다고 얼려준다.
+=======
+		if (targetUI->IsDead())
+			return;
+
+		// UI위에있다고 알려준다.
+>>>>>>> Stashed changes
 		targetUI->MouseOn();
 
 		if (tapLbtn)
@@ -46,9 +53,15 @@ void CUIMgr::Update()
 		{
 			targetUI->MouseLbtnUp();
 
+<<<<<<< Updated upstream
 			if (targetUI->mLbtnDown)
 			{
 				// 마우스 올라가있는 상태에서 때진것이라면은 클릭이다.
+=======
+			// 마우스 올라가있는 상태에서 때진것이라면은 클릭이다.
+			if (targetUI->mLbtnDown)
+			{
+>>>>>>> Stashed changes
 				targetUI->MouseLbtnClick();
 			}
 
@@ -58,6 +71,10 @@ void CUIMgr::Update()
 	}
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 void CUIMgr::SetFocusUI(CUI* ui)
 {
 	// 이미 포커싱 중인 경우 || 포커싱 해제요청한 경우
@@ -71,7 +88,11 @@ void CUIMgr::SetFocusUI(CUI* ui)
 	_focusedUI = ui;
 
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
+<<<<<<< Updated upstream
 	vector<CObject*>& vecUI = curScene->GetUIGroups(GROUP_TYPE::UI);
+=======
+	vector<CObject*>& vecUI = curScene->GetUIGroups();
+>>>>>>> Stashed changes
 
 	vector<CObject*>::iterator iter = vecUI.begin();
 
@@ -90,7 +111,11 @@ void CUIMgr::SetFocusUI(CUI* ui)
 CUI* CUIMgr::GetFocusUI()
 {
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
+<<<<<<< Updated upstream
 	vector<CObject*>& vecUI = curScene->GetUIGroups(GROUP_TYPE::UI);
+=======
+	vector<CObject*>& vecUI = curScene->GetUIGroups();
+>>>>>>> Stashed changes
 
 	bool tapLbtn = KEY_TAP(KEY::LBTN);
 
@@ -157,7 +182,10 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 			{
 				vecNoneTargetUI.push_back(targetUI);
 			}
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 			targetUI = ui;
 		}
 		else
@@ -165,6 +193,10 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 			vecNoneTargetUI.push_back(ui);
 		}
 
+<<<<<<< Updated upstream
+=======
+		// 자식 UI를 다음 검사 목록에 추가
+>>>>>>> Stashed changes
 		const vector<CUI*>& vecChild = ui->GetChild();
 		for (size_t i = 0; i < vecChild.size(); ++i)
 		{

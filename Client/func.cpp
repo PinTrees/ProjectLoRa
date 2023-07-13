@@ -3,7 +3,10 @@
 
 // Include Manager
 #include "CPathMgr.h"
+<<<<<<< Updated upstream
 #include "CEventMgr.h"
+=======
+>>>>>>> Stashed changes
 #include "CResMgr.h"
 #include "CSceneMgr.h"
 
@@ -13,6 +16,11 @@
 #include "Tile.h"
 #include "Background.h"
 
+<<<<<<< Updated upstream
+=======
+#include "AI.h"
+
+>>>>>>> Stashed changes
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
 {
@@ -45,6 +53,7 @@ void ChangeScene(SCENE_TYPE _eNext)
 }
 
 
+<<<<<<< Updated upstream
 void ChangeAIState(AI* pAI, MONSTER_STATE nextState)
 {
 	tEvent evn = {};
@@ -54,6 +63,9 @@ void ChangeAIState(AI* pAI, MONSTER_STATE nextState)
 
 	CEventMgr::GetI()->AddEvent(evn);
 }
+=======
+
+>>>>>>> Stashed changes
 
 
 void CreateForce(tForce& force)
@@ -66,14 +78,22 @@ void CreateForce(tForce& force)
 
 
 
+<<<<<<< Updated upstream
 Vec2 curvesCircle(Vec2 c1, float _radius, float _amount)
+=======
+Vect2 curvesCircle(Vect2 c1, float _radius, float _amount)
+>>>>>>> Stashed changes
 {
 	float angle = _amount * 2 * PI;
 
 	float x = c1.x + _radius * cos(angle);
 	float y = c1.y + _radius * sin(angle);
 
+<<<<<<< Updated upstream
 	return Vec2(x, y);
+=======
+	return Vect2(x, y);
+>>>>>>> Stashed changes
 }
 
 
@@ -96,7 +116,11 @@ void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX
     transform.eM12 = 0.0f;
     transform.eM21 = 0.0f;
     transform.eM22 = 1.0f;
+<<<<<<< Updated upstream
     transform.eDx = srcWidth;
+=======
+    transform.eDx = (FLOAT)srcWidth;
+>>>>>>> Stashed changes
     transform.eDy = 0.0f;
 
     // 변환 행렬 설정
@@ -179,8 +203,13 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 		{
 			Tile* pTile = new Tile();
 
+<<<<<<< Updated upstream
 			pTile->SetScale(Vec2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 			pTile->SetPos(Vec2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+=======
+			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+>>>>>>> Stashed changes
 			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);

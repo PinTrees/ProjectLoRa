@@ -28,7 +28,11 @@ CCamera::~CCamera()
 
 void CCamera::Init()
 {
+<<<<<<< Updated upstream
     Vec2 vRes =	CCore::GetI()->GetResolution();
+=======
+    Vect2 vRes =	CCore::GetI()->GetResolution();
+>>>>>>> Stashed changes
 	mEffectTex = CResMgr::GetI()->CreateTexture(L"CamEffectTex", (UINT)vRes.x, (UINT)vRes.y);
 }
 
@@ -89,7 +93,11 @@ void CCamera::Render(HDC dc)
 
 
 	// =============
+<<<<<<< Updated upstream
 	// Effect Render
+=======
+	// tEffectLv Render
+>>>>>>> Stashed changes
 	// =============
 	BLENDFUNCTION bf = {};
 
@@ -109,7 +117,11 @@ void CCamera::Render(HDC dc)
 		, bf);
 
 
+<<<<<<< Updated upstream
 	// Effect Delete
+=======
+	// tEffectLv Delete
+>>>>>>> Stashed changes
 	if (effect.duration < effect.time)
 	{
 		mEffects.pop_front();
@@ -129,7 +141,11 @@ void CCamera::calDiff()
 	}
 	else
 	{
+<<<<<<< Updated upstream
 		Vec2 vLookDir = mvLookAt - mvPrevLookAt;
+=======
+		Vect2 vLookDir = mvLookAt - mvPrevLookAt;
+>>>>>>> Stashed changes
 		mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * mfSpeed * DT;
 	}
 
@@ -138,8 +154,13 @@ void CCamera::calDiff()
 
 
 
+<<<<<<< Updated upstream
 	Vec2 vResolution = CCore::GetI()->GetResolution();
 	Vec2 vCenter = vResolution / 2;
+=======
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+	Vect2 vCenter = vResolution / 2;
+>>>>>>> Stashed changes
 
 	mvDiff = mvCurLookAt - vCenter;
 	mvPrevLookAt = mvCurLookAt;

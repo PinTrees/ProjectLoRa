@@ -29,6 +29,11 @@
 
 #define TILE_SIZE 32
 #define TILE_SIZE_RENDER 64
+<<<<<<< Updated upstream
+=======
+
+#define DEBUG true
+>>>>>>> Stashed changes
 
 
 enum class GROUP_TYPE
@@ -106,7 +111,46 @@ enum class MONSTER_STATE
 {
 	IDLE,
 	TRACE,
+<<<<<<< Updated upstream
 	CREATE,
 	DEAD,
 	ATTACK,
 };
+=======
+	Create,
+	DEAD,
+	ATTACK,
+};
+
+
+// 스테이트 패턴으로 변경 필요
+enum class PLAYER_STATE
+{
+	NONE,
+	IDLE,
+	ATTACK,
+	Run,
+	Die,
+	Dash,
+};
+
+enum class LEVELUP_EFFECT
+{
+	FULL_HP_UP,				// 최대체력 증가
+	REGENERATION_HP_UP,		// 체력재생 증가
+	MOVE_SPEED_UP,			// 이동속도 증가
+	ATK_DAMAGE_UP,			// 공격력 증가
+	ATK_SPEED_UP,			// 공격속도 증가
+	ATK_RANGE_UP,			// 사거리 증가
+	SHOT_SPEED_UP,			// 총알속도 증가
+	RELOAD_SPEED_UP,		// 장전속도 증가
+	SHOT_ANGLE_UP,			// 명중률 증가
+	SHOT_COUNT_UP,			// 발사총알 개수 증가
+	PENETRATION_UP,			// 관통 수 증가
+	SPLITCOUNT_UP,			// 분열 수 증가
+	BOUNTCECOUNT_UP,		// 튕김 수 증가
+
+
+	END
+};
+>>>>>>> Stashed changes

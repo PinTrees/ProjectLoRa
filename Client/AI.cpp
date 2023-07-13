@@ -6,6 +6,7 @@
 #include "TraceState.h"
 
 
+<<<<<<< Updated upstream
 
 AI::AI()
 	: mCurState(nullptr)
@@ -66,4 +67,8 @@ void AI::Update()
 		mCurState->Update();
 	}
 }	
+=======
+//template class AI<MONSTER_STATE>;
+//template class AI<PLAYER_STATE>;
+>>>>>>> Stashed changes
 

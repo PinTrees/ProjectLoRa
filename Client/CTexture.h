@@ -14,7 +14,11 @@ private:
 public:
     void Load(const wstring& strFilePath);
 
+<<<<<<< Updated upstream
     void CREATE(UINT width, UINT hieght, COLORREF color = NULL);
+=======
+    void Create(UINT width, UINT hieght, COLORREF color = NULL);
+>>>>>>> Stashed changes
 
     UINT Width() { return mBitInfo.bmWidth; }
     UINT Heigth () { return mBitInfo.bmHeight; }

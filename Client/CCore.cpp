@@ -9,6 +9,10 @@
 #include "CEventMgr.h"
 #include "UIMgr.h"
 #include "CResMgr.h"
+<<<<<<< Updated upstream
+=======
+#include "LevelupUIMgr.h"
+>>>>>>> Stashed changes
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -46,7 +50,11 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	// =================================
 	// Window Resolution Size Initialize
 	// =================================
+<<<<<<< Updated upstream
 	ChangeWindowSize(Vec2((float)_ptResolution.x, (float)_ptResolution.y), false);	// menubar height size not include
+=======
+	ChangeWindowSize(Vect2((float)_ptResolution.x, (float)_ptResolution.y), false);	// menubar height size not include
+>>>>>>> Stashed changes
 
 	// Menu bar Create from ID;
 	mhMenu = LoadMenu(nullptr, MAKEINTRESOURCEW(IDR_MENU1));
@@ -56,7 +64,10 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	// ============================
 	mhDC = GetDC(mhWnd);
 	mpMemTex = CResMgr::GetI()->CreateTexture(L"BackBuffer", (UINT)mPtResolution.x, (UINT)mPtResolution.y);
+<<<<<<< Updated upstream
 	SetBkMode(mpMemTex->GetDC(), TRANSPARENT);
+=======
+>>>>>>> Stashed changes
 	CreateBrushPen();
 	
 
@@ -69,6 +80,10 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CCamera::GetI()->Init();
 	CSceneMgr::GetI()->Init();
 	CRandom::GetI()->Init();
+<<<<<<< Updated upstream
+=======
+	LevelupUIMgr::GetI()->Init();
+>>>>>>> Stashed changes
 
 	return S_OK;
 }
@@ -82,19 +97,43 @@ void CCore::Run()
 	CTimeMgr::GetI()->Update();
 	CKeyMgr::GetI()->Update();
 	CCamera::GetI()->Update();
+<<<<<<< Updated upstream
 
 	// ==================
 	// Scene Update Block
 	// ==================
 	CSceneMgr::GetI()->Update();
+=======
+
+	// UI Update
+	CUIMgr::GetI()->Update();
+
+
+	// ==================
+	// Scene Update Block
+	// ==================
+	if(CTimeMgr::GetI()->IsPlay())
+	{
+		CSceneMgr::GetI()->Update();
+	}
+	CSceneMgr::GetI()->FinalUpdate();
+>>>>>>> Stashed changes
 
 
 	// ======================
 	// Collision Update Block
 	// ======================
+<<<<<<< Updated upstream
 	CCollisionMgr::GetI()->Update();
 	CUIMgr::GetI()->Update();
 
+=======
+	if (CTimeMgr::GetI()->IsPlay())
+	{
+		CCollisionMgr::GetI()->Update();
+	}
+	
+>>>>>>> Stashed changes
 
 	// ===============
 	// Rendering Block
@@ -150,9 +189,15 @@ void CCore::SetActiveMenu(bool active)
 }
 
 
+<<<<<<< Updated upstream
 void CCore::ChangeWindowSize(Vec2 vResoulution, bool menuActive)
 {
 	RECT rt = { 0,0,vResoulution.x,vResoulution.y };
+=======
+void CCore::ChangeWindowSize(Vect2 vResoulution, bool menuActive)
+{
+	RECT rt = { 0,0, (LONG)vResoulution.x, (LONG)vResoulution.y };
+>>>>>>> Stashed changes
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, menuActive);	// menubar height size not include
 	SetWindowPos(mhWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 }

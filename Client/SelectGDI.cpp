@@ -7,6 +7,9 @@
 
 
 
+
+
+
 SelectGDI::SelectGDI(HDC _dc, PEN_TYPE _ePenTYPE)
 	: mhDC(_dc)
 	, mhDefaultBrush(nullptr)
@@ -45,6 +48,10 @@ SelectGDI::SelectGDI(HDC _dc, COLORREF pColor=NULL, COLORREF bColor=NULL)
 	}
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 SelectGDI::~SelectGDI()
 {
 	SelectObject(mhDC, mhDefaultBrush);

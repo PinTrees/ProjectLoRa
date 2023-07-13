@@ -1,5 +1,18 @@
 #include "pch.h"
 #include "CSceneMgr.h"
+<<<<<<< Updated upstream
+=======
+
+// Include Scene
+#include "CScene_start.h"
+#include "CScene_Tool.h"
+#include "Scene_Main.h"
+
+// System Manager Header
+#include "CEventMgr.h"
+#include "CTimeMgr.h"
+#include "CObject.h"
+>>>>>>> Stashed changes
 
 // Include Scene
 #include "CScene_start.h"
@@ -12,6 +25,7 @@ CSceneMgr::CSceneMgr()
 	, m_pCurScene(nullptr)
 {
 }
+
 CSceneMgr::~CSceneMgr()
 {
 	// 씬 전부 삭제
@@ -38,21 +52,39 @@ void CSceneMgr::Init()
 	m_arrScene[(UINT)SCENE_TYPE::MAIN]->SetName(L"Main Scene");
 
 	//현재 씬 지정
+<<<<<<< Updated upstream
 	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::TOOL];
+=======
+	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::MAIN];
+>>>>>>> Stashed changes
 	m_pCurScene->Enter();
 }
 
 void CSceneMgr::Update()
 {
 	m_pCurScene->Update();
-	
+}
+
+
+void CSceneMgr::FinalUpdate()
+{
+	if (!CTimeMgr::GetI()->IsPlay())
+	{
+		vector<CObject*> arrUI = m_pCurScene->GetGroupObject(GROUP_TYPE::UI);
+		for (int i = 0; i < arrUI.size(); ++i)
+		{
+			arrUI[i]->FinalUpdate();
+		}
+		return;
+	}
+
 	m_pCurScene->FinalUpdate();
 }
+
 
 void CSceneMgr::Render(HDC _dc)
 {
 	m_pCurScene->Render(_dc);
-
 }
 
 void CSceneMgr::ChangeScene(SCENE_TYPE _eNext)

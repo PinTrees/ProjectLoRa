@@ -1,7 +1,11 @@
 #pragma once
 #include "CObject.h"
 
+<<<<<<< Updated upstream
 struct Effect
+=======
+struct tEffectLv
+>>>>>>> Stashed changes
 {
 	// 레벨 비율
 	int BounceLv;		// 팅김 레벨
@@ -9,12 +13,20 @@ struct Effect
 	int AttakDamageLv;	// 공격력 레벨
 };
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 class Bullet :
 	public CObject
 {
 private:
 	float		m_tTheta; // 이동 방향
+<<<<<<< Updated upstream
 	Vec2		m_vDir;
+=======
+	Vect2		m_vDir;
+>>>>>>> Stashed changes
 	wstring		mType;
 
 	float		mDelay;
@@ -30,6 +42,7 @@ public:
 	void SetBounceCount(int _count) { mBounceCount = _count; }
 
 	void SetDir(float _tTheta) { m_tTheta = _tTheta; }
+<<<<<<< Updated upstream
 	void SetDir(Vec2	_vDir)
 	{
 		m_vDir = _vDir;
@@ -43,16 +56,36 @@ public:
 	}
 	void SetType(const wstring& _str) { mType = _str; }
 
+=======
+	void SetDir(Vect2	_vDir)
+	{
+		m_vDir = _vDir.Normalize();
+		SetAngle(m_vDir.ToAngle());
+	}
+	void SetType(const wstring& _str) { mType = _str; }
+
+
+>>>>>>> Stashed changes
 public:
 	virtual void Update() override;
 	virtual void Render(HDC _dc) override;
 	CLONE(Bullet);
 
+<<<<<<< Updated upstream
 public:
 	virtual void OnCollisionEnter(CCollider* _pOther);
 public:
 	Bullet(const wstring& _type);
 	//Bullet(const Bullet& _clone);
+=======
+
+public:
+	virtual void OnCollisionEnter(CCollider* _pOther);
+
+
+public:
+	Bullet(const wstring& _type);
+>>>>>>> Stashed changes
 	~Bullet();
 };
 

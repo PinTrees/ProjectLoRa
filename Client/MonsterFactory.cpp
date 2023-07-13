@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "MonsterFactory.h"
 
+<<<<<<< Updated upstream
 #include "CMonster.h"
+=======
+#include "Monster.h"
+>>>>>>> Stashed changes
 #include "AI.h"
 
 // Include Components
@@ -16,17 +20,29 @@
 
 
 
+<<<<<<< Updated upstream
 CMonster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vec2 pos)
 {
 	CMonster* pMonster = nullptr;
+=======
+Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
+{
+	Monster* pMonster = new Monster;
+
+	pMonster->SetPos(pos);
+	pMonster->CreateRigidBody();
+>>>>>>> Stashed changes
 
 	switch (type)
 	{
 	case MONSTER_TYPE::NORMAL:
 	{
+<<<<<<< Updated upstream
 		pMonster = new CMonster;
 		pMonster->SetPos(pos);
 
+=======
+>>>>>>> Stashed changes
 		tMonsterInfo info = {};
 		info.atk = 10.f;
 		info.atkRange = 50.f;
@@ -35,11 +51,17 @@ CMonster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vec2 pos)
 		info.speed = 70.f;
 
 		pMonster->setMonsterInfo(info);
+<<<<<<< Updated upstream
 		
 		pMonster->CreateRigidBody();
 		pMonster->GetRigidBody()->SetMess(1.f);
 
 		AI* pAI = new AI;	
+=======
+		pMonster->GetRigidBody()->SetMess(1.f);
+
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
+>>>>>>> Stashed changes
 		pAI->AddState(new IdleState);
 		pAI->AddState(new TraceState);
 		pAI->AddState(new DeadState);
@@ -50,6 +72,11 @@ CMonster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vec2 pos)
 	}
 		break;
 	case MONSTER_TYPE::BOSS:
+<<<<<<< Updated upstream
+=======
+	{
+	}
+>>>>>>> Stashed changes
 		break;
 	}
 

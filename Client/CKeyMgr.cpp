@@ -95,7 +95,11 @@ void CKeyMgr::Update()
 		GetCursorPos(&ptPos);
 		ScreenToClient(CCore::GetI()->GetMainHwnd(), &ptPos);
 
+<<<<<<< Updated upstream
 		mvCurMousePos = Vec2((float)ptPos.x, (float)ptPos.y);
+=======
+		mvCurMousePos = Vect2((float)ptPos.x, (float)ptPos.y);
+>>>>>>> Stashed changes
 	}
 	// 윈도우 포커싱 해제 상태
 	else

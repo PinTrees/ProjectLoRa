@@ -42,8 +42,16 @@ void CScene::AddForce(tForce& force)
 }
 
 
+<<<<<<< Updated upstream
 void CScene::Update()
 {
+=======
+
+
+void CScene::Update()
+{
+	// Physical Force Update
+>>>>>>> Stashed changes
 	for (int i = mArrForce.size() - 1; i >= 0; --i)
 	{
 		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
@@ -61,10 +69,17 @@ void CScene::Update()
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
+<<<<<<< Updated upstream
 				// 오브젝트에 폭발력 전달
 				for (int f = mArrForce.size() - 1; f >= 0; --f)
 				{
 					Vec2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
+=======
+				// Object Physical Force Calculation
+				for (int f = mArrForce.size() - 1; f >= 0; --f)
+				{
+					Vect2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
+>>>>>>> Stashed changes
 					float len = vDiff.Length();
 
 					if (len < mArrForce[f].radius)
@@ -89,6 +104,17 @@ void CScene::Update()
 
 void CScene::FinalUpdate()
 {
+	if (!CTimeMgr::GetI()->IsPlay())
+	{
+		vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
+		for (int i = 0; i < arrUI.size(); ++i)
+		{
+			arrUI[i]->FinalUpdate();
+		}
+
+		return;
+	}
+
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
 		for (size_t j = 0; j < mArrObj[i].size(); ++j)
@@ -103,6 +129,7 @@ void CScene::FinalUpdate()
 #define CUR_TILE_SIZE 500
 
 
+<<<<<<< Updated upstream
 void CScene::_render_parallax(HDC dc)
 {
 	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
@@ -111,6 +138,16 @@ void CScene::_render_parallax(HDC dc)
 	Vec2 vRes = CCore::GetI()->GetResolution();
 
 	Vec2 vLeftTop = vCamPos - vRes * 0.5f;
+=======
+void CScene::render_parallax(HDC dc)
+{
+	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
+
+	Vect2 vCamPos = CCamera::GetI()->GetLookAt();
+	Vect2 vRes = CCore::GetI()->GetResolution();
+
+	Vect2 vLeftTop = vCamPos - vRes * 0.5f;
+>>>>>>> Stashed changes
 
 	for (int i = 0; i < parallaxs.size(); i++)
 	{
@@ -186,6 +223,67 @@ void CScene::DeleteGroup(GROUP_TYPE _eTarget)
 {
 	Safe_Delete_Vec<CObject*>(mArrObj[(UINT)_eTarget]);
 }
+
+void CScene::DeleteAll()
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+<<<<<<< Updated upstream
+		DeleteGroup((GROUP_TYPE)i);
+=======
+		// Render Background
+		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		{
+			render_parallax(_dc);
+			continue;
+		}
+
+		vector<CObject*>::iterator iter = mArrObj[i].begin();
+
+		for (;iter != mArrObj[i].end();)
+		{
+			// Render Object
+			if (!(*iter)->IsDead())
+			{
+				(*iter)->Render(_dc);
+				++iter;
+			}
+			// Delete Object
+			else
+			{
+				(*iter)->OnDestroy();
+				iter = mArrObj[i].erase(iter);
+			}
+		}
+	}
+
+
+	// [Debug] Render Force Object
+	if (DEBUG)
+	{
+		SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
+		SelectGDI p(_dc, PEN_TYPE::BLUE);
+
+		for (int i = mArrForce.size() - 1; i >= 0; --i)
+		{
+			Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
+
+			Ellipse(_dc
+				, vRenderPos.x - mArrForce[i].curRadius
+				, vRenderPos.y - mArrForce[i].curRadius
+				, vRenderPos.x + mArrForce[i].curRadius
+				, vRenderPos.y + mArrForce[i].curRadius);
+		}
+>>>>>>> Stashed changes
+	}
+}
+
+
+void CScene::DeleteGroup(GROUP_TYPE _eTarget)
+{
+	Safe_Delete_Vec<CObject*>(mArrObj[(UINT)_eTarget]);
+}
+
 
 void CScene::DeleteAll()
 {

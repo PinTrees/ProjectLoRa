@@ -9,6 +9,11 @@
 #include "CCamera.h"
 
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 CAnimation::CAnimation()
 	:mpAnimator(nullptr)
 	, mpTex(nullptr)
@@ -22,7 +27,12 @@ CAnimation::~CAnimation()
 {
 }
 
+<<<<<<< Updated upstream
 void CAnimation::SetAllFrameOffet(Vec2 _vOffset)
+=======
+
+void CAnimation::SetAllFrameOffet(Vect2 _vOffset)
+>>>>>>> Stashed changes
 {
 	for (int i = 0; i < mVecFrm.size(); i++)
 	{
@@ -38,7 +48,11 @@ void CAnimation::Update()
 
 	mfAccTime += DT;
 	
+<<<<<<< Updated upstream
 	if ( mVecFrm[miCurFrm].fDuration < mfAccTime)
+=======
+	if (mVecFrm[miCurFrm].fDuration < mfAccTime)
+>>>>>>> Stashed changes
 	{
 		++miCurFrm;
 
@@ -50,7 +64,10 @@ void CAnimation::Update()
 			return;
 		}
 		mfAccTime = mfAccTime - mVecFrm[miCurFrm].fDuration;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 	}
 }
 
@@ -60,6 +77,7 @@ void CAnimation::Render(HDC _dc)
 	if (mbFinish)
 		return;
 
+<<<<<<< Updated upstream
 	CObject* pObj = mpAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();
 	vPos += mVecFrm[miCurFrm].vOffset;	// Object Position 에 Offset 만큼 추가 이동위치
@@ -69,6 +87,15 @@ void CAnimation::Render(HDC _dc)
 
 	Vec2 vScale = pObj->GetScale();
 
+=======
+	CObject* pObj = mpAnimator->GetObj();   
+	Vect2 vPos = pObj->GetPos() + mVecFrm[miCurFrm].vOffset; // Add Animation Frame Offset
+
+	// Convert LocalPos to RenderPos
+	vPos = CCamera::GetI()->GetRenderPos(vPos);
+
+	Vect2 vScale = pObj->GetScale();
+>>>>>>> Stashed changes
 
 	if (pObj->GetAngle() <= 0.1f)
 	{
@@ -107,14 +134,23 @@ void CAnimation::Render(HDC _dc)
 		float sinAngle = sinf(angleRad);
 
 		// 기준점 위치 계산
+<<<<<<< Updated upstream
 		Vec2 pivot = pObj->GetPivot();  // 기준점 좌표 (pivot)
 		float dx = pivot.x * cosAngle - pivot.y * sinAngle + vPos.x;
 		float dy = pivot.x * sinAngle + pivot.y * cosAngle + vPos.y;
 
+=======
+		Vect2 pivot = pObj->GetPivot();  // 기준점 좌표 (pivot)
+		float dx = pivot.x * cosAngle - pivot.y * sinAngle + vPos.x;
+		float dy = pivot.x * sinAngle + pivot.y * cosAngle + vPos.y;
+
+		// 회전 스케일 설정
+>>>>>>> Stashed changes
 		transform.eM11 = cosAngle;
 		transform.eM12 = sinAngle;
 		transform.eM21 = -sinAngle;
 		transform.eM22 = cosAngle;
+<<<<<<< Updated upstream
 		transform.eDx = dx;
 		transform.eDy = dy;
 		
@@ -123,6 +159,17 @@ void CAnimation::Render(HDC _dc)
 		SetWorldTransform(_dc, &transform);
 
 		// 이미지 출력
+=======
+		// 변환 좌표이동 설정
+		transform.eDx = dx;
+		transform.eDy = dy;
+		
+		// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
+		SetGraphicsMode(_dc, GM_ADVANCED);
+		// 변환 행렬 설정
+		SetWorldTransform(_dc, &transform);
+
+>>>>>>> Stashed changes
 		AlphaBlend(_dc
 			, (int)(-vScale.x * 0.5f)
 			, (int)(-vScale.y * 0.5f)
@@ -135,15 +182,26 @@ void CAnimation::Render(HDC _dc)
 			, (int)(mVecFrm[miCurFrm].vSlice.y)
 			, bf);
 
+<<<<<<< Updated upstream
 		// 변환 행렬 초기화
 		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);
+=======
+		// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
+		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);
+		// 변환 행렬 해제
+>>>>>>> Stashed changes
 		SetWorldTransform(_dc, nullptr);
 	}
 }
 
 
+<<<<<<< Updated upstream
 void CAnimation::CREATE(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize
 	, Vec2 _vStep, float _fDuration, UINT _iFreamCount)
+=======
+void CAnimation::Create(CTexture* _pTex, Vect2 _vLT, Vect2 _vSliceSize
+	, Vect2 _vStep, float _fDuration, UINT _iFreamCount)
+>>>>>>> Stashed changes
 {
 	mpTex = _pTex;
 

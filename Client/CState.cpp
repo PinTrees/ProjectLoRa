@@ -1,11 +1,15 @@
 #include "pch.h"
 #include "CState.h"
 
+<<<<<<< Updated upstream
 #include "AI.h"
+=======
+>>>>>>> Stashed changes
 
 
 
 
+<<<<<<< Updated upstream
 CState::CState(MONSTER_STATE state)
 	: mState(state)
 	, mpAI(nullptr)
@@ -32,3 +36,9 @@ CMonster* CState::GetMonster()
 {
 	return mpAI->GetOwner();
 }
+=======
+
+
+
+
+>>>>>>> Stashed changes

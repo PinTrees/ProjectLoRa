@@ -27,6 +27,10 @@ public:
 
 public:
 	Tile();
+<<<<<<< Updated upstream
 	~Tile();
+=======
+	virtual ~Tile();
+>>>>>>> Stashed changes
 };
 

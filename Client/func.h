@@ -1,7 +1,15 @@
 #pragma once
+<<<<<<< Updated upstream
 
 class CObject;
 class CScene;
+=======
+#include "CEventMgr.h"
+
+class CObject;
+class CScene;
+template <typename T>
+>>>>>>> Stashed changes
 class AI;
 
 struct tForce;
@@ -9,9 +17,29 @@ struct tForce;
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(CObject* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
+<<<<<<< Updated upstream
 void ChangeAIState(AI* pAI, MONSTER_STATE nextState);
 void CreateForce(tForce& force);
 
+=======
+void CreateForce(tForce& force);
+
+template <typename T>
+void ChangeAIState(AI<T>* pAI, MONSTER_STATE nextState)
+{
+	tEvent evn = {};
+	evn.eEven = EVENT_TYPE::CHANGE_AI_STATE;
+	evn.lParam = (DWORD_PTR)pAI;
+	evn.wParam = (DWORD_PTR)nextState;
+
+	pAI->ChangeState(nextState);
+
+	//추후 변경
+	//CEventMgr::GetI()->AddEvent(evn);
+}
+
+
+>>>>>>> Stashed changes
 
 template<typename T>
 void Safe_Delete_Vec(vector<T>& _vec)
@@ -41,12 +69,16 @@ void Safe_Delete_Map(map<T1, T2>& _map)
 
 
 
+<<<<<<< Updated upstream
 Vec2 curvesCircle(Vec2 c1, float _radius, float _amount);
 
 
 
 
 
+=======
+Vect2 curvesCircle(Vect2 c1, float _radius, float _amount);
+>>>>>>> Stashed changes
 
 void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight);
 

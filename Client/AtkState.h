@@ -2,10 +2,15 @@
 #include "CState.h"
 
 
+<<<<<<< Updated upstream
 
 
 class AtkState :
     public CState
+=======
+class AtkState :
+    public CState<MONSTER_STATE>
+>>>>>>> Stashed changes
 {
 private:
 

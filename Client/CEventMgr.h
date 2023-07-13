@@ -1,5 +1,9 @@
 #pragma once
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 struct tEvent
 {
 	EVENT_TYPE	eEven;
@@ -7,6 +11,15 @@ struct tEvent
 	DWORD_PTR		wParam;
 };
 
+<<<<<<< Updated upstream
+=======
+
+class CObject;
+
+
+
+
+>>>>>>> Stashed changes
 class CEventMgr
 {
 	SINGLE(CEventMgr)
@@ -15,6 +28,10 @@ private:
 	vector<tEvent>		mVecEvent;
 	vector<CObject*>	mVecDeadObj;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public:
 	void Update();
 private:

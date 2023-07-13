@@ -34,7 +34,11 @@ private:
 
 public:
 	void SetActiveMenu(bool active);
+<<<<<<< Updated upstream
 	void ChangeWindowSize(Vec2 vResoulution, bool menuActive);
+=======
+	void ChangeWindowSize(Vect2 vResoulution, bool menuActive);
+>>>>>>> Stashed changes
 
 
 public:
