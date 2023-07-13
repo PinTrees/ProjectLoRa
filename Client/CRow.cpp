@@ -5,7 +5,7 @@
 
 CRow::CRow()
 	: CUI(false)
-{
+{ 
 }
 
 CRow::~CRow()
