@@ -123,6 +123,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>10</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +162,9 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatText.h" />
+    <ClInclude Include="CRow.h" />
     <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -227,7 +230,9 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatText.cpp" />
+    <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="Monster.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>

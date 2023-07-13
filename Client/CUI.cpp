@@ -8,6 +8,8 @@
 #include "CScene.h"
 
 #include "CTexture.h"
+#include "CAnimator.h"
+#include "CAnimation.h"
 
 
 CUI::CUI(bool cameraAffected)
@@ -17,7 +19,6 @@ CUI::CUI(bool cameraAffected)
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
 {
-
 }
 
 CUI::CUI(const CUI& origin)
@@ -38,7 +39,8 @@ CUI::~CUI()
 	Safe_Delete_Vec(mVecChildUI);
 }
 
-void CUI::Update()
+
+void CUI::Update() 
 {
 	// child update
 	UpdateChild();
@@ -46,6 +48,9 @@ void CUI::Update()
 
 void CUI::FinalUpdate()
 {
+	if (GetAnimator())
+		GetAnimator()->Update();
+
 	// 부모의 finalUpdate호출 해야한다.
 	// UI가 애니매이션 가질 수도 있기 때문에
 	CObject::FinalUpdate();
@@ -88,6 +93,12 @@ void CUI::OnMouseCheck()
 
 void CUI::Render(HDC dc)
 {
+	if (GetAnimator())
+	{
+		GetAnimator()->GetCurAnimation()->RenderUI(this, dc);
+		return;
+	}
+
 	Vect2 vPos = GetFinalPos();
 	Vect2 vScale = GetScale();
 

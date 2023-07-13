@@ -37,6 +37,7 @@ private:
 
 	CUI*	mLevelupUI;
 
+
 	AI<PLAYER_STATE>* mAI;
 
 

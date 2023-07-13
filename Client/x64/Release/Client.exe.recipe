@@ -2,10 +2,14 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\PorojectM\ProjectLoRa\Output\bin\Client.exe</FullPath>
+      <FullPath>C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin\Client.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

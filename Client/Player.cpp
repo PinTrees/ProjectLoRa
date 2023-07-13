@@ -32,6 +32,8 @@
 
 #include "CState.h"
 
+// Game Manager Header
+#include "HubUIMgr.h"
 
 
 
@@ -109,6 +111,8 @@ Player::Player()
 	mExpBar->SetPos(Vect2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
+
+	HubUIMgr::GetI()->CreateBulletUI();
 }
 
 

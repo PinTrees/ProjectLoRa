@@ -209,6 +209,12 @@
     <Filter Include="FreamWork\UI\Image">
       <UniqueIdentifier>{4526c255-9048-41b1-9055-118c8595dc32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Manager\HudUIMgr">
+      <UniqueIdentifier>{a7c91130-9e20-482c-882e-c92c5f81ba1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Row">
+      <UniqueIdentifier>{ee55fcc8-985d-4b1e-a88b-4379bcfb8932}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -403,6 +409,12 @@
     <ClInclude Include="CImageUI.h">
       <Filter>FreamWork\UI\Image</Filter>
     </ClInclude>
+    <ClInclude Include="HubUIMgr.h">
+      <Filter>Game\Manager\HudUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CRow.h">
+      <Filter>FreamWork\UI\Row</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -589,6 +601,12 @@
     </ClCompile>
     <ClCompile Include="CImageUI.cpp">
       <Filter>FreamWork\UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="HubUIMgr.cpp">
+      <Filter>Game\Manager\HudUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CRow.cpp">
+      <Filter>FreamWork\UI\Row</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

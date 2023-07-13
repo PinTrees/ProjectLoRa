@@ -1,41 +1,7 @@
-﻿  CAnimator.cpp
-C:\PorojectM\ProjectLoRa\Client\func.h(29,4): warning C4150: deletion of pointer to incomplete type 'CAnimation'; no destructor called
-C:\PorojectM\ProjectLoRa\Client\CAnimator.h(5,7): message : see declaration of 'CAnimation'
-C:\PorojectM\ProjectLoRa\Client\CAnimator.cpp(11,26): message : see reference to function template instantiation 'void Safe_Delete_Map<std::wstring,CAnimation*>(std::map<std::wstring,CAnimation *,std::less<std::wstring>,std::allocator<std::pair<const std::wstring,CAnimation *>>> &)' being compiled
-  CCollider.cpp
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(56,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(55,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(54,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PorojectM\ProjectLoRa\Client\CCollider.cpp(53,18): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  CCollisionMgr.cpp
-  CCore.cpp
-  CEventMgr.cpp
-  CGuidMissile.cpp
-  CKeyMgr.cpp
-  Client.cpp
-  CMissile.cpp
-  CMonster.cpp
-  CObject.cpp
-C:\PorojectM\ProjectLoRa\Client\CObject.cpp(42,3): warning C4150: deletion of pointer to incomplete type 'CAnimator'; no destructor called
-C:\PorojectM\ProjectLoRa\Client\CObject.h(4,7): message : see declaration of 'CAnimator'
-  CPathMgr.cpp
-  CPlayer.cpp
-  CRes.cpp
-  CResMgr.cpp
-  CScene.cpp
-  CSceneMgr.cpp
-  CScene_start.cpp
-  CScene_Tool.cpp
-  CSound.cpp
-  CTexture.cpp
-  CTimeMgr.cpp
-  func.cpp
-  SelectGDI.cpp
-LINK : warning C4727: PCH named c:\porojectm\projectlora\client\x64\release\client.pch with same timestamp found in c:\porojectm\projectlora\client\x64\release\cmissile.obj and c:\porojectm\projectlora\client\x64\release\client.obj.  Using first PCH.
-LINK : warning C4727: PCH named c:\porojectm\projectlora\client\x64\release\client.pch with same timestamp found in c:\porojectm\projectlora\client\x64\release\cresmgr.obj and c:\porojectm\projectlora\client\x64\release\cres.obj.  Using first PCH.
-LINK : warning C4727: PCH named c:\porojectm\projectlora\client\x64\release\client.pch with same timestamp found in c:\porojectm\projectlora\client\x64\release\ctexture.obj and c:\porojectm\projectlora\client\x64\release\csound.obj.  Using first PCH.
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 649 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  Client.vcxproj -> C:\PorojectM\ProjectLoRa\Output\bin\Client.exe
+﻿  HubUIMgr.cpp
+LINK : warning C4727: 타임스탬프가 동일한 c:\users\taegi\desktop\projectlora\client\x64\release\client.pch PCH가 c:\users\taegi\desktop\projectlora\client\x64\release\monsterfactory.obj 및 c:\users\taegi\desktop\projectlora\client\x64\release\idlestate.obj에 있습니다.  첫 번째 PCH를 사용합니다.
+  코드를 생성하고 있습니다.
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 1918 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin\Client.exe

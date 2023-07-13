@@ -28,9 +28,9 @@ void CImageUI::Render(HDC dc)
 		vPos = CCamera::GetI()->GetRenderPos(vPos);
 	}
 
-	if (IsLbtnDown())
+	
+	if (GetAnimator())
 	{
-		SelectGDI p(dc, PEN_TYPE::GREEN);
 	}
 
 	if (nullptr == mpTexture)
