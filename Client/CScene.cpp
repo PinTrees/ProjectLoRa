@@ -149,9 +149,12 @@ void CScene::Render(HDC _dc)
 		for (;iter != mArrObj[i].end();)
 		{
 			// Render Object
-			if (!(*iter)->IsDead() && (*iter)->IsVisible())
+			if (!(*iter)->IsDead())
 			{
-				(*iter)->Render(_dc);
+				if ((*iter)->IsVisible())
+				{
+					(*iter)->Render(_dc);
+				}
 				++iter;
 			}
 			// Delete Object

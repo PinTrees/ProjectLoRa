@@ -36,8 +36,8 @@ void HubUIMgr::CreateBulletUI()
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
 	mBulletUI = new CRow;
-	mBulletUI->SetPos(vRes - Vect2(175.f, 50.f));
-	mBulletUI->SetScale(Vect2(300.f, 50.f));
+	mBulletUI->SetPos(vRes - Vect2(200.f, 50.f));
+	mBulletUI->SetScale(Vect2(350.f, 50.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"UI_B1", L"texture\\ui\\bullet_1.bmp"); 
 

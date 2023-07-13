@@ -34,6 +34,7 @@
 
 // Game Manager Header
 #include "HubUIMgr.h"
+#include "LevelUpUIMgr.h"
 
 
 
@@ -118,6 +119,8 @@ Player::Player()
 
 Player::~Player()
 {
+	if (nullptr != mAI)
+		delete mAI;
 }
 
 
@@ -181,28 +184,6 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-void Player::CreateMissile()
-{
-	Vect2 vMissilePos = GetLocalPos() + Vect2(0.f, -50.f);
-
-	Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-	vDir.Normalize();
-
-	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-	int launchAngle = 30;
-	float angle = (float)CRandom::GetI()->Next(-15, 15); // 랜덤한 각도
-	vDir.Rotate(angle); // 방향 벡터를 해당 각도만큼 회전시킵니다.
-
-	// 총알 오브젝트
-	Bullet* pMissile = new Bullet(L"3");
-	pMissile->SetPos(vMissilePos + vDir.Normalize() * 50.f);
-	pMissile->SetDir(vDir);
-	pMissile->SetName(L"Missile_Player");
-
-	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
-}
-
-
 
 void Player::calExp()
 {
@@ -211,46 +192,8 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
-		Vect2 vRes = CCore::GetI()->GetResolution();
-
-		mLevelupUI = new CPanelUI;
-		mLevelupUI->SetPos(vRes * 0.5f);
-		mLevelupUI->SetScale(vRes);
-		CreateObject(mLevelupUI, GROUP_TYPE::UI);
-
-		for (int i = 0; i < 3; ++i)
-		{
-			float spacing = vRes.x / 3;
-
-			CPanelUI* pPanel = new CPanelUI;
-			pPanel->SetPos(Vect2(spacing * i - spacing, 0.f));
-			pPanel->SetScale(Vect2(300.f, 300.f));
-			pPanel->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
-			mLevelupUI->AddChild(pPanel);
-
-			tUpgrad a = {};
-
-			CBtnUI* pBtn = new CBtnUI;
-			pBtn->SetPos(Vect2(0.f, 100.f));
-			pBtn->SetScale(Vect2(200.f, 50.f));
-			pBtn->SetText(L"선택");
-			pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
-			pBtn->SetClickedCallBack(this, (OBJECT_FUNC_P)&Player::SelectLevelUp, (DWORD_PTR)&a);
-			pPanel->AddChild(pBtn);
-		}
-
-		CTimeMgr::GetI()->Stop();
+		LevelupUIMgr::GetI()->Choice();
 	}
 }
 
 
-void Player::SelectLevelUp(DWORD_PTR param)
-{
-	CTimeMgr::GetI()->Play();
-
-	if (nullptr != mLevelupUI)
-	{
-		CUIMgr::GetI()->SetFocusUI(nullptr);
-		DeleteObject(mLevelupUI);
-	}
-}

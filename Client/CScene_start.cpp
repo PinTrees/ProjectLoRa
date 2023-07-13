@@ -16,8 +16,9 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 
-// Manager Header
+// Game Manager Header
 #include "PlayerMgr.h"
+#include "LevelUpUIMgr.h"
 
 // Components Header
 #include "CCollider.h"
@@ -85,6 +86,7 @@ void Scene_Start::Enter()
 		createEnvi();
 	}
 
+	LevelupUIMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크

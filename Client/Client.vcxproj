@@ -166,6 +166,8 @@
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="HubUIMgr.h" />
+    <ClInclude Include="LevelUpUI.h" />
+    <ClInclude Include="LevelUpUIMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
@@ -234,6 +236,8 @@
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
+    <ClCompile Include="LevelUpUI.cpp" />
+    <ClCompile Include="LevelUpUIMgr.cpp" />
     <ClCompile Include="Monster.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>

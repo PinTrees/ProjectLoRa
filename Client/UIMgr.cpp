@@ -37,7 +37,7 @@ void CUIMgr::Update()
 
 	if (nullptr != targetUI)
 	{
-		if (targetUI->IsDead())
+		if (targetUI->IsDead() || !targetUI->IsVisible())
 			return;
 
 		// UI위에있다고 알려준다.

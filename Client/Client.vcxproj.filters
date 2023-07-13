@@ -215,6 +215,12 @@
     <Filter Include="FreamWork\UI\Row">
       <UniqueIdentifier>{ee55fcc8-985d-4b1e-a88b-4379bcfb8932}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI\LevelUpUI">
+      <UniqueIdentifier>{90dea450-f1ca-4277-97ce-4e56ad961f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\LevelUpUIMgr">
+      <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -415,6 +421,12 @@
     <ClInclude Include="CRow.h">
       <Filter>FreamWork\UI\Row</Filter>
     </ClInclude>
+    <ClInclude Include="LevelUpUI.h">
+      <Filter>Game\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpUIMgr.h">
+      <Filter>Game\Manager\LevelUpUIMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -607,6 +619,12 @@
     </ClCompile>
     <ClCompile Include="CRow.cpp">
       <Filter>FreamWork\UI\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUI.cpp">
+      <Filter>Game\UI\LevelUpUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUIMgr.cpp">
+      <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
