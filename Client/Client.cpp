@@ -34,7 +34,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 메모리 누수 체크
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-    //_CrtSetBreakAlloc(211);
+    //_CrtSetBreakAlloc(521362);
 
 
     // TODO: Place code here.
@@ -79,6 +79,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             CCore::GetI()->RUN();
         }
     }
+
+    CCore::GetI()->Delete();
+    CCore::Dispose();
 
     return (int) msg.wParam;
 }

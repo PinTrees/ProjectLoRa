@@ -9,6 +9,9 @@
 #include "CEventMgr.h"
 #include "UIMgr.h"
 #include "CResMgr.h"
+#include "LevelUpUIMgr.h"
+#include "HubUIMgr.h"
+#include "PlayerMgr.h"
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -139,6 +142,21 @@ void CCore::Clear()
 {
 	SelectGDI gdi(mpMemTex->GetDC(), BRUSH_TYPE::BLACK);
 	Rectangle(mpMemTex->GetDC(), -1, -1, mPtResolution.x + 1, mPtResolution.y + 1);
+}
+
+void CCore::Delete()
+{
+	CPathMgr::GetI()->Dispose();
+	CTimeMgr::GetI()->Dispose();
+	CKeyMgr::GetI()->Dispose();
+	CCamera::GetI()->Dispose();
+	CSceneMgr::GetI()->Dispose();
+	CRandom::GetI()->Dispose();
+	CUIMgr::GetI()->Dispose();
+	CEventMgr::GetI()->Dispose();
+	CResMgr::GetI()->Dispose();
+	CCollisionMgr::GetI()->Dispose();
+	CUIMgr::GetI()->Dispose();
 }
 
 

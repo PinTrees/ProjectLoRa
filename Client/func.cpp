@@ -151,7 +151,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 	{
 		Tile* tile = (Tile*)(vecTile[i]);
 		tile->Load(pFile);
-		tile->Render(dc);
+		tile->Render(dc, false);
 	}
 
 	pScene->AddObject(pParallax, GROUP_TYPE::PARALLAX);

@@ -25,6 +25,7 @@ public:
 	int  Initialize(HWND _hWnd, POINT _ptResolution);
 	void RUN();
 	void Clear();
+	void Delete();
 
 
 private:

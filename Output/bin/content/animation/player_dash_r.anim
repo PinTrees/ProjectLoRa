@@ -1,0 +1,92 @@
+[Animation Name]
+DASH_R
+[Texture Name]
+PlayerTex
+[Texture Path]
+texture\character.bmp
+[Frame Count]
+7
+[Frame Index]
+0
+[Left Top]
+0 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+1
+[Left Top]
+73 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+2
+[Left Top]
+146 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+3
+[Left Top]
+219 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+4
+[Left Top]
+292 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+5
+[Left Top]
+365 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+6
+[Left Top]
+438 1242
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+

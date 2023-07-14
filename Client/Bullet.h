@@ -56,6 +56,6 @@ public:
 
 public:
 	Bullet(const wstring& _type);
-	~Bullet();
+	virtual ~Bullet();
 };
 

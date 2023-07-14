@@ -15,7 +15,6 @@ private:
 
 
 public:
-	void CreateBulletUI();
 	void SetBulletUI(UINT count);
 
 

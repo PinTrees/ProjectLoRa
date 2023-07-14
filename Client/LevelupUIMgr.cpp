@@ -19,10 +19,10 @@ LevelupUIMgr::LevelupUIMgr()
 
 LevelupUIMgr::~LevelupUIMgr()
 {
-	for (UINT i = 0; i < (UINT)mCurLvupUI.size(); ++i)
+	for (size_t i = 0; i < mCurLvupUI.size(); ++i)
 	{
 		if (nullptr != mCurLvupUI[i])
-			delete mCurLvupUI[i];
+			DeleteObject(mCurLvupUI[i]);
 	}
 
 	mMapLvUpEffectData.clear();

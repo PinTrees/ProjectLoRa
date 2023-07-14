@@ -17,6 +17,7 @@
 
 #include "FileMgr.h"
 #include "CPathMgr.h"
+#include "CTimeMgr.h"
 
 
 // function header
@@ -304,6 +305,79 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);
+		}
+	}
+}
+
+
+
+void Scene_Tool::Render(HDC _dc)
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		if ((UINT)GROUP_TYPE::TILE == i)
+		{
+			render_tile(_dc);
+			continue;
+		}
+
+		//Render Background
+		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		{
+			continue;
+		}
+
+		vector<CObject*>::iterator iter = mArrObj[i].begin();
+
+		for (; iter != mArrObj[i].end();)
+		{
+			// Render Object
+			if (!(*iter)->IsDead())
+			{
+				(*iter)->Render(_dc);
+				++iter;
+			}
+			// Delete Object
+			else
+			{
+				(*iter)->OnDestroy();
+				iter = mArrObj[i].erase(iter);
+			}
+		}
+	}
+}
+
+
+void Scene_Tool::render_tile(HDC _dc)
+{
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	Vect2 vCamLook = CCamera::GetI()->GetLookAt();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+	Vect2	vLeftTop = vCamLook - vResolution * 0.5f;
+
+	int iTileSize = TILE_SIZE_RENDER;
+
+	int iLTCol = (int)vLeftTop.x / iTileSize;
+	int iLTRow = (int)vLeftTop.y / iTileSize;
+
+	int iLTIdx = (mTileX * iLTRow) + iLTCol;
+
+	int iClientWidth = ((int)vResolution.x / iTileSize) + 1;
+	int iClientHeight = ((int)vResolution.y / iTileSize) + 1;
+
+
+	for (int iCurRow = iLTRow; iCurRow < (iLTRow + iClientHeight); ++iCurRow)
+	{
+		for (int iCurCol = iLTCol; iCurCol < (iLTCol + iClientWidth); ++iCurCol)
+		{
+			if (iCurCol < 0 || mTileX <= (UINT)iCurCol
+				|| iCurRow < 0 || mTileY <= (UINT)iCurRow)
+			{
+				continue;
+			}
+			int iIdx = (mTileX * iCurRow) + iCurCol;
+			((Tile*)vecTile[iIdx])->Render(_dc, true);
 		}
 	}
 }

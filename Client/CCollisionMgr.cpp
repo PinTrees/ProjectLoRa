@@ -18,7 +18,6 @@ CCollisionMgr::CCollisionMgr()
 
 CCollisionMgr::~CCollisionMgr()
 {
-
 }
 
 
