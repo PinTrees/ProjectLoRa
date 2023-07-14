@@ -25,7 +25,6 @@ HubUIMgr::HubUIMgr()
 HubUIMgr::~HubUIMgr()
 {
 	DeleteObject(mBulletUI);
-	DeleteObject(mReroadUI);
 }
 
 

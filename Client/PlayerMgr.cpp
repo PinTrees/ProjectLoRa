@@ -12,5 +12,4 @@ PlayerMgr::PlayerMgr()
 
 PlayerMgr::~PlayerMgr()
 {
-	DeleteObject(mpPlayer);
 }

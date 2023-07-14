@@ -227,6 +227,12 @@
     <Filter Include="Game\Editor\TileEditMgr">
       <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI\Bar">
+      <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\CombatText">
+      <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -370,9 +376,6 @@
     <ClInclude Include="AtkState.h">
       <Filter>Game\FSM\Monster\AtkState</Filter>
     </ClInclude>
-    <ClInclude Include="BarUI.h">
-      <Filter>Game\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Scene_Main.h">
       <Filter>Game\Scene\Scene_Main</Filter>
     </ClInclude>
@@ -399,9 +402,6 @@
     </ClInclude>
     <ClInclude Include="TextUI.h">
       <Filter>FreamWork\UI\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="CombatText.h">
-      <Filter>Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="PIdleState.h">
       <Filter>Game\FSM\Player\Idle</Filter>
@@ -435,6 +435,12 @@
     </ClInclude>
     <ClInclude Include="TileEditMgr.h">
       <Filter>Game\Editor\TileEditMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="BarUI.h">
+      <Filter>Game\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatText.h">
+      <Filter>Game\UI\CombatText</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -572,9 +578,6 @@
     <ClCompile Include="AtkState.cpp">
       <Filter>Game\FSM\Monster\AtkState</Filter>
     </ClCompile>
-    <ClCompile Include="BarUI.cpp">
-      <Filter>Game\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Scene_Main.cpp">
       <Filter>Game\Scene\Scene_Main</Filter>
     </ClCompile>
@@ -601,9 +604,6 @@
     </ClCompile>
     <ClCompile Include="TextUI.cpp">
       <Filter>FreamWork\UI\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="CombatText.cpp">
-      <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="PIdleState.cpp">
       <Filter>Game\FSM\Player\Idle</Filter>
@@ -637,6 +637,12 @@
     </ClCompile>
     <ClCompile Include="TileEditMgr.cpp">
       <Filter>Game\Editor\TileEditMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="BarUI.cpp">
+      <Filter>Game\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Game\UI\CombatText</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

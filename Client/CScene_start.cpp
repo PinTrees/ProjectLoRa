@@ -45,6 +45,10 @@ Scene_Start::Scene_Start()
 
 Scene_Start::~Scene_Start()
 {
+	// 教臂沛 皋葛府 秦力
+	LevelupUIMgr::Dispose();
+	PlayerMgr::Dispose();
+	HubUIMgr::Dispose();
 }
 
 
@@ -111,11 +115,6 @@ void Scene_Start::Exit()
 	DeleteAll();
 	CCollisionMgr::GetI()->Reset();
 	CCamera::GetI()->SetTarget(nullptr);
-
-	// 教臂沛 皋葛府 秦力
-	PlayerMgr::Dispose();
-	HubUIMgr::Dispose();
-	LevelupUIMgr::Dispose();
 }
 
 
