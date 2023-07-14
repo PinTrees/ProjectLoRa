@@ -59,6 +59,7 @@ void CBtnUI::Render(HDC dc)
 
 void CBtnUI::MouseOn()
 {
+	CUI::MouseOn();
 }
 
 void CBtnUI::MouseLbtnDown()
@@ -136,8 +137,8 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	bf.SourceConstantAlpha = GetAlpha();
 
 	AlphaBlend(_dc
-		, (int)vPos.x - vSize.x * 0.5f
-		, (int)vPos.y - vSize.y * 0.5f
+		, (int)vPos.x - (int)(vSize.x * 0.5f)
+		, (int)vPos.y - (int)(vSize.y * 0.5f)
 		, (int)vSize.x
 		, (int)vSize.y
 		, mpVeilTex->GetDC()

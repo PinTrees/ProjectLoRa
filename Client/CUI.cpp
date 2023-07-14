@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CUI.h"
+#include "CUIMgr.h"
 
 #include "CCamera.h"
 #include "CKeyMgr.h"
@@ -84,6 +85,8 @@ void CUI::OnMouseCheck()
 	else
 	{
 		mOnMouseCheck = false;
+		CUIMgr::GetI()->SetIsMouseOn(false);
+
 	}
 }
 
@@ -166,7 +169,7 @@ void CUI::OnDestroy()
 
 void CUI::MouseOn()
 {
-
+	CUIMgr::GetI()->SetIsMouseOn(true);
 }
 
 void CUI::MouseLbtnDown()

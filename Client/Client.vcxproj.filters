@@ -298,7 +298,7 @@
     <ClInclude Include="RigidBody.h">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClInclude>
-    <ClInclude Include="UIMgr.h">
+    <ClInclude Include="CUIMgr.h">
       <Filter>FreamWork\Manager\UIMgr</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
@@ -485,7 +485,7 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClCompile>
-    <ClCompile Include="UIMgr.cpp">
+    <ClCompile Include="CUIMgr.cpp">
       <Filter>FreamWork\Manager\UIMgr</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">

@@ -202,7 +202,7 @@
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TraceState.h" />
-    <ClInclude Include="UIMgr.h" />
+    <ClInclude Include="CUIMgr.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -267,7 +267,7 @@
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TraceState.cpp" />
-    <ClCompile Include="UIMgr.cpp" />
+    <ClCompile Include="CUIMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>

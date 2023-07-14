@@ -11,7 +11,7 @@
 
 #include "resource.h"
 
-#include "UIMgr.h"
+#include "CUIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 
@@ -44,11 +44,11 @@ void Scene_Tool::Enter()
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution * 0.5f); //카메라 이동
 
-	CUI* pPanelUI = new CPanelUI;
+	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
 	pPanelUI->SetScale(Vect2(300.f, 150.f));
 	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 100.f));
-
+	pPanelUI->SetFixedPos(true);
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
 	pBtnUI->SetScale(Vect2(100.f, 40.f));
@@ -58,6 +58,7 @@ void Scene_Tool::Enter()
 	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
 	pPanelUI->AddChild(pBtnUI); 
 	AddObject(pPanelUI, GROUP_TYPE::UI);
+
 
 }
 
@@ -163,8 +164,12 @@ void Scene_Tool::render_tile(HDC _dc)
 
 void Scene_Tool::SetTileIdx()
 {
+	if (CUIMgr::GetI()->GetIsMouseOnUI())
+		return;
+
 	if (KEY_TAP(KEY::LBTN))
 	{
+
 		Vect2 vMousePos = MOUSE_POS;
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 

@@ -7,7 +7,7 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
-#include "UIMgr.h"
+#include "CUIMgr.h"
 #include "CResMgr.h"
 
 #include "CCamera.h"

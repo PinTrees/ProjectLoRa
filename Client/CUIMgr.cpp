@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "UIMgr.h"
+#include "CUIMgr.h"
 
 #include "CSceneMgr.h"
 #include "CKeyMgr.h"
@@ -7,8 +7,8 @@
 #include "CUI.h"
 
 CUIMgr::CUIMgr()
-	:
-	_focusedUI(nullptr)
+	:_focusedUI(nullptr)
+	, isMouseOnUI(false)
 {
 
 }
