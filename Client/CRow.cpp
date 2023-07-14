@@ -6,6 +6,7 @@
 CRow::CRow()
 	: CUI(false)
 	, mAlignment(ALIGNMENT::CENTER)
+    , mSpacing(0.f)
 {
 }
 
@@ -18,34 +19,59 @@ CRow::~CRow()
 
 void CRow::Update()
 {
+    if (GetChild().size() <= 0)
+        return;
+
     Vect2 vParentSize = GetScale();
     vector<CUI*> children = GetChild();
 
-    Vect2 vChildRootPos;
-    float spacing = vParentSize.x / children.size();
+    Vect2 vChildRootPos = Vect2::zero;
 
-    if (   mAlignment == ALIGNMENT::CENTER
-        || mAlignment == ALIGNMENT::CENTER_LEFT
-        || mAlignment == ALIGNMENT::CENTER_RIGHT)
+    if (IsAligmentCenter_Ver(mAlignment))
         vChildRootPos.y = 0.f;
-
  
-    vChildRootPos.x = -vParentSize.x * 0.5f;
+    if(IsAligmentLeft(mAlignment))
+        vChildRootPos.x = -vParentSize.x * 0.5f;
+    else if(IsAligmentRight(mAlignment))
+        vChildRootPos.x = vParentSize.x * 0.5f;
+    else if (IsAligmentCenter(mAlignment))
+    {
+        float childrenWidth = 0.f;
+        for (int i = 0; i < children.size(); ++i)
+            childrenWidth += children[i]->GetScale().x;
+        vChildRootPos.x = -childrenWidth * 0.5f - (mSpacing * (children.size() - 1) * 0.5f);
+    }
 
     for (int i = 0; i < children.size(); ++i)
     {
-        vChildRootPos.x += children[i]->GetScale().x * 0.5f;
+        if(IsAligmentLeft(mAlignment))
+            vChildRootPos.x += children[i]->GetScale().x * 0.5f;
+        else if (IsAligmentRight(mAlignment))
+            vChildRootPos.x -= children[i]->GetScale().x * 0.5f;
+        else if (IsAligmentCenter(mAlignment))
+            vChildRootPos.x += children[i]->GetScale().x * 0.5f;
 
-        if (   mAlignment == ALIGNMENT::TOP_CENTER
-            || mAlignment == ALIGNMENT::TOP_LEFT
-            || mAlignment == ALIGNMENT::TOP_RIGHT)
+        if (IsAligmentTop(mAlignment))
         {
             Vect2 vChildSize = children[i]->GetScale();
             vChildRootPos.y = (vParentSize.y * 0.5f - vChildSize.y * 0.5f) * -1.f;
         }
-        
+        else if (IsAligmentBottom(mAlignment))
+        {
+            Vect2 vChildSize = children[i]->GetScale();
+            vChildRootPos.y = (vParentSize.y * 0.5f - vChildSize.y * 0.5f) * 1.f;
+        }
+
         children[i]->SetPos(vChildRootPos);
-        vChildRootPos.x += children[i]->GetScale().x * 0.5f;
+       
+        if (IsAligmentLeft(mAlignment))
+            vChildRootPos.x += children[i]->GetScale().x * 0.5f;
+        else if (IsAligmentRight(mAlignment))
+            vChildRootPos.x -= children[i]->GetScale().x * 0.5f;
+        else if (IsAligmentCenter(mAlignment))
+            vChildRootPos.x += children[i]->GetScale().x * 0.5f;
+
+        vChildRootPos.x += mSpacing;
     }
 }
 

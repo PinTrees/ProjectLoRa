@@ -40,6 +40,8 @@ CUI::~CUI()
 }
 
 
+
+
 void CUI::Update() 
 {
 	// child update
@@ -220,4 +222,74 @@ CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
 	}
 
 	return nullptr;
+}
+
+
+
+
+bool CUI::IsAligmentLeft(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::BOTTOM_LEFT
+		|| aligment == ALIGNMENT::CENTER_LEFT
+		|| aligment == ALIGNMENT::TOP_LEFT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentRight(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::BOTTOM_RIGHT
+		|| aligment == ALIGNMENT::CENTER_RIGHT
+		|| aligment == ALIGNMENT::TOP_RIGHT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentCenter_Ver(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::TOP_CENTER
+		|| aligment == ALIGNMENT::TOP_LEFT
+		|| aligment == ALIGNMENT::TOP_RIGHT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentCenter_Hor(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::CENTER
+		|| aligment == ALIGNMENT::CENTER_LEFT
+		|| aligment == ALIGNMENT::CENTER_RIGHT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentCenter(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::CENTER
+		|| aligment == ALIGNMENT::CENTER_LEFT
+		|| aligment == ALIGNMENT::CENTER_RIGHT
+		|| aligment == ALIGNMENT::TOP_CENTER
+		|| aligment == ALIGNMENT::BOTTOM_CENTER)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentTop(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::TOP_CENTER
+		|| aligment == ALIGNMENT::TOP_LEFT
+		|| aligment == ALIGNMENT::TOP_RIGHT)
+		return true;
+	else return false;
+}
+
+
+
+bool CUI::IsAligmentBottom(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::BOTTOM_CENTER
+		|| aligment == ALIGNMENT::BOTTOM_LEFT
+		|| aligment == ALIGNMENT::BOTTOM_RIGHT)
+		return true;
+	else return false;
 }

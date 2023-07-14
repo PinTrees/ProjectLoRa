@@ -7,12 +7,15 @@ class CRow :
 	public CUI
 {
 private:
-	ALIGNMENT		mAlignment;
+	ALIGNMENT		mAlignment;			
+	AXIS_ALIGNMENT  mMainAxisAligment;	// 자식들의 정렬방식을 결정 [ 좌측, 우측, 가운데 ], 개발중
+
+	float			mSpacing;			// 자식 UI들의 간격배치
 
 
 public:
 	void SetAlignment(ALIGNMENT alignment) { mAlignment = alignment; }
-	ALIGNMENT GetAlignment() { return mAlignment; }
+	void SetSpacing(float spacing) { mSpacing = spacing; }
 
 
 public:

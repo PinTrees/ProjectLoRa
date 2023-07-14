@@ -1,6 +1,7 @@
 #pragma once
 #include "CObject.h"
 
+
 // UI Á¤·Ä
 enum class ALIGNMENT
 {
@@ -18,7 +19,17 @@ enum class ALIGNMENT
 };
 
 
+enum class AXIS_ALIGNMENT
+{
+	START,
+	END,
+	SPACE,
+};
+
 class CTexture;
+
+
+
 
 class CUI : public CObject
 {
@@ -73,6 +84,7 @@ public:
 		ui->mpParentUI = this;
 	}
 
+
 public:
 	CUI*	GetParentUI() { return mpParentUI; }
 	Vect2	GetFinalPos() { return mvFinalPos; }
@@ -100,5 +112,17 @@ public:
 	virtual ~CUI();
 
 	friend class CUIMgr;
+
+public:
+	static bool IsAligmentLeft(ALIGNMENT aligment);
+	static bool IsAligmentRight(ALIGNMENT aligment);
+	static bool IsAligmentBottom(ALIGNMENT aligment);
+	static bool IsAligmentTop(ALIGNMENT aligment);
+	static bool IsAligmentCenter(ALIGNMENT aligment);
+	static bool IsAligmentCenter_Ver(ALIGNMENT aligment);
+	static bool IsAligmentCenter_Hor(ALIGNMENT aligment);
+
 };
+
+
 

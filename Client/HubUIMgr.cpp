@@ -16,7 +16,7 @@ SINGLE_HEADER(HubUIMgr);
 
 
 HubUIMgr::HubUIMgr()
-	: mBulletUI(nullptr)
+	: mBulletRowUI(nullptr)
 	, mReroadUI(nullptr)
 {
 }
@@ -24,7 +24,7 @@ HubUIMgr::HubUIMgr()
 
 HubUIMgr::~HubUIMgr()
 {
-	DeleteObject(mBulletUI);
+	DeleteObject(mBulletRowUI);
 }
 
 
@@ -32,9 +32,10 @@ void HubUIMgr::Init()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
-	mBulletUI = new CRow;
-	mBulletUI->SetPos(vRes - Vect2(200.f, 50.f));
-	mBulletUI->SetScale(Vect2(350.f, 50.f));
+	mBulletRowUI = new CRow;
+	mBulletRowUI->SetPos(vRes - Vect2(200.f, 50.f));
+	mBulletRowUI->SetScale(Vect2(350.f, 50.f));
+	mBulletRowUI->SetSpacing(-8.f);
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"UI_B1", L"texture\\ui\\bullet_1.bmp");
 
@@ -46,10 +47,10 @@ void HubUIMgr::Init()
 		bImg->CreateAnimator();
 		bImg->GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(32.f, 48.f), Vect2(32.f, 0.f), 0.1f, 4);
 		bImg->GetAnimator()->Play(L"IDLE", true);
-		mBulletUI->AddChild(bImg);
+		mBulletRowUI->AddChild(bImg);
 	}
 
-	CreateObject(mBulletUI, GROUP_TYPE::UI);
+	CreateObject(mBulletRowUI, GROUP_TYPE::UI);
 
 	//mReroadUI = 
 }
@@ -57,7 +58,7 @@ void HubUIMgr::Init()
 
 void HubUIMgr::SetBulletUI(UINT count)
 {
-	vector<CUI*> vecBulletUI = mBulletUI->GetChild();
+	vector<CUI*> vecBulletUI = mBulletRowUI->GetChild();
 	for (int i = 0; i < vecBulletUI.size(); ++i)
 	{
 		if (i >= count)
