@@ -4,6 +4,12 @@
 
 
 
+struct tUpgrad
+{
+
+};
+
+
 struct tPlayerInfo
 {
 	float	mFullHP = 100.f;			// 최대체력
@@ -25,35 +31,33 @@ struct tPlayerInfo
 class CTexture;
 class Gun;
 class BarUI;
+class CUI;
 class LevelupUI;
-
 
 
 
 class Player :
 	public CObject
 {
-	friend class LevelupUI;
+
 private:
-	float			mfDelay;
-	float			mfCurDelay;
+	float	mfDelay;
+	float	mfCurDelay;
 
-	Vect2			mvDashDir;
+	Vect2	mvDir;
 
-	Gun*			mCurGun;
+	Gun*	mCurGun;
 
-	PLAYER_STATE	mState;
-	tPlayerInfo		mtPlayerInfo;
+	int		mLevel;
 
-	int				mLevel;
+	float	mExp;
+	BarUI*	mExpBar;
 
-	float			mExp;
-	BarUI*			mExpBar;
+	CUI*	mLevelupUI;
 
-	AI<PLAYER_STATE>* mAI;
+	tPlayerInfo			mtPlayerInfo;
+	AI<PLAYER_STATE>*	mAI;
 
-
-public:
 
 public:
 	tPlayerInfo GetInfo() { return mtPlayerInfo; }
@@ -63,7 +67,11 @@ public:
 	float GetExp() { return mExp; };
 	void  AddExp(float exp) { mExp += exp; }
 
+	Vect2 GetRunDir() { return mvDir; }
+	Gun* GetCurGun() { return mCurGun; }
+
 	void SetAI(AI<PLAYER_STATE>* pAI) { mAI = pAI; mAI->SetOwner(this); }
+	AI<PLAYER_STATE>* GetAI() { return mAI; }
 
 
 public:
@@ -72,7 +80,6 @@ public:
 
 
 private:
-	void createMissile();
 	void calExp();
 
 	CLONE(Player);
@@ -81,5 +88,7 @@ private:
 public:
 	Player();
 	~Player();
+
+	friend class LevelupUI;
 };
 

@@ -40,7 +40,7 @@ void CTexture::Create(UINT width, UINT heigth, COLORREF color)
 	HDC mainDc = CCore::GetI()->GetMainDC();
 
 	mhBit = CreateCompatibleBitmap(mainDc, width, heigth);
-	mDC = CreateCompatibleDC(mainDc);
+	mDC = CreateCompatibleDC(mainDc); 
 
 	HBITMAP hOldBit = (HBITMAP)SelectObject(mDC, mhBit);
 	DeleteObject(hOldBit);

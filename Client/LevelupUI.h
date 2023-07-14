@@ -1,29 +1,33 @@
 #pragma once
 #include "CUI.h"
+#include "CPanelUI.h"
 
 class Player;
+class TextUI;
+class CBtnUI;
+
 
 class LevelupUI :
-    public CUI
+    public CPanelUI
 {
 private:
     LEVELUP_EFFECT  mEffect;
-    wstring         mStrEffect;
-    CUI*            mpLeader;
-    Player*         mpPlayer;
+    TextUI*         mTitleText;
+    CBtnUI*         mSelectBtn;
+
 
 public:
     void SetEffect(LEVELUP_EFFECT _effect) { mEffect = _effect; }
-    void SetString(const wstring& _str) { mStrEffect = _str; }
+    void SetTitle(const wstring& _str);
 
-    CUI* GetLeaderUI() { return mpLeader; }
+
 public:
-    void CreateLevelupUI(Player* _player, Vect2 _pos);
     void ApplyLevelUp();
 
     CLONE(LevelupUI);
+
+
 public:
     LevelupUI();
     virtual ~LevelupUI();
 };
-

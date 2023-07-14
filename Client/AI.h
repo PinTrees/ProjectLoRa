@@ -61,6 +61,9 @@ public:
 		//assert(!mCurState);
 	}
 
+	CState<T>* GetCurState() { return mCurState; }
+	T GetCurStateType() { return mCurState->GetType(); }
+
 
 public:
 	void Update()

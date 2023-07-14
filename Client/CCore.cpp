@@ -9,7 +9,6 @@
 #include "CEventMgr.h"
 #include "UIMgr.h"
 #include "CResMgr.h"
-#include "LevelupUIMgr.h"
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -18,6 +17,8 @@
 
 #include "SelectGDI.h"
 #include "resource.h"
+
+SINGLE_HEADER(CCore);
 
 CCore::CCore()
 	:mhWnd(0)
@@ -69,13 +70,12 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CCamera::GetI()->Init();
 	CSceneMgr::GetI()->Init();
 	CRandom::GetI()->Init();
-	LevelupUIMgr::GetI()->Init();
 
 	return S_OK;
 }
 
 
-void CCore::Run()
+void CCore::RUN()
 {
 	// ====================
 	// Manager Update Block

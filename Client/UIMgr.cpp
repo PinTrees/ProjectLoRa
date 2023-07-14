@@ -6,9 +6,12 @@
 #include "CScene.h"
 #include "CUI.h"
 
+
+SINGLE_HEADER(CUIMgr);
+
+
 CUIMgr::CUIMgr()
-	:
-	_focusedUI(nullptr)
+	: _focusedUI(nullptr)
 {
 
 }
@@ -34,7 +37,7 @@ void CUIMgr::Update()
 
 	if (nullptr != targetUI)
 	{
-		if (targetUI->IsDead())
+		if (targetUI->IsDead() || !targetUI->IsVisible())
 			return;
 
 		// UI위에있다고 알려준다.

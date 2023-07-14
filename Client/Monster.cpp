@@ -53,7 +53,6 @@ Monster::~Monster()
 {
 	if (nullptr != mAI)
 		delete mAI;
-
 }
 
 
@@ -83,6 +82,18 @@ void Monster::SetAI(AI<MONSTER_STATE>* pAI)
 	mAI->SetOwner(this);
 }
 
+void Monster::AddDamage(float damage)
+{
+	mtInfo.curHp -= damage;
+	if (mtInfo.curHp < 0) mtInfo.curHp = 0;
+
+	CombatText* pCbTex = new CombatText;
+	pCbTex->SetPos(GetLocalPos());
+	pCbTex->SetCameraAffected(false);
+	pCbTex->SetText(std::to_wstring((int)damage));
+	CreateObject(pCbTex, GROUP_TYPE::UI);
+}
+
 
 void Monster::OnCollisionEnter(CCollider* _pOther)
 {
@@ -90,15 +101,6 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->GetName() == L"Missile_Player")
 	{
-		mtInfo.curHp -= 5;
-		if (mtInfo.curHp < 0) mtInfo.curHp = 0;
-
-		CombatText* pCbTex = new CombatText;
-		pCbTex->SetPos(GetLocalPos());
-		pCbTex->SetCameraAffected(false);
-		pCbTex->SetText(std::to_wstring(5));
-		CreateObject(pCbTex, GROUP_TYPE::UI);
-
 		tForce fc = {};
 		fc.radius = 60.f;
 		fc.force = 150.f;

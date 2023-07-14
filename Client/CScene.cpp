@@ -151,7 +151,10 @@ void CScene::Render(HDC _dc)
 			// Render Object
 			if (!(*iter)->IsDead())
 			{
-				(*iter)->Render(_dc);
+				if ((*iter)->IsVisible())
+				{
+					(*iter)->Render(_dc);
+				}
 				++iter;
 			}
 			// Delete Object

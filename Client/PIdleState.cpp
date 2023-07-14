@@ -2,7 +2,8 @@
 #include "PIdleState.h"
 
 
-
+#include "Player.h"
+#include "CAnimator.h"
 
 
 PIdleState::PIdleState()
@@ -15,11 +16,13 @@ PIdleState::~PIdleState()
 }
 
 
-void PIdleState::Update()
+void PIdleState::Enter()
 {
+	Player* pPlayer = (Player*)GetOwner();
+	pPlayer->GetAnimator()->Play(L"IDLE", true);
 }
 
-void PIdleState::Enter()
+void PIdleState::Update()
 {
 }
 

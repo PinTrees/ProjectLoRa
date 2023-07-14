@@ -5,15 +5,25 @@
 
 struct tGunInfo
 {
-	float	mAtkDamage;		// 공격력
-	float	mAtkSpeed;		// 공격스피드
-	float	mAtkRange;		// 사거리
-	float	mShotSpeed;		// 총알 속도
-	float	mReloadSpeed;	// 장전속도
-	float	mShotAngle;		// 발사 각도(명중률)
-	float	mShotCount;		// 발사 총알 개수
-	float	mBulletCount;	// 총알 개수
-	UINT	mPenetration;	// 관통 수
+	float	atkDamage;		// 공격력
+	float	atkSpeed;		// 공격스피드
+	float	atkRange;		// 사거리
+	float	shotSpeed;		// 총알 속도
+	float	shotAngle;		// 발사 각도(명중률)
+	
+	float	reloadSpeed;	// 장전속도
+	float	shotDelay;		// 총알 발사 딜레이
+
+	UINT	shotCount;		// 발사 총알 개수
+	UINT	bulletCount;	// 장전 총알 개수
+	UINT	curBulletCount = 0;
+
+	UINT	penetration;	// 관통 수
+	UINT	splitCount;		// 분열 수
+	UINT    bouncCount;		// 튕김 수
+
+	wstring texture;
+	wstring bulletType;
 };
 
 
@@ -35,6 +45,7 @@ private:
 	float		mCurDelay;
 
 	tGunInfo	mInfo;
+	bool		mbReload;
 
 
 public:
@@ -45,6 +56,7 @@ public:
 
 public:
 	void Shot();
+	void Reload();
 
 
 public:

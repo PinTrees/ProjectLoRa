@@ -20,6 +20,8 @@ public:
 private:
 	void CreateMonster();
 	void createEnvi();
+	void createPlayer();
+
 
 public:
 	Scene_Start();

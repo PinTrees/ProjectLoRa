@@ -3,16 +3,15 @@
 
 #include "CCore.h"
 
-// Include Manager Header
+// Core Manager Header
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CSceneMgr.h"
 #include "CResMgr.h"
 #include "Random.h"
 #include "UIMgr.h"
-#include "LevelupUIMgr.h"
 
-// Include Component Header
+// Component Header
 #include "CTexture.h"
 #include "CCollider.h"
 #include "CAnimator.h"
@@ -20,32 +19,35 @@
 #include "RigidBody.h"
 #include "CScene.h"
 
-// Include GameObject Header
+// GameObject Header
 #include "Bullet.h"
 #include "Gun.h"
 
-// Include UI Object Header
+// UI Object Header
 #include "CUI.h"
 #include "BarUI.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 #include "TextUI.h"
-#include "LevelupUI.h"
 
+#include "CState.h"
+
+// Game Manager Header
+#include "HubUIMgr.h"
+#include "LevelUpUIMgr.h"
 
 
 
 Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
-	, mState(PLAYER_STATE::NONE)
-	, mvDashDir(Vect2(0.f, 0.f))
+	, mvDir(Vect2(0.f, 0.f))
 	, mCurGun(nullptr)
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
+	, mLevelupUI(nullptr)
 	, mAI(nullptr)
-	, mtPlayerInfo{}
 {
 	// Init Object Component
 	// Create Collider Component
@@ -59,10 +61,19 @@ Player::Player()
 	GetRigidBody()->SetMaxVelocity(Vect2(200.f, 200.f));
 	GetRigidBody()->SetAccelAlpha(Vect2(100.f, 100.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\character.bmp");
 
 	// Create Animator Component
 	CreateAnimator();
+
+	/*GetAnimator()->LoadAnimation(L"animation\\player_idle.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_run_r.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_run_l.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
+	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");*/
+
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\character.bmp");
+
 	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f, 8);
 	GetAnimator()->CreateAnimation(L"RUN_R", pTex, Vect2(0.f, 54.f * 2), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
 	GetAnimator()->CreateAnimation(L"RUN_L", pTex, Vect2(0.f, 54.f * 30), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
@@ -76,6 +87,13 @@ Player::Player()
 	GetAnimator()->FindAnimation(L"ATK_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"ATK_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"DASH_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
+
+	GetAnimator()->FindAnimation(L"IDLE")->Save(L"animation\\player_idle.anim");
+	GetAnimator()->FindAnimation(L"RUN_R")->Save(L"animation\\player_run_r.anim");
+	GetAnimator()->FindAnimation(L"RUN_L")->Save(L"animation\\player_run_l.anim");
+	GetAnimator()->FindAnimation(L"ATK_L")->Save(L"animation\\player_atk_r.anim");
+	GetAnimator()->FindAnimation(L"ATK_R")->Save(L"animation\\player_atk_l.anim");
+	GetAnimator()->FindAnimation(L"DASH_R")->Save(L"animation\\player_dash_r.anim");
 
 	GetAnimator()->Play(L"IDLE", true);
 
@@ -94,6 +112,8 @@ Player::Player()
 	mExpBar->SetPos(Vect2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
+
+	HubUIMgr::GetI()->CreateBulletUI();
 }
 
 
@@ -106,31 +126,20 @@ Player::~Player()
 
 void Player::Update()
 {
-	calExp();
-
+	if (mAI)
+		mAI->Update();
 	GetAnimator()->Update();
 
+	calExp();
 	mfCurDelay += DT;
 	
 	Vect2 vPos = GetPos();
 	mExpBar->SetAmount(GetExp() / GetMaxExp());
 
-	if (mState == PLAYER_STATE::Dash)
-	{
-		mCurGun->SetVisible(false);
-
-		SetPos(vPos + mvDashDir * 1000.f * DT);
-
-		if (GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			mCurGun->SetVisible(true);
-			mState = PLAYER_STATE::IDLE;
-		}
-
+	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
-	}
 
-	if (mCurGun != nullptr)
+	if (nullptr !=  mCurGun)
 	{
 		Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
 		mCurGun->SetAngle(vDir.ToAngle());
@@ -138,70 +147,34 @@ void Player::Update()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		GetAnimator()->Play(L"DASH_R", false);
-
-		mvDashDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-		mvDashDir.Normalize();
-
-		mState = PLAYER_STATE::Dash;
+		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}
 
-	if (KEY_HOLD(KEY::RBTN) && mfCurDelay > mCurGun->GetInfo().mReloadSpeed)
+	if (KEY_HOLD(KEY::RBTN)
+		&& mfCurDelay >= mCurGun->GetInfo().shotDelay
+		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		mfCurDelay = 0.f;
-
-		for (int i = 0; i < 2; ++i)
-		{
-			createMissile();
-		}
-
-		Vect2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
-		GetAnimator()->Play(pos.x > GetLocalPos().x ? L"ATK_R" : L"ATK_L", false);
-
-		mState = PLAYER_STATE::ATTACK;
+		ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
 	}
 
-	if (mState == PLAYER_STATE::ATTACK)
+	mvDir = Vect2::zero;
+
+	if (KEY_HOLD(KEY::W)) mvDir += Vect2::up;
+	if (KEY_HOLD(KEY::S)) mvDir += Vect2::down;
+	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
+	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
+
+	if (mvDir != Vect2::zero)
 	{
-		if (GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			mState = PLAYER_STATE::IDLE;
-		}
+		if(GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
+			ChangeAIState(GetAI(), PLAYER_STATE::RUN);
 	}
-
-	else if (mState == PLAYER_STATE::IDLE)
+	else if(GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
+		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
-		GetAnimator()->Play(L"IDLE", true);
-	}
-
-	Vect2 vDir = Vect2::zero;
-	Vect2 vStartDir = Vect2::zero;
-
-	if (KEY_HOLD(KEY::W)) vDir += Vect2::up;
-	if (KEY_HOLD(KEY::S)) vDir += Vect2::down;
-	if (KEY_HOLD(KEY::A)) vDir += Vect2::left;
-	if (KEY_HOLD(KEY::D)) vDir += Vect2::right;
-
-	if (vDir != Vect2::zero)
-	{
-		mState = PLAYER_STATE::Run;
-		SetPos(vPos + vDir * 250.f * DT);
-
-		if (vDir.x < 1)
-		{
-			GetAnimator()->Play(L"RUN_L", true);
-		}
-		else
-		{
-			GetAnimator()->Play(L"RUN_R", true);
-		} 
-
-		SetFlip(vDir.x < 1);
-	}
-	else
-	{
-		mState = PLAYER_STATE::IDLE;
+		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
 	}
 }
 
@@ -211,28 +184,6 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-void Player::createMissile()
-{
-	Vect2 vMissilePos = GetLocalPos() + Vect2(0.f, -50.f);
-
-	Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-	vDir.Normalize();
-
-	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-	int launchAngle = 30;
-	float angle = (float)CRandom::GetI()->Next(-15, 15); // 랜덤한 각도
-	vDir.Rotate(angle); // 방향 벡터를 해당 각도만큼 회전시킵니다.
-
-	// 총알 오브젝트
-	Bullet* pMissile = new Bullet(L"3");
-	pMissile->SetPos(vMissilePos + vDir.Normalize() * 50.f);
-	pMissile->SetDir(vDir);
-	pMissile->SetName(L"Missile_Player");
-
-	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
-}
-
-
 
 void Player::calExp()
 {
@@ -241,7 +192,8 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
-		LevelupUIMgr::GetI()->Choice(this);
-		CTimeMgr::GetI()->Stop();
+		LevelupUIMgr::GetI()->Choice();
 	}
 }
+
+

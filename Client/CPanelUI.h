@@ -6,7 +6,8 @@ class CPanelUI :
     public CUI
 {
 private:
-    Vect2       mvDragStartPos;
+    Vect2    mvDragStartPos;
+
 
 public:
     virtual void Update();

@@ -3,6 +3,9 @@
 
 #include "CCore.h"
 
+SINGLE_HEADER(CPathMgr);
+
+
 CPathMgr::CPathMgr()
 	:mSzContentPath{}
 {}

@@ -194,11 +194,32 @@
     <Filter Include="Game\FSM\Player\Idle">
       <UniqueIdentifier>{cfd7de57-f5d4-448c-838f-0fa793e4f37f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\UI\LevelupUI">
-      <UniqueIdentifier>{e30d3e50-5472-4b86-9255-efeca9221fa2}</UniqueIdentifier>
+    <Filter Include="FreamWork\Manager\SoundMgr">
+      <UniqueIdentifier>{ea53a28b-3cbf-4603-a88f-9be7f3175bee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Manager\LevelupUIMgr">
-      <UniqueIdentifier>{a7ff95c0-eb0c-4c9e-bd5a-7b68c99320cc}</UniqueIdentifier>
+    <Filter Include="Game\FSM\Player\Run">
+      <UniqueIdentifier>{93ed4508-7361-492b-9d6e-49fddbf4c13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Dash">
+      <UniqueIdentifier>{ccf33ff1-4372-4d6e-a604-e3fa8a98e727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Atk">
+      <UniqueIdentifier>{42dc398b-eed7-46b8-85bd-8433c2bc1d42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Image">
+      <UniqueIdentifier>{4526c255-9048-41b1-9055-118c8595dc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\HudUIMgr">
+      <UniqueIdentifier>{a7c91130-9e20-482c-882e-c92c5f81ba1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Row">
+      <UniqueIdentifier>{ee55fcc8-985d-4b1e-a88b-4379bcfb8932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\LevelUpUI">
+      <UniqueIdentifier>{90dea450-f1ca-4277-97ce-4e56ad961f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\LevelUpUIMgr">
+      <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -379,11 +400,32 @@
     <ClInclude Include="PIdleState.h">
       <Filter>Game\FSM\Player\Idle</Filter>
     </ClInclude>
-    <ClInclude Include="LevelupUI.h">
-      <Filter>Game\UI\LevelupUI</Filter>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>FreamWork\Manager\SoundMgr</Filter>
     </ClInclude>
-    <ClInclude Include="LevelupUIMgr.h">
-      <Filter>Game\Manager\LevelupUIMgr</Filter>
+    <ClInclude Include="PRunState.h">
+      <Filter>Game\FSM\Player\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PDashState.h">
+      <Filter>Game\FSM\Player\Dash</Filter>
+    </ClInclude>
+    <ClInclude Include="PAtkState.h">
+      <Filter>Game\FSM\Player\Atk</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageUI.h">
+      <Filter>FreamWork\UI\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="HubUIMgr.h">
+      <Filter>Game\Manager\HudUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CRow.h">
+      <Filter>FreamWork\UI\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpUI.h">
+      <Filter>Game\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpUIMgr.h">
+      <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -557,11 +599,32 @@
     <ClCompile Include="PIdleState.cpp">
       <Filter>Game\FSM\Player\Idle</Filter>
     </ClCompile>
-    <ClCompile Include="LevelupUI.cpp">
-      <Filter>Game\UI\LevelupUI</Filter>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>FreamWork\Manager\SoundMgr</Filter>
     </ClCompile>
-    <ClCompile Include="LevelupUIMgr.cpp">
-      <Filter>Game\Manager\LevelupUIMgr</Filter>
+    <ClCompile Include="PRunState.cpp">
+      <Filter>Game\FSM\Player\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PDashState.cpp">
+      <Filter>Game\FSM\Player\Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="PAtkState.cpp">
+      <Filter>Game\FSM\Player\Atk</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageUI.cpp">
+      <Filter>FreamWork\UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="HubUIMgr.cpp">
+      <Filter>Game\Manager\HudUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CRow.cpp">
+      <Filter>FreamWork\UI\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUI.cpp">
+      <Filter>Game\UI\LevelUpUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUIMgr.cpp">
+      <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

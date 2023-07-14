@@ -123,6 +123,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>
+      </StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -157,15 +159,21 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CFont.h" />
+    <ClInclude Include="CImageUI.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatText.h" />
-    <ClInclude Include="LevelupUI.h" />
-    <ClInclude Include="LevelupUIMgr.h" />
+    <ClInclude Include="CRow.h" />
+    <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="HubUIMgr.h" />
+    <ClInclude Include="LevelUpUI.h" />
+    <ClInclude Include="LevelUpUIMgr.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="PAtkState.h" />
+    <ClInclude Include="PDashState.h" />
     <ClInclude Include="PIdleState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="CRes.h" />
@@ -192,6 +200,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="PlayerMgr.h" />
+    <ClInclude Include="PRunState.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="register.h" />
     <ClInclude Include="RigidBody.h" />
@@ -220,17 +229,23 @@
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CFont.cpp" />
+    <ClCompile Include="CImageUI.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatText.cpp" />
-    <ClCompile Include="LevelupUI.cpp" />
-    <ClCompile Include="LevelupUIMgr.cpp" />
+    <ClCompile Include="CRow.cpp" />
+    <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="HubUIMgr.cpp" />
+    <ClCompile Include="LevelUpUI.cpp" />
+    <ClCompile Include="LevelUpUIMgr.cpp" />
     <ClCompile Include="Monster.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="PAtkState.cpp" />
+    <ClCompile Include="PDashState.cpp" />
     <ClCompile Include="PIdleState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="CRes.cpp" />
@@ -255,6 +270,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PlayerMgr.cpp" />
+    <ClCompile Include="PRunState.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Scene_Main.cpp" />

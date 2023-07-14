@@ -15,8 +15,6 @@ private:
 public:
 	void SetText(const wstring& text);
 
-	CFont* GetFont() { return mFont; }
-	void SetFont(CFont* _font) { mFont = _font; }
 
 public:
 	virtual void Render(HDC dc);

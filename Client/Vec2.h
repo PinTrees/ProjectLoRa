@@ -84,10 +84,12 @@ public:
 	}
 
 public:
-	Vect2& operator =  (POINT _pt)
+	Vect2& operator = (POINT _pt)
 	{
 		x = (float)_pt.x;
 		y = (float)_pt.y;
+
+		return *this;
 	}
 
 	Vect2 operator + (Vect2 _vOther)

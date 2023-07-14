@@ -12,7 +12,7 @@ struct tAnimFrm
 
 class CAnimator;
 class CTexture;
-
+class CUI;
 
 
 
@@ -21,7 +21,7 @@ class CAnimation
 private:
 	wstring				mStrName;
 	CAnimator*			mpAnimator;
-	CTexture*			mpTex;		 // Animation 텍스쳐
+	CTexture*			mpTexture;		 // Animation 텍스쳐
 	vector<tAnimFrm>	mVecFrm;	 // 모든 프레임 정보
 	int					miCurFrm;	 // 현재 프레임
 	float				mfAccTime;	 // 누적 시간
@@ -52,8 +52,14 @@ public:
 public:
 	void Update();
 	void Render(HDC _dc);
+	void RenderUI(CUI* ui, HDC dc);
 
 	void Create(CTexture* _pTex, Vect2 _vLT, Vect2 _vSliceSize, Vect2 _vStep, float _fDuration, UINT _iFreamCount);
+
+
+public:
+	void Save(const wstring& _strRelativePath);
+	void Load(const wstring& _strRelativePath);
 
 
 public:

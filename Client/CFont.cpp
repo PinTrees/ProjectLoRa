@@ -19,19 +19,19 @@ CFont::~CFont()
 
 void CFont::Create(const wstring& _filePath)
 {
-	AddFontResource(_filePath.c_str());
+	AddFontResource(_filePath.c_str()); 
 }
 
 void CFont::SelectFont(int _size, const wstring& _name, bool _border)
-{
+{ 
 	mBorder = _border;
 	mDefaultFont = CreateFont(_size, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
+		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _name.c_str());
 }
 
 void CFont::DeleteFont(const wstring& _filePath)
 {
-	//RemoveFontResource(_filePath.c_str());
+	RemoveFontResource(_filePath.c_str());
 }
 
 void CFont::PrintWord(HDC dc, Vect2 _vPos, const wstring& str)

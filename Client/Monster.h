@@ -37,6 +37,8 @@ public:
 
 	void SetAI(AI<MONSTER_STATE>* pAI);
 
+	void AddDamage(float damage);
+
 
 public:
 	virtual void OnCollisionEnter(CCollider* _pOther) override;

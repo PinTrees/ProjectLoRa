@@ -180,3 +180,19 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 		}
 	}
 }
+
+
+void FScanf(char* _pOutBuff, FILE* _pFile)
+{
+	int i = 0;
+	while (true)
+	{
+		char c = (char)getc(_pFile);
+		if (c == '\n')
+		{
+			_pOutBuff[i++] = '\0';
+			break;
+		}
+		_pOutBuff[i++] = c;
+	}
+}

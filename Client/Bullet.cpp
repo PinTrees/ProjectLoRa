@@ -1,29 +1,36 @@
 #include "pch.h"
 #include "Bullet.h"
 
-#include "CScene.h"
-#include "CSceneMgr.h"
 #include "CCore.h"
 
-#include "CTimeMgr.h"
-#include "CCollider.h"
-
-#include "CAnimation.h"
-#include "CAnimator.h"
+// Core Class Header
 #include "CTexture.h"
+#include "CScene.h"
+
+// Core Manager Header
+#include "CSceneMgr.h"
+#include "CTimeMgr.h"
 #include "CResMgr.h"
 
-#include "Particle.h"
+// Componets Header
+#include "CAnimation.h"
+#include "CAnimator.h"
+#include "CCollider.h"
+
 #include "Random.h"
 
+// GameObject Header
+#include "Monster.h"
+#include "Particle.h"
+
+
+
+
 Bullet::Bullet(const wstring& _type)
-	: m_tTheta(PI / 4.f)
-	, m_vDir(Vect2(1.f, 1.f))
+	: m_vDir(Vect2(1.f, 1.f))
 	, mDelay(2.f)
 	, mCurDelay(0.f)
-	, mPenetrationCount(3)
-	, mDivideCount(3)
-	, mBounceCount(3)
+	, mInfo({})
 {
 	m_vDir.Normalize();
 	CreateCollider();
@@ -50,7 +57,6 @@ Bullet::Bullet(const wstring& _type)
 		SetScale(Vect2(63.f, 32.f) * 1.5f);
 	}
 
-
 	GetAnimator()->Play(L"IDLE", true);
 }
 
@@ -61,8 +67,8 @@ Bullet::Bullet(const wstring& _type)
 
 Bullet::~Bullet()
 {
-
 }
+
 
 void Bullet::Update()
 {
@@ -79,21 +85,21 @@ void Bullet::Update()
 	Vect2 vRes = CCore::GetI()->GetResolution();
 	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
 
-	if (mBounceCount > 0)
+	if (mInfo.bounceCount > 0)
 	{
 		if (vRes.y < vRenderPos.y
 			|| 0 > vRenderPos.y)
 		{
 			m_vDir = m_vDir * Vect2(1.f, -1.f);
 			SetAngle(m_vDir.ToAngle());
-			--mBounceCount;
+			--mInfo.bounceCount;
 		}
 		else if (vRes.x < vRenderPos.x
 			|| 0 > vRenderPos.x)
 		{
 			m_vDir = m_vDir * Vect2(-1.f, 1.f);
 			SetAngle(m_vDir.ToAngle());
-			--mBounceCount;
+			--mInfo.bounceCount;
 		}
 	}
 
@@ -112,14 +118,17 @@ void Bullet::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
+
 void Bullet::OnCollisionEnter(CCollider* _pOther)
 {
 	CObject* pOtherObj = _pOther->GetObj();
 
 	if (pOtherObj->GetName() == L"Monster")
 	{
-		--mPenetrationCount;
-		if (mPenetrationCount <= 0)
+		((Monster*)pOtherObj)->AddDamage(mInfo.damage);
+
+		--mInfo.penetrationCount;
+		if (mInfo.penetrationCount <= 0)
 		{
 			DeleteObject(this);
 		}
@@ -130,19 +139,24 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 		pEff->SetName(L"Particle");
 		CreateObject(pEff, GROUP_TYPE::EFFECT);
 
-		if (mDivideCount > 0)
+		if (mInfo.splitCount > 0)
 		{
-			for (int i = 0; i < mDivideCount; ++i)
+			for (int i = 0; i < mInfo.splitCount; ++i)
 			{
 				int angle = CRandom::GetI()->Next(0, 360);
+
+				tBullet bInfo = {};
+				bInfo.damage = mInfo.damage * 0.5f;
+				bInfo.penetrationCount = 0;
+				bInfo.bounceCount = 0;
+				bInfo.splitCount = 0;
+
 				Bullet* pDiv = new Bullet(L"3");
-				pDiv->SetPenetrationCount(0);
-				pDiv->SetDivideCount(0);
-				pDiv->SetBounceCount(0);
 				pDiv->SetPos(GetPos());
 				pDiv->SetScale(GetScale() * 0.65f);
 				pDiv->SetAngle((float)angle);
 				pDiv->SetDir(Vect2::FromAngle(angle).Normalize());
+				pDiv->SetInfo(bInfo);
 				CreateObject(pDiv, GROUP_TYPE::PROJ_PLAYER);
 			}
 		}

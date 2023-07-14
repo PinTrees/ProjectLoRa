@@ -1,6 +1,23 @@
 #pragma once
 #include "CObject.h"
 
+// UI Á¤·Ä
+enum class ALIGNMENT
+{
+	BOTTOM_CENTER,
+	BOTTOM_LEFT,
+	BOTTOM_RIGHT,
+
+	CENTER,
+	CENTER_LEFT,
+	CENTER_RIGHT,
+
+	TOP_CENTER,
+	TOP_LEFT,
+	TOP_RIGHT
+};
+
+
 class CTexture;
 
 class CUI : public CObject
@@ -74,7 +91,9 @@ public:
 	COLORREF	GetColor() { return mColor; }
 
 	void	SetCameraAffected(bool active) { mCameraAffected = active; };
-	bool	GetCameraAffected() { return mCameraAffected; };
+	bool	IsCameraAffected() { return mCameraAffected; };
+
+
 public:
 	CUI(bool cameraAffected);
 	CUI(const CUI& origin);

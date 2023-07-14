@@ -8,7 +8,9 @@
 #include <typeinfo>
 
 #include <vector>
+#include <array>
 using std::vector;
+using std::array;
 
 #include <map>	
 using std::map;

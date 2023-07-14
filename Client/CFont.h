@@ -1,5 +1,9 @@
 #pragma once
 #include "CRes.h"
+
+
+
+
 class CFont :
     public CRes
 {
@@ -22,7 +26,6 @@ public:
     void SetInnerColor(COLORREF _color) { mInnerColor = _color; }
     void SetOuterColor(COLORREF _color) { mOuterColor = _color; }
 
-    void SetBorder(bool _border) { mBorder = _border; }
 
     HDC GetDC() { return mDC; }
 

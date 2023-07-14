@@ -1,18 +1,27 @@
 #pragma once
 
+struct tLevelUpEffectData
+{
+	wstring		titleStr;	// 타이틀
+	wstring		infoStr;	// 세부설명
+};
+
+
 class LevelupUI;
 class Player;
 
+
 class LevelupUIMgr
 {
-	SINGLE(LevelupUIMgr);
+	SINGLE(LevelupUIMgr)
+
 private:
-	LevelupUI*  mArrLvupUI[(UINT)LEVELUP_EFFECT::END];
-	LevelupUI*	mCurLvupUI[3];
+	map<LEVELUP_EFFECT, tLevelUpEffectData> mMapLvUpEffectData;
+	array<LevelupUI*, 3>					mCurLvupUI;
+
 
 public:
 	void Init();
-	void Choice(Player* _player);
+	void Choice();
 	void Delete();
 };
-
