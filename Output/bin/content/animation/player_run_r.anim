@@ -1,0 +1,104 @@
+[Animation Name]
+RUN_R
+[Texture Name]
+PlayerTex
+[Texture Path]
+texture\character.bmp
+[Frame Count]
+8
+[Frame Index]
+0
+[Left Top]
+0 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+1
+[Left Top]
+73 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+2
+[Left Top]
+146 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+3
+[Left Top]
+219 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+4
+[Left Top]
+292 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+5
+[Left Top]
+365 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+6
+[Left Top]
+438 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+
+[Frame Index]
+7
+[Left Top]
+511 108
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.070000
+
+

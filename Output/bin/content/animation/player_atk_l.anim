@@ -1,0 +1,44 @@
+[Animation Name]
+ATK_R
+[Texture Name]
+PlayerTex
+[Texture Path]
+texture\character.bmp
+[Frame Count]
+3
+[Frame Index]
+0
+[Left Top]
+0 756
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+1
+[Left Top]
+73 756
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
+[Frame Index]
+2
+[Left Top]
+146 756
+[Slice Size]
+73 54
+[Offset]
+0 -20
+[Duration]
+0.050000
+
+
