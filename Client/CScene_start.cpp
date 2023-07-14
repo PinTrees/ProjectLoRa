@@ -79,7 +79,6 @@ void Scene_Start::Enter()
 		CreateMonster();
 	}
 
-
 	int iEnvCount = 8;
 	for (int i = 0; i < iEnvCount; i++)
 	{
@@ -112,6 +111,11 @@ void Scene_Start::Exit()
 	DeleteAll();
 	CCollisionMgr::GetI()->Reset();
 	CCamera::GetI()->SetTarget(nullptr);
+
+	// ½Ì±ÛÅæ ¸Þ¸ð¸® ÇØÁ¦
+	PlayerMgr::Dispose();
+	HubUIMgr::Dispose();
+	LevelupUIMgr::Dispose();
 }
 
 

@@ -10,6 +10,12 @@
 								pInst = new type;			\
 							return pInst;					\
 						}									\
+						static void Dispose()				\
+						{									\
+							if(pInst != nullptr)			\
+								 delete pInst;				\
+							pInst = nullptr;				\
+						}									\
 						private:							\
 								type();						\
 								~type();

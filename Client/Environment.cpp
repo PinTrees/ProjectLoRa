@@ -22,7 +22,6 @@
 Environment::Environment(const wstring& _type)
 	: mType(_type)
 {
-
 	CreateCollider();
 	GetCollider()->SetOffsetPos(GetPivot() - Vect2(0.f, 15.f));
 	GetCollider()->SetScale(Vect2(40.f, 35.f));
