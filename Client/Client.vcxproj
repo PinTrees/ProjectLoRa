@@ -208,6 +208,7 @@
     <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileEditMgr.h" />
     <ClInclude Include="TraceState.h" />
     <ClInclude Include="UIMgr.h" />
     <ClInclude Include="Vec2.h" />
@@ -278,6 +279,7 @@
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileEditMgr.cpp" />
     <ClCompile Include="TraceState.cpp" />
     <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />

@@ -16,12 +16,14 @@ class Background;
 
 class CScene
 {
-private:
+protected:
 	vector<CObject*> mArrObj[(UINT)GROUP_TYPE::END];
+
+private:
 	wstring			 mStrName;		//Scene 이름
 
 	// 씬 오브젝트 물리 폭발 관리
-	vector<tForce> mArrForce;
+	vector<tForce>	 mArrForce;
 
 
 protected:

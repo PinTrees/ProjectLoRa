@@ -21,7 +21,7 @@ public:
 
 public:
 	virtual void Update() override;
-	virtual void Render(HDC _dc) override;
+	void Render(HDC _dc, bool editor);
 
 	CLONE(Tile);
 

@@ -25,7 +25,7 @@ void Tile::Update()
 }
 
 
-void Tile::Render(HDC _dc)
+void Tile::Render(HDC _dc, bool editor)
 {
 	if (nullptr == mpTileTex || -1 == mIdx)
 		return;
@@ -48,8 +48,8 @@ void Tile::Render(HDC _dc)
 	Vect2 vScale = GetScale();
 
 	TransparentBlt(_dc
-		, (int)vLocalPos.x
-		, (int)vLocalPos.y
+		, editor ? (int)vRenderPos.x : vLocalPos.x
+		, editor ? (int)vRenderPos.y : vLocalPos.y
 		, (int)(vScale.x)
 		, (int)(vScale.y)
 		, mpTileTex->GetDC()

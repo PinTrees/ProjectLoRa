@@ -113,7 +113,6 @@ Player::Player()
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
 
-	HubUIMgr::GetI()->CreateBulletUI();
 }
 
 

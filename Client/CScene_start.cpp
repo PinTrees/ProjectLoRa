@@ -33,7 +33,7 @@
 #include "PAtkState.h"
 
 #include "MonsterFactory.h"
-
+#include "HubUIMgr.h"
 
 
 
@@ -87,6 +87,7 @@ void Scene_Start::Enter()
 	}
 
 	LevelupUIMgr::GetI()->Init();
+	HubUIMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크

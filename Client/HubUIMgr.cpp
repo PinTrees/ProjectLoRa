@@ -26,12 +26,8 @@ HubUIMgr::~HubUIMgr()
 {
 }
 
+
 void HubUIMgr::Init()
-{
-}
-
-
-void HubUIMgr::CreateBulletUI()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
@@ -39,7 +35,7 @@ void HubUIMgr::CreateBulletUI()
 	mBulletUI->SetPos(vRes - Vect2(200.f, 50.f));
 	mBulletUI->SetScale(Vect2(350.f, 50.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"UI_B1", L"texture\\ui\\bullet_1.bmp"); 
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"UI_B1", L"texture\\ui\\bullet_1.bmp");
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -53,6 +49,8 @@ void HubUIMgr::CreateBulletUI()
 	}
 
 	CreateObject(mBulletUI, GROUP_TYPE::UI);
+
+	//mReroadUI = 
 }
 
 

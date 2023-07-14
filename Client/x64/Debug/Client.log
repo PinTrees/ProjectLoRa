@@ -1,18 +1,5 @@
-﻿  unity_0XRZ2NNY3LOQW3XL.cpp
-  unity_ADSU5Q44E4G5ETB3.cpp
-  unity_MFJGQE1F0YDYR7T0.cpp
-  unity_RQGWHBY66FXWN0R0.cpp
-  unity_XE6BZW6NXN9QAT4J.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(156,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_XE6BZW6NXN9QAT4J.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(157,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_XE6BZW6NXN9QAT4J.cpp)
+﻿  unity_XE6BZW6NXN9QAT4J.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(157,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(158,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\HubUIMgr.cpp(64,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_MFJGQE1F0YDYR7T0.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(50,2): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(68,5): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(176,3): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(184,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(183,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(182,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(181,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_ADSU5Q44E4G5ETB3.cpp)
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

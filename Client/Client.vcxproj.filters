@@ -221,6 +221,12 @@
     <Filter Include="Game\Manager\LevelUpUIMgr">
       <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Editor">
+      <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\TileEditMgr">
+      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -427,6 +433,9 @@
     <ClInclude Include="LevelUpUIMgr.h">
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClInclude>
+    <ClInclude Include="TileEditMgr.h">
+      <Filter>Game\Editor\TileEditMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -625,6 +634,9 @@
     </ClCompile>
     <ClCompile Include="LevelUpUIMgr.cpp">
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEditMgr.cpp">
+      <Filter>Game\Editor\TileEditMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
