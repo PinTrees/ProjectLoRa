@@ -233,6 +233,9 @@
     <Filter Include="Game\UI\CombatText">
       <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\UI\CColumn">
+      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -442,6 +445,9 @@
     <ClInclude Include="CombatText.h">
       <Filter>Game\UI\CombatText</Filter>
     </ClInclude>
+    <ClInclude Include="CColumn.h">
+      <Filter>FreamWork\UI\CColumn</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -643,6 +649,9 @@
     </ClCompile>
     <ClCompile Include="CombatText.cpp">
       <Filter>Game\UI\CombatText</Filter>
+    </ClCompile>
+    <ClCompile Include="CColumn.cpp">
+      <Filter>FreamWork\UI\CColumn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

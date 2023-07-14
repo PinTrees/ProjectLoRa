@@ -32,10 +32,13 @@ void HubUIMgr::Init()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
-	mBulletRowUI = new CRow;
-	mBulletRowUI->SetPos(vRes - Vect2(200.f, 50.f));
-	mBulletRowUI->SetScale(Vect2(350.f, 50.f));
-	mBulletRowUI->SetSpacing(-8.f);
+
+	CRow* pRowUI = new CRow;
+	pRowUI->SetPos(vRes - Vect2(200.f, 50.f));
+	pRowUI->SetScale(Vect2(350.f, 50.f));
+	pRowUI->SetSpacing(-8.f);
+
+	mBulletRowUI = pRowUI;
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"UI_B1", L"texture\\ui\\bullet_1.bmp");
 

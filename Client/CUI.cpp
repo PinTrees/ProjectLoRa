@@ -116,6 +116,7 @@ void CUI::Render(HDC dc)
 
 	if(nullptr == mpTexture)
 	{
+		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
 		Rectangle
 		(
 			dc,

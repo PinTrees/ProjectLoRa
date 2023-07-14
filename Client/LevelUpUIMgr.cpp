@@ -5,7 +5,9 @@
 #include "Player.h"
 #include "CTimeMgr.h"
 
+#include "CCore.h"
 #include "UIMgr.h"
+#include "CRow.h"
 
 
 SINGLE_HEADER(LevelupUIMgr);
@@ -45,13 +47,23 @@ void LevelupUIMgr::Init()
 	mMapLvUpEffectData[LEVELUP_EFFECT::SPLITCOUNT_UP]		= { L"분열되는 총알의 개수 증가", L"" };
 	mMapLvUpEffectData[LEVELUP_EFFECT::BOUNTCECOUNT_UP]		= { L"총알이 벽에 튕기는 횟수 증가", L"" };
 
+	Vect2 vRes = CCore::GetI()->GetResolution();
+
+	CRow* pRowUI = new CRow;
+	pRowUI->SetPos(vRes * 0.5f);
+	pRowUI->SetScale(vRes);
+	pRowUI->SetSpacing(48.f);
+	mLevelUpUIPanel = pRowUI;
+
 	for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
 		mCurLvupUI[i] = new LevelupUI;
 		mCurLvupUI[i]->SetVisible(false);
 		mCurLvupUI[i]->SetPos(Vect2(230.f + (float)i * 400.f, 350.f));
-		CreateObject(mCurLvupUI[i], GROUP_TYPE::UI);
+		pRowUI->AddChild(mCurLvupUI[i]);
 	}
+
+	CreateObject(mLevelUpUIPanel, GROUP_TYPE::UI);
 }
 
 
@@ -71,11 +83,11 @@ void LevelupUIMgr::Choice()
 
 	for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
-		CUIMgr::GetI()->SetFocusUI(mCurLvupUI[i]);
 		mCurLvupUI[i]->SetVisible(true);
 		mCurLvupUI[i]->SetTitle(mMapLvUpEffectData[(LEVELUP_EFFECT)rand[i]].titleStr);
 	}
 
+	CUIMgr::GetI()->SetFocusUI(mLevelUpUIPanel);
 	CTimeMgr::GetI()->Stop();
 }
 

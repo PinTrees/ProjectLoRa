@@ -29,7 +29,7 @@ void CUIMgr::Update()
 	{
 		return;
 	}
-
+	 
 	CUI* targetUI = GetTargetUI(_focusedUI);
 
 	bool tapLbtn = KEY_TAP(KEY::LBTN);

@@ -8,6 +8,7 @@ struct tLevelUpEffectData
 
 
 class LevelupUI;
+class CUI;
 class Player;
 
 
@@ -18,7 +19,7 @@ class LevelupUIMgr
 private:
 	map<LEVELUP_EFFECT, tLevelUpEffectData> mMapLvUpEffectData;
 	array<LevelupUI*, 3>					mCurLvupUI;
-
+	CUI*	mLevelUpUIPanel;
 
 public:
 	void Init();

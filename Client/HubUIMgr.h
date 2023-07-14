@@ -10,7 +10,7 @@ class HubUIMgr
 	SINGLE(HubUIMgr)
 
 private:
-	CRow*	mBulletRowUI;
+	CUI*	mBulletRowUI;
 	CUI*	mReroadUI;
 
 
