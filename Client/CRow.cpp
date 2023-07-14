@@ -19,6 +19,8 @@ CRow::~CRow()
 
 void CRow::Update()
 {
+    CUI::Update();
+
     if (GetChild().size() <= 0)
         return;
 

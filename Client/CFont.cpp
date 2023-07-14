@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CFont.h"
 
-
+#include "CUI.h"
 
 CFont::CFont(HDC _dc)
 	: mDC(_dc)
@@ -17,33 +17,32 @@ CFont::~CFont()
 }
 
 
-void CFont::Create(const wstring& _filePath)
+void CFont::Load(const wstring& filePath, const wstring& name, int size, bool _border)
 {
-	AddFontResource(_filePath.c_str()); 
-}
+	AddFontResource(filePath.c_str());
 
-void CFont::SelectFont(int _size, const wstring& _name, bool _border)
-{ 
+	// 폰트의 크기값을 리소스 키값 및 폰트 이름에 추가
+	// 같은 폰트라도 다른 크기로 출력될 수 있음
+	// name.c_str() 을 변경할 수 없음. 외부에서 리소스 Key 값에 추가
 	mBorder = _border;
-	mDefaultFont = CreateFont(_size, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
-		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _name.c_str());
+	mDefaultFont = CreateFont(size, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
+		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, name.c_str());
+
+	RemoveFontResource(filePath.c_str());
 }
 
-void CFont::DeleteFont(const wstring& _filePath)
-{
-	RemoveFontResource(_filePath.c_str());
-}
 
-void CFont::PrintWord(HDC dc, Vect2 _vPos, const wstring& str)
+void CFont::Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale)
 {
 	HFONT hOldFont = (HFONT)SelectObject(dc, mDefaultFont);
 	SetBkMode(dc, TRANSPARENT);
 
+
 	SIZE textSize;
 	GetTextExtentPoint32(dc, str.c_str(), (int)(str.size()), &textSize);
 
-	int textX = (int)(_vPos.x - textSize.cx * 0.5f);
-	int textY = (int)(_vPos.y - textSize.cy * 0.5f);
+	int textX = (int)(pos.x - textSize.cx * 0.5f);
+	int textY = (int)(pos.y - textSize.cy * 0.5f);
 
 	if (mBorder)
 	{

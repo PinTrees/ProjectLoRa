@@ -75,21 +75,19 @@ CTexture* CResMgr::CreateTexture(const wstring& strKey, UINT width, UINT height,
 
 CFont* CResMgr::LoadFont(const wstring& _strKey, const wstring& _strRelativePath, int _size, bool _border)
 {
-	CFont* pFont = FindFont(_strKey);
-	if (nullptr != pFont)
-	{
-		return pFont;
-	}
+	wstring keyStr = _strKey + std::to_wstring(_size);
+	CFont* pFont = FindFont(keyStr);
 
-	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
-	strFilePath += _strRelativePath;
+	if (nullptr != pFont)
+		return pFont;
+
+	wstring strFilePath = CPathMgr::GetI()->GetContentPath() + _strRelativePath;
 
 	HDC dc = CCore::GetI()->GetMainDC();
 
 	pFont = new CFont(dc);
-	pFont->Create(strFilePath);
-	pFont->SelectFont(_size, _strKey, _border);
-	pFont->SetKey(_strKey);
+	pFont->Load(strFilePath, _strKey, _size, _border);
+	pFont->SetKey(keyStr);
 	pFont->SetRelativePath(_strRelativePath);
 
 	mMapTex.insert(make_pair(_strKey, pFont));

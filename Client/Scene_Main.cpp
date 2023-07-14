@@ -31,7 +31,7 @@ void Scene_Main::Enter()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
 	CPanelUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetScale(Vect2(400.f, 700.f));
+	pPanelUI->SetScale(Vect2(400.f, 400.f));
 	pPanelUI->SetPos(Vect2(vRes.x * 0.5f, vRes.y * 0.5f));
 	pPanelUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	AddObject(pPanelUI, GROUP_TYPE::UI);

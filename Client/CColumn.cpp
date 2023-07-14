@@ -19,6 +19,8 @@ CColumn::~CColumn()
 
 void CColumn::Update()
 {
+    CUI::Update();
+
     if (GetChild().size() <= 0)
         return;
 

@@ -3,7 +3,6 @@
 
 
 
-
 class CFont :
     public CRes
 {
@@ -17,15 +16,11 @@ private:
     bool        mBorder;
 
 public:
-    void Create(const wstring& _text);
-    void SelectFont(int _size, const wstring& _name, bool _border);
-    void DeleteFont(const wstring& _text);
-
-    void PrintWord(HDC dc, Vect2 _vPos, const wstring& str);
+    void Load(const wstring& _text, const wstring& _name, int _size, bool _border);
+    void Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale);
 
     void SetInnerColor(COLORREF _color) { mInnerColor = _color; }
     void SetOuterColor(COLORREF _color) { mOuterColor = _color; }
-
 
     HDC GetDC() { return mDC; }
 
