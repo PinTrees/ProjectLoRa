@@ -33,11 +33,12 @@ void CFont::Load(const wstring& filePath, const wstring& name, int size)
 }
 
 
+
+// 최적화 필요
 void CFont::Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale, const tTextStyle& style)
 {
 	HFONT hOldFont = (HFONT)SelectObject(dc, mDefaultFont);
 	SetBkMode(dc, TRANSPARENT);
-
 
 	SIZE textSize;
 	GetTextExtentPoint32(dc, str.c_str(), (int)(str.size()), &textSize);
@@ -45,16 +46,70 @@ void CFont::Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale, const tTe
 	int textX = (int)(pos.x - textSize.cx * 0.5f);
 	int textY = (int)(pos.y - textSize.cy * 0.5f);
 
+	vector<wstring> lines;
+	wstring result;
+	int lineWidth = 0;
+	// 텍스트 출력 범위가 0으로 설정되어 있을경우 (설정 안됨) 오버플로우 모드로 강제 인식
+	const int maxWidth = (int)scale.x == 0 ? 9999 : (int)scale.x;
+
+	// 텍스트의 가로가 출력 범위를 넘어설 경우 줄바꿈 문자를 강제 추가
+	for (size_t i = 0; i < str.size(); ++i)
+	{
+		wchar_t character = str[i];
+		SIZE charSize;
+
+		GetTextExtentPoint32(dc, &character, 1, &charSize);
+
+		if (lineWidth + charSize.cx > maxWidth)
+		{
+			lines.push_back(result);
+			result = L"";
+			lineWidth = 0;
+		}
+
+		result += character;
+		lineWidth += charSize.cx;
+	}
+
+	lines.push_back(result);
+
+
 	if (style.boder)
 	{
 		SetTextColor(dc, style.outerColor);
-		for (int i = -1; i <= 1; ++i)
-			for (int j = -1; j <= 1; ++j)
-				TextOut(dc, textX + i, textY + j, str.c_str(), (int)str.size());
+		// 각 줄을 개별적으로 출력
+		for (size_t l = 0; l < lines.size(); ++l)
+		{
+			SIZE lineSize;
+			GetTextExtentPoint32(dc, lines[l].c_str(), (int)(lines[l].size()), &lineSize);
+			int lineX = (int)(pos.x - lineSize.cx * 0.5f);
+
+			for (int i = -1; i <= 1; ++i)
+				for (int j = -1; j <= 1; ++j)
+					TextOut(dc, lineX + i, textY + j, lines[l].c_str(), (int)lines[l].size());
+		
+			// 다음 줄의 y 좌표 간격 조정
+			textY += lineSize.cy;
+		}
+		
 	}
 
+	// textY Pos Clear
+	textY = (int)(pos.y - textSize.cy * 0.5f);
 	SetTextColor(dc, style.color);
-	TextOut(dc, textX, textY, str.c_str(), (int)(str.size()));
+
+	// 각 줄을 개별적으로 출력
+	for (size_t i = 0; i < lines.size(); ++i)
+	{
+		SIZE lineSize;
+		GetTextExtentPoint32(dc, lines[i].c_str(), (int)(lines[i].size()), &lineSize);
+		int lineX = (int)(pos.x - lineSize.cx * 0.5f);
+
+		TextOut(dc, lineX, textY, lines[i].c_str(), (int)lines[i].size());
+
+		// 다음 줄의 y 좌표 간격 조정
+		textY += lineSize.cy;
+	}
 
 	SelectObject(dc, hOldFont);
 }

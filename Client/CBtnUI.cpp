@@ -119,7 +119,7 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	Vect2 vPos = GetFinalPos();
 	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
 
-	BLENDFUNCTION bf = {};
+	BLENDFUNCTION bf = {};   
 
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
