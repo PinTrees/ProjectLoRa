@@ -70,6 +70,6 @@ public:
 
 public:
 	CBtnUI();
-	~CBtnUI();
+	virtual ~CBtnUI() override;
 };
 

@@ -13,6 +13,7 @@ class CResMgr
 
 private:
 	map<wstring, CRes*> mMapTex;
+	map<wstring, CRes*> mMapFont;
 
 public:
 	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);

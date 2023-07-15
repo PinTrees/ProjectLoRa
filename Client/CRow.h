@@ -32,6 +32,6 @@ public:
 
 public:
 	CRow();
-	~CRow();
+	virtual ~CRow() override;
 };
 

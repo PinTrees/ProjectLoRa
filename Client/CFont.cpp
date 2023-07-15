@@ -2,6 +2,7 @@
 #include "CFont.h"
 
 #include "CUI.h"
+#include "CPathMgr.h"
 
 CFont::CFont(HDC _dc)
 	: mDC(_dc)
@@ -14,14 +15,18 @@ CFont::CFont(HDC _dc)
 
 CFont::~CFont()
 {
-	RemoveFontResource(GetRelativePath().c_str());
+	wstring pathStr = CPathMgr::GetI()->GetContentPath() + GetRelativePath();
+	RemoveFontResource(pathStr.c_str());
+
+	DeleteDC(mDC);
+	DeleteObject(mDefaultFont);
 }
 
 
 void CFont::Load(const wstring& filePath, const wstring& name, int size, bool _border)
 {
 	AddFontResource(filePath.c_str());
-
+	
 	// 폰트의 크기값을 리소스 키값 및 폰트 이름에 추가
 	// 같은 폰트라도 다른 크기로 출력될 수 있음
 	// name.c_str() 을 변경할 수 없음. 외부에서 리소스 Key 값에 추가
