@@ -6,12 +6,9 @@
 #include "CScene.h"
 #include "CUI.h"
 
-<<<<<<< Updated upstream:Client/CUIMgr.cpp
-=======
-SINGLE_HEADER(CUIMgr);
 
 
->>>>>>> Stashed changes:Client/UIMgr.cpp
+
 CUIMgr::CUIMgr()
 	:_focusedUI(nullptr)
 	, isMouseOnUI(false)

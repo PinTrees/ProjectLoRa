@@ -1,8 +1,2 @@
-<<<<<<< Updated upstream
-﻿  unity_31Q9MB3KKNDFFQLS.cpp
-=======
-﻿  unity_VK77XLXJCUJPLCC9.cpp
-C:\git\ProjectLoRa\Client\CBtnUI.cpp(133,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\git\ProjectLoRa\Client\CBtnUI.cpp(132,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
->>>>>>> Stashed changes
-  Client.vcxproj -> C:\git\ProjectLoRa\Output\bin_debug\Client.exe
+﻿  unity_XCFUFL0W3LMPEMKH.cpp
+  Client.vcxproj -> C:\Users\Jomanky\Documents\git\Output\bin_debug\Client.exe

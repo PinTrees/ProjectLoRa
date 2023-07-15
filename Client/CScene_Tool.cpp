@@ -164,10 +164,8 @@ void Scene_Tool::render_tile(HDC _dc)
 
 void Scene_Tool::SetTileIdx()
 {
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+
 	if (CUIMgr::GetI()->GetIsMouseOnUI())
 		return;
 

@@ -27,13 +27,9 @@ void CPanelUI::Render(HDC _dc)
 void CPanelUI::MouseOn()
 {
 	CUI::MouseOn();
-<<<<<<< Updated upstream
 	
-	if (mbFixedPos && IsLbtnDown())
-=======
 
-	if (IsLbtnDown())
->>>>>>> Stashed changes
+	if (mbFixedPos && IsLbtnDown())
 	{
 	 	Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
 
