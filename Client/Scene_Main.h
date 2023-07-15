@@ -10,7 +10,6 @@ class Scene_Main :
 private:
     virtual void Update();
     virtual void Enter();
-    virtual void Render(HDC _dc);
     virtual void Exit();
 
 public:

@@ -11,7 +11,7 @@
 #include "CObject.h"
 #include "CCamera.h"
 
-
+#include "CUI.h"
 
 
 CAnimation::CAnimation()
@@ -144,6 +144,95 @@ void CAnimation::Render(HDC _dc)
 		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);
 		// 변환 행렬 해제
 		SetWorldTransform(_dc, nullptr);
+	}
+}
+
+
+void CAnimation::RenderUI(CUI* ui, HDC dc)
+{
+	if (mbFinish)
+		return;
+
+	Vect2 vPos = ui->GetFinalPos() + mVecFrm[miCurFrm].vOffset; // Add Animation Frame Offset
+	Vect2 vScale = ui->GetScale();
+
+	// Convert LocalPos to RenderPos
+	if (ui->IsCameraAffected())
+	{
+		vPos = CCamera::GetI()->GetRenderPos(vPos);
+	}
+
+	if (ui->GetAngle() <= 0.1f)
+	{
+		BLENDFUNCTION bf = {};
+
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = ui->GetAlpha();
+
+		AlphaBlend(dc
+			, (int)(vPos.x - vScale.x * 0.5f)
+			, (int)(vPos.y - vScale.y * 0.5f)
+			, (int)(vScale.x)
+			, (int)(vScale.y)
+			, mpTexture->GetDC()
+			, (int)(mVecFrm[miCurFrm].vLT.x)
+			, (int)(mVecFrm[miCurFrm].vLT.y)
+			, (int)(mVecFrm[miCurFrm].vSlice.x)
+			, (int)(mVecFrm[miCurFrm].vSlice.y)
+			, bf);
+	}
+	else
+	{
+		BLENDFUNCTION bf = {};
+
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = ui->GetAlpha();
+
+		// 이미지 회전을 위한 변환 행렬 생성
+		XFORM transform;
+		float angleRad = ui->GetAngle() * PI / 180.0f;
+		float cosAngle = cosf(angleRad);
+		float sinAngle = sinf(angleRad);
+
+		// 기준점 위치 계산
+		Vect2 pivot = ui->GetPivot();  // 기준점 좌표 (pivot)
+		float dx = pivot.x * cosAngle - pivot.y * sinAngle + vPos.x;
+		float dy = pivot.x * sinAngle + pivot.y * cosAngle + vPos.y;
+
+		// 회전 스케일 설정
+		transform.eM11 = cosAngle;
+		transform.eM12 = sinAngle;
+		transform.eM21 = -sinAngle;
+		transform.eM22 = cosAngle;
+		// 변환 좌표이동 설정
+		transform.eDx = dx;
+		transform.eDy = dy;
+
+		// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
+		SetGraphicsMode(dc, GM_ADVANCED);
+		// 변환 행렬 설정
+		SetWorldTransform(dc, &transform);
+
+		AlphaBlend(dc
+			, (int)(-vScale.x * 0.5f)
+			, (int)(-vScale.y * 0.5f)
+			, (int)(vScale.x)
+			, (int)(vScale.y)
+			, mpTexture->GetDC()
+			, (int)(mVecFrm[miCurFrm].vLT.x)
+			, (int)(mVecFrm[miCurFrm].vLT.y)
+			, (int)(mVecFrm[miCurFrm].vSlice.x)
+			, (int)(mVecFrm[miCurFrm].vSlice.y)
+			, bf);
+
+		// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
+		ModifyWorldTransform(dc, nullptr, MWT_IDENTITY);
+		// 변환 행렬 해제
+		SetWorldTransform(dc, nullptr);
 	}
 }
 

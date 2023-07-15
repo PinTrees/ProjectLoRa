@@ -7,7 +7,7 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
-#include "CUIMgr.h"
+#include "UIMgr.h"
 #include "CResMgr.h"
 
 #include "CCamera.h"
@@ -17,6 +17,9 @@
 
 #include "SelectGDI.h"
 #include "resource.h"
+
+
+SINGLE_HEADER(CCore);
 
 CCore::CCore()
 	:mhWnd(0)
@@ -137,6 +140,20 @@ void CCore::Clear()
 {
 	SelectGDI gdi(mpMemTex->GetDC(), BRUSH_TYPE::BLACK);
 	Rectangle(mpMemTex->GetDC(), -1, -1, mPtResolution.x + 1, mPtResolution.y + 1);
+}
+
+void CCore::Delete()
+{
+	CPathMgr::Dispose();
+	CTimeMgr::Dispose();
+	CKeyMgr::Dispose();
+	CCamera::Dispose();
+	CSceneMgr::Dispose();
+	CRandom::Dispose();
+	CUIMgr::Dispose();
+	CResMgr::Dispose();
+	CEventMgr::Dispose();
+	CCollisionMgr::Dispose();
 }
 
 

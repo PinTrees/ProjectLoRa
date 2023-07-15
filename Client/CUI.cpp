@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "CUI.h"
-#include "CUIMgr.h"
-
 
 #include "CCamera.h"
 #include "CKeyMgr.h"
@@ -10,6 +8,8 @@
 #include "CScene.h"
 
 #include "CTexture.h"
+#include "CAnimator.h"
+#include "CAnimation.h"
 
 
 CUI::CUI(bool cameraAffected)
@@ -19,7 +19,6 @@ CUI::CUI(bool cameraAffected)
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
 {
-
 }
 
 CUI::CUI(const CUI& origin)
@@ -28,7 +27,6 @@ CUI::CUI(const CUI& origin)
 	, mCameraAffected(origin.mCameraAffected)
 	, mOnMouseCheck(false)
 	, mLbtnDown(false)
-	, mpTexture(nullptr)
 {
 	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
@@ -41,7 +39,10 @@ CUI::~CUI()
 	Safe_Delete_Vec(mVecChildUI);
 }
 
-void CUI::Update()
+
+
+
+void CUI::Update() 
 {
 	// child update
 	UpdateChild();
@@ -49,6 +50,9 @@ void CUI::Update()
 
 void CUI::FinalUpdate()
 {
+	if (GetAnimator())
+		GetAnimator()->Update();
+
 	// 부모의 finalUpdate호출 해야한다.
 	// UI가 애니매이션 가질 수도 있기 때문에
 	CObject::FinalUpdate();
@@ -86,13 +90,17 @@ void CUI::OnMouseCheck()
 	else
 	{
 		mOnMouseCheck = false;
-		CUIMgr::GetI()->SetIsMouseOn(false);
-
 	}
 }
 
 void CUI::Render(HDC dc)
 {
+	if (GetAnimator())
+	{
+		GetAnimator()->GetCurAnimation()->RenderUI(this, dc);
+		return;
+	}
+
 	Vect2 vPos = GetFinalPos();
 	Vect2 vScale = GetScale();
 
@@ -108,6 +116,7 @@ void CUI::Render(HDC dc)
 
 	if(nullptr == mpTexture)
 	{
+		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
 		Rectangle
 		(
 			dc,
@@ -157,7 +166,8 @@ void CUI::RenderChild(HDC dc)
 {
 	for (size_t i = 0; i < mVecChildUI.size(); ++i)
 	{
-		mVecChildUI[i]->Render(dc);
+		if (mVecChildUI[i]->IsVisible())
+			mVecChildUI[i]->Render(dc);
 	}
 }
 
@@ -170,7 +180,7 @@ void CUI::OnDestroy()
 
 void CUI::MouseOn()
 {
-	CUIMgr::GetI()->SetIsMouseOn(true);
+
 }
 
 void CUI::MouseLbtnDown()
@@ -213,4 +223,74 @@ CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
 	}
 
 	return nullptr;
+}
+
+
+
+
+bool CUI::IsAligmentLeft(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::BOTTOM_LEFT
+		|| aligment == ALIGNMENT::CENTER_LEFT
+		|| aligment == ALIGNMENT::TOP_LEFT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentRight(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::BOTTOM_RIGHT
+		|| aligment == ALIGNMENT::CENTER_RIGHT
+		|| aligment == ALIGNMENT::TOP_RIGHT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentCenter_Ver(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::TOP_CENTER
+		|| aligment == ALIGNMENT::TOP_LEFT
+		|| aligment == ALIGNMENT::TOP_RIGHT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentCenter_Hor(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::CENTER
+		|| aligment == ALIGNMENT::CENTER_LEFT
+		|| aligment == ALIGNMENT::CENTER_RIGHT)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentCenter(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::CENTER
+		|| aligment == ALIGNMENT::CENTER_LEFT
+		|| aligment == ALIGNMENT::CENTER_RIGHT
+		|| aligment == ALIGNMENT::TOP_CENTER
+		|| aligment == ALIGNMENT::BOTTOM_CENTER)
+		return true;
+	else return false;
+}
+
+bool CUI::IsAligmentTop(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::TOP_CENTER
+		|| aligment == ALIGNMENT::TOP_LEFT
+		|| aligment == ALIGNMENT::TOP_RIGHT)
+		return true;
+	else return false;
+}
+
+
+
+bool CUI::IsAligmentBottom(ALIGNMENT aligment)
+{
+	if (aligment == ALIGNMENT::BOTTOM_CENTER
+		|| aligment == ALIGNMENT::BOTTOM_LEFT
+		|| aligment == ALIGNMENT::BOTTOM_RIGHT)
+		return true;
+	else return false;
 }

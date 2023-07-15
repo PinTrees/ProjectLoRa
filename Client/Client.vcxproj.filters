@@ -206,6 +206,36 @@
     <Filter Include="Game\FSM\Player\Atk">
       <UniqueIdentifier>{42dc398b-eed7-46b8-85bd-8433c2bc1d42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\UI\Image">
+      <UniqueIdentifier>{4526c255-9048-41b1-9055-118c8595dc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\HudUIMgr">
+      <UniqueIdentifier>{a7c91130-9e20-482c-882e-c92c5f81ba1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Row">
+      <UniqueIdentifier>{ee55fcc8-985d-4b1e-a88b-4379bcfb8932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\LevelUpUI">
+      <UniqueIdentifier>{90dea450-f1ca-4277-97ce-4e56ad961f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\LevelUpUIMgr">
+      <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor">
+      <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\TileEditMgr">
+      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\Bar">
+      <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\CombatText">
+      <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\CColumn">
+      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -298,7 +328,7 @@
     <ClInclude Include="RigidBody.h">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClInclude>
-    <ClInclude Include="CUIMgr.h">
+    <ClInclude Include="UIMgr.h">
       <Filter>FreamWork\Manager\UIMgr</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
@@ -349,9 +379,6 @@
     <ClInclude Include="AtkState.h">
       <Filter>Game\FSM\Monster\AtkState</Filter>
     </ClInclude>
-    <ClInclude Include="BarUI.h">
-      <Filter>Game\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Scene_Main.h">
       <Filter>Game\Scene\Scene_Main</Filter>
     </ClInclude>
@@ -379,9 +406,6 @@
     <ClInclude Include="TextUI.h">
       <Filter>FreamWork\UI\Text</Filter>
     </ClInclude>
-    <ClInclude Include="CombatText.h">
-      <Filter>Game\UI</Filter>
-    </ClInclude>
     <ClInclude Include="PIdleState.h">
       <Filter>Game\FSM\Player\Idle</Filter>
     </ClInclude>
@@ -396,6 +420,33 @@
     </ClInclude>
     <ClInclude Include="PAtkState.h">
       <Filter>Game\FSM\Player\Atk</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageUI.h">
+      <Filter>FreamWork\UI\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="HubUIMgr.h">
+      <Filter>Game\Manager\HudUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CRow.h">
+      <Filter>FreamWork\UI\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpUI.h">
+      <Filter>Game\UI\LevelUpUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpUIMgr.h">
+      <Filter>Game\Manager\LevelUpUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEditMgr.h">
+      <Filter>Game\Editor\TileEditMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="BarUI.h">
+      <Filter>Game\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatText.h">
+      <Filter>Game\UI\CombatText</Filter>
+    </ClInclude>
+    <ClInclude Include="CColumn.h">
+      <Filter>FreamWork\UI\CColumn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -485,7 +536,7 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>FreamWork\Compnent\RigidBody</Filter>
     </ClCompile>
-    <ClCompile Include="CUIMgr.cpp">
+    <ClCompile Include="UIMgr.cpp">
       <Filter>FreamWork\Manager\UIMgr</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
@@ -533,9 +584,6 @@
     <ClCompile Include="AtkState.cpp">
       <Filter>Game\FSM\Monster\AtkState</Filter>
     </ClCompile>
-    <ClCompile Include="BarUI.cpp">
-      <Filter>Game\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Scene_Main.cpp">
       <Filter>Game\Scene\Scene_Main</Filter>
     </ClCompile>
@@ -563,9 +611,6 @@
     <ClCompile Include="TextUI.cpp">
       <Filter>FreamWork\UI\Text</Filter>
     </ClCompile>
-    <ClCompile Include="CombatText.cpp">
-      <Filter>Game\UI</Filter>
-    </ClCompile>
     <ClCompile Include="PIdleState.cpp">
       <Filter>Game\FSM\Player\Idle</Filter>
     </ClCompile>
@@ -580,6 +625,33 @@
     </ClCompile>
     <ClCompile Include="PAtkState.cpp">
       <Filter>Game\FSM\Player\Atk</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageUI.cpp">
+      <Filter>FreamWork\UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="HubUIMgr.cpp">
+      <Filter>Game\Manager\HudUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CRow.cpp">
+      <Filter>FreamWork\UI\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUI.cpp">
+      <Filter>Game\UI\LevelUpUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUIMgr.cpp">
+      <Filter>Game\Manager\LevelUpUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEditMgr.cpp">
+      <Filter>Game\Editor\TileEditMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="BarUI.cpp">
+      <Filter>Game\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Game\UI\CombatText</Filter>
+    </ClCompile>
+    <ClCompile Include="CColumn.cpp">
+      <Filter>FreamWork\UI\CColumn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -78,38 +78,38 @@ Vect2 curvesCircle(Vect2 c1, float _radius, float _amount)
 
 void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX, int srcY, int srcWidth, int srcHeight)
 {
-	// 플립된 이미지를 그릴 메모리 DC 생성
-	HDC flipDC = CreateCompatibleDC(hdc);
-	HBITMAP flipBitmap = CreateCompatibleBitmap(hdc, width, height);
-	HBITMAP oldBitmap = (HBITMAP)SelectObject(flipDC, flipBitmap);
+    // 플립된 이미지를 그릴 메모리 DC 생성
+    HDC flipDC = CreateCompatibleDC(hdc);
+    HBITMAP flipBitmap = CreateCompatibleBitmap(hdc, width, height);
+    HBITMAP oldBitmap = (HBITMAP)SelectObject(flipDC, flipBitmap);
 
-	// 이미지를 수평으로 뒤집기 위한 변환 행렬 생성
-	XFORM transform;
-	transform.eM11 = -1.0f;
-	transform.eM12 = 0.0f;
-	transform.eM21 = 0.0f;
-	transform.eM22 = 1.0f;
-	transform.eDx = (FLOAT)srcWidth;
-	transform.eDy = 0.0f;
+    // 이미지를 수평으로 뒤집기 위한 변환 행렬 생성
+    XFORM transform;
+    transform.eM11 = -1.0f;
+    transform.eM12 = 0.0f;
+    transform.eM21 = 0.0f;
+    transform.eM22 = 1.0f;
+    transform.eDx = (FLOAT)srcWidth;
+    transform.eDy = 0.0f;
 
-	// 변환 행렬 설정
-	SetGraphicsMode(flipDC, GM_ADVANCED);
-	SetWorldTransform(flipDC, &transform);
+    // 변환 행렬 설정
+    SetGraphicsMode(flipDC, GM_ADVANCED);
+    SetWorldTransform(flipDC, &transform);
 
-	// 원본 이미지를 플립된 메모리 DC에 그리기
-	BitBlt(flipDC, 0, 0, width, height, srcDC, srcX, srcY, SRCCOPY);
+    // 원본 이미지를 플립된 메모리 DC에 그리기
+    BitBlt(flipDC, 0, 0, width, height, srcDC, srcX, srcY, SRCCOPY);
 
-	// 변환 행렬 초기화
-	ModifyWorldTransform(flipDC, nullptr, MWT_IDENTITY);
-	SetWorldTransform(flipDC, &transform);
+    // 변환 행렬 초기화
+    ModifyWorldTransform(flipDC, nullptr, MWT_IDENTITY);
+    SetWorldTransform(flipDC, nullptr);
 
-	// 플립된 이미지를 출력
-	TransparentBlt(hdc, x, y, width, height, flipDC, 0, 0, srcWidth, srcHeight, RGB(255, 0, 255));
+    // 플립된 이미지를 출력
+    TransparentBlt(hdc, x, y, width, height, flipDC, 0, 0, srcWidth, srcHeight, RGB(255, 0, 255));
 
-	// 메모리 해제
-	SelectObject(flipDC, oldBitmap);
-	DeleteObject(flipBitmap);
-	DeleteDC(flipDC);
+    // 메모리 해제
+    SelectObject(flipDC, oldBitmap);
+    DeleteObject(flipBitmap);
+    DeleteDC(flipDC);
 }
 
 
@@ -130,9 +130,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 
 	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
 
-
 	assert(pFile);
-
 
 	UINT xCount = 0;
 	UINT yCount = 0;
@@ -153,11 +151,12 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 	{
 		Tile* tile = (Tile*)(vecTile[i]);
 		tile->Load(pFile);
-		tile->RenderBacgrounnd(dc);
+		tile->Render(dc, false);
 	}
 
 	pScene->AddObject(pParallax, GROUP_TYPE::PARALLAX);
 	pScene->DeleteGroup(GROUP_TYPE::TILE);
+
 	fclose(pFile);
 }
 

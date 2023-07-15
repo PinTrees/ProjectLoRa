@@ -1,23 +1,12 @@
 #include "pch.h"
 #include "CBtnUI.h"
-#include "UIMgr.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
 #include "CCore.h"
 
-#include "CUI.h"
 
 
-CBtnUI::CBtnUI(const CUI& origin)
-	:CUI(origin)
-	, mText(nullptr)
-	, mObjectFunc(nullptr)
-	, mObjectFuncP(nullptr)
-	
-{
-
-}
 
 CBtnUI::CBtnUI()
 	: CUI(false)
@@ -60,12 +49,6 @@ void CBtnUI::Render(HDC dc)
 
 void CBtnUI::MouseOn()
 {
-<<<<<<< Updated upstream
-	CUI::MouseOn();
-=======
-	CUIMgr::GetI()->SetIsMouseOn(true);
-
->>>>>>> Stashed changes
 }
 
 void CBtnUI::MouseLbtnDown()
@@ -143,8 +126,8 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	bf.SourceConstantAlpha = GetAlpha();
 
 	AlphaBlend(_dc
-		, (int)vPos.x - (int)(vSize.x * 0.5f)
-		, (int)vPos.y - (int)(vSize.y * 0.5f)
+		, (int)vPos.x - vSize.x * 0.5f
+		, (int)vPos.y - vSize.y * 0.5f
 		, (int)vSize.x
 		, (int)vSize.y
 		, mpVeilTex->GetDC()

@@ -11,6 +11,7 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+SINGLE_HEADER(CCamera);
 
 CCamera::CCamera()
 	:mpTargetObj(nullptr)
@@ -18,7 +19,6 @@ CCamera::CCamera()
 	, mfSpeed(0.f)
 	, mfAccTime(0.f)
 	, mEffectTex(nullptr)
-	
 {
 }
 

@@ -12,7 +12,7 @@ struct tAnimFrm
 
 class CAnimator;
 class CTexture;
-
+class CUI;
 
 
 
@@ -52,6 +52,7 @@ public:
 public:
 	void Update();
 	void Render(HDC _dc);
+	void RenderUI(CUI* ui, HDC dc);
 
 	void Create(CTexture* _pTex, Vect2 _vLT, Vect2 _vSliceSize, Vect2 _vStep, float _fDuration, UINT _iFreamCount);
 

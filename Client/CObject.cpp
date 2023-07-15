@@ -93,10 +93,10 @@ void CObject::Render(HDC _dc)
 {
 	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvPos);
 
-	Rectangle(_dc,	(int)(vRenderPos.x - mvScale.x / 2.f),
-					(int)(vRenderPos.y - mvScale.y / 2.f),
-					(int)(vRenderPos.x + mvScale.x / 2.f),
-					(int)(vRenderPos.y + mvScale.y / 2.f));
+	Rectangle(_dc,	(int)(vRenderPos.x - mvScale.x * 0.5f),
+					(int)(vRenderPos.y - mvScale.y * 0.5f),
+					(int)(vRenderPos.x + mvScale.x * 0.5f),
+					(int)(vRenderPos.y + mvScale.y * 0.5f));
 
 	CompnentRender(_dc);
 }

@@ -2,6 +2,14 @@
 
 #include "CUI.h"
 
+
+struct tTextStyle
+{
+	float		fontSize;
+	COLORREF	color;
+};
+
+
 class CFont;
 
 class TextUI :
@@ -10,10 +18,12 @@ class TextUI :
 private:
 	CFont*		 mFont;
 	wstring		 mText;
-	
+	tTextStyle	 mStyle;
+
 
 public:
 	void SetText(const wstring& text);
+	void SetFontSize(float size);
 
 
 public:
@@ -31,6 +41,6 @@ public:
 
 public:
 	TextUI();
-	virtual ~TextUI() override;
+	virtual ~TextUI();
 };
 

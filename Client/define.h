@@ -1,13 +1,23 @@
 #pragma once
 
-#define SINGLE(type) public:								\
+#define SINGLE_HEADER(type) type* type::pInst = nullptr;
+#define SINGLE(type) private:								\
+						static type* pInst;					\
+					 public:								\
 						static type* GetI()					\
 						{									\
-							static type mgr;				\
-							return &mgr;					\
-						}\
-						private:\
-								type();\
+							if(pInst == nullptr)			\
+								pInst = new type;			\
+							return pInst;					\
+						}									\
+						static void Dispose()				\
+						{									\
+							if(pInst != nullptr)			\
+								 delete pInst;				\
+							pInst = nullptr;				\
+						}									\
+						private:							\
+								type();						\
 								~type();
 
 
@@ -124,3 +134,29 @@ enum class PLAYER_STATE
 	Die,
 	DASH,
 };
+
+
+
+
+enum class LEVELUP_EFFECT
+{
+	FULL_HP_UP,				// 최대체력 증가
+	REGENERATION_HP_UP,		// 체력재생 증가
+	MOVE_SPEED_UP,			// 이동속도 증가
+	ATK_DAMAGE_UP,			// 공격력 증가
+	ATK_SPEED_UP,			// 공격속도 증가
+	ATK_RANGE_UP,			// 사거리 증가
+	SHOT_SPEED_UP,			// 총알속도 증가
+	RELOAD_SPEED_UP,		// 장전속도 증가
+	SHOT_ANGLE_UP,			// 명중률 증가
+	SHOT_COUNT_UP,			// 발사총알 개수 증가
+	PENETRATION_UP,			// 관통 수 증가
+	SPLITCOUNT_UP,			// 분열 수 증가
+	BOUNTCECOUNT_UP,		// 튕김 수 증가
+
+
+	END
+};
+
+
+

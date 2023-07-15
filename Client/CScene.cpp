@@ -7,8 +7,7 @@
 #include "SelectGDI.h"
 
 #include "CTimeMgr.h"
-#include "CSceneMgr.h"
-#include "CScene_Tool.h"
+
 // Include Components
 #include "RigidBody.h"
 
@@ -28,6 +27,8 @@ CScene::~CScene()
 			delete mArrObj[i][j];
 		}
 	}
+
+	mArrForce.clear();
 }
 
 
@@ -48,7 +49,7 @@ void CScene::AddForce(tForce& force)
 void CScene::Update()
 {
 	// Physical Force Update
-	for (int i = (int)mArrForce.size() - 1; i >= 0; --i)
+	for (int i = mArrForce.size() - 1; i >= 0; --i)
 	{
 		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
 
@@ -61,12 +62,12 @@ void CScene::Update()
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		for (size_t j = 0; j < mArrObj[i].size(); ++j)
+		for (size_t j = 0; j < mArrObj[i].size();++j)
 		{
 			if (!mArrObj[i][j]->IsDead())
 			{
 				// Object Physical Force Calculation
-				for (int f = (int)mArrForce.size() - 1; f >= 0; --f)
+				for (int f = mArrForce.size() - 1; f >= 0; --f)
 				{
 					Vect2 vDiff = mArrForce[f].pos - mArrObj[i][j]->GetLocalPos();
 					float len = vDiff.Length();
@@ -136,6 +137,36 @@ void CScene::render_parallax(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		// Render Background
+		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		{
+			render_parallax(_dc);
+			continue;
+		}
+
+		vector<CObject*>::iterator iter = mArrObj[i].begin();
+
+		for (;iter != mArrObj[i].end();)
+		{
+			// Render Object
+			if (!(*iter)->IsDead())
+			{
+				if ((*iter)->IsVisible())
+				{
+					(*iter)->Render(_dc);
+				}
+				++iter;
+			}
+			// Delete Object
+			else
+			{
+				(*iter)->OnDestroy();
+				iter = mArrObj[i].erase(iter);
+			}
+		}
+	}
 
 
 	// [Debug] Render Force Object
@@ -144,19 +175,18 @@ void CScene::Render(HDC _dc)
 		SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
 		SelectGDI p(_dc, PEN_TYPE::BLUE);
 
-		for (int i = (int)mArrForce.size() - 1; i >= 0; --i)
+		for (int i = mArrForce.size() - 1; i >= 0; --i)
 		{
 			Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
 
 			Ellipse(_dc
-				, (int)(vRenderPos.x - mArrForce[i].curRadius)
-				, (int)(vRenderPos.y - mArrForce[i].curRadius)
-				, (int)(vRenderPos.x + mArrForce[i].curRadius)
-				, (int)(vRenderPos.y + mArrForce[i].curRadius));
+				, vRenderPos.x - mArrForce[i].curRadius
+				, vRenderPos.y - mArrForce[i].curRadius
+				, vRenderPos.x + mArrForce[i].curRadius
+				, vRenderPos.y + mArrForce[i].curRadius);
 		}
 	}
 }
-
 
 
 void CScene::DeleteGroup(GROUP_TYPE _eTarget)

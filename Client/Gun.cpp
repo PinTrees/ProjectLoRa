@@ -18,6 +18,9 @@
 #include "CTexture.h"
 #include "CResMgr.h"
 
+// Game Manager Header
+#include "HubUIMgr.h"
+
 // GameObject Header
 #include "Particle.h"
 #include "Bullet.h"
@@ -38,14 +41,14 @@ Gun::Gun(const wstring& _type)
 	mInfo.atkSpeed = 300.f;
 	mInfo.penetration = 3;
 	
-	mInfo.reloadSpeed = 0.1f;
-	mInfo.shotDelay = 0.1f;
+	mInfo.reloadSpeed = 1.f;
+	mInfo.shotDelay = 0.3f;
 
 	mInfo.shotAngle = 30.f;
-	mInfo.shotCount = 10;
+	mInfo.shotCount = 5;
 	mInfo.shotSpeed = 0.3f;
 	mInfo.texture = L"1";
-	mInfo.bulletType = L"3";
+	mInfo.bulletType = L"3"; 
 
 	mInfo.bulletCount = 10;
 	mInfo.curBulletCount = mInfo.bulletCount;
@@ -73,39 +76,49 @@ Gun::~Gun()
 
 void Gun::Shot()
 {
+	--mInfo.curBulletCount;
+
 	if (mbReload)
 		return;
 
-	if (mInfo.curBulletCount <= 0)
+	if (mInfo.curBulletCount < 0)
 	{
+		HubUIMgr::GetI()->SetBulletUI(0);
 		Reload();
 		return;
 	}
 
-
-	--mInfo.curBulletCount;
 	Vect2 vShotPos = GetPos();
 
-	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-	int shotAngle = (int)(mInfo.shotAngle * 0.5f);
-	float angle = GetAngleOrg() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
-	Vect2 vDir = Vect2::FromAngle(angle);
+	for (int i = 0; i < mInfo.shotCount; ++i)
+	{
+		// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
+		int shotAngle = mInfo.shotAngle * 0.5f;
+		float angle = GetAngleOrg() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
+		Vect2 vDir = Vect2::FromAngle(angle);
 
+		// 총알 오브젝트
+		tBullet bInfo = {};
+		bInfo.damage = mInfo.atkDamage;
+		bInfo.bounceCount = mInfo.bouncCount;
+		bInfo.penetrationCount = mInfo.penetration;
+		bInfo.splitCount = mInfo.splitCount;
 
-	// 총알 오브젝트
-	tBullet bInfo = {};
-	bInfo.damage = mInfo.atkDamage;
-	bInfo.bounceCount = (float)mInfo.bouncCount;
-	bInfo.penetrationCount = (float)mInfo.penetration;
-	bInfo.splitCount = (float)mInfo.splitCount;
+		Bullet* pBullet = new Bullet(mInfo.bulletType);
+		pBullet->SetPos(vShotPos + vDir.Normalize() * 35.f);
+		pBullet->SetDir(vDir);
+		pBullet->SetInfo(bInfo);
+		pBullet->SetName(L"Missile_Player");
 
-	Bullet* pBullet = new Bullet(mInfo.bulletType);
-	pBullet->SetPos(vShotPos + vDir.Normalize() * 35.f);
-	pBullet->SetDir(vDir);
-	pBullet->SetInfo(bInfo);
-	pBullet->SetName(L"Missile_Player");
-	    
-	CreateObject(pBullet, GROUP_TYPE::PROJ_PLAYER);
+		CreateObject(pBullet, GROUP_TYPE::PROJ_PLAYER);
+	}
+
+	HubUIMgr::GetI()->SetBulletUI(mInfo.curBulletCount);
+
+	if (mInfo.curBulletCount <= 0)
+	{
+		Reload();
+	}
 }
 
 
@@ -126,6 +139,7 @@ void Gun::Update()
 		if (mCurDelay >= mInfo.reloadSpeed)
 		{
 			mInfo.curBulletCount = mInfo.bulletCount;
+			HubUIMgr::GetI()->SetBulletUI(mInfo.curBulletCount);
 			mbReload = false;
 		}
 	}

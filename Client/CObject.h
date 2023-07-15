@@ -57,7 +57,7 @@ public:
 	int GetAlpha() { return (int)mAlpha; }
 
 	void SetVisible(bool _visible) { mVisible = _visible; }
-	bool GetVisible() { return mVisible; }
+	bool IsVisible() { return mVisible; }
 
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }

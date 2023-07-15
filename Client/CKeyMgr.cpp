@@ -2,6 +2,8 @@
 #include "CKeyMgr.h"
 #include "CCore.h"
 
+SINGLE_HEADER(CKeyMgr);
+
 
 int g_arrVK[(int)KEY::LAST] =
 {

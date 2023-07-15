@@ -9,7 +9,7 @@
 #include "CSceneMgr.h"
 #include "CResMgr.h"
 #include "Random.h"
-#include "CUIMgr.h"
+#include "UIMgr.h"
 
 // Component Header
 #include "CTexture.h"
@@ -32,6 +32,9 @@
 
 #include "CState.h"
 
+// Game Manager Header
+#include "HubUIMgr.h"
+#include "LevelUpUIMgr.h"
 
 
 
@@ -70,21 +73,21 @@ Player::Player()
 	//GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\character.bmp");
-	
+
 	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f, 8);
 	GetAnimator()->CreateAnimation(L"RUN_R", pTex, Vect2(0.f, 54.f * 2), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
 	GetAnimator()->CreateAnimation(L"RUN_L", pTex, Vect2(0.f, 54.f * 30), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
 	GetAnimator()->CreateAnimation(L"ATK_R", pTex, Vect2(0.f, 54.f * 14), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 3);
 	GetAnimator()->CreateAnimation(L"ATK_L", pTex, Vect2(0.f, 54.f * 31), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 3);
 	GetAnimator()->CreateAnimation(L"DASH_R", pTex, Vect2(0.f, 54.f * 23), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 7);
-	
+
 	GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"RUN_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"RUN_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"ATK_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"ATK_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
 	GetAnimator()->FindAnimation(L"DASH_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	
+
 	GetAnimator()->FindAnimation(L"IDLE")->Save(L"animation\\player_idle.anim");
 	GetAnimator()->FindAnimation(L"RUN_R")->Save(L"animation\\player_run_r.anim");
 	GetAnimator()->FindAnimation(L"RUN_L")->Save(L"animation\\player_run_l.anim");
@@ -109,11 +112,14 @@ Player::Player()
 	mExpBar->SetPos(Vect2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
+
 }
 
 
 Player::~Player()
 {
+	if (nullptr != mAI)
+		delete mAI;
 }
 
 
@@ -145,7 +151,7 @@ void Player::Update()
 	}
 
 	if (KEY_HOLD(KEY::RBTN)
-		&& mfCurDelay > mCurGun->GetInfo().shotDelay
+		&& mfCurDelay >= mCurGun->GetInfo().shotDelay
 		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		mfCurDelay = 0.f;
@@ -177,28 +183,6 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-void Player::CreateMissile()
-{
-	Vect2 vMissilePos = GetLocalPos() + Vect2(0.f, -50.f);
-
-	Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-	vDir.Normalize();
-
-	// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-	int launchAngle = 30;
-	float angle = (float)CRandom::GetI()->Next(-15, 15); // 랜덤한 각도
-	vDir.Rotate(angle); // 방향 벡터를 해당 각도만큼 회전시킵니다.
-
-	// 총알 오브젝트
-	Bullet* pMissile = new Bullet(L"3");
-	pMissile->SetPos(vMissilePos + vDir.Normalize() * 50.f);
-	pMissile->SetDir(vDir);
-	pMissile->SetName(L"Missile_Player");
-
-	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
-}
-
-
 
 void Player::calExp()
 {
@@ -207,46 +191,8 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
-		Vect2 vRes = CCore::GetI()->GetResolution();
-
-		mLevelupUI = new CPanelUI;
-		mLevelupUI->SetPos(vRes * 0.5f);
-		mLevelupUI->SetScale(vRes);
-		CreateObject(mLevelupUI, GROUP_TYPE::UI);
-
-		for (int i = 0; i < 3; ++i)
-		{
-			float spacing = vRes.x / 3;
-
-			CPanelUI* pPanel = new CPanelUI;
-			pPanel->SetPos(Vect2(spacing * i - spacing, 0.f));
-			pPanel->SetScale(Vect2(300.f, 300.f));
-			pPanel->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
-			mLevelupUI->AddChild(pPanel);
-
-			tUpgrad a = {};
-
-			CBtnUI* pBtn = new CBtnUI;
-			pBtn->SetPos(Vect2(0.f, 100.f));
-			pBtn->SetScale(Vect2(200.f, 50.f));
-			pBtn->SetText(L"선택");
-			pBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
-			pBtn->SetClickedCallBack(this, (OBJECT_FUNC_P)&Player::SelectLevelUp, (DWORD_PTR)&a);
-			pPanel->AddChild(pBtn);
-		}
-
-		CTimeMgr::GetI()->Stop();
+		LevelupUIMgr::GetI()->Choice();
 	}
 }
 
 
-void Player::SelectLevelUp(DWORD_PTR param)
-{
-	CTimeMgr::GetI()->Play();
-
-	if (nullptr != mLevelupUI)
-	{
-		CUIMgr::GetI()->SetFocusUI(nullptr);
-		DeleteObject(mLevelupUI);
-	}
-}

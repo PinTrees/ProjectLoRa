@@ -28,21 +28,17 @@ void PAtkState::Enter()
 	Vect2 pos = CCamera::GetI()->GetRealPos(MOUSE_POS);
 	pPlayer->GetAnimator()->Play(pos.x > pPlayer->GetLocalPos().x ? L"ATK_R" : L"ATK_L", false);
 
-	int count = pPlayer->GetCurGun()->GetInfo().shotCount;
-	for (int i = 0; i < count; ++i)
-	{
-		pPlayer->GetCurGun()->Shot();
-	}
+	pPlayer->GetCurGun()->Shot();
 }
 
 void PAtkState::Update()
 {
 	Player* pPlayer = (Player*)GetOwner();
+	ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
 
-	if (pPlayer->GetAnimator()->GetCurAnimation()->IsFinish())
+	/*if (pPlayer->GetAnimator()->GetCurAnimation()->IsFinish())
 	{
-		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
-	}
+	}*/
 }
 
 void PAtkState::Exit()

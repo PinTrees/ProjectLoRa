@@ -14,7 +14,6 @@ private:
 public:
 	virtual void Update();
 	virtual void Enter();
-	virtual void Render(HDC _dc);
 	virtual void Exit();
 
 
@@ -22,6 +21,7 @@ private:
 	void CreateMonster();
 	void createEnvi();
 	void createPlayer();
+
 
 public:
 	Scene_Start();

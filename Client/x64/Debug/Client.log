@@ -1,2 +1,110 @@
-﻿  unity_XCFUFL0W3LMPEMKH.cpp
+﻿  unity_09PUY2V4YNELW970.cpp
+  unity_746102L9EMI4SOJ7.cpp
+  unity_8IQ46C8V12TIMZOM.cpp
+  unity_ANQREC12RVCFHJCE.cpp
+  unity_DC2MRH4F0D21GB3V.cpp
+  unity_E4E5FQ4KNR5W0XA7.cpp
+  unity_EQAYNVVTFBY0D6M5.cpp
+  unity_HVXYVF1ASI55QFVW.cpp
+  unity_P3RIQRG7WQA09ZLD.cpp
+  unity_VI5R54XYYQZUQIRG.cpp
+  unity_VM8MDYBFYMHUKTLT.cpp
+  unity_WE2235VP7796PQXE.cpp
+C:\Users\Jomanky\Documents\git\Client\Gun.cpp(93,20): warning C4018: '<': signed/unsigned mismatch (compiling source file x64\Debug\unity_E4E5FQ4KNR5W0XA7.cpp)
+C:\Users\Jomanky\Documents\git\Client\Gun.cpp(96,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_E4E5FQ4KNR5W0XA7.cpp)
+C:\Users\Jomanky\Documents\git\Client\Gun.cpp(103,28): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data (compiling source file x64\Debug\unity_E4E5FQ4KNR5W0XA7.cpp)
+C:\Users\Jomanky\Documents\git\Client\Gun.cpp(104,33): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data (compiling source file x64\Debug\unity_E4E5FQ4KNR5W0XA7.cpp)
+C:\Users\Jomanky\Documents\git\Client\Gun.cpp(105,27): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data (compiling source file x64\Debug\unity_E4E5FQ4KNR5W0XA7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CBtnUI.cpp(130,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_8IQ46C8V12TIMZOM.cpp)
+C:\Users\Jomanky\Documents\git\Client\CBtnUI.cpp(129,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_8IQ46C8V12TIMZOM.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\Jomanky\Documents\git\Client\Random.cpp(17,22): warning C4244: 'argument': conversion from 'ULONGLONG' to 'unsigned int', possible loss of data (compiling source file x64\Debug\unity_EQAYNVVTFBY0D6M5.cpp)
+C:\Users\Jomanky\Documents\git\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed/unsigned mismatch (compiling source file x64\Debug\unity_DC2MRH4F0D21GB3V.cpp)
+C:\Users\Jomanky\Documents\git\Client\TextUI.cpp(18,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_ANQREC12RVCFHJCE.cpp)
+C:\Users\Jomanky\Documents\git\Client\TextUI.cpp(39,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_ANQREC12RVCFHJCE.cpp)
+C:\Users\Jomanky\Documents\git\Client\Tile.cpp(52,5): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_ANQREC12RVCFHJCE.cpp)
+C:\Users\Jomanky\Documents\git\Client\Tile.cpp(51,5): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_ANQREC12RVCFHJCE.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(52,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(70,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(178,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(186,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(185,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(184,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene.cpp(183,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene_start.cpp(160,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+C:\Users\Jomanky\Documents\git\Client\CScene_start.cpp(161,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data (compiling source file x64\Debug\unity_746102L9EMI4SOJ7.cpp)
+  unity_X9V7WPS3HNC2BGZV.cpp
+C:\Users\Jomanky\Documents\git\Client\CAnimation.cpp(292,18): warning C4477: 'fprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t' (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Users\Jomanky\Documents\git\Client\CAnimation.cpp(292,18): message : consider using '%zd' in the format string (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2859,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,1): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,37): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Users\Jomanky\Documents\git\Client\CAnimation.cpp(270): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Users\Jomanky\Documents\git\Client\CAnimation.cpp(270,17): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2859,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,1): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,37): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Users\Jomanky\Documents\git\Client\CAnimation.cpp(276): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
+C:\Users\Jomanky\Documents\git\Client\CAnimation.cpp(276,10): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_X9V7WPS3HNC2BGZV.cpp)
   Client.vcxproj -> C:\Users\Jomanky\Documents\git\Output\bin_debug\Client.exe

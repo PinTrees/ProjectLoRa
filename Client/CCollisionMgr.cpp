@@ -6,11 +6,8 @@
 #include "CObject.h"
 #include "CCollider.h"
 
-union Test
-{
-	int a;
-	float f;
-};
+SINGLE_HEADER(CCollisionMgr);
+
 
 CCollisionMgr::CCollisionMgr()
 	:mArrCheck{}

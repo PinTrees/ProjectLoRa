@@ -69,7 +69,6 @@ public:
 
 
 public:
-	CBtnUI(const CUI& origin);
 	CBtnUI();
 	~CBtnUI();
 };

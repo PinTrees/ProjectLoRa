@@ -3,7 +3,7 @@
 #include "CCore.h"
 
 
-
+SINGLE_HEADER(CTimeMgr);
 
 CTimeMgr::CTimeMgr()
 	:m_CurCount{}
@@ -12,6 +12,7 @@ CTimeMgr::CTimeMgr()
 	, m_dDT(0.0f)
 	, m_iCallCount(0)
 	, m_dAcc(0)
+	, mbStoped(false)
 {
 }
 
@@ -23,6 +24,7 @@ CTimeMgr::~CTimeMgr()
 
 void CTimeMgr::Init()
 {
+	mbStoped = false;
 	QueryPerformanceCounter(&m_PrevCount);
 	QueryPerformanceFrequency(&m_frequency);
 }
@@ -37,10 +39,10 @@ void CTimeMgr::Update()
 	// 이전카운트 값을 현재값으로 갱신 (다음번에 계산을 위해서)
 	m_PrevCount = m_CurCount;
 
-#ifdef _DEBUG
-	//if (m_dDT > (1. / 60.))
-	//	m_dDT = (1. / 60.);
-#endif // DEBUG
+//#ifdef _DEBUG
+//	//if (m_dDT > (1. / 60.))
+//	//	m_dDT = (1. / 60.);
+//#endif // DEBUG
 }
 
 void CTimeMgr::Render()

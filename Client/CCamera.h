@@ -20,7 +20,6 @@ struct tCamEffect
 
 
 
-
 class CCamera
 {
 	SINGLE(CCamera);
@@ -43,13 +42,8 @@ public:
 	void SetLookAt(Vect2 _vLook) 
 	{ 
 		mvLookAt = _vLook;
-
-	}
-	void SetLookAt(Vect2 _vLook,float _time)
-	{
-		mvLookAt = _vLook;
 		float fMoveDist = (mvLookAt - mvPrevLookAt).Length();
-		mfSpeed = fMoveDist / _time;
+		mfSpeed = fMoveDist / mfTime;
 		mfAccTime = 0.f;
 	}
 	void SetTarget(CObject* _pTarget) { mpTargetObj = _pTarget; }
@@ -71,7 +65,7 @@ public:
 		if (0.f >= duration)
 			assert(nullptr);
 	}
-	void FadeOut(float duration) 
+	void FadeOut(float duration)
 	{
 		tCamEffect ef = {};
 

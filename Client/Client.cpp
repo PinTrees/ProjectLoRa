@@ -33,8 +33,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 메모리 누수 체크
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-    //_CrtSetBreakAlloc(211);
+    //_CrtSetBreakAlloc(502561);
 
 
     // TODO: Place code here.
@@ -50,14 +49,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    if (FAILED(CCore::GetI()->Initialize(g_hWnd, POINT{ 1280,768 })))
+    if (FAILED(CCore::GetI()->Initialize(g_hWnd, POINT{ 1280, 768 })))
     {
         MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
         return FALSE;
     }
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
-
     MSG msg;
 
     // Main message loop:
@@ -79,6 +77,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             CCore::GetI()->RUN();
         }
     }
+
+    CCore::GetI()->Delete();
+    CCore::Dispose();
 
     return (int) msg.wParam;
 }

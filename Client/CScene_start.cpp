@@ -16,8 +16,9 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 
-// Manager Header
+// Game Manager Header
 #include "PlayerMgr.h"
+#include "LevelUpUIMgr.h"
 
 // Components Header
 #include "CCollider.h"
@@ -32,7 +33,7 @@
 #include "PAtkState.h"
 
 #include "MonsterFactory.h"
-
+#include "HubUIMgr.h"
 
 
 
@@ -44,6 +45,10 @@ Scene_Start::Scene_Start()
 
 Scene_Start::~Scene_Start()
 {
+	// 싱글톤 메모리 해제
+	LevelupUIMgr::Dispose();
+	PlayerMgr::Dispose();
+	HubUIMgr::Dispose();
 }
 
 
@@ -78,13 +83,14 @@ void Scene_Start::Enter()
 		CreateMonster();
 	}
 
-
 	int iEnvCount = 8;
 	for (int i = 0; i < iEnvCount; i++)
 	{
 		createEnvi();
 	}
 
+	LevelupUIMgr::GetI()->Init();
+	HubUIMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크
@@ -100,43 +106,6 @@ void Scene_Start::Enter()
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 	CCamera::GetI()->FadeOut(2.f);
 	CCamera::GetI()->FadeIn(2.f);
-}
-
-void Scene_Start::Render(HDC _dc)
-{
-
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
-	{
-		if ((UINT)GROUP_TYPE::TILE == i)
-		{
-			continue;
-		}
-		// Render Background
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
-		{
-			render_parallax(_dc);
-			continue;
-		}
-
-		vector<CObject*>::iterator iter = mArrObj[i].begin();
-
-		for (; iter != mArrObj[i].end();)
-		{
-			// Render Object
-			if (!(*iter)->IsDead())
-			{
-				(*iter)->Render(_dc);
-				++iter;
-			}
-			// Delete Object
-			else
-			{
-				(*iter)->OnDestroy();
-				iter = mArrObj[i].erase(iter);
-			}
-		}
-	}
-
 }
 
 
@@ -188,8 +157,8 @@ void Scene_Start::createEnvi()
 {
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
-	float xPos = (float)(rand() % (int)(vResolution.x));
-	float yPos = (float)(rand() % (int)(vResolution.y));
+	float xPos = rand() % (int)(vResolution.x);
+	float yPos = rand() % (int)(vResolution.y); 
 	Vect2 vCreatePos = Vect2(xPos, yPos);
 
 	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);

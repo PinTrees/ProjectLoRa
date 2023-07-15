@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Random.h"
 
+
+SINGLE_HEADER(CRandom);
+
 CRandom::CRandom()
 {
 

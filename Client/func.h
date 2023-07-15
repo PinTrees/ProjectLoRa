@@ -66,3 +66,5 @@ void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX
 
 void LoadTile(CScene* pScene, const wstring& _fullPath);
 void CreateTile(CScene* pScene, UINT xCount, UINT yCount);
+
+

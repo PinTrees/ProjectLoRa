@@ -11,12 +11,13 @@
 
 #include "resource.h"
 
-#include "CUIMgr.h"
+#include "UIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 
 #include "FileMgr.h"
 #include "CPathMgr.h"
+#include "CTimeMgr.h"
 
 
 // function header
@@ -26,8 +27,8 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 
 Scene_Tool::Scene_Tool()
 	: mpUI(nullptr)
-	, mTileX(0)
-	, mTileY(0)
+	, mTileX(1)
+	, mTileY(1)
 {
 }
 
@@ -39,16 +40,15 @@ void Scene_Tool::Enter()
 {
 	CCore::GetI()->SetActiveMenu(true);
 
-	LoadTile(L"database\\map_1.tile");
+	CreateTile(this, 5, 5);
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();
-	CCamera::GetI()->SetLookAt(vResolution * 0.5f); //카메라 이동
 
-	CPanelUI* pPanelUI = new CPanelUI;
+	CUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
 	pPanelUI->SetScale(Vect2(300.f, 150.f));
-	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 100.f));
-	pPanelUI->SetFixedPos(true);
+	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
+
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
 	pBtnUI->SetScale(Vect2(100.f, 40.f));
@@ -59,43 +59,7 @@ void Scene_Tool::Enter()
 	pPanelUI->AddChild(pBtnUI); 
 	AddObject(pPanelUI, GROUP_TYPE::UI);
 
-
-}
-
-void Scene_Tool::Render(HDC _dc)
-{
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
-	{
-		if ((UINT)GROUP_TYPE::TILE == i)
-		{
-			render_tile(_dc);
-			continue;
-		}
-
-		 //Render Background
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
-		{
-			continue;
-		}
-
-		vector<CObject*>::iterator iter = mArrObj[i].begin();
-
-		for (; iter != mArrObj[i].end();)
-		{
-			// Render Object
-			if (!(*iter)->IsDead())
-			{
-				(*iter)->Render(_dc);
-				++iter;
-			}
-			// Delete Object
-			else
-			{
-				(*iter)->OnDestroy();
-				iter = mArrObj[i].erase(iter);
-			}
-		}
-	}
+	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 }
 
 void Scene_Tool::Exit()
@@ -123,55 +87,10 @@ void Scene_Tool::Update()
 	}
 }
 
-void Scene_Tool::render_tile(HDC _dc)
-{
-	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
-
-	Vect2 vCamLook = CCamera::GetI()->GetLookAt();
-	Vect2 vResolution = CCore::GetI()->GetResolution();
-	Vect2	vLeftTop = vCamLook - vResolution * 0.5f;
-
-	int iTileSize = TILE_SIZE_RENDER;
-
-	int iLTCol = (int)vLeftTop.x / iTileSize;
-	int iLTRow = (int)vLeftTop.y / iTileSize;
-
-	int iLTIdx = (mTileX * iLTRow) + iLTCol;
-
-	int iClientWidth = ((int)vResolution.x / iTileSize)+1;
-	int iClientHeight = ((int)vResolution.y / iTileSize)+1;
-
-
-
-
-	for (int iCurRow = iLTRow; iCurRow < (iLTRow + iClientHeight); ++iCurRow)
-	{
-		for (int iCurCol = iLTCol; iCurCol < (iLTCol + iClientWidth); ++iCurCol)
-		{
-			if (iCurCol < 0 || mTileX <= (UINT)iCurCol
-				|| iCurRow < 0 || mTileY <= (UINT)iCurRow)
-			{
-				continue;
-			}
-			int iIdx = (mTileX * iCurRow) + iCurCol;
-			vecTile[iIdx]->Render(_dc);
-		}
-	}
-
-
-
-}
-
 void Scene_Tool::SetTileIdx()
 {
-
-
-	if (CUIMgr::GetI()->GetIsMouseOnUI())
-		return;
-
 	if (KEY_TAP(KEY::LBTN))
 	{
-
 		Vect2 vMousePos = MOUSE_POS;
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
@@ -326,30 +245,7 @@ void ChangeScene(DWORD_PTR, DWORD_PTR)
 }
 
 
-void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
-{
-	pScene->DeleteGroup(GROUP_TYPE::TILE);
 
-	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_1", L"texture\\tiles\\1.bmp");
-
-	pScene->SetTileX(xCount);
-	pScene->SetTileY(yCount);
-
-	for (UINT i = 0; i < yCount; ++i)
-	{
-		for (UINT j = 0; j < xCount; ++j)
-		{
-			Tile* pTile = new Tile();
-
-			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
-			pTile->SetTexture(pTileTex);
-
-			pScene->AddObject(pTile, GROUP_TYPE::TILE);
-		}
-	}
-
-}
 
 // ======================
 // Tile Count Window Proc
@@ -389,3 +285,99 @@ INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 }
 
 
+void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
+{
+	pScene->DeleteGroup(GROUP_TYPE::TILE);
+
+	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_1", L"texture\\tiles\\1.bmp");
+
+	pScene->SetTileX(xCount);
+	pScene->SetTileY(yCount);
+
+	for (UINT i = 0; i < yCount; ++i)
+	{
+		for (UINT j = 0; j < xCount; ++j)
+		{
+			Tile* pTile = new Tile();
+			
+			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+			pTile->SetTexture(pTileTex);
+
+			pScene->AddObject(pTile, GROUP_TYPE::TILE);
+		}
+	}
+}
+
+
+
+void Scene_Tool::Render(HDC _dc)
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		if ((UINT)GROUP_TYPE::TILE == i)
+		{
+			render_tile(_dc);
+			continue;
+		}
+
+		//Render Background
+		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		{
+			continue;
+		}
+
+		vector<CObject*>::iterator iter = mArrObj[i].begin();
+
+		for (; iter != mArrObj[i].end();)
+		{
+			// Render Object
+			if (!(*iter)->IsDead())
+			{
+				(*iter)->Render(_dc);
+				++iter;
+			}
+			// Delete Object
+			else
+			{
+				(*iter)->OnDestroy();
+				iter = mArrObj[i].erase(iter);
+			}
+		}
+	}
+}
+
+
+void Scene_Tool::render_tile(HDC _dc)
+{
+	const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+	Vect2 vCamLook = CCamera::GetI()->GetLookAt();
+	Vect2 vResolution = CCore::GetI()->GetResolution();
+	Vect2	vLeftTop = vCamLook - vResolution * 0.5f;
+
+	int iTileSize = TILE_SIZE_RENDER;
+
+	int iLTCol = (int)vLeftTop.x / iTileSize;
+	int iLTRow = (int)vLeftTop.y / iTileSize;
+
+	int iLTIdx = (mTileX * iLTRow) + iLTCol;
+
+	int iClientWidth = ((int)vResolution.x / iTileSize) + 1;
+	int iClientHeight = ((int)vResolution.y / iTileSize) + 1;
+
+
+	for (int iCurRow = iLTRow; iCurRow < (iLTRow + iClientHeight); ++iCurRow)
+	{
+		for (int iCurCol = iLTCol; iCurCol < (iLTCol + iClientWidth); ++iCurCol)
+		{
+			if (iCurCol < 0 || mTileX <= (UINT)iCurCol
+				|| iCurRow < 0 || mTileY <= (UINT)iCurRow)
+			{
+				continue;
+			}
+			int iIdx = (mTileX * iCurRow) + iCurCol;
+			((Tile*)vecTile[iIdx])->Render(_dc, true);
+		}
+	}
+}
