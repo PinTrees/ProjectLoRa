@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "CUI.h"
+<<<<<<< Updated upstream
 #include "CUIMgr.h"
+=======
+#include "UIMgr.h"
+>>>>>>> Stashed changes
 
 #include "CCamera.h"
 #include "CKeyMgr.h"
@@ -170,6 +174,10 @@ void CUI::OnDestroy()
 void CUI::MouseOn()
 {
 	CUIMgr::GetI()->SetIsMouseOn(true);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 
 void CUI::MouseLbtnDown()

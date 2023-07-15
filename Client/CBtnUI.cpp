@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CBtnUI.h"
+#include "UIMgr.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
@@ -59,7 +60,12 @@ void CBtnUI::Render(HDC dc)
 
 void CBtnUI::MouseOn()
 {
+<<<<<<< Updated upstream
 	CUI::MouseOn();
+=======
+	CUIMgr::GetI()->SetIsMouseOn(true);
+
+>>>>>>> Stashed changes
 }
 
 void CBtnUI::MouseLbtnDown()
