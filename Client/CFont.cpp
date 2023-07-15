@@ -14,6 +14,7 @@ CFont::CFont(HDC _dc)
 
 CFont::~CFont()
 {
+	RemoveFontResource(GetRelativePath().c_str());
 }
 
 
@@ -27,8 +28,6 @@ void CFont::Load(const wstring& filePath, const wstring& name, int size, bool _b
 	mBorder = _border;
 	mDefaultFont = CreateFont(size, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, name.c_str());
-
-	RemoveFontResource(filePath.c_str());
 }
 
 
