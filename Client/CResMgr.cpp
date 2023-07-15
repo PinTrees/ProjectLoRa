@@ -75,7 +75,7 @@ CTexture* CResMgr::CreateTexture(const wstring& strKey, UINT width, UINT height,
 }
 
 
-CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath, int size, bool border)
+CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath, int size)
 {
 	wstring keyStr = strKey + std::to_wstring(size);
 	CFont* pFont = FindFont(keyStr);
@@ -88,7 +88,7 @@ CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath,
 	HDC dc = CCore::GetI()->GetMainDC();
 
 	pFont = new CFont(dc);
-	pFont->Load(strFilePath, strKey, size, border);
+	pFont->Load(strFilePath, strKey, size);
 	pFont->SetKey(keyStr);
 	pFont->SetRelativePath(_strRelativePath);
 

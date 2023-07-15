@@ -1,11 +1,4 @@
-﻿  unity_14WN7Z5XEV7AQTOJ.cpp
-  unity_323G90DCXXAE6YHU.cpp
-  unity_7IPFW55DWDBEGCAD.cpp
-  unity_PGV4KE3IWS9WSZIW.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(18,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_323G90DCXXAE6YHU.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(39,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_323G90DCXXAE6YHU.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_323G90DCXXAE6YHU.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_323G90DCXXAE6YHU.cpp)
+﻿  unity_PGV4KE3IWS9WSZIW.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_PGV4KE3IWS9WSZIW.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe
