@@ -230,6 +230,9 @@
     <Filter Include="FreamWork\UI\Column">
       <UniqueIdentifier>{e6a0089a-72c2-44ae-8b46-0011eb0ff648}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\UI\CWrap">
+      <UniqueIdentifier>{91919fd8-621c-4364-b66b-faffdb90f47e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -442,6 +445,9 @@
     <ClInclude Include="CColumn.h">
       <Filter>FreamWork\UI\Column</Filter>
     </ClInclude>
+    <ClInclude Include="CWrap.h">
+      <Filter>FreamWork\UI\CWrap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -646,6 +652,9 @@
     </ClCompile>
     <ClCompile Include="CColumn.cpp">
       <Filter>FreamWork\UI\Column</Filter>
+    </ClCompile>
+    <ClCompile Include="CWrap.cpp">
+      <Filter>FreamWork\UI\CWrap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

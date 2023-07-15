@@ -166,6 +166,7 @@
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="CWrap.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="LevelUpUI.h" />
     <ClInclude Include="LevelUpUIMgr.h" />
@@ -238,6 +239,7 @@
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="LevelUpUI.cpp" />
     <ClCompile Include="LevelUpUIMgr.cpp" />
