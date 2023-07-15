@@ -1,2 +1,6 @@
-﻿  unity_14WN7Z5XEV7AQTOJ.cpp
+﻿  unity_ZCK4UX2B5LQ3F8HX.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

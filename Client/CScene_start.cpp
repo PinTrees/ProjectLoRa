@@ -104,7 +104,7 @@ void Scene_Start::Enter()
 	// Camera Look ÁöÁ¤
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
-	CCamera::GetI()->FadeOut(2.f);
+	CCamera::GetI()->FadeOut(0.1f);
 	CCamera::GetI()->FadeIn(2.f);
 }
 

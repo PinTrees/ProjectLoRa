@@ -28,7 +28,7 @@ LevelupUI::LevelupUI()
 
 	mTitleText = new TextUI;
 	mTitleText->SetPos(Vect2(0.f, 0.f));
-	mTitleText->SetScale(Vect2(300.f, 50.f));
+	mTitleText->SetScale(Vect2(280.f, 50.f));
 	mTitleText->SetText(L"");
 	mTitleText->SetColor(RGB(255, 255, 255));
 	mTitleText->SetFontSize(24);
