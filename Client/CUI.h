@@ -113,6 +113,7 @@ public:
 
 	friend class CUIMgr;
 
+
 public:
 	static bool IsAligmentLeft(ALIGNMENT aligment);
 	static bool IsAligmentRight(ALIGNMENT aligment);
@@ -121,7 +122,6 @@ public:
 	static bool IsAligmentCenter(ALIGNMENT aligment);
 	static bool IsAligmentCenter_Ver(ALIGNMENT aligment);
 	static bool IsAligmentCenter_Hor(ALIGNMENT aligment);
-
 };
 
 

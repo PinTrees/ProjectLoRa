@@ -1,7 +1,7 @@
 #pragma once
 #include "CRes.h"
 
-
+struct tTextStyle;
 
 class CFont :
     public CRes
@@ -10,19 +10,13 @@ private:
     HDC         mDC;
     HFONT       mDefaultFont;
 
-    COLORREF    mInnerColor;
-    COLORREF    mOuterColor;
-
-    bool        mBorder;
 
 public:
-    void Load(const wstring& _text, const wstring& _name, int _size, bool _border);
-    void Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale);
-
-    void SetInnerColor(COLORREF _color) { mInnerColor = _color; }
-    void SetOuterColor(COLORREF _color) { mOuterColor = _color; }
+    void Load(const wstring& _text, const wstring& _name, int _size);
+    void Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale, const tTextStyle& style);
 
     HDC GetDC() { return mDC; }
+
 
 private:
     CFont(HDC _mDC);

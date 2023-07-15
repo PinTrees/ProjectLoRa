@@ -17,7 +17,8 @@ CBtnUI::CBtnUI()
 	, mpChangeTex(nullptr)
 {
 	mText = new TextUI;
-	this->AddChild(mText);
+	AddChild(mText);
+
 }
 
 CBtnUI::~CBtnUI()

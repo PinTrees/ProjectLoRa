@@ -6,12 +6,10 @@ CPanelUI::CPanelUI()
 	: CUI(false)
 	, mFixedPos(true)
 {
-
 }
 
 CPanelUI::~CPanelUI()
 {
-
 }
 
 

@@ -29,6 +29,6 @@ public:
 
 public:
 	CImageUI();
-	~CImageUI();
+	~CImageUI() override;
 };
 

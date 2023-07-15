@@ -26,6 +26,6 @@ public:
 
 public:
     CPanelUI();
-    ~CPanelUI();
+    virtual ~CPanelUI() override;
 };
 
