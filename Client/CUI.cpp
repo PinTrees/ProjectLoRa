@@ -11,6 +11,7 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+#include "UIMgr.h"
 
 CUI::CUI(bool cameraAffected)
 	: mVecChildUI{}
@@ -90,7 +91,9 @@ void CUI::OnMouseCheck()
 	else
 	{
 		mOnMouseCheck = false;
+
 	}
+	CUIMgr::GetI()->SetMouseOn(mOnMouseCheck);
 }
 
 void CUI::Render(HDC dc)
@@ -117,6 +120,7 @@ void CUI::Render(HDC dc)
 	if(nullptr == mpTexture)
 	{
 		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
+		SelectGDI c(dc, PEN_TYPE::RED);
 		Rectangle
 		(
 			dc,
@@ -180,6 +184,7 @@ void CUI::OnDestroy()
 
 void CUI::MouseOn()
 {
+	CUIMgr::GetI()->SetMouseOn(mOnMouseCheck);
 
 }
 

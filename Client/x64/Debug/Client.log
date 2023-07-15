@@ -1,4 +1,0 @@
-﻿  unity_PGV4KE3IWS9WSZIW.cpp
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
-  Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

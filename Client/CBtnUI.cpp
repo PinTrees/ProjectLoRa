@@ -50,6 +50,8 @@ void CBtnUI::Render(HDC dc)
 
 void CBtnUI::MouseOn()
 {
+	CUI::MouseOn();
+
 }
 
 void CBtnUI::MouseLbtnDown()
@@ -62,6 +64,8 @@ void CBtnUI::MouseLbtnUp()
 
 void CBtnUI::MouseLbtnClick()
 {
+
+
 	if (nullptr != mpFunc)
 	{
 		mpFunc(mparam1, mparam2);

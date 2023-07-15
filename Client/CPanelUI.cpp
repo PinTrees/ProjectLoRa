@@ -25,6 +25,8 @@ void CPanelUI::Render(HDC _dc)
 
 void CPanelUI::MouseOn()
 {
+	CUI::MouseOn();
+
 	if (mFixedPos)
 		return;
 

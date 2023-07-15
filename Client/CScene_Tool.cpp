@@ -44,10 +44,12 @@ void Scene_Tool::Enter()
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
-	CUI* pPanelUI = new CPanelUI;
+	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
 	pPanelUI->SetScale(Vect2(300.f, 150.f));
 	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
+	pPanelUI->SetFixedPos(false);
+
 
 	CBtnUI* pBtnUI = new CBtnUI;
 	pBtnUI->SetName(L"ChildUI");
@@ -89,6 +91,9 @@ void Scene_Tool::Update()
 
 void Scene_Tool::SetTileIdx()
 {
+	if (CUIMgr::GetI()->IsMouseOn())
+		return;
+
 	if (KEY_TAP(KEY::LBTN))
 	{
 		Vect2 vMousePos = MOUSE_POS;

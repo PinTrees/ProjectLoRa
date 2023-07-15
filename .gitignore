@@ -11,3 +11,4 @@ Output/bin_debug/Client.pdb
 ### VisualStudio Patch ###
 # By default, sensitive information, such as encrypted password
 # should be stored in the .pubxml.user file.
+x64/
