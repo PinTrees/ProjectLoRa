@@ -43,8 +43,8 @@ Monster::Monster()
 	GetAnimator()->Play(L"IDLE", true);
 
 	mHpBar = new BarUI;
-	mHpBar->SetPivot(Vect2(70.f, -25.f));
-	mHpBar->SetScale(Vect2(50.f, 4.f));
+	mHpBar->SetPivot(Vect2(70.f, -25.f) * 0.8f);
+	mHpBar->SetScale(Vect2(50.f, 6.f));
 	mHpBar->SetColor(RGB(255, 0, 0));
 	CreateObject(mHpBar, GROUP_TYPE::UI);
 }

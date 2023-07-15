@@ -13,7 +13,7 @@
 #include "DeadState.h"
 #include "AtkState.h"
 
-
+#include "CCollider.h"
 
 
 Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
@@ -22,6 +22,8 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 	pMonster->SetPos(pos);
 	pMonster->CreateRigidBody();
+	pMonster->SetName(L"Monster");
+	pMonster->GetCollider()->SetTrigger(false);
 
 	switch (type)
 	{
@@ -34,6 +36,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.curHp = info.hp = 100.f;
 		info.speed = 70.f;
 
+		pMonster->SetScale(Vect2(280.f, 180.f) * 0.8f);
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
 

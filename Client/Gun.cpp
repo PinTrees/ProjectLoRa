@@ -62,7 +62,7 @@ Gun::Gun(const wstring& _type)
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(28.f, 16.f), Vect2(28.f, 0.f), 5.f, 1);
 		SetScale(Vect2(28.f, 16.f) * 1.5f);
-		SetPivot(Vect2(-30.f, 0.f));
+		SetPivot(Vect2(-40.f, 0.f));
 		SetAngleOffset(180);
 	}
 
@@ -149,7 +149,7 @@ void Gun::Update()
 		return;
 	}
 
-	SetPos(mOwner->GetLocalPos() + Vect2(0.f, -45.f));
+	SetPos(mOwner->GetLocalPos() + Vect2(15.f, -45.f));
 }
 
 void Gun::Render(HDC _dc)

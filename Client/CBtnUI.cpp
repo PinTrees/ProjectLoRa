@@ -15,6 +15,7 @@ CBtnUI::CBtnUI()
 	, mText(nullptr)
 	, mpVeilTex(nullptr)
 	, mpChangeTex(nullptr)
+	, mHoberAlpha(0.f)
 {
 	mText = new TextUI;
 	AddChild(mText);
@@ -34,18 +35,15 @@ void CBtnUI::Render(HDC dc)
 
 	if (IsLbtnDown())
 	{
-		SetAlpha(128);
+		mHoberAlpha = 128.f;
+		ApplyAlphaBlend(dc);
+
 	}
 	else if (IsMouseOn())
 	{
-		SetAlpha(32);
+		mHoberAlpha = 32.f;
+		ApplyAlphaBlend(dc);
 	}
-	else
-	{
-		SetAlpha(0);
-	}
-
-	ApplyAlphaBlend(dc);
 }
 
 void CBtnUI::MouseOn()
@@ -124,7 +122,7 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
 	bf.AlphaFormat = 0;
-	bf.SourceConstantAlpha = GetAlpha();
+	bf.SourceConstantAlpha = mHoberAlpha;
 
 	AlphaBlend(_dc
 		, (int)vPos.x - vSize.x * 0.5f

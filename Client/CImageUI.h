@@ -11,10 +11,14 @@ class CImageUI :
 {
 private:
 	CTexture* mpTexture;
+	CTexture* mDefaultTex;
+	COLORREF  mColor;
 
 
 public:
 	void SetTexture(CTexture* tex) { mpTexture = tex; };
+	void SetColor(COLORREF color);
+
 
 public:
 	virtual void Render(HDC dc) override;

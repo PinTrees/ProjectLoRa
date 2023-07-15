@@ -31,13 +31,18 @@ Particle::Particle(const wstring& _type)
 	}
 	else if (_type == L"4")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.03f, 11);
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 11);
 		SetScale(Vect2(48.f, 48.f) * 1.5f);
 	}
 	else if (_type == L"5")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.03f, 9);
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 9);
 		SetScale(Vect2(48.f, 48.f) * 1.5f);
+	}
+	else if (_type == L"101")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(64.f, 64.f), Vect2(64.f, 0.f), 0.05f, 9);
+		SetScale(Vect2(64.f, 64.f) * 1.f);
 	}
 
 	GetAnimator()->Play(L"IDLE", false);

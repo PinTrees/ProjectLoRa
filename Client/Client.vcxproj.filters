@@ -239,6 +239,9 @@
     <Filter Include="FreamWork\UI\CWrap">
       <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\Box">
+      <UniqueIdentifier>{ebef6388-bed5-48de-a2b1-848c513dbea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -454,6 +457,9 @@
     <ClInclude Include="CWrap.h">
       <Filter>FreamWork\UI\CWrap</Filter>
     </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Game\Object\Box</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -661,6 +667,9 @@
     </ClCompile>
     <ClCompile Include="CWrap.cpp">
       <Filter>FreamWork\UI\CWrap</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Game\Object\Box</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
