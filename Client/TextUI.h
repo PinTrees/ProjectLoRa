@@ -6,7 +6,10 @@
 struct tTextStyle
 {
 	float		fontSize;
+
 	COLORREF	color;
+	COLORREF    innerColor;
+	COLORREF    outerColor;
 };
 
 

@@ -15,6 +15,7 @@ private:
 
     bool        mBorder;
 
+
 public:
     void Load(const wstring& _text, const wstring& _name, int _size, bool _border);
     void Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale);
@@ -23,6 +24,7 @@ public:
     void SetOuterColor(COLORREF _color) { mOuterColor = _color; }
 
     HDC GetDC() { return mDC; }
+
 
 private:
     CFont(HDC _mDC);
