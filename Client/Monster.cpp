@@ -50,10 +50,10 @@ Monster::Monster(const wstring& uid)
 	else if (mtInfo.UID == L"2")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 48.f * 1.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 2.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 3.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.07f, 4);
+		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 48.f * 8.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.07f, 4);
 		GetCollider()->SetOffsetPos(Vect2::zero);
 		SetScale(Vect2(48.f, 48.f) * 1.8f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
