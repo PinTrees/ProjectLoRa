@@ -12,6 +12,8 @@ private:
 	float mDeleteDelay;
 	float mCurDelay;
 
+	bool mbOpened;
+
 
 public:
 	virtual void Update() override;

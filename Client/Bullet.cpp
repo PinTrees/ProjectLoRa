@@ -134,7 +134,7 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 		}
 
 		int randPos = 25;
-		Particle* pEff = new Particle(L"4");
+		Particle* pEff = new Particle(L"202");
 		pEff->SetPos(GetPos() + Vect2(rand() % randPos - randPos, rand() % randPos - randPos) + m_vDir * 25.f);
 		pEff->SetName(L"Particle");
 		pEff->SetScale(pEff->GetScale() * (mInfo.penetrationCount + 1) * 0.3f);

@@ -39,12 +39,44 @@ Particle::Particle(const wstring& _type)
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 9);
 		SetScale(Vect2(48.f, 48.f) * 1.5f);
 	}
+
+	// 101 ~ 105 Àü·ù ÀÌÆåÆ®
 	else if (_type == L"101")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(64.f, 64.f), Vect2(64.f, 0.f), 0.05f, 9);
 		SetScale(Vect2(64.f, 64.f) * 1.f);
 	}
+	else if (_type == L"102")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 128.f), Vect2(48.f, 0.f), 0.05f, 15);
+		SetScale(Vect2(48.f, 128.f) * 1.5f);
+	}
+	else if (_type == L"103")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.05f, 10);
+		SetScale(Vect2(48.f, 64.f) * 3.f);
+	}
+	else if (_type == L"104")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(64.f, 64.f), Vect2(64.f, 0.f), 0.03f, 14);
+		SetScale(Vect2(64.f, 64.f) * 3.f);
+	}
+	else if (_type == L"105")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 16);
+		SetScale(Vect2(48.f, 48.f) * 3.f);
+	}
 
+	else if (_type == L"201")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(96.f, 96.f), Vect2(96.f, 0.f), 0.05f, 8);
+		SetScale(Vect2(96.f, 96.f) * 3.f);
+	}
+	else if (_type == L"202")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(96.f, 96.f), Vect2(96.f, 0.f), 0.05f, 8);
+		SetScale(Vect2(96.f, 96.f) * 2.f);
+	}
 	GetAnimator()->Play(L"IDLE", false);
 }
 

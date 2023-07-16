@@ -18,7 +18,7 @@
 
 Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 {
-	Monster* pMonster = new Monster;
+	Monster* pMonster = new Monster(L"2");
 
 	pMonster->SetPos(pos);
 	pMonster->CreateRigidBody();
@@ -36,7 +36,6 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.curHp = info.hp = 100.f;
 		info.speed = 70.f;
 
-		pMonster->SetScale(Vect2(280.f, 180.f) * 0.8f);
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
 
