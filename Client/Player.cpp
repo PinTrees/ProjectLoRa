@@ -29,6 +29,8 @@
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 #include "TextUI.h"
+#include "CRow.h"
+#include "CImageUI.h"
 
 #include "CState.h"
 
@@ -86,6 +88,7 @@ Player::Player()
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
+	// Exp Bar
 	mExpBar = new BarUI;
 	mExpBar->SetCameraAffected(true);
 	mExpBar->SetScale(Vect2(vRes.x, 8.f));
@@ -93,12 +96,27 @@ Player::Player()
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
 
-	mHpBar = new BarUI;
-	mHpBar->SetCameraAffected(true);
+	// Player HP UI Parent
+	CRow* pRow = new CRow;
+	pRow->SetScale(Vect2(400.f, 50.f));
+	pRow->SetPos(Vect2(pRow->GetScale() * 0.5f) + Vect2(28.f, 28.f));
+	pRow->SetSpacing(16.f);
+	pRow->SetAlignment(ALIGNMENT::CENTER_LEFT);
+	CreateObject(pRow, GROUP_TYPE::UI);
+
+	// HP Icon
+	CImageUI* pIcon = new CImageUI;
+	pIcon->SetScale(Vect2(36.f, 36.f));
+	pIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Hp", L"texture\\ui\\icon\\hp.bmp"));
+	pRow->AddChild(pIcon);
+
+	// HP Bar 
+	mHpBar = new CImageUI;
+	mHpBar->SetScale(Vect2(36.f, 36.f));
 	mHpBar->SetScale(Vect2(250.f, 12.f));
-	mHpBar->SetPos(Vect2(mHpBar->GetScale() * 0.5f) + Vect2(28.f, 28.f));
 	mHpBar->SetColor(RGB(255, 0, 0));
-	CreateObject(mHpBar, GROUP_TYPE::UI);
+	mHpBar->SetImageType(IMAGE_TYPE::FILLED);
+	pRow->AddChild(mHpBar);
 }
 
 
@@ -119,8 +137,8 @@ void Player::Update()
 	mfCurDelay += DT;
 	
 	Vect2 vPos = GetPos();
-	mExpBar->SetAmount(GetExp() / GetMaxExp());
-	mHpBar->SetAmount(mtInfo.curHp / mtInfo.fullHP);
+	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
+	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;

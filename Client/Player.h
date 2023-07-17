@@ -27,7 +27,7 @@ struct tPlayerInfo
 class CTexture;
 class Gun;
 class BarUI;
-class CUI;
+class CImageUI;
 class LevelupUI;
 
 
@@ -47,7 +47,7 @@ private:
 
 	float	mExp;
 	BarUI*	mExpBar;
-	BarUI*	mHpBar;
+	CImageUI*	mHpBar;
 
 	tPlayerInfo			mtInfo;
 	AI<PLAYER_STATE>*	mAI;

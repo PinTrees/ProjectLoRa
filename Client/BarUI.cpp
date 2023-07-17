@@ -26,7 +26,7 @@ void BarUI::Render(HDC _dc)
 {
 	SelectGDI b(_dc, BRUSH_TYPE::BLACK);
 
-	Vect2 vRenderPos = GetLocalPos();
+	Vect2 vRenderPos = GetLocalPos() + GetFinalPos();
 	Vect2 vSize = GetScale();
 
 	if (!IsCameraAffected())
@@ -42,7 +42,7 @@ void BarUI::Render(HDC _dc)
 
 	SelectGDI b1(_dc, NULL, GetColor());
 
-	float amountX = vSize.x * mAmount;
+	float amountX = vSize.x * mFillAmount;
 
 	Rectangle(_dc
 		, (int)(vRenderPos.x - vSize.x * 0.5f)

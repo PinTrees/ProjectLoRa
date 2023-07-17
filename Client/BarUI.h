@@ -8,11 +8,11 @@ class BarUI :
     public CUI
 {
 private:
-    float       mAmount;
+    float       mFillAmount;
 
 
 public:
-    void SetAmount(float amount) { mAmount = amount; };
+    void SetFillAmount(float amount) { mFillAmount = amount; };
 
 
 public:

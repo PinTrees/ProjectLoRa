@@ -2,6 +2,7 @@
 #include "CTexture.h"
 
 #include "CCore.h"
+#include "SelectGDI.h"
 
 CTexture::CTexture()
 	:mhBit(0)
@@ -35,16 +36,22 @@ void CTexture::Load(const wstring& strFilePath)
 }
 
 
-void CTexture::Create(UINT width, UINT heigth, COLORREF color)
+void CTexture::Create(UINT width, UINT height, COLORREF color)
 {
 	HDC mainDc = CCore::GetI()->GetMainDC();
 
-	mhBit = CreateCompatibleBitmap(mainDc, width, heigth);
-	mDC = CreateCompatibleDC(mainDc); 
+	mhBit = CreateCompatibleBitmap(mainDc, width, height);
+	mDC = CreateCompatibleDC(mainDc);
 
 	HBITMAP hOldBit = (HBITMAP)SelectObject(mDC, mhBit);
 	DeleteObject(hOldBit);
 
-	// Bitmap Info Data Setting
+	// 비트맵을 주어진 색상으로 채움
+	HBRUSH hBrush = CreateSolidBrush(color);
+	RECT rect = { 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) };
+	FillRect(mDC, &rect, hBrush);
+	DeleteObject(hBrush);
+
+	// 비트맵 정보 설정
 	GetObject(mhBit, sizeof(BITMAP), &mBitInfo);
 }

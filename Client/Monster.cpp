@@ -95,7 +95,7 @@ void Monster::Update()
 
 	if (nullptr != mHpBar)
 	{
-		mHpBar->SetAmount((float)mtInfo.curHp / (float)mtInfo.hp);
+		mHpBar->SetFillAmount((float)mtInfo.curHp / (float)mtInfo.hp);
 		mHpBar->SetPos(GetPos());
 	}
 }

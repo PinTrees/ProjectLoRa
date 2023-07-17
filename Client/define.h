@@ -104,6 +104,15 @@ enum class EVENT_TYPE
 	END,
 };
 
+enum class RECT_DIRECTION
+{
+	LEFT,
+	TOP,
+	BOTTOM,
+	RIGHT
+};
+
+
 enum class BULLET_STATE
 {
 
