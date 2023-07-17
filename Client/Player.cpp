@@ -34,6 +34,8 @@
 
 #include "CState.h"
 
+#include "Skill.h"
+
 // Game Manager Header
 #include "HubUIMgr.h"
 #include "LevelUpUIMgr.h"
@@ -50,6 +52,7 @@ Player::Player()
 	, mExp(0.f)
 	, mAI(nullptr)
 	, mtInfo({})
+	, mVecSkill({})
 {
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
@@ -127,6 +130,8 @@ Player::~Player()
 }
 
 
+
+
 void Player::Update()
 {
 	if (mAI)
@@ -136,12 +141,20 @@ void Player::Update()
 	calExp();
 	mfCurDelay += DT;
 	
+
+	for (int i = 0; i < (UINT)mVecSkill.size(); ++i)
+	{
+		if (nullptr != mVecSkill[i])
+			mVecSkill[i]->UseSkill();
+	}
+
 	Vect2 vPos = GetPos();
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
+
 
 	if (nullptr !=  mCurGun)
 	{
@@ -196,8 +209,23 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
-		LevelupUIMgr::GetI()->Choice();
+		LevelUpUIMgr::GetI()->Choice();
 	}
 }
 
 
+Skill* Player::FindSkill(SKILL_TYPE type)
+{
+	Skill* result = nullptr;
+	
+	for (int i = 0; i < mVecSkill.size(); ++i)
+	{
+		if (mVecSkill[i]->GetType() == type)
+		{
+			Skill* result = mVecSkill[i];
+			break;
+		}
+	}
+
+	return result;
+}

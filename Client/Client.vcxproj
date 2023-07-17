@@ -169,6 +169,8 @@
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CWrap.h" />
     <ClInclude Include="HubUIMgr.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemMgr.h" />
     <ClInclude Include="LevelUpUI.h" />
     <ClInclude Include="LevelUpUIMgr.h" />
     <ClInclude Include="Monster.h" />
@@ -209,6 +211,8 @@
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="Scene_Main.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillMgr.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileEditMgr.h" />
@@ -243,6 +247,8 @@
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemMgr.cpp" />
     <ClCompile Include="LevelUpUI.cpp" />
     <ClCompile Include="LevelUpUIMgr.cpp" />
     <ClCompile Include="Monster.cpp">
@@ -283,6 +289,8 @@
     <ClCompile Include="Scene_Main.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="SkillMgr.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileEditMgr.cpp" />

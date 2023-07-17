@@ -11,16 +11,16 @@
 #include "CImageUI.h"
 
 
-SINGLE_HEADER(LevelupUIMgr);
+SINGLE_HEADER(LevelUpUIMgr);
 
 
-LevelupUIMgr::LevelupUIMgr()
-	: mMapLvUpEffectData{}
+LevelUpUIMgr::LevelUpUIMgr()
+	: mMapLvupEffectData{}
 	, mCurLvupUI{}
 {
 }
 
-LevelupUIMgr::~LevelupUIMgr()
+LevelUpUIMgr::~LevelUpUIMgr()
 {
 	for (size_t i = 0; i < mCurLvupUI.size(); ++i)
 	{
@@ -28,25 +28,29 @@ LevelupUIMgr::~LevelupUIMgr()
 			DeleteObject(mCurLvupUI[i]);
 	}
 
-	mMapLvUpEffectData.clear();
+	mMapLvupEffectData.clear();
 }
 
 
-void LevelupUIMgr::Init()
+void LevelUpUIMgr::Init()
 {
-	mMapLvUpEffectData[LEVELUP_EFFECT::FULL_HP_UP]			= { L"최대 체력 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::REGENERATION_HP_UP]	= { L"체력 재생 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::MOVE_SPEED_UP]		= { L"이동속도 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::ATK_DAMAGE_UP]		= { L"공격력 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::ATK_SPEED_UP]		= { L"공격속도 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::ATK_RANGE_UP]		= { L"사거리 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::SHOT_SPEED_UP]		= { L"탄속 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::RELOAD_SPEED_UP]		= { L"재장전 속도 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::SHOT_ANGLE_UP]		= { L"명중률 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::SHOT_COUNT_UP]		= { L"발사되는 총알 개수 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::PENETRATION_UP]		= { L"총알이 적을 관통하는 횟수 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::SPLITCOUNT_UP]		= { L"분열되는 총알의 개수 증가", L"" };
-	mMapLvUpEffectData[LEVELUP_EFFECT::BOUNTCECOUNT_UP]		= { L"총알이 벽에 튕기는 횟수 증가", L"" };
+	mMapLvupEffectData[STATEUP_TYPE::FULL_HP_UP]			= { L"최대 체력 증가", L"강인함" };
+	mMapLvupEffectData[STATEUP_TYPE::REGENERATION_HP_UP]	= { L"체력 재생 증가", L"생명력" };
+	mMapLvupEffectData[STATEUP_TYPE::MOVE_SPEED_UP]			= { L"이동속도 증가", L"순발력" };
+	mMapLvupEffectData[STATEUP_TYPE::ATK_DAMAGE_UP]			= { L"공격력 증가", L"__Test__" };
+	mMapLvupEffectData[STATEUP_TYPE::ATK_SPEED_UP]			= { L"공격속도 증가", L"신속" };
+	mMapLvupEffectData[STATEUP_TYPE::ATK_RANGE_UP]			= { L"사거리 증가", L"판단력" };
+	mMapLvupEffectData[STATEUP_TYPE::SHOT_SPEED_UP]			= { L"탄속 증가", L"절대집중" };
+	mMapLvupEffectData[STATEUP_TYPE::RELOAD_SPEED_UP]		= { L"재장전 속도 증가", L"__Test__" };
+	mMapLvupEffectData[STATEUP_TYPE::SHOT_ANGLE_UP]			= { L"명중률 증가", L"집중" };
+	mMapLvupEffectData[STATEUP_TYPE::SHOT_COUNT_UP]			= { L"발사되는 총알 개수 증가", L"__Test__" };
+	mMapLvupEffectData[STATEUP_TYPE::PENETRATION_UP]		= { L"총알이 적을 관통하는 횟수 증가", L"__Test__" };
+	mMapLvupEffectData[STATEUP_TYPE::SPLITCOUNT_UP]			= { L"분열되는 총알의 개수 증가", L"__Test__" };
+	mMapLvupEffectData[STATEUP_TYPE::BOUNTCECOUNT_UP]		= { L"총알이 벽에 튕기는 횟수 증가", L"__Test__" };
+
+	mMapLvupEffectData_Skill[SKILL_TYPE::TEST_SKILL_1] = { L"테스트 스킬 1 업그레이드", L"최후의 발악" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::TEST_SKILL_2] = { L"테스트 스킬 2 업그레이드", L"할로우 포인트" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::TEST_SKILL_3] = { L"테스트 스킬 3 업그레이드", L"사격의 정석" };
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
@@ -75,23 +79,46 @@ void LevelupUIMgr::Init()
 }
 
 
-void LevelupUIMgr::Choice()
+void LevelUpUIMgr::Choice()
 {
-	int a = 0;
-	int rand[3];
+	tLeveUpEvent tEventArr[3];
+
 	for (int i = 0; i < 3; ++i)
 	{
-		rand[i] = CRandom::GetI()->Next(0, (int)LEVELUP_EFFECT::END);
+		tEventArr[i].type = (LEVELUP_TYPE)CRandom::GetI()->Next(0, (int)LEVELUP_TYPE::ITEM);
+
+		switch (tEventArr[i].type)
+		{
+		case LEVELUP_TYPE::STATE:
+		{
+			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)STATEUP_TYPE::END);
+			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData[(STATEUP_TYPE)tEventArr[i].lParam];
+		}
+		break;
+		case LEVELUP_TYPE::SKILL:
+		{
+			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)SKILL_TYPE::END);
+			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData_Skill[(SKILL_TYPE)tEventArr[i].lParam];
+		}
+		break;
+		case LEVELUP_TYPE::ITEM:
+		{
+			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)SKILL_TYPE::END);
+			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData_Skill[(SKILL_TYPE)tEventArr[i].lParam];
+		}
+		break;
+		}
+
 		for (int j = 0; j < i; ++j)
 		{
-			if (rand[j] == rand[i])
+			if (tEventArr[j] == tEventArr[i])
 				--i;
 		}
 	}
 
 	for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
-		mCurLvupUI[i]->SetTitle(mMapLvUpEffectData[(LEVELUP_EFFECT)rand[i]].titleStr);
+		mCurLvupUI[i]->SetEffect(tEventArr[i]);
 	}
 
 	mLevelUpUIPanel->SetVisible(true);
@@ -100,11 +127,7 @@ void LevelupUIMgr::Choice()
 }
 
 
-void LevelupUIMgr::Delete()
+void LevelUpUIMgr::Delete()
 {
 	mLevelUpUIPanel->SetVisible(false);
-	/*for (int i = 0; i < mCurLvupUI.size(); ++i)
-	{
-		mCurLvupUI[i]->SetVisible(false);
-	}*/
 }

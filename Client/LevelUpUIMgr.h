@@ -1,23 +1,49 @@
 #pragma once
 
-struct tLevelUpEffectData
+struct tLvupEffectData
 {
-	wstring		titleStr;	// 타이틀
 	wstring		infoStr;	// 세부설명
+	wstring		titleStr;	// 타이틀
+};
+
+enum class LEVELUP_TYPE
+{
+	STATE,
+	SKILL,
+	ITEM,
+	END
 };
 
 
-class LevelupUI;
+struct tLeveUpEvent
+{
+	LEVELUP_TYPE	type;
+	DWORD_PTR		lParam;
+	DWORD_PTR		wParam;
+
+	bool operator==(const tLeveUpEvent& other) const
+	{
+		return (type == other.type 
+				&& lParam == other.lParam
+				&& wParam == other.wParam);
+	}
+};
+
+
+
 class CUI;
+class LevelupUI;
 class Player;
 
 
-class LevelupUIMgr
+class LevelUpUIMgr
 {
-	SINGLE(LevelupUIMgr)
+	SINGLE(LevelUpUIMgr)
 
 private:
-	map<LEVELUP_EFFECT, tLevelUpEffectData> mMapLvUpEffectData;
+	map<STATEUP_TYPE, tLvupEffectData>	mMapLvupEffectData;
+	map<SKILL_TYPE, tLvupEffectData>	mMapLvupEffectData_Skill;
+
 	array<LevelupUI*, 3>					mCurLvupUI;
 	CUI*	mLevelUpUIPanel;
 

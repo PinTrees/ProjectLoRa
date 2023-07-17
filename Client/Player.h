@@ -26,9 +26,11 @@ struct tPlayerInfo
 
 class CTexture;
 class Gun;
+class Skill;
 class BarUI;
 class CImageUI;
 class LevelupUI;
+
 
 
 
@@ -39,17 +41,17 @@ class Player :
 private:
 	float	mfDelay;
 	float	mfCurDelay;
-
 	Vect2	mvDir;
-	Gun*	mCurGun;
 
-	int		mLevel;
-
-	float	mExp;
-	BarUI*	mExpBar;
+	int			mLevel;
+	float		mExp;
+	BarUI*		mExpBar;
 	CImageUI*	mHpBar;
 
 	tPlayerInfo			mtInfo;
+	vector<Skill*>		mVecSkill;
+	Gun*				mCurGun;
+
 	AI<PLAYER_STATE>*	mAI;
 
 
@@ -66,6 +68,10 @@ public:
 
 	void SetAI(AI<PLAYER_STATE>* pAI) { mAI = pAI; mAI->SetOwner(this); }
 	AI<PLAYER_STATE>* GetAI() { return mAI; }
+
+
+public:
+	Skill* FindSkill(SKILL_TYPE type);
 
 
 public:

@@ -242,6 +242,21 @@
     <Filter Include="FreamWork\UI\Column">
       <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Manager\SkillMgr">
+      <UniqueIdentifier>{85303bcd-271c-4d27-ada1-65825ee1b4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class">
+      <UniqueIdentifier>{3ebc293f-a098-435a-9b3f-f373422136b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\ItemMgr">
+      <UniqueIdentifier>{4f9a91f6-811e-4ce0-91da-cb49e1e24a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill">
+      <UniqueIdentifier>{0f50fca6-32fd-4868-8ca7-f20c942d4ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Item">
+      <UniqueIdentifier>{03e766ea-fb9d-4951-8cb0-efed554c7acf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -460,6 +475,18 @@
     <ClInclude Include="Box.h">
       <Filter>Game\Object\Box</Filter>
     </ClInclude>
+    <ClInclude Include="SkillMgr.h">
+      <Filter>Game\Manager\SkillMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemMgr.h">
+      <Filter>Game\Manager\ItemMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Game\Class\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Game\Class\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -670,6 +697,18 @@
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>Game\Object\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillMgr.cpp">
+      <Filter>Game\Manager\SkillMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemMgr.cpp">
+      <Filter>Game\Manager\ItemMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Game\Class\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Game\Class\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
