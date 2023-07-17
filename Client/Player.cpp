@@ -46,9 +46,12 @@ Player::Player()
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
-	, mLevelupUI(nullptr)
 	, mAI(nullptr)
+	, mtInfo({})
 {
+	mtInfo.fullHP = 100.f;
+	mtInfo.curHp = mtInfo.fullHP;
+
 	// Init Object Component
 	// Create Collider Component
 	CreateCollider();
@@ -90,6 +93,12 @@ Player::Player()
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
 
+	mHpBar = new BarUI;
+	mHpBar->SetCameraAffected(true);
+	mHpBar->SetScale(Vect2(250.f, 12.f));
+	mHpBar->SetPos(Vect2(mHpBar->GetScale() * 0.5f) + Vect2(28.f, 28.f));
+	mHpBar->SetColor(RGB(255, 0, 0));
+	CreateObject(mHpBar, GROUP_TYPE::UI);
 }
 
 
@@ -111,6 +120,7 @@ void Player::Update()
 	
 	Vect2 vPos = GetPos();
 	mExpBar->SetAmount(GetExp() / GetMaxExp());
+	mHpBar->SetAmount(mtInfo.curHp / mtInfo.fullHP);
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;

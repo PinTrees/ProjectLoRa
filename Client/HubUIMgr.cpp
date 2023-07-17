@@ -34,6 +34,7 @@ void HubUIMgr::Init()
 
 
 	CRow* pRowUI = new CRow;
+	pRowUI->SetAlignment(ALIGNMENT::CENTER_LEFT);
 	pRowUI->SetPos(vRes - Vect2(200.f, 50.f));
 	pRowUI->SetScale(Vect2(350.f, 50.f));
 	pRowUI->SetSpacing(-8.f);
@@ -45,7 +46,7 @@ void HubUIMgr::Init()
 	for (int i = 0; i < 10; ++i)
 	{
 		CImageUI* bImg = new CImageUI;
-		bImg->SetScale(Vect2(40.f, 60.f));
+		bImg->SetScale(Vect2(40.f, 60.f) * 0.7f);
 
 		bImg->CreateAnimator();
 		bImg->GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(32.f, 48.f), Vect2(32.f, 0.f), 0.1f, 4);

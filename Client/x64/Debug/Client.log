@@ -1,10 +1,9 @@
 ﻿  unity_5HU55YLDGK8HNQS2.cpp
-  unity_6FXSFOLDT5260QUR.cpp
+  unity_A6XGYC4229T8GACF.cpp
+  unity_J08UGWLORY5H6KMV.cpp
   unity_JEDIZBWYKPC5YI30.cpp
   unity_MP9PRTINWCT90FV1.cpp
-  unity_PDVFR1XAR438V0G1.cpp
   unity_W7AODL4ZKP2OV6GP.cpp
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(52,2): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(70,5): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(178,3): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
@@ -12,92 +11,20 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(186,20): warning C4244: '�
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(185,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(184,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(183,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_W7AODL4ZKP2OV6GP.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(93,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_A6XGYC4229T8GACF.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(96,17): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_A6XGYC4229T8GACF.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(103,28): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_A6XGYC4229T8GACF.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(104,33): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_A6XGYC4229T8GACF.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Gun.cpp(105,27): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_A6XGYC4229T8GACF.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_JEDIZBWYKPC5YI30.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_JEDIZBWYKPC5YI30.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(57,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_W7AODL4ZKP2OV6GP.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_JEDIZBWYKPC5YI30.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_JEDIZBWYKPC5YI30.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CAnimation.cpp(292,18): warning C4477: 'fprintf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다. (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CAnimation.cpp(292,18): message : 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다. (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(151,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
 C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(152,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP9PRTINWCT90FV1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CImageUI.cpp(75,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_PDVFR1XAR438V0G1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CImageUI.cpp(74,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_PDVFR1XAR438V0G1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CImageUI.cpp(98,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_PDVFR1XAR438V0G1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CImageUI.cpp(97,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_PDVFR1XAR438V0G1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CBtnUI.cpp(125,27): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CBtnUI.cpp(129,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CBtnUI.cpp(128,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_JEDIZBWYKPC5YI30.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_JEDIZBWYKPC5YI30.cpp)
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2857,53): warning C4244: '인수': 'wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              _Elem=char
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2718,1): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=wchar_t *,
-              _Sent=wchar_t *,
-              _Size=unsigned __int64
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2718,37): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=wchar_t *,
-              _Sent=wchar_t *,
-              _Size=unsigned __int64
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CAnimation.cpp(270,13): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CAnimation.cpp(270,17): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2857,53): warning C4244: '인수': 'const wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-          with
-          [
-              _Elem=char
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2718,1): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=const wchar_t *,
-              _Sent=const wchar_t *,
-              _Size=unsigned __int64
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\xstring(2718,37): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Size_type=unsigned __int64,
-              _Iter=const wchar_t *,
-              _Sent=const wchar_t *,
-              _Size=unsigned __int64
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CAnimation.cpp(276,13): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CAnimation.cpp(276,10): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ] (소스 파일 컴파일 중 x64\Debug\unity_6FXSFOLDT5260QUR.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Random.cpp(17,22): warning C4244: '인수': 'ULONGLONG'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_J08UGWLORY5H6KMV.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\HubUIMgr.cpp(68,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_W7AODL4ZKP2OV6GP.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(57,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_W7AODL4ZKP2OV6GP.cpp)
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

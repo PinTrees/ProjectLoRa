@@ -4,27 +4,23 @@
 
 
 
-struct tUpgrad
-{
-
-};
-
-
 struct tPlayerInfo
 {
-	float	mFullHP = 100.f;			// 최대체력
-	float	mRegenerationHP = 0.f;		// 체력재생
-	float	mMoveSpeed = 300.f;			// 이동 속도
-	float	mAtkDamage = 10.f;			// 공격력
-	float	mAtkSpeed = 10.f;			// 공격스피드
-	float	mAtkRange = 500.f;			// 사거리
-	float	mShotSpeed = 100.f;			// 총알 속도
-	float	mReloadSpeed = 50.f;		// 장전속도
-	float	mShotAngle = 0.f;			// 발사 각도(명중률)
-	float	mShotCount = 1.f;			// 발사 총알 개수
-	UINT	mPenetration = 0;			// 관통 수
-	UINT	mSplitCount = 0;			// 분열 수
-	UINT	mBounceCount = 0;			// 튕김 수
+	float	fullHP = 100.f;				// 최대체력
+	float	curHp = 0.f;				// 체력
+	float	regenerationHP = 0.f;		// 체력재생
+	float	moveSpeed = 300.f;			// 이동 속도
+	float	atkDamage = 10.f;			// 공격력
+	float	atkSpeed = 10.f;			// 공격스피드
+	float	atkRange = 500.f;			// 사거리
+	float	shotSpeed = 100.f;			// 총알 속도
+	float	reloadSpeed = 50.f;			// 장전속도
+	float	shotAngle = 0.f;			// 발사 각도(명중률)
+	float	shotCount = 1.f;			// 발사 총알 개수
+
+	UINT	penetration = 0;			// 관통 수
+	UINT	splitCount = 0;				// 분열 수
+	UINT	bounceCount = 0;			// 튕김 수
 };
 
 
@@ -45,23 +41,21 @@ private:
 	float	mfCurDelay;
 
 	Vect2	mvDir;
-
 	Gun*	mCurGun;
 
 	int		mLevel;
 
 	float	mExp;
 	BarUI*	mExpBar;
+	BarUI*	mHpBar;
 
-	CUI*	mLevelupUI;
-
-	tPlayerInfo			mtPlayerInfo;
+	tPlayerInfo			mtInfo;
 	AI<PLAYER_STATE>*	mAI;
 
 
 public:
-	tPlayerInfo GetInfo() { return mtPlayerInfo; }
-	void SetInfo(tPlayerInfo _info) { mtPlayerInfo = _info; }
+	tPlayerInfo GetInfo() { return mtInfo; }
+	void SetInfo(tPlayerInfo _info) { mtInfo = _info; }
 
 	float GetMaxExp() { return 10.f * mLevel + 10.f; };
 	float GetExp() { return mExp; };

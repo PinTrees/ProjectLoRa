@@ -233,14 +233,14 @@
     <Filter Include="Game\UI\CombatText">
       <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\UI\CColumn">
-      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\UI\CWrap">
-      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Object\Box">
       <UniqueIdentifier>{ebef6388-bed5-48de-a2b1-848c513dbea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Wrap">
+      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Column">
+      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -452,10 +452,10 @@
       <Filter>Game\UI\CombatText</Filter>
     </ClInclude>
     <ClInclude Include="CColumn.h">
-      <Filter>FreamWork\UI\CColumn</Filter>
+      <Filter>FreamWork\UI\Column</Filter>
     </ClInclude>
     <ClInclude Include="CWrap.h">
-      <Filter>FreamWork\UI\CWrap</Filter>
+      <Filter>FreamWork\UI\Wrap</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Game\Object\Box</Filter>
@@ -663,10 +663,10 @@
       <Filter>Game\UI\CombatText</Filter>
     </ClCompile>
     <ClCompile Include="CColumn.cpp">
-      <Filter>FreamWork\UI\CColumn</Filter>
+      <Filter>FreamWork\UI\Column</Filter>
     </ClCompile>
     <ClCompile Include="CWrap.cpp">
-      <Filter>FreamWork\UI\CWrap</Filter>
+      <Filter>FreamWork\UI\Wrap</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>Game\Object\Box</Filter>
