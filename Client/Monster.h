@@ -4,6 +4,7 @@
 
 struct tMonsterInfo
 {
+	wstring		UID;
 	float		speed;			// 이동속도
 	float		hp;				// 체력
 	float		recogRange;		// 인지범위
@@ -55,7 +56,7 @@ private:
 
 
 public:
-	Monster();
+	Monster(const wstring& uid);
 	~Monster();
 
 	friend class MonsterFactory;

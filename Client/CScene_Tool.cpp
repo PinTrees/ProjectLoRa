@@ -14,20 +14,24 @@
 #include "UIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "CWrap.h"
+#include "CImageUI.h"
 
 #include "FileMgr.h"
 #include "CPathMgr.h"
 #include "CTimeMgr.h"
 
+// Tool_Scene Mgr
+#include "ToolMgr.h"
 
 // function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
+void SelectTile(DWORD_PTR, DWORD_PTR);
 void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 
 
 Scene_Tool::Scene_Tool()
-	: mpUI(nullptr)
-	, mTileX(1)
+	: mTileX(1)
 	, mTileY(1)
 {
 }
@@ -40,26 +44,38 @@ void Scene_Tool::Enter()
 {
 	CCore::GetI()->SetActiveMenu(true);
 
-	CreateTile(this, 5, 5);
+	LoadTile(L"database\\map_1.tile");
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
-	CPanelUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetName(L"ParentUI");
-	pPanelUI->SetScale(Vect2(300.f, 150.f));
-	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
-	pPanelUI->SetFixedPos(false);
+	// TileEditUI
+	CUI* pEditPanel = new CPanelUI;
+	pEditPanel->SetName(L"EditPanel");
+	pEditPanel->SetScale(Vect2(vResolution.x * 0.4f, vResolution.y));
+	pEditPanel->SetPos(Vect2(vResolution.x - (pEditPanel->GetScale().x*0.5f), vResolution.y*0.5f));
+	pEditPanel->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
+	((CPanelUI*)pEditPanel)->SetFixedPos(false);
+
+	CUI* pEditWrap = new CWrap;
+	pEditWrap->SetScale(Vect2(pEditPanel->GetScale()));
+	pEditWrap->SetPos(Vect2(0.f, 130.f));
+	pEditPanel->AddChild(pEditWrap);
+
+	/// *** 버튼을 상속받는 CTileUI새로 만들어야함
+	for (int i = 0; i < 30; ++i)
+	{
+		CUI* pImg = new CBtnUI;
+		pImg->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+		pImg->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Tile_" + std::to_wstring(i + 1)
+			,L"texture\\item\\26_" + std::to_wstring(i + 1) + L".bmp"));
+		pEditWrap->AddChild(pImg);
+	}
+
+	CreateObject(pEditPanel, GROUP_TYPE::UI);
 
 
-	CBtnUI* pBtnUI = new CBtnUI;
-	pBtnUI->SetName(L"ChildUI");
-	pBtnUI->SetScale(Vect2(100.f, 40.f));
-	pBtnUI->SetPos(Vect2(0.f, 0.f));
 
-	// 함수를 인자로 넣을경우 명시적 주소표시 (전역함수만 생략 가능)
-	pBtnUI->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Tool::SaveTileData);
-	pPanelUI->AddChild(pBtnUI); 
-	AddObject(pPanelUI, GROUP_TYPE::UI);
+
 
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 }
@@ -91,27 +107,31 @@ void Scene_Tool::Update()
 
 void Scene_Tool::SetTileIdx()
 {
-	if (CUIMgr::GetI()->IsMouseOn())
+	// 마우스클릭된 좌표위에 UI가있을경우 UI클릭만하고 타일은 클릭 예외처리
+	if (CUIMgr::GetI()->IsMouseOnUI())
+	{
+		CUIMgr::GetI()->SetMouseOnUI(false);
 		return;
+	}
 
 	if (KEY_TAP(KEY::LBTN))
 	{
+		//현재 마우스 좌표 가져옴
 		Vect2 vMousePos = MOUSE_POS;
+		// 카메라에서 실제좌표로 변경
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
-		int iTileX = (int)GetTileX();
-		int iTileY = (int)GetTileY();
-
+	
 		int iCol = (int)vMousePos.x / TILE_SIZE_RENDER;
 		int iRow = (int)vMousePos.y / TILE_SIZE_RENDER;
 
-		if (vMousePos.x < 0.f || iTileX <= iCol
-			|| vMousePos.y < 0.f || iTileY <= iRow)
+		if (vMousePos.x < 0.f || static_cast<int>(mTileX) <= iCol || vMousePos.y < 0.f || static_cast<int>(mTileY) <= iRow)
 		{
 			return;
 		}
 
-		UINT iIdx = iRow * iTileX + iCol;
+		//타일 인덱스
+		UINT iIdx = iRow * mTileX + iCol;
 
 		const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
 		((Tile*)vecTile[iIdx])->AddImgIdx();
@@ -220,7 +240,11 @@ void Scene_Tool::LoadTile(const wstring& _fullPath)
 
 	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
 
-	assert(pFile);
+	if (nullptr == pFile)
+	{
+		CreateTile(this, 5, 5);
+		return;
+	}
 
 	UINT xCount = 0;
 	UINT yCount = 0;
@@ -241,7 +265,10 @@ void Scene_Tool::LoadTile(const wstring& _fullPath)
 }
 
 
-
+void SelectTile(DWORD_PTR, DWORD_PTR)
+{
+	
+}
 
 
 void ChangeScene(DWORD_PTR, DWORD_PTR)

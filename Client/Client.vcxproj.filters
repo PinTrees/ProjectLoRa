@@ -221,12 +221,6 @@
     <Filter Include="Game\Manager\LevelUpUIMgr">
       <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Editor">
-      <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Editor\TileEditMgr">
-      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UI\Bar">
       <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
     </Filter>
@@ -235,6 +229,21 @@
     </Filter>
     <Filter Include="FreamWork\UI\CColumn">
       <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\CWrap">
+      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Box">
+      <UniqueIdentifier>{ebef6388-bed5-48de-a2b1-848c513dbea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\ToolManager">
+      <UniqueIdentifier>{0252d80d-1523-4ffd-8660-c4501d3968f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\TileEditMgr">
+      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\TileBtn">
+      <UniqueIdentifier>{ecfc5147-e53a-4080-a30e-9b9010ceb12b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -436,9 +445,6 @@
     <ClInclude Include="LevelUpUIMgr.h">
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClInclude>
-    <ClInclude Include="TileEditMgr.h">
-      <Filter>Game\Editor\TileEditMgr</Filter>
-    </ClInclude>
     <ClInclude Include="BarUI.h">
       <Filter>Game\UI\Bar</Filter>
     </ClInclude>
@@ -447,6 +453,18 @@
     </ClInclude>
     <ClInclude Include="CColumn.h">
       <Filter>FreamWork\UI\CColumn</Filter>
+    </ClInclude>
+    <ClInclude Include="CWrap.h">
+      <Filter>FreamWork\UI\CWrap</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Game\Object\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolMgr.h">
+      <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TileEditMgr.h">
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -641,9 +659,6 @@
     <ClCompile Include="LevelUpUIMgr.cpp">
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClCompile>
-    <ClCompile Include="TileEditMgr.cpp">
-      <Filter>Game\Editor\TileEditMgr</Filter>
-    </ClCompile>
     <ClCompile Include="BarUI.cpp">
       <Filter>Game\UI\Bar</Filter>
     </ClCompile>
@@ -652,6 +667,18 @@
     </ClCompile>
     <ClCompile Include="CColumn.cpp">
       <Filter>FreamWork\UI\CColumn</Filter>
+    </ClCompile>
+    <ClCompile Include="CWrap.cpp">
+      <Filter>FreamWork\UI\CWrap</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Game\Object\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolMgr.cpp">
+      <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileEditMgr.cpp">
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

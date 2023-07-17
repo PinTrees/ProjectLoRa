@@ -11,10 +11,13 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+
 Gold::Gold()
 	: mDeleteDelay(25.f)
 	, mCurDelay(0.f)
 {
+	SetScale(Vect2(36.f, 36.f) * 0.7f);
+
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(55.f, 55.f));
 

@@ -12,7 +12,7 @@ SINGLE_HEADER(CUIMgr);
 
 CUIMgr::CUIMgr()
 	: _focusedUI(nullptr)
-	, mbMouseOnUI(false)
+	,mbMouseOnUI(false)
 {
 
 }
@@ -61,7 +61,6 @@ void CUIMgr::Update()
 
 			// 왼쪽버튼 때면, 눌렀던 체크를 다시 해제한다.
 			targetUI->mLbtnDown = false;
-
 		}
 	}
 }
@@ -129,7 +128,7 @@ CUI* CUIMgr::GetFocusUI()
 		return nullptr;
 	}
 
-	focusedUI = dynamic_cast<CUI*>(*targetIter);
+	focusedUI = (CUI*)*targetIter;
 
 	// 벡터 내에서 맨 뒤로 순번교체
 	vecUI.erase(targetIter);

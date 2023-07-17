@@ -14,7 +14,7 @@ CRandom::~CRandom()
 }
 void CRandom::Init()
 {
-	srand(GetTickCount64());
+	srand(static_cast<unsigned int>(GetTickCount64()));
 }
 
 int CRandom::Next(int start, int end)

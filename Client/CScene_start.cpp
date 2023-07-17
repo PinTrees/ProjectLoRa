@@ -104,7 +104,7 @@ void Scene_Start::Enter()
 	// Camera Look ÁöÁ¤
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
-	CCamera::GetI()->FadeOut(2.f);
+	CCamera::GetI()->FadeOut(0.1f);
 	CCamera::GetI()->FadeIn(2.f);
 }
 
@@ -143,10 +143,6 @@ void Scene_Start::CreateMonster()
 
 
 	Monster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
-	pMonsterObj->SetName(L"Monster");
-	pMonsterObj->SetScale(Vect2(280.f, 180.f));
-	pMonsterObj->GetCollider()->SetTrigger(false);
-
 	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 }
 
@@ -157,8 +153,8 @@ void Scene_Start::createEnvi()
 {
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
-	float xPos = rand() % (int)(vResolution.x);
-	float yPos = rand() % (int)(vResolution.y); 
+	int xPos = rand() % (int)(vResolution.x);
+	int yPos = rand() % (int)(vResolution.y); 
 	Vect2 vCreatePos = Vect2(xPos, yPos);
 
 	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);

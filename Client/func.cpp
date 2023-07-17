@@ -101,7 +101,6 @@ void FlipImage(HDC hdc, int x, int y, int width, int height, HDC srcDC, int srcX
 
     // 변환 행렬 초기화
     ModifyWorldTransform(flipDC, nullptr, MWT_IDENTITY);
-    SetWorldTransform(flipDC, nullptr);
 
     // 플립된 이미지를 출력
     TransparentBlt(hdc, x, y, width, height, flipDC, 0, 0, srcWidth, srcHeight, RGB(255, 0, 255));
@@ -140,7 +139,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 
 
 	Background* pParallax = new Background();
-	pParallax->CreateParallaxTexture(xCount * TILE_SIZE, yCount * TILE_SIZE);
+	pParallax->CreateParallaxTexture(xCount * TILE_SIZE_RENDER, yCount * TILE_SIZE_RENDER);
 
 	HDC dc = pParallax->GetParallaxDC();
 

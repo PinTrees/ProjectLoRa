@@ -24,11 +24,11 @@ LevelupUI::LevelupUI()
 	// 새로운 UI 틀을 제작해야할 경우 해당들의 자식 UI 정보가 크게 변하지 않을 경우 직접 변수에 할당및 자식으로 추가
 	SetPos(Vect2::zero);
 	SetScale(Vect2(300.f, 300.f));
-	SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
+	SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
 
 	mTitleText = new TextUI;
 	mTitleText->SetPos(Vect2(0.f, 0.f));
-	mTitleText->SetScale(Vect2(300.f, 50.f));
+	mTitleText->SetScale(Vect2(280.f, 50.f));
 	mTitleText->SetText(L"");
 	mTitleText->SetColor(RGB(255, 255, 255));
 	mTitleText->SetFontSize(24);
@@ -38,7 +38,7 @@ LevelupUI::LevelupUI()
 	mSelectBtn->SetPos(Vect2(0.f, 100.f));
 	mSelectBtn->SetScale(Vect2(200.f, 50.f));
 	mSelectBtn->SetText(L"선택");
-	mSelectBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	mSelectBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	mSelectBtn->SetClickedCallBack(this, (OBJECT_FUNC)&LevelupUI::ApplyLevelUp);
 	this->AddChild(mSelectBtn);
 }

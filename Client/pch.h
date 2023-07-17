@@ -41,3 +41,5 @@ using std::wstringstream;
 #include "Vec2.h"
 #include "func.h"
 //#include "func.cpp"
+
+#include <d3d11.h>	

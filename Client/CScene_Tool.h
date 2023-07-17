@@ -7,8 +7,6 @@ class Scene_Tool :
 	public CScene
 {
 private:
-	CUI* mpUI;
-
 	UINT	mTileX;
 	UINT	mTileY;
 

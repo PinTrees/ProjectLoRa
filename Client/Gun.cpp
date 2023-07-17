@@ -62,7 +62,7 @@ Gun::Gun(const wstring& _type)
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(28.f, 16.f), Vect2(28.f, 0.f), 5.f, 1);
 		SetScale(Vect2(28.f, 16.f) * 1.5f);
-		SetPivot(Vect2(-30.f, 0.f));
+		SetPivot(Vect2(-40.f, 0.f));
 		SetAngleOffset(180);
 	}
 
@@ -90,19 +90,19 @@ void Gun::Shot()
 
 	Vect2 vShotPos = GetPos();
 
-	for (int i = 0; i < mInfo.shotCount; ++i)
+	for (UINT i = 0; i < mInfo.shotCount; ++i)
 	{
 		// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-		int shotAngle = mInfo.shotAngle * 0.5f;
+		int shotAngle = (int)(mInfo.shotAngle * 0.5f);
 		float angle = GetAngleOrg() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
 		Vect2 vDir = Vect2::FromAngle(angle);
 
 		// 총알 오브젝트
 		tBullet bInfo = {};
 		bInfo.damage = mInfo.atkDamage;
-		bInfo.bounceCount = mInfo.bouncCount;
-		bInfo.penetrationCount = mInfo.penetration;
-		bInfo.splitCount = mInfo.splitCount;
+		bInfo.bounceCount = (float)mInfo.bouncCount;
+		bInfo.penetrationCount = (float)mInfo.penetration;
+		bInfo.splitCount = (float)mInfo.splitCount;
 
 		Bullet* pBullet = new Bullet(mInfo.bulletType);
 		pBullet->SetPos(vShotPos + vDir.Normalize() * 35.f);
@@ -149,7 +149,7 @@ void Gun::Update()
 		return;
 	}
 
-	SetPos(mOwner->GetLocalPos() + Vect2(0.f, -45.f));
+	SetPos(mOwner->GetLocalPos() + Vect2(15.f, -45.f));
 }
 
 void Gun::Render(HDC _dc)

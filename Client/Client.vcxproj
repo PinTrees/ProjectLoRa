@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="AtkState.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="CWrap.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="LevelUpUI.h" />
     <ClInclude Include="LevelUpUIMgr.h" />
@@ -210,6 +212,7 @@
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileEditMgr.h" />
+    <ClInclude Include="ToolMgr.h" />
     <ClInclude Include="TraceState.h" />
     <ClInclude Include="UIMgr.h" />
     <ClInclude Include="Vec2.h" />
@@ -221,6 +224,7 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AtkState.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
@@ -238,6 +242,7 @@
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="LevelUpUI.cpp" />
     <ClCompile Include="LevelUpUIMgr.cpp" />
@@ -282,6 +287,7 @@
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileEditMgr.cpp" />
+    <ClCompile Include="ToolMgr.cpp" />
     <ClCompile Include="TraceState.cpp" />
     <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />

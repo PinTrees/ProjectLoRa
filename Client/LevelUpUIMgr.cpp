@@ -8,6 +8,7 @@
 #include "CCore.h"
 #include "UIMgr.h"
 #include "CRow.h"
+#include "CImageUI.h"
 
 
 SINGLE_HEADER(LevelupUIMgr);
@@ -49,21 +50,28 @@ void LevelupUIMgr::Init()
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
+	CImageUI* pImg = new CImageUI;
+	pImg->SetScale(vRes);
+	pImg->SetPos(vRes * 0.5f);
+	pImg->SetColor(RGB(0, 0, 0));
+	pImg->SetAlpha(180.f);
+	mLevelUpUIPanel = pImg;
+
 	CRow* pRowUI = new CRow;
-	pRowUI->SetPos(vRes * 0.5f);
+	pRowUI->SetPos(Vect2::zero);
 	pRowUI->SetScale(vRes);
 	pRowUI->SetSpacing(48.f);
-	mLevelUpUIPanel = pRowUI;
+    pImg->AddChild(pRowUI);
 
 	for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
 		mCurLvupUI[i] = new LevelupUI;
-		mCurLvupUI[i]->SetVisible(false);
 		mCurLvupUI[i]->SetPos(Vect2(230.f + (float)i * 400.f, 350.f));
 		pRowUI->AddChild(mCurLvupUI[i]);
 	}
 
 	CreateObject(mLevelUpUIPanel, GROUP_TYPE::UI);
+	mLevelUpUIPanel->SetVisible(false);
 }
 
 
@@ -83,10 +91,10 @@ void LevelupUIMgr::Choice()
 
 	for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
-		mCurLvupUI[i]->SetVisible(true);
 		mCurLvupUI[i]->SetTitle(mMapLvUpEffectData[(LEVELUP_EFFECT)rand[i]].titleStr);
 	}
 
+	mLevelUpUIPanel->SetVisible(true);
 	CUIMgr::GetI()->SetFocusUI(mLevelUpUIPanel);
 	CTimeMgr::GetI()->Stop();
 }
@@ -94,8 +102,9 @@ void LevelupUIMgr::Choice()
 
 void LevelupUIMgr::Delete()
 {
-	for (int i = 0; i < mCurLvupUI.size(); ++i)
+	mLevelUpUIPanel->SetVisible(false);
+	/*for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
 		mCurLvupUI[i]->SetVisible(false);
-	}
+	}*/
 }

@@ -96,8 +96,8 @@ public:
 	CUI*		GetFindChild(CUI* parentUI, const wstring& childUI);
 	void		SetContentOffset(Vect2 _offset) { mvContentOffset = _offset; }
 
-	CTexture*	GetTextrue() { return mpTexture; }
-	void		SetTextrue(CTexture* _texture) { mpTexture = _texture; }
+	CTexture*	GetTexture() { return mpTexture; }
+	void		SetTexture(CTexture* _texture) { mpTexture = _texture; }
 
 	void		SetColor(COLORREF color) { mColor = color; }
 	COLORREF	GetColor() { return mColor; }

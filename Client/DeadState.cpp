@@ -7,6 +7,9 @@
 #include "Monster.h"
 #include "Player.h"
 #include "Gold.h"
+#include "Box.h"
+
+#include "Random.h"
 
 // Include Components Header
 #include "CAnimator.h"
@@ -42,8 +45,14 @@ void DeadState::Update()
 
 		Gold* pGold = new Gold;
 		pGold->SetPos(GetOwner()->GetLocalPos());
-		pGold->SetScale(Vect2(36.f, 36.f));
 		CreateObject(pGold, GROUP_TYPE::GOLD);
+
+		if (CRandom::GetI()->Next(0, 100) < 30)
+		{
+			Box* pBox = new Box;
+			pBox->SetPos(GetOwner()->GetLocalPos());
+			CreateObject(pBox, GROUP_TYPE::GOLD);
+		}
 	}
 }
 

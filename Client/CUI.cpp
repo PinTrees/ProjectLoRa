@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CUI.h"
 
+#include "UIMgr.h"
 #include "CCamera.h"
 #include "CKeyMgr.h"
 
@@ -11,7 +12,6 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
-#include "UIMgr.h"
 
 CUI::CUI(bool cameraAffected)
 	: mVecChildUI{}
@@ -19,15 +19,21 @@ CUI::CUI(bool cameraAffected)
 	, mvFinalPos{}
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
+	, mColor(0)
+	, mLbtnDown(false)
+	, mpTexture(nullptr)
 {
 }
 
 CUI::CUI(const CUI& origin)
 	: CObject(origin)
 	, mpParentUI(nullptr)
+	, mvFinalPos{}
 	, mCameraAffected(origin.mCameraAffected)
 	, mOnMouseCheck(false)
+	, mColor(origin.mColor)
 	, mLbtnDown(false)
+	, mpTexture(origin.mpTexture)
 {
 	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
@@ -43,7 +49,7 @@ CUI::~CUI()
 
 
 
-void CUI::Update() 
+void CUI::Update()
 {
 	// child update
 	UpdateChild();
@@ -91,9 +97,8 @@ void CUI::OnMouseCheck()
 	else
 	{
 		mOnMouseCheck = false;
-
 	}
-	CUIMgr::GetI()->SetMouseOn(mOnMouseCheck);
+
 }
 
 void CUI::Render(HDC dc)
@@ -117,7 +122,7 @@ void CUI::Render(HDC dc)
 		SelectGDI p(dc, PEN_TYPE::GREEN);
 	}
 
-	if(nullptr == mpTexture)
+	if (nullptr == mpTexture)
 	{
 		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
 		SelectGDI c(dc, PEN_TYPE::RED);
@@ -184,7 +189,7 @@ void CUI::OnDestroy()
 
 void CUI::MouseOn()
 {
-	CUIMgr::GetI()->SetMouseOn(mOnMouseCheck);
+	CUIMgr::GetI()->SetMouseOnUI(true);
 
 }
 

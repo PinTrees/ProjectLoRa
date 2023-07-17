@@ -32,6 +32,7 @@ private:
 
 	CTexture*		mpVeilTex;			// 버튼 이펙트에 사용할 텍스쳐 (버튼이 눌린 것처럼 연출함)
 	CTexture*		mpChangeTex;		// 클릭 시 변경될 텍스쳐
+	float			mHoberAlpha;
 
 
 public:
