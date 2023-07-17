@@ -57,11 +57,6 @@ void Scene_Start::Update()
 {
 	CScene::Update();
 
-	if (KEY_TAP(KEY::ENTER))
-	{
-		ChangeScene(SCENE_TYPE::TOOL);
-	}
-
 	mfCurDelay += DT;
 	if (mfCurDelay > mfMstrDelay)
 	{

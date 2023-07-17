@@ -13,6 +13,9 @@ private:
 	CUI*	mBulletRowUI;
 	CUI*	mReroadUI;
 
+	CUI*	mSettingBtn;
+	CUI*	mSettingUI;
+
 
 public:
 	void SetBulletUI(UINT count);

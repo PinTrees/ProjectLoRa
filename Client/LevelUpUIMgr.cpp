@@ -95,7 +95,7 @@ void LevelupUIMgr::Choice()
 	}
 
 	mLevelUpUIPanel->SetVisible(true);
-	CUIMgr::GetI()->SetFocusUI(mLevelUpUIPanel);
+	CUIMgr::GetI()->SetTop(mLevelUpUIPanel);
 	CTimeMgr::GetI()->Stop();
 }
 

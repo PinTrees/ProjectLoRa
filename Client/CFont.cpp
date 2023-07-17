@@ -55,7 +55,7 @@ void CFont::Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale, const tTe
 	// 텍스트의 가로가 출력 범위를 넘어설 경우 줄바꿈 문자를 강제 추가
 	for (size_t i = 0; i < str.size(); ++i)
 	{
-		wchar_t character = str[i];
+		wchar_t character = str[i]; 
 		SIZE charSize;
 
 		GetTextExtentPoint32(dc, &character, 1, &charSize);
@@ -84,14 +84,13 @@ void CFont::Render(HDC dc, const wstring& str, Vect2 pos, Vect2 scale, const tTe
 			GetTextExtentPoint32(dc, lines[l].c_str(), (int)(lines[l].size()), &lineSize);
 			int lineX = (int)(pos.x - lineSize.cx * 0.5f);
 
-			for (int i = -1; i <= 1; ++i)
-				for (int j = -1; j <= 1; ++j)
+			for (int i = -(style.boderWidth); i <= style.boderWidth; ++i)
+				for (int j = -(style.boderWidth); j <= style.boderWidth; ++j)
 					TextOut(dc, lineX + i, textY + j, lines[l].c_str(), (int)lines[l].size());
 		
 			// 다음 줄의 y 좌표 간격 조정
 			textY += lineSize.cy;
 		}
-		
 	}
 
 	// textY Pos Clear

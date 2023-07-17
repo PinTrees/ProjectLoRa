@@ -8,6 +8,7 @@ struct tTextStyle
 	float		fontSize;
 
 	bool		boder;
+	int			boderWidth;
 
 	COLORREF	color;
 	COLORREF    outerColor;
@@ -27,9 +28,11 @@ private:
 
 public:
 	void SetText(const wstring& text);
-	void SetOutlineColor(COLORREF color) { mStyle.outerColor = color; mStyle.boder = true; }
 	void SetColor(COLORREF color) { mStyle.color = color; }
 	void SetFontSize(float size);
+
+	void SetOutlineColor(COLORREF color) { mStyle.outerColor = color; mStyle.boder = true; }
+	void SetOutlineWidth(int width) { mStyle.boderWidth = width; mStyle.boder = true; }
 
 
 public:
