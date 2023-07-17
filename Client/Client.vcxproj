@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="AtkState.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="Scene_Main.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileEditMgr.h" />
@@ -222,6 +224,7 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AtkState.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
@@ -281,6 +284,7 @@
     <ClCompile Include="Scene_Main.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="Skill.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileEditMgr.cpp" />

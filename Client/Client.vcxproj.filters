@@ -227,11 +227,23 @@
     <Filter Include="Game\Editor\TileEditMgr">
       <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\UI\Column">
-      <UniqueIdentifier>{e6a0089a-72c2-44ae-8b46-0011eb0ff648}</UniqueIdentifier>
+    <Filter Include="Game\UI\Bar">
+      <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\CombatText">
+      <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\CColumn">
+      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
     </Filter>
     <Filter Include="FreamWork\UI\CWrap">
-      <UniqueIdentifier>{91919fd8-621c-4364-b66b-faffdb90f47e}</UniqueIdentifier>
+      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Box">
+      <UniqueIdentifier>{ebef6388-bed5-48de-a2b1-848c513dbea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Player\Skill">
+      <UniqueIdentifier>{c033bb16-0531-4456-9c3d-d29aabf95f09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -376,9 +388,6 @@
     <ClInclude Include="AtkState.h">
       <Filter>Game\FSM\Monster\AtkState</Filter>
     </ClInclude>
-    <ClInclude Include="BarUI.h">
-      <Filter>Game\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Scene_Main.h">
       <Filter>Game\Scene\Scene_Main</Filter>
     </ClInclude>
@@ -405,9 +414,6 @@
     </ClInclude>
     <ClInclude Include="TextUI.h">
       <Filter>FreamWork\UI\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="CombatText.h">
-      <Filter>Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="PIdleState.h">
       <Filter>Game\FSM\Player\Idle</Filter>
@@ -442,11 +448,23 @@
     <ClInclude Include="TileEditMgr.h">
       <Filter>Game\Editor\TileEditMgr</Filter>
     </ClInclude>
+    <ClInclude Include="BarUI.h">
+      <Filter>Game\UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatText.h">
+      <Filter>Game\UI\CombatText</Filter>
+    </ClInclude>
     <ClInclude Include="CColumn.h">
-      <Filter>FreamWork\UI\Column</Filter>
+      <Filter>FreamWork\UI\CColumn</Filter>
     </ClInclude>
     <ClInclude Include="CWrap.h">
       <Filter>FreamWork\UI\CWrap</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Game\Object\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Game\Object\Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -584,9 +602,6 @@
     <ClCompile Include="AtkState.cpp">
       <Filter>Game\FSM\Monster\AtkState</Filter>
     </ClCompile>
-    <ClCompile Include="BarUI.cpp">
-      <Filter>Game\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Scene_Main.cpp">
       <Filter>Game\Scene\Scene_Main</Filter>
     </ClCompile>
@@ -613,9 +628,6 @@
     </ClCompile>
     <ClCompile Include="TextUI.cpp">
       <Filter>FreamWork\UI\Text</Filter>
-    </ClCompile>
-    <ClCompile Include="CombatText.cpp">
-      <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="PIdleState.cpp">
       <Filter>Game\FSM\Player\Idle</Filter>
@@ -650,11 +662,23 @@
     <ClCompile Include="TileEditMgr.cpp">
       <Filter>Game\Editor\TileEditMgr</Filter>
     </ClCompile>
+    <ClCompile Include="BarUI.cpp">
+      <Filter>Game\UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Game\UI\CombatText</Filter>
+    </ClCompile>
     <ClCompile Include="CColumn.cpp">
-      <Filter>FreamWork\UI\Column</Filter>
+      <Filter>FreamWork\UI\CColumn</Filter>
     </ClCompile>
     <ClCompile Include="CWrap.cpp">
       <Filter>FreamWork\UI\CWrap</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Game\Object\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Game\Object\Player\Skill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

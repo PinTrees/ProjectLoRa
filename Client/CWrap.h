@@ -1,7 +1,10 @@
 #pragma once
 #include "CUI.h"
+
+
+
 class CWrap :
-    public CUI
+	public CUI
 {
 private:
 
@@ -22,4 +25,3 @@ public:
 	CWrap();
 	~CWrap();
 };
-

@@ -4,7 +4,8 @@ class CTexture;
 
 class CCore
 {
-	SINGLE(CCore)
+	SINGLE(CCore);
+
 private:
 	HWND	mhWnd; // 메인 윈도우핸들 가져오기
 	POINT	mPtResolution;// 메인 윈도우 해상도 가져오기
@@ -20,6 +21,7 @@ private:
 		 
 	// Title Menu Object
 	HMENU	mhMenu;
+
 
 public:
 	int  Initialize(HWND _hWnd, POINT _ptResolution);

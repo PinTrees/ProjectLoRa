@@ -24,6 +24,7 @@ CTimeMgr::~CTimeMgr()
 
 void CTimeMgr::Init()
 {
+	mbStoped = false;
 	QueryPerformanceCounter(&m_PrevCount);
 	QueryPerformanceFrequency(&m_frequency);
 }

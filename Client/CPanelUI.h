@@ -6,12 +6,18 @@ class CPanelUI :
     public CUI
 {
 private:
-    Vect2    mvDragStartPos;
+    Vect2       mvDragStartPos;
+    bool        mFixedPos;
+
+
+public:
+    void SetFixedPos(bool active) { mFixedPos = active; }
 
 
 public:
     virtual void Update();
     virtual void Render(HDC _dc);
+    
     virtual void MouseOn();
     virtual void MouseLbtnDown();
     virtual void MouseLbtnUp();
@@ -20,6 +26,6 @@ public:
 
 public:
     CPanelUI();
-    ~CPanelUI();
+    virtual ~CPanelUI() override;
 };
 

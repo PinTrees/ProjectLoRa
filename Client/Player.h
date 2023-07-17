@@ -2,7 +2,7 @@
 #include "CObject.h"
 #include "AI.h"
 
-
+class Skill;
 
 struct tUpgrad
 {
@@ -25,6 +25,9 @@ struct tPlayerInfo
 	UINT	mPenetration = 0;			// °üÅë ¼ö
 	UINT	mSplitCount = 0;			// ºÐ¿­ ¼ö
 	UINT	mBounceCount = 0;			// Æ¨±è ¼ö
+
+	
+	Skill* mSkill[(UINT)LEVELUP_EFFECT::END - 12] = {};
 };
 
 

@@ -23,28 +23,47 @@
 
 
 
-Monster::Monster()
+Monster::Monster(const wstring& uid)
 	: mtInfo({})
 	, mAI(nullptr)
 {
+	mtInfo.UID = uid;
+
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(40.f, 40.f));
 	GetCollider()->SetOffsetPos(Vect2(75.f, 35.f));
-	SetPivot(Vect2(75.f, 35.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_1", L"texture\\monster\\1.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_" + uid, L"texture\\monster\\" + uid + L".bmp");
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-	GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 93 * 1.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-	GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 93 * 2.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-	GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 93 * 4.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 7);
-	GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
+	
+	if (mtInfo.UID == L"1")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
+		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 93 * 1.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
+		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 93 * 2.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
+		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 93 * 4.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
+		GetCollider()->SetOffsetPos(Vect2(75.f, 35.f));
+		SetScale(Vect2(280.f, 180.f) * 0.8f);
+		SetPivot(Vect2(75.f, 35.f));
+	}
+	else if (mtInfo.UID == L"2")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 48.f * 1.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 3.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 48.f * 8.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.07f, 4);
+		GetCollider()->SetOffsetPos(Vect2::zero);
+		SetScale(Vect2(48.f, 48.f) * 1.8f);
+		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+	}
 
 	GetAnimator()->Play(L"IDLE", true);
 
 	mHpBar = new BarUI;
-	mHpBar->SetPivot(Vect2(70.f, -25.f));
-	mHpBar->SetScale(Vect2(50.f, 4.f));
+	mHpBar->SetPivot(Vect2(0.f, GetScale().y * -0.4f));
+	mHpBar->SetScale(Vect2(50.f, 6.f));
 	mHpBar->SetColor(RGB(255, 0, 0));
 	CreateObject(mHpBar, GROUP_TYPE::UI);
 }

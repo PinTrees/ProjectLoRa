@@ -1,15 +1,18 @@
 #pragma once
 #include "CUI.h"
+
+
+
 class CColumn :
-    public CUI
+	public CUI
 {
 private:
 	ALIGNMENT		mAlignment;
-
+	float			mSpacing;
 
 public:
 	void SetAlignment(ALIGNMENT alignment) { mAlignment = alignment; }
-	ALIGNMENT GetAlignment() { return mAlignment; }
+	void SetSpacing(float spacing) { mSpacing = spacing; }
 
 
 public:
@@ -26,6 +29,5 @@ public:
 
 public:
 	CColumn();
-	~CColumn();
+	virtual ~CColumn() override;
 };
-

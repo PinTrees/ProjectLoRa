@@ -15,9 +15,11 @@ CBtnUI::CBtnUI()
 	, mText(nullptr)
 	, mpVeilTex(nullptr)
 	, mpChangeTex(nullptr)
+	, mHoberAlpha(0.f)
 {
 	mText = new TextUI;
-	this->AddChild(mText);
+	AddChild(mText);
+
 }
 
 CBtnUI::~CBtnUI()
@@ -33,18 +35,15 @@ void CBtnUI::Render(HDC dc)
 
 	if (IsLbtnDown())
 	{
-		SetAlpha(128);
+		mHoberAlpha = 128.f;
+		ApplyAlphaBlend(dc);
+
 	}
 	else if (IsMouseOn())
 	{
-		SetAlpha(32);
+		mHoberAlpha = 32.f;
+		ApplyAlphaBlend(dc);
 	}
-	else
-	{
-		SetAlpha(0);
-	}
-
-	ApplyAlphaBlend(dc);
 }
 
 void CBtnUI::MouseOn()
@@ -118,12 +117,12 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	Vect2 vPos = GetFinalPos();
 	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
 
-	BLENDFUNCTION bf = {};
+	BLENDFUNCTION bf = {};   
 
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
 	bf.AlphaFormat = 0;
-	bf.SourceConstantAlpha = GetAlpha();
+	bf.SourceConstantAlpha = mHoberAlpha;
 
 	AlphaBlend(_dc
 		, (int)vPos.x - vSize.x * 0.5f

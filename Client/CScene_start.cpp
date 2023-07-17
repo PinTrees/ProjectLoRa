@@ -45,6 +45,7 @@ Scene_Start::Scene_Start()
 
 Scene_Start::~Scene_Start()
 {
+	// 싱글톤 메모리 해제
 	LevelupUIMgr::Dispose();
 	PlayerMgr::Dispose();
 	HubUIMgr::Dispose();
@@ -82,7 +83,6 @@ void Scene_Start::Enter()
 		CreateMonster();
 	}
 
-
 	int iEnvCount = 8;
 	for (int i = 0; i < iEnvCount; i++)
 	{
@@ -104,7 +104,7 @@ void Scene_Start::Enter()
 	// Camera Look 지정
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
-	CCamera::GetI()->FadeOut(2.f);
+	CCamera::GetI()->FadeOut(0.1f);
 	CCamera::GetI()->FadeIn(2.f);
 }
 
@@ -143,10 +143,6 @@ void Scene_Start::CreateMonster()
 
 
 	Monster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
-	pMonsterObj->SetName(L"Monster");
-	pMonsterObj->SetScale(Vect2(280.f, 180.f));
-	pMonsterObj->GetCollider()->SetTrigger(false);
-
 	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 }
 

@@ -9,9 +9,6 @@
 #include "CEventMgr.h"
 #include "UIMgr.h"
 #include "CResMgr.h"
-#include "LevelUpUIMgr.h"
-#include "HubUIMgr.h"
-#include "PlayerMgr.h"
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -20,6 +17,7 @@
 
 #include "SelectGDI.h"
 #include "resource.h"
+
 
 SINGLE_HEADER(CCore);
 
@@ -146,17 +144,16 @@ void CCore::Clear()
 
 void CCore::Delete()
 {
-	CPathMgr::GetI()->Dispose();
-	CTimeMgr::GetI()->Dispose();
-	CKeyMgr::GetI()->Dispose();
-	CCamera::GetI()->Dispose();
-	CSceneMgr::GetI()->Dispose();
-	CRandom::GetI()->Dispose();
-	CUIMgr::GetI()->Dispose();
-	CEventMgr::GetI()->Dispose();
-	CResMgr::GetI()->Dispose();
-	CCollisionMgr::GetI()->Dispose();
-	CUIMgr::GetI()->Dispose();
+	CPathMgr::Dispose();
+	CTimeMgr::Dispose();
+	CKeyMgr::Dispose();
+	CCamera::Dispose();
+	CSceneMgr::Dispose();
+	CRandom::Dispose();
+	CUIMgr::Dispose();
+	CResMgr::Dispose();
+	CEventMgr::Dispose();
+	CCollisionMgr::Dispose();
 }
 
 

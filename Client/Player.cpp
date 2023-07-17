@@ -23,6 +23,8 @@
 #include "Bullet.h"
 #include "Gun.h"
 
+#include "Skill.h"
+
 // UI Object Header
 #include "CUI.h"
 #include "BarUI.h"
@@ -72,32 +74,9 @@ Player::Player()
 	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
 	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
 
-	//CTexture* pTex = CResMgr::GetI()->LoadTexture(L"PlayerTex", L"texture\\character.bmp");
-
-	//GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f, 8);
-	//GetAnimator()->CreateAnimation(L"RUN_R", pTex, Vect2(0.f, 54.f * 2), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
-	//GetAnimator()->CreateAnimation(L"RUN_L", pTex, Vect2(0.f, 54.f * 30), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
-	//GetAnimator()->CreateAnimation(L"ATK_R", pTex, Vect2(0.f, 54.f * 14), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 3);
-	//GetAnimator()->CreateAnimation(L"ATK_L", pTex, Vect2(0.f, 54.f * 31), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 3);
-	//GetAnimator()->CreateAnimation(L"DASH_R", pTex, Vect2(0.f, 54.f * 23), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 7);
-
-	//GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	//GetAnimator()->FindAnimation(L"RUN_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	//GetAnimator()->FindAnimation(L"RUN_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	//GetAnimator()->FindAnimation(L"ATK_L")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	//GetAnimator()->FindAnimation(L"ATK_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	//GetAnimator()->FindAnimation(L"DASH_R")->SetAllFrameOffet(Vect2(0.f, -20.f));
-
-	//GetAnimator()->FindAnimation(L"IDLE")->Save(L"animation\\player_idle.anim");
-	//GetAnimator()->FindAnimation(L"RUN_R")->Save(L"animation\\player_run_r.anim");
-	//GetAnimator()->FindAnimation(L"RUN_L")->Save(L"animation\\player_run_l.anim");
-	//GetAnimator()->FindAnimation(L"ATK_L")->Save(L"animation\\player_atk_r.anim");
-	//GetAnimator()->FindAnimation(L"ATK_R")->Save(L"animation\\player_atk_l.anim");
-	//GetAnimator()->FindAnimation(L"DASH_R")->Save(L"animation\\player_dash_r.anim");
-
 	GetAnimator()->Play(L"IDLE", true);
 
-	SetScale(Vect2(73.f, 54.f) * 2.5f);
+	SetScale(Vect2(73.f, 54.f) * 1.7f);
 	SetPivot(Vect2(-30.f, 35.f));
 
 	mCurGun = new Gun(L"1");
@@ -108,7 +87,7 @@ Player::Player()
 
 	mExpBar = new BarUI;
 	mExpBar->SetCameraAffected(true);
-	mExpBar->SetScale(Vect2(vRes.x, 6.f));
+	mExpBar->SetScale(Vect2(vRes.x, 8.f));
 	mExpBar->SetPos(Vect2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
@@ -142,6 +121,12 @@ void Player::Update()
 	{
 		Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
 		mCurGun->SetAngle(vDir.ToAngle());
+	}
+
+	for (int i = 0; i < (UINT)LEVELUP_EFFECT::END - 12; ++i)
+	{
+		if (nullptr != mtPlayerInfo.mSkill[i])
+			mtPlayerInfo.mSkill[i]->UseSkill();
 	}
 
 	if (KEY_TAP(KEY::SPACE))

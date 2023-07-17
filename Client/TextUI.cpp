@@ -4,13 +4,20 @@
 #include "CFont.h"
 #include "CResMgr.h"
 
+
+
+
 TextUI::TextUI()
 	: CUI(true)
 	, mFont(nullptr)
 	, mText(L"")
+	, mStyle({})
 {
 	// Base Font Setting
-	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", 28, false);
+	mStyle.fontSize = 32;
+	mStyle.color = RGB(0, 0, 0);
+	mStyle.boder = false;
+	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", mStyle.fontSize);
 }
 
 TextUI::~TextUI()
@@ -21,6 +28,17 @@ TextUI::~TextUI()
 void TextUI::SetText(const wstring& text)
 {
 	mText = text;
+}
+
+void TextUI::SetFontSize(float size)
+{
+	if (mStyle.fontSize == size)
+		return;
+
+	mStyle.fontSize = size;
+	
+	// ReLoad Font
+	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", mStyle.fontSize);
 }
 
 
@@ -36,7 +54,7 @@ void TextUI::Render(HDC dc)
 		vRenderPos = CCamera::GetI()->GetRenderPos(vRenderPos);
 	}
 
-	mFont->PrintWord(dc, vRenderPos, mText);
+	mFont->Render(dc, mText, vRenderPos, GetScale(), mStyle);
 }
 
 void TextUI::MouseOn()

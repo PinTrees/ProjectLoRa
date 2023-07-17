@@ -10,6 +10,8 @@ CombatText::CombatText()
 	: mDeleteDelay(1.f)
 	, mCurDelay(0.f)
 {
+	SetColor(RGB(255, 0, 0));
+	SetOutlineColor(RGB(0, 0, 0));
 }
 
 CombatText::~CombatText()
@@ -32,7 +34,7 @@ void CombatText::Update()
 	}
 
 	Vect2 vPos = GetPos();
-	vPos += Vect2::up * 100.f * DT;
+	vPos += Vect2::up * 50.f * DT;
 
 	SetPos(vPos);
 }

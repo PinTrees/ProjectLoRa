@@ -4,18 +4,18 @@
 
 CPanelUI::CPanelUI()
 	: CUI(false)
+	, mFixedPos(true)
 {
-
 }
 
 CPanelUI::~CPanelUI()
 {
-
 }
 
 
 void CPanelUI::Update()
 {
+	CUI::Update();
 }
 
 void CPanelUI::Render(HDC _dc)
@@ -25,6 +25,9 @@ void CPanelUI::Render(HDC _dc)
 
 void CPanelUI::MouseOn()
 {
+	if (mFixedPos)
+		return;
+
 	if (IsLbtnDown())
 	{
 	 	Vect2 vDiff = (MOUSE_POS - mvDragStartPos);

@@ -1,3 +1,10 @@
-﻿  unity_PVXCVRU850DSU9RD.cpp
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Client.vcxproj -> C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-pintree\Output\bin_debug\Client.exe
+﻿  unity_H4Q501TJ6R6QHJ5P.cpp
+  unity_ICHT9JIEAFDA8WRK.cpp
+  unity_VFZM0R7C31XLAOHV.cpp
+C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_H4Q501TJ6R6QHJ5P.cpp)
+C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_H4Q501TJ6R6QHJ5P.cpp)
+C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_VFZM0R7C31XLAOHV.cpp)
+C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_H4Q501TJ6R6QHJ5P.cpp)
+C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_H4Q501TJ6R6QHJ5P.cpp)
+C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\LevelUpUIMgr.cpp(59,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_VFZM0R7C31XLAOHV.cpp)
+  Client.vcxproj -> C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Output\bin_debug\Client.exe

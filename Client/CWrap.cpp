@@ -2,6 +2,8 @@
 #include "CWrap.h"
 
 
+
+
 CWrap::CWrap()
 	: CUI(false)
 {
@@ -10,6 +12,9 @@ CWrap::CWrap()
 CWrap::~CWrap()
 {
 }
+
+
+
 
 void CWrap::Update()
 {
@@ -34,7 +39,7 @@ void CWrap::Update()
 		{
 			LongestChildSize = vecChild[i]->GetScale();
 		}
-		
+
 		if ((i + 1) != vecChild.size()
 			&& vecChild[i + 1]->GetScale().x > (vParentSize.x / 2.f - abs(vChildPos.x + vecChild[i]->GetScale().x / 2.f + vChildOffset.x * 2.f)))
 		{

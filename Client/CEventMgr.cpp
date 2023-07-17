@@ -18,6 +18,7 @@ CEventMgr::CEventMgr()
 }
 CEventMgr::~CEventMgr()
 {
+
 }
 
 void CEventMgr::Update()

@@ -10,6 +10,7 @@
 #include "UIMgr.h"
 #include "LevelUpUIMgr.h"
 #include "CFont.h"
+#include "Skill.h"
 
 // Game Manager Header
 #include "PlayerMgr.h"
@@ -28,8 +29,10 @@ LevelupUI::LevelupUI()
 
 	mTitleText = new TextUI;
 	mTitleText->SetPos(Vect2(0.f, 0.f));
-	mTitleText->SetScale(Vect2(200.f, 50.f));
+	mTitleText->SetScale(Vect2(280.f, 50.f));
 	mTitleText->SetText(L"");
+	mTitleText->SetColor(RGB(255, 255, 255));
+	mTitleText->SetFontSize(24);
 	this->AddChild(mTitleText);
 
 	mSelectBtn = new CBtnUI;
@@ -95,6 +98,13 @@ void LevelupUI::ApplyLevelUp()
 		break;
 	case LEVELUP_EFFECT::BOUNTCECOUNT_UP:				// º®À» Æ¨±â´Â È½¼ö Áõ°¡
 		pPlayer->mtPlayerInfo.mBounceCount += 1;
+		break;
+	case LEVELUP_EFFECT::TEST_SKILL:
+		if (nullptr == pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - 12])
+		{
+			pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - 12] = new Skill(TestSkill, 6);
+		}
+		pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - 12]->AddSkillLevel();
 		break;
 	}
 

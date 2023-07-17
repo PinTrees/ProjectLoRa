@@ -27,6 +27,8 @@ CScene::~CScene()
 			delete mArrObj[i][j];
 		}
 	}
+
+	mArrForce.clear();
 }
 
 

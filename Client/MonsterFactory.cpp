@@ -13,15 +13,17 @@
 #include "DeadState.h"
 #include "AtkState.h"
 
-
+#include "CCollider.h"
 
 
 Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 {
-	Monster* pMonster = new Monster;
+	Monster* pMonster = new Monster(L"2");
 
 	pMonster->SetPos(pos);
 	pMonster->CreateRigidBody();
+	pMonster->SetName(L"Monster");
+	pMonster->GetCollider()->SetTrigger(false);
 
 	switch (type)
 	{
