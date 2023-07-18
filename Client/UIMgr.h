@@ -14,6 +14,7 @@ public:
 
 public:
 	void SetFocusUI(CUI* ui);
+
 	void SetMouseOnUI(bool _b) { mbMouseOnUI = _b; }
 	bool IsMouseOnUI() { return mbMouseOnUI; }
 public:

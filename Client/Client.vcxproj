@@ -211,6 +211,7 @@
     <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileBtnUI.h" />
     <ClInclude Include="TileEditMgr.h" />
     <ClInclude Include="ToolMgr.h" />
     <ClInclude Include="TraceState.h" />
@@ -286,6 +287,7 @@
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileBtnUI.cpp" />
     <ClCompile Include="TileEditMgr.cpp" />
     <ClCompile Include="ToolMgr.cpp" />
     <ClCompile Include="TraceState.cpp" />

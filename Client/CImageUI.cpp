@@ -71,8 +71,8 @@ void CImageUI::Render(HDC dc)
 		bf.SourceConstantAlpha = GetAlpha();
 
 		AlphaBlend(dc
-			, (int)vPos.x - vSize.x * 0.5f
-			, (int)vPos.y - vSize.y * 0.5f
+			, (int)(vPos.x - vSize.x *0.5f)
+			, (int)(vPos.y - vSize.y * 0.5f)
 			, (int)vSize.x
 			, (int)vSize.y
 			, GetTexture()->GetDC()
@@ -80,6 +80,7 @@ void CImageUI::Render(HDC dc)
 			, (int)GetTexture()->Width()
 			, (int)GetTexture()->Heigth(), bf);
 	}
+
 	// 보유한 텍스쳐가 없을 경우 단색 텍스쳐를 출력
 	else if(mDefaultTex)
 	{
@@ -94,8 +95,8 @@ void CImageUI::Render(HDC dc)
 		bf.SourceConstantAlpha = GetAlpha();
 
 		AlphaBlend(dc
-			, (int)vPos.x - vSize.x * 0.5f
-			, (int)vPos.y - vSize.y * 0.5f
+			, (int)(vPos.x - vSize.x * 0.5f)
+			, (int)(vPos.y - vSize.y * 0.5f)
 			, (int)vSize.x
 			, (int)vSize.y
 			, mDefaultTex->GetDC()

@@ -242,7 +242,10 @@
     <Filter Include="Game\Scene\Scene_Tool\TileEditMgr">
       <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\UI\TileBtn">
+    <Filter Include="Game\Scene\Scene_Tool\UI">
+      <UniqueIdentifier>{d9067729-806c-4c8d-8d66-da932ea5189a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\UI\TileBtnUI">
       <UniqueIdentifier>{ecfc5147-e53a-4080-a30e-9b9010ceb12b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -466,6 +469,9 @@
     <ClInclude Include="TileEditMgr.h">
       <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClInclude>
+    <ClInclude Include="TileBtnUI.h">
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtnUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -679,6 +685,9 @@
     </ClCompile>
     <ClCompile Include="TileEditMgr.cpp">
       <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="TileBtnUI.cpp">
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtnUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@
 #include "UIMgr.h"
 #include "CPanelUI.h"
 #include "CBtnUI.h"
+#include "TileBtnUI.h"
 #include "CWrap.h"
 #include "CImageUI.h"
 
@@ -21,6 +22,7 @@
 #include "CPathMgr.h"
 #include "CTimeMgr.h"
 
+#include "CTexture.h"
 // Tool_Scene Mgr
 #include "ToolMgr.h"
 
@@ -31,13 +33,14 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 
 
 Scene_Tool::Scene_Tool()
-	: mTileX(1)
-	, mTileY(1)
+	: mTileX(0)
+	, mTileY(0)
 {
 }
 
 Scene_Tool::~Scene_Tool()
 {
+	ToolMgr::Dispose();
 }
 
 void Scene_Tool::Enter()
@@ -52,22 +55,27 @@ void Scene_Tool::Enter()
 	CUI* pEditPanel = new CPanelUI;
 	pEditPanel->SetName(L"EditPanel");
 	pEditPanel->SetScale(Vect2(vResolution.x * 0.4f, vResolution.y));
-	pEditPanel->SetPos(Vect2(vResolution.x - (pEditPanel->GetScale().x*0.5f), vResolution.y*0.5f));
+	pEditPanel->SetPos(Vect2(vResolution.x - (pEditPanel->GetScale().x * 0.5f), vResolution.y * 0.5f));
 	pEditPanel->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	((CPanelUI*)pEditPanel)->SetFixedPos(false);
 
 	CUI* pEditWrap = new CWrap;
-	pEditWrap->SetScale(Vect2(pEditPanel->GetScale()));
-	pEditWrap->SetPos(Vect2(0.f, 130.f));
+	pEditWrap->SetScale(Vect2(pEditPanel->GetScale().x-50.f, pEditPanel->GetScale().y));
+	pEditWrap->SetPos(Vect2(0.f, 30.f));
 	pEditPanel->AddChild(pEditWrap);
 
-	/// *** 버튼을 상속받는 CTileUI새로 만들어야함
-	for (int i = 0; i < 30; ++i)
+	CTexture* tile = CResMgr::GetI()->LoadTexture(L"UI_Tile", L"texture\\tiles\\1.bmp");
+
+	UINT maxCol = tile->Width() / TILE_SIZE;
+	UINT maxRow = tile->Heigth() / TILE_SIZE;
+
+	int tileMaxIdx = maxCol* maxRow;
+	for (int i = 0; i < tileMaxIdx; ++i)
 	{
-		CUI* pImg = new CBtnUI;
+		CUI* pImg = new TileBtnUI;
 		pImg->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-		pImg->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Tile_" + std::to_wstring(i + 1)
-			,L"texture\\item\\26_" + std::to_wstring(i + 1) + L".bmp"));
+		pImg->SetTexture(tile);
+		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
 	}
 
@@ -114,14 +122,14 @@ void Scene_Tool::SetTileIdx()
 		return;
 	}
 
-	if (KEY_TAP(KEY::LBTN))
+	if (KEY_HOLD(KEY::LBTN))
 	{
 		//현재 마우스 좌표 가져옴
 		Vect2 vMousePos = MOUSE_POS;
 		// 카메라에서 실제좌표로 변경
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
-	
+
 		int iCol = (int)vMousePos.x / TILE_SIZE_RENDER;
 		int iRow = (int)vMousePos.y / TILE_SIZE_RENDER;
 
@@ -134,7 +142,8 @@ void Scene_Tool::SetTileIdx()
 		UINT iIdx = iRow * mTileX + iCol;
 
 		const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
-		((Tile*)vecTile[iIdx])->AddImgIdx();
+		int i = ToolMgr::GetI()->GetCurTileIdx();
+		((Tile*)vecTile[iIdx])->SetImgIdx(i);
 	}
 }
 
@@ -147,14 +156,14 @@ void Scene_Tool::SaveTileData()
 	OPENFILENAME ofn = {};
 
 	ofn.lStructSize = sizeof(OPENFILENAME);
-	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();  
+	ofn.hwndOwner = CCore::GetI()->GetMainHwnd();
 	ofn.lpstrFile = szName;
 	ofn.nMaxFile = sizeof(szName);
 	ofn.lpstrFilter = L"ALL\0*.*\0Tile\0*.tile";
 	ofn.nFilterIndex = 0;
 	ofn.lpstrFileTitle = nullptr;
 	ofn.nMaxFileTitle = 0;
-		
+
 	wstring strTitleFolder = CPathMgr::GetI()->GetContentPath();
 	strTitleFolder += L"database";
 
@@ -220,7 +229,7 @@ void Scene_Tool::SaveTile(const wstring& _fullPath)
 
 	for (size_t i = 0; i < vecTile.size(); i++)
 	{
-		Tile* tile = dynamic_cast<Tile*>(vecTile[i]);
+		Tile* tile = (Tile*)(vecTile[i]);
 		if (tile) {
 			// Tile 객체의 데이터를 벡터에 추가
 			vector<uint8_t> tileData = tile->Save();
@@ -265,10 +274,6 @@ void Scene_Tool::LoadTile(const wstring& _fullPath)
 }
 
 
-void SelectTile(DWORD_PTR, DWORD_PTR)
-{
-	
-}
 
 
 void ChangeScene(DWORD_PTR, DWORD_PTR)
@@ -331,7 +336,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 		for (UINT j = 0; j < xCount; ++j)
 		{
 			Tile* pTile = new Tile();
-			
+
 			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
 			pTile->SetTexture(pTileTex);

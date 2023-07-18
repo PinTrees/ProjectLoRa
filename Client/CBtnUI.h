@@ -10,7 +10,6 @@ typedef void(CScene::*SCENE_FUNC) (void);
 typedef void(CObject::*OBJECT_FUNC) (void);
 typedef void(CObject::* OBJECT_FUNC_P) (DWORD_PTR);
 
-class TextUI;
 
 
 class CBtnUI :
@@ -42,7 +41,7 @@ public:
 	void		SetChangeTex(CTexture* _tex) { mpChangeTex = _tex; } // 변경할 텍스쳐 세팅
 	CTexture*	GetChangeTex() { return mpChangeTex; }
 
-	void SetClickedCallBack(BTN_FUNC _pFunc, DWORD_PTR _param1, DWORD_PTR _param2)
+	virtual void SetClickedCallBack(BTN_FUNC _pFunc, DWORD_PTR _param1, DWORD_PTR _param2)
 	{
 		mpFunc = _pFunc;
 		mparam1 = _param1;

@@ -33,6 +33,7 @@ class CTexture;
 
 class CUI : public CObject
 {
+public:
 	virtual CUI* Clone() = 0;
 
 private:
