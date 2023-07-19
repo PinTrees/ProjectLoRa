@@ -4,8 +4,10 @@
 #include "CCore.h"
 #include "SelectGDI.h"
 
+
+
 CTexture::CTexture()
-	:mhBit(0)
+	: mhBit(0)
 	, mDC(0)
 	, mBitInfo{}
 {

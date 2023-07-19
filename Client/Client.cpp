@@ -1,5 +1,4 @@
 ﻿// Client.cpp : Defines the entry point for the application.
-//
 #include "pch.h"
 #include "framework.h"
 #include "Client.h"
@@ -13,6 +12,12 @@ HINSTANCE hInst;                                // current instance
 HWND g_hWnd;
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+
+
+// GDI Value
+ULONG_PTR gdiplusToken;
+GdiplusStartupInput gdiplusStartupInput;
+
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -43,6 +48,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
+    // GDI+ 초기화
+    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
     // Perform application initialization:
     if (!InitInstance (hInstance, nCmdShow))
     {
@@ -54,6 +62,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
         return FALSE;
     }
+
+
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg;
@@ -80,6 +90,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     CCore::GetI()->Delete();
     CCore::Dispose();
+
+    // GDI+ 종료
+    Gdiplus::GdiplusShutdown(gdiplusToken);
 
     return (int) msg.wParam;
 }

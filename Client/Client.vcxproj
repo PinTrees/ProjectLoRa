@@ -167,6 +167,7 @@
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="CSprite.h" />
     <ClInclude Include="CWrap.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="Item.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="Item.cpp" />

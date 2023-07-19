@@ -56,7 +56,7 @@ void Scene_Tool::Enter()
 	pEditPanel->SetName(L"EditPanel");
 	pEditPanel->SetScale(Vect2(vResolution.x * 0.4f, vResolution.y));
 	pEditPanel->SetPos(Vect2(vResolution.x - (pEditPanel->GetScale().x * 0.5f), vResolution.y * 0.5f));
-	pEditPanel->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
+	pEditPanel->SetSprite(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	((CPanelUI*)pEditPanel)->SetFixedPos(false);
 
 	CWrap* pEditWrap = new CWrap;
@@ -74,7 +74,7 @@ void Scene_Tool::Enter()
 	{
 		TileBtnUI* pImg = new TileBtnUI;
 		pImg->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-		pImg->SetTexture(tile);
+		pImg->SetSprite(tile);
 		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
 	}
@@ -339,7 +339,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 
 			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
-			pTile->SetTexture(pTileTex);
+			pTile->SetSprite(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);
 		}

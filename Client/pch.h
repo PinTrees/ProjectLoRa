@@ -41,3 +41,13 @@ using std::wstringstream;
 #include "Vec2.h"
 #include "func.h"
 //#include "func.cpp"
+
+
+
+// include GDI
+#include <gdiplus.h>
+#pragma comment(lib, "Gdiplus.lib")
+using namespace Gdiplus;
+
+
+

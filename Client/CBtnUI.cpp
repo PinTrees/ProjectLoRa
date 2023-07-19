@@ -40,17 +40,17 @@ void CBtnUI::Render(HDC dc)
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	if(mpTex)
+	if(mpSprite)
 	{
 		TransparentBlt(dc
 			, (int)(vPos.x - vScale.x * 0.5f)
 			, (int)(vPos.y - vScale.y * 0.5f)
 			, (int)vScale.x
 			, (int)vScale.y
-			, mpTex->GetDC()
+			, mpSprite->GetDC()
 			, 0, 0
-			, (int)mpTex->Width()
-			, (int)mpTex->Heigth()
+			, (int)mpSprite->Width()
+			, (int)mpSprite->Heigth()
 			, RGB(255, 0, 255));
 	}
 
@@ -111,8 +111,8 @@ void CBtnUI::MouseLbtnClick()
 	{
 		//mpChangeTex->SetSize(GetTextrue()->GetSize());
 		CTexture* temp = mpChangeTex;
-		mpChangeTex = GetTexture();
-		SetTexture(temp);
+		mpChangeTex = GetSprite();
+		SetSprite(temp);
 	}
 }
 

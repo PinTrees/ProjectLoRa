@@ -16,7 +16,7 @@ class CBtnUI :
 	public CUI
 {
 private:
-	CTexture*		mpTex;
+	CTexture*		mpSprite;
 
 	BTN_FUNC        mpFunc;				// 전역함수
 	DWORD_PTR		mparam1;			// 매개변수 임시 저장
@@ -40,8 +40,8 @@ public:
 	TextUI* GetText() { return mText; }
 	void	SetText(const wstring& _text) { mText->SetText(_text); }
 
-	void	SetTexture(CTexture* pTex) { mpTex = pTex; }
-	CTexture* GetTexture() { return mpTex; }
+	void	SetSprite(CTexture* pTex) { mpSprite = pTex; }
+	CTexture* GetSprite() { return mpSprite; }
 
 	void	  SetChangeTex(CTexture* _tex) { mpChangeTex = _tex; } // 변경할 텍스쳐 세팅
 	CTexture* GetChangeTex() { return mpChangeTex; }

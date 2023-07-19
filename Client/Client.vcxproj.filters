@@ -266,6 +266,9 @@
     <Filter Include="Game\Scene\Scene_Tool\UI\TileBtn">
       <UniqueIdentifier>{dd748e83-cddc-4c14-8ea5-cf9715346345}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\Resource\Sprite">
+      <UniqueIdentifier>{b2f5ae79-21bf-4c59-9256-5fe5d9146c8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -502,6 +505,9 @@
     <ClInclude Include="TileBtnUI.h">
       <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
     </ClInclude>
+    <ClInclude Include="CSprite.h">
+      <Filter>FreamWork\Resource\Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -730,6 +736,9 @@
     </ClCompile>
     <ClCompile Include="TileBtnUI.cpp">
       <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
+    </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>FreamWork\Resource\Sprite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

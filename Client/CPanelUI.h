@@ -3,6 +3,7 @@
 
 
 class CTexture;
+class CSprite;
 
 class CPanelUI :
     public CUI
@@ -10,13 +11,13 @@ class CPanelUI :
 private:
     Vect2       mvDragStartPos;
     bool        mFixedPos;
-    CTexture*   mpTex;
+    CSprite*    mpSprite;
 
 
 public:
     void SetFixedPos(bool active) { mFixedPos = active; }
-    void SetTexture(CTexture* pTex) { mpTex = pTex; }
-    CTexture* GetTexture() { return mpTex; }
+    void SetSprite(CSprite* pTex) { mpSprite = pTex; }
+    CSprite* GetSprite() { return mpSprite; }
 
 
 public:
