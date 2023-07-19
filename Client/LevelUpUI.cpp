@@ -29,7 +29,7 @@ LevelupUI::LevelupUI()
 	// 새로운 UI 틀을 제작해야할 경우 해당들의 자식 UI 정보가 크게 변하지 않을 경우 직접 변수에 할당및 자식으로 추가
 	SetPos(Vect2::zero);
 	SetScale(Vect2(300.f, 300.f));
-	SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
+	SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Panel_1", L"texture\\ui\\panel_1.bmp"));
 
 	mTitleText = new TextUI;
 	mTitleText->SetPos(Vect2(0.f, -120.f));
@@ -53,7 +53,7 @@ LevelupUI::LevelupUI()
 	mSelectBtn->SetPos(Vect2(0.f, 100.f));
 	mSelectBtn->SetScale(Vect2(200.f, 50.f));
 	mSelectBtn->SetText(L"선택");
-	mSelectBtn->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	mSelectBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	mSelectBtn->SetClickedCallBack(this, (OBJECT_FUNC)&LevelupUI::ApplyLevelUp);
 	this->AddChild(mSelectBtn);
 }
@@ -156,25 +156,12 @@ void LevelupUI::skillUp(SKILL_TYPE state)
 	Player* pPlayer = PlayerMgr::GetI()->GetPlayer();
 	Skill* pSkill = pPlayer->FindSkill(state);
 
-	switch (state)
+	if (nullptr == pSkill)
 	{
-	case SKILL_TYPE::TEST_SKILL_1:		
-		if (nullptr == pSkill)
-			pSkill = SkillMgr::GetI()->GetSkill(state);
-		else
-			pSkill->AddSkillLevel();
-		break;
-	case SKILL_TYPE::TEST_SKILL_2:		
-		if (nullptr == pSkill)
-			pSkill = SkillMgr::GetI()->GetSkill(state);
-		else
-			pSkill->AddSkillLevel();
-		break;
-	case SKILL_TYPE::TEST_SKILL_3:		
-		if (nullptr == pSkill)
-			pSkill = SkillMgr::GetI()->GetSkill(state);
-		else
-			pSkill->AddSkillLevel();
-		break;
+		pSkill = SkillMgr::GetI()->GetSkill(state);
+	}
+	else
+	{
+		pSkill->AddSkillLevel();
 	}
 }

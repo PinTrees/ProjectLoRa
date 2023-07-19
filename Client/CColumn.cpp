@@ -80,4 +80,5 @@ void CColumn::Update()
 void CColumn::Render(HDC dc)
 {
 	CUI::Render(dc);
+    CUI::RenderChild(dc);
 }

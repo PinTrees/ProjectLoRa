@@ -39,7 +39,6 @@ private:
 	vector<CUI*>	mVecChildUI; // 깊은 복사 진행 해야함.
 	CUI*			mpParentUI;
 
-	CTexture*		mpTexture;
 	Vect2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
 
 	Vect2			mvFinalPos;
@@ -95,9 +94,6 @@ public:
 
 	CUI*		GetFindChild(CUI* parentUI, const wstring& childUI);
 	void		SetContentOffset(Vect2 _offset) { mvContentOffset = _offset; }
-
-	CTexture*	GetTextrue() { return mpTexture; }
-	void		SetTextrue(CTexture* _texture) { mpTexture = _texture; }
 
 	void		SetColor(COLORREF color) { mColor = color; }
 	COLORREF	GetColor() { return mColor; }

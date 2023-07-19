@@ -100,47 +100,21 @@ void CUI::Render(HDC dc)
 		GetAnimator()->GetCurAnimation()->RenderUI(this, dc);
 		return;
 	}
+	
+	SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
+	SelectGDI p(dc, PEN_TYPE::RED);
 
-	Vect2 vPos = GetFinalPos();
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	if (mCameraAffected)
-	{
-		vPos = CCamera::GetI()->GetRenderPos(vPos);
-	}
-
-	if (mLbtnDown)
-	{
-		SelectGDI p(dc, PEN_TYPE::GREEN);
-	}
-
-	if(nullptr == mpTexture)
-	{
-		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
-		Rectangle
-		(
-			dc,
-			int(vPos.x - vScale.x * 0.5f),
-			int(vPos.y - vScale.y * 0.5f),
-			int(vPos.x + vScale.x * 0.5f),
-			int(vPos.y + vScale.y * 0.5f)
-		);
-	}
-	else
-	{
-		float fWidth = (float)mpTexture->Width();
-		float fHeight = (float)mpTexture->Heigth();
-
-		TransparentBlt(dc
-			, (int)(vPos.x - vScale.x * 0.5f)
-			, (int)(vPos.y - vScale.y * 0.5f)
-			, (int)vScale.x
-			, (int)vScale.y
-			, mpTexture->GetDC()
-			, 0, 0
-			, (int)fWidth, (int)fHeight
-			, RGB(255, 0, 255));
-	}
+	Rectangle
+	(
+		dc,
+		int(vPos.x - vScale.x * 0.5f),
+		int(vPos.y - vScale.y * 0.5f),
+		int(vPos.x + vScale.x * 0.5f),
+		int(vPos.y + vScale.y * 0.5f)
+	);
 
 	// child render
 	RenderChild(dc);

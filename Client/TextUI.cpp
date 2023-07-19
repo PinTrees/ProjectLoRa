@@ -44,6 +44,8 @@ void TextUI::SetFontSize(float size)
 
 void TextUI::Render(HDC dc)
 {
+	//CUI::Render(dc);
+
 	if (nullptr == mFont || mText == L"")
 		return;
 
@@ -55,6 +57,8 @@ void TextUI::Render(HDC dc)
 	}
 
 	mFont->Render(dc, mText, vRenderPos, GetScale(), mStyle);
+
+	//CUI::RenderChild(dc);
 }
 
 void TextUI::MouseOn()

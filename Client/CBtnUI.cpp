@@ -6,8 +6,6 @@
 #include "CCore.h"
 
 
-
-
 CBtnUI::CBtnUI()
 	: CUI(false)
 	, mSceneFunc(nullptr)
@@ -16,6 +14,12 @@ CBtnUI::CBtnUI()
 	, mpVeilTex(nullptr)
 	, mpChangeTex(nullptr)
 	, mHoberAlpha(0.f)
+	, mObjectFunc(nullptr)
+	, mObjectFuncP(nullptr)
+	, mObject(nullptr)
+	, mpFunc(nullptr)
+	, mparam1(0)
+	, mparam2(0)
 {
 	mText = new TextUI;
 	AddChild(mText);
@@ -33,6 +37,25 @@ void CBtnUI::Render(HDC dc)
 {
 	CUI::Render(dc);
 
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
+	Vect2 vScale = GetScale();
+
+	if(mpTex)
+	{
+		TransparentBlt(dc
+			, (int)(vPos.x - vScale.x * 0.5f)
+			, (int)(vPos.y - vScale.y * 0.5f)
+			, (int)vScale.x
+			, (int)vScale.y
+			, mpTex->GetDC()
+			, 0, 0
+			, (int)mpTex->Width()
+			, (int)mpTex->Heigth()
+			, RGB(255, 0, 255));
+	}
+
+	CUI::RenderChild(dc);
+
 	if (IsLbtnDown())
 	{
 		mHoberAlpha = 128.f;
@@ -48,14 +71,17 @@ void CBtnUI::Render(HDC dc)
 
 void CBtnUI::MouseOn()
 {
+	CUI::MouseOn();
 }
 
 void CBtnUI::MouseLbtnDown()
 {
+
 }
 
 void CBtnUI::MouseLbtnUp()
 {
+
 }
 
 void CBtnUI::MouseLbtnClick()
@@ -85,8 +111,8 @@ void CBtnUI::MouseLbtnClick()
 	{
 		//mpChangeTex->SetSize(GetTextrue()->GetSize());
 		CTexture* temp = mpChangeTex;
-		mpChangeTex = GetTextrue();
-		SetTextrue(temp);
+		mpChangeTex = GetTexture();
+		SetTexture(temp);
 	}
 }
 
@@ -117,16 +143,16 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	Vect2 vPos = GetFinalPos();
 	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
 
-	BLENDFUNCTION bf = {};   
+	BLENDFUNCTION bf = {};
 
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
 	bf.AlphaFormat = 0;
-	bf.SourceConstantAlpha = mHoberAlpha;
+	bf.SourceConstantAlpha = static_cast<BYTE>(mHoberAlpha);
 
 	AlphaBlend(_dc
-		, (int)vPos.x - vSize.x * 0.5f
-		, (int)vPos.y - vSize.y * 0.5f
+		, (int)(vPos.x - vSize.x * 0.5f)
+		, (int)(vPos.y - vSize.y * 0.5f)
 		, (int)vSize.x
 		, (int)vSize.y
 		, mpVeilTex->GetDC()

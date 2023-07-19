@@ -9,6 +9,7 @@
 #include "UIMgr.h"
 #include "CRow.h"
 #include "CImageUI.h"
+#include "TextUI.h"
 
 
 SINGLE_HEADER(LevelUpUIMgr);
@@ -60,6 +61,15 @@ void LevelUpUIMgr::Init()
 	pImg->SetColor(RGB(0, 0, 0));
 	pImg->SetAlpha(180.f);
 	mLevelUpUIPanel = pImg;
+
+	TextUI* pText = new TextUI;
+	pText->SetPos(Vect2(0, -250));
+	pText->SetFontSize(80.f);
+	pText->SetColor(RGB(255, 255, 255));
+	pText->SetOutlineWidth(3.f);
+	pText->SetOutlineColor(RGB(0, 0, 0));
+	pText->SetText(L"Level Up");
+	mLevelUpUIPanel->AddChild(pText);
 
 	CRow* pRowUI = new CRow;
 	pRowUI->SetPos(Vect2::zero);

@@ -224,9 +224,6 @@
     <Filter Include="Game\Editor">
       <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Editor\TileEditMgr">
-      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UI\Bar">
       <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
     </Filter>
@@ -256,6 +253,18 @@
     </Filter>
     <Filter Include="Game\Class\Item">
       <UniqueIdentifier>{03e766ea-fb9d-4951-8cb0-efed554c7acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\TileEditMgr">
+      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\ToolManager">
+      <UniqueIdentifier>{f5bcb974-cf59-49ca-9bce-302bd4c8a873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\UI">
+      <UniqueIdentifier>{11a9ea4b-bfa0-4623-982b-5955d0c9079a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\UI\TileBtn">
+      <UniqueIdentifier>{dd748e83-cddc-4c14-8ea5-cf9715346345}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -458,7 +467,7 @@
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClInclude>
     <ClInclude Include="TileEditMgr.h">
-      <Filter>Game\Editor\TileEditMgr</Filter>
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClInclude>
     <ClInclude Include="BarUI.h">
       <Filter>Game\UI\Bar</Filter>
@@ -486,6 +495,12 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Game\Class\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolMgr.h">
+      <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TileBtnUI.h">
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -681,7 +696,7 @@
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClCompile>
     <ClCompile Include="TileEditMgr.cpp">
-      <Filter>Game\Editor\TileEditMgr</Filter>
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClCompile>
     <ClCompile Include="BarUI.cpp">
       <Filter>Game\UI\Bar</Filter>
@@ -709,6 +724,12 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Game\Class\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolMgr.cpp">
+      <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileBtnUI.cpp">
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
