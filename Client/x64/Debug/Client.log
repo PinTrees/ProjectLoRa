@@ -1,3 +1,95 @@
-﻿  unity_KYVC2Z1JVWGD79JJ.cpp
+﻿  unity_WKVQTMPS8GPHFLIH.cpp
+  unity_IWUMQW5CF23YU0UG.cpp
+  unity_2VRUURATRQYC297E.cpp
+  unity_K296FSOC2P4ERI2F.cpp
+  unity_S5SIFJJT5E4T29N6.cpp
+  unity_KW6AR6Y8VSW44DJ1.cpp
+  unity_KYVC2Z1JVWGD79JJ.cpp
+  unity_IHVKGFSQTTAWQS0I.cpp
+  unity_D2D0WDDDWO5RXTWS.cpp
+  unity_HBMXWF21H22W4C9R.cpp
+  unity_MZM1XJXZ7V9CV8S2.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CAnimation.cpp(292,18): warning C4477: 'fprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t' (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CAnimation.cpp(292,18): message : consider using '%zd' in the format string (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(54,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(72,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(180,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(188,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(187,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(186,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(185,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_KW6AR6Y8VSW44DJ1.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\HubUIMgr.cpp(67,9): warning C4018: '>=': signed/unsigned mismatch (compiling source file x64\Debug\unity_K296FSOC2P4ERI2F.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\LevelUpUIMgr.cpp(57,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_K296FSOC2P4ERI2F.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2859,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,1): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,37): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CAnimation.cpp(270): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CAnimation.cpp(270,17): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2859,53): warning C4244: 'argument': conversion from 'const wchar_t' to 'const _Elem', possible loss of data
+          with
+          [
+              _Elem=char
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,1): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.35.32215\include\xstring(2718,37): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)' being compiled
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CAnimation.cpp(276): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CAnimation.cpp(276,10): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (compiling source file x64\Debug\unity_WKVQTMPS8GPHFLIH.cpp)
   Client.vcxproj -> D:\GitHub\ProjectLoLa\ProjectLoRa\Output\bin_debug\Client.exe

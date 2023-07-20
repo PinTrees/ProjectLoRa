@@ -35,6 +35,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 Scene_Tool::Scene_Tool()
 	: mTileX(0)
 	, mTileY(0)
+	, ToolUI(nullptr)
 {
 }
 
@@ -78,7 +79,7 @@ void Scene_Tool::Enter()
 		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
 	}
-
+	ToolUI = pEditPanel;
 	CreateObject(pEditPanel, GROUP_TYPE::UI);
 
 
@@ -110,6 +111,10 @@ void Scene_Tool::Update()
 	{
 		//CUIMgr::GetI()->SetFocusedUI(mpUI);
 		LoadTIleData();
+	}
+	if (KEY_TAP(KEY::SPACE))
+	{
+		ToolUI->SetVisible(!ToolUI->IsVisible());
 	}
 }
 
@@ -271,6 +276,12 @@ void Scene_Tool::LoadTile(const wstring& _fullPath)
 	}
 
 	fclose(pFile);
+}
+
+void Scene_Tool::CreateToolUI()
+{
+
+
 }
 
 

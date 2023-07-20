@@ -9,6 +9,7 @@ class Scene_Tool :
 private:
 	UINT	mTileX;
 	UINT	mTileY;
+	CObject* ToolUI;
 
 public:
 	virtual void Update();
@@ -31,6 +32,8 @@ public:
 	void SaveTile(const wstring& _strRelativePath);
 	void LoadTile(const wstring& _strRelativePath);
 
+private:
+	void CreateToolUI();
 
 private:
 	void render_tile(HDC _dc);
@@ -38,6 +41,6 @@ private:
 
 public:
 	Scene_Tool();
-	~Scene_Tool();
+	virtual ~Scene_Tool();
 };
 

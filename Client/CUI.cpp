@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "CUI.h"
 
 #include "UIMgr.h"
@@ -60,12 +60,12 @@ void CUI::FinalUpdate()
 	if (GetAnimator())
 		GetAnimator()->Update();
 
-	// ºÎ¸ğÀÇ finalUpdateÈ£Ãâ ÇØ¾ßÇÑ´Ù.
-	// UI°¡ ¾Ö´Ï¸ÅÀÌ¼Ç °¡Áú ¼öµµ ÀÖ±â ¶§¹®¿¡
+	// ë¶€ëª¨ì˜ finalUpdateí˜¸ì¶œ í•´ì•¼í•œë‹¤.
+	// UIê°€ ì• ë‹ˆë§¤ì´ì…˜ ê°€ì§ˆ ìˆ˜ë„ ìˆê¸° ë•Œë¬¸ì—
 	CObject::FinalUpdate();
 
-	// UIÀÇ ÃÖÁ¾ÁÂÇ¥¸¦ ±¸ÇÑ´Ù.
-	mvFinalPos = GetPos(); // ºÎ¸ğ ÁÂÇ¥¸¦ finalPos·Î ÀÎ½Ä
+	// UIì˜ ìµœì¢…ì¢Œí‘œë¥¼ êµ¬í•œë‹¤.
+	mvFinalPos = GetPos(); // ë¶€ëª¨ ì¢Œí‘œë¥¼ finalPosë¡œ ì¸ì‹
 
 	if (GetParentUI())
 	{
@@ -73,7 +73,7 @@ void CUI::FinalUpdate()
 		mvFinalPos += parentPos;
 	}
 
-	// UI MouseÃ¼Å©
+	// UI Mouseì²´í¬
 	OnMouseCheck();
 
 	FinalUpdateChild();
@@ -200,7 +200,7 @@ void CUI::MouseLbtnDown()
 
 void CUI::MouseLbtnUp()
 {
-	// ¹Û¿¡¼­ ´©¸£°í ¾È¿¡¼­ ¶­À» ¶§µµ ÀÎ½ÄÀÌ µÈ´Ù.
+	// ë°–ì—ì„œ ëˆ„ë¥´ê³  ì•ˆì—ì„œ ë•Ÿì„ ë•Œë„ ì¸ì‹ì´ ëœë‹¤.
 
 }
 
