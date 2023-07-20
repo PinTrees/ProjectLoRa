@@ -245,6 +245,9 @@
     <Filter Include="Game\Object\Player\Skill">
       <UniqueIdentifier>{c033bb16-0531-4456-9c3d-d29aabf95f09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\UI\Scroll">
+      <UniqueIdentifier>{9450fd08-c4ad-47f4-80ec-b5afd06208d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -466,6 +469,9 @@
     <ClInclude Include="Skill.h">
       <Filter>Game\Object\Player\Skill</Filter>
     </ClInclude>
+    <ClInclude Include="CScroll.h">
+      <Filter>FreamWork\UI\Scroll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -679,6 +685,9 @@
     </ClCompile>
     <ClCompile Include="Skill.cpp">
       <Filter>Game\Object\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="CScroll.cpp">
+      <Filter>FreamWork\UI\Scroll</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -90,7 +90,7 @@ void Scene_Main::OpenItemDataUI()
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
 	CPanelUI* pPanelUI = new CPanelUI;
-	pPanelUI->SetFixedPos(false);
+	pPanelUI->SetFixedPos_xy(false);
 	pPanelUI->SetScale(Vect2(800.f, 700.f));
 	pPanelUI->SetPos(Vect2(vRes.x * 0.5f, vRes.y * 0.5f));
 	pPanelUI->SetTextrue(CResMgr::GetI()->LoadTexture(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));

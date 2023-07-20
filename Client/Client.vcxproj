@@ -166,6 +166,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="CRow.h" />
+    <ClInclude Include="CScroll.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CWrap.h" />
     <ClInclude Include="HubUIMgr.h" />
@@ -241,6 +242,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="CRow.cpp" />
+    <ClCompile Include="CScroll.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />

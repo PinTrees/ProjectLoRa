@@ -4,7 +4,8 @@
 
 CPanelUI::CPanelUI()
 	: CUI(false)
-	, mFixedPos(true)
+	, mFixedPos_x(true)
+	, mFixedPos_y(true)
 {
 }
 
@@ -25,12 +26,23 @@ void CPanelUI::Render(HDC _dc)
 
 void CPanelUI::MouseOn()
 {
-	if (mFixedPos)
+	if (mFixedPos_x && mFixedPos_y)
 		return;
 
-	if (IsLbtnDown())
+	if (mFixedPos_x &&!mFixedPos_y && IsLbtnDown())
 	{
-	 	Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
+		Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
+
+		Vect2 vCurPos = GetPos();
+		vCurPos.y += vDiff.y;
+		SetPos(vCurPos);
+		mvDragStartPos = MOUSE_POS;
+		return;
+	}
+
+	if (!mFixedPos_x && !mFixedPos_y && IsLbtnDown())
+	{
+		Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
 
 		Vect2 vCurPos = GetPos();
 		vCurPos += vDiff;
@@ -38,6 +50,7 @@ void CPanelUI::MouseOn()
 		mvDragStartPos = MOUSE_POS;
 	}
 }
+
 
 
 void CPanelUI::MouseLbtnDown()

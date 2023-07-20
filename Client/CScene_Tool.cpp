@@ -19,6 +19,9 @@
 #include "CPathMgr.h"
 #include "CTimeMgr.h"
 
+#include "CScroll.h"
+#include "CColumn.h"
+
 
 // function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
@@ -44,8 +47,9 @@ void Scene_Tool::Enter()
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
-	CUI* pPanelUI = new CPanelUI;
+	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetName(L"ParentUI");
+	pPanelUI->SetFixedPos_xy(false);
 	pPanelUI->SetScale(Vect2(300.f, 150.f));
 	pPanelUI->SetPos(Vect2(vResolution.x - pPanelUI->GetScale().x - 100.f, 0.f));
 

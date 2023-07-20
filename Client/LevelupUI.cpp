@@ -100,11 +100,11 @@ void LevelupUI::ApplyLevelUp()
 		pPlayer->mtPlayerInfo.mBounceCount += 1;
 		break;
 	case LEVELUP_EFFECT::TEST_SKILL:
-		if (nullptr == pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - 12])
+		if (nullptr == pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - (UINT)LEVELUP_EFFECT::SKILL_START])
 		{
-			pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - 12] = new Skill(TestSkill, 6);
+			pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - (UINT)LEVELUP_EFFECT::SKILL_START] = new Skill(TestSkill, 6);
 		}
-		pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - 12]->AddSkillLevel();
+		pPlayer->mtPlayerInfo.mSkill[(UINT)LEVELUP_EFFECT::TEST_SKILL - (UINT)LEVELUP_EFFECT::SKILL_START]->AddSkillLevel();
 		break;
 	}
 

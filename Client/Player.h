@@ -27,7 +27,7 @@ struct tPlayerInfo
 	UINT	mBounceCount = 0;			// Æ¨±è ¼ö
 
 	
-	Skill* mSkill[(UINT)LEVELUP_EFFECT::END - 12] = {};
+	Skill* mSkill[(UINT)LEVELUP_EFFECT::END - (UINT)LEVELUP_EFFECT::SKILL_START] = {};
 };
 
 

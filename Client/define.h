@@ -154,7 +154,8 @@ enum class LEVELUP_EFFECT
 	SPLITCOUNT_UP,			// 분열 수 증가
 	BOUNTCECOUNT_UP,		// 튕김 수 증가
 
-	TEST_SKILL,
+	SKILL_START,			// 스킬 시작
+	TEST_SKILL = SKILL_START,
 
 	END
 };

@@ -99,6 +99,12 @@ Player::~Player()
 {
 	if (nullptr != mAI)
 		delete mAI;
+
+	for (int i = 0; i < (int)LEVELUP_EFFECT::END - (int)LEVELUP_EFFECT::SKILL_START; ++i)
+	{
+		if (nullptr != mtPlayerInfo.mSkill[i])
+			delete mtPlayerInfo.mSkill[i];
+	}
 }
 
 
@@ -123,7 +129,7 @@ void Player::Update()
 		mCurGun->SetAngle(vDir.ToAngle());
 	}
 
-	for (int i = 0; i < (UINT)LEVELUP_EFFECT::END - 12; ++i)
+	for (UINT i = 0; i < (UINT)LEVELUP_EFFECT::END - (UINT)LEVELUP_EFFECT::SKILL_START; ++i)
 	{
 		if (nullptr != mtPlayerInfo.mSkill[i])
 			mtPlayerInfo.mSkill[i]->UseSkill();
