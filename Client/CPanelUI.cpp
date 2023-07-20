@@ -41,15 +41,27 @@ void CPanelUI::Render(HDC dc)
 
 void CPanelUI::MouseOn()
 {
-	if (mFixedPos)
+	if (mFixedPos || (mFixedPos_x && mFixedPos_y))
 		return;
 
 	if (IsLbtnDown())
 	{
-	 	Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
-
+		Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
 		Vect2 vCurPos = GetPos();
-		vCurPos += vDiff;
+
+		if (mFixedPos_x && !mFixedPos_y)
+		{
+			vCurPos.y += vDiff.y;
+		}
+		else if (!mFixedPos_x && mFixedPos_y)
+		{
+			vCurPos.x += vDiff.x;
+		}
+		else if (!mFixedPos_x && !mFixedPos_y)
+		{
+			vCurPos += vDiff;
+		}
+
 		SetPos(vCurPos);
 		mvDragStartPos = MOUSE_POS;
 	}

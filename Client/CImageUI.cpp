@@ -17,8 +17,8 @@ CImageUI::CImageUI()
 	, mColor(RGB(255, 255, 255))
 	, mDefaultTex(nullptr)
 	, mpTexture(nullptr)
-	, mType(IMAGE_TYPE::DEFAULT)
-	// mType: Filled 
+	, mUID(IMAGE_TYPE::DEFAULT)
+	// mUID: Filled 
 	, mFilledAxis(IAMGE_FILLED_AXIS::HORIZONTAL)
 	, mFilledDirection(RECT_DIRECTION::LEFT)
 	, mFilledAmount(1.f)
@@ -70,7 +70,7 @@ void CImageUI::Render(HDC dc)
 	bf.SourceConstantAlpha = GetAlpha();
 
 	// Default Image Render Mode 
-	if (mType == IMAGE_TYPE::DEFAULT)
+	if (mUID == IMAGE_TYPE::DEFAULT)
 	{
 		AlphaBlend(dc
 			, (int)(vPos.x - vSize.x * 0.5f)
@@ -83,7 +83,7 @@ void CImageUI::Render(HDC dc)
 			, (int)pRenderTex->Heigth(), bf);
 	}
 	// Filled Image Render Mode
-	else if (mType == IMAGE_TYPE::FILLED)
+	else if (mUID == IMAGE_TYPE::FILLED)
 	{
 		// Filled Scale x Calcurate
 		float adjustedWidth = vSize.x * mFilledAmount;

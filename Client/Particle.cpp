@@ -14,7 +14,7 @@
 
 
 Particle::Particle(const wstring& _type)
-	: mType(_type)
+	: mUID(_type)
 	, mDelay(1.5f)
 	, mCurDelay(0.f)
 {

@@ -10,12 +10,21 @@ class CPanelUI :
 {
 private:
     Vect2       mvDragStartPos;
+
     bool        mFixedPos;
+
+    bool        mFixedPos_x;
+    bool        mFixedPos_y;
+
     CSprite*    mpSprite;
+
 
 
 public:
     void SetFixedPos(bool active) { mFixedPos = active; }
+    void SetFixedPosX(bool active_x) { mFixedPos_x = active_x; }
+    void SetFixedPosY(bool active_y) { mFixedPos_y = active_y; }
+
     void SetTexture(CSprite* pTex) { mpSprite = pTex; }
     CSprite* GetTexture() { return mpSprite; }
 

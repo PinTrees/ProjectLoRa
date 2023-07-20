@@ -269,6 +269,18 @@
     <Filter Include="FreamWork\Resource\Sprite">
       <UniqueIdentifier>{b2f5ae79-21bf-4c59-9256-5fe5d9146c8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Class\Skill\01. IceBolt">
+      <UniqueIdentifier>{10d99bad-039a-46d7-bbd5-4218605ede1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\DatabaseMgr">
+      <UniqueIdentifier>{ab34fa31-a12e-4fbe-9228-449f9b39793a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\ScrollView">
+      <UniqueIdentifier>{bf3f343f-8cdd-43bb-9e1c-bfce6472719f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\ScrollView\ScrollBar">
+      <UniqueIdentifier>{7a79eb54-adf2-4c03-84f9-143fe8a89de9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -508,6 +520,18 @@
     <ClInclude Include="CSprite.h">
       <Filter>FreamWork\Resource\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="IceBolt.h">
+      <Filter>Game\Class\Skill\01. IceBolt</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseMgr.h">
+      <Filter>Game\Manager\DatabaseMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollView.h">
+      <Filter>FreamWork\UI\ScrollView</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollBar.h">
+      <Filter>FreamWork\UI\ScrollView\ScrollBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -739,6 +763,18 @@
     </ClCompile>
     <ClCompile Include="CSprite.cpp">
       <Filter>FreamWork\Resource\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="IceBolt.cpp">
+      <Filter>Game\Class\Skill\01. IceBolt</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseMgr.cpp">
+      <Filter>Game\Manager\DatabaseMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollView.cpp">
+      <Filter>FreamWork\UI\ScrollView</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollBar.cpp">
+      <Filter>FreamWork\UI\ScrollView\ScrollBar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

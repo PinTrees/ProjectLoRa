@@ -35,6 +35,7 @@
 #include "MonsterFactory.h"
 #include "HubUIMgr.h"
 #include "SkillMgr.h"
+#include "DatabaseMgr.h"
 
 
 Scene_Start::Scene_Start()
@@ -50,6 +51,7 @@ Scene_Start::~Scene_Start()
 	PlayerMgr::Dispose();
 	HubUIMgr::Dispose();
 	SkillMgr::Dispose();
+	DatabaseMgr::Dispose();
 }
 
 
@@ -87,7 +89,7 @@ void Scene_Start::Enter()
 
 	LevelUpUIMgr::GetI()->Init();
 	HubUIMgr::GetI()->Init();
-	SkillMgr::GetI()->Init();
+	DatabaseMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크

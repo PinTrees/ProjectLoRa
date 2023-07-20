@@ -26,6 +26,9 @@
 // Tool_Scene Mgr
 #include "ToolMgr.h"
 
+#include "CScrollView.h"
+
+
 // function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
 void SelectTile(DWORD_PTR, DWORD_PTR);
@@ -60,10 +63,15 @@ void Scene_Tool::Enter()
 	pEditPanel->SetTexture(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	((CPanelUI*)pEditPanel)->SetFixedPos(false);
 
+	CScrollView* pScrollView = new CScrollView;
+	pScrollView->SetPos(Vect2::zero);
+	pScrollView->SetScale(Vect2(pEditPanel->GetScale().x - 50.f, 500.f));
+	pEditPanel->AddChild(pScrollView);
+
 	CWrap* pEditWrap = new CWrap;
 	pEditWrap->SetScale(Vect2(pEditPanel->GetScale().x - 50.f, pEditPanel->GetScale().y));
 	pEditWrap->SetPos(Vect2(0.f, 30.f));
-	pEditPanel->AddChild(pEditWrap);
+	pScrollView->AddChild(pEditWrap);
 
 	CTexture* tile = CResMgr::GetI()->LoadTexture(L"UI_Tile", L"texture\\tiles\\1.bmp");
 

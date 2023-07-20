@@ -27,7 +27,7 @@ private:
 	CTexture* mDefaultTex;
 	COLORREF  mColor;
 
-	IMAGE_TYPE mType;
+	IMAGE_TYPE mUID;
 
 	// Filled type value
 	float	  mFilledAmount;
@@ -42,7 +42,7 @@ public:
 
 public:
 	// Filled type Function 
-	void SetImageType(IMAGE_TYPE type) { mType = type; }
+	void SetImageType(IMAGE_TYPE type) { mUID = type; }
 	void SetFilledAmount(float amount) { mFilledAmount = amount; }
 
 

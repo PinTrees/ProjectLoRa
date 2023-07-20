@@ -77,11 +77,9 @@ private:
 	virtual void SetDead() override;
 
 public:
-	void AddChild(CUI* ui)
-	{
-		mVecChildUI.push_back(ui);
-		ui->mpParentUI = this;
-	}
+	virtual void AddChild(CUI* ui);
+	virtual void SetTopChild(CUI* ui);
+	
 
 
 public:

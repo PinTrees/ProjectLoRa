@@ -5,13 +5,13 @@ class Particle :
 	public CObject
 {
 private:
-	wstring		mType;
+	wstring		mUID;
 
 	float		mDelay;
 	float		mCurDelay;
 
 public:
-	void SetType(const wstring& _str) { mType = _str; }
+	void SetType(const wstring& _str) { mUID = _str; }
 
 public:
 	virtual void Update() override;

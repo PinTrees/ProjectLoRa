@@ -180,6 +180,31 @@ void CUI::SetDead()
 	}
 }
 
+
+void CUI::AddChild(CUI* ui)
+{
+	mVecChildUI.push_back(ui);
+	ui->mpParentUI = this;
+}
+
+void CUI::SetTopChild(CUI* ui)
+{
+	if (nullptr == ui)
+		return;
+
+	vector<CUI*>::iterator iter = mVecChildUI.begin();
+
+	for (; iter != mVecChildUI.end(); ++iter)
+	{
+		if (ui == *iter)
+			break;
+	}
+
+	mVecChildUI.erase(iter);
+	mVecChildUI.push_back(ui);
+}
+
+
 CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
 {
 	for (UINT i = 0; i < parentUI->GetChild().size(); ++i)

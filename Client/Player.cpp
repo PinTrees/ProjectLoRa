@@ -145,7 +145,7 @@ void Player::Update()
 	for (int i = 0; i < (UINT)mVecSkill.size(); ++i)
 	{
 		if (nullptr != mVecSkill[i])
-			mVecSkill[i]->UseSkill();
+			mVecSkill[i]->ActiveUpdate();
 	}
 
 	Vect2 vPos = GetPos();

@@ -7,7 +7,7 @@ class CUIMgr
 	SINGLE(CUIMgr);
 
 private:
-	CUI* _focusedUI;
+	CUI* mFocusedUI;
 	bool mbMouseOnUI;
 
 

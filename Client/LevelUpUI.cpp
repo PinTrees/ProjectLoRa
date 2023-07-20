@@ -14,6 +14,7 @@
 // Game Manager Header
 #include "PlayerMgr.h"
 #include "SkillMgr.h"
+#include "DatabaseMgr.h"
 
 #include "Skill.h"
 #include "Random.h"
@@ -158,7 +159,7 @@ void LevelupUI::skillUp(SKILL_TYPE state)
 
 	if (nullptr == pSkill)
 	{
-		pSkill = SkillMgr::GetI()->GetSkill(state);
+		pSkill = DatabaseMgr::GetI()->GetSkill(state);
 	}
 	else
 	{
