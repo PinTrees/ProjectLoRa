@@ -115,9 +115,6 @@ void CUI::Render(HDC dc)
 		int(vPos.x + vScale.x * 0.5f),
 		int(vPos.y + vScale.y * 0.5f)
 	);
-
-	// child render
-	RenderChild(dc);
 }
 
 void CUI::UpdateChild()

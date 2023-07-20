@@ -1,12 +1,8 @@
-﻿  unity_QBWIXPLYY56Y3R17.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(52,2): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(70,5): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(178,3): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(186,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(185,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(184,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(183,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(153,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(154,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+﻿  unity_Q5TAMYRPGWV61V76.cpp
+  unity_VWUYHUH9Z1J0075L.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_VWUYHUH9Z1J0075L.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_VWUYHUH9Z1J0075L.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_VWUYHUH9Z1J0075L.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_VWUYHUH9Z1J0075L.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Random.cpp(17,22): warning C4244: '인수': 'ULONGLONG'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_Q5TAMYRPGWV61V76.cpp)
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

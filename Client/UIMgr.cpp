@@ -137,6 +137,9 @@ CUI* CUIMgr::GetFocusUI()
 	// 적어도 왼쪽 클릭이 발생했다는 보장이 생긴다.
 	for (; iter != vecUI.end(); ++iter)
 	{
+		if ((*iter)->IsDead() || !(*iter)->IsVisible())
+			continue;
+
 		if (dynamic_cast<CUI*>(*iter)->IsMouseOn())
 		{
 			targetIter = iter;
