@@ -2,6 +2,12 @@
 #include "CRes.h"
 
 
+enum class SPRITE_RENDER_TYPE
+{
+    NORMAL,     // Normal [png, jpg] Render
+    POINT,      // Pixel Point Render
+};
+
 
 class CSprite :
     public CRes
@@ -10,8 +16,19 @@ private:
     HDC         mDC;
     Image*      mImage;
 
+    // ÇÈ¼¿ ·»´õ¸µ ½Ã »ç¿ë
+    HBITMAP     mhBit;
+
+    SPRITE_RENDER_TYPE  mRenderType;
+
     UINT mWidth;
     UINT mHeight;
+
+
+public:
+    void SetRenderMode(SPRITE_RENDER_TYPE type) { mRenderType = type; }
+    Image* GetImage() { return mImage; }
+
 
 public:
     void Load(const wstring& strFilePath);
@@ -21,8 +38,6 @@ public:
     UINT Heigth() { return mHeight; }
 
     HDC GetDC() { return mDC; }
-
-    Image* GetImage() { return mImage; }
 
 
 public:

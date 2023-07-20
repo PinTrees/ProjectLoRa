@@ -110,7 +110,7 @@ Player::Player()
 	// HP Icon
 	CImageUI* pIcon = new CImageUI;
 	pIcon->SetScale(Vect2(36.f, 36.f));
-	pIcon->SetSprite(CResMgr::GetI()->LoadTexture(L"Icon_Hp", L"texture\\ui\\icon\\hp.bmp"));
+	pIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Hp", L"texture\\ui\\icon\\hp.bmp"));
 	pRow->AddChild(pIcon);
 
 	// HP Bar 

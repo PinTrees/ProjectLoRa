@@ -18,11 +18,11 @@ TileBtnUI::~TileBtnUI()
 void TileBtnUI::Render(HDC dc)
 {
 
-	if (nullptr == GetSprite())
+	if (nullptr == GetTexture())
 		return;
 
-	UINT width = GetSprite()->Width();
-	UINT height = GetSprite()->Heigth();
+	UINT width = GetTexture()->Width();
+	UINT height = GetTexture()->Heigth();
 
 	UINT maxCol = width / TILE_SIZE;
 	UINT maxRow = height / TILE_SIZE;
@@ -48,7 +48,7 @@ void TileBtnUI::Render(HDC dc)
 		, (int)(vPos.y - vScale.y * 0.5f)
 		, (int)(vScale.x)
 		, (int)(vScale.y)
-		, GetSprite()->GetDC()
+		, GetTexture()->GetDC()
 		, (int)(curCol * TILE_SIZE)
 		, (int)(curRow * TILE_SIZE)
 		, TILE_SIZE

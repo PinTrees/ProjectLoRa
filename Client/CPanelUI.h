@@ -16,8 +16,8 @@ private:
 
 public:
     void SetFixedPos(bool active) { mFixedPos = active; }
-    void SetSprite(CSprite* pTex) { mpSprite = pTex; }
-    CSprite* GetSprite() { return mpSprite; }
+    void SetTexture(CSprite* pTex) { mpSprite = pTex; }
+    CSprite* GetTexture() { return mpSprite; }
 
 
 public:

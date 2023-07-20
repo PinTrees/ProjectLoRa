@@ -59,11 +59,18 @@ void LevelUpUIMgr::Init()
 	pImg->SetScale(vRes);
 	pImg->SetPos(vRes * 0.5f);
 	pImg->SetColor(RGB(0, 0, 0));
-	pImg->SetAlpha(180.f);
+	pImg->SetAlpha(128.f);
 	mLevelUpUIPanel = pImg;
 
+	CImageUI* pMainPanelImg = new CImageUI;
+	pMainPanelImg->SetScale(Vect2(vRes.x * 0.9f, vRes.y * 0.55f));
+	pMainPanelImg->SetPos(Vect2::zero);
+	pMainPanelImg->SetColor(RGB(0, 0, 0));
+	pMainPanelImg->SetAlpha(128.f);
+	mLevelUpUIPanel->AddChild(pMainPanelImg);
+
 	TextUI* pText = new TextUI;
-	pText->SetPos(Vect2(0, -250));
+	pText->SetPos(Vect2(0, -280));
 	pText->SetFontSize(80.f);
 	pText->SetColor(RGB(255, 255, 255));
 	pText->SetOutlineWidth(3.f);

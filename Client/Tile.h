@@ -12,7 +12,7 @@ private:
 	int			mIdx;
 
 public:
-	void SetSprite(CTexture* _tex) { mpTileTex = _tex; }
+	void SetTexture(CTexture* _tex) { mpTileTex = _tex; }
 	void AddImgIdx() { ++mIdx; }
 	void SetImgIdx(int _TileIdx) { mIdx = _TileIdx; }
 public:

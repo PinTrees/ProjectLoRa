@@ -111,8 +111,8 @@ void CBtnUI::MouseLbtnClick()
 	{
 		//mpChangeTex->SetSize(GetTextrue()->GetSize());
 		CTexture* temp = mpChangeTex;
-		mpChangeTex = GetSprite();
-		SetSprite(temp);
+		mpChangeTex = GetTexture();
+		SetTexture(temp);
 	}
 }
 

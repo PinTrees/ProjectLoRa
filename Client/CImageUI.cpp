@@ -73,8 +73,8 @@ void CImageUI::Render(HDC dc)
 	if (mType == IMAGE_TYPE::DEFAULT)
 	{
 		AlphaBlend(dc
-			, (int)vPos.x - vSize.x * 0.5f
-			, (int)vPos.y - vSize.y * 0.5f
+			, (int)(vPos.x - vSize.x * 0.5f)
+			, (int)(vPos.y - vSize.y * 0.5f)
 			, (int)vSize.x
 			, (int)vSize.y
 			, pRenderTex->GetDC()
@@ -89,8 +89,8 @@ void CImageUI::Render(HDC dc)
 		float adjustedWidth = vSize.x * mFilledAmount;
 
 		AlphaBlend(dc
-			, (int)vPos.x - vSize.x * 0.5f
-			, (int)vPos.y - vSize.y * 0.5f
+			, (int)(vPos.x - vSize.x * 0.5f)
+			, (int)(vPos.y - vSize.y * 0.5f)
 			, (int)adjustedWidth
 			, (int)vSize.y
 			, pRenderTex->GetDC()

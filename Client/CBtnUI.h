@@ -23,16 +23,16 @@ private:
 	DWORD_PTR		mparam2;			// 매개변수 임시 저장
 
 	SCENE_FUNC		mSceneFunc;			// 씬 멤버 함수
-	CScene* mScene;				// 호출자
+	CScene*			mScene;				// 호출자
 
 	OBJECT_FUNC		mObjectFunc;		// 매개변수가 없는 오브젝트 멤버함수
 	OBJECT_FUNC_P	mObjectFuncP;		// 매개변수가 존재하는 오브젝트 멤버함수
-	CObject* mObject;			// 호출자
+	CObject*		mObject;			// 호출자
 
-	TextUI* mText;
+	TextUI*			mText;
 
-	CTexture* mpVeilTex;			// 버튼 이펙트에 사용할 텍스쳐 (버튼이 눌린 것처럼 연출함)
-	CTexture* mpChangeTex;		// 클릭 시 변경될 텍스쳐
+	CTexture*		mpVeilTex;			// 버튼 이펙트에 사용할 텍스쳐 (버튼이 눌린 것처럼 연출함)
+	CTexture*		mpChangeTex;		// 클릭 시 변경될 텍스쳐
 	float			mHoberAlpha;
 
 
@@ -40,8 +40,8 @@ public:
 	TextUI* GetText() { return mText; }
 	void	SetText(const wstring& _text) { mText->SetText(_text); }
 
-	void	SetSprite(CTexture* pTex) { mpSprite = pTex; }
-	CTexture* GetSprite() { return mpSprite; }
+	void	SetTexture(CTexture* pTex) { mpSprite = pTex; }
+	CTexture* GetTexture() { return mpSprite; }
 
 	void	  SetChangeTex(CTexture* _tex) { mpChangeTex = _tex; } // 변경할 텍스쳐 세팅
 	CTexture* GetChangeTex() { return mpChangeTex; }

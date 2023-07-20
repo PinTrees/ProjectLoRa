@@ -65,7 +65,7 @@ void HubUIMgr::SetBulletUI(UINT count)
 	vector<CUI*> vecBulletUI = mBulletRowUI->GetChild();
 	for (int i = 0; i < vecBulletUI.size(); ++i)
 	{
-		if (i >= count)
+		if (i >= (int)count)
 		{
 			vecBulletUI[i]->SetVisible(false);
 		}

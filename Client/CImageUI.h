@@ -36,7 +36,7 @@ private:
 
 
 public:
-	void SetSprite(CTexture* tex) { mpTexture = tex; };
+	void SetTexture(CTexture* tex) { mpTexture = tex; };
 	void SetColor(COLORREF color);
 
 

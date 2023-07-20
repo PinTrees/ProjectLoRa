@@ -35,6 +35,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 Scene_Tool::Scene_Tool()
 	: mTileX(0)
 	, mTileY(0)
+	, mToolUI(nullptr)
 {
 }
 
@@ -56,7 +57,7 @@ void Scene_Tool::Enter()
 	pEditPanel->SetName(L"EditPanel");
 	pEditPanel->SetScale(Vect2(vResolution.x * 0.4f, vResolution.y));
 	pEditPanel->SetPos(Vect2(vResolution.x - (pEditPanel->GetScale().x * 0.5f), vResolution.y * 0.5f));
-	pEditPanel->SetSprite(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
+	pEditPanel->SetTexture(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	((CPanelUI*)pEditPanel)->SetFixedPos(false);
 
 	CWrap* pEditWrap = new CWrap;
@@ -74,16 +75,13 @@ void Scene_Tool::Enter()
 	{
 		TileBtnUI* pImg = new TileBtnUI;
 		pImg->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-		pImg->SetSprite(tile);
+		pImg->SetTexture(tile);
 		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
 	}
 
+	mToolUI = pEditPanel;
 	CreateObject(pEditPanel, GROUP_TYPE::UI);
-
-
-
-
 
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 }
@@ -110,6 +108,10 @@ void Scene_Tool::Update()
 	{
 		//CUIMgr::GetI()->SetFocusedUI(mpUI);
 		LoadTIleData();
+	}
+	if (KEY_TAP(KEY::SPACE))
+	{
+		mToolUI->SetVisible(!mToolUI->IsVisible());
 	}
 }
 
@@ -273,6 +275,12 @@ void Scene_Tool::LoadTile(const wstring& _fullPath)
 	fclose(pFile);
 }
 
+void Scene_Tool::CreateToolUI()
+{
+
+
+}
+
 
 
 
@@ -339,7 +347,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 
 			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
-			pTile->SetSprite(pTileTex);
+			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);
 		}
@@ -371,7 +379,10 @@ void Scene_Tool::Render(HDC _dc)
 			// Render Object
 			if (!(*iter)->IsDead())
 			{
-				(*iter)->Render(_dc);
+				if ((*iter)->IsVisible())
+				{
+					(*iter)->Render(_dc);
+				}
 				++iter;
 			}
 			// Delete Object

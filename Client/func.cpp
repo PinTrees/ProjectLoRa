@@ -174,7 +174,7 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 
 			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
-			pTile->SetSprite(pTileTex);
+			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);
 		}

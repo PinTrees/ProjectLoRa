@@ -9,6 +9,9 @@
 #include "CImageUI.h"
 #include "CWrap.h"
 
+// Resource Header
+#include "CSprite.h"
+
 // Core Manager Header
 #include "UIMgr.h"
 
@@ -33,11 +36,14 @@ Scene_Main::~Scene_Main()
 
 void Scene_Main::Enter()
 {
+	CSprite* pPanelSprite = CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.png");
+	pPanelSprite->SetRenderMode(SPRITE_RENDER_TYPE::POINT);
+
 	Vect2 vRes = CCore::GetI()->GetResolution();
 	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetScale(Vect2(400.f, 400.f));
 	pPanelUI->SetPos(Vect2(vRes.x * 0.5f, vRes.y * 0.5f));
-	pPanelUI->SetSprite(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.png"));
+	pPanelUI->SetTexture(pPanelSprite);
 	AddObject(pPanelUI, GROUP_TYPE::UI);
 
 	CColumn* pCol = new CColumn;
@@ -50,7 +56,7 @@ void Scene_Main::Enter()
 	pGameStartBtn->SetScale(Vect2(200.f, 50.f));
 	pGameStartBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pGameStartBtn->SetText(L"게임 시작");
-	pGameStartBtn->SetSprite(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pGameStartBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	pGameStartBtn->SetClickedCallBack(&ChangeSceneStart, 0, 0);
 	pCol->AddChild(pGameStartBtn);
 
@@ -58,7 +64,7 @@ void Scene_Main::Enter()
 	pToolBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pToolBtn->SetScale(Vect2(200.f, 50.f));
 	pToolBtn->SetText(L"제작 모드");
-	pToolBtn->SetSprite(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pToolBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	pToolBtn->SetClickedCallBack(&ChangeSceneTool, 0, 0);
 	pCol->AddChild(pToolBtn);
 
@@ -66,7 +72,7 @@ void Scene_Main::Enter()
 	pDictBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pDictBtn->SetScale(Vect2(200.f, 50.f));
 	pDictBtn->SetText(L"아이템 도감");
-	pDictBtn->SetSprite(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pDictBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	pDictBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Main::OpenItemDataUI);
 	pCol->AddChild(pDictBtn);
 }
@@ -93,7 +99,7 @@ void Scene_Main::OpenItemDataUI()
 	pPanelUI->SetFixedPos(false);
 	pPanelUI->SetScale(Vect2(800.f, 700.f));
 	pPanelUI->SetPos(Vect2(vRes.x * 0.5f, vRes.y * 0.5f));
-	pPanelUI->SetSprite(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
+	pPanelUI->SetTexture(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 
 	CWrap* pWrap = new CWrap;
 	pWrap->SetPos(Vect2(0.f, 128.f));
@@ -104,7 +110,7 @@ void Scene_Main::OpenItemDataUI()
 	{
 		CImageUI* pImg = new CImageUI;
 		pImg->SetScale(Vect2(50.f, 50.f));
-		pImg->SetSprite(CResMgr::GetI()->LoadTexture(L"UI_Item_" + std::to_wstring(i + 1), L"texture\\item\\26_" + std::to_wstring(i + 1) + L".bmp"));
+		pImg->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Item_" + std::to_wstring(i + 1), L"texture\\item\\26_" + std::to_wstring(i + 1) + L".bmp"));
 		pWrap->AddChild(pImg);
 	}
 
@@ -112,7 +118,7 @@ void Scene_Main::OpenItemDataUI()
 	pCloseBtn->SetPos(Vect2(0.f, 300.f));
 	pCloseBtn->SetScale(Vect2(200.f, 50.f));
 	pCloseBtn->SetText(L"닫기");
-	pCloseBtn->SetSprite(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pCloseBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	pCloseBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Main::CloseItemDataUI);
 	pPanelUI->AddChild(pCloseBtn);
 

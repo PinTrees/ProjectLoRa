@@ -7,14 +7,17 @@ class Scene_Tool :
 	public CScene
 {
 private:
-	UINT	mTileX;
-	UINT	mTileY;
+	UINT		mTileX;
+	UINT		mTileY;
+	CUI*		mToolUI;
+
 
 public:
 	virtual void Update();
 	virtual void Enter();
 	virtual void Render(HDC _dc);
 	virtual void Exit();
+
 
 public:
 	void SetTileIdx();
@@ -33,11 +36,14 @@ public:
 
 
 private:
+	void CreateToolUI();
+
+
+private:
 	void render_tile(HDC _dc);
 
 
 public:
 	Scene_Tool();
-	~Scene_Tool();
+	virtual ~Scene_Tool();
 };
-
