@@ -269,7 +269,7 @@ INT_PTR CALLBACK AnimationProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			//x√‡ «»ºø≈©±‚øÕ y√‡ «»ºø≈©±‚ ∞°¡Æø»
 			GetDlgItemTextW(hDlg,IDC_ANIM_NAME, szName,256);
 			wstring name(szName);
-			UINT FrameCount = GetDlgItemInt(hDlg, IDC_FRAME_COUNT, nullptr, false);
+			UINT FrameCount = 0;
 			UINT FrameLT = GetDlgItemInt(hDlg, IDC_FRAME_COUNT2, nullptr, false);
 			UINT xPixel = GetDlgItemInt(hDlg, IDC_X_PIXEL, nullptr, false);
 			UINT yPixel = GetDlgItemInt(hDlg, IDC_Y_PIXEL, nullptr, false);
