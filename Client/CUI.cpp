@@ -18,6 +18,7 @@ CUI::CUI(bool cameraAffected)
 	, mvFinalPos{}
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
+	, mvOffset(Vect2::zero)
 {
 }
 
@@ -63,7 +64,7 @@ void CUI::FinalUpdate()
 	if (GetParentUI())
 	{
 		Vect2 parentPos = GetParentUI()->GetFinalPos();
-		mvFinalPos += parentPos;
+		mvFinalPos += parentPos + mvOffset;
 	}
 
 	// UI Mouseüũ

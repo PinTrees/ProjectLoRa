@@ -39,8 +39,7 @@ private:
 	vector<CUI*>	mVecChildUI; // 깊은 복사 진행 해야함.
 	CUI*			mpParentUI;
 
-	Vect2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
-
+	Vect2			mvOffset; // 
 	Vect2			mvFinalPos;
 
 	COLORREF		mColor;		// 텍스쳐의 색상 비율값입니다.
@@ -91,7 +90,7 @@ public:
 	bool GetIsMouseOn() { return mOnMouseCheck; }
 
 	CUI*		GetFindChild(CUI* parentUI, const wstring& childUI);
-	void		SetContentOffset(Vect2 _offset) { mvContentOffset = _offset; }
+	void		SetOffset(Vect2 _offset) { mvOffset = _offset; }
 
 	void		SetColor(COLORREF color) { mColor = color; }
 	COLORREF	GetColor() { return mColor; }

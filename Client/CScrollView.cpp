@@ -13,6 +13,7 @@
 CScrollView::CScrollView() // ScrollView 안에 넣을 UI와 ScrollView의 사이즈
 	: CUI(false)
 	, mpScrollBar(nullptr)
+	, mContentUI(nullptr)
 	, mRatio()
 	, mvContentSize(Vect2::zero)
 {
@@ -48,24 +49,31 @@ void CScrollView::SetVerticalScroll()
 }
 
 
+
 void CScrollView::Update()
 {
 	CUI::Update();
 
+	Vect2 vPos = GetPos();
+	Vect2 vScale = GetScale();
+
+	float ratioY = mRatio * (mvContentSize.y - vScale.y + 48.f);
+
+	// 자식 클릭을 위해 실제 위치값을 이동
 	vector<CUI*> vecChild = GetChild();
 	for (int i = 0; i < vecChild.size(); i++)
 	{
 		if (vecChild[i]->GetName() == L"ScrollBar")
 			continue;
-		//vecChild[i]->SetPos();
-	}
 
-	Vect2 vPos = GetPos();
-	Vect2 vScale = GetScale();
+		// 자식 위치값을 스크롤 비율만큼 이동
+		vecChild[i]->SetOffset(Vect2(0.f, (mvContentSize.y - vScale.y) * 0.5f - ratioY));
+	}
 
 	Vect2 vScrollBarPos = mpScrollBar->GetPos();
 	Vect2 vScrollBarSize = mpScrollBar->GetScale();
 
+	// 스크롤바 이동 영역 제한
 	if (mRatio < 0.f)
 	{
 		mRatio = 0.f;
@@ -85,27 +93,44 @@ void CScrollView::Update()
 
 void CScrollView::Render(HDC _dc)
 {
+	// 버퍼 DC 초기화
 	mpTex->Clear(RGB(255, 0, 255));
 	CUI::RenderChild(mpTex->GetDC());
 
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	// 수직 비율 계산
-	float startY = mRatio * (mvContentSize.y - vScale.y * 0.5f);
+	// 현재 스크롤 영역 산출
+	float stratY = (vPos.y - vScale.y * 0.5f);
+	float startX = (vPos.x - vScale.x * 0.5f);
 
+	float renderGapY = 0.f;
+	float renderGapX = 0.f;
+
+	if (stratY < 0)
+	{
+		renderGapY = stratY * -1;
+		stratY = 0.f;
+	}
+
+	if (startX < 0)
+	{
+		renderGapX = startX * -1;
+		startX = 0.f;
+	}
+
+	// 스크롤 영역 메인DC에 출력
 	TransparentBlt(_dc
-		, (int)(vPos.x - vScale.x * 0.5f)
-		, (int)(vPos.y - vScale.y * 0.5f)
-		, (int)vScale.x
-		, (int)vScale.y
+		, (int)((vPos.x - vScale.x * 0.5f) + renderGapX)
+		, (int)((vPos.y - vScale.y * 0.5f) + renderGapY)
+		, (int)(vScale.x - renderGapX)
+		, (int)(vScale.y - renderGapY)
 		, mpTex->GetDC()
 
-		, (int)(vPos.x - vScale.x * 0.5f)
-		, (int)(vPos.y + startY - mvContentSize.y * 0.5f)
-		//, (int)(vPos.y + vScale.y * 0.5f)
-		, (int)vScale.x
-		, (int)vScale.y
+		, (int)startX
+		, (int)stratY
+		, (int)(vScale.x - renderGapX)
+		, (int)(vScale.y - renderGapY)
 		, RGB(255, 0, 255));
 
 	mpScrollBar->Render(_dc);
@@ -114,10 +139,17 @@ void CScrollView::Render(HDC _dc)
 
 
 
+void CScrollView::SetContentUI(CUI* ui)
+{
+	mContentUI = ui;
+	AddChild(ui);
+}
+
 void CScrollView::AddChild(CUI* ui)
 {
 	CUI::AddChild(ui);
-	
+
+	// 신규 자식이 추가될 때 마다 컨텐츠 사이즈 재계산
 	mRatio = 0.f;
 	Vect2 vPos = GetPos();
 	Vect2 vScale = GetScale();
