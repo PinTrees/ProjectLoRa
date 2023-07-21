@@ -37,6 +37,25 @@ void CBtnUI::Render(HDC dc)
 {
 	CUI::Render(dc);
 
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
+	Vect2 vScale = GetScale();
+
+	if(mpSprite)
+	{
+		TransparentBlt(dc
+			, (int)(vPos.x - vScale.x * 0.5f)
+			, (int)(vPos.y - vScale.y * 0.5f)
+			, (int)vScale.x
+			, (int)vScale.y
+			, mpSprite->GetDC()
+			, 0, 0
+			, (int)mpSprite->Width()
+			, (int)mpSprite->Heigth()
+			, RGB(255, 0, 255));
+	}
+
+	CUI::RenderChild(dc);
+
 	if (IsLbtnDown())
 	{
 		mHoberAlpha = 128.f;
@@ -124,7 +143,7 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	Vect2 vPos = GetFinalPos();
 	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
 
-	BLENDFUNCTION bf = {};   
+	BLENDFUNCTION bf = {};
 
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;

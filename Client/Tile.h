@@ -8,12 +8,12 @@ class Tile
 	: public CObject
 {
 private:
-	CTexture*	mpTileTex;
+	CTexture* mpTileTex;
 	int			mIdx;
 
 public:
 	void SetTexture(CTexture* _tex) { mpTileTex = _tex; }
-	void AddImgIdx()	{ ++mIdx; }
+	void AddImgIdx() { ++mIdx; }
 	void SetImgIdx(int _TileIdx) { mIdx = _TileIdx; }
 public:
 	vector<uint8_t> Save();

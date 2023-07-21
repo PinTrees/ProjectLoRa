@@ -156,12 +156,22 @@ public:
 		: x(_x)
 		, y(_y)
 	{}
-
+	Vect2(float _x, UINT _y)
+		: x(_x)
+		, y(static_cast<float>(_y))
+	{}
+	Vect2(UINT _x, float _y)
+		: x(static_cast<float>(_x))
+		, y(_y)
+	{}
 	Vect2(int _x, int _y)
 		: x(static_cast<float>(_x))
 		, y(static_cast<float>(_y))
 	{}
-
+	Vect2(UINT _x, UINT _y)
+		: x(static_cast<float>(_x))
+		, y(static_cast<float>(_y))
+	{}
 	Vect2(const POINT& _pt)
 		:x((float)_pt.x)
 		, y((float)_pt.y)

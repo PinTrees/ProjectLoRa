@@ -18,7 +18,7 @@ private:
     virtual void Exit();
 
     
-private:
+public:
     void OpenItemDataUI();
     void CloseItemDataUI();
 

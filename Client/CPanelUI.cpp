@@ -2,8 +2,14 @@
 #include "CPanelUI.h"
 #include "CKeyMgr.h"
 
+#include "CTexture.h"
+#include "CSprite.h"
+
+
+
 CPanelUI::CPanelUI()
 	: CUI(false)
+	, mpSprite(nullptr)
 	, mFixedPos(true)
 {
 }
@@ -18,15 +24,23 @@ void CPanelUI::Update()
 	CUI::Update();
 }
 
-void CPanelUI::Render(HDC _dc)
+void CPanelUI::Render(HDC dc)
 {
-	CUI::Render(_dc);
+	CUI::Render(dc);
+
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
+	Vect2 vScale = GetScale();
+
+	if (mpSprite)
+	{
+		mpSprite->Render(dc, vPos, vScale);
+	}
+
+	CUI::RenderChild(dc);
 }
 
 void CPanelUI::MouseOn()
 {
-	CUI::MouseOn();
-
 	if (mFixedPos)
 		return;
 

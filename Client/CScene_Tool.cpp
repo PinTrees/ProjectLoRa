@@ -35,7 +35,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount);
 Scene_Tool::Scene_Tool()
 	: mTileX(0)
 	, mTileY(0)
-	, ToolUI(nullptr)
+	, mToolUI(nullptr)
 {
 }
 
@@ -53,15 +53,15 @@ void Scene_Tool::Enter()
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	// TileEditUI
-	CUI* pEditPanel = new CPanelUI;
+	CPanelUI* pEditPanel = new CPanelUI;
 	pEditPanel->SetName(L"EditPanel");
 	pEditPanel->SetScale(Vect2(vResolution.x * 0.4f, vResolution.y));
 	pEditPanel->SetPos(Vect2(vResolution.x - (pEditPanel->GetScale().x * 0.5f), vResolution.y * 0.5f));
-	pEditPanel->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
+	pEditPanel->SetTexture(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	((CPanelUI*)pEditPanel)->SetFixedPos(false);
 
-	CUI* pEditWrap = new CWrap;
-	pEditWrap->SetScale(Vect2(pEditPanel->GetScale().x-50.f, pEditPanel->GetScale().y));
+	CWrap* pEditWrap = new CWrap;
+	pEditWrap->SetScale(Vect2(pEditPanel->GetScale().x - 50.f, pEditPanel->GetScale().y));
 	pEditWrap->SetPos(Vect2(0.f, 30.f));
 	pEditPanel->AddChild(pEditWrap);
 
@@ -70,21 +70,18 @@ void Scene_Tool::Enter()
 	UINT maxCol = tile->Width() / TILE_SIZE;
 	UINT maxRow = tile->Heigth() / TILE_SIZE;
 
-	int tileMaxIdx = maxCol* maxRow;
+	int tileMaxIdx = maxCol * maxRow;
 	for (int i = 0; i < tileMaxIdx; ++i)
 	{
-		CUI* pImg = new TileBtnUI;
+		TileBtnUI* pImg = new TileBtnUI;
 		pImg->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
 		pImg->SetTexture(tile);
 		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
 	}
-	ToolUI = pEditPanel;
+
+	mToolUI = pEditPanel;
 	CreateObject(pEditPanel, GROUP_TYPE::UI);
-
-
-
-
 
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 }
@@ -114,16 +111,16 @@ void Scene_Tool::Update()
 	}
 	if (KEY_TAP(KEY::SPACE))
 	{
-		ToolUI->SetVisible(!ToolUI->IsVisible());
+		mToolUI->SetVisible(!mToolUI->IsVisible());
 	}
 }
 
 void Scene_Tool::SetTileIdx()
 {
 	// 마우스클릭된 좌표위에 UI가있을경우 UI클릭만하고 타일은 클릭 예외처리
-	if (CUIMgr::GetI()->IsMouseOnUI())
+	if (CUIMgr::GetI()->IsMouseOn())
 	{
-		CUIMgr::GetI()->SetMouseOnUI(false);
+		CUIMgr::GetI()->SetMouseOn(false);
 		return;
 	}
 
@@ -295,43 +292,6 @@ void ChangeScene(DWORD_PTR, DWORD_PTR)
 
 
 
-// ======================
-// Tile Count Window Proc
-// ======================
-INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
-	{
-	case WM_INITDIALOG:
-		return (INT_PTR)TRUE;
-
-	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK)
-		{
-			UINT iXCount = GetDlgItemInt(hDlg, IDC_EDIT1, nullptr, false);
-			UINT iYCount = GetDlgItemInt(hDlg, IDC_EDIT2, nullptr, false);
-
-			CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
-
-			Scene_Tool* pToolScene = dynamic_cast<Scene_Tool*>(pCurScene);
-			assert(pToolScene);
-
-			pToolScene->DeleteGroup(GROUP_TYPE::TILE);
-			CreateTile(pToolScene, iXCount, iYCount);
-
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-		else if (LOWORD(wParam) == IDCANCEL)
-		{
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-	}
-	return (INT_PTR)FALSE;
-}
-
 
 void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 {
@@ -382,7 +342,10 @@ void Scene_Tool::Render(HDC _dc)
 			// Render Object
 			if (!(*iter)->IsDead())
 			{
-				(*iter)->Render(_dc);
+				if ((*iter)->IsVisible())
+				{
+					(*iter)->Render(_dc);
+				}
 				++iter;
 			}
 			// Delete Object
@@ -428,4 +391,42 @@ void Scene_Tool::render_tile(HDC _dc)
 			((Tile*)vecTile[iIdx])->Render(_dc, true);
 		}
 	}
+}
+
+
+// ======================
+// Tile Count Window Proc
+// ======================
+INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	UNREFERENCED_PARAMETER(lParam);
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		return (INT_PTR)TRUE;
+
+	case WM_COMMAND:
+		if (LOWORD(wParam) == IDOK)
+		{
+			UINT iXCount = GetDlgItemInt(hDlg, IDC_EDIT1, nullptr, false);
+			UINT iYCount = GetDlgItemInt(hDlg, IDC_EDIT2, nullptr, false);
+
+			CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
+
+			Scene_Tool* pToolScene = dynamic_cast<Scene_Tool*>(pCurScene);
+			assert(pToolScene);
+
+			pToolScene->DeleteGroup(GROUP_TYPE::TILE);
+			CreateTile(pToolScene, iXCount, iYCount);
+
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+		else if (LOWORD(wParam) == IDCANCEL)
+		{
+			EndDialog(hDlg, LOWORD(wParam));
+			return (INT_PTR)TRUE;
+		}
+	}
+	return (INT_PTR)FALSE;
 }

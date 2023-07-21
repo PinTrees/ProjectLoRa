@@ -1,7 +1,6 @@
-ï»¿#include "pch.h"
+#include "pch.h"
 #include "CUI.h"
 
-#include "UIMgr.h"
 #include "CCamera.h"
 #include "CKeyMgr.h"
 
@@ -19,21 +18,15 @@ CUI::CUI(bool cameraAffected)
 	, mvFinalPos{}
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
-	, mColor(0)
-	, mLbtnDown(false)
-	, mpTexture(nullptr)
 {
 }
 
 CUI::CUI(const CUI& origin)
 	: CObject(origin)
 	, mpParentUI(nullptr)
-	, mvFinalPos{}
 	, mCameraAffected(origin.mCameraAffected)
 	, mOnMouseCheck(false)
-	, mColor(origin.mColor)
 	, mLbtnDown(false)
-	, mpTexture(origin.mpTexture)
 {
 	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
@@ -49,7 +42,7 @@ CUI::~CUI()
 
 
 
-void CUI::Update()
+void CUI::Update() 
 {
 	// child update
 	UpdateChild();
@@ -60,12 +53,12 @@ void CUI::FinalUpdate()
 	if (GetAnimator())
 		GetAnimator()->Update();
 
-	// ë¶€ëª¨ì˜ finalUpdateí˜¸ì¶œ í•´ì•¼í•œë‹¤.
-	// UIê°€ ì• ë‹ˆë§¤ì´ì…˜ ê°€ì§ˆ ìˆ˜ë„ ìˆê¸° ë•Œë¬¸ì—
+	// ºÎ¸ğÀÇ finalUpdateÈ£Ãâ ÇØ¾ßÇÑ´Ù.
+	// UI°¡ ¾Ö´Ï¸ÅÀÌ¼Ç °¡Áú ¼öµµ ÀÖ±â ¶§¹®¿¡
 	CObject::FinalUpdate();
 
-	// UIì˜ ìµœì¢…ì¢Œí‘œë¥¼ êµ¬í•œë‹¤.
-	mvFinalPos = GetPos(); // ë¶€ëª¨ ì¢Œí‘œë¥¼ finalPosë¡œ ì¸ì‹
+	// UIÀÇ ÃÖÁ¾ÁÂÇ¥¸¦ ±¸ÇÑ´Ù.
+	mvFinalPos = GetPos(); // ºÎ¸ğ ÁÂÇ¥¸¦ finalPos·Î ÀÎ½Ä
 
 	if (GetParentUI())
 	{
@@ -73,7 +66,7 @@ void CUI::FinalUpdate()
 		mvFinalPos += parentPos;
 	}
 
-	// UI Mouseì²´í¬
+	// UI MouseÃ¼Å©
 	OnMouseCheck();
 
 	FinalUpdateChild();
@@ -98,7 +91,6 @@ void CUI::OnMouseCheck()
 	{
 		mOnMouseCheck = false;
 	}
-
 }
 
 void CUI::Render(HDC dc)
@@ -108,51 +100,22 @@ void CUI::Render(HDC dc)
 		GetAnimator()->GetCurAnimation()->RenderUI(this, dc);
 		return;
 	}
+	
+	SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
+	SelectGDI p(dc, PEN_TYPE::RED);
 
-	Vect2 vPos = GetFinalPos();
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	if (mCameraAffected)
-	{
-		vPos = CCamera::GetI()->GetRenderPos(vPos);
-	}
+	Rectangle
+	(
+		dc,
+		int(vPos.x - vScale.x * 0.5f),
+		int(vPos.y - vScale.y * 0.5f),
+		int(vPos.x + vScale.x * 0.5f),
+		int(vPos.y + vScale.y * 0.5f)
+	);
 
-	if (mLbtnDown)
-	{
-		SelectGDI p(dc, PEN_TYPE::GREEN);
-	}
-
-	if (nullptr == mpTexture)
-	{
-		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
-		SelectGDI c(dc, PEN_TYPE::RED);
-		Rectangle
-		(
-			dc,
-			int(vPos.x - vScale.x * 0.5f),
-			int(vPos.y - vScale.y * 0.5f),
-			int(vPos.x + vScale.x * 0.5f),
-			int(vPos.y + vScale.y * 0.5f)
-		);
-	}
-	else
-	{
-		float fWidth = (float)mpTexture->Width();
-		float fHeight = (float)mpTexture->Heigth();
-
-		TransparentBlt(dc
-			, (int)(vPos.x - vScale.x * 0.5f)
-			, (int)(vPos.y - vScale.y * 0.5f)
-			, (int)vScale.x
-			, (int)vScale.y
-			, mpTexture->GetDC()
-			, 0, 0
-			, (int)fWidth, (int)fHeight
-			, RGB(255, 0, 255));
-	}
-
-	// child render
-	RenderChild(dc);
 }
 
 void CUI::UpdateChild()
@@ -189,7 +152,6 @@ void CUI::OnDestroy()
 
 void CUI::MouseOn()
 {
-	CUIMgr::GetI()->SetMouseOnUI(true);
 
 }
 
@@ -200,7 +162,7 @@ void CUI::MouseLbtnDown()
 
 void CUI::MouseLbtnUp()
 {
-	// ë°–ì—ì„œ ëˆ„ë¥´ê³  ì•ˆì—ì„œ ë•Ÿì„ ë•Œë„ ì¸ì‹ì´ ëœë‹¤.
+	// ¹Û¿¡¼­ ´©¸£°í ¾È¿¡¼­ ¶­À» ¶§µµ ÀÎ½ÄÀÌ µÈ´Ù.
 
 }
 

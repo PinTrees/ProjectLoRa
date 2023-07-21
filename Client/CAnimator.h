@@ -24,11 +24,12 @@ public:
 
 public:
 	void CreateAnimation(const wstring& _strName , CTexture* _pTex, Vect2 _vLT,Vect2 _vSliceSize,Vect2 _vStep, float _fDuration,UINT _iFreamCount);
+	void DeleteAnimation();
 	void LoadAnimation(const wstring& _strRelativePath);
 	CAnimation* FindAnimation(const wstring& _strName);
 	
 	void Play(const wstring& _strName, bool _bRepeat);
-
+	void Stop();
 
 public:
 	void Update();

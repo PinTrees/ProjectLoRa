@@ -1,5 +1,4 @@
 ﻿// Client.cpp : Defines the entry point for the application.
-//
 #include "pch.h"
 #include "framework.h"
 #include "Client.h"
@@ -14,6 +13,12 @@ HWND g_hWnd;
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
+
+// GDI Value
+ULONG_PTR gdiplusToken;
+GdiplusStartupInput gdiplusStartupInput;
+
+
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -21,6 +26,7 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 INT_PTR CALLBACK TileCountProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK AnimationProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -43,6 +49,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
+    // GDI+ 초기화
+    Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
     // Perform application initialization:
     if (!InitInstance (hInstance, nCmdShow))
     {
@@ -54,6 +63,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
         return FALSE;
     }
+
+
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg;
@@ -80,6 +91,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     CCore::GetI()->Delete();
     CCore::Dispose();
+
+    // GDI+ 종료
+    Gdiplus::GdiplusShutdown(gdiplusToken);
 
     return (int) msg.wParam;
 }
@@ -162,6 +176,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case ID_MENU_TILE_COUNT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_TILE_COUNT), hWnd, TileCountProc);
+                break;
+            case ID_OPTION:
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_VIEWER_INFO), hWnd, AnimationProc);
                 break;
             //case IDM_EXIT:
             //    DestroyWindow(hWnd);

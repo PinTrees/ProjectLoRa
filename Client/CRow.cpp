@@ -81,5 +81,6 @@ void CRow::Update()
 void CRow::Render(HDC dc)
 {
 	CUI::Render(dc);
+    CUI::RenderChild(dc);
 }
 

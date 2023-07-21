@@ -17,7 +17,7 @@ TextUI::TextUI()
 	mStyle.fontSize = 32;
 	mStyle.color = RGB(0, 0, 0);
 	mStyle.boder = false;
-	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", (int)mStyle.fontSize);
+	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", mStyle.fontSize);
 }
 
 TextUI::~TextUI()
@@ -38,12 +38,14 @@ void TextUI::SetFontSize(float size)
 	mStyle.fontSize = size;
 	
 	// ReLoad Font
-	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf",(int)mStyle.fontSize);
+	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", mStyle.fontSize);
 }
 
 
 void TextUI::Render(HDC dc)
 {
+	//CUI::Render(dc);
+
 	if (nullptr == mFont || mText == L"")
 		return;
 
@@ -55,6 +57,8 @@ void TextUI::Render(HDC dc)
 	}
 
 	mFont->Render(dc, mText, vRenderPos, GetScale(), mStyle);
+
+	//CUI::RenderChild(dc);
 }
 
 void TextUI::MouseOn()

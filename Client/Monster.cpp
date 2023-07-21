@@ -7,6 +7,9 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 
+// System Module Header
+#include "Random.h"
+
 // Include Componets
 #include "CCollider.h"
 #include "CAnimation.h"
@@ -30,8 +33,6 @@ Monster::Monster(const wstring& uid)
 	mtInfo.UID = uid;
 
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(40.f, 40.f));
-	GetCollider()->SetOffsetPos(Vect2(75.f, 35.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_" + uid, L"texture\\monster\\" + uid + L".bmp");
 	CreateAnimator();
@@ -43,6 +44,7 @@ Monster::Monster(const wstring& uid)
 		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 93 * 2.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 93 * 4.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
+		GetCollider()->SetScale(Vect2(40.f, 40.f));
 		GetCollider()->SetOffsetPos(Vect2(75.f, 35.f));
 		SetScale(Vect2(280.f, 180.f) * 0.8f);
 		SetPivot(Vect2(75.f, 35.f));
@@ -50,20 +52,23 @@ Monster::Monster(const wstring& uid)
 	else if (mtInfo.UID == L"2")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 48.f * 1.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 2.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 3.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.07f, 4);
+		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 48.f * 8.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.07f, 4);
 		GetCollider()->SetOffsetPos(Vect2::zero);
-		SetScale(Vect2(48.f, 48.f) * 1.8f);
+		SetScale(Vect2(48.f, 48.f) * 1.3f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 	}
+
+	GetCollider()->SetScale(GetScale() * 0.6f);
+	GetCollider()->SetOffsetPos(GetPivot() * 0.4f);
 
 	GetAnimator()->Play(L"IDLE", true);
 
 	mHpBar = new BarUI;
 	mHpBar->SetPivot(Vect2(0.f, GetScale().y * -0.4f));
-	mHpBar->SetScale(Vect2(50.f, 6.f));
+	mHpBar->SetScale(Vect2(45.f, 5.f));
 	mHpBar->SetColor(RGB(255, 0, 0));
 	CreateObject(mHpBar, GROUP_TYPE::UI);
 }
@@ -90,7 +95,7 @@ void Monster::Update()
 
 	if (nullptr != mHpBar)
 	{
-		mHpBar->SetAmount((float)mtInfo.curHp / (float)mtInfo.hp);
+		mHpBar->SetFillAmount((float)mtInfo.curHp / (float)mtInfo.hp);
 		mHpBar->SetPos(GetPos());
 	}
 }
@@ -105,6 +110,9 @@ void Monster::AddDamage(float damage)
 {
 	mtInfo.curHp -= damage;
 	if (mtInfo.curHp < 0) mtInfo.curHp = 0;
+
+
+	Vect2 vOff = Vect2((float)CRandom::GetI()->Next(-20, 20), (float)CRandom::GetI()->Next(-20, 20));
 
 	CombatText* pCbTex = new CombatText;
 	pCbTex->SetPos(GetLocalPos());

@@ -27,7 +27,7 @@ private:
 	float				mfAccTime;	 // 누적 시간
 
 	bool				mbFinish;	 // 재생 완료 여부
-
+	bool				mbPlay;		 // 정지상태여부
 
 private:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
@@ -45,9 +45,11 @@ public:
 		mfAccTime = 0.f;
 	}
 	void SetAllFrameOffet(Vect2 _vOffset);
-	
-	bool IsFinish() { return mbFinish; } 
 
+	void SetTex(CTexture* _texture) { mpTexture = _texture; }
+	void SetPlay(bool _b) { mbPlay = _b; }
+	bool IsFinish() { return mbFinish; } 
+	bool IsPlay() { return mbPlay; }
 
 public:
 	void Update();

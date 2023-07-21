@@ -29,8 +29,12 @@
 #include "CPanelUI.h"
 #include "CBtnUI.h"
 #include "TextUI.h"
+#include "CRow.h"
+#include "CImageUI.h"
 
 #include "CState.h"
+
+#include "Skill.h"
 
 // Game Manager Header
 #include "HubUIMgr.h"
@@ -46,9 +50,13 @@ Player::Player()
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
-	, mLevelupUI(nullptr)
 	, mAI(nullptr)
+	, mtInfo({})
+	, mVecSkill({})
 {
+	mtInfo.fullHP = 100.f;
+	mtInfo.curHp = mtInfo.fullHP;
+
 	// Init Object Component
 	// Create Collider Component
 	CreateCollider();
@@ -74,7 +82,7 @@ Player::Player()
 
 	GetAnimator()->Play(L"IDLE", true);
 
-	SetScale(Vect2(73.f, 54.f) * 1.7f);
+	SetScale(Vect2(73.f, 54.f) * 2.1f);
 	SetPivot(Vect2(-30.f, 35.f));
 
 	mCurGun = new Gun(L"1");
@@ -83,6 +91,7 @@ Player::Player()
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
+	// Exp Bar
 	mExpBar = new BarUI;
 	mExpBar->SetCameraAffected(true);
 	mExpBar->SetScale(Vect2(vRes.x, 8.f));
@@ -90,6 +99,27 @@ Player::Player()
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
 
+	// Player HP UI Parent
+	CRow* pRow = new CRow;
+	pRow->SetScale(Vect2(400.f, 50.f));
+	pRow->SetPos(Vect2(pRow->GetScale() * 0.5f) + Vect2(28.f, 28.f));
+	pRow->SetSpacing(16.f);
+	pRow->SetAlignment(ALIGNMENT::CENTER_LEFT);
+	CreateObject(pRow, GROUP_TYPE::UI);
+
+	// HP Icon
+	CImageUI* pIcon = new CImageUI;
+	pIcon->SetScale(Vect2(36.f, 36.f));
+	pIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Hp", L"texture\\ui\\icon\\hp.bmp"));
+	pRow->AddChild(pIcon);
+
+	// HP Bar 
+	mHpBar = new CImageUI;
+	mHpBar->SetScale(Vect2(36.f, 36.f));
+	mHpBar->SetScale(Vect2(250.f, 12.f));
+	mHpBar->SetColor(RGB(255, 0, 0));
+	mHpBar->SetImageType(IMAGE_TYPE::FILLED);
+	pRow->AddChild(mHpBar);
 }
 
 
@@ -98,6 +128,8 @@ Player::~Player()
 	if (nullptr != mAI)
 		delete mAI;
 }
+
+
 
 
 void Player::Update()
@@ -109,11 +141,20 @@ void Player::Update()
 	calExp();
 	mfCurDelay += DT;
 	
+
+	for (int i = 0; i < (UINT)mVecSkill.size(); ++i)
+	{
+		if (nullptr != mVecSkill[i])
+			mVecSkill[i]->UseSkill();
+	}
+
 	Vect2 vPos = GetPos();
-	mExpBar->SetAmount(GetExp() / GetMaxExp());
+	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
+	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
+
 
 	if (nullptr !=  mCurGun)
 	{
@@ -168,8 +209,23 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
-		LevelupUIMgr::GetI()->Choice();
+		LevelUpUIMgr::GetI()->Choice();
 	}
 }
 
 
+Skill* Player::FindSkill(SKILL_TYPE type)
+{
+	Skill* result = nullptr;
+	
+	for (int i = 0; i < mVecSkill.size(); ++i)
+	{
+		if (mVecSkill[i]->GetType() == type)
+		{
+			Skill* result = mVecSkill[i];
+			break;
+		}
+	}
+
+	return result;
+}

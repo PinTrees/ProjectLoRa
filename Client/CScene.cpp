@@ -34,8 +34,6 @@ CScene::~CScene()
 
 void CScene::AddObject(CObject* _pObj, GROUP_TYPE _eType)
 {
-
-
 	mArrObj[(UINT)_eType].push_back(_pObj);
 }
 

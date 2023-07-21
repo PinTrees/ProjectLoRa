@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="AnimationView.h" />
     <ClInclude Include="AtkState.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
@@ -167,8 +168,11 @@
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CSoundMgr.h" />
+    <ClInclude Include="CSprite.h" />
     <ClInclude Include="CWrap.h" />
     <ClInclude Include="HubUIMgr.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemMgr.h" />
     <ClInclude Include="LevelUpUI.h" />
     <ClInclude Include="LevelUpUIMgr.h" />
     <ClInclude Include="Monster.h" />
@@ -209,6 +213,9 @@
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="Scene_Main.h" />
+    <ClInclude Include="Scene_Viewer.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillMgr.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBtnUI.h" />
@@ -224,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="AnimationView.cpp" />
     <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -243,8 +251,11 @@
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
+    <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemMgr.cpp" />
     <ClCompile Include="LevelUpUI.cpp" />
     <ClCompile Include="LevelUpUIMgr.cpp" />
     <ClCompile Include="Monster.cpp">
@@ -283,8 +294,11 @@
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Scene_Main.cpp" />
+    <ClCompile Include="Scene_Viewer.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="SkillMgr.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileBtnUI.cpp" />

@@ -20,6 +20,7 @@ CAnimation::CAnimation()
 	, miCurFrm(0)
 	, mfAccTime(0.f)
 	, mbFinish(false)
+	, mbPlay(true)
 {
 }
 
@@ -41,6 +42,12 @@ void CAnimation::Update()
 {
 	if (mbFinish)
 		return;
+
+	if (!mbPlay)
+	{
+		mfAccTime = 0.f;
+		return;
+	}
 
 	mfAccTime += DT;
 	

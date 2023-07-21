@@ -12,7 +12,7 @@ SINGLE_HEADER(CUIMgr);
 
 CUIMgr::CUIMgr()
 	: _focusedUI(nullptr)
-	,mbMouseOnUI(false)
+	, mbMouseOnUI(false)
 {
 
 }
@@ -30,7 +30,7 @@ void CUIMgr::Update()
 	{
 		return;
 	}
-	 
+
 	CUI* targetUI = GetTargetUI(_focusedUI);
 
 	bool tapLbtn = KEY_TAP(KEY::LBTN);
@@ -61,10 +61,31 @@ void CUIMgr::Update()
 
 			// 왼쪽버튼 때면, 눌렀던 체크를 다시 해제한다.
 			targetUI->mLbtnDown = false;
+
 		}
 	}
 }
 
+
+void CUIMgr::SetTop(CUI* ui)
+{
+	if (nullptr == ui)
+		return;
+
+	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
+	vector<CObject*>& vecUI = curScene->GetUIGroups();
+
+	vector<CObject*>::iterator iter = vecUI.begin();
+
+	for (; iter != vecUI.end(); ++iter)
+	{
+		if (ui == *iter)
+			break;
+	}
+
+	vecUI.erase(iter);
+	vecUI.push_back(ui);
+}
 
 void CUIMgr::SetFocusUI(CUI* ui)
 {
@@ -116,6 +137,9 @@ CUI* CUIMgr::GetFocusUI()
 	// 적어도 왼쪽 클릭이 발생했다는 보장이 생긴다.
 	for (; iter != vecUI.end(); ++iter)
 	{
+		if ((*iter)->IsDead() || !(*iter)->IsVisible())
+			continue;
+
 		if (dynamic_cast<CUI*>(*iter)->IsMouseOn())
 		{
 			targetIter = iter;
@@ -128,7 +152,7 @@ CUI* CUIMgr::GetFocusUI()
 		return nullptr;
 	}
 
-	focusedUI = (CUI*)*targetIter;
+	focusedUI = dynamic_cast<CUI*>(*targetIter);
 
 	// 벡터 내에서 맨 뒤로 순번교체
 	vecUI.erase(targetIter);

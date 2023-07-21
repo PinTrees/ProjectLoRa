@@ -1,4 +1,8 @@
 #pragma once
+
+
+
+
 class ToolMgr
 {
 	SINGLE(ToolMgr);
@@ -7,7 +11,7 @@ private:
 
 public:
 	void SetTileIdx(int _idx) { mCurTileIdx = _idx; }
-	
+
 
 	int GetCurTileIdx() { return mCurTileIdx; }
 };

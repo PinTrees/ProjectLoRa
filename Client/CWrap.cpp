@@ -58,4 +58,5 @@ void CWrap::Update()
 void CWrap::Render(HDC dc)
 {
 	CUI::Render(dc);
+	CUI::RenderChild(dc);
 }

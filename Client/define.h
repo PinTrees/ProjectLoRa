@@ -73,6 +73,7 @@ enum class SCENE_TYPE
 	TOOL,
 	START,
 	MAIN,
+	VIEWER,
 	STAGE_01,
 	STAGE_02,
 
@@ -103,6 +104,15 @@ enum class EVENT_TYPE
 
 	END,
 };
+
+enum class RECT_DIRECTION
+{
+	LEFT,
+	TOP,
+	BOTTOM,
+	RIGHT
+};
+
 
 enum class BULLET_STATE
 {
@@ -136,9 +146,26 @@ enum class PLAYER_STATE
 };
 
 
+// 추후 Enum 사용 안함 - wstring UID 로 변경
+enum class SKILL_TYPE
+{
+	TEST_SKILL_1,
+	TEST_SKILL_2,
+	TEST_SKILL_3,
+	END,
+};
+
+// 추후 Enum 사용 안함 - wstring UID 로 변경
+enum class ITEM_TYPE
+{
+	ITEM_1,
+	ITEM_2,
+	ITEM_3,
+	END,
+};
 
 
-enum class LEVELUP_EFFECT
+enum class STATEUP_TYPE
 {
 	FULL_HP_UP,				// 최대체력 증가
 	REGENERATION_HP_UP,		// 체력재생 증가
@@ -153,7 +180,6 @@ enum class LEVELUP_EFFECT
 	PENETRATION_UP,			// 관통 수 증가
 	SPLITCOUNT_UP,			// 분열 수 증가
 	BOUNTCECOUNT_UP,		// 튕김 수 증가
-
 
 	END
 };

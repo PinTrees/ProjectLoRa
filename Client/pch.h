@@ -42,4 +42,12 @@ using std::wstringstream;
 #include "func.h"
 //#include "func.cpp"
 
-#include <d3d11.h>	
+
+
+// include GDI
+#include <gdiplus.h>
+#pragma comment(lib, "Gdiplus.lib")
+using namespace Gdiplus;
+
+
+

@@ -53,6 +53,11 @@ void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
 	mMapAnim.insert(make_pair(_strName, pAnim));
 }
 
+void CAnimator::DeleteAnimation()
+{
+	Safe_Delete_Map(mMapAnim);
+}
+
 
 void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 {
@@ -84,4 +89,9 @@ void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 	{
 		mpCurAnim->SetFrame(0);
 	}
+}
+
+void CAnimator::Stop()
+{
+	mpCurAnim->SetPlay(false);
 }

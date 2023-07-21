@@ -4,6 +4,7 @@
 // Include Scene
 #include "CScene_start.h"
 #include "CScene_Tool.h"
+#include "Scene_Viewer.h"
 #include "Scene_Main.h"
 
 // System Manager Header
@@ -45,6 +46,9 @@ void CSceneMgr::Init()
 
 	m_arrScene[(UINT)SCENE_TYPE::MAIN] = new Scene_Main;
 	m_arrScene[(UINT)SCENE_TYPE::MAIN]->SetName(L"Main Scene");
+
+	m_arrScene[(UINT)SCENE_TYPE::VIEWER] = new Scene_Viewer;
+	m_arrScene[(UINT)SCENE_TYPE::VIEWER]->SetName(L"Viewer Scene");
 
 	//현재 씬 지정
 	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::MAIN];

@@ -47,10 +47,9 @@ void Tile::Render(HDC _dc, bool editor)
 
 	Vect2 vScale = GetScale();
 
-	//툴씬일경우와 스타트씬일경우 랜더 다르게 구현
 	TransparentBlt(_dc
-		, editor ? (int)vRenderPos.x : (int)vLocalPos.x
-		, editor ? (int)vRenderPos.y : (int)vLocalPos.y
+		, editor ? (int)vRenderPos.x : vLocalPos.x
+		, editor ? (int)vRenderPos.y : vLocalPos.y
 		, (int)(vScale.x)
 		, (int)(vScale.y)
 		, mpTileTex->GetDC()

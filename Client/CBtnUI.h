@@ -6,8 +6,8 @@
 #include "CObject.h"
 
 typedef void(*BTN_FUNC) (DWORD_PTR, DWORD_PTR);
-typedef void(CScene::*SCENE_FUNC) (void);
-typedef void(CObject::*OBJECT_FUNC) (void);
+typedef void(CScene::* SCENE_FUNC) (void);
+typedef void(CObject::* OBJECT_FUNC) (void);
 typedef void(CObject::* OBJECT_FUNC_P) (DWORD_PTR);
 
 
@@ -16,6 +16,8 @@ class CBtnUI :
 	public CUI
 {
 private:
+	CTexture*		mpSprite;
+
 	BTN_FUNC        mpFunc;				// 전역함수
 	DWORD_PTR		mparam1;			// 매개변수 임시 저장
 	DWORD_PTR		mparam2;			// 매개변수 임시 저장
@@ -37,9 +39,12 @@ private:
 public:
 	TextUI* GetText() { return mText; }
 	void	SetText(const wstring& _text) { mText->SetText(_text); }
-	 
-	void		SetChangeTex(CTexture* _tex) { mpChangeTex = _tex; } // 변경할 텍스쳐 세팅
-	CTexture*	GetChangeTex() { return mpChangeTex; }
+
+	void	SetTexture(CTexture* pTex) { mpSprite = pTex; }
+	CTexture* GetTexture() { return mpSprite; }
+
+	void	  SetChangeTex(CTexture* _tex) { mpChangeTex = _tex; } // 변경할 텍스쳐 세팅
+	CTexture* GetChangeTex() { return mpChangeTex; }
 
 	virtual void SetClickedCallBack(BTN_FUNC _pFunc, DWORD_PTR _param1, DWORD_PTR _param2)
 	{

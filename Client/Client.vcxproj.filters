@@ -221,32 +221,59 @@
     <Filter Include="Game\Manager\LevelUpUIMgr">
       <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Editor">
+      <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\UI\Bar">
       <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\UI\CombatText">
       <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\UI\CColumn">
-      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\UI\CWrap">
-      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Object\Box">
       <UniqueIdentifier>{ebef6388-bed5-48de-a2b1-848c513dbea1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\Scene_Tool\ToolManager">
-      <UniqueIdentifier>{0252d80d-1523-4ffd-8660-c4501d3968f2}</UniqueIdentifier>
+    <Filter Include="FreamWork\UI\Wrap">
+      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Column">
+      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\SkillMgr">
+      <UniqueIdentifier>{85303bcd-271c-4d27-ada1-65825ee1b4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class">
+      <UniqueIdentifier>{3ebc293f-a098-435a-9b3f-f373422136b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\ItemMgr">
+      <UniqueIdentifier>{4f9a91f6-811e-4ce0-91da-cb49e1e24a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill">
+      <UniqueIdentifier>{0f50fca6-32fd-4868-8ca7-f20c942d4ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Item">
+      <UniqueIdentifier>{03e766ea-fb9d-4951-8cb0-efed554c7acf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Scene\Scene_Tool\TileEditMgr">
       <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\Scene_Tool\UI">
-      <UniqueIdentifier>{d9067729-806c-4c8d-8d66-da932ea5189a}</UniqueIdentifier>
+    <Filter Include="Game\Scene\Scene_Tool\ToolManager">
+      <UniqueIdentifier>{f5bcb974-cf59-49ca-9bce-302bd4c8a873}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\Scene_Tool\UI\TileBtnUI">
-      <UniqueIdentifier>{ecfc5147-e53a-4080-a30e-9b9010ceb12b}</UniqueIdentifier>
+    <Filter Include="Game\Scene\Scene_Tool\UI">
+      <UniqueIdentifier>{11a9ea4b-bfa0-4623-982b-5955d0c9079a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\UI\TileBtn">
+      <UniqueIdentifier>{dd748e83-cddc-4c14-8ea5-cf9715346345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Resource\Sprite">
+      <UniqueIdentifier>{b2f5ae79-21bf-4c59-9256-5fe5d9146c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Viewer">
+      <UniqueIdentifier>{095bc03f-658a-4815-852a-767cf78a23df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\Object">
+      <UniqueIdentifier>{f935cfa5-b66e-4a12-9f45-fc830323dd35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -448,6 +475,9 @@
     <ClInclude Include="LevelUpUIMgr.h">
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClInclude>
+    <ClInclude Include="TileEditMgr.h">
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
+    </ClInclude>
     <ClInclude Include="BarUI.h">
       <Filter>Game\UI\Bar</Filter>
     </ClInclude>
@@ -455,22 +485,40 @@
       <Filter>Game\UI\CombatText</Filter>
     </ClInclude>
     <ClInclude Include="CColumn.h">
-      <Filter>FreamWork\UI\CColumn</Filter>
+      <Filter>FreamWork\UI\Column</Filter>
     </ClInclude>
     <ClInclude Include="CWrap.h">
-      <Filter>FreamWork\UI\CWrap</Filter>
+      <Filter>FreamWork\UI\Wrap</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Game\Object\Box</Filter>
     </ClInclude>
+    <ClInclude Include="SkillMgr.h">
+      <Filter>Game\Manager\SkillMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemMgr.h">
+      <Filter>Game\Manager\ItemMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Game\Class\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Game\Class\Item</Filter>
+    </ClInclude>
     <ClInclude Include="ToolMgr.h">
       <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
     </ClInclude>
-    <ClInclude Include="TileEditMgr.h">
-      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
-    </ClInclude>
     <ClInclude Include="TileBtnUI.h">
-      <Filter>Game\Scene\Scene_Tool\UI\TileBtnUI</Filter>
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
+    </ClInclude>
+    <ClInclude Include="CSprite.h">
+      <Filter>FreamWork\Resource\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Viewer.h">
+      <Filter>Game\Scene\Scene_Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationView.h">
+      <Filter>Game\Scene\Scene_Tool\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -665,6 +713,9 @@
     <ClCompile Include="LevelUpUIMgr.cpp">
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClCompile>
+    <ClCompile Include="TileEditMgr.cpp">
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
+    </ClCompile>
     <ClCompile Include="BarUI.cpp">
       <Filter>Game\UI\Bar</Filter>
     </ClCompile>
@@ -672,22 +723,40 @@
       <Filter>Game\UI\CombatText</Filter>
     </ClCompile>
     <ClCompile Include="CColumn.cpp">
-      <Filter>FreamWork\UI\CColumn</Filter>
+      <Filter>FreamWork\UI\Column</Filter>
     </ClCompile>
     <ClCompile Include="CWrap.cpp">
-      <Filter>FreamWork\UI\CWrap</Filter>
+      <Filter>FreamWork\UI\Wrap</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>Game\Object\Box</Filter>
     </ClCompile>
+    <ClCompile Include="SkillMgr.cpp">
+      <Filter>Game\Manager\SkillMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemMgr.cpp">
+      <Filter>Game\Manager\ItemMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Game\Class\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Game\Class\Item</Filter>
+    </ClCompile>
     <ClCompile Include="ToolMgr.cpp">
       <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
     </ClCompile>
-    <ClCompile Include="TileEditMgr.cpp">
-      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
-    </ClCompile>
     <ClCompile Include="TileBtnUI.cpp">
-      <Filter>Game\Scene\Scene_Tool\UI\TileBtnUI</Filter>
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
+    </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>FreamWork\Resource\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Viewer.cpp">
+      <Filter>Game\Scene\Scene_Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationView.cpp">
+      <Filter>Game\Scene\Scene_Tool\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

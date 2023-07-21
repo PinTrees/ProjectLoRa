@@ -82,8 +82,8 @@ void CObject::FinalUpdate()
 {
 	if (mpCollider)
 		mpCollider->FinalUpdate();
-	/*if (mpAnimator)
-		mpAnimator->Fi*/
+	//if (mpAnimator)
+		//mpAnimator->FinalUpdate();
 	if (mpRigidBody)
 		mpRigidBody->FinalUpdate();
 }

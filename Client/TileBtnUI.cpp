@@ -61,7 +61,7 @@ void TileBtnUI::Render(HDC dc)
 
 void TileBtnUI::MouseOn()
 {
-	CBtnUI::MouseOn(); 
+	CBtnUI::MouseOn();
 }
 
 void TileBtnUI::MouseLbtnClick()
