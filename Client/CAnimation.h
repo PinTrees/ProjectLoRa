@@ -37,9 +37,11 @@ public:
 
 	UINT		GetMaxFrame() { return (UINT)mVecFrm.size(); }
 	tAnimFrm&	GetFrame(int _iIdx) { return mVecFrm[_iIdx]; }
-	
+	int GetCurFrame() { return miCurFrm; }
 	void SetFrame(int _iFrameIdx)
 	{
+		if (_iFrameIdx >= mVecFrm.size() || 0 > _iFrameIdx)
+			return;
 		mbFinish = false;
 		miCurFrm = _iFrameIdx;
 		mfAccTime = 0.f;
@@ -47,7 +49,7 @@ public:
 	void SetAllFrameOffet(Vect2 _vOffset);
 
 	void SetTex(CTexture* _texture) { mpTexture = _texture; }
-	void SetPlay(bool _b) { mbPlay = _b; }
+	void SetPlay() { mbPlay = !mbPlay; }
 	bool IsFinish() { return mbFinish; } 
 	bool IsPlay() { return mbPlay; }
 

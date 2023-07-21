@@ -4,6 +4,9 @@
 class AnimationView;
 class CAnimation;
 class CTexture;
+class CBtnUI;
+
+
 class Scene_Viewer :
     public CScene
 {
@@ -11,6 +14,7 @@ private:
 	AnimationView*	mpAnimViewer;
 	CAnimation*		mpAnimation;
 	CTexture*		mpTex;
+	CBtnUI*		mpPlayBtn;
 public:
 	AnimationView* GetAnimObj() { return mpAnimViewer; }
 	CAnimation* GetAnimation() { return mpAnimation; }
@@ -22,6 +26,10 @@ public:
 	virtual void Enter();
 	virtual void Render(HDC _dc);
 	virtual void Exit();
+
+	void AnimPlaySwitch();
+	void AnimNextFrm();
+	void AnimPrevFrm();
 
 	void LoadFile();
 	void LoadAnimData();

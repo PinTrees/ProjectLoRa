@@ -34,6 +34,7 @@ public:
 	void SetOutlineColor(COLORREF color) { mStyle.outerColor = color; mStyle.boder = true; }
 	void SetOutlineWidth(int width) { mStyle.boderWidth = width; mStyle.boder = true; }
 
+	wstring GetText() { return mText; }
 
 public:
 	virtual void Render(HDC dc);

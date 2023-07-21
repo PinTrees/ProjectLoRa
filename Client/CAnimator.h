@@ -29,7 +29,10 @@ public:
 	CAnimation* FindAnimation(const wstring& _strName);
 	
 	void Play(const wstring& _strName, bool _bRepeat);
-	void Stop();
+	void PlaySwitch();
+
+	void NextFrm();
+	void PrevFrm();
 
 public:
 	void Update();

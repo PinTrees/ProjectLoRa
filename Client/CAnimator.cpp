@@ -84,14 +84,22 @@ void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 {
 	mpCurAnim =  FindAnimation(_strName);
 	mbRepeat = _bRepeat;
-
 	if (!_bRepeat)
 	{
 		mpCurAnim->SetFrame(0);
 	}
 }
 
-void CAnimator::Stop()
+void CAnimator::PlaySwitch()
 {
-	mpCurAnim->SetPlay(false);
+	mpCurAnim->SetPlay();
+}
+
+void CAnimator::NextFrm()
+{
+	mpCurAnim->SetFrame(mpCurAnim->GetCurFrame() + 1);
+}
+void CAnimator::PrevFrm()
+{
+	mpCurAnim->SetFrame(mpCurAnim->GetCurFrame() - 1);
 }

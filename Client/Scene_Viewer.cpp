@@ -39,6 +39,9 @@
 #include "PAtkState.h"
 
 Scene_Viewer::Scene_Viewer()
+	:mpTex(nullptr)
+	, mpAnimViewer(nullptr)
+	, mpAnimation(nullptr)
 {
 
 }
@@ -85,6 +88,7 @@ void Scene_Viewer::Enter()
 	pPrevBtn->SetContentOffset(Vect2(0.f,0.f));
 	pPrevBtn->SetScale(Vect2(150.f, 50.f));
 	pPrevBtn->SetText(L"이전프레임");
+	pPrevBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::AnimPrevFrm);
 	pPrevBtn->GetText()->SetFontSize(20.f);
 	pPrevBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pPrevBtn);
@@ -93,16 +97,26 @@ void Scene_Viewer::Enter()
 	pNextBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pNextBtn->SetScale(Vect2(150.f, 50.f));
 	pNextBtn->SetText(L"다음프레임");
+	pNextBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::AnimNextFrm);
 	pNextBtn->GetText()->SetFontSize(20.f);
 	pNextBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pNextBtn);
 
+
+	mpPlayBtn = new CBtnUI;
+	mpPlayBtn->SetContentOffset(Vect2(-40.f, -10.f));
+	mpPlayBtn->SetScale(Vect2(150.f, 50.f));
+	mpPlayBtn->SetText(L"정지");
+	mpPlayBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::AnimPlaySwitch);
+	mpPlayBtn->GetText()->SetFontSize(20.f);
+	mpPlayBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	RowBar->AddChild(mpPlayBtn);
+
 	// text ui 전체 프레임 수와 현재 보고있는 프레임수 ex) 1/4 전체 4프레임 1프레임화면
 
-	TextUI* pText = new TextUI;
-	pText->SetText(L"");
-
-	RowBar->AddChild(pText);
+	//TextUI* pText = new TextUI;
+	//pText->SetText(L"1");
+	//RowBar->AddChild(pText);
 
 
 
@@ -154,6 +168,29 @@ void Scene_Viewer::Exit()
 	CCore::GetI()->SetActiveMenu(false);
 	DeleteAll();
 }
+
+void Scene_Viewer::AnimPlaySwitch()
+{
+	mpAnimViewer->GetAnimator()->PlaySwitch();
+
+	if(mpPlayBtn->GetText()->GetText() == L"정지")
+		mpPlayBtn->SetText(L"시작");
+	else
+	{
+		mpPlayBtn->SetText(L"정지");
+	}
+}
+
+void Scene_Viewer::AnimNextFrm()
+{
+	mpAnimViewer->GetAnimator()->NextFrm();
+}
+
+void Scene_Viewer::AnimPrevFrm()
+{
+	mpAnimViewer->GetAnimator()->PrevFrm();
+}
+
 
 
 void Scene_Viewer::LoadFile()
