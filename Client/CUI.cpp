@@ -11,6 +11,7 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+#include "UIMgr.h"
 
 
 

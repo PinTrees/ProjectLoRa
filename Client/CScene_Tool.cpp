@@ -126,9 +126,8 @@ void Scene_Tool::Update()
 void Scene_Tool::SetTileIdx()
 {
 	// 마우스클릭된 좌표위에 UI가있을경우 UI클릭만하고 타일은 클릭 예외처리
-	if (CUIMgr::GetI()->IsMouseOn())
+	if (CUIMgr::GetI()->IsMouseOnUI())
 	{
-		CUIMgr::GetI()->SetMouseOn(false);
 		return;
 	}
 

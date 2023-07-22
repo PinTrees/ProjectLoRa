@@ -62,7 +62,7 @@ void CBtnUI::Render(HDC dc)
 		ApplyAlphaBlend(dc);
 
 	}
-	else if (IsMouseOn())
+	else if (IsMouseOnUI())
 	{
 		mHoberAlpha = 32.f;
 		ApplyAlphaBlend(dc);

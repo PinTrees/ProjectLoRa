@@ -63,6 +63,8 @@ void CUIMgr::Update()
 			targetUI->mLbtnDown = false;
 		}
 	}
+
+	mbMouseOnUI = nullptr != targetUI;
 }
 
 
@@ -142,7 +144,7 @@ CUI* CUIMgr::GetFocusUI()
 		if ((*iter)->IsDead() || !(*iter)->IsVisible())
 			continue;
 
-		if (dynamic_cast<CUI*>(*iter)->IsMouseOn())
+		if (dynamic_cast<CUI*>(*iter)->IsMouseOnUI())
 		{
 			targetIter = iter;
 		}
@@ -187,7 +189,7 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 		CUI* ui = queue.front();
 		queue.pop_front();
 
-		if (ui->IsMouseOn())
+		if (ui->IsMouseOnUI())
 		{
 			if (nullptr != targetUI)
 			{

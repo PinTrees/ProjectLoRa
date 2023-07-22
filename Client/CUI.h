@@ -66,7 +66,7 @@ public:
 
 public:
 	void OnMouseCheck();
-	bool IsMouseOn() { return mOnMouseCheck; };
+	bool IsMouseOnUI() { return mOnMouseCheck; };
 	bool IsLbtnDown() { return mLbtnDown; }
 
 public:

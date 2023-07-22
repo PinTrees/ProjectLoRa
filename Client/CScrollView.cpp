@@ -76,7 +76,7 @@ void CScrollView::Update()
 	Vect2 vScrollBarPos = mpScrollBar->GetPos();
 	Vect2 vScrollBarSize = mpScrollBar->GetScale();
 
-	if (IsMouseOn())
+	if (IsMouseOnUI())
 	{
 		float axis = CKeyMgr::GetI()->GetWheelAxis();
 		mRatio += axis * DT * -0.02f;
