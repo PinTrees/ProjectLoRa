@@ -272,7 +272,7 @@
     <Filter Include="Game\Scene\Scene_Viewer">
       <UniqueIdentifier>{095bc03f-658a-4815-852a-767cf78a23df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\Scene_Tool\Object">
+    <Filter Include="Game\Scene\Scene_Viewer\Object">
       <UniqueIdentifier>{f935cfa5-b66e-4a12-9f45-fc830323dd35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -518,7 +518,7 @@
       <Filter>Game\Scene\Scene_Viewer</Filter>
     </ClInclude>
     <ClInclude Include="AnimationView.h">
-      <Filter>Game\Scene\Scene_Tool\Object</Filter>
+      <Filter>Game\Scene\Scene_Viewer\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -756,7 +756,7 @@
       <Filter>Game\Scene\Scene_Viewer</Filter>
     </ClCompile>
     <ClCompile Include="AnimationView.cpp">
-      <Filter>Game\Scene\Scene_Tool\Object</Filter>
+      <Filter>Game\Scene\Scene_Viewer\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

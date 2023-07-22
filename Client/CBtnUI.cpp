@@ -123,6 +123,13 @@ void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func)
 	mScene = scene;
 }
 
+void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func, DWORD_PTR param)
+{
+	mScene = scene;
+	mSceneFunc = func;
+	mparam1 = param;
+}
+
 void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC func)
 {
 	mObjectFunc = func;

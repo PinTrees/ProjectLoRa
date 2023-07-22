@@ -92,14 +92,27 @@ void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 
 void CAnimator::PlaySwitch()
 {
+	if (nullptr == mpCurAnim)
+		return;
 	mpCurAnim->SetPlay();
+}
+
+void CAnimator::StopSwitch()
+{
+	if (nullptr == mpCurAnim)
+		return;
+	mpCurAnim->SetStop();
 }
 
 void CAnimator::NextFrm()
 {
+	if (mpCurAnim == nullptr)
+		return;
 	mpCurAnim->SetFrame(mpCurAnim->GetCurFrame() + 1);
 }
 void CAnimator::PrevFrm()
 {
+	if (mpCurAnim == nullptr)
+		return;
 	mpCurAnim->SetFrame(mpCurAnim->GetCurFrame() - 1);
 }

@@ -42,6 +42,7 @@ public:
 	{
 		if (_iFrameIdx >= mVecFrm.size() || 0 > _iFrameIdx)
 			return;
+
 		mbFinish = false;
 		miCurFrm = _iFrameIdx;
 		mfAccTime = 0.f;
@@ -49,7 +50,8 @@ public:
 	void SetAllFrameOffet(Vect2 _vOffset);
 
 	void SetTex(CTexture* _texture) { mpTexture = _texture; }
-	void SetPlay() { mbPlay = !mbPlay; }
+	void SetPlay() { mbPlay = true; }
+	void SetStop() { mbPlay = false; }
 	bool IsFinish() { return mbFinish; } 
 	bool IsPlay() { return mbPlay; }
 

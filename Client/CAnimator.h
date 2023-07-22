@@ -30,6 +30,7 @@ public:
 	
 	void Play(const wstring& _strName, bool _bRepeat);
 	void PlaySwitch();
+	void StopSwitch();
 
 	void NextFrm();
 	void PrevFrm();

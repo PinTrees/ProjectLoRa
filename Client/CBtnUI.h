@@ -54,6 +54,7 @@ public:
 	}
 
 	void SetClickedCallBack(CScene* scene, SCENE_FUNC func);
+	void SetClickedCallBack(CScene* scene, SCENE_FUNC func, DWORD_PTR param);
 	void SetClickedCallBack(CObject* object, OBJECT_FUNC func);
 	void SetClickedCallBack(CObject* object, OBJECT_FUNC_P func, DWORD_PTR param);
 
