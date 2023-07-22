@@ -15,10 +15,11 @@
 CScrollView::CScrollView() // ScrollView 안에 넣을 UI와 ScrollView의 사이즈
 	: CUI(false)
 	, mpScrollBar(nullptr)
-	, mContentUI(nullptr)
 	, mRatio()
 	, mvContentSize(Vect2::zero)
 {
+	SetFixedChildMouseCheck(true);
+
 	mpTex = CResMgr::GetI()->CreateTexture(L"ScrollBuffer", 5000, 5000, RGB(255, 255, 255)); // 버퍼 생성
 
 	mpScrollBar = new CScrollBar;	// 스크롤 바 생성 및 설정
@@ -151,12 +152,6 @@ void CScrollView::Render(HDC _dc)
 	CUI::Render(_dc);
 }
 
-
-void CScrollView::SetContentUI(CUI* ui)
-{
-	mContentUI = ui;
-	AddChild(ui);
-}
 
 void CScrollView::AddChild(CUI* ui)
 {

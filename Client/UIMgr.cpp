@@ -66,6 +66,7 @@ void CUIMgr::Update()
 }
 
 
+// 해당 UI를 최상위로 변경합니다.
 void CUIMgr::SetTop(CUI* ui)
 {
 	if (nullptr == ui)
@@ -86,6 +87,7 @@ void CUIMgr::SetTop(CUI* ui)
 	vecUI.push_back(ui);
 }
 
+// 해당 UI에 강제 포커싱을 부여합니다.
 void CUIMgr::SetFocusUI(CUI* ui)
 {
 	// 이미 포커싱 중인 경우 || 포커싱 해제요청한 경우
@@ -115,6 +117,7 @@ void CUIMgr::SetFocusUI(CUI* ui)
 	vecUI.push_back(mFocusedUI);
 }
 
+// 현재 포커싱된 UI를 반환합니다.
 CUI* CUIMgr::GetFocusUI()
 {
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
@@ -160,7 +163,9 @@ CUI* CUIMgr::GetFocusUI()
 	return focusedUI;
 }
 
+
 // 부모 UI 내에서 실제로 타겟팅된 UI를 찾아서 반환한다.
+// 부모 영역내 제한이 걸려있을 경우 해당 로직에서 제한합니다.
 CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 {
 	bool awayLbtn = KEY_AWAY(KEY::LBTN);

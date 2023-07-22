@@ -13,15 +13,12 @@ private:
     CTexture*   mpTex; // 버퍼로 사용할 텍스쳐
     CScrollBar* mpScrollBar; // 스크롤 바
 
-    CUI*        mContentUI;
-
     Vect2       mvContentSize;
     float       mRatio;
 
 
 public:
     void SetVerticalScroll();
-    void SetContentUI(CUI* ui);
 
 
 public:

@@ -48,6 +48,9 @@ private:
 	bool			mOnMouseCheck;	
 	bool			mLbtnDown;
 
+	bool			mFixedChildMouseCheck;	// 자식 UI의 마우스 좌표 범위를 해당 UI 크기로 제한합니다.
+	bool			mOriginalMouseCheck;	// mFixedChildMouseCheck 옵션을 무시합니다.
+
 
 public:
 	virtual void Update() override;
@@ -97,6 +100,12 @@ public:
 
 	void	SetCameraAffected(bool active) { mCameraAffected = active; };
 	bool	IsCameraAffected() { return mCameraAffected; };
+
+	// 마우스 좌표 범위 설정
+	void	SetFixedChildMouseCheck(bool active) { mFixedChildMouseCheck = active; }
+	bool	IsFixedChildMouseCheck();
+	CUI*	GetFixedChildMouseCheckParent();
+	void	SetOriginalMouseCheck(bool active) { mOriginalMouseCheck = active; }
 
 
 public:

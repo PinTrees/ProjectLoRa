@@ -11,6 +11,7 @@ CScrollBar::CScrollBar()
 	, mAxis(AXIS::VERTICAL)
 	, mbDrag(false)
 {
+	SetOriginalMouseCheck(true);
 }
 
 CScrollBar::~CScrollBar()
@@ -21,6 +22,8 @@ CScrollBar::~CScrollBar()
 
 void CScrollBar::Update()
 {
+	CUI::Update();
+
 	if (IsLbtnDown())
 	{
 		Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
