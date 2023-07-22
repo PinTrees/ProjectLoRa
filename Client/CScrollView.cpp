@@ -3,7 +3,9 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 #include "CColumn.h"
+
 #include "CKeyMgr.h"
+#include "CTimeMgr.h"
 
 #include "CPanelUI.h"
 #include "CScrollBar.h"
@@ -73,6 +75,18 @@ void CScrollView::Update()
 	Vect2 vScrollBarPos = mpScrollBar->GetPos();
 	Vect2 vScrollBarSize = mpScrollBar->GetScale();
 
+	if (IsMouseOn())
+	{
+		float axis = CKeyMgr::GetI()->GetWheelAxis();
+		mRatio += axis * DT * -0.02f;
+
+		float startY = mRatio * (vScale.y - vScrollBarSize.y);
+		mpScrollBar->SetPos(Vect2(vScrollBarPos.x
+			, vPos.y + startY
+			- (vScale.y * 0.5f)
+			+ (vScrollBarSize.y * 0.5f)));
+	}
+
 	// 스크롤바 이동 영역 제한
 	if (mRatio < 0.f)
 	{
@@ -138,7 +152,6 @@ void CScrollView::Render(HDC _dc)
 }
 
 
-
 void CScrollView::SetContentUI(CUI* ui)
 {
 	mContentUI = ui;
@@ -169,8 +182,9 @@ void CScrollView::AddChild(CUI* ui)
 	SetTopChild(mpScrollBar);
 
 	float startY = mRatio * (vScale.y);
-	mpScrollBar->SetPos(Vect2(vPos.x + vScale.x * 0.5f
+	mpScrollBar->SetPos(Vect2(vPos.x + vScale.x * 0.5f + vScrollBarSize.x * 0.5f
 		, vPos.y + startY 
 		- (vScale.y * 0.5f) 
 		+ (vScrollBarSize.y * 0.5f)));
 }
+

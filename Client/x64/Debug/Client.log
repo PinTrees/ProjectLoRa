@@ -1,5 +1,6 @@
-﻿  unity_6P03WRYL7567OQA6.cpp
+﻿  unity_4GQ9BNWH5V0GW7OE.cpp
+  unity_6P03WRYL7567OQA6.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CSprite.cpp(63,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CSprite.cpp(62,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CSprite.cpp(63,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6P03WRYL7567OQA6.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CSprite.cpp(62,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6P03WRYL7567OQA6.cpp)
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

@@ -16,10 +16,11 @@ class CScrollBar :
 	public CUI
 {
 private:
-    AXIS    mAxis;
-    CScrollView* mScrollView;
-    Vect2        mvDragStartPos;
-
+    AXIS            mAxis;
+    CScrollView*    mScrollView;
+    Vect2           mvDragStartPos;
+    bool            mbDrag;
+    
 
 public:
     virtual void Update() override;
@@ -27,6 +28,8 @@ public:
 
     virtual void MouseOn() override;
     virtual void MouseLbtnDown() override;
+    virtual void MouseLbtnUp() override;
+
 
     CLONE(CScrollBar);
 

@@ -4,6 +4,8 @@
 #include "Client.h"
 
 #include "CCore.h"
+#include "CKeyMgr.h"
+
 
 #define MAX_LOADSTRING 100
 
@@ -184,6 +186,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+    case WM_MOUSEWHEEL:
+    {
+        CKeyMgr::GetI()->SetWheelAxis(GET_WHEEL_DELTA_WPARAM(wParam));
+
+        break;
+    }
     case WM_PAINT:
         {
             PAINTSTRUCT ps;

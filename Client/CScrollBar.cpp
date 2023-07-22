@@ -9,6 +9,7 @@
 CScrollBar::CScrollBar()
 	: CUI(false)
 	, mAxis(AXIS::VERTICAL)
+	, mbDrag(false)
 {
 }
 
@@ -19,18 +20,6 @@ CScrollBar::~CScrollBar()
 
 
 void CScrollBar::Update()
-{
-}
-
-
-void CScrollBar::Render(HDC _dc)
-{
-	CUI::Render(_dc);
-}
-
-
-
-void CScrollBar::MouseOn()
 {
 	if (IsLbtnDown())
 	{
@@ -53,7 +42,26 @@ void CScrollBar::MouseOn()
 }
 
 
+void CScrollBar::Render(HDC _dc)
+{
+	CUI::Render(_dc);
+}
+
+
+
+void CScrollBar::MouseOn()
+{
+	
+}
+
+
 void CScrollBar::MouseLbtnDown()
 {
+	mbDrag = true;
 	mvDragStartPos = MOUSE_POS;
+}
+
+void CScrollBar::MouseLbtnUp()
+{
+	mbDrag = false;
 }
