@@ -35,8 +35,6 @@ CBtnUI::~CBtnUI()
 
 void CBtnUI::Render(HDC dc)
 {
-	CUI::Render(dc);
-
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
@@ -54,18 +52,17 @@ void CBtnUI::Render(HDC dc)
 			, RGB(255, 0, 255));
 	}
 
+	CUI::Render(dc);
 	CUI::RenderChild(dc);
 
 	if (IsLbtnDown())
 	{
-		mHoberAlpha = 128.f;
-		ApplyAlphaBlend(dc);
+		RenderHover(dc, 128.f);
 
 	}
 	else if (IsMouseOnUI())
 	{
-		mHoberAlpha = 32.f;
-		ApplyAlphaBlend(dc);
+		RenderHover(dc, 32.f);
 	}
 }
 
@@ -137,8 +134,10 @@ void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC_P func, DWORD_PTR p
 }
 
 
-void CBtnUI::ApplyAlphaBlend(HDC _dc)
+void CBtnUI::RenderHover(HDC _dc, float alpha)
 {
+
+
 	Vect2 vSize = GetScale();
 	Vect2 vPos = GetFinalPos();
 	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
@@ -148,7 +147,7 @@ void CBtnUI::ApplyAlphaBlend(HDC _dc)
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
 	bf.AlphaFormat = 0;
-	bf.SourceConstantAlpha = static_cast<BYTE>(mHoberAlpha);
+	bf.SourceConstantAlpha = static_cast<BYTE>(alpha);
 
 	AlphaBlend(_dc
 		, (int)(vPos.x - vSize.x * 0.5f)

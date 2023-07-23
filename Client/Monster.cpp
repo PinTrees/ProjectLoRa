@@ -116,7 +116,6 @@ void Monster::AddDamage(float damage)
 
 	CombatText* pCbTex = new CombatText;
 	pCbTex->SetPos(GetLocalPos());
-	pCbTex->SetCameraAffected(false);
 	pCbTex->SetText(std::to_wstring((int)damage));
 	CreateObject(pCbTex, GROUP_TYPE::UI);
 }

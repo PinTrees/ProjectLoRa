@@ -10,6 +10,7 @@ enum class AXIS
 
 
 class CScrollView;
+class CTexture;
 
 
 class CScrollBar :
@@ -18,9 +19,17 @@ class CScrollBar :
 private:
     AXIS            mAxis;
     CScrollView*    mScrollView;
+
+    CTexture*       mpBufferTexture;
+
     Vect2           mvDragStartPos;
     bool            mbDrag;
     
+
+public:
+    void SetTexture(CTexture* pTex) { mpBufferTexture = pTex; }
+    CTexture* GetTexture() { return mpBufferTexture; }
+
 
 public:
     virtual void Update() override;

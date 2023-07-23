@@ -23,7 +23,7 @@ class CImageUI :
 	public CUI
 {
 private:
-	CTexture* mpTexture;
+	CTexture* mpBufferTexture;
 	CTexture* mDefaultTex;
 	COLORREF  mColor;
 
@@ -36,7 +36,7 @@ private:
 
 
 public:
-	void SetTexture(CTexture* tex) { mpTexture = tex; };
+	void SetTexture(CTexture* tex) { mpBufferTexture = tex; };
 	void SetColor(COLORREF color);
 
 

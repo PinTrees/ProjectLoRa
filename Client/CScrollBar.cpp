@@ -4,6 +4,8 @@
 #include "CKeyMgr.h"
 
 #include "CScrollView.h"
+#include "CTexture.h"
+
 
 
 CScrollBar::CScrollBar()
@@ -45,9 +47,32 @@ void CScrollBar::Update()
 }
 
 
-void CScrollBar::Render(HDC _dc)
+void CScrollBar::Render(HDC dc)
 {
-	CUI::Render(_dc);
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
+	Vect2 vSize = GetScale();
+
+	if (mpBufferTexture)
+	{
+		// AlpaBlend Option Setting
+		BLENDFUNCTION bf = {};
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = GetAlpha();
+
+		AlphaBlend(dc
+			, (int)(vPos.x - vSize.x * 0.5f)
+			, (int)(vPos.y - vSize.y * 0.5f)
+			, (int)vSize.x
+			, (int)vSize.y
+			, mpBufferTexture->GetDC()
+			, 0, 0
+			, (int)mpBufferTexture->Width()
+			, (int)mpBufferTexture->Heigth(), bf);
+	}
+
+	CUI::Render(dc);
 }
 
 

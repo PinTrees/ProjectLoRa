@@ -154,7 +154,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 		tile->Render(dc, false);
 	}
 
-	pScene->AddObject(pParallax, GROUP_TYPE::PARALLAX);
+	pScene->AddObject(pParallax, GROUP_TYPE::BACKGROUND);
 	pScene->DeleteGroup(GROUP_TYPE::TILE);
 
 	fclose(pFile);

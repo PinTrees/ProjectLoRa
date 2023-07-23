@@ -8,7 +8,7 @@
 
 
 TextUI::TextUI()
-	: CUI(true)
+	: CUI(false)
 	, mFont(nullptr)
 	, mText(L"")
 	, mStyle({})
@@ -35,7 +35,7 @@ void TextUI::SetFontSize(float size)
 	if (mStyle.fontSize == size)
 		return;
 
-	mStyle.fontSize = size;
+	mStyle.fontSize = size; 
 	
 	// ReLoad Font
 	mFont = CResMgr::GetI()->LoadFont(L"DungGeunMo", L"font\\DungGeunMo.ttf", mStyle.fontSize);
@@ -44,20 +44,13 @@ void TextUI::SetFontSize(float size)
 
 void TextUI::Render(HDC dc)
 {
-	//CUI::Render(dc);
-
 	if (nullptr == mFont || mText == L"")
 		return;
 
-	Vect2 vRenderPos = GetFinalPos();
-
-	if (!IsCameraAffected())
-	{
-		vRenderPos = CCamera::GetI()->GetRenderPos(vRenderPos);
-	}
-
+	Vect2 vRenderPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	mFont->Render(dc, mText, vRenderPos, GetScale(), mStyle);
 
+	CUI::Render(dc);
 	//CUI::RenderChild(dc);
 }
 

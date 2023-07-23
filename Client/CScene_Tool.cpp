@@ -374,7 +374,7 @@ void Scene_Tool::Render(HDC _dc)
 		}
 
 		//Render Background
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		if ((UINT)GROUP_TYPE::BACKGROUND == i)
 		{
 			continue;
 		}

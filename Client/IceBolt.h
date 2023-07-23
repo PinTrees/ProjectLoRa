@@ -7,15 +7,14 @@
 class IceBolt :
     public Skill
 {
-public:
-    virtual bool IsStart() override;
-    
-    virtual void Start() override;
-    virtual void ActiveUpdate() override;
+private:
 
+public:
+    virtual void UseSkill();		// 스킬 사용
+    virtual void CheckAvailable();	// 스킬 발동조건 체크
 
 public:
     IceBolt();
-    virtual ~IceBolt();
+    ~IceBolt();
 };
 

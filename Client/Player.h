@@ -72,6 +72,8 @@ public:
 
 public:
 	Skill* FindSkill(SKILL_TYPE type);
+	void AddSkill(Skill* _skill) { mVecSkill.push_back(_skill); }
+	void UseSkill();
 
 
 public:

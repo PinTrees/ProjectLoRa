@@ -152,6 +152,7 @@ void LevelupUI::statusUp(STATEUP_TYPE state)
 	}
 }
 
+
 void LevelupUI::skillUp(SKILL_TYPE state)
 {
 	Player* pPlayer = PlayerMgr::GetI()->GetPlayer();
@@ -160,9 +161,8 @@ void LevelupUI::skillUp(SKILL_TYPE state)
 	if (nullptr == pSkill)
 	{
 		pSkill = DatabaseMgr::GetI()->GetSkill(state);
+		pPlayer->AddSkill(pSkill);
 	}
-	else
-	{
-		pSkill->AddSkillLevel();
-	}
+
+	pSkill->AddSkillLevel();
 }

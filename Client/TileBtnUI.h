@@ -15,13 +15,14 @@ public:
 public:
 	virtual void Render(HDC dc) override;
 
-
 	virtual void MouseOn();
 	virtual void MouseLbtnDown() override {}
 	virtual void MouseLbtnUp() override {}
 	virtual void MouseLbtnClick() override;
 
 	CLONE(TileBtnUI);
+
+
 public:
 	TileBtnUI();
 	virtual ~TileBtnUI();

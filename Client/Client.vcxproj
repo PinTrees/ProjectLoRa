@@ -162,6 +162,8 @@
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CFont.h" />
     <ClInclude Include="CImageUI.h" />
+    <ClInclude Include="CirclingBall.h" />
+    <ClInclude Include="CirclingBall_Obj.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatText.h" />
@@ -172,6 +174,8 @@
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="CWrap.h" />
     <ClInclude Include="DatabaseMgr.h" />
+    <ClInclude Include="EnergyBall.h" />
+    <ClInclude Include="EnergyBall_Obj.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="IceBolt.h" />
     <ClInclude Include="Item.h" />
@@ -218,7 +222,10 @@
     <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillMgr.h" />
+    <ClInclude Include="SkillObj.h" />
     <ClInclude Include="TextUI.h" />
+    <ClInclude Include="Thunder.h" />
+    <ClInclude Include="Thunder_Obj.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBtnUI.h" />
     <ClInclude Include="TileEditMgr.h" />
@@ -247,6 +254,8 @@
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CFont.cpp" />
     <ClCompile Include="CImageUI.cpp" />
+    <ClCompile Include="CirclingBall.cpp" />
+    <ClCompile Include="CirclingBall_Obj.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatText.cpp" />
@@ -257,6 +266,8 @@
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CWrap.cpp" />
     <ClCompile Include="DatabaseMgr.cpp" />
+    <ClCompile Include="EnergyBall.cpp" />
+    <ClCompile Include="EnergyBall_Obj.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="IceBolt.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -303,7 +314,10 @@
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="SkillMgr.cpp" />
+    <ClCompile Include="SkillObj.cpp" />
     <ClCompile Include="TextUI.cpp" />
+    <ClCompile Include="Thunder.cpp" />
+    <ClCompile Include="Thunder_Obj.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileBtnUI.cpp" />
     <ClCompile Include="TileEditMgr.cpp" />

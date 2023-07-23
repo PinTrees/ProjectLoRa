@@ -11,7 +11,7 @@
 
 
 CObject::CObject()
-	: mvPos{}
+	: mvPos(Vect2::zero)
 	, mvScale{}
 	, mpCollider(nullptr)
 	, mpAnimator(nullptr)

@@ -45,7 +45,7 @@
 
 enum class GROUP_TYPE
 {
-	PARALLAX,
+	BACKGROUND,
 	DEFAULT,
 
 	BACK,
@@ -148,11 +148,15 @@ enum class PLAYER_STATE
 // 추후 Enum 사용 안함 - wstring UID 로 변경
 enum class SKILL_TYPE
 {
-	TEST_SKILL_1,
-	TEST_SKILL_2,
-	TEST_SKILL_3,
+	ENERGY_BALL,
+	THUNDER,
+	CIRCLING_BALL,
+	ICE_BOLT,
 	END,
 };
+
+
+
 
 // 추후 Enum 사용 안함 - wstring UID 로 변경
 enum class ITEM_TYPE

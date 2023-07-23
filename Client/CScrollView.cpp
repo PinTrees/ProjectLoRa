@@ -9,26 +9,36 @@
 
 #include "CPanelUI.h"
 #include "CScrollBar.h"
+#include "CImageUI.h"
 
 #include "CCore.h"
+
+
 
 CScrollView::CScrollView() // ScrollView 안에 넣을 UI와 ScrollView의 사이즈
 	: CUI(false)
 	, mpScrollBar(nullptr)
-	, mRatio()
+	, mRatio(0.f)
 	, mvContentSize(Vect2::zero)
 {
 	SetFixedChildMouseCheck(true);
 
-	mpTex = CResMgr::GetI()->CreateTexture(L"ScrollBuffer", 5000, 5000, RGB(255, 255, 255)); // 버퍼 생성
+	mpBufferTexture = CResMgr::GetI()->CreateTexture(L"ScrollBuffer", 5000, 5000, RGB(255, 255, 255)); // 버퍼 생성
 
 	mpScrollBar = new CScrollBar;	// 스크롤 바 생성 및 설정
 	mpScrollBar->SetName(L"ScrollBar");
-	mpScrollBar->SetScale(Vect2(20.f, 75.f));
+	mpScrollBar->SetScale(Vect2(16.f, 75.f));
 	mpScrollBar->mScrollView = this;
+	mpScrollBar->SetTexture(CResMgr::GetI()->LoadTexture(L"FW_ScrollBar", L"texture\\ui\\scrollview\\scrollbar.bmp"));
 
-	mRatio = 0.f;
-	this->AddChild(mpScrollBar);
+	AddChild(mpScrollBar);
+
+	mpScrollRoad = new CImageUI;
+	mpScrollRoad->SetName(L"ScrollRoad");
+	mpScrollRoad->SetScale(Vect2(4.f, 10.f));
+	mpScrollRoad->SetColor(RGB(137, 90, 69));
+	
+	AddChild(mpScrollRoad);
 }
 
 CScrollView::~CScrollView()
@@ -66,7 +76,7 @@ void CScrollView::Update()
 	vector<CUI*> vecChild = GetChild();
 	for (int i = 0; i < vecChild.size(); i++)
 	{
-		if (vecChild[i]->GetName() == L"ScrollBar")
+		if (vecChild[i]->GetName() == L"ScrollBar" || vecChild[i]->GetName() == L"ScrollRoad")
 			continue;
 
 		// 자식 위치값을 스크롤 비율만큼 이동
@@ -103,14 +113,19 @@ void CScrollView::Update()
 			, vPos.y + (vScale.y * 0.5f)
 			- (vScrollBarSize.y * 0.5f)));
 	}
+
+
+	Vect2 vScrollRoadSize = mpScrollRoad->GetScale();
+	mpScrollRoad->SetPos(Vect2(vScale.x * 0.5f + vScrollBarSize.x * 0.5f, 0.f));
+	mpScrollRoad->SetScale(Vect2(vScrollRoadSize.x, vScale.y));
 }
 
 
 void CScrollView::Render(HDC _dc)
 {
 	// 버퍼 DC 초기화
-	mpTex->Clear(RGB(255, 0, 255));
-	CUI::RenderChild(mpTex->GetDC());
+	mpBufferTexture->Clear(RGB(255, 0, 255));
+	CUI::RenderChild(mpBufferTexture->GetDC());
 
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
@@ -140,15 +155,16 @@ void CScrollView::Render(HDC _dc)
 		, (int)((vPos.y - vScale.y * 0.5f) + renderGapY)
 		, (int)(vScale.x - renderGapX)
 		, (int)(vScale.y - renderGapY)
-		, mpTex->GetDC()
-
+		, mpBufferTexture->GetDC()
 		, (int)startX
 		, (int)stratY
 		, (int)(vScale.x - renderGapX)
 		, (int)(vScale.y - renderGapY)
 		, RGB(255, 0, 255));
 
+	mpScrollRoad->Render(_dc);
 	mpScrollBar->Render(_dc);
+
 	CUI::Render(_dc);
 }
 
@@ -168,7 +184,7 @@ void CScrollView::AddChild(CUI* ui)
 
 	for (int i = 0; i < vecChild.size(); i++)
 	{
-		if (vecChild[i]->GetName() == L"ScrollBar")
+		if (vecChild[i]->GetName() == L"ScrollBar" || vecChild[i]->GetName() == L"ScrollRoad")
 			continue;
 
 		mvContentSize += vecChild[i]->GetScale();

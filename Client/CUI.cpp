@@ -143,14 +143,17 @@ void CUI::Render(HDC dc)
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	Rectangle
-	(
-		dc,
-		int(vPos.x - vScale.x * 0.5f),
-		int(vPos.y - vScale.y * 0.5f),
-		int(vPos.x + vScale.x * 0.5f),
-		int(vPos.y + vScale.y * 0.5f)
-	);
+	if (DEBUG)
+	{
+		Rectangle
+		(
+			dc,
+			int(vPos.x - vScale.x * 0.5f),
+			int(vPos.y - vScale.y * 0.5f),
+			int(vPos.x + vScale.x * 0.5f),
+			int(vPos.y + vScale.y * 0.5f)
+		);
+	}
 }
 
 void CUI::UpdateChild()

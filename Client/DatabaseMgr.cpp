@@ -1,8 +1,11 @@
 #include "pch.h"
 #include "DatabaseMgr.h"
 
+#include "Skill.h"
 #include "IceBolt.h"
-
+#include "EnergyBall.h"
+#include "Thunder.h"
+#include "CirclingBall.h"
 
 SINGLE_HEADER(DatabaseMgr);
 
@@ -33,7 +36,8 @@ void DatabaseMgr::Init()
 {
 	// 스킬은 다형성으로 구현
 	// 각 스킬의 클래스에 직접 스킬의 사용 코드를 작성
-	mArrSkill[(UINT)SKILL_TYPE::TEST_SKILL_1] = new IceBolt;
-	mArrSkill[(UINT)SKILL_TYPE::TEST_SKILL_2] = new IceBolt;
-	mArrSkill[(UINT)SKILL_TYPE::TEST_SKILL_3] = new IceBolt;
+	mArrSkill[(UINT)SKILL_TYPE::ICE_BOLT]		= new IceBolt;
+	mArrSkill[(UINT)SKILL_TYPE::ENERGY_BALL]	= new EnergyBall;
+	mArrSkill[(UINT)SKILL_TYPE::THUNDER]		= new Thunder;
+	mArrSkill[(UINT)SKILL_TYPE::CIRCLING_BALL]	= new CirclingBall;
 }

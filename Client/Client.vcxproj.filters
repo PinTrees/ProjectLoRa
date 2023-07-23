@@ -281,6 +281,27 @@
     <Filter Include="FreamWork\UI\ScrollView\ScrollBar">
       <UniqueIdentifier>{7a79eb54-adf2-4c03-84f9-143fe8a89de9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Class\Skill\02. Thunder">
+      <UniqueIdentifier>{38297cb7-6b7f-4d08-ab93-55de546238b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj">
+      <UniqueIdentifier>{3acaf03c-86e0-4909-a5bd-eca37cf7e020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\02. Thunder_Obj">
+      <UniqueIdentifier>{4601bbd1-e93b-4e9b-a53c-ed82fda03e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\03. CirclingBall_Obj">
+      <UniqueIdentifier>{8b2d0af1-e265-4209-b773-ba7829d4a867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\04. EnergyBall_Obj">
+      <UniqueIdentifier>{33bc754c-1d7c-4873-bc7f-919a26c8658f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\03. CirclingBall">
+      <UniqueIdentifier>{a2637eae-30fb-4f29-9eb9-976a4849c5c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\04. EnergyBall">
+      <UniqueIdentifier>{a3c09e07-8116-476a-b3f9-f0275afbc9ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -532,6 +553,27 @@
     <ClInclude Include="CScrollBar.h">
       <Filter>FreamWork\UI\ScrollView\ScrollBar</Filter>
     </ClInclude>
+    <ClInclude Include="Thunder.h">
+      <Filter>Game\Class\Skill\02. Thunder</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillObj.h">
+      <Filter>Game\Class\SkillObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Thunder_Obj.h">
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CirclingBall_Obj.h">
+      <Filter>Game\Class\SkillObj\03. CirclingBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBall_Obj.h">
+      <Filter>Game\Class\SkillObj\04. EnergyBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBall.h">
+      <Filter>Game\Class\Skill\04. EnergyBall</Filter>
+    </ClInclude>
+    <ClInclude Include="CirclingBall.h">
+      <Filter>Game\Class\Skill\03. CirclingBall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -775,6 +817,27 @@
     </ClCompile>
     <ClCompile Include="CScrollBar.cpp">
       <Filter>FreamWork\UI\ScrollView\ScrollBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Thunder.cpp">
+      <Filter>Game\Class\Skill\02. Thunder</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillObj.cpp">
+      <Filter>Game\Class\SkillObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Thunder_Obj.cpp">
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CirclingBall_Obj.cpp">
+      <Filter>Game\Class\SkillObj\03. CirclingBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="EnergyBall_Obj.cpp">
+      <Filter>Game\Class\SkillObj\04. EnergyBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="EnergyBall.cpp">
+      <Filter>Game\Class\Skill\04. EnergyBall</Filter>
+    </ClCompile>
+    <ClCompile Include="CirclingBall.cpp">
+      <Filter>Game\Class\Skill\03. CirclingBall</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

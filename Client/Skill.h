@@ -2,50 +2,45 @@
 
 
 
-enum class SKILL_USE_TYPE
-{
-	ACTIVE,
-	PASSIVE,
-};
-
-
 class Skill
 {
 private:
-	SKILL_TYPE mUID;
+	SKILL_TYPE mType;
 
-	SKILL_USE_TYPE mUseType;	// 액티브 스킬인지 패시브 스킬인지 구분
-	bool	mIsActive;			// 현재 사용중인 상태
-
-	float	mCoolDelay;			// 쿨타임
-	float	mCurDelay;
+	float   mSkillTime;			// 스킬 쿨타임 재는 용도
+	float	mCooldown;			// 쿨타임
 
 	int		mUseCount;			// 사용가능 횟수
-
 	int		mMaxSkillLv;		// 최대 레벨
 	int		mCurSkillLv;		// 스킬 레벨
 
+	bool	mAvailable;			// 스킬 사용가능 체크 변수
 
 public:
+	void SetCoolDown(float _cool) { mCooldown = _cool; }
+	float GetCoolDown() { return mCooldown; }
 	void SetMaxSkillLv(int _max) { mMaxSkillLv = _max; }
 
-	SKILL_TYPE GetType() { return mUID; }
-	bool IsActive() { return mIsActive; }
+	void SetAvailable(bool _Ava) { mAvailable = _Ava; }
+	bool GetAvilable() { return mAvailable; }
 
-	void AddSkillLevel();
+	int GetSkillLevel() { return mCurSkillLv; }
+	SKILL_TYPE GetType() { return mType; }
+
+	void SetSkillTime(float _time) { mSkillTime = _time; }
+	float GetSkillTime() { return mSkillTime; }
 
 
 public:
-	virtual bool IsStart() = 0;
-	virtual void Start() {};
-	virtual void ActiveUpdate() {};
 	virtual void Update();
 
-	bool IsCoolTimeOn();
+	virtual void UseSkill();		// 스킬 사용
+	virtual void CheckAvailable();	// 스킬 발동조건 체크
+
+	void AddSkillLevel(); 
 
 
-
-public:
+public: 
 	Skill(SKILL_TYPE type, int _maxLv);
-	virtual ~Skill();
+	~Skill();
 };

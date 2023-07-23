@@ -39,7 +39,7 @@ private:
 	vector<CUI*>	mVecChildUI; // 깊은 복사 진행 해야함.
 	CUI*			mpParentUI;
 
-	Vect2			mvOffset; // 
+	Vect2			mvOffset;	// 
 	Vect2			mvFinalPos;
 
 	COLORREF		mColor;		// 텍스쳐의 색상 비율값입니다.

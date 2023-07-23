@@ -26,8 +26,6 @@ void CPanelUI::Update()
 
 void CPanelUI::Render(HDC dc)
 {
-	CUI::Render(dc);
-
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
@@ -36,6 +34,7 @@ void CPanelUI::Render(HDC dc)
 		mpSprite->Render(dc, vPos, vScale);
 	}
 
+	CUI::Render(dc);
 	CUI::RenderChild(dc);
 }
 

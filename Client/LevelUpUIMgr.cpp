@@ -49,9 +49,10 @@ void LevelUpUIMgr::Init()
 	mMapLvupEffectData[STATEUP_TYPE::SPLITCOUNT_UP]			= { L"분열되는 총알의 개수 증가", L"__Test__" };
 	mMapLvupEffectData[STATEUP_TYPE::BOUNTCECOUNT_UP]		= { L"총알이 벽에 튕기는 횟수 증가", L"__Test__" };
 
-	mMapLvupEffectData_Skill[SKILL_TYPE::TEST_SKILL_1] = { L"테스트 스킬 1 업그레이드", L"최후의 발악" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::TEST_SKILL_2] = { L"테스트 스킬 2 업그레이드", L"할로우 포인트" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::TEST_SKILL_3] = { L"테스트 스킬 3 업그레이드", L"사격의 정석" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::ICE_BOLT]		= { L"테스트 스킬 1 업그레이드", L"아이스볼트" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::ENERGY_BALL]	= { L"테스트 스킬 1 업그레이드", L"에너지볼" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::THUNDER]		= { L"테스트 스킬 2 업그레이드", L"번개" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::CIRCLING_BALL] = { L"테스트 스킬 3 업그레이드", L"서클링볼" };
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
