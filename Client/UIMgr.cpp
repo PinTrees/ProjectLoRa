@@ -67,6 +67,26 @@ void CUIMgr::Update()
 }
 
 
+void CUIMgr::SetTop(CUI* ui)
+{
+	if (nullptr == ui)
+		return;
+
+	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
+	vector<CObject*>& vecUI = curScene->GetUIGroups();
+
+	vector<CObject*>::iterator iter = vecUI.begin();
+
+	for (; iter != vecUI.end(); ++iter)
+	{
+		if (ui == *iter)
+			break;
+	}
+
+	vecUI.erase(iter);
+	vecUI.push_back(ui);
+}
+
 void CUIMgr::SetFocusUI(CUI* ui)
 {
 	// 이미 포커싱 중인 경우 || 포커싱 해제요청한 경우
@@ -117,6 +137,9 @@ CUI* CUIMgr::GetFocusUI()
 	// 적어도 왼쪽 클릭이 발생했다는 보장이 생긴다.
 	for (; iter != vecUI.end(); ++iter)
 	{
+		if ((*iter)->IsDead() || !(*iter)->IsVisible())
+			continue;
+
 		if (dynamic_cast<CUI*>(*iter)->IsMouseOn())
 		{
 			targetIter = iter;

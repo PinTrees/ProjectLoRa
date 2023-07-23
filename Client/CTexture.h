@@ -1,13 +1,19 @@
 #pragma once
 #include "CRes.h"
 
+
+
+
 class CTexture :
     public CRes
 {
 private:
     HDC         mDC;
+
+    // Bitmap
     HBITMAP     mhBit;
     BITMAP      mBitInfo;
+
 
 public:
     void Load(const wstring& strFilePath);
@@ -20,6 +26,8 @@ public:
     HDC GetDC() { return mDC; }
 
     HBITMAP GetHBitmap() { return mhBit; }
+
+
 private:
     CTexture();
     virtual ~CTexture();

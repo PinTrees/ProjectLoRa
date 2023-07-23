@@ -1,5 +1,13 @@
-﻿  unity_VVF42E19HZ3L8VTF.cpp
-C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\CScene_start.cpp(156,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Client\CScene_start.cpp(157,13): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  unity_2HGPA5MCGM1JVQWK.cpp
+  unity_67FWN5D9JT3Q7SOK.cpp
+  unity_E67KX0EXWJZ11DMK.cpp
+  unity_GTZBFJFKWNHFGUWD.cpp
+  unity_OJIL35WLB7J9VDAQ.cpp
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  Client.vcxproj -> C:\Users\user\Desktop\ProjectLoRa-MaBongTak\ProjectLoRa-MaBongTak\Output\bin_debug\Client.exe
+C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_OJIL35WLB7J9VDAQ.cpp)
+C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_OJIL35WLB7J9VDAQ.cpp)
+C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Client\CSprite.cpp(63,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_2HGPA5MCGM1JVQWK.cpp)
+C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Client\CSprite.cpp(62,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_2HGPA5MCGM1JVQWK.cpp)
+C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Client\Tile.cpp(52,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_OJIL35WLB7J9VDAQ.cpp)
+C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Client\Tile.cpp(51,5): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_OJIL35WLB7J9VDAQ.cpp)
+  Client.vcxproj -> C:\Users\user\Downloads\ProjectLoRa-Skill\ProjectLoRa-b2b179d64909133de774972868a99707da6c94d3\Output\bin_debug\Client.exe

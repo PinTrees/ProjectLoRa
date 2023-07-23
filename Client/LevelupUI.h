@@ -1,6 +1,8 @@
 #pragma once
 #include "CUI.h"
 #include "CPanelUI.h"
+#include "LevelUpUIMgr.h"
+
 
 class Player;
 class TextUI;
@@ -11,14 +13,20 @@ class LevelupUI :
     public CPanelUI
 {
 private:
-    LEVELUP_EFFECT  mEffect;
+    tLeveUpEvent    mInfo;
+
     TextUI*         mTitleText;
+    TextUI*         mInfoText;
     CBtnUI*         mSelectBtn;
 
 
 public:
-    void SetEffect(LEVELUP_EFFECT _effect) { mEffect = _effect; }
-    void SetTitle(const wstring& _str);
+    void SetEffect(tLeveUpEvent event);
+
+
+private:
+    void statusUp(STATEUP_TYPE state);
+    void skillUp(SKILL_TYPE state);
 
 
 public:

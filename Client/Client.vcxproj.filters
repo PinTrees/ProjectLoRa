@@ -224,29 +224,71 @@
     <Filter Include="Game\Editor">
       <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Editor\TileEditMgr">
-      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UI\Bar">
       <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\UI\CombatText">
       <UniqueIdentifier>{4e66fa62-99fc-4143-a5eb-c743c323039d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\UI\CColumn">
-      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreamWork\UI\CWrap">
-      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Object\Box">
       <UniqueIdentifier>{ebef6388-bed5-48de-a2b1-848c513dbea1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\Player\Skill">
-      <UniqueIdentifier>{c033bb16-0531-4456-9c3d-d29aabf95f09}</UniqueIdentifier>
+    <Filter Include="FreamWork\UI\Wrap">
+      <UniqueIdentifier>{da25949b-04b9-4a83-9eae-dd5ce105c88f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreamWork\UI\Scroll">
-      <UniqueIdentifier>{9450fd08-c4ad-47f4-80ec-b5afd06208d8}</UniqueIdentifier>
+    <Filter Include="FreamWork\UI\Column">
+      <UniqueIdentifier>{c923c51b-11f7-4bea-915a-861ac3023871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\SkillMgr">
+      <UniqueIdentifier>{85303bcd-271c-4d27-ada1-65825ee1b4f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class">
+      <UniqueIdentifier>{3ebc293f-a098-435a-9b3f-f373422136b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\ItemMgr">
+      <UniqueIdentifier>{4f9a91f6-811e-4ce0-91da-cb49e1e24a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill">
+      <UniqueIdentifier>{0f50fca6-32fd-4868-8ca7-f20c942d4ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Item">
+      <UniqueIdentifier>{03e766ea-fb9d-4951-8cb0-efed554c7acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\TileEditMgr">
+      <UniqueIdentifier>{d0456151-e2cc-44f1-81b1-868db31822df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\ToolManager">
+      <UniqueIdentifier>{f5bcb974-cf59-49ca-9bce-302bd4c8a873}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\UI">
+      <UniqueIdentifier>{11a9ea4b-bfa0-4623-982b-5955d0c9079a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Tool\UI\TileBtn">
+      <UniqueIdentifier>{dd748e83-cddc-4c14-8ea5-cf9715346345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Resource\Sprite">
+      <UniqueIdentifier>{b2f5ae79-21bf-4c59-9256-5fe5d9146c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\EnergyBall">
+      <UniqueIdentifier>{55ade3a6-6a0c-404c-ad97-93e09a8ea56e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\SkillObj">
+      <UniqueIdentifier>{cd8a2be1-daf7-460d-aec5-55217c815302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\Thunder">
+      <UniqueIdentifier>{4aeb2207-c884-413c-9ee4-2a0daa26295a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\SkillObj\Thunder_Obj">
+      <UniqueIdentifier>{d216f233-b80a-4b8d-8d9f-c6214fbd6f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\SkillObj\EnergyBall_Obj">
+      <UniqueIdentifier>{51159e8d-d671-4805-91c1-61a151354cba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\CirclingBall">
+      <UniqueIdentifier>{65ce3102-f9eb-4f64-b46b-b0bf90f3efe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\SkillObj\CirclingBall_Obj">
+      <UniqueIdentifier>{788bac9d-5a52-49a4-93fe-8bd6ee0c5445}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -449,7 +491,7 @@
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClInclude>
     <ClInclude Include="TileEditMgr.h">
-      <Filter>Game\Editor\TileEditMgr</Filter>
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClInclude>
     <ClInclude Include="BarUI.h">
       <Filter>Game\UI\Bar</Filter>
@@ -458,19 +500,55 @@
       <Filter>Game\UI\CombatText</Filter>
     </ClInclude>
     <ClInclude Include="CColumn.h">
-      <Filter>FreamWork\UI\CColumn</Filter>
+      <Filter>FreamWork\UI\Column</Filter>
     </ClInclude>
     <ClInclude Include="CWrap.h">
-      <Filter>FreamWork\UI\CWrap</Filter>
+      <Filter>FreamWork\UI\Wrap</Filter>
     </ClInclude>
     <ClInclude Include="Box.h">
       <Filter>Game\Object\Box</Filter>
     </ClInclude>
-    <ClInclude Include="Skill.h">
-      <Filter>Game\Object\Player\Skill</Filter>
+    <ClInclude Include="SkillMgr.h">
+      <Filter>Game\Manager\SkillMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CScroll.h">
-      <Filter>FreamWork\UI\Scroll</Filter>
+    <ClInclude Include="ItemMgr.h">
+      <Filter>Game\Manager\ItemMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Game\Class\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Game\Class\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolMgr.h">
+      <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TileBtnUI.h">
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
+    </ClInclude>
+    <ClInclude Include="CSprite.h">
+      <Filter>FreamWork\Resource\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBall.h">
+      <Filter>Game\Class\Skill\EnergyBall</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillObj.h">
+      <Filter>Game\Object\SkillObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Thunder.h">
+      <Filter>Game\Class\Skill\Thunder</Filter>
+    </ClInclude>
+    <ClInclude Include="Thunder_Obj.h">
+      <Filter>Game\Object\SkillObj\Thunder_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBall_Obj.h">
+      <Filter>Game\Object\SkillObj\EnergyBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CirclingBall_Obj.h">
+      <Filter>Game\Object\SkillObj\CirclingBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CirclingBall.h">
+      <Filter>Game\Class\Skill\CirclingBall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -666,7 +744,7 @@
       <Filter>Game\Manager\LevelUpUIMgr</Filter>
     </ClCompile>
     <ClCompile Include="TileEditMgr.cpp">
-      <Filter>Game\Editor\TileEditMgr</Filter>
+      <Filter>Game\Scene\Scene_Tool\TileEditMgr</Filter>
     </ClCompile>
     <ClCompile Include="BarUI.cpp">
       <Filter>Game\UI\Bar</Filter>
@@ -675,19 +753,55 @@
       <Filter>Game\UI\CombatText</Filter>
     </ClCompile>
     <ClCompile Include="CColumn.cpp">
-      <Filter>FreamWork\UI\CColumn</Filter>
+      <Filter>FreamWork\UI\Column</Filter>
     </ClCompile>
     <ClCompile Include="CWrap.cpp">
-      <Filter>FreamWork\UI\CWrap</Filter>
+      <Filter>FreamWork\UI\Wrap</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>Game\Object\Box</Filter>
     </ClCompile>
-    <ClCompile Include="Skill.cpp">
-      <Filter>Game\Object\Player\Skill</Filter>
+    <ClCompile Include="SkillMgr.cpp">
+      <Filter>Game\Manager\SkillMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CScroll.cpp">
-      <Filter>FreamWork\UI\Scroll</Filter>
+    <ClCompile Include="ItemMgr.cpp">
+      <Filter>Game\Manager\ItemMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Game\Class\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Game\Class\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolMgr.cpp">
+      <Filter>Game\Scene\Scene_Tool\ToolManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TileBtnUI.cpp">
+      <Filter>Game\Scene\Scene_Tool\UI\TileBtn</Filter>
+    </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>FreamWork\Resource\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="EnergyBall.cpp">
+      <Filter>Game\Class\Skill\EnergyBall</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillObj.cpp">
+      <Filter>Game\Object\SkillObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Thunder.cpp">
+      <Filter>Game\Class\Skill\Thunder</Filter>
+    </ClCompile>
+    <ClCompile Include="Thunder_Obj.cpp">
+      <Filter>Game\Object\SkillObj\Thunder_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="EnergyBall_Obj.cpp">
+      <Filter>Game\Object\SkillObj\EnergyBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CirclingBall_Obj.cpp">
+      <Filter>Game\Object\SkillObj\CirclingBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CirclingBall.cpp">
+      <Filter>Game\Class\Skill\CirclingBall</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

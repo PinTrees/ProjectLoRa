@@ -1,31 +1,42 @@
 #pragma once
 
-typedef void(*Skill_Func)(void);
-void TestSkill();
-
 class Skill
 {
 private:
+	SKILL_TYPE mType;
 
-	bool	mIsActive;			// 액티브 스킬인지 패시브 스킬인지 구분
+	float   mSkillTime;			// 스킬 쿨타임 재는 용도
 	float	mCooldown;			// 쿨타임
+
 	int		mUseCount;			// 사용가능 횟수
-		
 	int		mMaxSkillLv;		// 최대 레벨
 	int		mCurSkillLv;		// 스킬 레벨
 
-	Skill_Func mSkillFunc;		// 스킬이 작동하는 함수(포인터)
+	bool	mAvailable;			// 스킬 사용가능 체크 변수
 
 public:
-	void SetSkillFunc(Skill_Func _skill) { mSkillFunc = _skill; }
+	void SetCoolDown(float _cool) { mCooldown = _cool; }
+	float GetCoolDown() { return mCooldown; }
 	void SetMaxSkillLv(int _max) { mMaxSkillLv = _max; }
 
+	void SetAvailable(bool _Ava) { mAvailable = _Ava; }
+	bool GetAvilable() { return mAvailable; }
+
+	int GetSkillLevel() { return mCurSkillLv; }
+	SKILL_TYPE GetType() { return mType; }
+
+	void SetSkillTime(float _time) { mSkillTime = _time; }
+	float GetSkillTime() { return mSkillTime; }
+
 public:
-	void UseSkill();
+	virtual void Update();
+
+	virtual void UseSkill();		// 스킬 사용
+	virtual void CheckAvailable();	// 스킬 발동조건 체크
+
 	void AddSkillLevel();
 
 public:
-	Skill(Skill_Func _skill, int _maxLv);
+	Skill(SKILL_TYPE type, int _maxLv);
 	~Skill();
 };
-

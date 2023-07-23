@@ -1,16 +1,17 @@
 #include "pch.h"
 #include "Skill.h"
 #include "CKeyMgr.h"
+#include "CTimeMgr.h"
+#include "Bullet.h"
 
-
-
-Skill::Skill(Skill_Func _skill, int _maxLv)
-	: mIsActive()
+Skill::Skill(SKILL_TYPE type, int _maxLv)
+	: mType(type)
 	, mCooldown()
 	, mUseCount()
 	, mMaxSkillLv(_maxLv)
 	, mCurSkillLv()
-	, mSkillFunc(_skill)
+	, mAvailable(true)
+	, mSkillTime()
 {
 }
 
@@ -18,19 +19,24 @@ Skill::~Skill()
 {
 }
 
-void TestSkill()
+void Skill::Update()
 {
-	if(KEY_TAP(KEY::LBTN))
-		int a = 0;
+	mSkillTime += DT;		// 스킬을 사용한 후의 시간 (쿨타임과 비교하기 위해 사용)
 }
 
 void Skill::UseSkill()
 {
-	mSkillFunc();
+	// 스킬 구현
 }
+
+void Skill::CheckAvailable()
+{
+	// 스킬 사용 조건 체크
+}
+
 
 void Skill::AddSkillLevel()
 {
-	if(mCurSkillLv < mMaxSkillLv)
+	if (mCurSkillLv < mMaxSkillLv)
 		++mCurSkillLv;
 }

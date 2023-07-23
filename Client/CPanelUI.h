@@ -2,33 +2,34 @@
 #include "CUI.h"
 
 
+class CTexture;
+class CSprite;
+
 class CPanelUI :
     public CUI
 {
 private:
     Vect2       mvDragStartPos;
-
-    bool        mFixedPos_x;
-    bool        mFixedPos_y;
+    bool        mFixedPos;
+    CSprite*    mpSprite;
 
 
 public:
-    void SetFixedPos_x(bool active_x) { mFixedPos_x = active_x; }
-    void SetFixedPos_y(bool active_y) { mFixedPos_y = active_y; }
-    void SetFixedPos_xy(bool active) { mFixedPos_x = active; mFixedPos_y = active; }
+    void SetFixedPos(bool active) { mFixedPos = active; }
+    void SetTexture(CSprite* pTex) { mpSprite = pTex; }
+    CSprite* GetTexture() { return mpSprite; }
 
-    void SetDragStartPos(Vect2 _dragStart) { mvDragStartPos = _dragStart; }
-    Vect2 GetDragStartPos() { return mvDragStartPos; }
 
 public:
     virtual void Update();
-    virtual void Render(HDC _dc);
+    virtual void Render(HDC _dc) override;
     
     virtual void MouseOn();
     virtual void MouseLbtnDown();
     virtual void MouseLbtnUp();
 
     CLONE(CPanelUI);
+
 
 public:
     CPanelUI();

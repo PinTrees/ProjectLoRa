@@ -6,6 +6,7 @@
 #include "CPathMgr.h"
 #include "CTexture.h"	
 #include "CFont.h"
+#include "CSprite.h"
 
 
 SINGLE_HEADER(CResMgr);
@@ -20,6 +21,7 @@ CResMgr::~CResMgr()
 {
 	Safe_Delete_Map(mMapTex);
 	Safe_Delete_Map(mMapFont);
+	Safe_Delete_Map(mMapSprite);
 } 
 
 
@@ -106,4 +108,38 @@ CFont* CResMgr::FindFont(const wstring& _strKey)
 	}
 
 	return (CFont*)iter->second;
+}
+
+
+CSprite* CResMgr::LoadSprite(const wstring& _strKey, const wstring& _strRelativePath)
+{
+	CSprite* pSprite = FindSprite(_strKey);
+	if (nullptr != pSprite)
+	{
+		return pSprite;
+	}
+
+	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
+	strFilePath += _strRelativePath;
+
+	pSprite = new CSprite;
+	pSprite->Load(strFilePath);
+	pSprite->SetKey(_strKey);
+	pSprite->SetRelativePath(_strRelativePath);
+
+	mMapSprite.insert(make_pair(_strKey, pSprite));
+
+	return pSprite;
+}
+
+CSprite* CResMgr::FindSprite(const wstring& _strKey)
+{
+	map<wstring, CRes*>::iterator iter = mMapSprite.find(_strKey);
+
+	if (iter == mMapSprite.end())
+	{
+		return nullptr;
+	}
+
+	return (CSprite*)iter->second;
 }

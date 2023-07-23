@@ -54,7 +54,7 @@ Bullet::Bullet(const wstring& _type)
 	else if (_type == L"3")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(63.f, 32.f), Vect2(63.f, 0.f), 0.03f, 5);
-		SetScale(Vect2(63.f, 32.f) * 1.0f);
+		SetScale(Vect2(63.f, 32.f) * 1.5f);
 	}
 
 	GetAnimator()->Play(L"IDLE", true);

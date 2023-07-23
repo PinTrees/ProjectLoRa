@@ -34,7 +34,7 @@
 
 #include "MonsterFactory.h"
 #include "HubUIMgr.h"
-
+#include "SkillMgr.h"
 
 
 Scene_Start::Scene_Start()
@@ -46,9 +46,10 @@ Scene_Start::Scene_Start()
 Scene_Start::~Scene_Start()
 {
 	// 싱글톤 메모리 해제
-	LevelupUIMgr::Dispose();
+	LevelUpUIMgr::Dispose();
 	PlayerMgr::Dispose();
 	HubUIMgr::Dispose();
+	SkillMgr::Dispose();
 }
 
 
@@ -56,11 +57,6 @@ Scene_Start::~Scene_Start()
 void Scene_Start::Update()
 {
 	CScene::Update();
-
-	if (KEY_TAP(KEY::ENTER))
-	{
-		ChangeScene(SCENE_TYPE::TOOL);
-	}
 
 	mfCurDelay += DT;
 	if (mfCurDelay > mfMstrDelay)
@@ -89,8 +85,9 @@ void Scene_Start::Enter()
 		createEnvi();
 	}
 
-	LevelupUIMgr::GetI()->Init();
+	LevelUpUIMgr::GetI()->Init();
 	HubUIMgr::GetI()->Init();
+	SkillMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크

@@ -2,10 +2,15 @@
 #include "CPanelUI.h"
 #include "CKeyMgr.h"
 
+#include "CTexture.h"
+#include "CSprite.h"
+
+
+
 CPanelUI::CPanelUI()
 	: CUI(false)
-	, mFixedPos_x(true)
-	, mFixedPos_y(true)
+	, mpSprite(nullptr)
+	, mFixedPos(true)
 {
 }
 
@@ -19,30 +24,29 @@ void CPanelUI::Update()
 	CUI::Update();
 }
 
-void CPanelUI::Render(HDC _dc)
+void CPanelUI::Render(HDC dc)
 {
-	CUI::Render(_dc);
+	CUI::Render(dc);
+
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
+	Vect2 vScale = GetScale();
+
+	if (mpSprite)
+	{
+		mpSprite->Render(dc, vPos, vScale);
+	}
+
+	CUI::RenderChild(dc);
 }
 
 void CPanelUI::MouseOn()
 {
-	if (mFixedPos_x && mFixedPos_y)
+	if (mFixedPos)
 		return;
 
-	if (mFixedPos_x &&!mFixedPos_y && IsLbtnDown())
+	if (IsLbtnDown())
 	{
-		Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
-
-		Vect2 vCurPos = GetPos();
-		vCurPos.y += vDiff.y;
-		SetPos(vCurPos);
-		mvDragStartPos = MOUSE_POS;
-		return;
-	}
-
-	if (!mFixedPos_x && !mFixedPos_y && IsLbtnDown())
-	{
-		Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
+	 	Vect2 vDiff = (MOUSE_POS - mvDragStartPos);
 
 		Vect2 vCurPos = GetPos();
 		vCurPos += vDiff;
@@ -50,7 +54,6 @@ void CPanelUI::MouseOn()
 		mvDragStartPos = MOUSE_POS;
 	}
 }
-
 
 
 void CPanelUI::MouseLbtnDown()
