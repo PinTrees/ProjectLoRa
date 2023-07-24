@@ -61,8 +61,10 @@ void Scene_Start::Update()
 	CScene::Update();
 
 	mfCurDelay += DT;
+
 	if (mfCurDelay > mfMstrDelay)
 	{
+		mfMstrDelay *= 0.98f;
 		mfCurDelay = 0.f;
 		CreateMonster();
 	}

@@ -48,8 +48,8 @@ void Tile::Render(HDC _dc, bool editor)
 	Vect2 vScale = GetScale();
 
 	TransparentBlt(_dc
-		, editor ? (int)vRenderPos.x : vLocalPos.x
-		, editor ? (int)vRenderPos.y : vLocalPos.y
+		, editor ? (int)vRenderPos.x : (int)vLocalPos.x
+		, editor ? (int)vRenderPos.y : (int)vLocalPos.y
 		, (int)(vScale.x)
 		, (int)(vScale.y)
 		, mpTileTex->GetDC()

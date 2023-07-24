@@ -9,7 +9,7 @@
 #include "Thunder.h"
 #include "Thunder_Obj.h"
 
-
+#include "Random.h"
 
 
 Thunder::Thunder()
@@ -34,15 +34,19 @@ void Thunder::UseSkill()
 
 	float length = 1000.f;
 	Vect2 monsterPos;
-	for (size_t i = 0; i < vecMon.size(); ++i)
-	{
-		monsterPos = vecMon[i]->GetPos();
-		if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적 찾기)
-		{
-			length = (playerPos - monsterPos).Length(); // length 에 값 대입
-			pThunder->SetPos(Vect2(monsterPos.x, monsterPos.y - 50.f));
-		}
-	}
+
+	int monIdx = CRandom::GetI()->Next(0, vecMon.size());
+	pThunder->SetPos(vecMon[monIdx]->GetLocalPos());
+
+	//for (size_t i = 0; i < vecMon.size(); ++i)
+	//{
+	//	monsterPos = vecMon[i]->GetLocalPos();
+	//	if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적 찾기)
+	//	{
+	//		length = (playerPos - monsterPos).Length(); // length 에 값 대입
+	//		pThunder->SetPos(monsterPos);
+	//	}
+	//}
 
 	CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
 
