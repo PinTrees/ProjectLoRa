@@ -9,15 +9,23 @@ class TextUI;
 
 enum class eBtnFunc
 {
+	// 함수포인터 값으로 enum값 0을넣으면 오류가있음 nullptr로 취급되는듯함
+	FIRST,
 	ADD_XPIXEL,
 	SUB_XPIXEL,
 	ADD_YPIXEL,
 	SUB_YPIXEL,
-	ADD_FRM,
-	SUB_FRM,
+	ADD_MAX_FRM_COUNT,
+	SUB_MAX_FRM_COUNT,
+	ADD_LT,
+	SUB_LT,
 	ADD_DUR,
 	SUB_DUR,
-
+	ADD_X_SCALE,
+	SUB_X_SCALE,
+	ADD_Y_SCALE,
+	SUB_Y_SCALE,
+	END,
 };
 
 struct tAniminfo
@@ -28,7 +36,8 @@ struct tAniminfo
 	UINT FrameLT; // 시작포인트
 	UINT xPixel;
 	UINT yPixel;//프레임당 y크기 밑 슬라이스 크기
-	float durTime; // 애니메이션시간
+	Vect2 scale;
+	float Duration; // 애니메이션시간
 	int curFrame; // 현재 보고있는 프레임
 };
 
@@ -73,36 +82,10 @@ public:
 private:
 	void CreateViewerUI();
 	void UpdateInfo(); // 현재 애니메이션 정보 업데이트 밑 출력
+	void ChangeInfo(eBtnFunc _e);
 
-	void addXPixel() { ++mAnimInfo.xPixel; ChangeAnim(); }
-	void subXPixel() {
-		if (mAnimInfo.xPixel <= 0)
-			return;
-		--mAnimInfo.xPixel; ChangeAnim(); }
-	void addYPixel() { ++mAnimInfo.yPixel; ChangeAnim(); }
-	void subYPixel() { 
-		if (mAnimInfo.yPixel <= 0)
-			return;
-		--mAnimInfo.yPixel; ChangeAnim(); }
-	void addLT() { ++mAnimInfo.FrameLT; ChangeAnim(); }
-	void subLT() 
-	{
-		if (mAnimInfo.FrameLT <= 0)
-			return;
 
-		--mAnimInfo.FrameLT; ChangeAnim(); }
-	void addFrameCount() { ++mAnimInfo.FrameCount; ChangeAnim(); }
-	void subFrameCount() { 
-		if (mAnimInfo.FrameCount <= 0)
-			return;
-		--mAnimInfo.FrameCount; ChangeAnim(); }
-	void addDurTime() { 
 
-		mAnimInfo.durTime += 0.1f; ChangeAnim(); }
-	void subDurTime() { 
-		if (mAnimInfo.durTime <= 0.f)
-			return; 
-		mAnimInfo.durTime -= 0.1f; ChangeAnim(); }
 	wstring to_wstring_with_precision(float value, int precision);
 public:
 	Scene_Viewer();

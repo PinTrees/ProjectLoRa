@@ -7,6 +7,7 @@
 
 typedef void(*BTN_FUNC) (DWORD_PTR, DWORD_PTR);
 typedef void(CScene::* SCENE_FUNC) (void);
+typedef void(CScene::* SCENE_FUNC_P) (DWORD_PTR);
 typedef void(CObject::* OBJECT_FUNC) (void);
 typedef void(CObject::* OBJECT_FUNC_P) (DWORD_PTR);
 
@@ -22,7 +23,8 @@ private:
 	DWORD_PTR		mparam1;			// 매개변수 임시 저장
 	DWORD_PTR		mparam2;			// 매개변수 임시 저장
 
-	SCENE_FUNC		mSceneFunc;			// 씬 멤버 함수
+	SCENE_FUNC		mSceneFunc;			// 매개변수가 없는 씬 멤버 함수
+	SCENE_FUNC_P	mSceneFuncP;		// 매개변수가 존재하는 씬 멤버 함수
 	CScene*			mScene;				// 호출자
 
 	OBJECT_FUNC		mObjectFunc;		// 매개변수가 없는 오브젝트 멤버함수
@@ -54,7 +56,7 @@ public:
 	}
 
 	void SetClickedCallBack(CScene* scene, SCENE_FUNC func);
-	void SetClickedCallBack(CScene* scene, SCENE_FUNC func, DWORD_PTR param);
+	void SetClickedCallBack(CScene* scene, SCENE_FUNC_P func, DWORD_PTR param);
 	void SetClickedCallBack(CObject* object, OBJECT_FUNC func);
 	void SetClickedCallBack(CObject* object, OBJECT_FUNC_P func, DWORD_PTR param);
 

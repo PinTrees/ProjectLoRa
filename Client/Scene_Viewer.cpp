@@ -64,7 +64,7 @@ void Scene_Viewer::Enter()
 
 
 	CreateViewerUI(); //뷰어씬 UI 생성함수
-	
+
 
 
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
@@ -186,11 +186,13 @@ void Scene_Viewer::LoadAnimData()
 
 		int w = mpTex->Width();
 		int h = mpTex->Heigth();
-
+		mAnimInfo.scale = Vect2(100.f, 100.f);
 		// 애니메이션을 보여줄 오브젝트 생성
 		mpAnimViewer = new AnimationView();
-		mpAnimViewer->SetScale(Vect2(100.f, 100.f));
-		mpAnimViewer->SetPos(Vect2(resolution.x * 0.5f, resolution.y*0.2f));
+		mpAnimViewer->SetScale(mAnimInfo.scale);
+		mpAnimViewer->SetPos(Vect2(resolution.x * 0.5f, resolution.y * 0.3f));
+
+
 		//pAnimViewer->GetAnimator()->Play(L"test", false);
 		CreateObject(mpAnimViewer, GROUP_TYPE::DEFAULT);
 		//if (nullptr == mpAnimViewer->GetAnimator()->GetCurAnimation())
@@ -260,7 +262,7 @@ void Scene_Viewer::CreateViewerUI()
 	pPlayBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pPlayBtn);
 
-	CBtnUI*  pStopbtn = new CBtnUI;
+	CBtnUI* pStopbtn = new CBtnUI;
 	pStopbtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pStopbtn->SetScale(Vect2(150.f, 50.f));
 	pStopbtn->SetText(L"시작");
@@ -291,7 +293,7 @@ void Scene_Viewer::CreateViewerUI()
 	pSubXBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pSubXBtn->SetScale(Vect2(150.f, 50.f));
 	pSubXBtn->SetText(L"X_Pixel--");
-	pSubXBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::subXPixel);
+	pSubXBtn->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_XPIXEL);
 	pSubXBtn->GetText()->SetFontSize(20.f);
 	pSubXBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pSubXBtn);
@@ -300,7 +302,7 @@ void Scene_Viewer::CreateViewerUI()
 	pAddXBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pAddXBtn->SetScale(Vect2(150.f, 50.f));
 	pAddXBtn->SetText(L"X_Pixel++");
-	pAddXBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::addXPixel);
+	pAddXBtn->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_XPIXEL);
 	pAddXBtn->GetText()->SetFontSize(20.f);
 	pAddXBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pAddXBtn);
@@ -311,7 +313,7 @@ void Scene_Viewer::CreateViewerUI()
 	pSubYBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pSubYBtn->SetScale(Vect2(150.f, 50.f));
 	pSubYBtn->SetText(L"Y_Pixel--");
-	pSubYBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::subYPixel);
+	pSubYBtn->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_YPIXEL);
 	pSubYBtn->GetText()->SetFontSize(20.f);
 	pSubYBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pSubYBtn);
@@ -320,10 +322,11 @@ void Scene_Viewer::CreateViewerUI()
 	pAddYBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pAddYBtn->SetScale(Vect2(150.f, 50.f));
 	pAddYBtn->SetText(L"Y_Pixel++");
-	pAddYBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::addYPixel);
+	pAddYBtn->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_YPIXEL);
 	pAddYBtn->GetText()->SetFontSize(20.f);
 	pAddYBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pAddYBtn);
+
 
 
 
@@ -331,7 +334,7 @@ void Scene_Viewer::CreateViewerUI()
 	pSubLT->SetContentOffset(Vect2(-40.f, -10.f));
 	pSubLT->SetScale(Vect2(150.f, 50.f));
 	pSubLT->SetText(L"LT--");
-	pSubLT->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::subLT);
+	pSubLT->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_LT);
 	pSubLT->GetText()->SetFontSize(20.f);
 	pSubLT->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pSubLT);
@@ -340,10 +343,52 @@ void Scene_Viewer::CreateViewerUI()
 	pAddLT->SetContentOffset(Vect2(-40.f, -10.f));
 	pAddLT->SetScale(Vect2(150.f, 50.f));
 	pAddLT->SetText(L"LT++");
-	pAddLT->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Viewer::addLT);
+	pAddLT->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_LT);
 	pAddLT->GetText()->SetFontSize(20.f);
 	pAddLT->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	RowBar->AddChild(pAddLT);
+
+	TextUI* dummy = new TextUI;
+	dummy->SetScale(Vect2(300.f, 50.f));
+	RowBar->AddChild(dummy);
+
+	CBtnUI* pSubDur = new CBtnUI;
+	pSubDur->SetContentOffset(Vect2(-40.f, -10.f));
+	pSubDur->SetScale(Vect2(150.f, 50.f));
+	pSubDur->SetText(L"Duration--");
+	pSubDur->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_DUR);
+	pSubDur->GetText()->SetFontSize(20.f);
+	pSubDur->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	RowBar->AddChild(pSubDur);
+
+	CBtnUI* pAddDur = new CBtnUI;
+	pAddDur->SetContentOffset(Vect2(-40.f, -10.f));
+	pAddDur->SetScale(Vect2(150.f, 50.f));
+	pAddDur->SetText(L"Duration++");
+	pAddDur->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_DUR);
+	pAddDur->GetText()->SetFontSize(20.f);
+	pAddDur->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	RowBar->AddChild(pAddDur);
+
+
+	CBtnUI* pSubMaxFrm = new CBtnUI;
+	pSubMaxFrm->SetContentOffset(Vect2(-40.f, -10.f));
+	pSubMaxFrm->SetScale(Vect2(150.f, 50.f));
+	pSubMaxFrm->SetText(L"최대프레임수--");
+	pSubMaxFrm->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_MAX_FRM_COUNT);
+	pSubMaxFrm->GetText()->SetFontSize(20.f);
+	pSubMaxFrm->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	RowBar->AddChild(pSubMaxFrm);
+
+	CBtnUI* pAddMaxFrm = new CBtnUI;
+	pAddMaxFrm->SetContentOffset(Vect2(-40.f, -10.f));
+	pAddMaxFrm->SetScale(Vect2(150.f, 50.f));
+	pAddMaxFrm->SetText(L"최대프레임수++");
+	pAddMaxFrm->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_MAX_FRM_COUNT);
+	pAddMaxFrm->GetText()->SetFontSize(20.f);
+	pAddMaxFrm->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	RowBar->AddChild(pAddMaxFrm);
+
 
 
 	// text ui 전체 프레임 수와 현재 보고있는 프레임수 ex) 1/4 전체 4프레임 1프레임화면
@@ -354,7 +399,7 @@ void Scene_Viewer::CreateViewerUI()
 
 	mpCurFrmInfo = new TextUI;
 	mpCurFrmInfo->SetScale(Vect2(470.f, 50.f));
-	mpCurFrmInfo->SetPos(Vect2(vResolution.x/2, 50.f));
+	mpCurFrmInfo->SetPos(Vect2(vResolution.x / 2, 50.f));
 	mpCurFrmInfo->SetColor(RGB(255, 0, 255));
 	mpCurFrmInfo->SetText(L"애니메이션을 생성해주세요");
 	AddObject(mpCurFrmInfo, GROUP_TYPE::UI);
@@ -367,24 +412,24 @@ void Scene_Viewer::ChangeAnim()
 {
 	if (mpAnimViewer == nullptr)
 		return;
-	mpAnimViewer->GetAnimator()->DeleteAnimation();//애니메이션 삭제후 변경된 정보로 다시 생성
+
 
 	if (mAnimInfo.xPixel == 0 || mAnimInfo.yPixel == 0)
 		return;
-	
-	mAnimInfo.FrameCount = mpTex->Width() / mAnimInfo.xPixel;
+
+	mpAnimViewer->GetAnimator()->DeleteAnimation();//애니메이션 삭제후 변경된 정보로 다시 생성
+
 	mpAnimViewer->GetAnimator()->CreateAnimation(
 		mAnimInfo.name
 		, mpTex
 		, Vect2(0.f, mAnimInfo.FrameLT)				// 시작포인트지점
 		, Vect2(mAnimInfo.xPixel, mAnimInfo.yPixel) // 한프레임 크기
 		, Vect2(mAnimInfo.xPixel, 0.f)				// x축으로 스텝
-		, mAnimInfo.durTime							// 한프레임당 시간
+		, mAnimInfo.Duration							// 한프레임당 시간
 		, mAnimInfo.FrameCount);					// 프레임 개수 
-	mpAnimViewer->SetScale(Vect2(mAnimInfo.xPixel, mAnimInfo.yPixel));
+	mpAnimViewer->SetScale(mAnimInfo.scale);
 	mpAnimation = mpAnimViewer->GetAnimator()->GetCurAnimation();
-	mpAnimViewer->GetAnimator()->Play(mAnimInfo.name,true);
-	mpAnimation->SetFrame(mAnimInfo.curFrame);
+	mpAnimViewer->GetAnimator()->Play(mAnimInfo.name, true);
 	UpdateInfo();
 	AnimStopSwitch();
 }
@@ -395,20 +440,88 @@ void Scene_Viewer::UpdateInfo()
 		return;
 	if (nullptr == mpAnimation)
 		return;
-	if(nullptr == mpAnimViewer->GetAnimator()->GetCurAnimation())
+	if (nullptr == mpAnimViewer->GetAnimator()->GetCurAnimation())
 		return;
 
-	mpCurFrmInfo->SetText(L"애니메이션 이름 : "+ mAnimInfo.name);
+	mpCurFrmInfo->SetText(L"애니메이션 이름 : " + mAnimInfo.name);
 
-	mAnimInfo.curFrame = mpAnimViewer->GetAnimator()->GetCurAnimation()->GetCurFrame()+1;
-	mpCurFrmNumber->SetText(L"프레임 : " 
-		+std::to_wstring(mAnimInfo.curFrame) 
+	mAnimInfo.curFrame = mpAnimViewer->GetAnimator()->GetCurAnimation()->GetCurFrame() + 1;
+	mpCurFrmNumber->SetText(L"프레임 : "
+		+ std::to_wstring(mAnimInfo.curFrame)
 		+ L" / " + std::to_wstring(mAnimInfo.FrameCount)
-		+L"\n x픽셀 크기 : "+ std::to_wstring(mAnimInfo.xPixel)
-		+L"\n y픽셀 크기 : "+ std::to_wstring(mAnimInfo.yPixel)
-	+L"시작y축 픽셀 지점 : "+ std::to_wstring(mAnimInfo.FrameLT)
-		+ L"애니메이션 시간 : " + to_wstring_with_precision(mAnimInfo.durTime, 1) + L"초");
-	
+		+ L"\n x픽셀 크기 : " + std::to_wstring(mAnimInfo.xPixel)
+		+ L"\n y픽셀 크기 : " + std::to_wstring(mAnimInfo.yPixel)
+		+ L"시작y축 픽셀 지점 : " + std::to_wstring(mAnimInfo.FrameLT)
+		+ L"애니메이션 시간 : " + to_wstring_with_precision(mAnimInfo.Duration, 1) + L"초");
+
+}
+
+void Scene_Viewer::ChangeInfo(eBtnFunc _e)
+{
+	switch (_e)
+	{
+	case eBtnFunc::ADD_XPIXEL:
+		++mAnimInfo.xPixel;
+		break;
+	case eBtnFunc::SUB_XPIXEL:
+		if (mAnimInfo.xPixel <= 0)
+			break;
+		--mAnimInfo.xPixel;
+		break;
+	case eBtnFunc::ADD_YPIXEL:
+		++mAnimInfo.yPixel;
+		break;
+	case eBtnFunc::SUB_YPIXEL:
+		if (mAnimInfo.yPixel <= 0)
+			break;
+		--mAnimInfo.yPixel;
+		break;
+	case eBtnFunc::ADD_LT:
+		++mAnimInfo.FrameLT;
+		break;
+	case eBtnFunc::SUB_LT:
+		if (mAnimInfo.FrameLT <= 0)
+			break;
+		--mAnimInfo.FrameLT;
+		break;
+	case eBtnFunc::ADD_MAX_FRM_COUNT:
+		++mAnimInfo.FrameCount;
+		break;
+	case eBtnFunc::SUB_MAX_FRM_COUNT:
+		if (mAnimInfo.FrameCount <= 1)
+			break;
+		--mAnimInfo.FrameCount;
+		break;
+	case eBtnFunc::ADD_DUR:
+		mAnimInfo.Duration += 0.1f;
+		break;
+	case eBtnFunc::SUB_DUR:
+		if (mAnimInfo.Duration <= 0.11f)
+			break;
+		mAnimInfo.Duration -= 0.1f;
+		break;
+	case eBtnFunc::ADD_X_SCALE:
+		++mAnimInfo.scale.x;
+		break;
+	case eBtnFunc::SUB_X_SCALE:
+		if (mAnimInfo.scale.x <= 1.f)
+			break;
+		--mAnimInfo.scale.x;
+		break;
+	case eBtnFunc::ADD_Y_SCALE:
+		++mAnimInfo.scale.y;
+		break;
+	case eBtnFunc::SUB_Y_SCALE:
+		if (mAnimInfo.scale.y <= 1.f)
+			break;
+		--mAnimInfo.scale.y;
+		break;
+	default:
+		break;
+	}
+
+	ChangeAnim();
+
 }
 
 // float형의 소숫점을 precision번째 자리까지 출력
@@ -455,7 +568,7 @@ INT_PTR CALLBACK AnimationProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			animInfo.xPixel = GetDlgItemInt(hDlg, IDC_X_PIXEL, nullptr, false);
 			animInfo.yPixel = GetDlgItemInt(hDlg, IDC_Y_PIXEL, nullptr, false);
 			// 한프레임당 넘어갈 시간값 가져오기
-			animInfo.durTime = ((float)GetDlgItemInt(hDlg, IDC_FRAME_TIME, nullptr, false)) * 0.1f;
+			animInfo.Duration = ((float)GetDlgItemInt(hDlg, IDC_FRAME_TIME, nullptr, false)) * 0.1f;
 			CTexture* iTex = curScene->GetTex();
 
 			if (nullptr == iTex)
@@ -465,20 +578,20 @@ INT_PTR CALLBACK AnimationProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			UINT x = iTex->Width();
 			UINT y = iTex->Heigth();
 			// 프레임 카운트 설정
-			animInfo.FrameCount = x / animInfo.xPixel;
+			animInfo.FrameCount = 5;
 			// 오브젝트 크기 픽셀에 맞게 조정
 			curScene->GetAnimObj()->SetScale(Vect2(animInfo.xPixel, animInfo.yPixel));
 			//해당 오브젝트의 애니메이션 생성
-			curScene->GetAnimObj()->GetAnimator()->CreateAnimation (
+			curScene->GetAnimObj()->GetAnimator()->CreateAnimation(
 				animInfo.name,
 				iTex,
 				Vect2(0.f, animInfo.FrameLT),
 				Vect2(animInfo.xPixel, animInfo.yPixel),
 				Vect2(animInfo.xPixel, 0.f),
-				animInfo.durTime, animInfo.FrameCount);
+				animInfo.Duration, animInfo.FrameCount);
 
 			curScene->SetAnimation(curScene->GetAnimObj()->GetAnimator()->GetCurAnimation());
-			
+
 			curScene->GetAnimObj()->GetAnimator()->Play(animInfo.name, true);
 			//curScene->GetAnimObj()->GetAnimator()->Stop();
 			curScene->ChangeAnim();

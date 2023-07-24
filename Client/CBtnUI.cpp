@@ -106,6 +106,11 @@ void CBtnUI::MouseLbtnClick()
 		(mObject->*mObjectFuncP)(mparam1);
 	}
 
+	if (mSceneFuncP && mScene && mparam1)
+	{
+		(mScene->*mSceneFuncP)(mparam1);
+	}
+
 
 	if (nullptr != mpChangeTex)
 	{
@@ -123,10 +128,10 @@ void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func)
 	mScene = scene;
 }
 
-void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC func, DWORD_PTR param)
+void CBtnUI::SetClickedCallBack(CScene* scene, SCENE_FUNC_P func, DWORD_PTR param)
 {
 	mScene = scene;
-	mSceneFunc = func;
+	mSceneFuncP = func;
 	mparam1 = param;
 }
 
