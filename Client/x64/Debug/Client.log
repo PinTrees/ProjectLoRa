@@ -1,2 +1,4 @@
 ﻿  unity_FEYPTKNM74M7Z6VI.cpp
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\Scene_Viewer.cpp(707,36): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\Scene_Viewer.cpp(708,36): warning C4244: '=': conversion from 'UINT' to 'float', possible loss of data
   Client.vcxproj -> D:\GitHub\ProjectLoLa\ProjectLoRa\Output\bin_debug\Client.exe

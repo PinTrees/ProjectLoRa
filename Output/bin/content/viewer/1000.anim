@@ -1,0 +1,68 @@
+[Animation Name]
+1000
+[Texture Name]
+D:\GitHub\ProjectLoLa\ProjectLoRa\Output\bin\content\viewer\test.bmp
+[Texture Path]
+viewer\test.bmp
+[Frame Count]
+5
+[Frame Index]
+0
+[Left Top]
+0 1
+[Slice Size]
+100 100
+[Offset]
+0 0
+[Duration]
+0.100000
+
+
+[Frame Index]
+1
+[Left Top]
+100 1
+[Slice Size]
+100 100
+[Offset]
+0 0
+[Duration]
+0.100000
+
+
+[Frame Index]
+2
+[Left Top]
+200 1
+[Slice Size]
+100 100
+[Offset]
+0 0
+[Duration]
+0.100000
+
+
+[Frame Index]
+3
+[Left Top]
+300 1
+[Slice Size]
+100 100
+[Offset]
+0 0
+[Duration]
+0.100000
+
+
+[Frame Index]
+4
+[Left Top]
+400 1
+[Slice Size]
+100 100
+[Offset]
+0 0
+[Duration]
+0.100000
+
+

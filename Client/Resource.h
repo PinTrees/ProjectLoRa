@@ -21,8 +21,10 @@
 #define IDC_FRAME_TIME                  1003
 #define IDC_ANIM_NAME                   1004
 #define IDC_Y_PIXEL                     1005
-#define IDC_FRAME_COUNT                 1006
 #define IDC_FRAME_COUNT2                1007
+#define IDC_X_SCALE                     1010
+#define IDC_FRAME_COUNT4                1011
+#define IDC_Y_SCALE                     1011
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_MENU_TILE_COUNT              32773

@@ -50,12 +50,13 @@ private:
 	CTexture* mpTex;	//가져온 텍스쳐
 	TextUI* mpCurFrmInfo; // 현재 보고있는 애니메이션 이름
 
-	TextUI* mpCurFrmNumber; // 현재 보고있는 프레임 넘버
-	TextUI* mpXPixelSize; // 현재 보고있는 프레임 넘버
-	TextUI* mpYPixelSize; // 현재 보고있는 프레임 넘버
-	TextUI* mpLT; // 현재 보고있는 프레임 넘버
-	TextUI* mpDuration; // 현재 보고있는 프레임 넘버
-	TextUI* mpMaxFrm; // 현재 보고있는 프레임 넘버
+	TextUI* mpCurFrmNumber;
+	TextUI* mpXPixelSize; 
+	TextUI* mpYPixelSize; 
+	TextUI* mpLT; 
+	TextUI* mpDuration; 
+	TextUI* mpObjXScale; 
+	TextUI* mpObjYScale;
 
 
 	tAniminfo mAnimInfo;

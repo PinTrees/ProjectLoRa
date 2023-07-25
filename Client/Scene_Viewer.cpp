@@ -183,11 +183,11 @@ void Scene_Viewer::LoadAnimData()
 
 		int w = mpTex->Width();
 		int h = mpTex->Heigth();
-		mAnimInfo.scale = Vect2(100.f, 100.f);
+		mAnimInfo.scale = Vect2(200.f, 200.f);
 		// 애니메이션을 보여줄 오브젝트 생성
 		mpAnimViewer = new AnimationView();
 		mpAnimViewer->SetScale(mAnimInfo.scale);
-		mpAnimViewer->SetPos(Vect2(resolution.x * 0.5f, resolution.y * 0.3f));
+		mpAnimViewer->SetPos(Vect2(resolution.x * 0.4f, resolution.y * 0.4f));
 
 
 		//pAnimViewer->GetAnimator()->Play(L"test", false);
@@ -237,12 +237,16 @@ void Scene_Viewer::CreateViewerUI()
 	CRow* pRow3 = new CRow();
 	CRow* pRow4 = new CRow();
 	CRow* pRow5 = new CRow();
+	CRow* pRow6 = new CRow();
+	CRow* pRow7 = new CRow();
 
 	pRow1->SetScale(Vect2(300.f, 50.f));
 	pRow2->SetScale(Vect2(300.f, 50.f));
 	pRow3->SetScale(Vect2(300.f, 50.f));
 	pRow4->SetScale(Vect2(300.f, 50.f));
 	pRow5->SetScale(Vect2(300.f, 50.f));
+	pRow6->SetScale(Vect2(300.f, 50.f));
+	pRow7->SetScale(Vect2(300.f, 50.f));
 
 
 	pRightColumn->AddChild(pRow1);
@@ -250,6 +254,8 @@ void Scene_Viewer::CreateViewerUI()
 	pRightColumn->AddChild(pRow3);
 	pRightColumn->AddChild(pRow4);
 	pRightColumn->AddChild(pRow5);
+	pRightColumn->AddChild(pRow6);
+	pRightColumn->AddChild(pRow7);
 
 	//하단 ui판넬
 	CPanelUI* pBottomPanelUI = new CPanelUI;
@@ -431,14 +437,49 @@ void Scene_Viewer::CreateViewerUI()
 	pAddMaxFrm->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	pRow5->AddChild(pAddMaxFrm);
 
+	CBtnUI* pSubObjXScale = new CBtnUI;
+	pSubObjXScale->SetContentOffset(Vect2(-40.f, -10.f));
+	pSubObjXScale->SetScale(Vect2(150.f, 50.f));
+	pSubObjXScale->SetText(L"xScale--");
+	pSubObjXScale->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_X_SCALE);
+	pSubObjXScale->GetText()->SetFontSize(20.f);
+	pSubObjXScale->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pRow6->AddChild(pSubObjXScale);
 
+	CBtnUI* pAddObjXScale = new CBtnUI;
+	pAddObjXScale->SetContentOffset(Vect2(-40.f, -10.f));
+	pAddObjXScale->SetScale(Vect2(150.f, 50.f));
+	pAddObjXScale->SetText(L"xScale++");
+	pAddObjXScale->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_X_SCALE);
+	pAddObjXScale->GetText()->SetFontSize(20.f);
+	pAddObjXScale->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pRow6->AddChild(pAddObjXScale);
+
+
+	CBtnUI* pSubObjYScale = new CBtnUI;
+	pSubObjYScale->SetContentOffset(Vect2(-40.f, -10.f));
+	pSubObjYScale->SetScale(Vect2(150.f, 50.f));
+	pSubObjYScale->SetText(L"yScale--");
+	pSubObjYScale->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::SUB_Y_SCALE);
+	pSubObjYScale->GetText()->SetFontSize(20.f);
+	pSubObjYScale->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pRow7->AddChild(pSubObjYScale);
+
+	CBtnUI* pAddObjYScale = new CBtnUI;
+	pAddObjYScale->SetContentOffset(Vect2(-40.f, -10.f));
+	pAddObjYScale->SetScale(Vect2(150.f, 50.f));
+	pAddObjYScale->SetText(L"yScale++");
+	pAddObjYScale->SetClickedCallBack(this, (SCENE_FUNC_P)&Scene_Viewer::ChangeInfo, (int)eBtnFunc::ADD_Y_SCALE);
+	pAddObjYScale->GetText()->SetFontSize(20.f);
+	pAddObjYScale->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pRow7->AddChild(pAddObjYScale);
 
 
 	// 텍스트 UI 애니메이션정보
 
 	mpCurFrmInfo = new TextUI;
 	mpCurFrmInfo->SetScale(Vect2(470.f, 50.f));
-	mpCurFrmInfo->SetPos(Vect2(vResolution.x / 2, 50.f));
+	mpCurFrmInfo->SetPos(Vect2((vResolution.x-(pRightPanelUI->GetScale().x))/2, 50.f));
 	mpCurFrmInfo->SetColor(RGB(255, 0, 255));
 	mpCurFrmInfo->SetText(L"애니메이션을 생성해주세요");
 	AddObject(mpCurFrmInfo, GROUP_TYPE::UI);
@@ -479,13 +520,19 @@ void Scene_Viewer::CreateViewerUI()
 	mpDuration->SetFontSize(20.f);
 	pRightColumn->AddChild(mpDuration);
 
-	mpMaxFrm = new TextUI;
-	mpMaxFrm->SetScale(Vect2(400.f, 50.f));
-	mpMaxFrm->SetColor(RGB(255, 255, 0));
-	mpMaxFrm->SetText(L"최대프레임수");
-	mpMaxFrm->SetFontSize(20.f);
-	pRightColumn->AddChild(mpMaxFrm);
+	mpObjXScale = new TextUI;
+	mpObjXScale->SetScale(Vect2(400.f, 50.f));
+	mpObjXScale->SetColor(RGB(255, 255, 0));
+	mpObjXScale->SetText(L"X Scale");
+	mpObjXScale->SetFontSize(20.f);
+	pRightColumn->AddChild(mpObjXScale);
 
+	mpObjYScale = new TextUI;
+	mpObjYScale->SetScale(Vect2(400.f, 50.f));
+	mpObjYScale->SetColor(RGB(255, 255, 0));
+	mpObjYScale->SetText(L"Y Scale");
+	mpObjYScale->SetFontSize(20.f);
+	pRightColumn->AddChild(mpObjYScale);
 
 	AddObject(pRightPanelUI, GROUP_TYPE::UI); //옵션 판넬 ui
 	AddObject(pBottomPanelUI, GROUP_TYPE::UI); //옵션 판넬 ui
@@ -538,6 +585,8 @@ void Scene_Viewer::UpdateInfo()
 	mpYPixelSize->SetText(L"\n y픽셀 크기 : " + std::to_wstring(mAnimInfo.yPixel));
 	mpLT->SetText(L"시작y축 픽셀 지점 : " + std::to_wstring(mAnimInfo.FrameLT));
 	mpDuration->SetText(L"애니메이션 속도 : " + to_wstring_with_precision(mAnimInfo.Duration, 1) + L"초");
+	mpObjXScale->SetText(L"Scale X : " + to_wstring_with_precision(mAnimInfo.scale.x,1) );
+	mpObjYScale->SetText(L" , Scale Y : "+ to_wstring_with_precision(mAnimInfo.scale.y, 1));
 }
 
 void Scene_Viewer::ChangeInfo(eBtnFunc _e)
@@ -654,6 +703,9 @@ INT_PTR CALLBACK AnimationProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			// 한프레임당 넘어갈 시간값 가져오기
 			animInfo.Duration = ((float)GetDlgItemInt(hDlg, IDC_FRAME_TIME, nullptr, false)) * 0.1f;
 			CTexture* iTex = curScene->GetTex();
+			// 오브젝트의 스케일 크기값 가져오기
+			animInfo.scale.x = GetDlgItemInt(hDlg, IDC_X_SCALE, nullptr, false);
+			animInfo.scale.y = GetDlgItemInt(hDlg, IDC_Y_SCALE, nullptr, false);
 
 			if (nullptr == iTex)
 				return (INT_PTR)TRUE;
@@ -664,7 +716,7 @@ INT_PTR CALLBACK AnimationProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lP
 			// 프레임 카운트 설정
 			animInfo.FrameCount = 5;
 			// 오브젝트 크기 픽셀에 맞게 조정
-			curScene->GetAnimObj()->SetScale(Vect2(animInfo.xPixel, animInfo.yPixel));
+			curScene->GetAnimObj()->SetScale(animInfo.scale);
 			//해당 오브젝트의 애니메이션 생성
 			curScene->GetAnimObj()->GetAnimator()->CreateAnimation(
 				animInfo.name,
