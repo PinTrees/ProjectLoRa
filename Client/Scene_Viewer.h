@@ -48,9 +48,14 @@ private:
 	AnimationView* mpAnimViewer; // 뷰어오브젝트
 	CAnimation* mpAnimation; // 애니메이션
 	CTexture* mpTex;	//가져온 텍스쳐
-	TextUI* mpCurFrmInfo; // 현재 보고있는 애니메이션 밑 프레임정보
+	TextUI* mpCurFrmInfo; // 현재 보고있는 애니메이션 이름
 
 	TextUI* mpCurFrmNumber; // 현재 보고있는 프레임 넘버
+	TextUI* mpXPixelSize; // 현재 보고있는 프레임 넘버
+	TextUI* mpYPixelSize; // 현재 보고있는 프레임 넘버
+	TextUI* mpLT; // 현재 보고있는 프레임 넘버
+	TextUI* mpDuration; // 현재 보고있는 프레임 넘버
+	TextUI* mpMaxFrm; // 현재 보고있는 프레임 넘버
 
 
 	tAniminfo mAnimInfo;
@@ -75,9 +80,8 @@ public:
 	void AnimNextFrm();
 	void AnimPrevFrm();
 
-	void LoadFile();
 	void LoadAnimData();
-
+	void SaveAnimation();
 	void ChangeAnim();// 오브젝트 생성과 삭제를 동시에 진행
 private:
 	void CreateViewerUI();
