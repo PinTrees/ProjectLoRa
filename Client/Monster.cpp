@@ -6,6 +6,7 @@
 // Include Manager
 #include "CTimeMgr.h"
 #include "CResMgr.h"
+#include "AstarMgr.h"
 
 // System Module Header
 #include "Random.h"
@@ -23,6 +24,7 @@
 #include "BarUI.h"
 
 #include "CombatText.h"
+#include "SelectGDI.h"
 
 
 
@@ -36,7 +38,7 @@ Monster::Monster(const wstring& uid)
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_" + uid, L"texture\\monster\\" + uid + L".bmp");
 	CreateAnimator();
-	
+
 	if (mtInfo.UID == L"1")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
@@ -71,18 +73,37 @@ Monster::Monster(const wstring& uid)
 	mHpBar->SetScale(Vect2(45.f, 5.f));
 	mHpBar->SetColor(RGB(255, 0, 0));
 	CreateObject(mHpBar, GROUP_TYPE::UI);
+
 }
 
 Monster::~Monster()
 {
 	if (nullptr != mAI)
 		delete mAI;
+
+
+	Safe_Delete_Vec(mPath);
 }
 
 
 void Monster::Render(HDC _dc)
 {
 	CompnentRender(_dc);
+	SelectGDI p = SelectGDI(_dc, PEN_TYPE::RED);
+
+	if (mPath.empty())
+		return;
+
+	Vect2 renderPos = CCamera::GetI()->GetRenderPos(GetPos());
+	MoveToEx(_dc, renderPos.x, renderPos.y, NULL);
+
+	for (const Vect2* pathPos : mPath)
+	{
+		Vect2 renderPathPos = CCamera::GetI()->GetRenderPos(*pathPos);
+		LineTo(_dc, renderPathPos.x, renderPathPos.y);
+	}
+
+
 }
 
 
@@ -92,6 +113,9 @@ void Monster::Update()
 
 	if (nullptr != mAI)
 		mAI->Update();
+
+
+
 
 	if (nullptr != mHpBar)
 	{

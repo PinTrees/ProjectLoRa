@@ -6,7 +6,11 @@ class TraceState :
     public CState<MONSTER_STATE>
 {
 private:
+    float mAstarDelay;
+    float mCurDelay;
 
+    vector<Vect2> vPath;
+    int idx;
 
 public:
     virtual void Update() override;

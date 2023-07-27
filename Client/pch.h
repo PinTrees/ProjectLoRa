@@ -18,6 +18,8 @@ using std::make_pair;
 
 #include <list>
 using std::list;
+#include <queue>
+using std::priority_queue;
 
 #include <string>
 using std::wstring;

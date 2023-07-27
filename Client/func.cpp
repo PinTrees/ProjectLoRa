@@ -5,6 +5,9 @@
 #include "CPathMgr.h"
 #include "CResMgr.h"
 #include "CSceneMgr.h"
+#include "AstarMgr.h"
+
+
 
 #include "CScene.h"
 #include "CTexture.h"
@@ -13,6 +16,7 @@
 #include "Background.h"
 
 #include "AI.h"
+
 
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
@@ -138,9 +142,10 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 	fread(&xCount, sizeof(UINT), 1, pFile);
 	fread(&yCount, sizeof(UINT), 1, pFile);
 
+	AstarMgr::GetI()->CreateTileData(xCount+10, yCount);
 
 	Background* pParallax = new Background();
-	pParallax->CreateParallaxTexture(xCount * TILE_SIZE, yCount * TILE_SIZE);
+	pParallax->CreateParallaxTexture(xCount * TILE_SIZE_RENDER, yCount * TILE_SIZE_RENDER);
 
 	HDC dc = pParallax->GetParallaxDC();
 

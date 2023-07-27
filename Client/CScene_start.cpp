@@ -36,6 +36,8 @@
 #include "HubUIMgr.h"
 #include "SkillMgr.h"
 
+#include "AstarMgr.h"
+
 
 Scene_Start::Scene_Start()
 	: mfMstrDelay(1.f)
@@ -50,6 +52,7 @@ Scene_Start::~Scene_Start()
 	PlayerMgr::Dispose();
 	HubUIMgr::Dispose();
 	SkillMgr::Dispose();
+	AstarMgr::Dispose();
 }
 
 
@@ -73,17 +76,20 @@ void Scene_Start::Enter()
 	createPlayer();
 
 	//몬스터 배치
-	int iMonCount = 8;
+	int iMonCount = 1;
 	for (int i = 0; i < iMonCount; i++)
 	{
-		CreateMonster();
+		//CreateMonster();
 	}
 
-	int iEnvCount = 8;
+	int iEnvCount = 77;
 	for (int i = 0; i < iEnvCount; i++)
 	{
 		createEnvi();
 	}
+
+
+
 
 	LevelUpUIMgr::GetI()->Init();
 	HubUIMgr::GetI()->Init();
@@ -148,20 +154,25 @@ void Scene_Start::CreateMonster()
 
 void Scene_Start::createEnvi()
 {
-	Vect2 vResolution = CCore::GetI()->GetResolution();
+	int xPos = rand() % 20*TILE_SIZE_RENDER;
+	int yPos = rand() % 20*TILE_SIZE_RENDER;
+	int xIdx = xPos / TILE_SIZE_RENDER;
+	int yIdx = yPos / TILE_SIZE_RENDER;
 
-	float xPos = rand() % (int)(vResolution.x);
-	float yPos = rand() % (int)(vResolution.y); 
+	AstarMgr::GetI()->SetWallNode(xIdx, yIdx);
+	
+	Vect2 vScale = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER); 
+	Vect2 vScaleOffset = vScale * 0.5f; 
 	Vect2 vCreatePos = Vect2(xPos, yPos);
 
-	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
+	Environment* pEnvObj = new Environment(L"101");
 
-	Environment* pEnvObj = nullptr;
-	pEnvObj = new Environment(L"101");
-	pEnvObj->SetName(L"ENV");
-	pEnvObj->SetPos(vCreatePos);
-	pEnvObj->GetCollider()->SetTrigger(false);
-	AddObject(pEnvObj, GROUP_TYPE::ENV);
+	pEnvObj->SetName(L"ENV"); 
+	pEnvObj->SetScale(vScale); 
+	pEnvObj->SetPos(vCreatePos + vScaleOffset);
+	pEnvObj->GetCollider()->SetScale(vScale); 
+	pEnvObj->GetCollider()->SetTrigger(false); 
+	AddObject(pEnvObj, GROUP_TYPE::ENV); 
 }
 
 
@@ -172,11 +183,10 @@ void Scene_Start::createPlayer()
 
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(vResolution * 0.5f);
+	pPlayer->SetPos(Vect2(0.f,0.f));
 	AddObject(pPlayer, GROUP_TYPE::PLAYER);
 
 	AI<PLAYER_STATE>* pAI = new AI<PLAYER_STATE>;
-
 	pAI->AddState(new PIdleState);
 	pAI->AddState(new PRunState);
 	pAI->AddState(new PDashState);

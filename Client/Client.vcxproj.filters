@@ -221,9 +221,6 @@
     <Filter Include="Game\Manager\LevelUpUIMgr">
       <UniqueIdentifier>{95f8ed1b-8243-4088-9931-8e42a9caf859}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Editor">
-      <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UI\Bar">
       <UniqueIdentifier>{c801b63a-25ea-4bd4-adf6-4e98293c9e49}</UniqueIdentifier>
     </Filter>
@@ -274,6 +271,15 @@
     </Filter>
     <Filter Include="Game\Scene\Scene_Viewer\Object">
       <UniqueIdentifier>{f935cfa5-b66e-4a12-9f45-fc830323dd35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Scene_Astar">
+      <UniqueIdentifier>{ec2a5c76-9d58-40a8-8fdf-65e8099b5dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\AstarMgr">
+      <UniqueIdentifier>{cd8f2cb6-87ed-474d-9c40-13e1557d5354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\AstarMgr\Editor">
+      <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -520,6 +526,15 @@
     <ClInclude Include="AnimationView.h">
       <Filter>Game\Scene\Scene_Viewer\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Scene_Astar.h">
+      <Filter>Game\Scene\Scene_Astar</Filter>
+    </ClInclude>
+    <ClInclude Include="AstarNode.h">
+      <Filter>Game\Manager\AstarMgr\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="AstarMgr.h">
+      <Filter>Game\Manager\AstarMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -757,6 +772,15 @@
     </ClCompile>
     <ClCompile Include="AnimationView.cpp">
       <Filter>Game\Scene\Scene_Viewer\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Astar.cpp">
+      <Filter>Game\Scene\Scene_Astar</Filter>
+    </ClCompile>
+    <ClCompile Include="AstarNode.cpp">
+      <Filter>Game\Manager\AstarMgr\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="AstarMgr.cpp">
+      <Filter>Game\Manager\AstarMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

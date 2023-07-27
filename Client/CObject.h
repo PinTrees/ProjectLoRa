@@ -19,6 +19,7 @@ private:
 	Vect2		mvScale;
 	Vect2		mvPivot;	
 
+	Vect2		mvTargetPos;
 	// Rotation
 	float		mAngle;
 	float		mAngleOffset;
@@ -39,6 +40,7 @@ private:
 public:
 	void SetPos(Vect2 _vPos)		{ mvPos = _vPos; }
 	void SetScale(Vect2 _vScale) { mvScale = _vScale; }
+	void SetTarget(Vect2 _TargetPos) { mvTargetPos = _TargetPos; }
 	void SetPivot(Vect2 _vPivot) { mvPivot = _vPivot; }
 	void SetAngle(float _angle) { mAngle = _angle; }
 	void SetAngleOffset(float _angle) { mAngleOffset = _angle; }

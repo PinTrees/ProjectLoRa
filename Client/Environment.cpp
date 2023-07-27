@@ -23,10 +23,6 @@ Environment::Environment(const wstring& _type)
 	: mType(_type)
 {
 	CreateCollider();
-	GetCollider()->SetOffsetPos(GetPivot() - Vect2(0.f, 15.f));
-	GetCollider()->SetScale(Vect2(40.f, 35.f));
-
-
 	// Texture 로딩하기
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"ENV_" + mType, L"texture\\map\\" + mType + L".bmp");
 
@@ -48,13 +44,7 @@ Environment::Environment(const wstring& _type)
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.1f, 1);
 		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
-		SetScale(Vect2(80.f, 80.f) * 2.f);
-		
-		SetPivot(Vect2(0.f, 0.f));
-		GetCollider()->SetOffsetPos(GetPivot() - Vect2(0.f, 25.f));
-		GetCollider()->SetScale(GetScale() * 0.7f);
 	}
-
 
 	else if (mType == L"back_1")
 	{

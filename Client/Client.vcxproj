@@ -149,6 +149,8 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="AnimationView.h" />
+    <ClInclude Include="AstarMgr.h" />
+    <ClInclude Include="AstarNode.h" />
     <ClInclude Include="AtkState.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
@@ -212,6 +214,7 @@
     <ClInclude Include="register.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="CUI.h" />
+    <ClInclude Include="Scene_Astar.h" />
     <ClInclude Include="Scene_Main.h" />
     <ClInclude Include="Scene_Viewer.h" />
     <ClInclude Include="Skill.h" />
@@ -232,6 +235,8 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AnimationView.cpp" />
+    <ClCompile Include="AstarMgr.cpp" />
+    <ClCompile Include="AstarNode.cpp" />
     <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -293,6 +298,7 @@
     <ClCompile Include="PRunState.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="RigidBody.cpp" />
+    <ClCompile Include="Scene_Astar.cpp" />
     <ClCompile Include="Scene_Main.cpp" />
     <ClCompile Include="Scene_Viewer.cpp" />
     <ClCompile Include="SelectGDI.cpp" />
