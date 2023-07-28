@@ -302,6 +302,12 @@
     <Filter Include="Game\Class\Skill\04. EnergyBall">
       <UniqueIdentifier>{a3c09e07-8116-476a-b3f9-f0275afbc9ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Editor\Astar">
+      <UniqueIdentifier>{11ae2a74-2484-4206-94ae-83dfdd29797a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\TileMapMgr">
+      <UniqueIdentifier>{9dff3a76-0762-4ed1-9c56-bfa3c75e9605}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -574,6 +580,12 @@
     <ClInclude Include="CirclingBall.h">
       <Filter>Game\Class\Skill\03. CirclingBall</Filter>
     </ClInclude>
+    <ClInclude Include="AstarMgr.h">
+      <Filter>Game\Editor\Astar</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapMgr.h">
+      <Filter>Game\Manager\TileMapMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -838,6 +850,12 @@
     </ClCompile>
     <ClCompile Include="CirclingBall.cpp">
       <Filter>Game\Class\Skill\03. CirclingBall</Filter>
+    </ClCompile>
+    <ClCompile Include="AstarMgr.cpp">
+      <Filter>Game\Editor\Astar</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapMgr.cpp">
+      <Filter>Game\Manager\TileMapMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

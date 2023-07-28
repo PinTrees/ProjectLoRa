@@ -6,6 +6,10 @@ class TraceState :
     public CState<MONSTER_STATE>
 {
 private:
+    float mAstarDelay;
+    float mCurDelay;
+
+    Vect2 mvTargetPos;
 
 
 public:

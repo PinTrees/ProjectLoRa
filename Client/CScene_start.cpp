@@ -37,6 +37,11 @@
 #include "SkillMgr.h"
 #include "DatabaseMgr.h"
 
+#include "AstarMgr.h"
+#include "TileMapMgr.h"
+
+
+
 
 Scene_Start::Scene_Start()
 	: mfMstrDelay(1.f)
@@ -52,8 +57,9 @@ Scene_Start::~Scene_Start()
 	HubUIMgr::Dispose();
 	SkillMgr::Dispose();
 	DatabaseMgr::Dispose();
+	AstarMgr::Dispose();
+	TileMapMgr::Dispose();
 }
-
 
 
 void Scene_Start::Update()
@@ -64,7 +70,7 @@ void Scene_Start::Update()
 
 	if (mfCurDelay > mfMstrDelay)
 	{
-		mfMstrDelay *= 0.98f;
+		mfMstrDelay *= 0.999f;
 		mfCurDelay = 0.f;
 		CreateMonster();
 	}
@@ -83,7 +89,7 @@ void Scene_Start::Enter()
 		CreateMonster();
 	}
 
-	int iEnvCount = 8;
+	int iEnvCount = 500;
 	for (int i = 0; i < iEnvCount; i++)
 	{
 		createEnvi();
@@ -152,18 +158,24 @@ void Scene_Start::CreateMonster()
 
 void Scene_Start::createEnvi()
 {
-	Vect2 vResolution = CCore::GetI()->GetResolution();
+	int tileX = TileMapMgr::GetI()->GetTileMapSizeX();
+	int tiley = TileMapMgr::GetI()->GetTileMapSizeY();
 
-	float xPos = rand() % (int)(vResolution.x);
-	float yPos = rand() % (int)(vResolution.y); 
-	Vect2 vCreatePos = Vect2(xPos, yPos);
+	int xPos = rand() % tileX;
+	int yPos = rand() % tiley;
 
-	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
+	Vect2 vPos = Vect2(xPos, yPos);
+	Vect2 vTileScale = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER);
+	Vect2 vCreatePos = vPos * TILE_SIZE_RENDER + vTileScale * 0.5f;
 
-	Environment* pEnvObj = nullptr;
-	pEnvObj = new Environment(L"101");
+	AstarMgr::GetI()->SetObstacleTile(xPos, yPos);
+
+	Environment* pEnvObj = new Environment(L"101");
+
 	pEnvObj->SetName(L"ENV");
 	pEnvObj->SetPos(vCreatePos);
+	pEnvObj->SetScale(vTileScale);
+	pEnvObj->GetCollider()->SetScale(vTileScale);
 	pEnvObj->GetCollider()->SetTrigger(false);
 	AddObject(pEnvObj, GROUP_TYPE::ENV);
 }

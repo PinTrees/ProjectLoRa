@@ -40,7 +40,7 @@
 #define TILE_SIZE 32
 #define TILE_SIZE_RENDER 64
 
-#define DEBUG false
+#define DEBUG true
 
 
 enum class GROUP_TYPE

@@ -13,7 +13,6 @@ private:
 
 	UINT		mTileRenderSize;
 
-
 public:
 	virtual void Update();
 	virtual void Enter();

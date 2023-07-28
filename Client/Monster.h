@@ -29,6 +29,8 @@ private:
 
 	BarUI*				mHpBar;
 
+	vector<Vect2>	mVecPathPos;
+
 
 public:
 	float GetSpeed() { return mtInfo.speed; }
@@ -39,6 +41,17 @@ public:
 	void SetAI(AI<MONSTER_STATE>* pAI);
 
 	void AddDamage(float damage);
+	void SetPath(vector<Vect2>& vecPos) 
+	{ 
+		mVecPathPos.clear();
+		
+		Vect2 mTileOffet = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER) * 0.5f;
+
+		for (int i = 0; i < vecPos.size(); ++i)
+		{
+			mVecPathPos.push_back(vecPos[i] * TILE_SIZE_RENDER + mTileOffet);
+		}
+	}
 
 
 public:

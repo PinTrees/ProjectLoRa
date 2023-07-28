@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
+    <ClInclude Include="AstarMgr.h" />
     <ClInclude Include="AtkState.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
@@ -230,6 +231,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBtnUI.h" />
     <ClInclude Include="TileEditMgr.h" />
+    <ClInclude Include="TileMapMgr.h" />
     <ClInclude Include="ToolMgr.h" />
     <ClInclude Include="TraceState.h" />
     <ClInclude Include="UIMgr.h" />
@@ -241,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="AstarMgr.cpp" />
     <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -322,6 +325,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileBtnUI.cpp" />
     <ClCompile Include="TileEditMgr.cpp" />
+    <ClCompile Include="TileMapMgr.cpp" />
     <ClCompile Include="ToolMgr.cpp" />
     <ClCompile Include="TraceState.cpp" />
     <ClCompile Include="UIMgr.cpp" />
