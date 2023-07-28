@@ -36,6 +36,9 @@ AstarMgr::~AstarMgr()
 		}
 
 	}
+
+
+
 }
 
 void AstarMgr::SetWallNode(int _x, int _y)
@@ -61,17 +64,33 @@ void AstarMgr::CreateTileData(int x, int y)
 
 }
 
-vector<Vect2*> AstarMgr::AstarCall(int _x, int _y)
+vector<Vect2>& AstarMgr::AstarCall(int _x, int _y)
 {
-	vector<Vect2*> vResultPosList;
+	mvResultPosList.clear();
 
-	if (mTileSizeX <= _x   || 0 > _x|| mTileSizeY <= _y|| 0 >  _y)
-		return vResultPosList;
+	if (mTileSizeX <= _x || 0 > _x || mTileSizeY <= _y || 0 > _y)
+		return mvResultPosList;
 
 	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
 	mTargetX = vPlayerPos.x / TILE_SIZE_RENDER;
 	mTargetY = vPlayerPos.y / TILE_SIZE_RENDER;
+
+	if (mTargetX < 1 || mTargetY < 1 || mTileSizeX - 1 <= mTargetX || mTileSizeY - 1 <= mTargetY)
+		return mvResultPosList;
+
+	if (mNodes[mTargetX][mTargetY]->IsWall())
+		return mvResultPosList;
+
+	if (mNodes[mTargetX + 1][mTargetY]->IsWall()
+		&& mNodes[mTargetX][mTargetY + 1]->IsWall()
+		&& mNodes[mTargetX - 1][mTargetY]->IsWall()
+		&& mNodes[mTargetX][mTargetY - 1]->IsWall())
+		return mvResultPosList;
+
+
+	if (mTileSizeX <= mTargetX || 0 > mTargetX || mTileSizeY <= mTargetY || 0 > mTargetY)
+		return mvResultPosList;
 
 	// 시작과 끝 노드, 열린리스트와 닫힌리스트, 마지막리스트 초기화
 
@@ -127,13 +146,14 @@ vector<Vect2*> AstarMgr::AstarCall(int _x, int _y)
 	}
 
 	std::reverse(mFinalNodes.begin(), mFinalNodes.end());
+
 	for (int i = 0; i < mFinalNodes.size(); i++)
 	{
-		vResultPosList.push_back(new Vect2(mFinalNodes[i]->mX * TILE_SIZE_RENDER + TILE_SIZE
+		mvResultPosList.push_back(Vect2(mFinalNodes[i]->mX * TILE_SIZE_RENDER + TILE_SIZE
 			, mFinalNodes[i]->mY * TILE_SIZE_RENDER + TILE_SIZE));
 	}
 
-	return vResultPosList;
+	return mvResultPosList;
 }
 
 
@@ -152,12 +172,15 @@ void AstarMgr::AddOpenNode(int checkX, int checkY)
 			}
 		}
 
-		//// 대각선 허용시, 벽 사이로 통과 안됨
-		//if (allowDiagonal) if (NodeArray[CurNode.x - bottomLeft.x, checkY - bottomLeft.y].isWall && NodeArray[checkX - bottomLeft.x, CurNode.y - bottomLeft.y].isWall) return;
+		// 대각선 허용시, 벽 사이로 통과 안됨
+		if (mNodes[mCurNode->mX][checkY]->IsWall()
+			&& mNodes[checkX][mCurNode->mY]->IsWall())
+			return;
 
-		//// 코너를 가로질러 가지 않을시, 이동 중에 수직수평 장애물이 있으면 안됨
-		//if (dontCrossCorner) if (NodeArray[CurNode.x - bottomLeft.x, checkY - bottomLeft.y].isWall || NodeArray[checkX - bottomLeft.x, CurNode.y - bottomLeft.y].isWall) return;
-
+		// 코너를 가로질러 가지 않을시, 이동 중에 수직수평 장애물이 있으면 안됨
+		if (mNodes[mCurNode->mX][checkY]->IsWall()
+			|| mNodes[checkX][mCurNode->mY]->IsWall())
+			return;
 
 		// 이웃노드에 넣고, 직선은 10, 대각선은 14비용
 		AstarNode* NeighborNode = mNodes[checkX][checkY];

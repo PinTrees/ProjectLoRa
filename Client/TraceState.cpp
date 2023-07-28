@@ -19,10 +19,10 @@
 
 
 TraceState::TraceState()
-	: CState(MONSTER_STATE::TRACE)
-	, mAstarDelay(1.f)
-	, mCurDelay(0.f)
-{	 
+    : CState(MONSTER_STATE::TRACE)
+    , mAstarDelay(0.2f)
+    , mCurDelay(0.f)
+{
 }
 
 
@@ -33,7 +33,7 @@ TraceState::~TraceState()
 
 void TraceState::Enter()
 {
-	GetOwner()->GetAnimator()->Play(L"RUN", true);
+    GetOwner()->GetAnimator()->Play(L"RUN", true);
 }
 
 void TraceState::Update() {
@@ -47,34 +47,38 @@ void TraceState::Update() {
     }
 
 
-    Vect2 vMonsterPos = GetOwner()->GetLocalPos();
+    Vect2 vMonsterPos = GetOwner()->GetPos();
     Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+
+
     // 일정 주기마다 경로 탐색을 수행
     if (mCurDelay > mAstarDelay) {
         mCurDelay = 0.0f;
         int monsterX = monster->GetPos().x / TILE_SIZE_RENDER;
         int monsterY = monster->GetPos().y / TILE_SIZE_RENDER;
-        vector<Vect2*> path = AstarMgr::GetI()->AstarCall(monsterX, monsterY);
-        vector<Vect2*>::iterator iter = path.begin();
+        vector<Vect2> path = AstarMgr::GetI()->AstarCall(monsterX, monsterY);
         ((Monster*)GetOwner())->SetPath(path);
 
-       
         // 경로 탐색 결과를 사용하여 몬스터를 이동시키는 로직 구현
-        if (!path.empty())
+        if (path.size() > 1)
         {
-            path.erase(iter);
-            if (path.empty())
-            {
-                GetOwner()->SetPos(vPlayerPos);
-            }
-            else
-            {
-                GetOwner()->SetPos((*path[0]));
-
-            }
+            path.erase(path.begin());
+            mTargetPath = path[0];
+        }
+        else
+        {
+            mTargetPath = vMonsterPos;
         }
     }
-    
+
+    if (Vect2::Distance(vMonsterPos, mTargetPath) < 5.f)
+        return;
+
+    Vect2 dir = mTargetPath - vMonsterPos;
+    dir.Normalize();
+    GetOwner()->SetPos(vMonsterPos + dir * 100.f * DT);
+
+
 }
 
 void TraceState::Exit()

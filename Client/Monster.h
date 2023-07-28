@@ -25,11 +25,11 @@ class Monster :
 {
 private:
 	tMonsterInfo		mtInfo;
-	AI<MONSTER_STATE>*	mAI;
+	AI<MONSTER_STATE>* mAI;
 
-	BarUI*				mHpBar;
+	BarUI* mHpBar;
 
-	vector<Vect2*>		mPath;
+	vector<Vect2>		mPath;
 
 public:
 	float GetSpeed() { return mtInfo.speed; }
@@ -38,7 +38,7 @@ public:
 	const tMonsterInfo GetInfo() { return mtInfo; }
 
 	void SetAI(AI<MONSTER_STATE>* pAI);
-	void SetPath(vector<Vect2*> path) { mPath = path; };
+	void SetPath(vector<Vect2>& path) { mPath = path; };
 
 	void AddDamage(float damage);
 

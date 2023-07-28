@@ -142,7 +142,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 	fread(&xCount, sizeof(UINT), 1, pFile);
 	fread(&yCount, sizeof(UINT), 1, pFile);
 
-	AstarMgr::GetI()->CreateTileData(xCount+10, yCount);
+	AstarMgr::GetI()->CreateTileData(xCount, yCount);
 
 	Background* pParallax = new Background();
 	pParallax->CreateParallaxTexture(xCount * TILE_SIZE_RENDER, yCount * TILE_SIZE_RENDER);

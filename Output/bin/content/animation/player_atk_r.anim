@@ -1,7 +1,7 @@
 [Animation Name]
-ATK_L
+ATK_R
 [Texture Name]
-PlayerTex
+player
 [Texture Path]
 texture\character.bmp
 [Frame Count]
@@ -13,9 +13,9 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
-0.050000
+0.100000
 
 
 [Frame Index]
@@ -25,9 +25,9 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
-0.050000
+0.100000
 
 
 [Frame Index]
@@ -37,8 +37,8 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
-0.050000
+0.100000
 
 

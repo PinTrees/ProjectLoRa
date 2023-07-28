@@ -9,7 +9,7 @@ private:
     float mAstarDelay;
     float mCurDelay;
 
-    vector<Vect2> vPath;
+    Vect2 mTargetPath;
     int idx;
 
 public:

@@ -72,13 +72,34 @@ Player::Player()
 
 	// Create Animator Component
 	CreateAnimator();
+	CTexture* tex = CResMgr::GetI()->LoadTexture(L"player", L"texture\\character.bmp");
 
-	GetAnimator()->LoadAnimation(L"animation\\player_idle.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_run_r.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_run_l.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
+
+	GetAnimator()->CreateAnimation(L"IDLE", tex, Vect2(0.f, 0.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f, 8);
+	GetAnimator()->CreateAnimation(L"RUN_R", tex, Vect2(0.f, 108.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
+	GetAnimator()->CreateAnimation(L"RUN_L", tex, Vect2(0.f, 1620.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.07f, 8);
+	GetAnimator()->CreateAnimation(L"ATK_R", tex, Vect2(0.f, 1674.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f,3);
+	GetAnimator()->CreateAnimation(L"ATK_L", tex, Vect2(0.f, 756.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.1f, 3);
+	GetAnimator()->CreateAnimation(L"DASH_R", tex, Vect2(0.f, 1242.f), Vect2(73.f, 54.f), Vect2(73.f, 0.f), 0.05f, 7);
+
+
+
+	GetAnimator()->FindAnimation(L"IDLE")->Save(L"animation\\player_idle.anim");
+	GetAnimator()->FindAnimation(L"RUN_R")->Save(L"animation\\player_run_r.anim");
+	GetAnimator()->FindAnimation(L"RUN_L")->Save(L"animation\\player_run_l.anim");
+	GetAnimator()->FindAnimation(L"ATK_R")->Save(L"animation\\player_atk_r.anim");
+	GetAnimator()->FindAnimation(L"ATK_L")->Save(L"animation\\player_atk_l.anim");
+	GetAnimator()->FindAnimation(L"DASH_R")->Save(L"animation\\player_dash_r.anim");
+
+
+	//
+	//GetAnimator()->LoadAnimation(L"animation\\player_idle.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_run_r.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_run_l.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
+	
 
 	GetAnimator()->Play(L"IDLE", true);
 
@@ -140,7 +161,7 @@ void Player::Update()
 
 	calExp();
 	mfCurDelay += DT;
-	
+
 
 	for (int i = 0; i < (UINT)mVecSkill.size(); ++i)
 	{
@@ -156,7 +177,7 @@ void Player::Update()
 		return;
 
 
-	if (nullptr !=  mCurGun)
+	if (nullptr != mCurGun)
 	{
 		Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
 		mCurGun->SetAngle(vDir.ToAngle());
@@ -185,10 +206,10 @@ void Player::Update()
 
 	if (mvDir != Vect2::zero)
 	{
-		if(GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
+		if (GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
 			ChangeAIState(GetAI(), PLAYER_STATE::RUN);
 	}
-	else if(GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
+	else if (GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
 		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
@@ -217,7 +238,7 @@ void Player::calExp()
 Skill* Player::FindSkill(SKILL_TYPE type)
 {
 	Skill* result = nullptr;
-	
+
 	for (int i = 0; i < mVecSkill.size(); ++i)
 	{
 		if (mVecSkill[i]->GetType() == type)

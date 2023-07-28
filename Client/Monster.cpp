@@ -82,7 +82,6 @@ Monster::~Monster()
 		delete mAI;
 
 
-	Safe_Delete_Vec(mPath);
 }
 
 
@@ -91,15 +90,20 @@ void Monster::Render(HDC _dc)
 	CompnentRender(_dc);
 	SelectGDI p = SelectGDI(_dc, PEN_TYPE::RED);
 
-	if (mPath.empty())
-		return;
+
 
 	Vect2 renderPos = CCamera::GetI()->GetRenderPos(GetPos());
 	MoveToEx(_dc, renderPos.x, renderPos.y, NULL);
 
-	for (const Vect2* pathPos : mPath)
+	if (mPath.empty())
+		return;
+
+	if (Vect2::Distance(GetPos(), mPath[0]) < 50.f)
+		mPath.erase(mPath.begin());
+
+	for (const Vect2 pathPos : mPath)
 	{
-		Vect2 renderPathPos = CCamera::GetI()->GetRenderPos(*pathPos);
+		Vect2 renderPathPos = CCamera::GetI()->GetRenderPos(pathPos);
 		LineTo(_dc, renderPathPos.x, renderPathPos.y);
 	}
 
@@ -113,7 +117,6 @@ void Monster::Update()
 
 	if (nullptr != mAI)
 		mAI->Update();
-
 
 
 

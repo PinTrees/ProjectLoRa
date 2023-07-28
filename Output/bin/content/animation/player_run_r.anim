@@ -1,7 +1,7 @@
 [Animation Name]
 RUN_R
 [Texture Name]
-PlayerTex
+player
 [Texture Path]
 texture\character.bmp
 [Frame Count]
@@ -13,7 +13,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -25,7 +25,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -37,7 +37,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -49,7 +49,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -61,7 +61,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -73,7 +73,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -85,7 +85,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
@@ -97,7 +97,7 @@ texture\character.bmp
 [Slice Size]
 73 54
 [Offset]
-0 -20
+0 0
 [Duration]
 0.070000
 
