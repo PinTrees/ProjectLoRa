@@ -99,7 +99,10 @@ void CScene::UIUpdate()
 	vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
 	for (int i = 0; i < arrUI.size(); ++i)
 	{
-		arrUI[i]->Update();
+		if (!arrUI[i]->IsDead())
+		{
+			arrUI[i]->Update();
+		}
 	}
 }
 
