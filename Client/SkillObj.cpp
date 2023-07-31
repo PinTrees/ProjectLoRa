@@ -28,7 +28,7 @@ SkillObj::~SkillObj()
 
 void SkillObj::Update()
 {
-	
+
 }
 
 void SkillObj::Render(HDC _dc)

@@ -4,6 +4,9 @@
 #include "CTimeMgr.h"
 #include "Bullet.h"
 
+
+
+
 Skill::Skill(SKILL_TYPE type, int _maxLv)
 	: mType(type)
 	, mCooldown()

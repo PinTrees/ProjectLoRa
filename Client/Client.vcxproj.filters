@@ -269,26 +269,74 @@
     <Filter Include="FreamWork\Resource\Sprite">
       <UniqueIdentifier>{b2f5ae79-21bf-4c59-9256-5fe5d9146c8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Class\Skill\EnergyBall">
-      <UniqueIdentifier>{55ade3a6-6a0c-404c-ad97-93e09a8ea56e}</UniqueIdentifier>
+    <Filter Include="Game\Class\Skill\01. IceBolt">
+      <UniqueIdentifier>{10d99bad-039a-46d7-bbd5-4218605ede1e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\SkillObj">
-      <UniqueIdentifier>{cd8a2be1-daf7-460d-aec5-55217c815302}</UniqueIdentifier>
+    <Filter Include="Game\Manager\DatabaseMgr">
+      <UniqueIdentifier>{ab34fa31-a12e-4fbe-9228-449f9b39793a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Class\Skill\Thunder">
-      <UniqueIdentifier>{4aeb2207-c884-413c-9ee4-2a0daa26295a}</UniqueIdentifier>
+    <Filter Include="FreamWork\UI\ScrollView">
+      <UniqueIdentifier>{bf3f343f-8cdd-43bb-9e1c-bfce6472719f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\SkillObj\Thunder_Obj">
-      <UniqueIdentifier>{d216f233-b80a-4b8d-8d9f-c6214fbd6f74}</UniqueIdentifier>
+    <Filter Include="FreamWork\UI\ScrollView\ScrollBar">
+      <UniqueIdentifier>{7a79eb54-adf2-4c03-84f9-143fe8a89de9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\SkillObj\EnergyBall_Obj">
-      <UniqueIdentifier>{51159e8d-d671-4805-91c1-61a151354cba}</UniqueIdentifier>
+    <Filter Include="Game\Class\Skill\02. Thunder">
+      <UniqueIdentifier>{38297cb7-6b7f-4d08-ab93-55de546238b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Class\Skill\CirclingBall">
-      <UniqueIdentifier>{65ce3102-f9eb-4f64-b46b-b0bf90f3efe4}</UniqueIdentifier>
+    <Filter Include="Game\Class\SkillObj">
+      <UniqueIdentifier>{3acaf03c-86e0-4909-a5bd-eca37cf7e020}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\SkillObj\CirclingBall_Obj">
-      <UniqueIdentifier>{788bac9d-5a52-49a4-93fe-8bd6ee0c5445}</UniqueIdentifier>
+    <Filter Include="Game\Class\SkillObj\02. Thunder_Obj">
+      <UniqueIdentifier>{4601bbd1-e93b-4e9b-a53c-ed82fda03e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\03. CirclingBall_Obj">
+      <UniqueIdentifier>{8b2d0af1-e265-4209-b773-ba7829d4a867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\04. EnergyBall_Obj">
+      <UniqueIdentifier>{33bc754c-1d7c-4873-bc7f-919a26c8658f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\03. CirclingBall">
+      <UniqueIdentifier>{a2637eae-30fb-4f29-9eb9-976a4849c5c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\04. EnergyBall">
+      <UniqueIdentifier>{a3c09e07-8116-476a-b3f9-f0275afbc9ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\05. HolyArea">
+      <UniqueIdentifier>{134a53ad-34d8-4167-b25b-b856c1b3a8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\05. HolyArea_Obj">
+      <UniqueIdentifier>{52beb4b8-cea7-48b4-900e-99951573d5a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\06. Grenade">
+      <UniqueIdentifier>{0e61356e-b570-40e3-8606-a65a7d730373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\06. Grenade_Obj">
+      <UniqueIdentifier>{435c5716-b51b-4394-a8f7-ef619d20030a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\06. Grenade_Obj\06-1. Grenade_Bomb">
+      <UniqueIdentifier>{e43b980f-c42d-4e8f-b356-cd8f9c6469bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\07. CrossDagger">
+      <UniqueIdentifier>{87aa0caa-9952-4336-9c17-1192e3449f1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\07. CrossDagger_Obj">
+      <UniqueIdentifier>{f98c2fb4-c960-456f-9112-7f2082def38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\08. Boomerang">
+      <UniqueIdentifier>{91c7f3eb-bbfe-49af-8862-a6434a16e9cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\08. Boomerang_Obj">
+      <UniqueIdentifier>{e1d00f0a-9fb7-4f72-be90-6463661c7741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj">
+      <UniqueIdentifier>{c520c20d-954b-432d-b1d8-acca8318a717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\09. CombatBall">
+      <UniqueIdentifier>{68a8df73-917a-438a-9017-6d3abcaaeb21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj\09-1. CombatBall_Bullet">
+      <UniqueIdentifier>{931e164a-15b7-4e37-9248-2d9501b44449}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -529,26 +577,74 @@
     <ClInclude Include="CSprite.h">
       <Filter>FreamWork\Resource\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="EnergyBall.h">
-      <Filter>Game\Class\Skill\EnergyBall</Filter>
+    <ClInclude Include="IceBolt.h">
+      <Filter>Game\Class\Skill\01. IceBolt</Filter>
     </ClInclude>
-    <ClInclude Include="SkillObj.h">
-      <Filter>Game\Object\SkillObj</Filter>
+    <ClInclude Include="DatabaseMgr.h">
+      <Filter>Game\Manager\DatabaseMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollView.h">
+      <Filter>FreamWork\UI\ScrollView</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollBar.h">
+      <Filter>FreamWork\UI\ScrollView\ScrollBar</Filter>
     </ClInclude>
     <ClInclude Include="Thunder.h">
-      <Filter>Game\Class\Skill\Thunder</Filter>
+      <Filter>Game\Class\Skill\02. Thunder</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillObj.h">
+      <Filter>Game\Class\SkillObj</Filter>
     </ClInclude>
     <ClInclude Include="Thunder_Obj.h">
-      <Filter>Game\Object\SkillObj\Thunder_Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="EnergyBall_Obj.h">
-      <Filter>Game\Object\SkillObj\EnergyBall_Obj</Filter>
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj</Filter>
     </ClInclude>
     <ClInclude Include="CirclingBall_Obj.h">
-      <Filter>Game\Object\SkillObj\CirclingBall_Obj</Filter>
+      <Filter>Game\Class\SkillObj\03. CirclingBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBall_Obj.h">
+      <Filter>Game\Class\SkillObj\04. EnergyBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="EnergyBall.h">
+      <Filter>Game\Class\Skill\04. EnergyBall</Filter>
     </ClInclude>
     <ClInclude Include="CirclingBall.h">
-      <Filter>Game\Class\Skill\CirclingBall</Filter>
+      <Filter>Game\Class\Skill\03. CirclingBall</Filter>
+    </ClInclude>
+    <ClInclude Include="HolyArea.h">
+      <Filter>Game\Class\Skill\05. HolyArea</Filter>
+    </ClInclude>
+    <ClInclude Include="HolyArea_Obj.h">
+      <Filter>Game\Class\SkillObj\05. HolyArea_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade.h">
+      <Filter>Game\Class\Skill\06. Grenade</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade_Obj.h">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade_Bomb.h">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj\06-1. Grenade_Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossDagger.h">
+      <Filter>Game\Class\Skill\07. CrossDagger</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossDagger_Obj.h">
+      <Filter>Game\Class\SkillObj\07. CrossDagger_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Boomerang.h">
+      <Filter>Game\Class\Skill\08. Boomerang</Filter>
+    </ClInclude>
+    <ClInclude Include="Boomerang_Obj.h">
+      <Filter>Game\Class\SkillObj\08. Boomerang_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatBall_Bullet.h">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\09-1. CombatBall_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatBall_Obj.h">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatBall.h">
+      <Filter>Game\Class\Skill\09. CombatBall</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -782,26 +878,74 @@
     <ClCompile Include="CSprite.cpp">
       <Filter>FreamWork\Resource\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="EnergyBall.cpp">
-      <Filter>Game\Class\Skill\EnergyBall</Filter>
+    <ClCompile Include="IceBolt.cpp">
+      <Filter>Game\Class\Skill\01. IceBolt</Filter>
     </ClCompile>
-    <ClCompile Include="SkillObj.cpp">
-      <Filter>Game\Object\SkillObj</Filter>
+    <ClCompile Include="DatabaseMgr.cpp">
+      <Filter>Game\Manager\DatabaseMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollView.cpp">
+      <Filter>FreamWork\UI\ScrollView</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollBar.cpp">
+      <Filter>FreamWork\UI\ScrollView\ScrollBar</Filter>
     </ClCompile>
     <ClCompile Include="Thunder.cpp">
-      <Filter>Game\Class\Skill\Thunder</Filter>
+      <Filter>Game\Class\Skill\02. Thunder</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillObj.cpp">
+      <Filter>Game\Class\SkillObj</Filter>
     </ClCompile>
     <ClCompile Include="Thunder_Obj.cpp">
-      <Filter>Game\Object\SkillObj\Thunder_Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="EnergyBall_Obj.cpp">
-      <Filter>Game\Object\SkillObj\EnergyBall_Obj</Filter>
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj</Filter>
     </ClCompile>
     <ClCompile Include="CirclingBall_Obj.cpp">
-      <Filter>Game\Object\SkillObj\CirclingBall_Obj</Filter>
+      <Filter>Game\Class\SkillObj\03. CirclingBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="EnergyBall_Obj.cpp">
+      <Filter>Game\Class\SkillObj\04. EnergyBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="EnergyBall.cpp">
+      <Filter>Game\Class\Skill\04. EnergyBall</Filter>
     </ClCompile>
     <ClCompile Include="CirclingBall.cpp">
-      <Filter>Game\Class\Skill\CirclingBall</Filter>
+      <Filter>Game\Class\Skill\03. CirclingBall</Filter>
+    </ClCompile>
+    <ClCompile Include="HolyArea.cpp">
+      <Filter>Game\Class\Skill\05. HolyArea</Filter>
+    </ClCompile>
+    <ClCompile Include="HolyArea_Obj.cpp">
+      <Filter>Game\Class\SkillObj\05. HolyArea_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade.cpp">
+      <Filter>Game\Class\Skill\06. Grenade</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade_Obj.cpp">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade_Bomb.cpp">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj\06-1. Grenade_Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossDagger.cpp">
+      <Filter>Game\Class\Skill\07. CrossDagger</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossDagger_Obj.cpp">
+      <Filter>Game\Class\SkillObj\07. CrossDagger_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Boomerang.cpp">
+      <Filter>Game\Class\Skill\08. Boomerang</Filter>
+    </ClCompile>
+    <ClCompile Include="Boomerang_Obj.cpp">
+      <Filter>Game\Class\SkillObj\08. Boomerang_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatBall_Bullet.cpp">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\09-1. CombatBall_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatBall_Obj.cpp">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatBall.cpp">
+      <Filter>Game\Class\Skill\09. CombatBall</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

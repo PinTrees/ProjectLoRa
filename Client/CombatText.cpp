@@ -14,6 +14,8 @@ CombatText::CombatText()
 	SetColor(RGB(255, 0, 0));
 	SetOutlineColor(RGB(0, 0, 0));
 	SetOutlineWidth(2);
+
+	SetCameraAffected(true);
 }
 
 CombatText::~CombatText()

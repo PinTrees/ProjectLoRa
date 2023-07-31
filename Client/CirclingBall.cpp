@@ -6,6 +6,9 @@
 #include "Player.h"
 #include "CirclingBall_Obj.h"
 
+
+
+
 CirclingBall::CirclingBall()
 	: Skill(SKILL_TYPE::CIRCLING_BALL, 5)
 	, mPrevLv(1)

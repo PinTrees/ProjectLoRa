@@ -45,11 +45,13 @@
 
 enum class GROUP_TYPE
 {
-	PARALLAX,
+	BACKGROUND,
 	DEFAULT,
 
 	BACK,
 	TILE,
+
+	GROUND_PLAYER,
 
 	ENV,
 	GOLD,
@@ -151,8 +153,17 @@ enum class SKILL_TYPE
 	ENERGY_BALL,
 	THUNDER,
 	CIRCLING_BALL,
+	ICE_BOLT,
+	HOLYAREA,
+	GRENADE,
+	CROSS_DAGGER,
+	BOOMERANG,
+	COMBAT_BALL,
 	END,
 };
+
+
+
 
 // 추후 Enum 사용 안함 - wstring UID 로 변경
 enum class ITEM_TYPE

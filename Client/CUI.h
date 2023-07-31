@@ -39,8 +39,7 @@ private:
 	vector<CUI*>	mVecChildUI; // 깊은 복사 진행 해야함.
 	CUI*			mpParentUI;
 
-	Vect2			mvContentOffset; // 텍스쳐 혹은 텍스트의 위치를 보정하는 변수
-
+	Vect2			mvOffset;	// 
 	Vect2			mvFinalPos;
 
 	COLORREF		mColor;		// 텍스쳐의 색상 비율값입니다.
@@ -48,6 +47,9 @@ private:
 	bool			mCameraAffected;
 	bool			mOnMouseCheck;	
 	bool			mLbtnDown;
+
+	bool			mFixedChildMouseCheck;	// 자식 UI의 마우스 좌표 범위를 해당 UI 크기로 제한합니다.
+	bool			mOriginalMouseCheck;	// mFixedChildMouseCheck 옵션을 무시합니다.
 
 
 public:
@@ -64,7 +66,7 @@ public:
 
 public:
 	void OnMouseCheck();
-	bool IsMouseOn() { return mOnMouseCheck; };
+	bool IsMouseOnUI() { return mOnMouseCheck; };
 	bool IsLbtnDown() { return mLbtnDown; }
 
 public:
@@ -77,11 +79,9 @@ private:
 	virtual void SetDead() override;
 
 public:
-	void AddChild(CUI* ui)
-	{
-		mVecChildUI.push_back(ui);
-		ui->mpParentUI = this;
-	}
+	virtual void AddChild(CUI* ui);
+	virtual void SetTopChild(CUI* ui);
+	
 
 
 public:
@@ -93,13 +93,19 @@ public:
 	bool GetIsMouseOn() { return mOnMouseCheck; }
 
 	CUI*		GetFindChild(CUI* parentUI, const wstring& childUI);
-	void		SetContentOffset(Vect2 _offset) { mvContentOffset = _offset; }
+	void		SetOffset(Vect2 _offset) { mvOffset = _offset; }
 
 	void		SetColor(COLORREF color) { mColor = color; }
 	COLORREF	GetColor() { return mColor; }
 
 	void	SetCameraAffected(bool active) { mCameraAffected = active; };
 	bool	IsCameraAffected() { return mCameraAffected; };
+
+	// 마우스 좌표 범위 설정
+	void	SetFixedChildMouseCheck(bool active) { mFixedChildMouseCheck = active; }
+	bool	IsFixedChildMouseCheck();
+	CUI*	GetFixedChildMouseCheckParent();
+	void	SetOriginalMouseCheck(bool active) { mOriginalMouseCheck = active; }
 
 
 public:

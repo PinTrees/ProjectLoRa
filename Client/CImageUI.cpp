@@ -16,9 +16,10 @@ CImageUI::CImageUI()
 	: CUI(false)
 	, mColor(RGB(255, 255, 255))
 	, mDefaultTex(nullptr)
-	, mpTexture(nullptr)
-	, mType(IMAGE_TYPE::DEFAULT)
-	// mType: Filled 
+	, mpBufferTexture(nullptr)
+	, mUID(IMAGE_TYPE::DEFAULT)
+
+	// mUID: Filled 
 	, mFilledAxis(IAMGE_FILLED_AXIS::HORIZONTAL)
 	, mFilledDirection(RECT_DIRECTION::LEFT)
 	, mFilledAmount(1.f)
@@ -60,17 +61,17 @@ void CImageUI::Render(HDC dc)
 	Vect2 vSize = GetScale();
 
 	// Set Render Texture
-	CTexture* pRenderTex = (!mpTexture) ? mDefaultTex : mpTexture;
+	CTexture* pRenderTex = (!mpBufferTexture) ? mDefaultTex : mpBufferTexture;
 
 	// AlpaBlend Option Setting
 	BLENDFUNCTION bf = {};
 	bf.BlendOp = AC_SRC_OVER;
 	bf.BlendFlags = 0;
-	bf.AlphaFormat = (!mpTexture) ? 0 : AC_SRC_ALPHA;
+	bf.AlphaFormat = (!mpBufferTexture) ? 0 : AC_SRC_ALPHA;
 	bf.SourceConstantAlpha = GetAlpha();
 
 	// Default Image Render Mode 
-	if (mType == IMAGE_TYPE::DEFAULT)
+	if (mUID == IMAGE_TYPE::DEFAULT)
 	{
 		AlphaBlend(dc
 			, (int)(vPos.x - vSize.x * 0.5f)
@@ -83,10 +84,11 @@ void CImageUI::Render(HDC dc)
 			, (int)pRenderTex->Heigth(), bf);
 	}
 	// Filled Image Render Mode
-	else if (mType == IMAGE_TYPE::FILLED)
+	else if (mUID == IMAGE_TYPE::FILLED)
 	{
 		// Filled Scale x Calcurate
 		float adjustedWidth = vSize.x * mFilledAmount;
+		float adjustedTextureWidth = pRenderTex->Width() * mFilledAmount;
 
 		AlphaBlend(dc
 			, (int)(vPos.x - vSize.x * 0.5f)
@@ -95,10 +97,11 @@ void CImageUI::Render(HDC dc)
 			, (int)vSize.y
 			, pRenderTex->GetDC()
 			, 0, 0
-			, (int)pRenderTex->Width()
+			, (int)adjustedTextureWidth
 			, (int)pRenderTex->Heigth(), bf);
 	}
 
+	CUI::Render(dc);
 	CUI::RenderChild(dc);
 }
 

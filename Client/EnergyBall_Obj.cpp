@@ -7,6 +7,9 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 
+
+
+
 EnergyBall_Obj::EnergyBall_Obj()
 	: mCurDelay()
 {

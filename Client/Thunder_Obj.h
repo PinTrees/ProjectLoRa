@@ -1,5 +1,8 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
 class Thunder_Obj :
     public SkillObj
 {
@@ -13,6 +16,5 @@ public:
 public:
     Thunder_Obj();
     ~Thunder_Obj();
-
 };
 

@@ -35,6 +35,7 @@
 #include "MonsterFactory.h"
 #include "HubUIMgr.h"
 #include "SkillMgr.h"
+#include "DatabaseMgr.h"
 
 
 Scene_Start::Scene_Start()
@@ -50,6 +51,7 @@ Scene_Start::~Scene_Start()
 	PlayerMgr::Dispose();
 	HubUIMgr::Dispose();
 	SkillMgr::Dispose();
+	DatabaseMgr::Dispose();
 }
 
 
@@ -59,8 +61,10 @@ void Scene_Start::Update()
 	CScene::Update();
 
 	mfCurDelay += DT;
+
 	if (mfCurDelay > mfMstrDelay)
 	{
+		mfMstrDelay *= 0.98f;
 		mfCurDelay = 0.f;
 		CreateMonster();
 	}
@@ -87,7 +91,7 @@ void Scene_Start::Enter()
 
 	LevelUpUIMgr::GetI()->Init();
 	HubUIMgr::GetI()->Init();
-	SkillMgr::GetI()->Init();
+	DatabaseMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크
@@ -97,6 +101,7 @@ void Scene_Start::Enter()
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::ENV);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::GROUND_PLAYER, GROUP_TYPE::MONSTER);
 
 	// Camera Look 지정
 	Vect2 vResolution = CCore::GetI()->GetResolution();

@@ -7,7 +7,7 @@ class Environment
 	: public CObject
 {
 private:
-	wstring mType;
+	wstring mUID;
 
 
 public:

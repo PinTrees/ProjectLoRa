@@ -11,6 +11,9 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+#include "UIMgr.h"
+
+
 
 CUI::CUI(bool cameraAffected)
 	: mVecChildUI{}
@@ -18,6 +21,9 @@ CUI::CUI(bool cameraAffected)
 	, mvFinalPos{}
 	, mCameraAffected(cameraAffected)
 	, mOnMouseCheck(false)
+	, mvOffset(Vect2::zero)
+	, mFixedChildMouseCheck(false)
+	, mOriginalMouseCheck(false)
 {
 }
 
@@ -27,6 +33,8 @@ CUI::CUI(const CUI& origin)
 	, mCameraAffected(origin.mCameraAffected)
 	, mOnMouseCheck(false)
 	, mLbtnDown(false)
+	, mFixedChildMouseCheck(origin.mFixedChildMouseCheck)
+	, mOriginalMouseCheck(origin.mOriginalMouseCheck)
 {
 	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
@@ -63,7 +71,7 @@ void CUI::FinalUpdate()
 	if (GetParentUI())
 	{
 		Vect2 parentPos = GetParentUI()->GetFinalPos();
-		mvFinalPos += parentPos;
+		mvFinalPos += parentPos + mvOffset;
 	}
 
 	// UI Mouse체크
@@ -71,6 +79,7 @@ void CUI::FinalUpdate()
 
 	FinalUpdateChild();
 }
+
 
 void CUI::OnMouseCheck()
 {
@@ -82,16 +91,43 @@ void CUI::OnMouseCheck()
 		CCamera::GetI()->GetRealPos(mousePos);
 	}
 
-	if (mvFinalPos.x - uiScale.x * 0.5f <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x * 0.5f &&
-		mvFinalPos.y - uiScale.y * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
+	// 부모 UI들중 자식 UI 마우스좌표 범위 제한으로 설정된 경우
+	if (mpParentUI && IsFixedChildMouseCheck() && !mOriginalMouseCheck)
 	{
-		mOnMouseCheck = true;
+		// 제한이 걸린 최상위 부모를 획득
+		CUI* pFixedParentUI = GetFixedChildMouseCheckParent();
+		// 제한이 걸린 최상위 부모UI의 정보를 획득
+		Vect2 vParentFinalPos = pFixedParentUI->GetFinalPos();
+		Vect2 vParentUiScale = pFixedParentUI->GetScale();
+
+		// 제한된 마우스 범위 좌표로 클릭을 계산
+		if (vParentFinalPos.x - vParentUiScale.x * 0.5f <= mousePos.x && mousePos.x <= vParentFinalPos.x + vParentUiScale.x * 0.5f &&
+			vParentFinalPos.y - vParentUiScale.y * 0.5f <= mousePos.y && mousePos.y <= vParentFinalPos.y + vParentUiScale.y * 0.5f &&
+			mvFinalPos.x - uiScale.x * 0.5f <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x * 0.5f &&
+			mvFinalPos.y - uiScale.y * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
+		{
+			mOnMouseCheck = true;
+		}
+		else
+		{
+			mOnMouseCheck = false;
+		}
 	}
+	// 오리지널 좌표 범위 연산
 	else
 	{
-		mOnMouseCheck = false;
+		if (mvFinalPos.x - uiScale.x * 0.5f <= mousePos.x && mousePos.x <= mvFinalPos.x + uiScale.x * 0.5f &&
+			mvFinalPos.y - uiScale.y * 0.5f <= mousePos.y && mousePos.y <= mvFinalPos.y + uiScale.y * 0.5f)
+		{
+			mOnMouseCheck = true;
+		}
+		else
+		{
+			mOnMouseCheck = false;
+		}
 	}
 }
+
 
 void CUI::Render(HDC dc)
 {
@@ -107,14 +143,17 @@ void CUI::Render(HDC dc)
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	Rectangle
-	(
-		dc,
-		int(vPos.x - vScale.x * 0.5f),
-		int(vPos.y - vScale.y * 0.5f),
-		int(vPos.x + vScale.x * 0.5f),
-		int(vPos.y + vScale.y * 0.5f)
-	);
+	if (DEBUG)
+	{
+		Rectangle
+		(
+			dc,
+			int(vPos.x - vScale.x * 0.5f),
+			int(vPos.y - vScale.y * 0.5f),
+			int(vPos.x + vScale.x * 0.5f),
+			int(vPos.y + vScale.y * 0.5f)
+		);
+	}
 }
 
 void CUI::UpdateChild()
@@ -180,6 +219,31 @@ void CUI::SetDead()
 	}
 }
 
+
+void CUI::AddChild(CUI* ui)
+{
+	mVecChildUI.push_back(ui);
+	ui->mpParentUI = this;
+}
+
+void CUI::SetTopChild(CUI* ui)
+{
+	if (nullptr == ui)
+		return;
+
+	vector<CUI*>::iterator iter = mVecChildUI.begin();
+
+	for (; iter != mVecChildUI.end(); ++iter)
+	{
+		if (ui == *iter)
+			break;
+	}
+
+	mVecChildUI.erase(iter);
+	mVecChildUI.push_back(ui);
+}
+
+
 CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
 {
 	for (UINT i = 0; i < parentUI->GetChild().size(); ++i)
@@ -195,6 +259,65 @@ CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
 
 	return nullptr;
 }
+
+
+// 모든 부모 UI들 중 좌표범위 제한이 설정된 UI가 있는지 확인합니다.
+bool CUI::IsFixedChildMouseCheck()
+{
+	vector<CUI*> vecParentUI;
+	CUI* parentUI = this;
+
+	// 모든 부모 UI를 획득
+	while (parentUI)
+	{
+		vecParentUI.push_back(parentUI);
+		parentUI = parentUI->mpParentUI;
+	}
+
+	bool result = false;
+	for (int i = 0; i < vecParentUI.size(); ++i)
+	{
+		if (vecParentUI[i]->mFixedChildMouseCheck)
+		{
+			result = true;
+			break;
+		}
+	}
+
+	vecParentUI.clear();
+	return result;
+}
+
+// 모든 부모 UI들 중 좌표범위 제한이 설정된 UI를 반환합니다.
+// 옵션이 2중 설정되어있다면 최 하위 UI를 반환합니다.
+CUI* CUI::GetFixedChildMouseCheckParent()
+{
+	vector<CUI*> vecParentUI;
+	CUI* parentUI = this;
+
+	while (parentUI)
+	{
+		vecParentUI.push_back(parentUI);
+		parentUI = parentUI->mpParentUI;
+	}
+
+	parentUI = nullptr;
+
+	for (int i = 0; i < vecParentUI.size(); ++i)
+	{
+		if (vecParentUI[i]->mFixedChildMouseCheck)
+		{
+			parentUI = vecParentUI[i];
+		}
+	}
+
+	vecParentUI.clear();
+	return parentUI;
+}
+
+
+
+
 
 
 
@@ -265,3 +388,4 @@ bool CUI::IsAligmentBottom(ALIGNMENT aligment)
 		return true;
 	else return false;
 }
+

@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 class Skill
 {
 private:
@@ -28,15 +30,17 @@ public:
 	void SetSkillTime(float _time) { mSkillTime = _time; }
 	float GetSkillTime() { return mSkillTime; }
 
+
 public:
 	virtual void Update();
 
 	virtual void UseSkill();		// 스킬 사용
 	virtual void CheckAvailable();	// 스킬 발동조건 체크
 
-	void AddSkillLevel();
+	void AddSkillLevel(); 
 
-public:
+
+public: 
 	Skill(SKILL_TYPE type, int _maxLv);
 	~Skill();
 };

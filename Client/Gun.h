@@ -37,7 +37,7 @@ class Gun :
 {
 private:
 	float     m_tTheta; // 이동 방향
-	wstring		mType;
+	wstring		mUID;
 
 	Player*	mOwner;
 
@@ -49,7 +49,7 @@ private:
 
 
 public:
-	void SetType(const wstring& _str) { mType = _str; }
+	void SetType(const wstring& _str) { mUID = _str; }
 	void SetOwner(Player* _owner) { mOwner = _owner; }
 
 	const tGunInfo& GetInfo() { return mInfo; }

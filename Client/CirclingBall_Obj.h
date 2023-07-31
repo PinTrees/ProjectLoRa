@@ -1,5 +1,9 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
+
 class CirclingBall_Obj :
     public SkillObj
 {

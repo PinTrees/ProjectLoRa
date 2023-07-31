@@ -11,6 +11,8 @@ private:
 	UINT		mTileY;
 	CUI*		mToolUI;
 
+	UINT		mTileRenderSize;
+
 
 public:
 	virtual void Update();
@@ -33,6 +35,8 @@ public:
 
 	void SaveTile(const wstring& _strRelativePath);
 	void LoadTile(const wstring& _strRelativePath);
+
+	float GetTileRenderSize() { return mTileRenderSize; }
 
 
 private:

@@ -4,26 +4,41 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 
+#include "Random.h"
+
 #include "CAnimator.h"
+#include "CAnimation.h"
 #include "CCollider.h"
 
 Thunder_Obj::Thunder_Obj()
 	: mCurDelay()
 {
-	SetMaxDelay(0.7f);		// 스킬 지속시간 세팅
+	SetMaxDelay(0.5f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.9f);	// ~초마다 데미지를 입힘
+
 	SetName(L"Thunder");
+	SetScale(Vect2(48.f, 128.f) * 3.f);
+
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(100.f, 100.f));
-	GetCollider()->SetOffsetPos(Vect2(0.f, 50.f));
+	GetCollider()->SetOffsetPos(Vect2(0.f, -50.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Thunder", L"texture\\effect\\103.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Thunder", L"texture\\effect\\102.bmp");
+
 	CreateAnimator();
+	GetAnimator()->CreateAnimation(L"Thunder_1", pTex, Vect2(0.f, 0.f), Vect2(48.f, 128.f), Vect2(48.f, 0.f), 0.05f, 7);
+	GetAnimator()->CreateAnimation(L"Thunder_2", pTex, Vect2(48.f, 0.f) * 6, Vect2(48.f, 128.f), Vect2(48.f, 0.f), 0.05f, 6);
+	GetAnimator()->FindAnimation(L"Thunder_1")->SetAllFrameOffet(Vect2(0.f, GetScale().y * -0.5f));
+	GetAnimator()->FindAnimation(L"Thunder_2")->SetAllFrameOffet(Vect2(0.f, GetScale().y * -0.5f));
 
-	GetAnimator()->CreateAnimation(L"Thunder", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.1f, 9);
-	SetScale(Vect2(200.f, 200.f));
-
-	GetAnimator()->Play(L"Thunder", false);
+	if (CRandom::GetI()->Next(0, 2) == 1)
+	{
+		GetAnimator()->Play(L"Thunder_1", false);
+	}
+	else
+	{
+		GetAnimator()->Play(L"Thunder_2", false);
+	}
 }
 
 Thunder_Obj::~Thunder_Obj()

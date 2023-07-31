@@ -7,7 +7,7 @@ class CUIMgr
 	SINGLE(CUIMgr);
 
 private:
-	CUI* _focusedUI;
+	CUI* mFocusedUI;
 	bool mbMouseOnUI;
 
 
@@ -18,8 +18,9 @@ public:
 public:
 	void SetTop(CUI* ui);
 	void SetFocusUI(CUI* ui);
-	void SetMouseOn(bool _b) { mbMouseOnUI = _b; }
-	bool IsMouseOn() { return mbMouseOnUI; }
+
+	void SetMouseOnUI(bool _b) { mbMouseOnUI = _b; }
+	bool IsMouseOnUI() { return mbMouseOnUI; }
 
 
 public:

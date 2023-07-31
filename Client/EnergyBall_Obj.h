@@ -1,5 +1,9 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
+
 class EnergyBall_Obj :
     public SkillObj
 {

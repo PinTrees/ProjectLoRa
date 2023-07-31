@@ -11,7 +11,7 @@ SINGLE_HEADER(CUIMgr);
 
 
 CUIMgr::CUIMgr()
-	: _focusedUI(nullptr)
+	: mFocusedUI(nullptr)
 	, mbMouseOnUI(false)
 {
 
@@ -24,14 +24,14 @@ CUIMgr::~CUIMgr()
 
 void CUIMgr::Update()
 {
-	_focusedUI = GetFocusUI();
+	mFocusedUI = GetFocusUI();
 
-	if (nullptr == _focusedUI)
+	if (nullptr == mFocusedUI)
 	{
 		return;
 	}
 
-	CUI* targetUI = GetTargetUI(_focusedUI);
+	CUI* targetUI = GetTargetUI(mFocusedUI);
 
 	bool tapLbtn = KEY_TAP(KEY::LBTN);
 	bool awayLbtn = KEY_AWAY(KEY::LBTN);
@@ -61,12 +61,14 @@ void CUIMgr::Update()
 
 			// 왼쪽버튼 때면, 눌렀던 체크를 다시 해제한다.
 			targetUI->mLbtnDown = false;
-
 		}
 	}
+
+	mbMouseOnUI = nullptr != targetUI;
 }
 
 
+// 해당 UI를 최상위로 변경합니다.
 void CUIMgr::SetTop(CUI* ui)
 {
 	if (nullptr == ui)
@@ -87,17 +89,18 @@ void CUIMgr::SetTop(CUI* ui)
 	vecUI.push_back(ui);
 }
 
+// 해당 UI에 강제 포커싱을 부여합니다.
 void CUIMgr::SetFocusUI(CUI* ui)
 {
 	// 이미 포커싱 중인 경우 || 포커싱 해제요청한 경우
-	if (_focusedUI == ui || nullptr == ui)
+	if (mFocusedUI == ui || nullptr == ui)
 	{
-		_focusedUI = ui;
+		mFocusedUI = ui;
 		return;
 	}
 
 	// 여기서 focusedUI 변경해준다.
-	_focusedUI = ui;
+	mFocusedUI = ui;
 
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
 	vector<CObject*>& vecUI = curScene->GetUIGroups();
@@ -107,15 +110,16 @@ void CUIMgr::SetFocusUI(CUI* ui)
 	// 적어도 왼쪽 클릭이 발생했다는 보장이 생긴다.
 	for (; iter != vecUI.end(); ++iter)
 	{
-		if (_focusedUI == *iter)
+		if (mFocusedUI == *iter)
 			break;
 	}
 
 	// 벡터 내에서 맨 뒤로 순번교체
 	vecUI.erase(iter);
-	vecUI.push_back(_focusedUI);
+	vecUI.push_back(mFocusedUI);
 }
 
+// 현재 포커싱된 UI를 반환합니다.
 CUI* CUIMgr::GetFocusUI()
 {
 	CScene* curScene = CSceneMgr::GetI()->GetCurScene();
@@ -124,7 +128,7 @@ CUI* CUIMgr::GetFocusUI()
 	bool tapLbtn = KEY_TAP(KEY::LBTN);
 
 	// 기존 포커싱 UI를 받아두고 변경되었는지 확인한다.
-	CUI* focusedUI = _focusedUI;
+	CUI* focusedUI = mFocusedUI;
 
 	if (!tapLbtn)
 	{
@@ -140,7 +144,7 @@ CUI* CUIMgr::GetFocusUI()
 		if ((*iter)->IsDead() || !(*iter)->IsVisible())
 			continue;
 
-		if (dynamic_cast<CUI*>(*iter)->IsMouseOn())
+		if (dynamic_cast<CUI*>(*iter)->IsMouseOnUI())
 		{
 			targetIter = iter;
 		}
@@ -161,7 +165,9 @@ CUI* CUIMgr::GetFocusUI()
 	return focusedUI;
 }
 
+
 // 부모 UI 내에서 실제로 타겟팅된 UI를 찾아서 반환한다.
+// 부모 영역내 제한이 걸려있을 경우 해당 로직에서 제한합니다.
 CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 {
 	bool awayLbtn = KEY_AWAY(KEY::LBTN);
@@ -183,7 +189,7 @@ CUI* CUIMgr::GetTargetUI(CUI* parentUI)
 		CUI* ui = queue.front();
 		queue.pop_front();
 
-		if (ui->IsMouseOn())
+		if (ui->IsMouseOnUI())
 		{
 			if (nullptr != targetUI)
 			{

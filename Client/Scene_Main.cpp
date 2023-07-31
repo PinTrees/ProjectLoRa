@@ -54,14 +54,12 @@ void Scene_Main::Enter()
 
 	CBtnUI* pGameStartBtn = new CBtnUI;
 	pGameStartBtn->SetScale(Vect2(200.f, 50.f));
-	pGameStartBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pGameStartBtn->SetText(L"게임 시작");
 	pGameStartBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
 	pGameStartBtn->SetClickedCallBack(&ChangeSceneStart, 0, 0);
 	pCol->AddChild(pGameStartBtn);
 
 	CBtnUI* pToolBtn = new CBtnUI;
-	pToolBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pToolBtn->SetScale(Vect2(200.f, 50.f));
 	pToolBtn->SetText(L"제작 모드");
 	pToolBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
@@ -69,7 +67,6 @@ void Scene_Main::Enter()
 	pCol->AddChild(pToolBtn);
 
 	CBtnUI* pDictBtn = new CBtnUI;
-	pDictBtn->SetContentOffset(Vect2(-40.f, -10.f));
 	pDictBtn->SetScale(Vect2(200.f, 50.f));
 	pDictBtn->SetText(L"아이템 도감");
 	pDictBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));

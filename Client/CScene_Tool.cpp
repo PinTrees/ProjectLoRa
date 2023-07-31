@@ -26,6 +26,9 @@
 // Tool_Scene Mgr
 #include "ToolMgr.h"
 
+#include "CScrollView.h"
+
+
 // function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
 void SelectTile(DWORD_PTR, DWORD_PTR);
@@ -36,6 +39,7 @@ Scene_Tool::Scene_Tool()
 	: mTileX(0)
 	, mTileY(0)
 	, mToolUI(nullptr)
+	, mTileRenderSize(TILE_SIZE_RENDER)
 {
 }
 
@@ -60,10 +64,15 @@ void Scene_Tool::Enter()
 	pEditPanel->SetTexture(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 	((CPanelUI*)pEditPanel)->SetFixedPos(false);
 
+	CScrollView* pScrollView = new CScrollView;
+	pScrollView->SetPos(Vect2::zero);
+	pScrollView->SetScale(Vect2(pEditPanel->GetScale().x - 50.f, 500.f));
+	pEditPanel->AddChild(pScrollView);
+
 	CWrap* pEditWrap = new CWrap;
 	pEditWrap->SetScale(Vect2(pEditPanel->GetScale().x - 50.f, pEditPanel->GetScale().y));
 	pEditWrap->SetPos(Vect2(0.f, 30.f));
-	pEditPanel->AddChild(pEditWrap);
+	pScrollView->AddChild(pEditWrap);
 
 	CTexture* tile = CResMgr::GetI()->LoadTexture(L"UI_Tile", L"texture\\tiles\\1.bmp");
 
@@ -74,7 +83,7 @@ void Scene_Tool::Enter()
 	for (int i = 0; i < tileMaxIdx; ++i)
 	{
 		TileBtnUI* pImg = new TileBtnUI;
-		pImg->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
+		pImg->SetScale(Vect2((int)mTileRenderSize, (int)mTileRenderSize));
 		pImg->SetTexture(tile);
 		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
@@ -113,14 +122,35 @@ void Scene_Tool::Update()
 	{
 		mToolUI->SetVisible(!mToolUI->IsVisible());
 	}
+
+	float wheelDelta = CKeyMgr::GetI()->GetWheelAxis();
+	if (wheelDelta != 0.f && !CUIMgr::GetI()->IsMouseOnUI())
+	{
+		mTileRenderSize += wheelDelta * DT * 0.1f;
+
+		if (mTileRenderSize < 3.f)
+			mTileRenderSize = 3.f;
+
+		const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+
+		for (UINT i = 0; i < mTileY; ++i)
+		{
+			for (UINT j = 0; j < mTileX; ++j)
+			{
+				Tile* pTile = (Tile*)vecTile[mTileX * i + j];
+
+				pTile->SetScale(Vect2((int)mTileRenderSize, (int)mTileRenderSize));
+				pTile->SetPos(Vect2((int)(j * mTileRenderSize), (int)(i * mTileRenderSize)));
+			}
+		}
+	}
 }
 
 void Scene_Tool::SetTileIdx()
 {
 	// 마우스클릭된 좌표위에 UI가있을경우 UI클릭만하고 타일은 클릭 예외처리
-	if (CUIMgr::GetI()->IsMouseOn())
+	if (CUIMgr::GetI()->IsMouseOnUI())
 	{
-		CUIMgr::GetI()->SetMouseOn(false);
 		return;
 	}
 
@@ -131,9 +161,8 @@ void Scene_Tool::SetTileIdx()
 		// 카메라에서 실제좌표로 변경
 		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
 
-
-		int iCol = (int)vMousePos.x / TILE_SIZE_RENDER;
-		int iRow = (int)vMousePos.y / TILE_SIZE_RENDER;
+		int iCol = (int)vMousePos.x / mTileRenderSize;
+		int iRow = (int)vMousePos.y / mTileRenderSize;
 
 		if (vMousePos.x < 0.f || static_cast<int>(mTileX) <= iCol || vMousePos.y < 0.f || static_cast<int>(mTileY) <= iRow)
 		{
@@ -345,8 +374,8 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 		{
 			Tile* pTile = new Tile();
 
-			pTile->SetScale(Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER));
-			pTile->SetPos(Vect2((float)(j * TILE_SIZE_RENDER), (float)i * TILE_SIZE_RENDER));
+			pTile->SetScale(Vect2(pScene->GetTileRenderSize(), pScene->GetTileRenderSize()));
+			pTile->SetPos(Vect2( (float)(j * pScene->GetTileRenderSize()), (float)(i * pScene->GetTileRenderSize())) );
 			pTile->SetTexture(pTileTex);
 
 			pScene->AddObject(pTile, GROUP_TYPE::TILE);
@@ -367,7 +396,7 @@ void Scene_Tool::Render(HDC _dc)
 		}
 
 		//Render Background
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		if ((UINT)GROUP_TYPE::BACKGROUND == i)
 		{
 			continue;
 		}
@@ -404,7 +433,7 @@ void Scene_Tool::render_tile(HDC _dc)
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 	Vect2	vLeftTop = vCamLook - vResolution * 0.5f;
 
-	int iTileSize = TILE_SIZE_RENDER;
+	int iTileSize = mTileRenderSize;
 
 	int iLTCol = (int)vLeftTop.x / iTileSize;
 	int iLTRow = (int)vLeftTop.y / iTileSize;

@@ -23,11 +23,11 @@ class CImageUI :
 	public CUI
 {
 private:
-	CTexture* mpTexture;
+	CTexture* mpBufferTexture;
 	CTexture* mDefaultTex;
 	COLORREF  mColor;
 
-	IMAGE_TYPE mType;
+	IMAGE_TYPE mUID;
 
 	// Filled type value
 	float	  mFilledAmount;
@@ -36,13 +36,13 @@ private:
 
 
 public:
-	void SetTexture(CTexture* tex) { mpTexture = tex; };
+	void SetTexture(CTexture* tex) { mpBufferTexture = tex; };
 	void SetColor(COLORREF color);
 
 
 public:
 	// Filled type Function 
-	void SetImageType(IMAGE_TYPE type) { mType = type; }
+	void SetImageType(IMAGE_TYPE type) { mUID = type; }
 	void SetFilledAmount(float amount) { mFilledAmount = amount; }
 
 

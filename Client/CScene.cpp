@@ -49,7 +49,7 @@ void CScene::AddForce(tForce& force)
 void CScene::Update()
 {
 	// Physical Force Update
-	for (int i = mArrForce.size() - 1; i >= 0; --i)
+	for (int i = (int)mArrForce.size() - 1; i >= 0; --i)
 	{
 		mArrForce[i].curRadius += mArrForce[i].radius * mArrForce[i].speed * DT;
 
@@ -119,7 +119,7 @@ void CScene::FinalUpdate()
 
 void CScene::render_parallax(HDC dc)
 {
-	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::PARALLAX);
+	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::BACKGROUND);
 
 	Vect2 vCamPos = CCamera::GetI()->GetLookAt();
 	Vect2 vRes = CCore::GetI()->GetResolution();
@@ -140,7 +140,7 @@ void CScene::Render(HDC _dc)
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
 		// Render Background
-		if ((UINT)GROUP_TYPE::PARALLAX == i)
+		if ((UINT)GROUP_TYPE::BACKGROUND == i)
 		{
 			render_parallax(_dc);
 			continue;

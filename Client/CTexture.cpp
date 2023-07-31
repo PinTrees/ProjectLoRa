@@ -57,3 +57,14 @@ void CTexture::Create(UINT width, UINT height, COLORREF color)
 	// 비트맵 정보 설정
 	GetObject(mhBit, sizeof(BITMAP), &mBitInfo);
 }
+
+void CTexture::Clear(COLORREF color)
+{
+	// 비트맵을 주어진 색상으로 채움
+	HBRUSH hBrush = CreateSolidBrush(color);
+
+	RECT rect = { 0, 0, Width(), Heigth() };
+	FillRect(mDC, &rect, hBrush);
+	
+	DeleteObject(hBrush);
+}

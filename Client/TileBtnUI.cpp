@@ -17,7 +17,6 @@ TileBtnUI::~TileBtnUI()
 
 void TileBtnUI::Render(HDC dc)
 {
-
 	if (nullptr == GetTexture())
 		return;
 
@@ -33,14 +32,8 @@ void TileBtnUI::Render(HDC dc)
 	if (maxRow <= curRow)
 		return;
 
-
-	Vect2 vPos = GetFinalPos();
+	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
-
-	if (IsCameraAffected())
-	{
-		vPos = CCamera::GetI()->GetRenderPos(vPos);
-	}
 
 	//툴씬일경우와 스타트씬일경우 랜더 다르게 구현
 	TransparentBlt(dc
@@ -55,8 +48,17 @@ void TileBtnUI::Render(HDC dc)
 		, TILE_SIZE
 		, RGB(255, 0, 255));
 
-
+	CUI::Render(dc);		
 	CUI::RenderChild(dc);
+
+	if (IsLbtnDown())
+	{
+		RenderHover(dc, 128.f);
+	}
+	else if (IsMouseOnUI())
+	{
+		RenderHover(dc, 32.f);
+	}
 }
 
 void TileBtnUI::MouseOn()

@@ -24,7 +24,7 @@ class Bullet :
 {
 private:
 	Vect2		m_vDir;
-	wstring		mType;
+	wstring		mUID;
 
 	float		mDelay;
 	float		mCurDelay;
@@ -41,7 +41,7 @@ public:
 		m_vDir = _vDir.Normalize();
 		SetAngle(m_vDir.ToAngle());
 	}
-	void SetType(const wstring& _str) { mType = _str; }
+	void SetType(const wstring& _str) { mUID = _str; }
 
 
 public:

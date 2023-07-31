@@ -103,7 +103,7 @@ Player::Player()
 	CRow* pRow = new CRow;
 	pRow->SetScale(Vect2(400.f, 50.f));
 	pRow->SetPos(Vect2(pRow->GetScale() * 0.5f) + Vect2(28.f, 28.f));
-	pRow->SetSpacing(16.f);
+	pRow->SetSpacing(8.f);
 	pRow->SetAlignment(ALIGNMENT::CENTER_LEFT);
 	CreateObject(pRow, GROUP_TYPE::UI);
 
@@ -114,12 +114,21 @@ Player::Player()
 	pRow->AddChild(pIcon);
 
 	// HP Bar 
+	CImageUI* pHpBarUI = new CImageUI;
+	pHpBarUI->SetScale(Vect2(200.f, 36.f));
+	pHpBarUI->SetTexture(CResMgr::GetI()->LoadTexture(L"Hp_Bar_Background", L"texture\\ui\\hp_bar\\hp_background.bmp"));
+	pRow->AddChild(pHpBarUI);
+
 	mHpBar = new CImageUI;
-	mHpBar->SetScale(Vect2(36.f, 36.f));
-	mHpBar->SetScale(Vect2(250.f, 12.f));
-	mHpBar->SetColor(RGB(255, 0, 0));
+	mHpBar->SetScale(pHpBarUI->GetScale());
 	mHpBar->SetImageType(IMAGE_TYPE::FILLED);
-	pRow->AddChild(mHpBar);
+	mHpBar->SetTexture(CResMgr::GetI()->LoadTexture(L"Hp_Bar", L"texture\\ui\\hp_bar\\hp_bar.bmp"));
+	pHpBarUI->AddChild(mHpBar);
+
+	CImageUI* pHpBarFrame = new CImageUI;
+	pHpBarFrame->SetScale(pHpBarUI->GetScale());
+	pHpBarFrame->SetTexture(CResMgr::GetI()->LoadTexture(L"Hp_Bar_Frame", L"texture\\ui\\hp_bar\\hp_bar_frame.bmp"));
+	pHpBarUI->AddChild(pHpBarFrame);
 }
 
 
@@ -140,7 +149,7 @@ void Player::Update()
 
 	calExp();
 	mfCurDelay += DT;
-
+	
 	UseSkill();
 
 	Vect2 vPos = GetPos();
@@ -217,7 +226,7 @@ Skill* Player::FindSkill(SKILL_TYPE type)
 	{
 		if (mVecSkill[i]->GetType() == type)
 		{
-			result = mVecSkill[i];
+			Skill* result = mVecSkill[i];
 			break;
 		}
 	}
@@ -225,10 +234,7 @@ Skill* Player::FindSkill(SKILL_TYPE type)
 	return result;
 }
 
-void Player::AddSkill(Skill* _skill)
-{
-	mVecSkill.push_back(_skill);
-}
+
 
 void Player::UseSkill()
 {
@@ -240,6 +246,7 @@ void Player::UseSkill()
 			mVecSkill[i]->UseSkill();
 			mVecSkill[i]->SetAvailable(false);
 		}
+
 		mVecSkill[i]->Update();
 	}
 }
