@@ -90,16 +90,17 @@ void Monster::Render(HDC dc)
 
 	SelectGDI p = SelectGDI(dc, PEN_TYPE::BLUE);
 
-	Vect2 vStartPos = CCamera::GetI()->GetRenderPos(mVecPathPos[0]);
-
-	// 현재 좌표 설정
-	MoveToEx(dc, vStartPos.x, vStartPos.y, nullptr);
-
-	// 나머지 좌표들을 순회하며 라인을 그립니다.
-	for (size_t i = 1; i < mVecPathPos.size(); ++i)
+	if (DEBUG)
 	{
-		Vect2 vDrawPos = CCamera::GetI()->GetRenderPos(mVecPathPos[i]);
-		LineTo(dc, vDrawPos.x, vDrawPos.y);
+		Vect2 vStartPos = CCamera::GetI()->GetRenderPos(mVecPathPos[0]);
+
+		MoveToEx(dc, vStartPos.x, vStartPos.y, nullptr); // 현재 좌표 설정
+		// 나머지 좌표들을 순회하며 라인을 그립니다.
+		for (size_t i = 1; i < mVecPathPos.size(); ++i)
+		{
+			Vect2 vDrawPos = CCamera::GetI()->GetRenderPos(mVecPathPos[i]);
+			LineTo(dc, vDrawPos.x, vDrawPos.y);
+		}
 	}
 }
 

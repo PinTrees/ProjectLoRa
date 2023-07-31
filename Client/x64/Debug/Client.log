@@ -1,4 +1,8 @@
-﻿  unity_PPJAG0TID1JUG5WQ.cpp
+﻿  unity_Q9K1BSZRSXL7XLDV.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSMgr.h(5,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSMgr.h(5,7): message : 'JPSCoord' 선언을 참조하십시오.
   라이브러리를 검색하고 있습니다.
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\kernel32.lib 검색 중:
   라이브러리가 검색되었습니다.

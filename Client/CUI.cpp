@@ -24,6 +24,7 @@ CUI::CUI(bool cameraAffected)
 	, mvOffset(Vect2::zero)
 	, mFixedChildMouseCheck(false)
 	, mOriginalMouseCheck(false)
+	, mbRaycastTarget(true)
 {
 }
 
@@ -35,6 +36,7 @@ CUI::CUI(const CUI& origin)
 	, mLbtnDown(false)
 	, mFixedChildMouseCheck(origin.mFixedChildMouseCheck)
 	, mOriginalMouseCheck(origin.mOriginalMouseCheck)
+	, mbRaycastTarget(origin.mbRaycastTarget)
 {
 	for (size_t i = 0; i < origin.mVecChildUI.size(); ++i)
 	{
@@ -77,12 +79,26 @@ void CUI::FinalUpdate()
 	// UI Mouse체크
 	OnMouseCheck();
 
+	// mDeleteChildUI에 추가된 객체들을 mVecChildUI에서 삭제
+	for (int i = 0; i < mDeleteChildUI.size(); ++i)
+	{
+		// 해당 객체를 벡터에서 찾아서 삭제
+		auto iter = std::find(mVecChildUI.begin(), mVecChildUI.end(), mDeleteChildUI[i]);
+		if (iter != mVecChildUI.end()) {
+			mVecChildUI.erase(iter);
+		}
+	}
+	mDeleteChildUI.clear();
+
 	FinalUpdateChild();
 }
 
 
 void CUI::OnMouseCheck()
 {
+	if (!mbRaycastTarget)
+		return;
+
 	Vect2 mousePos = MOUSE_POS;
 	Vect2 uiScale = GetScale();
 
@@ -226,6 +242,12 @@ void CUI::AddChild(CUI* ui)
 	ui->mpParentUI = this;
 }
 
+void CUI::DeleteChild(CUI* ui)
+{
+	mDeleteChildUI.push_back(ui);
+}
+
+
 void CUI::SetTopChild(CUI* ui)
 {
 	if (nullptr == ui)
@@ -242,6 +264,8 @@ void CUI::SetTopChild(CUI* ui)
 	mVecChildUI.erase(iter);
 	mVecChildUI.push_back(ui);
 }
+
+
 
 
 CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)

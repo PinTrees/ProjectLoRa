@@ -7,6 +7,7 @@
 // Manager Header
 #include "PlayerMgr.h"
 #include "AstarMgr.h"
+#include "JPSMgr.h"
 
 // GameObject Header
 #include "Player.h"
@@ -15,7 +16,8 @@
 // Components Header
 #include "CAnimator.h"
 
-
+#include "SettingMgr.h"
+ 
 
 
 TraceState::TraceState()
@@ -59,10 +61,22 @@ void TraceState::Update()
 		Vect2 vMonPos = pMonster->GetPos() / TILE_SIZE_RENDER;
 		Vect2 vTargetPos = PlayerMgr::GetI()->GetPlayer()->GetPos() / TILE_SIZE_RENDER;
 
-		AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
-		AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
-		AstarMgr::GetI()->Find();
-		vecPosList = AstarMgr::GetI()->GetFinalPosList();
+		auto tCurFindPathType = SettingMgr::GetI()->GetFindPathType();
+
+		if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
+		{
+			AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
+			AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
+			AstarMgr::GetI()->Find();
+			vecPosList = AstarMgr::GetI()->GetFinalPosList();
+		}
+		else if (tCurFindPathType == FIND_PATH_TYPE::JPS_B)
+		{
+			JPSMgr::GetI()->SetStartPos(vMonPos.x, vMonPos.y);
+			JPSMgr::GetI()->SetTargetPos(vTargetPos.x, vTargetPos.y);
+			JPSMgr::GetI()->Find();
+			vecPosList = JPSMgr::GetI()->GetFinalPosList();
+		}
 
 		if (vecPosList.size() > 1)
 		{

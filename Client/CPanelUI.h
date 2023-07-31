@@ -16,7 +16,7 @@ private:
     bool        mFixedPos_x;
     bool        mFixedPos_y;
 
-    CSprite*    mpSprite;
+    CSprite*    mpTexture;
 
 
 
@@ -25,8 +25,8 @@ public:
     void SetFixedPosX(bool active_x) { mFixedPos_x = active_x; }
     void SetFixedPosY(bool active_y) { mFixedPos_y = active_y; }
 
-    void SetTexture(CSprite* pTex) { mpSprite = pTex; }
-    CSprite* GetTexture() { return mpSprite; }
+    void SetTexture(CSprite* pTex) { mpTexture = pTex; }
+    CSprite* GetTexture() { return mpTexture; }
 
 
 public:

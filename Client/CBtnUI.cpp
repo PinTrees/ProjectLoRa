@@ -38,17 +38,17 @@ void CBtnUI::Render(HDC dc)
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	if(mpSprite)
+	if(mpTexture)
 	{
 		TransparentBlt(dc
 			, (int)(vPos.x - vScale.x * 0.5f)
 			, (int)(vPos.y - vScale.y * 0.5f)
 			, (int)vScale.x
 			, (int)vScale.y
-			, mpSprite->GetDC()
+			, mpTexture->GetDC()
 			, 0, 0
-			, (int)mpSprite->Width()
-			, (int)mpSprite->Heigth()
+			, (int)mpTexture->Width()
+			, (int)mpTexture->Heigth()
 			, RGB(255, 0, 255));
 	}
 

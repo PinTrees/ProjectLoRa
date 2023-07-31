@@ -308,6 +308,33 @@
     <Filter Include="Game\Manager\TileMapMgr">
       <UniqueIdentifier>{9dff3a76-0762-4ed1-9c56-bfa3c75e9605}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Editor\JPS">
+      <UniqueIdentifier>{f93e790e-3dec-45e4-bd5e-08ac854358f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Header\Type">
+      <UniqueIdentifier>{c175f7fc-9e8b-41b4-8a9f-6d1dc5616858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\JPS\Data">
+      <UniqueIdentifier>{509f9212-3bec-4a18-8218-db7499cc6ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\JPS\Logic">
+      <UniqueIdentifier>{d67ebf9d-4fdd-4c5f-9809-b0baee8b6bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\Type">
+      <UniqueIdentifier>{4755acec-f141-4a1d-8530-cb44a89a8c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\SettingMgr">
+      <UniqueIdentifier>{f50aee12-689c-48f0-b6a1-530ee1358510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\SettingUI">
+      <UniqueIdentifier>{d90d6731-006d-48bd-b9ef-c54351f9e882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\GUIMgr">
+      <UniqueIdentifier>{996e7c31-f9d3-4c5d-839c-1e6ed806bae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\CSystemMgr">
+      <UniqueIdentifier>{eb7cb92f-a95c-4275-990d-06d76167c053}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -586,6 +613,36 @@
     <ClInclude Include="TileMapMgr.h">
       <Filter>Game\Manager\TileMapMgr</Filter>
     </ClInclude>
+    <ClInclude Include="type_define.h">
+      <Filter>FreamWork\Header\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSHeap.h">
+      <Filter>Game\Editor\JPS\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSPath.h">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="BitArray.h">
+      <Filter>Game\Editor\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSCollision.h">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSMgr.h">
+      <Filter>Game\Editor\JPS</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingMgr.h">
+      <Filter>Game\Manager\SettingMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingUI.h">
+      <Filter>Game\UI\SettingUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIMgr.h">
+      <Filter>Game\Manager\GUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSystemMgr.h">
+      <Filter>FreamWork\Manager\CSystemMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -856,6 +913,30 @@
     </ClCompile>
     <ClCompile Include="TileMapMgr.cpp">
       <Filter>Game\Manager\TileMapMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSHeap.cpp">
+      <Filter>Game\Editor\JPS\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSPath.cpp">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSCollision.cpp">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSMgr.cpp">
+      <Filter>Game\Editor\JPS</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingMgr.cpp">
+      <Filter>Game\Manager\SettingMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingUI.cpp">
+      <Filter>Game\UI\SettingUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIMgr.cpp">
+      <Filter>Game\Manager\GUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSystemMgr.cpp">
+      <Filter>FreamWork\Manager\CSystemMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

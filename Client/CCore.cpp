@@ -9,6 +9,7 @@
 #include "CEventMgr.h"
 #include "UIMgr.h"
 #include "CResMgr.h"
+#include "CSystemMgr.h"
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -17,7 +18,6 @@
 
 #include "SelectGDI.h"
 #include "resource.h"
-
 
 SINGLE_HEADER(CCore);
 
@@ -71,6 +71,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CCamera::GetI()->Init();
 	CSceneMgr::GetI()->Init();
 	CRandom::GetI()->Init();
+	CSystemMgr::GetI();
 
 	return S_OK;
 }
@@ -154,6 +155,7 @@ void CCore::Delete()
 	CResMgr::Dispose();
 	CEventMgr::Dispose();
 	CCollisionMgr::Dispose();
+	CSystemMgr::Dispose();
 }
 
 

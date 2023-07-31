@@ -1,10 +1,4 @@
 
-#include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\SelectGDI.cpp"
-
-
-#include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CUI.cpp"
-
-
 #include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Skill.cpp"
 
 
@@ -27,4 +21,10 @@
 
 
 #include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TileBtnUI.cpp"
+
+
+#include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TileEditMgr.cpp"
+
+
+#include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TileMapMgr.cpp"
 

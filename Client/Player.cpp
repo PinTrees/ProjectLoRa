@@ -213,6 +213,7 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
+		HubUIMgr::GetI()->SetLevelText(mLevel);
 		LevelUpUIMgr::GetI()->Choice();
 	}
 }

@@ -1,10 +1,4 @@
 
-#include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TileEditMgr.cpp"
-
-
-#include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TileMapMgr.cpp"
-
-
 #include "C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ToolMgr.cpp"
 
 

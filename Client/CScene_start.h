@@ -2,6 +2,7 @@
 #include "CScene.h"
 
 class Player;
+class CUI;
 
 class Scene_Start :
 	public CScene
@@ -10,6 +11,9 @@ class Scene_Start :
 private:
 	float		mfMstrDelay;
 	float		mfCurDelay;
+
+	CUI*		mpSettingBtn;
+
 
 public:
 	virtual void Update();
@@ -21,6 +25,11 @@ private:
 	void CreateMonster();
 	void createEnvi();
 	void createPlayer();
+	void createMainUI();
+
+
+public:
+	void OpenSettingPanel();
 
 
 public:

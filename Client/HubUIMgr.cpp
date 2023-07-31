@@ -11,6 +11,9 @@
 #include "CPanelUI.h"
 #include "CRow.h"
 #include "CImageUI.h"
+#include "TextUI.h"
+
+
 
 SINGLE_HEADER(HubUIMgr);
 
@@ -31,7 +34,6 @@ HubUIMgr::~HubUIMgr()
 void HubUIMgr::Init()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
-
 
 	CRow* pRowUI = new CRow;
 	pRowUI->SetAlignment(ALIGNMENT::CENTER_LEFT);
@@ -56,6 +58,15 @@ void HubUIMgr::Init()
 
 	CreateObject(mBulletRowUI, GROUP_TYPE::UI);
 
+	mpLevelText = new TextUI;
+	mpLevelText->SetPos(Vect2(50.f, vRes.y - 30.f));
+	mpLevelText->SetScale(Vect2(100.f, 50.f));
+	mpLevelText->SetOutlineWidth(2);
+	mpLevelText->SetFontSize(38.f);
+	mpLevelText->SetOutlineColor(RGB(0, 0, 0));
+	mpLevelText->SetColor(RGB(255, 163, 0));
+	mpLevelText->SetText(L"LV 0");
+	CreateObject(mpLevelText, GROUP_TYPE::UI);
 	//mReroadUI = 
 }
 
@@ -74,4 +85,9 @@ void HubUIMgr::SetBulletUI(UINT count)
 			vecBulletUI[i]->SetVisible(true);
 		}
 	}
+}
+
+void HubUIMgr::SetLevelText(int level)
+{
+	mpLevelText->SetText(L"LV " + std::to_wstring(level));
 }

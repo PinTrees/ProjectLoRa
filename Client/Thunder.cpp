@@ -36,7 +36,9 @@ void Thunder::UseSkill()
 	Vect2 monsterPos;
 
 	int monIdx = CRandom::GetI()->Next(0, vecMon.size());
-	pThunder->SetPos(vecMon[monIdx]->GetLocalPos());
+
+	if (vecMon.size() > 0)
+		pThunder->SetPos(vecMon[monIdx]->GetLocalPos());
 
 	//for (size_t i = 0; i < vecMon.size(); ++i)
 	//{

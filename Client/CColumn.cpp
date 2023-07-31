@@ -9,6 +9,8 @@ CColumn::CColumn()
 	, mAlignment(ALIGNMENT::CENTER)
     , mSpacing(0.f)
 {
+    // 범위 지정 UI는 마우스 타겟 대상이 아닙니다.
+    SetRaycastTarget(false);
 }
 
 CColumn::~CColumn()
