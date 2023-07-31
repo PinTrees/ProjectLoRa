@@ -17,7 +17,7 @@
 #include "CTimeMgr.h"
 #include "CTexture.h"
 
-
+#include "SelectGDI.h"
 
 Environment::Environment(const wstring& _type)
 	: mUID(_type)
@@ -67,4 +67,19 @@ void Environment::Update()
 void Environment::Render(HDC _dc)
 {
 	CompnentRender(_dc);
+
+	if (DEBUG)
+	{
+		SelectGDI p = SelectGDI(_dc, PEN_TYPE::RED);
+		SelectGDI b = SelectGDI(_dc, BRUSH_TYPE::HOLLOW);
+
+		Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetPos());
+		Vect2 vScale = GetScale();
+
+		Rectangle(_dc
+			, (int)(vRenderPos.x - vScale.x * 0.5f)
+			, (int)(vRenderPos.y - vScale.y * 0.5f)
+			, (int)(vRenderPos.x + vScale.x * 0.5f)
+			, (int)(vRenderPos.y + vScale.y * 0.5f));
+	}
 }

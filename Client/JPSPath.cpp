@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "JPSPath.h"
-#include "JPSHeap.h"
 
 //--------------------------------------------------------------------
 // Class: Search()

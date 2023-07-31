@@ -63,8 +63,8 @@ void Tile::Render(HDC _dc, bool editor)
 
 	if (DEBUG)
 	{
-		SelectGDI p = SelectGDI(_dc, RGB(0, 0, 0), NULL);
 		SelectGDI b = SelectGDI(_dc, BRUSH_TYPE::HOLLOW);
+		SelectGDI p = SelectGDI(_dc, RGB(128, 128, 128), NULL);
 
 		Rectangle(_dc
 			, vLocalPos.x

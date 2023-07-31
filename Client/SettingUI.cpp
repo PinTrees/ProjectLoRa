@@ -8,6 +8,7 @@
 #include "CBtnUI.h"
 #include "CColumn.h"
 #include "CRow.h"
+#include "CWrap.h"
 #include "TextUI.h"
 
 #include "GUIMgr.h"
@@ -15,6 +16,7 @@
 
 #include "CSystemMgr.h"
 
+#include "CScrollView.h"
 
 
 
@@ -43,9 +45,14 @@ SettingUI::SettingUI()
 	pIcon->SetRaycastTarget(false);
 	pCloseBtn->AddChild(pIcon);
 
+	CScrollView* pScroll = new CScrollView;
+	pScroll->SetPos(Vect2(0.f, 25.f));
+	pScroll->SetScale(Vect2(450.f, 350.f));
+	AddChild(pScroll);
+
 	CColumn* pColumn = new CColumn;
-	pColumn->SetScale(GetScale());
-	AddChild(pColumn);
+	pColumn->SetScale(Vect2(450.f, 500.f));
+	pScroll->AddChild(pColumn);
 
 	TextUI* pPathSetting = new TextUI;
 	pPathSetting->SetScale(Vect2(0.f, 50.f));
@@ -129,6 +136,7 @@ void SettingUI::Close()
 // 추후 사용 - 다이얼로그 공통 인터페이스 
 void SettingUI::Show()
 {
+	GUIMgr::GetI()->ShowSettingUI();
 }
 
 

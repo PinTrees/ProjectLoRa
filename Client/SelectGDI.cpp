@@ -33,7 +33,7 @@ SelectGDI::SelectGDI(HDC _dc, COLORREF pColor=NULL, COLORREF bColor=NULL)
 {
 	if (pColor != NULL)
 	{
-		HPEN hPen = (HPEN)CreatePen(PS_SOLID, 1, pColor);
+		HPEN hPen = CCore::GetI()->GetPen(pColor);
 		mhDefaultPen = (HPEN)SelectObject(_dc, hPen);
 	}
 

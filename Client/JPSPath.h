@@ -1,8 +1,8 @@
 #pragma once
 #include "BitArray.h"
 #include "JPSCollision.h"
+#include "JPSHeap.h"
 
-class JPSHeap;
 class JPSCoord;
 
 //--------------------------------------------------------------------

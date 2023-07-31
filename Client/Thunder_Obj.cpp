@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Thunder_Obj.h"
 
+#include "CObject.h"
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 
@@ -10,18 +11,25 @@
 #include "CAnimation.h"
 #include "CCollider.h"
 
+#include "ThunderBoom.h"
+#include "Particle.h"
+
+
+
+
 Thunder_Obj::Thunder_Obj()
 	: mCurDelay()
+	, mbEffect(false)
 {
 	SetMaxDelay(0.5f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.9f);	// ~초마다 데미지를 입힘
 
 	SetName(L"Thunder");
-	SetScale(Vect2(48.f, 128.f) * 3.f);
+	SetScale(Vect2(48.f, 256.f) * 3.f);
 
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(100.f, 100.f));
-	GetCollider()->SetOffsetPos(Vect2(0.f, -50.f));
+	GetCollider()->SetScale(Vect2(100.f, 200.f));
+	GetCollider()->SetOffsetPos(Vect2(0.f, -100.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Thunder", L"texture\\effect\\102.bmp");
 
@@ -56,10 +64,34 @@ void Thunder_Obj::Update()
 		return;
 	}
 
+	if (mCurDelay >= 0.15f && !mbEffect)
+	{
+		mbEffect = true;
+
+		ThunderBoom* bomb = new ThunderBoom;	// 폭발오브젝트를 생성한다.
+		bomb->SetPos(GetPos());
+		bomb->SetOwner(GetOwner());
+		CreateObject(bomb, GROUP_TYPE::PROJ_PLAYER);
+	}
+
 	GetAnimator()->Update();
 }
 
 void Thunder_Obj::Render(HDC _dc)
 {
 	SkillObj::Render(_dc);
+}
+
+
+void Thunder_Obj::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pObj = _pOther->GetObj();
+
+	if (pObj->GetName() == L"Monster")
+	{
+		Particle* pParticle = new Particle(L"105");
+		pParticle->SetPos(pObj->GetLocalPos());
+		pParticle->SetScale(pParticle->GetScale() * 0.75f);
+		CreateObject(pParticle, GROUP_TYPE::EFFECT);
+	}
 }

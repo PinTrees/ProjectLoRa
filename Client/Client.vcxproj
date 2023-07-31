@@ -152,6 +152,8 @@
     <ClInclude Include="AstarMgr.h" />
     <ClInclude Include="AtkState.h" />
     <ClInclude Include="BitArray.h" />
+    <ClInclude Include="Boomerang.h" />
+    <ClInclude Include="Boomerang_Obj.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
@@ -169,7 +171,12 @@
     <ClInclude Include="CirclingBall_Obj.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CombatBall.h" />
+    <ClInclude Include="CombatBall_Bullet.h" />
+    <ClInclude Include="CombatBall_Obj.h" />
     <ClInclude Include="CombatText.h" />
+    <ClInclude Include="CrossDagger.h" />
+    <ClInclude Include="CrossDagger_Obj.h" />
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CScrollBar.h" />
     <ClInclude Include="CScrollView.h" />
@@ -180,7 +187,12 @@
     <ClInclude Include="DatabaseMgr.h" />
     <ClInclude Include="EnergyBall.h" />
     <ClInclude Include="EnergyBall_Obj.h" />
+    <ClInclude Include="Grenade.h" />
+    <ClInclude Include="Grenade_Bomb.h" />
+    <ClInclude Include="Grenade_Obj.h" />
     <ClInclude Include="GUIMgr.h" />
+    <ClInclude Include="HolyArea.h" />
+    <ClInclude Include="HolyArea_Obj.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="IceBolt.h" />
     <ClInclude Include="Item.h" />
@@ -236,6 +248,7 @@
     <ClInclude Include="SkillObj.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="Thunder.h" />
+    <ClInclude Include="ThunderBoom.h" />
     <ClInclude Include="Thunder_Obj.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileBtnUI.h" />
@@ -255,6 +268,8 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="AstarMgr.cpp" />
     <ClCompile Include="AtkState.cpp" />
+    <ClCompile Include="Boomerang.cpp" />
+    <ClCompile Include="Boomerang_Obj.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
@@ -272,7 +287,12 @@
     <ClCompile Include="CirclingBall_Obj.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CombatBall.cpp" />
+    <ClCompile Include="CombatBall_Bullet.cpp" />
+    <ClCompile Include="CombatBall_Obj.cpp" />
     <ClCompile Include="CombatText.cpp" />
+    <ClCompile Include="CrossDagger.cpp" />
+    <ClCompile Include="CrossDagger_Obj.cpp" />
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CScrollBar.cpp" />
     <ClCompile Include="CScrollView.cpp" />
@@ -283,7 +303,12 @@
     <ClCompile Include="DatabaseMgr.cpp" />
     <ClCompile Include="EnergyBall.cpp" />
     <ClCompile Include="EnergyBall_Obj.cpp" />
+    <ClCompile Include="Grenade.cpp" />
+    <ClCompile Include="Grenade_Bomb.cpp" />
+    <ClCompile Include="Grenade_Obj.cpp" />
     <ClCompile Include="GUIMgr.cpp" />
+    <ClCompile Include="HolyArea.cpp" />
+    <ClCompile Include="HolyArea_Obj.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="IceBolt.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -339,6 +364,7 @@
     <ClCompile Include="SkillObj.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Thunder.cpp" />
+    <ClCompile Include="ThunderBoom.cpp" />
     <ClCompile Include="Thunder_Obj.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileBtnUI.cpp" />

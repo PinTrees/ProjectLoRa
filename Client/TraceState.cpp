@@ -22,7 +22,7 @@
 
 TraceState::TraceState()
 	: CState(MONSTER_STATE::TRACE)
-	, mAstarDelay(0.5f)
+	, mAstarDelay(0.3f)
 	, mCurDelay(0.f)
 	, mvTargetPos(Vect2::zero)
 {
@@ -94,7 +94,7 @@ void TraceState::Update()
 
 	Vect2 dir = mvTargetPos - vMonsterPos;
 	dir.Normalize();
-	GetOwner()->SetPos(vMonsterPos + dir * 100.f * DT);
+	GetOwner()->SetPos(vMonsterPos + dir * 75.f * DT);
 
 	//// 플레이어가 몬스터의 인식범위 내부로 진입
 	//if (Vect2::Distance(vPlayerPos, vMonsterPos) < pMonster->GetInfo().atkRange)

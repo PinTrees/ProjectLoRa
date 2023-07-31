@@ -4,6 +4,7 @@
 class SettingUI;
 class CImageUI;
 class TextUI;
+class CBtnUI;
 
 
 class GUIMgr
@@ -15,6 +16,8 @@ private:
 	SettingUI*	mpSettinUI;
 
 	TextUI*		mFrameText;
+
+	CBtnUI*		mpSettingBtn;
 
 
 public:

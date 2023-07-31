@@ -11,6 +11,9 @@ enum class MONSTER_TYPE
 
 class MonsterFactory
 {
+private:
+	static int mCreateCount;
+
 public:
 	static Monster* CreateMonster(MONSTER_TYPE type, Vect2 pos);
 

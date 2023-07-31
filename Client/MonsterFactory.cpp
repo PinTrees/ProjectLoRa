@@ -16,6 +16,9 @@
 #include "CCollider.h"
 
 
+int MonsterFactory::mCreateCount = 0;
+
+
 Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 {
 	Monster* pMonster = new Monster(L"2");
@@ -33,7 +36,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 10.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 100.f;
+		info.curHp = info.hp = 100.f * pow(1.002f, mCreateCount);
 		info.speed = 70.f;
 
 		pMonster->setMonsterInfo(info);
@@ -57,5 +60,6 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 	assert(pMonster);
 
+	++mCreateCount;
     return pMonster;
 }

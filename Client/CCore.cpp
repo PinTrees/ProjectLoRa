@@ -39,6 +39,15 @@ CCore::~CCore()
 		DeleteObject(mArrPen[i]);
 	}
 
+	for (auto& pair : mMapBrush)
+		DeleteObject(pair.second);
+
+	for (auto& pair : mMapPen)
+		DeleteObject(pair.second);
+
+	mMapPen.clear();
+	mMapBrush.clear();
+
 	DestroyMenu(mhMenu); 
 }
 int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
@@ -97,6 +106,8 @@ void CCore::RUN()
 	{
 		CSceneMgr::GetI()->Update();
 	}
+
+	CSceneMgr::GetI()->UIUpdate();
 	CSceneMgr::GetI()->FinalUpdate();
 
 

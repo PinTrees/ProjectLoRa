@@ -36,6 +36,7 @@ public:
 
 	// Life Cycle Point Function
 	virtual void Update();			// 매 프레임 마다 호출
+	virtual void UIUpdate();
 	virtual void FinalUpdate();		// 매 마지막 프레임 마다 호츨
 	virtual void Render(HDC _dc);	// 매 렌더링 프레임 마다 호출
 	

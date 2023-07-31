@@ -59,7 +59,7 @@ void HubUIMgr::Init()
 	CreateObject(mBulletRowUI, GROUP_TYPE::UI);
 
 	mpLevelText = new TextUI;
-	mpLevelText->SetPos(Vect2(50.f, vRes.y - 30.f));
+	mpLevelText->SetPos(Vect2(70.f, vRes.y - 30.f));
 	mpLevelText->SetScale(Vect2(100.f, 50.f));
 	mpLevelText->SetOutlineWidth(2);
 	mpLevelText->SetFontSize(38.f);

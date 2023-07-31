@@ -58,7 +58,6 @@ void CBtnUI::Render(HDC dc)
 	if (IsLbtnDown())
 	{
 		RenderHover(dc, 128.f);
-
 	}
 	else if (IsMouseOnUI())
 	{

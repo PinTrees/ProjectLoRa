@@ -39,6 +39,7 @@ void GUIMgr::Init()
 	mpBackground->SetScale(vRes);
 	mpBackground->SetAlpha(150);
 	mpBackground->SetColor(RGB(0, 0, 0));
+	mpBackground->SetRaycastTarget(false);
 	CreateObject(mpBackground, GROUP_TYPE::UI);
 
 	mpSettinUI = new SettingUI;
@@ -52,6 +53,23 @@ void GUIMgr::Init()
 	mFrameText->SetText(L"FPS");
 	mFrameText->SetFontSize(24.f);
 	CreateObject(mFrameText, GROUP_TYPE::UI);
+
+
+	CBtnUI* pSettingBtn = new CBtnUI;
+	pSettingBtn->SetScale(Vect2(50.f, 50.f));
+	pSettingBtn->SetPos(Vect2(vRes.x - 50.f, 50.f));
+	pSettingBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_2", L"texture\\ui\\button\\2.bmp"));
+	pSettingBtn->SetClickedCallBack(mpSettinUI, OBJECT_FUNC(&SettingUI::Show));
+
+	CImageUI* pImage = new CImageUI;
+	pImage->SetPos(Vect2(0.f, -5.f));
+	pImage->SetScale(pSettingBtn->GetScale() * 0.6f);
+	pImage->SetTexture(CResMgr::GetI()->LoadTexture(L"Setting_Icon", L"texture\\ui\\icon\\setting.bmp"));
+	pImage->SetRaycastTarget(false);
+	pSettingBtn->AddChild(pImage);
+	mpSettingBtn = pSettingBtn;
+	CreateObject(mpSettingBtn, GROUP_TYPE::UI);
+
 
 	CloseSettingUI();
 }

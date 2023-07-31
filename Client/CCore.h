@@ -17,8 +17,9 @@ private:
 	HBRUSH	mArrBrush[(UINT)BRUSH_TYPE::END];
 	HPEN	mArrPen[(UINT)PEN_TYPE::END];
 
-	map<COLORREF, HBRUSH> mMapBrush;
-		 
+	map<COLORREF, HBRUSH>	mMapBrush;
+	map<COLORREF, HPEN>		mMapPen;
+
 	// Title Menu Object
 	HMENU	mhMenu;
 
@@ -48,7 +49,7 @@ public:
 
 	HBRUSH GetBrush(COLORREF color) 
 	{
-		 map<COLORREF, HBRUSH>::iterator iter = mMapBrush.find(color);
+		 auto iter = mMapBrush.find(color);
 
 		 if (iter != mMapBrush.end()) 
 		 {
@@ -62,6 +63,23 @@ public:
 			 return brush;
 		 }
 	}
+
+	HPEN GetPen(COLORREF color) 
+	{
+		auto iter = mMapPen.find(color);
+
+		if (iter != mMapPen.end())
+		{
+			return iter->second;
+		}
+		else
+		{
+			HPEN pen = (HPEN)CreatePen(PS_SOLID, 1, color);
+			mMapPen[color] = pen; // mMapPen.insert(std::make_pair(color, pen));
+			return pen;
+		}
+	}
+
 
 	HBRUSH GetBrush(BRUSH_TYPE _eType) {return mArrBrush[(UINT)_eType]; }
 	HPEN GetPen(PEN_TYPE _eType) { return mArrPen[(UINT)_eType]; }

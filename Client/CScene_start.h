@@ -12,7 +12,6 @@ private:
 	float		mfMstrDelay;
 	float		mfCurDelay;
 
-	CUI*		mpSettingBtn;
 
 
 public:
@@ -25,11 +24,6 @@ private:
 	void CreateMonster();
 	void createEnvi();
 	void createPlayer();
-	void createMainUI();
-
-
-public:
-	void OpenSettingPanel();
 
 
 public:

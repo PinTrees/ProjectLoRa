@@ -335,6 +335,48 @@
     <Filter Include="FreamWork\Manager\CSystemMgr">
       <UniqueIdentifier>{eb7cb92f-a95c-4275-990d-06d76167c053}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Class\Skill\05. HolyArea">
+      <UniqueIdentifier>{8384d486-e098-45a1-9426-86fb0b4d6279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\05. HolyArea_Obj">
+      <UniqueIdentifier>{e8a64ec0-1756-4bc8-9c62-94dccc289bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\06. Grenade">
+      <UniqueIdentifier>{e1095d6a-cfd1-4fc8-96da-70d1006036c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\06. Grenade_Obj">
+      <UniqueIdentifier>{3f7daba6-df27-407a-bf2f-18a0e062690a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\06. Grenade_Obj\01. Grenade_Bomb">
+      <UniqueIdentifier>{973b0cae-e1e6-475f-b886-9f7e09b5d7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\07. CrossDagger">
+      <UniqueIdentifier>{f9789d53-6cfc-459e-ac31-7359ad369899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\07. CrossDagger_Obj">
+      <UniqueIdentifier>{93a3dc1b-af66-4b1c-804d-89f39f40c4d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\08. Boomerang">
+      <UniqueIdentifier>{e680449a-582f-4b78-985e-6342369faeeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\08. Boomerang_Obj">
+      <UniqueIdentifier>{2d6618da-b7b6-4e1b-bfb9-a34555aa00fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\Skill\09. CombatBall">
+      <UniqueIdentifier>{1845dadb-702a-4b09-97c9-c298a17dce80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj">
+      <UniqueIdentifier>{80fb97c0-dd5f-46ef-ac3f-48664a90f7db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj\01. CombatBall_Bullet">
+      <UniqueIdentifier>{fa96df9f-3ed7-49d2-9629-daf116119b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\01. IceBolt_Obj">
+      <UniqueIdentifier>{8a7c43d1-d615-4801-ab7d-6efbb91d58e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj">
+      <UniqueIdentifier>{dab2af35-4d63-4c01-8fb5-3f2ea4783f8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -643,6 +685,45 @@
     <ClInclude Include="CSystemMgr.h">
       <Filter>FreamWork\Manager\CSystemMgr</Filter>
     </ClInclude>
+    <ClInclude Include="HolyArea.h">
+      <Filter>Game\Class\Skill\05. HolyArea</Filter>
+    </ClInclude>
+    <ClInclude Include="HolyArea_Obj.h">
+      <Filter>Game\Class\SkillObj\05. HolyArea_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade.h">
+      <Filter>Game\Class\Skill\06. Grenade</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade_Obj.h">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Grenade_Bomb.h">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj\01. Grenade_Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossDagger.h">
+      <Filter>Game\Class\Skill\07. CrossDagger</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossDagger_Obj.h">
+      <Filter>Game\Class\SkillObj\07. CrossDagger_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Boomerang.h">
+      <Filter>Game\Class\Skill\08. Boomerang</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatBall.h">
+      <Filter>Game\Class\Skill\09. CombatBall</Filter>
+    </ClInclude>
+    <ClInclude Include="Boomerang_Obj.h">
+      <Filter>Game\Class\SkillObj\08. Boomerang_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatBall_Obj.h">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatBall_Bullet.h">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\01. CombatBall_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ThunderBoom.h">
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -937,6 +1018,45 @@
     </ClCompile>
     <ClCompile Include="CSystemMgr.cpp">
       <Filter>FreamWork\Manager\CSystemMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="HolyArea.cpp">
+      <Filter>Game\Class\Skill\05. HolyArea</Filter>
+    </ClCompile>
+    <ClCompile Include="HolyArea_Obj.cpp">
+      <Filter>Game\Class\SkillObj\05. HolyArea_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade.cpp">
+      <Filter>Game\Class\Skill\06. Grenade</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade_Obj.cpp">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Grenade_Bomb.cpp">
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj\01. Grenade_Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossDagger.cpp">
+      <Filter>Game\Class\Skill\07. CrossDagger</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossDagger_Obj.cpp">
+      <Filter>Game\Class\SkillObj\07. CrossDagger_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Boomerang.cpp">
+      <Filter>Game\Class\Skill\08. Boomerang</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatBall.cpp">
+      <Filter>Game\Class\Skill\09. CombatBall</Filter>
+    </ClCompile>
+    <ClCompile Include="Boomerang_Obj.cpp">
+      <Filter>Game\Class\SkillObj\08. Boomerang_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatBall_Obj.cpp">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatBall_Bullet.cpp">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\01. CombatBall_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ThunderBoom.cpp">
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

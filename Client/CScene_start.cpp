@@ -60,7 +60,6 @@
 Scene_Start::Scene_Start()
 	: mfMstrDelay(1.f)
 	, mfCurDelay(0.f)
-	, mpSettingBtn(nullptr)
 {
 }
 
@@ -106,7 +105,6 @@ void Scene_Start::Enter()
 	DatabaseMgr::GetI()->Init();
 	JPSMgr::GetI()->Init();
 
-	createMainUI();
 	createPlayer();
 
 	//몬스터 배치
@@ -116,7 +114,7 @@ void Scene_Start::Enter()
 		CreateMonster();
 	}
 
-	int iEnvCount = 500;
+	int iEnvCount = 150;
 	for (int i = 0; i < iEnvCount; i++)
 	{
 		createEnvi();
@@ -231,38 +229,6 @@ void Scene_Start::createPlayer()
 
 
 
-
-
-
-void Scene_Start::createMainUI()
-{
-	Vect2 vRes = CCore::GetI()->GetResolution();
-
-	CBtnUI* pSettingBtn = new CBtnUI;
-	pSettingBtn->SetScale(Vect2(50.f, 50.f));
-	pSettingBtn->SetPos(Vect2(vRes.x -  80.f, 50.f));
-	pSettingBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_2", L"texture\\ui\\button\\2.bmp"));
-	pSettingBtn->SetClickedCallBack(this, SCENE_FUNC(&Scene_Start::OpenSettingPanel));
-
-	CImageUI* pImage = new CImageUI;
-	pImage->SetPos(Vect2(0.f, -5.f));
-	pImage->SetScale(pSettingBtn->GetScale() * 0.6f);
-	pImage->SetTexture(CResMgr::GetI()->LoadTexture(L"Setting_Icon", L"texture\\ui\\icon\\setting.bmp"));
-	pImage->SetRaycastTarget(false);
-	pSettingBtn->AddChild(pImage);
-
-	mpSettingBtn = pSettingBtn;
-
-	AddObject(mpSettingBtn, GROUP_TYPE::UI);
-}
-
-
-
-
-void Scene_Start::OpenSettingPanel()
-{
-	GUIMgr::GetI()->ShowSettingUI();
-}
 
 
 
