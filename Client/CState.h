@@ -12,7 +12,7 @@ template <typename T>
 class CState
 {
 private:
-	AI<T>*			mpAI;
+	AI<T>* mpAI;
 	T				mState;
 
 
@@ -34,7 +34,7 @@ public:
 		: mState(state)
 		, mpAI(nullptr)
 	{}
-	virtual ~CState()	{}
+	virtual ~CState() {}
 
 
 	friend class AI<T>;

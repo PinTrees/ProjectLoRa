@@ -5,7 +5,7 @@
 #include "CPathMgr.h"
 #include "CResMgr.h"
 #include "CSceneMgr.h"
-#include "AstarMgr.h"
+#include "TileMgr.h"
 
 
 
@@ -142,7 +142,7 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 	fread(&xCount, sizeof(UINT), 1, pFile);
 	fread(&yCount, sizeof(UINT), 1, pFile);
 
-	AstarMgr::GetI()->CreateTileData(xCount, yCount);
+	TileMgr::GetI()->CreateTileData(xCount, yCount);
 
 	Background* pParallax = new Background();
 	pParallax->CreateParallaxTexture(xCount * TILE_SIZE_RENDER, yCount * TILE_SIZE_RENDER);

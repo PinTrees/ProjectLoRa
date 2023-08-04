@@ -281,6 +281,18 @@
     <Filter Include="Game\Manager\AstarMgr\Editor">
       <UniqueIdentifier>{2a463437-be39-4ba2-9edf-7e3939fb1de3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\Boss">
+      <UniqueIdentifier>{f423bd3e-3eb1-43f1-936c-bca3c39a94f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\TileMgr">
+      <UniqueIdentifier>{1d5eb746-c200-4a1f-9172-0ce399a23a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Boss\TraceState">
+      <UniqueIdentifier>{488c59fc-6fd9-4257-b1fe-168cd330713a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Boss\AtkState">
+      <UniqueIdentifier>{f6884840-42ca-402f-9424-b8b8cbae93f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -529,11 +541,23 @@
     <ClInclude Include="Scene_Astar.h">
       <Filter>Game\Scene\Scene_Astar</Filter>
     </ClInclude>
-    <ClInclude Include="AstarNode.h">
+    <ClInclude Include="TileNode.h">
       <Filter>Game\Manager\AstarMgr\Editor</Filter>
     </ClInclude>
     <ClInclude Include="AstarMgr.h">
       <Filter>Game\Manager\AstarMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMgr.h">
+      <Filter>Game\Manager\TileMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Game\Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BAtkState.h">
+      <Filter>Game\FSM\Boss\AtkState</Filter>
+    </ClInclude>
+    <ClInclude Include="BTraceState.h">
+      <Filter>Game\FSM\Boss\TraceState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -776,11 +800,23 @@
     <ClCompile Include="Scene_Astar.cpp">
       <Filter>Game\Scene\Scene_Astar</Filter>
     </ClCompile>
-    <ClCompile Include="AstarNode.cpp">
+    <ClCompile Include="TileNode.cpp">
       <Filter>Game\Manager\AstarMgr\Editor</Filter>
     </ClCompile>
     <ClCompile Include="AstarMgr.cpp">
       <Filter>Game\Manager\AstarMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMgr.cpp">
+      <Filter>Game\Manager\TileMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Game\Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="BAtkState.cpp">
+      <Filter>Game\FSM\Boss\AtkState</Filter>
+    </ClCompile>
+    <ClCompile Include="BTraceState.cpp">
+      <Filter>Game\FSM\Boss\TraceState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

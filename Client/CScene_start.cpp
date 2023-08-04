@@ -7,6 +7,7 @@
 // GameObject Header
 #include "Environment.h"
 #include "Monster.h"
+#include "Boss.h"
 #include "Player.h"
 
 // System Manager Header
@@ -37,7 +38,7 @@
 #include "SkillMgr.h"
 
 #include "AstarMgr.h"
-
+#include "TileMgr.h"
 
 Scene_Start::Scene_Start()
 	: mfMstrDelay(1.f)
@@ -53,21 +54,10 @@ Scene_Start::~Scene_Start()
 	HubUIMgr::Dispose();
 	SkillMgr::Dispose();
 	AstarMgr::Dispose();
+	TileMgr::Dispose();
 }
 
 
-
-void Scene_Start::Update()
-{
-	CScene::Update();
-
-	mfCurDelay += DT;
-	if (mfCurDelay > mfMstrDelay)
-	{
-		mfCurDelay = 0.f;
-		CreateMonster();
-	}
-}
 
 void Scene_Start::Enter()
 {
@@ -76,21 +66,22 @@ void Scene_Start::Enter()
 	createPlayer();
 
 	//몬스터 배치
-	int iMonCount = 1;
+	int iMonCount = 6;
 	for (int i = 0; i < iMonCount; i++)
 	{
-		//CreateMonster();
+		CreateMonster();
 	}
 
-	int iEnvCount = 77;
+	int iEnvCount = 588;
 	for (int i = 0; i < iEnvCount; i++)
 	{
 		createEnvi();
 	}
 
 
+	CreateBoss();
 
-
+	AstarMgr::GetI()->init();
 	LevelUpUIMgr::GetI()->Init();
 	HubUIMgr::GetI()->Init();
 	SkillMgr::GetI()->Init();
@@ -103,12 +94,27 @@ void Scene_Start::Enter()
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::ENV);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ENV);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::BOSS, GROUP_TYPE::ENV);
 
 	// Camera Look 지정
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 	CCamera::GetI()->FadeOut(0.1f);
 	CCamera::GetI()->FadeIn(2.f);
+}
+
+
+void Scene_Start::Update()
+{
+	CScene::Update();
+
+	mfCurDelay += DT;
+	if (mfCurDelay > mfMstrDelay)
+	{
+		mfCurDelay = 0.f;
+	//	CreateMonster();
+	}
 }
 
 
@@ -123,6 +129,12 @@ void Scene_Start::Exit()
 
 
 
+
+void Scene_Start::CreateBoss()
+{
+	Boss* pMonsterObj = (Boss*)MonsterFactory::CreateMonster(MONSTER_TYPE::BOSS, Vect2(PlayerMgr::GetI()->GetPlayer()->GetPos()));
+	AddObject(pMonsterObj, GROUP_TYPE::BOSS);
+}
 
 void Scene_Start::CreateMonster()
 {
@@ -154,13 +166,14 @@ void Scene_Start::CreateMonster()
 
 void Scene_Start::createEnvi()
 {
-	int xPos = rand() % 20*TILE_SIZE_RENDER;
-	int yPos = rand() % 20*TILE_SIZE_RENDER;
+
+	Vect2 tilesize = TileMgr::GetI()->GetTileSize();
+	int xPos = rand() % TILE_SIZE_RENDER * tilesize.x;
+	int yPos = rand() % TILE_SIZE_RENDER * tilesize.y;
 	int xIdx = xPos / TILE_SIZE_RENDER;
 	int yIdx = yPos / TILE_SIZE_RENDER;
 
-	AstarMgr::GetI()->SetWallNode(xIdx, yIdx);
-	
+
 	Vect2 vScale = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER); 
 	Vect2 vScaleOffset = vScale * 0.5f; 
 	Vect2 vCreatePos = Vect2(xPos, yPos);
@@ -172,7 +185,10 @@ void Scene_Start::createEnvi()
 	pEnvObj->SetPos(vCreatePos + vScaleOffset);
 	pEnvObj->GetCollider()->SetScale(vScale); 
 	pEnvObj->GetCollider()->SetTrigger(false); 
-	AddObject(pEnvObj, GROUP_TYPE::ENV); 
+	pEnvObj->SetIdx(xIdx, yIdx);
+	AddObject(pEnvObj, GROUP_TYPE::ENV);
+
+	TileMgr::GetI()->SetWallNode(xIdx, yIdx, true);
 }
 
 
@@ -181,6 +197,7 @@ void Scene_Start::createPlayer()
 {
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
+	TileMgr::GetI()->GetTileSize();
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
 	pPlayer->SetPos(Vect2(0.f,0.f));

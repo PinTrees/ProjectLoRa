@@ -1,6 +1,6 @@
 #pragma once
 
-class AstarNode;
+class TileNode;
 
 class AstarMgr
 {
@@ -12,22 +12,21 @@ private:
 	int mTargetX;
 	int mTargetY;
 
-	vector<vector<AstarNode*>> mNodes;
+	vector<vector<TileNode*>>* mNodes;
 
-	vector<AstarNode*>	mOpenNode;
-	vector<AstarNode*>	mCloseNode;
-	vector<AstarNode*>	mFinalNodes;
+	vector<TileNode*>	mOpenNode;
+	vector<TileNode*>	mCloseNode;
+	vector<TileNode*>	mFinalNodes;
 
-	AstarNode* mCurNode;
-	AstarNode* mStartNode;
-	AstarNode* mTargetNode;
+	TileNode* mCurNode;
+	TileNode* mStartNode;
+	TileNode* mTargetNode;
 
 	vector<Vect2>		mvResultPosList;
 
 public:
-	void SetWallNode(int _x, int _y);
+	void init();
 public:
-	void CreateTileData(int x, int y);
 	vector<Vect2>& AstarCall(int _x, int _y);
 
 private:

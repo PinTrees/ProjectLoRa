@@ -8,6 +8,12 @@ class Environment
 {
 private:
 	wstring mType;
+	int xIdx;
+	int yIdx;
+
+public:
+	void DistoryEnvi();
+	void SetIdx(int _x, int _y) { xIdx = _x; yIdx = _y; }
 
 
 public:

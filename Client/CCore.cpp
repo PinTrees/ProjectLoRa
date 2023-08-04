@@ -172,7 +172,6 @@ void CCore::CreateBrushPen()
 void CCore::SetActiveMenu(bool active)
 {
 	SetMenu(mhWnd, active ? mhMenu : nullptr);
-	ChangeWindowSize(GetResolution(), active);
 }
 
 

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AstarMgr.h"
-#include "AstarNode.h"
+#include "TileMgr.h"
+#include "TileNode.h"
 
 #include "CSceneMgr.h"
 #include "CScene.h"
@@ -20,6 +21,7 @@ AstarMgr::AstarMgr()
 	, mCurNode(nullptr)
 	, mStartNode(nullptr)
 	, mTargetNode(nullptr)
+	, mNodes(nullptr)
 {
 	mOpenNode.reserve(100);
 	mCloseNode.reserve(100);
@@ -28,40 +30,13 @@ AstarMgr::AstarMgr()
 
 AstarMgr::~AstarMgr()
 {
-	for (int i = 0; i < mNodes.size(); ++i)
-	{
-		for (int j = 0; j < mNodes[i].size(); ++j)
-		{
-			delete mNodes[i][j];
-		}
-
-	}
-
-
-
 }
 
-void AstarMgr::SetWallNode(int _x, int _y)
+void AstarMgr::init()
 {
-	mNodes[_x][_y]->SetWall();
-}
-
-void AstarMgr::CreateTileData(int x, int y)
-{
-	mTileSizeX = x;
-	mTileSizeY = y;
-
-	mNodes = vector<vector< AstarNode*>>(x, vector< AstarNode*>(y));
-
-	for (int i = 0; i < x; ++i)
-	{
-		for (int j = 0; j < y; ++j)
-		{
-			mNodes[i][j] = new AstarNode(i, j);
-		}
-	}
-
-
+	mNodes = TileMgr::GetI()->GetTileNode();
+	mTileSizeX = (*mNodes).size();
+	mTileSizeY = (*mNodes)[0].size();
 }
 
 vector<Vect2>& AstarMgr::AstarCall(int _x, int _y)
@@ -79,13 +54,13 @@ vector<Vect2>& AstarMgr::AstarCall(int _x, int _y)
 	if (mTargetX < 1 || mTargetY < 1 || mTileSizeX - 1 <= mTargetX || mTileSizeY - 1 <= mTargetY)
 		return mvResultPosList;
 
-	if (mNodes[mTargetX][mTargetY]->IsWall())
+	if ((*mNodes)[mTargetX][mTargetY]->IsWall())
 		return mvResultPosList;
 
-	if (mNodes[mTargetX + 1][mTargetY]->IsWall()
-		&& mNodes[mTargetX][mTargetY + 1]->IsWall()
-		&& mNodes[mTargetX - 1][mTargetY]->IsWall()
-		&& mNodes[mTargetX][mTargetY - 1]->IsWall())
+	if ((*mNodes)[mTargetX + 1][mTargetY]->IsWall()
+		&& (*mNodes)[mTargetX][mTargetY + 1]->IsWall()
+		&& (*mNodes)[mTargetX - 1][mTargetY]->IsWall()
+		&& (*mNodes)[mTargetX][mTargetY - 1]->IsWall())
 		return mvResultPosList;
 
 
@@ -94,8 +69,8 @@ vector<Vect2>& AstarMgr::AstarCall(int _x, int _y)
 
 	// 시작과 끝 노드, 열린리스트와 닫힌리스트, 마지막리스트 초기화
 
-	mStartNode = mNodes[_x][_y];
-	mTargetNode = mNodes[mTargetX][mTargetY];
+	mStartNode = (*mNodes)[_x][_y];
+	mTargetNode = (*mNodes)[mTargetX][mTargetY];
 
 	mOpenNode.clear();
 	mCloseNode.clear();
@@ -120,7 +95,7 @@ vector<Vect2>& AstarMgr::AstarCall(int _x, int _y)
 
 		if (mCurNode == mTargetNode)
 		{
-			AstarNode* TargetCurnode = mTargetNode;
+			TileNode* TargetCurnode = mTargetNode;
 			while (TargetCurnode != mStartNode)
 			{
 				mFinalNodes.push_back(TargetCurnode);
@@ -162,28 +137,28 @@ void AstarMgr::AddOpenNode(int checkX, int checkY)
 {
 	// 상하좌우 범위를 벗어나지 않고, 벽이 아니면서, 닫힌리스트에 없다면
 	if (checkX >= 0 && checkX < mTileSizeX && checkY >= 0
-		&& checkY < mTileSizeY && !mNodes[checkX][checkY]->IsWall())
+		&& checkY < mTileSizeY && !(*mNodes)[checkX][checkY]->IsWall())
 	{
 		for (int i = 0; i < mCloseNode.size(); ++i)
 		{
-			if (mCloseNode[i] == mNodes[checkX][checkY])
+			if (mCloseNode[i] == (*mNodes)[checkX][checkY])
 			{
 				return;
 			}
 		}
 
 		// 대각선 허용시, 벽 사이로 통과 안됨
-		if (mNodes[mCurNode->mX][checkY]->IsWall()
-			&& mNodes[checkX][mCurNode->mY]->IsWall())
+		if ((*mNodes)[mCurNode->mX][checkY]->IsWall()
+			&& (*mNodes)[checkX][mCurNode->mY]->IsWall())
 			return;
 
 		// 코너를 가로질러 가지 않을시, 이동 중에 수직수평 장애물이 있으면 안됨
-		if (mNodes[mCurNode->mX][checkY]->IsWall()
-			|| mNodes[checkX][mCurNode->mY]->IsWall())
+		if ((*mNodes)[mCurNode->mX][checkY]->IsWall()
+			|| (*mNodes)[checkX][mCurNode->mY]->IsWall())
 			return;
 
 		// 이웃노드에 넣고, 직선은 10, 대각선은 14비용
-		AstarNode* NeighborNode = mNodes[checkX][checkY];
+		TileNode* NeighborNode = (*mNodes)[checkX][checkY];
 		int MoveCost = mCurNode->mG + 10;
 
 		bool flage = false;

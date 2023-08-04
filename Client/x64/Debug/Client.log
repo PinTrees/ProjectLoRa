@@ -1,8 +1,17 @@
-﻿  unity_8HDQJZJ647HD1AMY.cpp
-D:\GitHub\ProjectLoLa\ProjectLoRa\Client\TextUI.cpp(20,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\GitHub\ProjectLoLa\ProjectLoRa\Client\TextUI.cpp(41,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\GitHub\ProjectLoLa\ProjectLoRa\Client\Tile.cpp(52,5): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\GitHub\ProjectLoLa\ProjectLoRa\Client\Tile.cpp(51,5): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\GitHub\ProjectLoLa\ProjectLoRa\Client\TraceState.cpp(57,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\GitHub\ProjectLoLa\ProjectLoRa\Client\TraceState.cpp(58,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  unity_7FTMUW3QPTLP2ZJR.cpp
+  unity_FOGFYYL4MUKA8F6L.cpp
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(52,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(70,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(178,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(186,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(185,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\AstarMgr.cpp(38,31): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_FOGFYYL4MUKA8F6L.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(184,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\AstarMgr.cpp(39,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data (compiling source file x64\Debug\unity_FOGFYYL4MUKA8F6L.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene.cpp(183,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\AstarMgr.cpp(51,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_FOGFYYL4MUKA8F6L.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\AstarMgr.cpp(52,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_FOGFYYL4MUKA8F6L.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene_start.cpp(171,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+D:\GitHub\ProjectLoLa\ProjectLoRa\Client\CScene_start.cpp(172,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data (compiling source file x64\Debug\unity_7FTMUW3QPTLP2ZJR.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
   Client.vcxproj -> D:\GitHub\ProjectLoLa\ProjectLoRa\Output\bin_debug\Client.exe

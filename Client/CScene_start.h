@@ -12,12 +12,13 @@ private:
 	float		mfCurDelay;
 
 public:
-	virtual void Update();
 	virtual void Enter();
+	virtual void Update();
 	virtual void Exit();
 
 
 private:
+	void CreateBoss();
 	void CreateMonster();
 	void createEnvi();
 	void createPlayer();
