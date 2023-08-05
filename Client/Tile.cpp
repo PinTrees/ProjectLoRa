@@ -4,6 +4,8 @@
 #include "CCamera.h"
 #include "CTexture.h"
 
+#include "SelectGDI.h"
+
 Tile::Tile()
 	: mpTileTex(nullptr)
 	, mIdx(0)
@@ -58,6 +60,18 @@ void Tile::Render(HDC _dc, bool editor)
 		, TILE_SIZE
 		, TILE_SIZE
 		, RGB(255, 0, 255));
+
+	if (DEBUG)
+	{
+		SelectGDI b = SelectGDI(_dc, BRUSH_TYPE::HOLLOW);
+		SelectGDI p = SelectGDI(_dc, RGB(128, 128, 128), NULL);
+
+		Rectangle(_dc
+			, vLocalPos.x
+			, vLocalPos.y
+			, vLocalPos.x + vScale.x
+			, vLocalPos.y + vScale.y);
+	}
 }
 
 

@@ -62,6 +62,9 @@ void CScene::Update()
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
+		if ((GROUP_TYPE)i == GROUP_TYPE::UI)
+			continue;
+
 		for (size_t j = 0; j < mArrObj[i].size();++j)
 		{
 			if (!mArrObj[i][j]->IsDead())
@@ -89,6 +92,20 @@ void CScene::Update()
 		}
 	}
 }
+
+
+void CScene::UIUpdate()
+{
+	vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
+	for (int i = 0; i < arrUI.size(); ++i)
+	{
+		if (!arrUI[i]->IsDead())
+		{
+			arrUI[i]->Update();
+		}
+	}
+}
+
 
 void CScene::FinalUpdate()
 {

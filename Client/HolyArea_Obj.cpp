@@ -10,6 +10,9 @@
 #include "CAnimator.h"
 #include "Skill.h"
 
+
+
+
 HolyArea_Obj::HolyArea_Obj()
 	: mPrevLv()
 	, mTheta(360.f)

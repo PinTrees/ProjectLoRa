@@ -43,11 +43,13 @@ void DeadState::Update()
 	{
 		DeleteObject(GetOwner());
 
-		Gold* pGold = new Gold;
-		pGold->SetPos(GetOwner()->GetLocalPos());
-		CreateObject(pGold, GROUP_TYPE::GOLD);
-
-		if (CRandom::GetI()->Next(0, 100) < 30)
+		if (CRandom::GetI()->Next(0, 100) < 80)
+		{
+			Gold* pGold = new Gold;
+			pGold->SetPos(GetOwner()->GetLocalPos());
+			CreateObject(pGold, GROUP_TYPE::GOLD);
+		}
+		else if (CRandom::GetI()->Next(0, 100) < 4)
 		{
 			Box* pBox = new Box;
 			pBox->SetPos(GetOwner()->GetLocalPos());

@@ -7,6 +7,9 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 
+
+
+
 Grenade_Bomb::Grenade_Bomb()
 	: mCurDelay()
 {
@@ -14,14 +17,14 @@ Grenade_Bomb::Grenade_Bomb()
 	SetDamageDelay(0.9f);	// ~초마다 데미지를 입힘
 	SetName(L"Grenade_Bomb");
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(180.f, 150.f));
-	GetCollider()->SetOffsetPos(Vect2(0.f, 80.f));
+	GetCollider()->SetScale(Vect2(60.f, 40.f) * 3.f);
+	GetCollider()->SetOffsetPos(Vect2(0.f, 20.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Grenade_Bomb", L"texture\\effect\\8.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Grenade_Bomb", L"texture\\effect\\3.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"Grenade_Bomb", pTex, Vect2(0.f, 0.f), Vect2(32.f, 32.f), Vect2(32.f, 0.f), 0.1f, 9);
-	SetScale(Vect2(300.f, 300.f));
+	GetAnimator()->CreateAnimation(L"Grenade_Bomb", pTex, Vect2(0.f, 0.f), Vect2(60.f, 80.f), Vect2(60.f, 0.f), 0.07f, 10);
+	SetScale(Vect2(60.f, 80.f) * 4.f);
 
 	GetAnimator()->Play(L"Grenade_Bomb", true);
 }
@@ -37,7 +40,7 @@ void Grenade_Bomb::Update()
 		DeleteObject(this);
 		return;
 	}
-	
+
 	GetAnimator()->Update();
 	mCurDelay += DT;
 }

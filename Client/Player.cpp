@@ -79,6 +79,7 @@ Player::Player()
 	GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
 	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
 	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
 
 	GetAnimator()->Play(L"IDLE", true);
 
@@ -145,6 +146,14 @@ void Player::Update()
 {
 	if (mAI)
 		mAI->Update();
+
+	// 수정 필요
+	/*if (mtInfo.curHp <= 0.f)
+	{
+		ChangeAIState(GetAI(), PLAYER_STATE::Die);
+		return;
+	}*/
+
 	GetAnimator()->Update();
 
 	calExp();
@@ -205,7 +214,6 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-
 void Player::calExp()
 {
 	if (mExp >= GetMaxExp())
@@ -213,6 +221,7 @@ void Player::calExp()
 		++mLevel;
 		mExp = 0;
 
+		HubUIMgr::GetI()->SetLevelText(mLevel);
 		LevelUpUIMgr::GetI()->Choice();
 	}
 }

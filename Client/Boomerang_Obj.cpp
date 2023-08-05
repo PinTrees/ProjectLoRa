@@ -7,6 +7,9 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 
+
+
+
 Boomerang_Obj::Boomerang_Obj()
 	: mSpeed(600.f)
 	, mAccel(700.f)

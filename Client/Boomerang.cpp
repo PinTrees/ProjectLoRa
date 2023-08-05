@@ -8,6 +8,9 @@
 #include "Player.h"
 #include "CScene.h"
 
+
+
+
 Boomerang::Boomerang()
 	: Skill(SKILL_TYPE::BOOMERANG, 6)
 {

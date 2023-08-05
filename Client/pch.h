@@ -30,24 +30,29 @@ using std::wstringstream;
 #include <tchar.h>
 
 #include <math.h>
+#include <cmath>
 #include <assert.h>
 
+#include <memory>		
+#include <algorithm>	
 
 #pragma comment(lib,"Msimg32.lib")
 
+
+// Custom Define Header
 #include "define.h"
 #include "register.h"
+#include "type_define.h"
 
+
+// Custom [ Class, Struct ] Header
 #include "Vec2.h"
 #include "func.h"
-//#include "func.cpp"
 
-
-
-// include GDI
+// GDI+
 #include <gdiplus.h>
 #pragma comment(lib, "Gdiplus.lib")
 using namespace Gdiplus;
 
 
-
+#include "CSystemMgr.h"

@@ -50,6 +50,11 @@ private:
 
 	bool			mFixedChildMouseCheck;	// 자식 UI의 마우스 좌표 범위를 해당 UI 크기로 제한합니다.
 	bool			mOriginalMouseCheck;	// mFixedChildMouseCheck 옵션을 무시합니다.
+		
+	bool			mbRaycastTarget;		// 마우스 범위 체크 여부
+
+	// 삭제될 자식 UI
+	vector<CUI*>	mDeleteChildUI;
 
 
 public:
@@ -81,7 +86,7 @@ private:
 public:
 	virtual void AddChild(CUI* ui);
 	virtual void SetTopChild(CUI* ui);
-	
+	void DeleteChild(CUI* ui);
 
 
 public:
@@ -106,6 +111,8 @@ public:
 	bool	IsFixedChildMouseCheck();
 	CUI*	GetFixedChildMouseCheckParent();
 	void	SetOriginalMouseCheck(bool active) { mOriginalMouseCheck = active; }
+
+	void	SetRaycastTarget(bool active) { mbRaycastTarget = active; }
 
 
 public:

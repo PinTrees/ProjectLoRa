@@ -9,7 +9,7 @@ struct tPlayerInfo
 	float	fullHP = 100.f;				// 최대체력
 	float	curHp = 0.f;				// 체력
 	float	regenerationHP = 0.f;		// 체력재생
-	float	moveSpeed = 250.f;			// 이동 속도
+	float	moveSpeed = 300.f;			// 이동 속도
 	float	atkDamage = 10.f;			// 공격력
 	float	atkSpeed = 10.f;			// 공격스피드
 	float	atkRange = 500.f;			// 사거리
@@ -74,12 +74,11 @@ public:
 	Skill* FindSkill(SKILL_TYPE type);
 	void AddSkill(Skill* _skill) { mVecSkill.push_back(_skill); }
 	void UseSkill();
-
+	void AddDamage(float _damage) { mtInfo.curHp -= _damage; }
 
 public:
 	virtual void Update() override;
 	virtual void Render(HDC _dc) override;
-
 
 private:
 	void calExp();

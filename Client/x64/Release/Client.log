@@ -1,7 +1,11 @@
-﻿  HubUIMgr.cpp
-LINK : warning C4727: 타임스탬프가 동일한 c:\users\taegi\desktop\projectlora\client\x64\release\client.pch PCH가 c:\users\taegi\desktop\projectlora\client\x64\release\monsterfactory.obj 및 c:\users\taegi\desktop\projectlora\client\x64\release\idlestate.obj에 있습니다.  첫 번째 PCH를 사용합니다.
-  코드를 생성하고 있습니다.
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 1918 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  코드를 생성했습니다.
-  Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin\Client.exe
+﻿cl : 명령줄  warning D9030: '/Yc'이(가) 다중 처리와 호환되지 않습니다. /MP 스위치를 무시합니다.
+  JPSMgr.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(5,1): warning C4099: 'JPSCoord': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오.
+  JPSPath.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오.
+JPSMgr.obj : error LNK2001: 확인할 수 없는 외부 기호 "public: bool __cdecl JPSPath::Search(int,int,int,int,class std::list<class JPSCoord,class std::allocator<class JPSCoord> > &)" (?Search@JPSPath@@QEAA_NHHHHAEAV?$list@VJPSCoord@@V?$allocator@VJPSCoord@@@std@@@std@@@Z)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin\Client.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

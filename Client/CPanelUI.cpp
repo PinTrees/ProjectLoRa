@@ -9,7 +9,7 @@
 
 CPanelUI::CPanelUI()
 	: CUI(false)
-	, mpSprite(nullptr)
+	, mpTexture(nullptr)
 	, mFixedPos(true)
 {
 }
@@ -29,9 +29,9 @@ void CPanelUI::Render(HDC dc)
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
-	if (mpSprite)
+	if (mpTexture)
 	{
-		mpSprite->Render(dc, vPos, vScale);
+		mpTexture->Render(dc, vPos, vScale);
 	}
 
 	CUI::Render(dc);

@@ -9,6 +9,7 @@
 #include "CEventMgr.h"
 #include "UIMgr.h"
 #include "CResMgr.h"
+#include "CSystemMgr.h"
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -17,7 +18,6 @@
 
 #include "SelectGDI.h"
 #include "resource.h"
-
 
 SINGLE_HEADER(CCore);
 
@@ -38,6 +38,15 @@ CCore::~CCore()
 	{
 		DeleteObject(mArrPen[i]);
 	}
+
+	for (auto& pair : mMapBrush)
+		DeleteObject(pair.second);
+
+	for (auto& pair : mMapPen)
+		DeleteObject(pair.second);
+
+	mMapPen.clear();
+	mMapBrush.clear();
 
 	DestroyMenu(mhMenu); 
 }
@@ -71,6 +80,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CCamera::GetI()->Init();
 	CSceneMgr::GetI()->Init();
 	CRandom::GetI()->Init();
+	CSystemMgr::GetI();
 
 	return S_OK;
 }
@@ -96,6 +106,8 @@ void CCore::RUN()
 	{
 		CSceneMgr::GetI()->Update();
 	}
+
+	CSceneMgr::GetI()->UIUpdate();
 	CSceneMgr::GetI()->FinalUpdate();
 
 
@@ -154,6 +166,7 @@ void CCore::Delete()
 	CResMgr::Dispose();
 	CEventMgr::Dispose();
 	CCollisionMgr::Dispose();
+	CSystemMgr::Dispose();
 }
 
 

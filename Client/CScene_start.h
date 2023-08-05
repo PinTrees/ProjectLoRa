@@ -2,6 +2,7 @@
 #include "CScene.h"
 
 class Player;
+class CUI;
 
 class Scene_Start :
 	public CScene
@@ -10,6 +11,8 @@ class Scene_Start :
 private:
 	float		mfMstrDelay;
 	float		mfCurDelay;
+
+	int			mMonsterWave;
 
 public:
 	virtual void Update();

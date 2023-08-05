@@ -1,5 +1,9 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
+
 class CombatBall_Obj :
     public SkillObj
 {

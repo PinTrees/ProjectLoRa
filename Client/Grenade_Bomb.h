@@ -1,5 +1,9 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
+
 class Grenade_Bomb :
     public SkillObj
 {

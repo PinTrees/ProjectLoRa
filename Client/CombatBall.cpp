@@ -6,6 +6,9 @@
 
 #include "Player.h"
 
+
+
+
 CombatBall::CombatBall()
 	: Skill(SKILL_TYPE::COMBAT_BALL, 6)
 	, mPrevLv(1)

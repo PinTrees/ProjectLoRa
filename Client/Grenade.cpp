@@ -9,6 +9,8 @@
 #include "CScene.h"
 
 
+
+
 Grenade::Grenade()
 	: Skill(SKILL_TYPE::GRENADE, 6)
 {

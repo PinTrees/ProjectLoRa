@@ -10,6 +10,7 @@ struct tMonsterInfo
 	float		recogRange;		// 인지범위
 	float		atkRange;		// 공격거리
 	float		atk;			// 공격력
+	float		atkSpeed;		// 공격속도
 
 	float		curHp;
 };
@@ -24,13 +25,19 @@ class Monster :
 	public CObject
 {
 private:
+	MONSTER_TYPE		mType;
 	tMonsterInfo		mtInfo;
 	AI<MONSTER_STATE>*	mAI;
 
 	BarUI*				mHpBar;
 
+	vector<Vect2>	mVecPathPos;
+
+	float			mCurDamageDelay;
 
 public:
+	MONSTER_TYPE GetType() { return mType; }
+
 	float GetSpeed() { return mtInfo.speed; }
 	void SetSpeed(float _fspeed) { mtInfo.speed = _fspeed; }
 
@@ -39,10 +46,22 @@ public:
 	void SetAI(AI<MONSTER_STATE>* pAI);
 
 	void AddDamage(float damage);
+	void SetPath(vector<Vect2>& vecPos) 
+	{ 
+		mVecPathPos.clear();
+		
+		Vect2 mTileOffet = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER) * 0.5f;
+
+		for (int i = 0; i < vecPos.size(); ++i)
+		{
+			mVecPathPos.push_back(vecPos[i] * TILE_SIZE_RENDER + mTileOffet);
+		}
+	}
 
 
 public:
 	virtual void OnCollisionEnter(CCollider* _pOther) override;
+	virtual void OnCollisionStay(CCollider* _pOther) override;
 	virtual void OnDestroy() override;
 
 public:
@@ -56,7 +75,7 @@ private:
 
 
 public:
-	Monster(const wstring& uid);
+	Monster(MONSTER_TYPE mType, const wstring& uid);
 	~Monster();
 
 	friend class MonsterFactory;

@@ -1,5 +1,9 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
+
 class CrossDagger_Obj :
     public SkillObj
 {

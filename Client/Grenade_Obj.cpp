@@ -8,9 +8,12 @@
 #include "CAnimator.h"
 #include "Grenade_Bomb.h"
 
+
+
+
 Grenade_Obj::Grenade_Obj()
 	: mCurTime()
-	, mArrivalTime(2.f)
+	, mArrivalTime(1.f)
 	, mRemainTime()
 {
 	SetMaxDelay(1.f);

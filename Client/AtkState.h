@@ -6,7 +6,7 @@ class AtkState :
     public CState<MONSTER_STATE>
 {
 private:
-
+    bool        mAtkAvailable;
 
 public:
     virtual void Update() override;

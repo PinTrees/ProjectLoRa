@@ -13,6 +13,8 @@
 #include "Background.h"
 
 #include "AI.h"
+#include "AstarMgr.h"
+#include "TileMapMgr.h"
 
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
@@ -140,11 +142,16 @@ void LoadTile(CScene* pScene, const wstring& _fullPath)
 
 
 	Background* pParallax = new Background();
-	pParallax->CreateParallaxTexture(xCount * TILE_SIZE, yCount * TILE_SIZE);
+	pParallax->CreateParallaxTexture(xCount * TILE_SIZE_RENDER, yCount * TILE_SIZE_RENDER);
 
 	HDC dc = pParallax->GetParallaxDC();
 
+	// 타일 맵 정보 세팅
+	TileMapMgr::GetI()->SetTileMapSize(xCount, yCount);
+	AstarMgr::GetI()->CreatTileMap(xCount, yCount);
+
 	CreateTile(pScene, xCount, yCount);
+
 	const vector<CObject*>& vecTile = pScene->GetGroupObject(GROUP_TYPE::TILE);
 
 	for (size_t i = 0; i < vecTile.size(); i++)

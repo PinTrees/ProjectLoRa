@@ -302,41 +302,86 @@
     <Filter Include="Game\Class\Skill\04. EnergyBall">
       <UniqueIdentifier>{a3c09e07-8116-476a-b3f9-f0275afbc9ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Editor\Astar">
+      <UniqueIdentifier>{11ae2a74-2484-4206-94ae-83dfdd29797a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\TileMapMgr">
+      <UniqueIdentifier>{9dff3a76-0762-4ed1-9c56-bfa3c75e9605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\JPS">
+      <UniqueIdentifier>{f93e790e-3dec-45e4-bd5e-08ac854358f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Header\Type">
+      <UniqueIdentifier>{c175f7fc-9e8b-41b4-8a9f-6d1dc5616858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\JPS\Data">
+      <UniqueIdentifier>{509f9212-3bec-4a18-8218-db7499cc6ef8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\JPS\Logic">
+      <UniqueIdentifier>{d67ebf9d-4fdd-4c5f-9809-b0baee8b6bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Editor\Type">
+      <UniqueIdentifier>{4755acec-f141-4a1d-8530-cb44a89a8c34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\SettingMgr">
+      <UniqueIdentifier>{f50aee12-689c-48f0-b6a1-530ee1358510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\SettingUI">
+      <UniqueIdentifier>{d90d6731-006d-48bd-b9ef-c54351f9e882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Manager\GUIMgr">
+      <UniqueIdentifier>{996e7c31-f9d3-4c5d-839c-1e6ed806bae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\Manager\CSystemMgr">
+      <UniqueIdentifier>{eb7cb92f-a95c-4275-990d-06d76167c053}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Game\Class\Skill\05. HolyArea">
-      <UniqueIdentifier>{134a53ad-34d8-4167-b25b-b856c1b3a8d5}</UniqueIdentifier>
+      <UniqueIdentifier>{8384d486-e098-45a1-9426-86fb0b4d6279}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\SkillObj\05. HolyArea_Obj">
-      <UniqueIdentifier>{52beb4b8-cea7-48b4-900e-99951573d5a2}</UniqueIdentifier>
+      <UniqueIdentifier>{e8a64ec0-1756-4bc8-9c62-94dccc289bf5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\Skill\06. Grenade">
-      <UniqueIdentifier>{0e61356e-b570-40e3-8606-a65a7d730373}</UniqueIdentifier>
+      <UniqueIdentifier>{e1095d6a-cfd1-4fc8-96da-70d1006036c6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\SkillObj\06. Grenade_Obj">
-      <UniqueIdentifier>{435c5716-b51b-4394-a8f7-ef619d20030a}</UniqueIdentifier>
+      <UniqueIdentifier>{3f7daba6-df27-407a-bf2f-18a0e062690a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Class\SkillObj\06. Grenade_Obj\06-1. Grenade_Bomb">
-      <UniqueIdentifier>{e43b980f-c42d-4e8f-b356-cd8f9c6469bb}</UniqueIdentifier>
+    <Filter Include="Game\Class\SkillObj\06. Grenade_Obj\01. Grenade_Bomb">
+      <UniqueIdentifier>{973b0cae-e1e6-475f-b886-9f7e09b5d7a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\Skill\07. CrossDagger">
-      <UniqueIdentifier>{87aa0caa-9952-4336-9c17-1192e3449f1e}</UniqueIdentifier>
+      <UniqueIdentifier>{f9789d53-6cfc-459e-ac31-7359ad369899}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\SkillObj\07. CrossDagger_Obj">
-      <UniqueIdentifier>{f98c2fb4-c960-456f-9112-7f2082def38a}</UniqueIdentifier>
+      <UniqueIdentifier>{93a3dc1b-af66-4b1c-804d-89f39f40c4d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\Skill\08. Boomerang">
-      <UniqueIdentifier>{91c7f3eb-bbfe-49af-8862-a6434a16e9cd}</UniqueIdentifier>
+      <UniqueIdentifier>{e680449a-582f-4b78-985e-6342369faeeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\SkillObj\08. Boomerang_Obj">
-      <UniqueIdentifier>{e1d00f0a-9fb7-4f72-be90-6463661c7741}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj">
-      <UniqueIdentifier>{c520c20d-954b-432d-b1d8-acca8318a717}</UniqueIdentifier>
+      <UniqueIdentifier>{2d6618da-b7b6-4e1b-bfb9-a34555aa00fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Class\Skill\09. CombatBall">
-      <UniqueIdentifier>{68a8df73-917a-438a-9017-6d3abcaaeb21}</UniqueIdentifier>
+      <UniqueIdentifier>{1845dadb-702a-4b09-97c9-c298a17dce80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj\09-1. CombatBall_Bullet">
-      <UniqueIdentifier>{931e164a-15b7-4e37-9248-2d9501b44449}</UniqueIdentifier>
+    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj">
+      <UniqueIdentifier>{80fb97c0-dd5f-46ef-ac3f-48664a90f7db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\09. CombatBall_Obj\01. CombatBall_Bullet">
+      <UniqueIdentifier>{fa96df9f-3ed7-49d2-9629-daf116119b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\01. IceBolt_Obj">
+      <UniqueIdentifier>{8a7c43d1-d615-4801-ab7d-6efbb91d58e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj">
+      <UniqueIdentifier>{dab2af35-4d63-4c01-8fb5-3f2ea4783f8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Monster_Arrow">
+      <UniqueIdentifier>{7a4fa389-b659-478e-9843-2541de58ad08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Die">
+      <UniqueIdentifier>{18505ff3-5893-4077-ad92-ae2acd710ed3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -610,6 +655,42 @@
     <ClInclude Include="CirclingBall.h">
       <Filter>Game\Class\Skill\03. CirclingBall</Filter>
     </ClInclude>
+    <ClInclude Include="AstarMgr.h">
+      <Filter>Game\Editor\Astar</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapMgr.h">
+      <Filter>Game\Manager\TileMapMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="type_define.h">
+      <Filter>FreamWork\Header\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSHeap.h">
+      <Filter>Game\Editor\JPS\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSPath.h">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="BitArray.h">
+      <Filter>Game\Editor\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSCollision.h">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="JPSMgr.h">
+      <Filter>Game\Editor\JPS</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingMgr.h">
+      <Filter>Game\Manager\SettingMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingUI.h">
+      <Filter>Game\UI\SettingUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIMgr.h">
+      <Filter>Game\Manager\GUIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSystemMgr.h">
+      <Filter>FreamWork\Manager\CSystemMgr</Filter>
+    </ClInclude>
     <ClInclude Include="HolyArea.h">
       <Filter>Game\Class\Skill\05. HolyArea</Filter>
     </ClInclude>
@@ -623,7 +704,7 @@
       <Filter>Game\Class\SkillObj\06. Grenade_Obj</Filter>
     </ClInclude>
     <ClInclude Include="Grenade_Bomb.h">
-      <Filter>Game\Class\SkillObj\06. Grenade_Obj\06-1. Grenade_Bomb</Filter>
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj\01. Grenade_Bomb</Filter>
     </ClInclude>
     <ClInclude Include="CrossDagger.h">
       <Filter>Game\Class\Skill\07. CrossDagger</Filter>
@@ -634,17 +715,26 @@
     <ClInclude Include="Boomerang.h">
       <Filter>Game\Class\Skill\08. Boomerang</Filter>
     </ClInclude>
+    <ClInclude Include="CombatBall.h">
+      <Filter>Game\Class\Skill\09. CombatBall</Filter>
+    </ClInclude>
     <ClInclude Include="Boomerang_Obj.h">
       <Filter>Game\Class\SkillObj\08. Boomerang_Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="CombatBall_Bullet.h">
-      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\09-1. CombatBall_Bullet</Filter>
     </ClInclude>
     <ClInclude Include="CombatBall_Obj.h">
       <Filter>Game\Class\SkillObj\09. CombatBall_Obj</Filter>
     </ClInclude>
-    <ClInclude Include="CombatBall.h">
-      <Filter>Game\Class\Skill\09. CombatBall</Filter>
+    <ClInclude Include="CombatBall_Bullet.h">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\01. CombatBall_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ThunderBoom.h">
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_Arrow.h">
+      <Filter>Game\Object\Monster_Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="PDieState.h">
+      <Filter>Game\FSM\Player\Die</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -911,6 +1001,36 @@
     <ClCompile Include="CirclingBall.cpp">
       <Filter>Game\Class\Skill\03. CirclingBall</Filter>
     </ClCompile>
+    <ClCompile Include="AstarMgr.cpp">
+      <Filter>Game\Editor\Astar</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapMgr.cpp">
+      <Filter>Game\Manager\TileMapMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSHeap.cpp">
+      <Filter>Game\Editor\JPS\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSPath.cpp">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSCollision.cpp">
+      <Filter>Game\Editor\JPS\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="JPSMgr.cpp">
+      <Filter>Game\Editor\JPS</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingMgr.cpp">
+      <Filter>Game\Manager\SettingMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingUI.cpp">
+      <Filter>Game\UI\SettingUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIMgr.cpp">
+      <Filter>Game\Manager\GUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSystemMgr.cpp">
+      <Filter>FreamWork\Manager\CSystemMgr</Filter>
+    </ClCompile>
     <ClCompile Include="HolyArea.cpp">
       <Filter>Game\Class\Skill\05. HolyArea</Filter>
     </ClCompile>
@@ -924,7 +1044,7 @@
       <Filter>Game\Class\SkillObj\06. Grenade_Obj</Filter>
     </ClCompile>
     <ClCompile Include="Grenade_Bomb.cpp">
-      <Filter>Game\Class\SkillObj\06. Grenade_Obj\06-1. Grenade_Bomb</Filter>
+      <Filter>Game\Class\SkillObj\06. Grenade_Obj\01. Grenade_Bomb</Filter>
     </ClCompile>
     <ClCompile Include="CrossDagger.cpp">
       <Filter>Game\Class\Skill\07. CrossDagger</Filter>
@@ -935,17 +1055,26 @@
     <ClCompile Include="Boomerang.cpp">
       <Filter>Game\Class\Skill\08. Boomerang</Filter>
     </ClCompile>
+    <ClCompile Include="CombatBall.cpp">
+      <Filter>Game\Class\Skill\09. CombatBall</Filter>
+    </ClCompile>
     <ClCompile Include="Boomerang_Obj.cpp">
       <Filter>Game\Class\SkillObj\08. Boomerang_Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="CombatBall_Bullet.cpp">
-      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\09-1. CombatBall_Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CombatBall_Obj.cpp">
       <Filter>Game\Class\SkillObj\09. CombatBall_Obj</Filter>
     </ClCompile>
-    <ClCompile Include="CombatBall.cpp">
-      <Filter>Game\Class\Skill\09. CombatBall</Filter>
+    <ClCompile Include="CombatBall_Bullet.cpp">
+      <Filter>Game\Class\SkillObj\09. CombatBall_Obj\01. CombatBall_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ThunderBoom.cpp">
+      <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Arrow.cpp">
+      <Filter>Game\Object\Monster_Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="PDieState.cpp">
+      <Filter>Game\FSM\Player\Die</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

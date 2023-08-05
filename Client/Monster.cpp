@@ -6,6 +6,7 @@
 // Include Manager
 #include "CTimeMgr.h"
 #include "CResMgr.h"
+#include "PlayerMgr.h"
 
 // System Module Header
 #include "Random.h"
@@ -23,12 +24,15 @@
 #include "BarUI.h"
 
 #include "CombatText.h"
+#include "SelectGDI.h"
 
+#include "Player.h"
 
-
-Monster::Monster(const wstring& uid)
+Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	: mtInfo({})
 	, mAI(nullptr)
+	, mType(Type)
+	, mCurDamageDelay()
 {
 	mtInfo.UID = uid;
 
@@ -46,7 +50,7 @@ Monster::Monster(const wstring& uid)
 		GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
 		GetCollider()->SetScale(Vect2(40.f, 40.f));
 		GetCollider()->SetOffsetPos(Vect2(75.f, 35.f));
-		SetScale(Vect2(280.f, 180.f) * 0.8f);
+		SetScale(Vect2(100.f, 100.f) * 0.8f);
 		SetPivot(Vect2(75.f, 35.f));
 	}
 	else if (mtInfo.UID == L"2")
@@ -80,14 +84,34 @@ Monster::~Monster()
 }
 
 
-void Monster::Render(HDC _dc)
+void Monster::Render(HDC dc)
 {
-	CompnentRender(_dc);
+	CompnentRender(dc);
+
+	if (mVecPathPos.empty())
+		return;
+
+	SelectGDI p = SelectGDI(dc, PEN_TYPE::BLUE);
+
+	if (DEBUG)
+	{
+		Vect2 vStartPos = CCamera::GetI()->GetRenderPos(mVecPathPos[0]);
+
+		MoveToEx(dc, vStartPos.x, vStartPos.y, nullptr); // 현재 좌표 설정
+		// 나머지 좌표들을 순회하며 라인을 그립니다.
+		for (size_t i = 1; i < mVecPathPos.size(); ++i)
+		{
+			Vect2 vDrawPos = CCamera::GetI()->GetRenderPos(mVecPathPos[i]);
+			LineTo(dc, vDrawPos.x, vDrawPos.y);
+		}
+	}
 }
 
 
 void Monster::Update()
 {
+	mCurDamageDelay += DT;
+
 	GetAnimator()->Update();
 
 	if (nullptr != mAI)
@@ -134,6 +158,20 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
 
 		CreateForce(fc);
+	}
+}
+
+void Monster::OnCollisionStay(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	if (pOtherObj->GetName() == L"Player"
+		&& mCurDamageDelay > 0.5f)
+	{
+		Player* player = PlayerMgr::GetI()->GetPlayer();
+
+		player->AddDamage(mtInfo.atk);
+		mCurDamageDelay = 0.f;
 	}
 }
 

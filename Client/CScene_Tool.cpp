@@ -29,6 +29,8 @@
 #include "CScrollView.h"
 
 
+
+
 // function header
 void ChangeScene(DWORD_PTR, DWORD_PTR);
 void SelectTile(DWORD_PTR, DWORD_PTR);
@@ -123,10 +125,11 @@ void Scene_Tool::Update()
 		mToolUI->SetVisible(!mToolUI->IsVisible());
 	}
 
+
 	float wheelDelta = CKeyMgr::GetI()->GetWheelAxis();
 	if (wheelDelta != 0.f && !CUIMgr::GetI()->IsMouseOnUI())
 	{
-		mTileRenderSize += wheelDelta * DT * 0.1f;
+		mTileRenderSize += wheelDelta > 0 ? 1 : -1;
 
 		if (mTileRenderSize < 3.f)
 			mTileRenderSize = 3.f;
@@ -155,6 +158,29 @@ void Scene_Tool::SetTileIdx()
 	}
 
 	if (KEY_HOLD(KEY::LBTN))
+	{
+		//현재 마우스 좌표 가져옴
+		Vect2 vMousePos = MOUSE_POS;
+		// 카메라에서 실제좌표로 변경
+		vMousePos = CCamera::GetI()->GetRealPos(vMousePos);
+
+		int iCol = (int)vMousePos.x / mTileRenderSize;
+		int iRow = (int)vMousePos.y / mTileRenderSize;
+
+		if (vMousePos.x < 0.f || static_cast<int>(mTileX) <= iCol || vMousePos.y < 0.f || static_cast<int>(mTileY) <= iRow)
+		{
+			return;
+		}
+
+		//타일 인덱스
+		UINT iIdx = iRow * mTileX + iCol;
+
+		const vector<CObject*>& vecTile = GetGroupObject(GROUP_TYPE::TILE);
+		int i = ToolMgr::GetI()->GetCurTileIdx();
+		((Tile*)vecTile[iIdx])->SetImgIdx(i);
+	}
+
+	if (KEY_HOLD(KEY::RBTN))
 	{
 		//현재 마우스 좌표 가져옴
 		Vect2 vMousePos = MOUSE_POS;

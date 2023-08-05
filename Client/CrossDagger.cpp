@@ -5,6 +5,9 @@
 #include "Player.h"
 #include "PlayerMgr.h"
 
+
+
+
 CrossDagger::CrossDagger()
 	: Skill(SKILL_TYPE::CROSS_DAGGER, 5)
 	, mCount(4)
@@ -31,7 +34,7 @@ void CrossDagger::UseSkill()
 
 		CreateObject(pDagger, GROUP_TYPE::PROJ_PLAYER);
 	}
-	
+
 	SetSkillTime(0.f);
 }
 

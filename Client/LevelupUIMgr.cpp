@@ -49,14 +49,14 @@ void LevelUpUIMgr::Init()
 	mMapLvupEffectData[STATEUP_TYPE::SPLITCOUNT_UP]			= { L"분열되는 총알의 개수 증가", L"__Test__" };
 	mMapLvupEffectData[STATEUP_TYPE::BOUNTCECOUNT_UP]		= { L"총알이 벽에 튕기는 횟수 증가", L"__Test__" };
 
-	mMapLvupEffectData_Skill[SKILL_TYPE::ICE_BOLT]		= { L"테스트 스킬 1 업그레이드", L"아이스볼트" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::ENERGY_BALL]	= { L"테스트 스킬 1 업그레이드", L"에너지볼" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::THUNDER]		= { L"테스트 스킬 2 업그레이드", L"번개" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::CIRCLING_BALL] = { L"테스트 스킬 3 업그레이드", L"서클링볼" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::HOLYAREA]		= { L"테스트 스킬 4 업그레이드", L"성역" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::GRENADE]		= { L"테스트 스킬 5 업그레이드", L"수류탄" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::CROSS_DAGGER]	= { L"테스트 스킬 6 업그레이드", L"표창" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::BOOMERANG]		= { L"테스트 스킬 7 업그레이드", L"부메랑" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::ICE_BOLT]		= { L"적에게 얼음 창을 발사합니다.", L"아이스볼트" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::ENERGY_BALL]	= { L"적에게 에너지 구체를 발사합니다.", L"에너지볼" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::THUNDER]		= { L"무작위 적 번개 공격", L"번개" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::CIRCLING_BALL] = { L"플레이어 주위를 맴도는 공", L"서클링볼" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::HOLYAREA]		= { L"플레이어 주위에 가까운 적을 공격", L"성역" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::GRENADE]		= { L"적에게 수류탄을 투척합니다.", L"수류탄" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::CROSS_DAGGER]	= { L"표창 발사 공격", L"표창" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::BOOMERANG]		= { L"부메랑 발사 공격", L"부메랑" };
 	mMapLvupEffectData_Skill[SKILL_TYPE::COMBAT_BALL]	= { L"테스트 스킬 8 업그레이드", L"전투오브" };
 
 	Vect2 vRes = CCore::GetI()->GetResolution();

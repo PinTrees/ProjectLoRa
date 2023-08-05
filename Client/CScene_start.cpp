@@ -15,15 +15,31 @@
 #include "CTimeMgr.h"
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
+#include "CResMgr.h"
 
+// ==========================
 // Game Manager Header
 #include "PlayerMgr.h"
+#include "TileMapMgr.h"
+#include "SkillMgr.h"
+#include "DatabaseMgr.h"
+
+// UI Manager Header
+#include "HubUIMgr.h"
 #include "LevelUpUIMgr.h"
+#include "GUIMgr.h"
+
+// Path Manager Header
+#include "AstarMgr.h"
+#include "JPSMgr.h"
+// ==========================
+
 
 // Components Header
 #include "CCollider.h"
 #include "CTexture.h"
 #include "CCamera.h"
+
 
 // Player State Header
 #include "AI.h"
@@ -31,16 +47,21 @@
 #include "PRunState.h"
 #include "PDashState.h"
 #include "PAtkState.h"
+#include "PDieState.h"
 
 #include "MonsterFactory.h"
-#include "HubUIMgr.h"
-#include "SkillMgr.h"
-#include "DatabaseMgr.h"
+
+
+// UI Components Header
+#include "CBtnUI.h"
+#include "CImageUI.h"
+
 
 
 Scene_Start::Scene_Start()
-	: mfMstrDelay(1.f)
-	, mfCurDelay(0.f)
+	: mfMstrDelay(30.f)
+	, mfCurDelay(30.f)
+	, mMonsterWave()
 {
 }
 
@@ -52,8 +73,11 @@ Scene_Start::~Scene_Start()
 	HubUIMgr::Dispose();
 	SkillMgr::Dispose();
 	DatabaseMgr::Dispose();
+	AstarMgr::Dispose();
+	JPSMgr::Dispose();
+	TileMapMgr::Dispose();
+	GUIMgr::Dispose();
 }
-
 
 
 void Scene_Start::Update()
@@ -64,34 +88,31 @@ void Scene_Start::Update()
 
 	if (mfCurDelay > mfMstrDelay)
 	{
-		mfMstrDelay *= 0.98f;
 		mfCurDelay = 0.f;
 		CreateMonster();
 	}
+
+	UINT frmae = CTimeMgr::GetI()->GetFrame();
+	GUIMgr::GetI()->SetFrameText(frmae);
 }
 
 void Scene_Start::Enter()
 {
 	LoadTile(this, L"database\\map_1.tile");
 
+	GUIMgr::GetI()->Init();
+	LevelUpUIMgr::GetI()->Init();
+	HubUIMgr::GetI()->Init();
+	DatabaseMgr::GetI()->Init();
+	JPSMgr::GetI()->Init();
+
 	createPlayer();
 
-	//몬스터 배치
-	int iMonCount = 8;
-	for (int i = 0; i < iMonCount; i++)
-	{
-		CreateMonster();
-	}
-
-	int iEnvCount = 8;
+	int iEnvCount = 150;
 	for (int i = 0; i < iEnvCount; i++)
 	{
 		createEnvi();
 	}
-
-	LevelUpUIMgr::GetI()->Init();
-	HubUIMgr::GetI()->Init();
-	DatabaseMgr::GetI()->Init();
 
 	// 충돌 지정
 	//  Player 그룹과 Monster 그룹 간의 충돌체크
@@ -101,7 +122,7 @@ void Scene_Start::Enter()
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_PLAYER, GROUP_TYPE::ENV);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
-	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::GROUND_PLAYER, GROUP_TYPE::MONSTER);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_MONSTER, GROUP_TYPE::PLAYER);
 
 	// Camera Look 지정
 	Vect2 vResolution = CCore::GetI()->GetResolution();
@@ -123,29 +144,58 @@ void Scene_Start::Exit()
 
 
 
-void Scene_Start::CreateMonster()
+void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 {
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	// 몬스터를 소환할 가장자리 위치 설정
 	float edgeDistance = 100.f;				// 가장자리로부터의 거리
-	float xPos = rand() % (int)(vResolution.x - 2 * edgeDistance) + edgeDistance; // x 좌표 범위: edgeDistance부터 (가로 해상도 - 2 * edgeDistance)까지
-	float yPos = rand() % (int)(vResolution.y - 2 * edgeDistance) + edgeDistance; // y 좌표 범위: edgeDistance부터 (세로 해상도 - 2 * edgeDistance)까지
 
-	Vect2 vCreatePos;
-	// 가장자리 위치 계산
-	// 상하 가장자리
-	if (rand() % 2 == 0) 
-		vCreatePos = Vect2(xPos, rand() % 2 == 0 ? edgeDistance : vResolution.y - edgeDistance);
-	// 좌우 가장자리
-	else 
-		vCreatePos = Vect2(rand() % 2 == 0 ? edgeDistance : vResolution.x - edgeDistance, yPos);
-	
-	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
+	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x / 2.f;
+	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y / 2.f;
 
+	int MonsterCount = 5 + (float)mMonsterWave * 3.f;
+	Vect2 vMonsterInterval = vResolution / MonsterCount;
 
-	Monster* pMonsterObj = MonsterFactory::CreateMonster(MONSTER_TYPE::NORMAL, vCreatePos);
-	AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
+	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
+	{
+		Vect2 vCreatePos1 = Vect2(xPos - edgeDistance, yPos + vMonsterInterval.y * i);		// 좌측 화면에서 몬스터를 생성
+		Monster* pShort = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
+		AddObject(pShort, GROUP_TYPE::MONSTER);
+
+		vCreatePos1 = Vect2(xPos + vResolution.x + edgeDistance, yPos + vMonsterInterval.y * i);	// 우측 화면에서 몬스터를 생성
+		Monster* pShort1 = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
+		AddObject(pShort1, GROUP_TYPE::MONSTER);
+
+		vCreatePos1 = Vect2(xPos + vMonsterInterval.x * i, yPos - edgeDistance);			// 화면 상단에서 몬스터를 생성
+		Monster* pShort2 = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
+		AddObject(pShort2, GROUP_TYPE::MONSTER);
+
+		vCreatePos1 = Vect2(xPos + vMonsterInterval.x * i, yPos + vResolution.y + edgeDistance);	// 화면 하단에서 몬스터를 생성
+		Monster* pShort3 = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
+		AddObject(pShort3, GROUP_TYPE::MONSTER);
+	}
+
+	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 원거리 공격 몬스터를 생성 (4방면에서 생성됨)
+	{
+		Vect2 vCreatePos = Vect2(xPos - edgeDistance, yPos + vMonsterInterval.y * i);
+		Monster* pLong = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
+		AddObject(pLong, GROUP_TYPE::MONSTER);
+
+		vCreatePos = Vect2(xPos + vResolution.x + edgeDistance, yPos + vMonsterInterval.y * i);
+		Monster* pLong2 = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
+		AddObject(pLong2, GROUP_TYPE::MONSTER);
+
+		vCreatePos = Vect2(xPos + vMonsterInterval.x * i, yPos - edgeDistance);
+		Monster* pLong3 = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
+		AddObject(pLong3, GROUP_TYPE::MONSTER);
+
+		vCreatePos = Vect2(xPos + vMonsterInterval.x * i, yPos + vResolution.y + edgeDistance);
+		Monster* pLong4 = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
+		AddObject(pLong4, GROUP_TYPE::MONSTER);
+	}
+
+	++mMonsterWave;	// 몬스터 웨이브의 진행 상태만큼 몬스터를 증가하기 위해 사용
 }
 
 
@@ -153,18 +203,25 @@ void Scene_Start::CreateMonster()
 
 void Scene_Start::createEnvi()
 {
-	Vect2 vResolution = CCore::GetI()->GetResolution();
+	int tileX = TileMapMgr::GetI()->GetTileMapSizeX();
+	int tiley = TileMapMgr::GetI()->GetTileMapSizeY();
 
-	float xPos = rand() % (int)(vResolution.x);
-	float yPos = rand() % (int)(vResolution.y); 
-	Vect2 vCreatePos = Vect2(xPos, yPos);
+	int xPos = rand() % tileX;
+	int yPos = rand() % tiley;
 
-	vCreatePos = CCamera::GetI()->GetRealPos(vCreatePos);
+	Vect2 vPos = Vect2(xPos, yPos);
+	Vect2 vTileScale = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER);
+	Vect2 vCreatePos = vPos * TILE_SIZE_RENDER + vTileScale * 0.5f;
 
-	Environment* pEnvObj = nullptr;
-	pEnvObj = new Environment(L"101");
+	AstarMgr::GetI()->SetObstacleTile(xPos, yPos);
+	JPSMgr::GetI()->SetCollisionTile(xPos, yPos);
+
+	Environment* pEnvObj = new Environment(L"101");
+
 	pEnvObj->SetName(L"ENV");
 	pEnvObj->SetPos(vCreatePos);
+	pEnvObj->SetScale(vTileScale);
+	pEnvObj->GetCollider()->SetScale(vTileScale);
 	pEnvObj->GetCollider()->SetTrigger(false);
 	AddObject(pEnvObj, GROUP_TYPE::ENV);
 }
@@ -186,6 +243,7 @@ void Scene_Start::createPlayer()
 	pAI->AddState(new PRunState);
 	pAI->AddState(new PDashState);
 	pAI->AddState(new PAtkState);
+	pAI->AddState(new PDieState);
 	pAI->SetCurState(PLAYER_STATE::IDLE);
 
 	pPlayer->SetAI(pAI);
@@ -193,6 +251,13 @@ void Scene_Start::createPlayer()
 	PlayerMgr::GetI()->SetPlayer(pPlayer);
 	CCamera::GetI()->SetTarget(pPlayer);
 }
+
+
+
+
+
+
+
 
 
 

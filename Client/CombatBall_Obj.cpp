@@ -14,6 +14,9 @@
 #include "CAnimator.h"
 #include "CCollider.h"
 
+
+
+
 CombatBall_Obj::CombatBall_Obj()
 	: mCurTime()
 	, mPrevLv()
@@ -67,12 +70,12 @@ void CombatBall_Obj::Update()
 
 		Vect2 LeftCurv = GetPos();
 		LeftCurv.x += cosf(mTheta + 1.25f * PI) * Distance;	// 오브젝트의 좌측 후방쪽에 커브지점을 생성
-		LeftCurv.y += sinf(mTheta + 1.25f * PI) * Distance;	
+		LeftCurv.y += sinf(mTheta + 1.25f * PI) * Distance;
 
 		Vect2 RightCurv = GetPos();
 		RightCurv.x += cosf(mTheta + 0.75f * PI) * Distance; // 오브젝트의 우측 후방쪽에 커브지점을 생성
 		RightCurv.y += sinf(mTheta + 0.75f * PI) * Distance;
-																	// 생성된 좌표들이 오브젝트의 공격방향과 함께 회전함
+		// 생성된 좌표들이 오브젝트의 공격방향과 함께 회전함
 		float Curv_x;
 		float Curv_y;
 

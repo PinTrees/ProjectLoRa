@@ -1,5 +1,9 @@
 #pragma once
 #include "SkillObj.h"
+
+
+
+
 class Boomerang_Obj :
     public SkillObj
 {

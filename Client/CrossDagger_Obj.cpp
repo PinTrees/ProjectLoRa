@@ -11,6 +11,9 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 
+
+
+
 CrossDagger_Obj::CrossDagger_Obj()
 	: mCurTime()
 	, mTheta()

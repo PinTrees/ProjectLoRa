@@ -32,5 +32,7 @@ public:
 public:
 	double GetDT() { return m_dDT; }
 	float GetfDT() { return (float)m_dDT; }
+
+	UINT GetFrame() { return m_iFPS; }
 };
 

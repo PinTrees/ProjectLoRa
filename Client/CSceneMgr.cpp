@@ -56,6 +56,11 @@ void CSceneMgr::Update()
 	m_pCurScene->Update();
 }
 
+void CSceneMgr::UIUpdate()
+{
+	m_pCurScene->UIUpdate();
+}
+
 
 void CSceneMgr::FinalUpdate()
 {

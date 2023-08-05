@@ -40,9 +40,11 @@
 #define TILE_SIZE 32
 #define TILE_SIZE_RENDER 64
 
-#define DEBUG true
+#define DEBUG CSystemMgr::GetI()->GetDebug()
 
-
+// --------------------------------------
+// Engine 
+// --------------------------------------
 enum class GROUP_TYPE
 {
 	BACKGROUND,
@@ -61,7 +63,6 @@ enum class GROUP_TYPE
 	MONSTER,
 	PROJ_PLAYER,
 	PROJ_MONSTER,
-
 
 	EFFECT,
 
@@ -115,13 +116,13 @@ enum class RECT_DIRECTION
 };
 
 
-enum class BULLET_STATE
+
+enum class FIND_PATH_TYPE
 {
-
+	ASTAR,
+	JPS,
+	JPS_B,
 };
-
-
-
 
 
 // Monster State
@@ -195,4 +196,10 @@ enum class STATEUP_TYPE
 };
 
 
+enum class MONSTER_TYPE
+{
+	SHORT,
+	LONG,
 
+	END
+};
