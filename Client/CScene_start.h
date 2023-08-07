@@ -12,7 +12,7 @@ private:
 	float		mfMstrDelay;
 	float		mfCurDelay;
 
-
+	int			mMonsterWave;
 
 public:
 	virtual void Update();

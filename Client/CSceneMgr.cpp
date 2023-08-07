@@ -56,9 +56,9 @@ void CSceneMgr::Update()
 	m_pCurScene->Update();
 }
 
-void CSceneMgr::UIUpdate()
+void CSceneMgr::UpdateUI()
 {
-	m_pCurScene->UIUpdate();
+	m_pCurScene->UpdateUI();
 }
 
 

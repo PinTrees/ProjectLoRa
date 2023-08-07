@@ -22,14 +22,14 @@ CrossDagger_Obj::CrossDagger_Obj()
 	SetMaxDelay(2.f);
 	SetName(L"CrossDagger");
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(30.f, 30.f));
+	GetCollider()->SetScale(Vect2(30.f, 30.f) * 1.5f);
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CrossDagger", L"texture\\effect\\6.bmp");
 	CreateAnimator();
 
 	GetAnimator()->CreateAnimation(L"CrossDagger", pTex, Vect2(36.f, 0.f), Vect2(36.f, 36.f), Vect2(36.f, 0.f), 0.5f, 1);
-	SetScale(Vect2(50.f, 50.f));
+	SetScale(Vect2(50.f, 50.f) * 1.2f);
 
 	GetAnimator()->Play(L"CrossDagger", true);
 }

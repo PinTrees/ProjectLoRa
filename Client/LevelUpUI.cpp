@@ -11,6 +11,8 @@
 #include "LevelUpUIMgr.h"
 #include "CFont.h"
 
+#include "CImageUI.h"
+
 // Game Manager Header
 #include "PlayerMgr.h"
 #include "SkillMgr.h"
@@ -26,6 +28,7 @@ LevelupUI::LevelupUI()
 	, mInfo({})
 	, mInfoText(nullptr)
 	, mSelectBtn(nullptr)
+	, mIconImg(nullptr)
 {
 	// 새로운 UI 틀을 제작해야할 경우 해당들의 자식 UI 정보가 크게 변하지 않을 경우 직접 변수에 할당및 자식으로 추가
 	SetPos(Vect2::zero);
@@ -42,8 +45,14 @@ LevelupUI::LevelupUI()
 	mTitleText->SetFontSize(32);
 	this->AddChild(mTitleText);
 
+	mIconImg = new CImageUI;
+	mIconImg->SetPos(Vect2(0.f, -50.f));
+	mIconImg->SetScale(Vect2(50.f, 50.f));
+	mIconImg->SetColor(RGB(255, 255, 255));
+	this->AddChild(mIconImg);
+
 	mInfoText = new TextUI;
-	mInfoText->SetPos(Vect2(0.f, 0.f));
+	mInfoText->SetPos(Vect2(0.f, 15.f));
 	mInfoText->SetScale(Vect2(260.f, 50.f));
 	mInfoText->SetText(L"");
 	mInfoText->SetColor(RGB(255, 255, 255));
@@ -71,6 +80,9 @@ void LevelupUI::SetEffect(tLeveUpEvent event)
 	tLvupEffectData* tEventData = (tLvupEffectData*)event.wParam;
 	mTitleText->SetText(tEventData->titleStr);
 	mInfoText->SetText(tEventData->infoStr);
+
+	mIconImg->SetTexture(CResMgr::GetI()->LoadTexture(L"Skill_Icon_" + tEventData->iconStr,
+		L"texture\\icon\\" + tEventData->iconStr));
 }
 
 
@@ -156,13 +168,6 @@ void LevelupUI::statusUp(STATEUP_TYPE state)
 void LevelupUI::skillUp(SKILL_TYPE state)
 {
 	Player* pPlayer = PlayerMgr::GetI()->GetPlayer();
-	Skill* pSkill = pPlayer->FindSkill(state);
-
-	if (nullptr == pSkill)
-	{
-		pSkill = DatabaseMgr::GetI()->GetSkill(state);
-		pPlayer->AddSkill(pSkill);
-	}
-
-	pSkill->AddSkillLevel();
+	Skill* pSkill = DatabaseMgr::GetI()->GetSkill(state);
+	pPlayer->AddSkill(pSkill);
 }

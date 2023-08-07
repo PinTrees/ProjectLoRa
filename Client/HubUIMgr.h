@@ -4,6 +4,7 @@
 class CUI;
 class CRow;
 class TextUI;
+class Skill;
 
 
 class HubUIMgr
@@ -11,15 +12,16 @@ class HubUIMgr
 	SINGLE(HubUIMgr)
 
 private:
-	CUI*	mBulletRowUI;
-	CUI*	mReroadUI;
-	TextUI* mpLevelText;
+	CUI*		mBulletRowUI;
+	CUI*		mReroadUI;
+	TextUI*		mpLevelText;
+	CRow*		mpSkillUI;
 
 
 public:
 	void SetBulletUI(UINT count);
 	void SetLevelText(int level);
-
+	void BuildSkillUI(vector<Skill*>& skills);
 
 public:
 	void Init();

@@ -8,6 +8,7 @@ class TraceState :
 private:
     float mAstarDelay;
     float mCurDelay;
+    float mAttakDelay;
 
     Vect2 mvTargetPos;
 

@@ -154,6 +154,7 @@
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Boomerang_Obj.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
@@ -207,8 +208,10 @@
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="Monster_Arrow.h" />
     <ClInclude Include="PAtkState.h" />
     <ClInclude Include="PDashState.h" />
+    <ClInclude Include="PDieState.h" />
     <ClInclude Include="PIdleState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="CRes.h" />
@@ -270,6 +273,7 @@
     <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Boomerang_Obj.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
@@ -325,8 +329,10 @@
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="Monster_Arrow.cpp" />
     <ClCompile Include="PAtkState.cpp" />
     <ClCompile Include="PDashState.cpp" />
+    <ClCompile Include="PDieState.cpp" />
     <ClCompile Include="PIdleState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="CRes.cpp" />

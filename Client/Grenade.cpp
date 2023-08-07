@@ -14,6 +14,7 @@
 Grenade::Grenade()
 	: Skill(SKILL_TYPE::GRENADE, 6)
 {
+	SetIconStr(L"6.bmp");
 	SetCoolDown(4.f);
 }
 

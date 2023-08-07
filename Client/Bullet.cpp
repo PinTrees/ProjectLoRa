@@ -42,8 +42,8 @@ Bullet::Bullet(const wstring& _type)
 
 	if (_type == L"1")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 32.f), Vect2(48.f, 0.f), 0.5f, 4);
-		SetScale(Vect2(48.f, 32.f) * 1.0f);
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 32.f), Vect2(48.f, 0.f), 0.05f, 4);
+		SetScale(Vect2(48.f, 32.f) * 1.5f);
 		SetAngleOffset(180);
 	}
 	else if (_type == L"2")
@@ -103,8 +103,7 @@ void Bullet::Update()
 		}
 	}
 
-	vPos.x += 500.f * m_vDir.x * DT;
-	vPos.y += 500.f * m_vDir.y * DT;
+	vPos += m_vDir * DT * 350.f;
 
 	SetPos(vPos);
 	GetAnimator()->Update();

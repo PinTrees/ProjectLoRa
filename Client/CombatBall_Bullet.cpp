@@ -17,20 +17,20 @@
 CombatBall_Bullet::CombatBall_Bullet()
 	: mCurTime()
 	, mRemainTime()
-	, mArrivalTime(0.5f)
+	, mArrivalTime(0.8f)
 {
 	SetMaxDelay(1.f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.f);
 	SetName(L"CombatBall_Bullet");
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(20.f, 20.f));
+	GetCollider()->SetScale(Vect2(20.f, 20.f) * 1.2f);
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CombatBall_Bullet", L"texture\\effect\\4.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"CombatBall_Bullet", pTex, Vect2(48.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
-	SetScale(Vect2(50.f, 50.f));
+	GetAnimator()->CreateAnimation(L"CombatBall_Bullet", pTex, Vect2(48.f, 0.f) * 4, Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
+	SetScale(Vect2(50.f, 50.f) * 0.8f);
 
 	GetAnimator()->Play(L"CombatBall_Bullet", true);
 }

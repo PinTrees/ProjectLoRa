@@ -39,13 +39,20 @@ void CRow::Update()
     else if (IsAligmentCenter(mAlignment))
     {
         float childrenWidth = 0.f;
-        for (int i = 0; i < children.size(); ++i)
+        float spacingWidth = 0.f;
+        for (int i = 0; i < children.size(); ++i) {
+            if (!children[i]->IsVisible()) continue;
+
             childrenWidth += children[i]->GetScale().x;
-        vChildRootPos.x = -childrenWidth * 0.5f - (mSpacing * (children.size() - 1) * 0.5f);
+            spacingWidth += i == 0 ? 0 : mSpacing;
+        }
+        vChildRootPos.x = -childrenWidth * 0.5f - (spacingWidth * 0.5f);
     }
 
     for (int i = 0; i < children.size(); ++i)
     {
+        if (!children[i]->IsVisible()) continue;
+
         if(IsAligmentLeft(mAlignment))
             vChildRootPos.x += children[i]->GetScale().x * 0.5f;
         else if (IsAligmentRight(mAlignment))

@@ -15,6 +15,7 @@
 Thunder::Thunder()
 	: Skill(SKILL_TYPE::THUNDER, 5)
 {
+	SetIconStr(L"2.bmp");
 	SetCoolDown(1.f);
 }
 

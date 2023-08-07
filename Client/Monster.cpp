@@ -6,6 +6,7 @@
 // Include Manager
 #include "CTimeMgr.h"
 #include "CResMgr.h"
+#include "PlayerMgr.h"
 
 // System Module Header
 #include "Random.h"
@@ -25,53 +26,62 @@
 #include "CombatText.h"
 #include "SelectGDI.h"
 
+#include "Player.h"
 
-
-Monster::Monster(const wstring& uid)
+Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 	: mtInfo({})
 	, mAI(nullptr)
+	, mType(Type)
+	, mCurDamageDelay()
 {
+	SetName(L"Monster");
 	mtInfo.UID = uid;
 
 	CreateCollider();
-
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_" + uid, L"texture\\monster\\" + uid + L".bmp");
 	CreateAnimator();
-	
-	if (mtInfo.UID == L"1")
+
+	mHpBar = new BarUI;
+	mHpBar->SetScale(Vect2(40.f, 4.f));
+	mHpBar->SetColor(RGB(255, 0, 0));
+	CreateObject(mHpBar, GROUP_TYPE::UI);
+
+	if (mtInfo.UID == L"3")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 93 * 1.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 93 * 2.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 93 * 4.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 7);
-		GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), Vect2(140.f, 93.f), Vect2(140.f, 0.f), 0.07f, 8);
-		GetCollider()->SetScale(Vect2(40.f, 40.f));
-		GetCollider()->SetOffsetPos(Vect2(75.f, 35.f));
-		SetScale(Vect2(280.f, 180.f) * 0.8f);
-		SetPivot(Vect2(75.f, 35.f));
+		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_3_r", L"texture\\monster\\3_r.bmp");
+
+		Vect2 vSliseSize = Vect2(128.f, 130.f);
+		Vect2 vStepSize = Vect2(128.f, 0.f);
+		Vect2 vLtPos = Vect2(0.f, 130.f);
+
+		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 8);
+		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
+		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), vSliseSize, vStepSize, 0.07f, 8);
+		GetCollider()->SetScale(Vect2(30.f, 50.f));
+		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
+		SetScale(Vect2(128.f, 130.f) * 0.8f);
+		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+
+		mHpBar->SetPivot(Vect2(0.f, -12.f));
 	}
 	else if (mtInfo.UID == L"2")
 	{
+		CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_2", L"texture\\monster\\2.bmp");
+
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 48.f * 1.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 3.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 48.f * 8.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.07f, 4);
 		GetCollider()->SetOffsetPos(Vect2::zero);
-		SetScale(Vect2(48.f, 48.f) * 1.3f);
+		SetScale(Vect2(48.f, 48.f) * 1.f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+		GetCollider()->SetScale(GetScale() * 0.6f);
+
+		mHpBar->SetPivot(Vect2(0.f, GetScale().y * -0.4f));
 	}
 
-	GetCollider()->SetScale(GetScale() * 0.6f);
-	GetCollider()->SetOffsetPos(GetPivot() * 0.4f);
-
 	GetAnimator()->Play(L"IDLE", true);
-
-	mHpBar = new BarUI;
-	mHpBar->SetPivot(Vect2(0.f, GetScale().y * -0.4f));
-	mHpBar->SetScale(Vect2(45.f, 5.f));
-	mHpBar->SetColor(RGB(255, 0, 0));
-	CreateObject(mHpBar, GROUP_TYPE::UI);
 }
 
 Monster::~Monster()
@@ -107,6 +117,8 @@ void Monster::Render(HDC dc)
 
 void Monster::Update()
 {
+	mCurDamageDelay += DT;
+
 	GetAnimator()->Update();
 
 	if (nullptr != mAI)
@@ -153,6 +165,20 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
 
 		CreateForce(fc);
+	}
+}
+
+void Monster::OnCollisionStay(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	if (pOtherObj->GetName() == L"Player"
+		&& mCurDamageDelay > 0.5f)
+	{
+		Player* player = PlayerMgr::GetI()->GetPlayer();
+
+		player->AddDamage(mtInfo.atk);
+		mCurDamageDelay = 0.f;
 	}
 }
 

@@ -107,7 +107,7 @@ void CCore::RUN()
 		CSceneMgr::GetI()->Update();
 	}
 
-	CSceneMgr::GetI()->UIUpdate();
+	CSceneMgr::GetI()->UpdateUI();
 	CSceneMgr::GetI()->FinalUpdate();
 
 

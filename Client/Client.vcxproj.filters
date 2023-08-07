@@ -377,6 +377,15 @@
     <Filter Include="Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj">
       <UniqueIdentifier>{dab2af35-4d63-4c01-8fb5-3f2ea4783f8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\Monster\Monster_Arrow">
+      <UniqueIdentifier>{36f01843-d5ac-4eae-aa69-c909b353a10c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Player\Die">
+      <UniqueIdentifier>{37f924e9-1a32-4037-95b9-2ae1ced06abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Monster\Boss">
+      <UniqueIdentifier>{4eb842e4-7778-4a40-9379-843458f527f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -724,6 +733,15 @@
     <ClInclude Include="ThunderBoom.h">
       <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
     </ClInclude>
+    <ClInclude Include="Monster_Arrow.h">
+      <Filter>Game\Object\Monster\Monster_Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="PDieState.h">
+      <Filter>Game\FSM\Player\Die</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Game\Object\Monster\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1057,6 +1075,15 @@
     </ClCompile>
     <ClCompile Include="ThunderBoom.cpp">
       <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Arrow.cpp">
+      <Filter>Game\Object\Monster\Monster_Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="PDieState.cpp">
+      <Filter>Game\FSM\Player\Die</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Game\Object\Monster\Boss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@
 IceBolt::IceBolt()
 	: Skill(SKILL_TYPE::ICE_BOLT, 5)
 {
+	SetIconStr(L"2.bmp");
 	SetCoolDown(1.f);
 }
 

@@ -17,7 +17,7 @@
 #include "CAnimator.h"
 
 #include "SettingMgr.h"
- 
+
 
 
 TraceState::TraceState()
@@ -25,6 +25,7 @@ TraceState::TraceState()
 	, mAstarDelay(0.3f)
 	, mCurDelay(0.f)
 	, mvTargetPos(Vect2::zero)
+	, mAttakDelay()
 {
 }
 
@@ -43,6 +44,7 @@ void TraceState::Enter()
 void TraceState::Update()
 {
 	mCurDelay += DT;
+	mAttakDelay += DT;
 
 	Monster* pMonster = (Monster*)GetOwner();
 
@@ -94,13 +96,22 @@ void TraceState::Update()
 
 	Vect2 dir = mvTargetPos - vMonsterPos;
 	dir.Normalize();
-	GetOwner()->SetPos(vMonsterPos + dir * 75.f * DT);
+	GetOwner()->SetPos(vMonsterPos + dir * pMonster->GetInfo().speed * DT);
+
+	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
 	//// 플레이어가 몬스터의 인식범위 내부로 진입
-	//if (Vect2::Distance(vPlayerPos, vMonsterPos) < pMonster->GetInfo().atkRange)
-	//{
-	//	ChangeAIState(GetAI(), MONSTER_STATE::ATTACK);
-	//}
+	if (Vect2::Distance(vPlayerPos, vMonsterPos) < pMonster->GetInfo().atkRange)
+	{
+		if (pMonster->GetType() == MONSTER_TYPE::LONG)
+		{
+			if (mAttakDelay > pMonster->GetInfo().atkSpeed)					// 몬스터의 공격속도보다 시간이 더 커지면
+			{
+				ChangeAIState(GetAI(), MONSTER_STATE::ATTACK);				// 공격상태로 전환
+				mAttakDelay = 0.f;											// 딜레이시간을 체크한 이유는 몬스터의 공격모션이 계속 반복되는 것을 방지하기 위함
+			}																// 즉 한번 공격하면 다음 공격상태까지 공격모션을 취하지 않음
+		}
+	}
 }
 
 

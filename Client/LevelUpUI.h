@@ -7,7 +7,7 @@
 class Player;
 class TextUI;
 class CBtnUI;
-
+class CImageUI;
 
 class LevelupUI :
     public CPanelUI
@@ -18,6 +18,7 @@ private:
     TextUI*         mTitleText;
     TextUI*         mInfoText;
     CBtnUI*         mSelectBtn;
+    CImageUI*       mIconImg;
 
 
 public:

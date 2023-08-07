@@ -10,10 +10,11 @@
 
 
 CombatBall::CombatBall()
-	: Skill(SKILL_TYPE::COMBAT_BALL, 6)
+	: Skill(SKILL_TYPE::COMBAT_BALL, 8)
 	, mPrevLv(1)
 {
-	SetCoolDown(0.2f);
+	SetIconStr(L"9.bmp");
+	SetCoolDown(0.15f);
 }
 
 CombatBall::~CombatBall()

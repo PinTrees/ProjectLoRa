@@ -13,7 +13,7 @@ private:
 public:
 	void Init();
 	void Update();
-	void UIUpdate();
+	void UpdateUI();
 	void FinalUpdate();
 	void Render(HDC _dc);
 

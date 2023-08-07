@@ -2,12 +2,6 @@
 
 class Monster;
 
-enum class MONSTER_TYPE
-{
-	NORMAL,
-	BOSS,
-};
-
 
 class MonsterFactory
 {
