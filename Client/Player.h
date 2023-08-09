@@ -33,8 +33,7 @@ class Skill;
 class BarUI;
 class CImageUI;
 class LevelupUI;
-
-
+class CSound;
 
 
 class Player :
@@ -55,6 +54,8 @@ private:
 	vector<Skill*>		mVecSkill;
 
 	AI<PLAYER_STATE>* mAI;
+
+	CSound* mpCoinSound;
 
 
 public:

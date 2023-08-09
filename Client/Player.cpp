@@ -18,6 +18,7 @@
 #include "CAnimation.h"
 #include "RigidBody.h"
 #include "CScene.h"
+#include "CSound.h"
 
 // GameObject Header
 #include "Bullet.h"
@@ -40,6 +41,7 @@
 #include "HubUIMgr.h"
 #include "LevelUpUIMgr.h"
 #include "PlayerMgr.h"
+#include "CSoundMgr.h"
 
 
 
@@ -53,7 +55,12 @@ Player::Player()
 	, mAI(nullptr)
 	, mtInfo({})
 	, mVecSkill({})
+	, mpCoinSound(nullptr)
 {
+	// Load ----------------------
+	mpCoinSound = CResMgr::GetI()->LoadSound(L"Coin_1", L"sound\\coin.wav");
+
+
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
 
@@ -217,6 +224,9 @@ void Player::OnCollisionEnter(CCollider* _pOther)
 	{
 		PlayerMgr::GetI()->AddGold(5);
 		HubUIMgr::GetI()->BuildGoldText();
+
+		if (mpCoinSound)
+			mpCoinSound->Play();
 	}
 }
 

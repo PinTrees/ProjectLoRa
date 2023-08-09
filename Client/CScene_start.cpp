@@ -16,6 +16,7 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 #include "CResMgr.h"
+#include "Random.h"
 
 // ==========================
 // Game Manager Header
@@ -254,12 +255,11 @@ void Scene_Start::createEnvi()
 	AstarMgr::GetI()->SetObstacleTile(xPos, yPos);
 	JPSMgr::GetI()->SetCollisionTile(xPos, yPos);
 
-	Environment* pEnvObj = new Environment(L"101");
+	int rand = CRandom::GetI()->Next(3, 5);
+	Environment* pEnvObj = new Environment(std::to_wstring(rand));
 
 	pEnvObj->SetName(L"ENV");
 	pEnvObj->SetPos(vCreatePos);
-	pEnvObj->SetScale(vTileScale);
-	pEnvObj->GetCollider()->SetScale(vTileScale);
 	pEnvObj->GetCollider()->SetTrigger(false);
 	AddObject(pEnvObj, GROUP_TYPE::ENV);
 }
@@ -268,11 +268,15 @@ void Scene_Start::createEnvi()
 
 void Scene_Start::createPlayer()
 {
-	Vect2 vResolution = CCore::GetI()->GetResolution();
+	int tileX = TileMapMgr::GetI()->GetTileMapSizeX();
+	int tiley = TileMapMgr::GetI()->GetTileMapSizeY();
+
+	Vect2 vMapScale = Vect2(tileX * TILE_SIZE_RENDER, tiley * TILE_SIZE_RENDER);
 
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(vResolution * 0.5f);
+	pPlayer->SetPos(vMapScale * 0.5f);
+	//pPlayer->GetCollider()->SetTrigger(false);
 	AddObject(pPlayer, GROUP_TYPE::PLAYER);
 
 	AI<PLAYER_STATE>* pAI = new AI<PLAYER_STATE>;
@@ -286,6 +290,7 @@ void Scene_Start::createPlayer()
 
 	pPlayer->SetAI(pAI);
 
+	CCamera::GetI()->SetFixedLookAt(vMapScale * 0.5f);
 	PlayerMgr::GetI()->SetPlayer(pPlayer);
 	CCamera::GetI()->SetTarget(pPlayer);
 }

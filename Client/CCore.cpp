@@ -10,6 +10,7 @@
 #include "UIMgr.h"
 #include "CResMgr.h"
 #include "CSystemMgr.h"
+#include "CSoundMgr.h"
 
 #include "CCamera.h"
 #include "CTexture.h"
@@ -81,6 +82,7 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CSceneMgr::GetI()->Init();
 	CRandom::GetI()->Init();
 	CSystemMgr::GetI();
+	CSoundMgr::GetI()->Init();
 
 	return S_OK;
 }

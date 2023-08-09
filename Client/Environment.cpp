@@ -22,41 +22,48 @@
 
 Environment::Environment(const wstring& _type)
 	: mType(_type)
+	, mpShadowTex(nullptr)
+	, mpTex(nullptr)
+	, mvShadowOffset(Vect2::zero)
+	, mvShadowScale(Vect2::zero)
 {
 	CreateCollider();
+
 	// Texture 로딩하기
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"ENV_" + mType, L"texture\\map\\" + mType + L".bmp");
+	mpTex = CResMgr::GetI()->LoadTexture(L"ENV_" + mType, L"texture\\map\\" + mType + L".bmp");
 
-	CreateAnimator();
+	if (mType == L"3")
+	{
+		mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_4", L"texture\\shadow\\4.bmp");
+		SetScale(Vect2(48.f, 48.f));
+		GetCollider()->SetScale(GetScale() * 0.9f);
+		mvShadowOffset = Vect2(0.f, 15.f);
+		mvShadowScale = Vect2(120.f, 74.f);
+	}
+	else if (mType == L"4")
+	{
+		mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_4", L"texture\\shadow\\4.bmp");
+		SetScale(Vect2(19.f, 17.f) * 2.f);
+		GetCollider()->SetScale(GetScale() * 0.9f);
+		mvShadowOffset = Vect2(0.f, 12.f);
+		mvShadowScale = Vect2(100.f, 55.f);
+	}
 
-	if (mType == L"1")
+	if (mType == L"101")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(64.f, 96.f), Vect2(64.f, 0.f), 0.1f, 4);
+		CreateAnimator();
+		GetAnimator()->CreateAnimation(L"IDLE", mpTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.1f, 1);
 		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
-		SetScale(Vect2(64.f, 96.f));
-	}
-	else if (mType == L"2")
-	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(32.f, 32.f), Vect2(32.f, 0.f), 0.1f, 4);
-		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
-		SetScale(Vect2(32.f, 32.f));
-	}
-	else if (mType == L"101")
-	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.1f, 1);
-		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
+		GetAnimator()->Play(L"IDLE", true);
 	}
 
 	else if (mType == L"back_1")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 5.f, 1);
+		CreateAnimator();
+		GetAnimator()->CreateAnimation(L"IDLE", mpTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 5.f, 1);
 		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
-
-		SetPivot(Vect2(0.f, 0.f));
+		GetAnimator()->Play(L"IDLE", true);
 	}
-
-
-	GetAnimator()->Play(L"IDLE", true);
 }
 
 Environment::~Environment()
@@ -73,10 +80,37 @@ void Environment::DistoryEnvi()
 
 void Environment::Update()
 {
-	GetAnimator()->Update();
 }
 
 void Environment::Render(HDC _dc)
 {
+	Vect2 vPos = CCamera::GetI()->GetRenderPos(GetPos());
+	Vect2 vScale = GetScale();
+
+	if (mpShadowTex)
+	{
+		TransparentBlt(_dc
+			, (int)(vPos.x + mvShadowOffset.x - mvShadowScale.x * 0.5f)
+			, (int)(vPos.y + mvShadowOffset.y - mvShadowScale.y * 0.5f)
+			, (int)(mvShadowScale.x)
+			, (int)(mvShadowScale.y)
+			, mpShadowTex->GetDC()
+			, 0, 0
+			, (int)mpShadowTex->Width()
+			, (int)mpShadowTex->Heigth()
+			, RGB(255, 0, 255));
+	}
+
+	TransparentBlt(_dc
+		, (int)(vPos.x - vScale.x * 0.5f)
+		, (int)(vPos.y - vScale.y * 0.5f)
+		, (int)(vScale.x)
+		, (int)(vScale.y)
+		, mpTex->GetDC()
+		, 0, 0
+		, (int)mpTex->Width()
+		, (int)mpTex->Heigth()
+		, RGB(255, 0, 255));
+
 	CompnentRender(_dc);
 }

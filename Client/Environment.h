@@ -3,6 +3,9 @@
 #include "CObject.h"
 
 
+class CTexture;
+
+
 class Environment
 	: public CObject
 {
@@ -10,6 +13,12 @@ private:
 	wstring mType;
 	int xIdx;
 	int yIdx;
+
+	CTexture* mpTex;
+	CTexture* mpShadowTex;
+
+	Vect2 mvShadowOffset;
+	Vect2 mvShadowScale;
 
 
 public:

@@ -39,6 +39,17 @@ private:
 	CTexture*  mEffectTex;		// 카메라 전체화면 효과 텍스쳐 ( FadeIn, FadeOut, Blur )
 
 public:
+	void SetFixedLookAt(Vect2 _vLook)
+	{  
+		mvLookAt = _vLook;
+		mvCurLookAt = _vLook;
+		mvPrevLookAt = _vLook;
+
+		float fMoveDist = (mvLookAt - mvPrevLookAt).Length();
+		mfSpeed = fMoveDist / mfTime;
+		mfAccTime = 0.f;
+	};
+
 	void SetLookAt(Vect2 _vLook) 
 	{ 
 		mvLookAt = _vLook;
