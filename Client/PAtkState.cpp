@@ -34,7 +34,8 @@ void PAtkState::Enter()
 {
 	Player* pPlayer = (Player*)GetOwner();
 	Vect2 vPlayerPos = pPlayer->GetPos();
-	
+	Vect2 vPlayerLocalPos = pPlayer->GetLocalPos();
+
 	CScene* pScene = CSceneMgr::GetI()->GetCurScene();
 	vector<CObject*> vecMon = pScene->GetGroupObject(GROUP_TYPE::MONSTER);
 
@@ -45,16 +46,17 @@ void PAtkState::Enter()
 	Vect2 vDir;
 	for (size_t i = 0; i < vecMon.size(); ++i)
 	{
-		monsterPos = vecMon[i]->GetPos();
-		if (length > (vPlayerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+		float fDistance = Vect2::Distance(vecMon[i]->GetLocalPos(), vPlayerLocalPos);
+		if (fDistance < length)	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
 		{
-			length = (vPlayerPos - monsterPos).Length(); // length 에 값 대입
-			vDir = monsterPos - vPlayerPos;
+			length = fDistance;
+			vDir = vecMon[i]->GetLocalPos() - vPlayerLocalPos;
 		}
 	}
 
-	pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
+	vDir.Normalize();
 
+	pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
 
 	for (int i = 0; i < 5; ++i)
 	{

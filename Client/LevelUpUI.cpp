@@ -63,7 +63,7 @@ LevelupUI::LevelupUI()
 	mSelectBtn->SetPos(Vect2(0.f, 100.f));
 	mSelectBtn->SetScale(Vect2(200.f, 50.f));
 	mSelectBtn->SetText(L"¼±ÅÃ");
-	mSelectBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	mSelectBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_3", L"texture\\ui\\button\\3.bmp"));
 	mSelectBtn->SetClickedCallBack(this, (OBJECT_FUNC)&LevelupUI::ApplyLevelUp);
 	this->AddChild(mSelectBtn);
 }

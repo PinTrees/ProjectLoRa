@@ -188,6 +188,7 @@
     <ClInclude Include="DatabaseMgr.h" />
     <ClInclude Include="EnergyBall.h" />
     <ClInclude Include="EnergyBall_Obj.h" />
+    <ClInclude Include="GameOverUI.h" />
     <ClInclude Include="Grenade.h" />
     <ClInclude Include="Grenade_Bomb.h" />
     <ClInclude Include="Grenade_Obj.h" />
@@ -307,6 +308,7 @@
     <ClCompile Include="DatabaseMgr.cpp" />
     <ClCompile Include="EnergyBall.cpp" />
     <ClCompile Include="EnergyBall_Obj.cpp" />
+    <ClCompile Include="GameOverUI.cpp" />
     <ClCompile Include="Grenade.cpp" />
     <ClCompile Include="Grenade_Bomb.cpp" />
     <ClCompile Include="Grenade_Obj.cpp" />

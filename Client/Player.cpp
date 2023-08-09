@@ -39,6 +39,7 @@
 // Game Manager Header
 #include "HubUIMgr.h"
 #include "LevelUpUIMgr.h"
+#include "PlayerMgr.h"
 
 
 
@@ -142,9 +143,15 @@ void Player::Update()
 		mAI->Update();
 
 	GetAnimator()->Update();
-
+	 
 	calExp();
 	mfCurDelay += DT;
+
+	/// 최상단 예외 처리
+	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
+	{
+		return;
+	}
 
 	if (mfCurDelay > mtInfo.atkDelay) {
 		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) {
@@ -158,6 +165,13 @@ void Player::Update()
 	Vect2 vPos = GetPos();
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+
+	if (mtInfo.curHp <= 0)
+	{
+		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
+		return;
+	}
+
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
@@ -176,6 +190,8 @@ void Player::Update()
 	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
 	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
 
+	if (KEY_HOLD(KEY::Q)) mtInfo.curHp = 100.f;
+
 	if (mvDir != Vect2::zero)
 	{
 		if (GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
@@ -193,6 +209,17 @@ void Player::Render(HDC _dc)
 	//컴포넌트 ( 충돌체, ect...	) 가 있는경우 랜더
 	CompnentRender(_dc);
 }
+
+
+void Player::OnCollisionEnter(CCollider* _pOther)
+{
+	if (_pOther->GetObj()->GetName() == L"Gold")
+	{
+		PlayerMgr::GetI()->AddGold(5);
+		HubUIMgr::GetI()->BuildGoldText();
+	}
+}
+
 
 void Player::calExp()
 {

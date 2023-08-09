@@ -3,6 +3,7 @@
 
 
 class CUI;
+class CImageUI;
 
 
 class Scene_Main :
@@ -10,6 +11,11 @@ class Scene_Main :
 {
 private:
     CUI*    mItemUI;
+    CImageUI* mPressBack;
+
+    float   mFadeDelay;
+    float   mCurDelay;
+    int     mFadeDir;
 
 
 private:
@@ -21,6 +27,7 @@ private:
 public:
     void OpenItemDataUI();
     void CloseItemDataUI();
+
 
 public:
     Scene_Main();

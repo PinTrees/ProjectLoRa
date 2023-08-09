@@ -42,7 +42,7 @@ Bullet::Bullet(const wstring& _type)
 
 	if (_type == L"1")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 32.f), Vect2(48.f, 0.f), 0.05f, 4);
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 32.f), Vect2(48.f, 0.f), 0.03f, 4);
 		SetScale(Vect2(48.f, 32.f) * 1.5f);
 		SetAngleOffset(180);
 	}
@@ -134,9 +134,8 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 
 		int randPos = 25;
 		Particle* pEff = new Particle(L"202");
-		pEff->SetPos(GetPos() + Vect2(rand() % randPos - randPos, rand() % randPos - randPos) + m_vDir * 25.f);
 		pEff->SetName(L"Particle");
-		pEff->SetScale(pEff->GetScale() * (mInfo.penetrationCount + 1) * 0.3f);
+		pEff->SetPos(GetPos() + Vect2(rand() % randPos - randPos, rand() % randPos - randPos) + m_vDir * 25.f);
 		CreateObject(pEff, GROUP_TYPE::EFFECT);
 
 		if (mInfo.splitCount > 0)
@@ -169,8 +168,8 @@ void Bullet::OnCollisionEnter(CCollider* _pOther)
 		int randPos = 50;
 
 		Particle* pEff = new Particle(L"1");
-		pEff->SetPos(GetPos() + Vect2(rand() % randPos - randPos, rand() % randPos - randPos) + m_vDir * 25.f);
 		pEff->SetName(L"Particle");
+		pEff->SetPos(GetPos() + Vect2(rand() % randPos - randPos, rand() % randPos - randPos) + m_vDir * 25.f);
 		CreateObject(pEff, GROUP_TYPE::EFFECT);
 	}
 }

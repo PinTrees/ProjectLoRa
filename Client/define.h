@@ -200,6 +200,7 @@ enum class MONSTER_TYPE
 {
 	SHORT,
 	LONG,
+	BOSS,
 
 	END
 };

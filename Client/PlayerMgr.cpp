@@ -13,3 +13,9 @@ PlayerMgr::PlayerMgr()
 PlayerMgr::~PlayerMgr()
 {
 }
+
+
+void PlayerMgr::Init()
+{
+	mGold = 0;
+}

@@ -24,10 +24,12 @@ class BarUI;
 class Monster :
 	public CObject
 {
+protected:
+	tMonsterInfo		mtInfo;
+
 private:
 	MONSTER_TYPE		mType;
-	tMonsterInfo		mtInfo;
-	AI<MONSTER_STATE>* mAI;
+	AI<MONSTER_STATE>*	mAI;
 
 	BarUI* mHpBar;
 

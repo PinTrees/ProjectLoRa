@@ -12,6 +12,11 @@ private:
 	float		mfMstrDelay;
 	float		mfCurDelay;
 
+	float		mCurBossDelay;
+	float		mBossDelay;
+
+	bool		mbBossRespone;
+
 	int			mMonsterWave;
 
 public:
@@ -22,6 +27,7 @@ public:
 
 private:
 	void CreateMonster();
+	void createBoss();
 	void createEnvi();
 	void createPlayer();
 

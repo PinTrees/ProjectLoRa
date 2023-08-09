@@ -386,6 +386,9 @@
     <Filter Include="Game\Object\Monster\Boss">
       <UniqueIdentifier>{4eb842e4-7778-4a40-9379-843458f527f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI\GameOverUI">
+      <UniqueIdentifier>{e87119bb-fcdc-4ae6-9765-485405916d50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -742,6 +745,9 @@
     <ClInclude Include="Boss.h">
       <Filter>Game\Object\Monster\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="GameOverUI.h">
+      <Filter>Game\UI\GameOverUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1084,6 +1090,9 @@
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>Game\Object\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUI.cpp">
+      <Filter>Game\UI\GameOverUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

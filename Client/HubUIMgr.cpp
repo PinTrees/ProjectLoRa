@@ -15,6 +15,8 @@
 
 #include "Skill.h"
 
+#include "PlayerMgr.h"
+
 
 SINGLE_HEADER(HubUIMgr);
 
@@ -22,6 +24,8 @@ SINGLE_HEADER(HubUIMgr);
 HubUIMgr::HubUIMgr()
 	: mBulletRowUI(nullptr)
 	, mReroadUI(nullptr)
+	, mpGoldText(nullptr)
+	, mpTimeext(nullptr)
 {
 }
 
@@ -84,6 +88,16 @@ void HubUIMgr::Init()
 		icon->SetVisible(false);
 		mpSkillUI->AddChild(icon);
 	}
+
+	mpGoldText = new TextUI;
+	mpGoldText->SetPos(Vect2(vRes.x - 100.f, vRes.y - 30.f));
+	mpGoldText->SetScale(Vect2(0.f, 50.f));
+	mpGoldText->SetOutlineWidth(2);
+	mpGoldText->SetFontSize(38.f);
+	mpGoldText->SetOutlineColor(RGB(127, 64, 21));
+	mpGoldText->SetColor(RGB(255, 127, 39));
+	mpGoldText->SetText(L"GOLD 0");
+	CreateObject(mpGoldText, GROUP_TYPE::UI);
 }
 
 
@@ -124,4 +138,11 @@ void HubUIMgr::BuildSkillUI(vector<Skill*>& skills)
 			L"texture\\icon\\" + skills[i]->GetIconStr()));
 		icon->SetVisible(true);
 	}
+}
+
+
+void HubUIMgr::BuildGoldText()
+{
+	auto gold = PlayerMgr::GetI()->GetGold();
+	mpGoldText->SetText(L"GOLD " + std::to_wstring(gold));
 }

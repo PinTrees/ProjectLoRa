@@ -11,6 +11,10 @@
 #include "CImageUI.h"
 #include "CBtnUI.h"
 #include "TextUI.h"
+#include "CColumn.h"
+#include "GameOverUI.h"
+
+#include "UIMgr.h"
 
 
 SINGLE_HEADER(GUIMgr);
@@ -37,14 +41,20 @@ void GUIMgr::Init()
 	mpBackground = new CImageUI;
 	mpBackground->SetPos(vRes * 0.5f);
 	mpBackground->SetScale(vRes);
-	mpBackground->SetAlpha(150);
 	mpBackground->SetColor(RGB(0, 0, 0));
 	mpBackground->SetRaycastTarget(false);
 	CreateObject(mpBackground, GROUP_TYPE::UI);
 
+	/// Ä¿½ºÅÒ UI »ý¼º ----------------------------
 	mpSettinUI = new SettingUI;
 	mpSettinUI->SetPos(vRes * 0.5f);
 	CreateObject(mpSettinUI, GROUP_TYPE::UI);
+
+	mpGameOverUI = new GameOverUI;
+	mpGameOverUI->SetPos(vRes * 0.5f);
+	CreateObject(mpGameOverUI, GROUP_TYPE::UI); 
+	/// ------------------------------------------
+
 
 	mFrameText = new TextUI;
 	mFrameText->SetPos(Vect2(vRes.x - 80.f, 100.f));
@@ -72,11 +82,13 @@ void GUIMgr::Init()
 
 
 	CloseSettingUI();
+	CloseGameOverUI();
 }
 
 void GUIMgr::ShowSettingUI()
 {
 	CTimeMgr::GetI()->Stop();
+	mpBackground->SetAlpha(150);
 	mpBackground->SetVisible(true);
 	mpSettinUI->SetVisible(true);
 	mpSettinUI->Build();
@@ -88,6 +100,23 @@ void GUIMgr::CloseSettingUI()
 	mpBackground->SetVisible(false);
 	mpSettinUI->SetVisible(false);
 }
+
+
+void GUIMgr::ShowGameOverUI()
+{
+	CTimeMgr::GetI()->Stop();
+	mpGameOverUI->SetVisible(true);
+	mpGameOverUI->Build();
+
+	CUIMgr::GetI()->SetTop(mpGameOverUI);
+}
+
+void GUIMgr::CloseGameOverUI()
+{
+	CTimeMgr::GetI()->Play();
+	mpGameOverUI->SetVisible(false);
+}
+
 
 void GUIMgr::SetFrameText(UINT frame)
 {

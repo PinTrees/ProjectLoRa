@@ -22,8 +22,8 @@ CBtnUI::CBtnUI()
 	, mparam2(0)
 {
 	mText = new TextUI;
+	mText->SetFontSize(24);
 	AddChild(mText);
-
 }
 
 CBtnUI::~CBtnUI()
@@ -40,7 +40,14 @@ void CBtnUI::Render(HDC dc)
 
 	if(mpTexture)
 	{
-		TransparentBlt(dc
+		BLENDFUNCTION bf = {};
+
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = static_cast<BYTE>(GetAlpha());
+
+		AlphaBlend(dc
 			, (int)(vPos.x - vScale.x * 0.5f)
 			, (int)(vPos.y - vScale.y * 0.5f)
 			, (int)vScale.x
@@ -49,7 +56,7 @@ void CBtnUI::Render(HDC dc)
 			, 0, 0
 			, (int)mpTexture->Width()
 			, (int)mpTexture->Heigth()
-			, RGB(255, 0, 255));
+			, bf);
 	}
 
 	CUI::Render(dc);
@@ -135,8 +142,6 @@ void CBtnUI::SetClickedCallBack(CObject* object, OBJECT_FUNC_P func, DWORD_PTR p
 
 void CBtnUI::RenderHover(HDC _dc, float alpha)
 {
-
-
 	Vect2 vSize = GetScale();
 	Vect2 vPos = GetFinalPos();
 	mpVeilTex = CResMgr::GetI()->CreateTexture(L"VeilTex", (UINT)vSize.x, (UINT)vSize.y, RGB(0, 0, 0));
