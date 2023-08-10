@@ -144,7 +144,7 @@ void SettingUI::Build()
 {
 	auto tCurFindPathType = SettingMgr::GetI()->GetFindPathType();
 
-	if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
+	/*if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
 	{
 		mJPSBtn->DeleteChild(mCurSelectIcon);
 		mAstarBtn->AddChild(mCurSelectIcon);
@@ -153,7 +153,7 @@ void SettingUI::Build()
 	{
 		mAstarBtn->DeleteChild(mCurSelectIcon);
 		mJPSBtn->AddChild(mCurSelectIcon);
-	}
+	}*/
 
 	mDebugCheckIcon->SetVisible(DEBUG);
 }

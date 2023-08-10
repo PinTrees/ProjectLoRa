@@ -1,19 +1,7 @@
 ﻿  unity_9B26DVIWXB2G2RFP.cpp
-  unity_DDAEFSSL0G0X7IX8.cpp
-  unity_MND5F1BUVY59FO2F.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSMgr.h(5,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSMgr.h(5,7): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\GameOverUI.cpp(90,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MND5F1BUVY59FO2F.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ClearUI.cpp(106,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9B26DVIWXB2G2RFP.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ClearUI.cpp(134,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9B26DVIWXB2G2RFP.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(68,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(75,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(82,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(138,38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(138,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(143,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(143,23): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_DDAEFSSL0G0X7IX8.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ClearUI.cpp(106,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ClearUI.cpp(134,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  라이브러리를 검색하고 있습니다.
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\kernel32.lib 검색 중:
+  라이브러리가 검색되었습니다.
   Client.vcxproj -> C:\Users\TaeGi\Desktop\ProjectLoRa\Output\bin_debug\Client.exe

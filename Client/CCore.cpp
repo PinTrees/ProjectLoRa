@@ -169,6 +169,7 @@ void CCore::Delete()
 	CEventMgr::Dispose();
 	CCollisionMgr::Dispose();
 	CSystemMgr::Dispose();
+	CSoundMgr::Dispose();
 }
 
 

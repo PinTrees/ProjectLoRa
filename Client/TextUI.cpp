@@ -22,13 +22,9 @@ TextUI::TextUI()
 
 TextUI::~TextUI()
 {
+	mText.clear();
 }
 
-
-void TextUI::SetText(const wstring& text)
-{
-	mText = text;
-}
 
 void TextUI::SetFontSize(float size)
 {

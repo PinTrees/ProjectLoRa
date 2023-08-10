@@ -14,8 +14,8 @@ struct tTextStyle
 	COLORREF    outerColor;
 };
 
-
 class CFont;
+
 
 class TextUI :
 	public CUI
@@ -27,7 +27,7 @@ private:
 
 
 public:
-	void SetText(const wstring& text);
+	void SetText(const wstring& text) { mText = text; }
 	void SetColor(COLORREF color) { mStyle.color = color; }
 	void SetFontSize(float size);
 

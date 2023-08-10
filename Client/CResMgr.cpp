@@ -22,6 +22,7 @@ CResMgr::~CResMgr()
 {
 	Safe_Delete_Map(mMapTex);
 	Safe_Delete_Map(mMapFont);
+	Safe_Delete_Map(mMapSound);
 	Safe_Delete_Map(mMapSprite);
 } 
 

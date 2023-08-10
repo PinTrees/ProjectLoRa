@@ -92,7 +92,7 @@ public:
 public:
 	CUI*	GetParentUI() { return mpParentUI; }
 	Vect2	GetFinalPos() { return mvFinalPos; }
-	const vector<CUI*> GetChild() { return mVecChildUI; }
+	const vector<CUI*>& GetChild() { return mVecChildUI; }
 
 	bool GetLbtnDown() { return mLbtnDown; }
 	bool GetIsMouseOn() { return mOnMouseCheck; }

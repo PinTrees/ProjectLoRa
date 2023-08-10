@@ -26,7 +26,7 @@ private:
 
 
 protected:
-	void render_parallax(HDC dc);
+	void render_background(HDC dc);
 
 
 public:

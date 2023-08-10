@@ -32,6 +32,7 @@ private:
 private:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 
+
 public:
 	const wstring& GetName() { return mStrName; }
 

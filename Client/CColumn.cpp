@@ -25,7 +25,7 @@ void CColumn::Update()
         return;
 
     Vect2 vParentSize = GetScale();
-    vector<CUI*> children = GetChild();
+    const vector<CUI*>& children = GetChild();
 
     Vect2 vChildRootPos = Vect2::zero;
 

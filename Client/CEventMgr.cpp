@@ -57,7 +57,6 @@ void CEventMgr::excute(const tEvent& _eve)
 		// lParam : object Adress
 		// wParam : Group TYPE
 		CObject* pNewObj = (CObject*)_eve.lParam;
-
 		GROUP_TYPE eType = (GROUP_TYPE)_eve.wParam;
 
 		CSceneMgr::GetI()->GetCurScene()->AddObject(pNewObj, eType);

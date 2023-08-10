@@ -21,9 +21,6 @@ CBtnUI::CBtnUI()
 	, mparam1(0)
 	, mparam2(0)
 {
-	mText = new TextUI;
-	mText->SetFontSize(24);
-	AddChild(mText);
 }
 
 CBtnUI::~CBtnUI()
@@ -116,6 +113,21 @@ void CBtnUI::MouseLbtnClick()
 		CTexture* temp = mpChangeTex;
 		mpChangeTex = GetTexture();
 		SetTexture(temp);
+	}
+}
+
+
+void CBtnUI::SetText(const wstring& _text)
+{
+	if (mText)
+	{
+		mText->SetText(_text);
+	}
+	else
+	{
+		mText = new TextUI;
+		mText->SetFontSize(24);
+		AddChild(mText);
 	}
 }
 

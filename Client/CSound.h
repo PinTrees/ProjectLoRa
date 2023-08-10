@@ -12,6 +12,7 @@ private:
 	DSBUFFERDESC			m_tBuffInfo;
 	int						m_iVolume;
 
+
 public:
 	int Load(const wstring& _strPath);
 
@@ -29,10 +30,10 @@ public:
 	// 음악파일 위치 조정
 	void SetPosition(float _fPosition); // 0 ~ 100 사이
 
+
 private:
 	bool LoadWaveSound(const wstring& _strPath);
 	int GetDecibel(float _fVolume);
-
 
 
 public:
