@@ -25,11 +25,11 @@ Thunder_Obj::Thunder_Obj()
 	SetDamageDelay(0.9f);	// ~초마다 데미지를 입힘
 
 	SetName(L"Thunder");
-	SetScale(Vect2(48.f, 256.f) * 3.f);
+	SetScale(Vect2(48.f, 400.f) * 2.f);
 
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(100.f, 200.f));
-	GetCollider()->SetOffsetPos(Vect2(0.f, -100.f));
+	GetCollider()->SetScale(Vect2(100.f, 100.f));
+	GetCollider()->SetOffsetPos(Vect2(0.f, -50.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Thunder", L"texture\\effect\\102.bmp");
 

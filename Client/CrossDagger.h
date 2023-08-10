@@ -2,12 +2,13 @@
 #include "Skill.h"
 
 
-
+class CSound;
 
 class CrossDagger :
     public Skill
 {
 private:
+    CSound* mpSound;
     int         mCount;             // 표창 개수
 
 public:

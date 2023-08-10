@@ -392,6 +392,9 @@
     <Filter Include="FreamWork\UI\Slider">
       <UniqueIdentifier>{eb0c26b4-ed12-4f71-b366-18e39d5c3e3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\UI\Slider\SliderBar">
+      <UniqueIdentifier>{56c2d729-4973-4dc5-938d-697e0dd9d5d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -754,6 +757,9 @@
     <ClInclude Include="CSlider.h">
       <Filter>FreamWork\UI\Slider</Filter>
     </ClInclude>
+    <ClInclude Include="CSliderBar.h">
+      <Filter>FreamWork\UI\Slider\SliderBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1102,6 +1108,9 @@
     </ClCompile>
     <ClCompile Include="CSlider.cpp">
       <Filter>FreamWork\UI\Slider</Filter>
+    </ClCompile>
+    <ClCompile Include="CSliderBar.cpp">
+      <Filter>FreamWork\UI\Slider\SliderBar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

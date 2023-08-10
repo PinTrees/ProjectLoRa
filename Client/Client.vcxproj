@@ -183,6 +183,7 @@
     <ClInclude Include="CScrollBar.h" />
     <ClInclude Include="CScrollView.h" />
     <ClInclude Include="CSlider.h" />
+    <ClInclude Include="CSliderBar.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="CSystemMgr.h" />
@@ -304,6 +305,7 @@
     <ClCompile Include="CScrollBar.cpp" />
     <ClCompile Include="CScrollView.cpp" />
     <ClCompile Include="CSlider.cpp" />
+    <ClCompile Include="CSliderBar.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CSystemMgr.cpp" />

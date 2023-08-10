@@ -1,56 +1,15 @@
-﻿  unity_0MQB9Z5Y6UNFU9BT.cpp
-  unity_FPJC9CPY1SHRGGMK.cpp
-  unity_STGJM8IUYLNJX4AW.cpp
-  unity_9QTY6MKHVNY7MW89.cpp
-  unity_BV0T6OQ2DBQ6J0FE.cpp
-  unity_4EZQEHU9UKJE1FBU.cpp
-  unity_RISM9B079JCFUHX1.cpp
-  unity_E2CU0LS26ROQYG5L.cpp
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(73,5): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(195,3): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(203,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(202,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(201,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene.cpp(200,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_Tool.h(38,37): warning C4244: 'return': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSMgr.h(5,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Random.cpp(17,22): warning C4244: '인수': 'ULONGLONG'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RISM9B079JCFUHX1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\JPSMgr.h(5,7): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\GameOverUI.cpp(87,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_FPJC9CPY1SHRGGMK.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\MonsterFactory.cpp(41,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_4EZQEHU9UKJE1FBU.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\MonsterFactory.cpp(61,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_4EZQEHU9UKJE1FBU.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Scene_Main.cpp(103,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RISM9B079JCFUHX1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Scene_Main.cpp(122,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RISM9B079JCFUHX1.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(186,19): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_start.cpp(187,41): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(37,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CScene_Tool.cpp(137,22): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CSprite.cpp(63,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_0MQB9Z5Y6UNFU9BT.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CSprite.cpp(62,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_0MQB9Z5Y6UNFU9BT.cpp)
+﻿  unity_96UNRFCHBG97RD3U.cpp
+  unity_9B26DVIWXB2G2RFP.cpp
+  unity_WN5857WKGGLR81RG.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_96UNRFCHBG97RD3U.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TextUI.cpp(37,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_96UNRFCHBG97RD3U.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ClearUI.cpp(106,31): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9B26DVIWXB2G2RFP.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\ClearUI.cpp(134,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9B26DVIWXB2G2RFP.cpp)
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\GameOverUI.cpp(87,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_WN5857WKGGLR81RG.cpp)
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CTexture.cpp(66,27): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\CTexture.cpp(66,37): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다. (소스 파일 컴파일 중 x64\Debug\unity_BV0T6OQ2DBQ6J0FE.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(69,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(76,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\LevelUpUIMgr.cpp(83,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Thunder.cpp(44,53): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(165,38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(165,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(170,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Monster.cpp(170,23): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_STGJM8IUYLNJX4AW.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TraceState.cpp(77,50): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TraceState.cpp(77,39): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TraceState.cpp(78,57): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\TraceState.cpp(78,43): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_E2CU0LS26ROQYG5L.cpp)
-C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9QTY6MKHVNY7MW89.cpp)
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-  unity_EXX44FGK7RJRY44M.cpp
+C:\Users\TaeGi\Desktop\ProjectLoRa\Client\Thunder.cpp(44,53): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_96UNRFCHBG97RD3U.cpp)
   
   라이브러리를 검색하고 있습니다.
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\kernel32.lib 검색 중:
@@ -68,10 +27,10 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Msimg32.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Gdiplus.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\winmm.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\dsound.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x64\ucrtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\kernel32.lib 검색 중:
@@ -89,10 +48,10 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Msimg32.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Gdiplus.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\winmm.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\dsound.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x64\ucrtd.lib 검색 중:
   
@@ -114,10 +73,10 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Msimg32.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Gdiplus.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\winmm.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\dsound.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x64\ucrtd.lib 검색 중:
   
@@ -139,10 +98,10 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Msimg32.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Gdiplus.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\winmm.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\dsound.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x64\ucrtd.lib 검색 중:
   
@@ -164,10 +123,10 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Msimg32.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Gdiplus.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\winmm.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\dsound.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\ucrt\x64\ucrtd.lib 검색 중:
   
@@ -189,10 +148,10 @@ C:\Users\TaeGi\Desktop\ProjectLoRa\Client\PAtkState.cpp(63,17): warning C4244: '
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\msvcprtd.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Msimg32.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\Gdiplus.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\winmm.lib 검색 중:
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\dsound.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\MSVCRTD.lib 검색 중:
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\OLDNAMES.lib 검색 중:
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64\vcruntimed.lib 검색 중:
   
   라이브러리가 검색되었습니다.

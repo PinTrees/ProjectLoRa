@@ -8,6 +8,9 @@
 #include "CAnimator.h"
 #include "Grenade_Bomb.h"
 
+#include "CSound.h"
+#include "CResMgr.h"
+
 
 
 
@@ -16,6 +19,9 @@ Grenade_Obj::Grenade_Obj()
 	, mArrivalTime(1.f)
 	, mRemainTime()
 {
+	mpSound = CResMgr::GetI()->LoadSound(L"Skill_6", L"sound\\skill\\6_2.wav");
+	mpSound->SetVolumeOffset(-300);
+
 	SetMaxDelay(1.f);
 	SetName(L"Grenade");
 
@@ -40,6 +46,9 @@ void Grenade_Obj::Update()
 		bomb->SetPos(Vect2(GetPos().x, GetPos().y - 50.f));
 		bomb->SetOwner(GetOwner());
 		CreateObject(bomb, GROUP_TYPE::PROJ_PLAYER);
+
+		if (mpSound)
+			mpSound->Play();
 
 		DeleteObject(this);
 		return;

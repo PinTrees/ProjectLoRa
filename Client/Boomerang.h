@@ -2,12 +2,15 @@
 #include "Skill.h"
 
 
+class CSound;
 
 
 class Boomerang :
     public Skill
 {
 private:
+    CSound* mpSound;
+
 
 public:
     virtual void UseSkill();		// 스킬 사용

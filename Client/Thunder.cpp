@@ -21,7 +21,7 @@ Thunder::Thunder()
 	SetCoolDown(1.f);
 
 	mThunderSound = CResMgr::GetI()->LoadSound(L"Sound_Skill_2", L"sound\\skill\\2.wav");
-	mThunderSound->SetVolumeOffset(500);
+	mThunderSound->SetVolumeOffset(200);
 }
 
 Thunder::~Thunder()

@@ -8,7 +8,8 @@
 #include "Player.h"
 #include "CScene.h"
 
-
+#include "CSound.h"
+#include "CResMgr.h"
 
 
 Boomerang::Boomerang()
@@ -16,6 +17,8 @@ Boomerang::Boomerang()
 {
 	SetIconStr(L"8.bmp");
 	SetCoolDown(2.f);
+
+	mpSound = CResMgr::GetI()->LoadSound(L"Skill_8", L"sound\\skill\\8.wav");
 }
 
 Boomerang::~Boomerang()
@@ -53,6 +56,9 @@ void Boomerang::UseSkill()
 	boomerang->SetPos(vPlayerPos);
 
 	CreateObject(boomerang, GROUP_TYPE::PROJ_PLAYER);
+
+	if (mpSound)
+		mpSound->Play();
 
 	SetSkillTime(0.f);
 }
