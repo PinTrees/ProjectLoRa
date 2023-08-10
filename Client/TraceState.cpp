@@ -37,7 +37,6 @@ TraceState::~TraceState()
 
 void TraceState::Enter()
 {
-	GetOwner()->GetAnimator()->Play(L"RUN", true);
 }
 
 
@@ -91,6 +90,8 @@ void TraceState::Update()
 
 	Vect2 vMonsterPos = pMonster->GetLocalPos();
 	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
+
+	GetOwner()->GetAnimator()->Play(vMonsterPos.x > vPlayerPos.x ? L"RUN_L" : L"RUN_R", true);
 
 	if (Vect2::Distance(vMonsterPos, mvTargetPos) < 5.f)
 		return;

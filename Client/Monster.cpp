@@ -62,16 +62,21 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		mvShadowOffset = Vect2(-5.f, 50.f);
 
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_3_r", L"texture\\monster\\3_r.bmp");
+		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_3_l", L"texture\\monster\\3_l.bmp");
 
 		Vect2 vSliseSize = Vect2(128.f, 130.f);
 		Vect2 vStepSize = Vect2(128.f, 0.f);
 		Vect2 vLtPos = Vect2(0.f, 130.f);
+		Vect2 vRtPos = Vect2(2560.f, 130.f);
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 8);
-		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
+		
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.07f, 7);
+
 		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
@@ -85,16 +90,20 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		mvShadowOffset = Vect2(0.f, 60.f);
 
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_4_r", L"texture\\monster\\4.bmp");
+		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_4_l", L"texture\\monster\\4_l.bmp");
 
 		Vect2 vSliseSize = Vect2(128.f, 128.f);
 		Vect2 vStepSize = Vect2(128.f, 0.f);
 		Vect2 vLtPos = Vect2(0.f, 128.f);
+		Vect2 vRtPos = Vect2(1280.f, 128.f);
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
-		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
+
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.1f, 7);
 
 		SetScale(Vect2(128.f, 128.f) * 0.9f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
