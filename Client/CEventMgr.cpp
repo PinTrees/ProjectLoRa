@@ -23,9 +23,9 @@ CEventMgr::~CEventMgr()
 
 void CEventMgr::Update()
 {	
-	//	==============================================
-	//	이전 프레임에서 등록해둔 DeadObject 들을 삭제한다.
-	//	==============================================
+	// ==============================================
+	// 이전 프레임에서 등록해둔 DeadObject 들을 삭제한다.
+	// ==============================================
 	for (size_t i = 0; i < mVecDeadObj.size(); ++i)
 	{
 		if (nullptr != mVecDeadObj[i])
@@ -36,9 +36,9 @@ void CEventMgr::Update()
 	mVecDeadObj.clear();
 
 
-	//	========
-	//	Event처리
-	//	========
+	// ========
+	// Event처리
+	// ========
 	for (size_t i = 0; i < mVecEvent.size(); ++i)
 	{
 		excute(mVecEvent[i]);

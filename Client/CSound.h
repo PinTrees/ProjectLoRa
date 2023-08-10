@@ -11,6 +11,7 @@ private:
 	LPDIRECTSOUNDBUFFER		m_pSoundBuffer;
 	DSBUFFERDESC			m_tBuffInfo;
 	int						m_iVolume;
+	int						mVolOffset;
 
 
 public:
@@ -23,6 +24,8 @@ public:
 
 	void SetVolume(float _fVolume);			// 볼륨 범위 (0 ~ 100)
 	void SetPosition(float _fPosition); // 음악파일 위치 조정  0 ~ 100 사이
+
+	void SetVolumeOffset(int vol);
 
 
 private:

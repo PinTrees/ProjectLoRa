@@ -40,6 +40,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 {
 	// Load ------------------------
 	mHitSound = CResMgr::GetI()->LoadSound(L"Sound_Hit", L"sound\\atk.wav");
+	mHitSound->SetVolumeOffset(-1300);
 	mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_2", L"texture\\shadow\\2.bmp");
 
 	mtInfo.UID = uid;
@@ -71,6 +72,29 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
+		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+
+		mHpBar->SetPivot(Vect2(0.f, -12.f));
+	}
+	if (mtInfo.UID == L"4")
+	{
+		mvShadowScale = Vect2(45.f, 25.f);
+		mvShadowOffset = Vect2(0.f, 60.f);
+
+		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_4_r", L"texture\\monster\\4.bmp");
+
+		Vect2 vSliseSize = Vect2(128.f, 128.f);
+		Vect2 vStepSize = Vect2(128.f, 0.f);
+		Vect2 vLtPos = Vect2(0.f, 128.f);
+
+		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
+		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
+		GetCollider()->SetScale(Vect2(30.f, 35.f) * 1.3f);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
+		SetScale(Vect2(128.f, 128.f) * 0.95f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 
 		mHpBar->SetPivot(Vect2(0.f, -12.f));

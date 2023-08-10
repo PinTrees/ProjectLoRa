@@ -10,6 +10,8 @@
 #include "Thunder_Obj.h"
 
 #include "Random.h"
+#include "CSound.h"
+#include "CResMgr.h"
 
 
 Thunder::Thunder()
@@ -17,6 +19,9 @@ Thunder::Thunder()
 {
 	SetIconStr(L"2.bmp");
 	SetCoolDown(1.f);
+
+	mThunderSound = CResMgr::GetI()->LoadSound(L"Sound_Skill_2", L"sound\\skill\\2.wav");
+	mThunderSound->SetVolumeOffset(500);
 }
 
 Thunder::~Thunder()
@@ -52,6 +57,9 @@ void Thunder::UseSkill()
 	//}
 
 	CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
+
+	if (mThunderSound)
+		mThunderSound->Play();
 
 	SetSkillTime(0.f);
 }

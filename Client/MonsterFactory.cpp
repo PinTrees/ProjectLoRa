@@ -27,7 +27,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 	{
 	case MONSTER_TYPE::SHORT:
 	{
-		pMonster = new Monster(type, L"2");
+		pMonster = new Monster(type, L"4");
 
 		pMonster->SetPos(pos);
 		pMonster->CreateRigidBody();

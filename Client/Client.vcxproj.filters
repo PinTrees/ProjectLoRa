@@ -389,6 +389,9 @@
     <Filter Include="Game\UI\ClearUI">
       <UniqueIdentifier>{392132ae-eb0c-4b24-8e39-909196518f35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FreamWork\UI\Slider">
+      <UniqueIdentifier>{eb0c26b4-ed12-4f71-b366-18e39d5c3e3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -748,6 +751,9 @@
     <ClInclude Include="ClearUI.h">
       <Filter>Game\UI\ClearUI</Filter>
     </ClInclude>
+    <ClInclude Include="CSlider.h">
+      <Filter>FreamWork\UI\Slider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1093,6 +1099,9 @@
     </ClCompile>
     <ClCompile Include="ClearUI.cpp">
       <Filter>Game\UI\ClearUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CSlider.cpp">
+      <Filter>FreamWork\UI\Slider</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

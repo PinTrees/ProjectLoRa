@@ -13,6 +13,8 @@ private:
     CUI*    mItemUI;
     CImageUI* mPressBack;
 
+    CImageUI* mpPlayerThumb;
+
     float   mFadeDelay;
     float   mCurDelay;
     int     mFadeDir;
