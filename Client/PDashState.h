@@ -18,5 +18,5 @@ public:
 
 public:
     PDashState();
-    ~PDashState();
+    virtual ~PDashState();
 };

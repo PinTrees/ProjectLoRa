@@ -233,7 +233,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="Gold.h" />
-    <ClInclude Include="Gun.h" />
     <ClInclude Include="BarUI.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MonsterFactory.h" />
@@ -354,7 +353,6 @@
     <ClCompile Include="FileMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Gold.cpp" />
-    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="BarUI.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MonsterFactory.cpp" />

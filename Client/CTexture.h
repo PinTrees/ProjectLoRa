@@ -31,7 +31,7 @@ public:
 
 private:
     CTexture();
-    virtual ~CTexture();
+    virtual ~CTexture() override;
 
     friend class CResMgr;
 };

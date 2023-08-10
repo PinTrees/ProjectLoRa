@@ -42,9 +42,9 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 	mHitSound = CResMgr::GetI()->LoadSound(L"Sound_Hit", L"sound\\atk.wav");
 	mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_2", L"texture\\shadow\\2.bmp");
 
-	SetName(L"Monster");
 	mtInfo.UID = uid;
 
+	SetName(L"Monster");
 	CreateCollider();
 	CreateAnimator();
 
@@ -68,7 +68,6 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
-		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), vSliseSize, vStepSize, 0.07f, 8);
 		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
@@ -88,6 +87,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetCollider()->SetOffsetPos(Vect2::zero);
+
 		SetScale(Vect2(48.f, 48.f) * 1.f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 		GetCollider()->SetScale(GetScale() * 0.6f);
@@ -102,6 +102,8 @@ Monster::~Monster()
 {
 	if (nullptr != mAI)
 		delete mAI;
+
+	mHitSound = nullptr;
 }
 
 

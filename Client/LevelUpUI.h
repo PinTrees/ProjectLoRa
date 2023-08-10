@@ -38,5 +38,5 @@ public:
 
 public:
     LevelupUI();
-    virtual ~LevelupUI();
+    virtual ~LevelupUI() override;
 };

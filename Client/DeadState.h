@@ -18,5 +18,5 @@ public:
 
 public:
     DeadState();
-    ~DeadState();
+    virtual ~DeadState();
 };

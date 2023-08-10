@@ -45,15 +45,14 @@ CSound* CResMgr::LoadSound(const wstring& _strKey, const wstring& _strRelativePa
 	pSound->SetRelativePath(_strRelativePath);
 
 	mMapSound.insert(make_pair(_strKey, pSound));
-
 	return pSound;
 }
 
 CSound* CResMgr::FindSound(const wstring& _strKey)
 {
-	auto iter = mMapTex.find(_strKey);
+	auto iter = mMapSound.find(_strKey);
 
-	if (iter == mMapTex.end())
+	if (iter == mMapSound.end())
 	{
 		return nullptr;
 	}

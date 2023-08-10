@@ -31,6 +31,6 @@ public:
 
 public:
 	GameOverUI();
-	~GameOverUI();
+	virtual ~GameOverUI() override;
 };
 

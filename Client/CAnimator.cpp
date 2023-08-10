@@ -40,14 +40,13 @@ void CAnimator::Render(HDC _dc)
 void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
 	, Vect2 _vLT, Vect2 _vSliceSize, Vect2 _vStep, float _fDuration, UINT _iFreamCount)
 {
-
 	CAnimation* pAnim  = FindAnimation(_strName);
 	assert(nullptr == pAnim);
 
 	pAnim = new CAnimation;
 
-	pAnim->SetName(_strName);
 	pAnim->mpAnimator = this;
+	pAnim->SetName(_strName);
 	pAnim->Create(_pTex, _vLT, _vSliceSize, _vStep, _fDuration, _iFreamCount);
 
 	mMapAnim.insert(make_pair(_strName, pAnim));

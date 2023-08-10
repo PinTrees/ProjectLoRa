@@ -23,6 +23,7 @@ private:
 	CAnimator*			mpAnimator;
 	CTexture*			mpBufferTexture;		 // Animation 텍스쳐
 	vector<tAnimFrm>	mVecFrm;	 // 모든 프레임 정보
+
 	int					miCurFrm;	 // 현재 프레임
 	float				mfAccTime;	 // 누적 시간
 

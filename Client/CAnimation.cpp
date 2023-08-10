@@ -15,7 +15,7 @@
 
 
 CAnimation::CAnimation()
-	:mpAnimator(nullptr)
+	: mpAnimator(nullptr)
 	, mpBufferTexture(nullptr)
 	, miCurFrm(0)
 	, mfAccTime(0.f)
@@ -25,6 +25,7 @@ CAnimation::CAnimation()
 
 CAnimation::~CAnimation()
 {
+	mVecFrm.clear();
 }
 
 
@@ -344,7 +345,6 @@ void CAnimation::Load(const wstring& _strRelativePath)
 	wstring strTexPath = wstring(str.begin(), str.end());
 
 	mpBufferTexture = CResMgr::GetI()->LoadTexture(strTexKey, strTexPath);
-
 
 	//// 프레임 개수
 	FScanf(szBuff, pFile);

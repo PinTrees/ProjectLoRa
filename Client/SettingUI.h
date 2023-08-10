@@ -11,7 +11,6 @@ class SettingUI :
 private:
 	CBtnUI*		mAstarBtn;
 	CBtnUI*		mJPSBtn;
-	CImageUI*	mCurSelectIcon;
 
 	CBtnUI*		mDebugBtn;
 	CImageUI*	mDebugCheckIcon;
@@ -30,7 +29,7 @@ public:
 
 public:
 	SettingUI();
-	~SettingUI();
+	virtual ~SettingUI() override;
 	SettingUI(SettingUI&) = delete;
 };
 

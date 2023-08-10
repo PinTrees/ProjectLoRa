@@ -16,5 +16,5 @@ public:
 
 public:
     PIdleState();
-    ~PIdleState();
+    virtual ~PIdleState();
 };

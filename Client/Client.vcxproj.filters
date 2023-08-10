@@ -38,9 +38,6 @@
     <Filter Include="Game\Object\Bullet">
       <UniqueIdentifier>{e045afaf-6396-4eb6-857f-7dc22ef63594}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\Gun">
-      <UniqueIdentifier>{b79e24fc-ba7a-48cf-a49a-652323f10426}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\Scene_Tool">
       <UniqueIdentifier>{52e38cc8-db68-48af-be92-b245c7d37e60}</UniqueIdentifier>
     </Filter>
@@ -496,9 +493,6 @@
     <ClInclude Include="CPanelUI.h">
       <Filter>FreamWork\UI\Panel</Filter>
     </ClInclude>
-    <ClInclude Include="Gun.h">
-      <Filter>Game\Object\Gun</Filter>
-    </ClInclude>
     <ClInclude Include="FileMgr.h">
       <Filter>FreamWork\Manager\FileMgr</Filter>
     </ClInclude>
@@ -853,9 +847,6 @@
     </ClCompile>
     <ClCompile Include="CPanelUI.cpp">
       <Filter>FreamWork\UI\Panel</Filter>
-    </ClCompile>
-    <ClCompile Include="Gun.cpp">
-      <Filter>Game\Object\Gun</Filter>
     </ClCompile>
     <ClCompile Include="FileMgr.cpp">
       <Filter>FreamWork\Manager\FileMgr</Filter>

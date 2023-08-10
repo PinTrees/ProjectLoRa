@@ -79,20 +79,19 @@ void GUIMgr::Init()
 	CreateObject(mFrameText, GROUP_TYPE::UI);
 
 
-	CBtnUI* pSettingBtn = new CBtnUI;
-	pSettingBtn->SetScale(Vect2(50.f, 50.f));
-	pSettingBtn->SetPos(Vect2(vRes.x - 50.f, 50.f));
-	pSettingBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_2", L"texture\\ui\\button\\2.bmp"));
-	pSettingBtn->SetClickedCallBack(mpSettinUI, OBJECT_FUNC(&SettingUI::Show));
+	mpSettingBtn = new CBtnUI;
+	mpSettingBtn->SetScale(Vect2(50.f, 50.f));
+	mpSettingBtn->SetPos(Vect2(vRes.x - 50.f, 50.f));
+	mpSettingBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_2", L"texture\\ui\\button\\2.bmp"));
+	mpSettingBtn->SetClickedCallBack(mpSettinUI, OBJECT_FUNC(&SettingUI::Show));
+	CreateObject(mpSettingBtn, GROUP_TYPE::UI);
 
 	CImageUI* pImage = new CImageUI;
 	pImage->SetPos(Vect2(0.f, -5.f));
-	pImage->SetScale(pSettingBtn->GetScale() * 0.6f);
+	pImage->SetScale(mpSettingBtn->GetScale() * 0.6f);
 	pImage->SetTexture(CResMgr::GetI()->LoadTexture(L"Setting_Icon", L"texture\\ui\\icon\\setting.bmp"));
 	pImage->SetRaycastTarget(false);
-	pSettingBtn->AddChild(pImage);
-	mpSettingBtn = pSettingBtn;
-	CreateObject(mpSettingBtn, GROUP_TYPE::UI);
+	mpSettingBtn->AddChild(pImage);
 
 
 	CloseSettingUI();

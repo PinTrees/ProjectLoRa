@@ -25,7 +25,7 @@ public:
 
 public:
     BarUI();
-    ~BarUI();
+    virtual ~BarUI() override;
 
     friend class CObject;
 };

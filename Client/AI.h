@@ -28,6 +28,7 @@ public:
 	void AddState(CState<T>* pState)
 	{
 		CState<T>* state = GetState(pState->GetType());
+
 		if (nullptr != state)
 			return;
 

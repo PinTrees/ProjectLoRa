@@ -41,6 +41,6 @@ public:
 
 public:
 	ClearUI();
-	~ClearUI();
+	virtual ~ClearUI() override;
 };
 

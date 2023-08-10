@@ -28,8 +28,7 @@ GameOverUI::GameOverUI()
 	pCol->SetPos(Vect2::zero);
 	pCol->SetSpacing(28.f);
 	pCol->SetScale(CCore::GetI()->GetResolution());
-	AddChild(pCol);
-
+	this->AddChild(pCol);
 
 	mpTitle = new TextUI;
 	mpTitle->SetRaycastTarget(false);
@@ -38,7 +37,6 @@ GameOverUI::GameOverUI()
 	mpTitle->SetFontSize(100.f);
 	mpTitle->SetColor(RGB(255, 255, 255));
 	mpTitle->SetScale(Vect2(0.f, 100.f));
-
 	pCol->AddChild(mpTitle);
 
 	mpMainSceneBtn = new CBtnUI;
@@ -46,7 +44,6 @@ GameOverUI::GameOverUI()
 	mpMainSceneBtn->SetText(L"메인화면");
 	mpMainSceneBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_3", L"texture\\ui\\button\\3.bmp"));
 	mpMainSceneBtn->SetClickedCallBack(this, (OBJECT_FUNC)&GameOverUI::Close);
-
 	pCol->AddChild(mpMainSceneBtn);
 }
 

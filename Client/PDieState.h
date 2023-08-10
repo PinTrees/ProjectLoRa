@@ -18,6 +18,6 @@ public:
 
 public:
     PDieState();
-    ~PDieState();
+    virtual ~PDieState();
 };
 

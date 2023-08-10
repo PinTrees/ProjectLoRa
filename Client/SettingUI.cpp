@@ -23,7 +23,6 @@
 SettingUI::SettingUI()
 	: mJPSBtn(nullptr)
 	, mAstarBtn(nullptr)
-	, mCurSelectIcon(nullptr)
 	, mDebugBtn(nullptr)
 	, mDebugCheckIcon(nullptr)
 {
@@ -61,11 +60,6 @@ SettingUI::SettingUI()
 	pPathSetting->SetText(L"몬스터 길찾기 알고리즘");
 	pColumn->AddChild(pPathSetting);
 
-	mCurSelectIcon = new CImageUI;
-	mCurSelectIcon->SetPos(Vect2(-55.f, 0.f));
-	mCurSelectIcon->SetScale(Vect2(25.f, 25.f));
-	mCurSelectIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
-
 	CRow* pRow = new CRow;
 	pRow->SetScale(Vect2(500.f, 60.f));
 	pRow->SetSpacing(16.f);
@@ -76,16 +70,14 @@ SettingUI::SettingUI()
 	mAstarBtn->SetScale(Vect2(150.f, 45.f));
 	mAstarBtn->SetText(L"Astar");
 	mAstarBtn->SetClickedCallBack(this, OBJECT_FUNC_P(&SettingUI::SetFindPath), (DWORD_PTR)FIND_PATH_TYPE::ASTAR);
+	pRow->AddChild(mAstarBtn);
 
 	mJPSBtn = new CBtnUI;
 	mJPSBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Btn_3", L"texture\\ui\\button\\3.bmp"));
 	mJPSBtn->SetScale(Vect2(150.f, 45.f));
 	mJPSBtn->SetText(L"JPS B");
 	mJPSBtn->SetClickedCallBack(this, OBJECT_FUNC_P(&SettingUI::SetFindPath), (DWORD_PTR)FIND_PATH_TYPE::JPS_B);
-
-	pRow->AddChild(mAstarBtn);
 	pRow->AddChild(mJPSBtn);
-
 
 	// Debug UI
 	TextUI* pDebugSetting = new TextUI;

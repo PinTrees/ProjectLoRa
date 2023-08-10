@@ -11,7 +11,6 @@
 #include "CAnimation.h"
 
 #include "Player.h"
-#include "Gun.h"
 
 
 PRunState::PRunState()

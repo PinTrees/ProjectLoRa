@@ -47,13 +47,12 @@ private:
 
 	int			mLevel;
 	float		mExp;
-	BarUI* mExpBar;
-	CImageUI* mHpBar;
+	BarUI*		mExpBar;
+	CImageUI*	mHpBar;
 
 	tPlayerInfo			mtInfo;
 	vector<Skill*>		mVecSkill;
-
-	AI<PLAYER_STATE>* mAI;
+	AI<PLAYER_STATE>*	mAI;
 
 	CSound* mpCoinSound;
 	CSound* mpLevelUpSound;

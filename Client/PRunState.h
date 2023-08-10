@@ -19,5 +19,5 @@ public:
 
 public:
     PRunState();
-    ~PRunState();
+    virtual ~PRunState();
 };
