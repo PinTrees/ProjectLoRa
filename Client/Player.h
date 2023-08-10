@@ -56,6 +56,7 @@ private:
 	AI<PLAYER_STATE>* mAI;
 
 	CSound* mpCoinSound;
+	CSound* mpLevelUpSound;
 
 
 public:

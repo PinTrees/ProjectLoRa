@@ -67,6 +67,7 @@ Scene_Start::Scene_Start()
 	, mCurBossDelay(0.f)
 	, mbBossRespone(false)
 	, mMonsterWave()
+	, mTimer(0.f)
 {
 }
 
@@ -92,13 +93,16 @@ void Scene_Start::Update()
 	UINT frmae = CTimeMgr::GetI()->GetFrame();
 	GUIMgr::GetI()->SetFrameText(frmae);
 
+	mTimer += DT;
+	GUIMgr::GetI()->SetTimerText((UINT)mTimer);
+
 	if (mbBossRespone)
 		return;
 
 	mfCurDelay += DT;
 	mCurBossDelay += DT;
 
-	if (mCurBossDelay > mBossDelay)
+	if (mCurBossDelay > mBossDelay || KEY_TAP(KEY::E))
 	{
 		mbBossRespone = true;
 		mCurBossDelay = 0.f;

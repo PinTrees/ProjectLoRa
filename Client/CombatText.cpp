@@ -10,7 +10,7 @@ CombatText::CombatText()
 	: mDeleteDelay(1.f)
 	, mCurDelay(0.f)
 {
-	SetFontSize(28.f);
+	SetFontSize(24.f);
 	SetColor(RGB(255, 0, 0));
 	SetOutlineColor(RGB(0, 0, 0));
 	SetOutlineWidth(2);

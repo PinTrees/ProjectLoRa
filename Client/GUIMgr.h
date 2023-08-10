@@ -20,6 +20,8 @@ private:
 	CBtnUI*		mpSettingBtn;
 	GameOverUI* mpGameOverUI;
 
+	TextUI*		mTimerText;
+
 
 public:
 	void Init();
@@ -31,5 +33,6 @@ public:
 	void CloseGameOverUI();
 
 	void SetFrameText(UINT frame);
+	void SetTimerText(UINT timer);
 };
 

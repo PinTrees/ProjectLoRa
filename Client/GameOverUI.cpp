@@ -2,6 +2,7 @@
 #include "GameOverUI.h"
 
 #include "CCore.h"
+#include "CTimeMgr.h"
 
 #include "TextUI.h"
 #include "CBtnUI.h"
@@ -16,6 +17,9 @@ GameOverUI::GameOverUI()
 	: CImageUI()
 	, mpTitle(nullptr)
 	, mpMainSceneBtn(nullptr)
+	, mFadeDelay(0.7f)
+	, mCurDelay(0.f)
+	, mbFade(false)
 {
 	SetScale(CCore::GetI()->GetResolution());
 	SetColor(RGB(0, 0, 0));
@@ -65,6 +69,29 @@ void GameOverUI::Show()
 }
 
 
+void GameOverUI::Update()
+{
+	CUI::Update();
+
+	if (!IsVisible())
+		return;
+
+	if (mbFade)
+		return;
+
+	mCurDelay += DT;
+	
+	if (mCurDelay >= mFadeDelay) {
+		mCurDelay = mFadeDelay;
+		mbFade = true;
+	}
+
+	float ratio = mCurDelay / mFadeDelay;
+	SetAlpha(180 * ratio);
+}
+
+
 void GameOverUI::Build()
 {
 }
+

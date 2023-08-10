@@ -389,6 +389,9 @@
     <Filter Include="Game\UI\GameOverUI">
       <UniqueIdentifier>{e87119bb-fcdc-4ae6-9765-485405916d50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI\ClearUI">
+      <UniqueIdentifier>{392132ae-eb0c-4b24-8e39-909196518f35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -748,6 +751,9 @@
     <ClInclude Include="GameOverUI.h">
       <Filter>Game\UI\GameOverUI</Filter>
     </ClInclude>
+    <ClInclude Include="ClearUI.h">
+      <Filter>Game\UI\ClearUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1093,6 +1099,9 @@
     </ClCompile>
     <ClCompile Include="GameOverUI.cpp">
       <Filter>Game\UI\GameOverUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearUI.cpp">
+      <Filter>Game\UI\ClearUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

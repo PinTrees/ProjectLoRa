@@ -20,6 +20,7 @@ enum class KEY
 	S,
 	D,
 
+	E,
 	Q,
 
 	ALT,

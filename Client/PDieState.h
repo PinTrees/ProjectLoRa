@@ -8,9 +8,6 @@ class PDieState :
     public CState<PLAYER_STATE>
 {
 private:
-    float       mDelay;
-    float       mCurDelay;
-    bool        mbEnd;
 
 
 public:

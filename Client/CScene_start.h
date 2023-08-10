@@ -16,8 +16,9 @@ private:
 	float		mBossDelay;
 
 	bool		mbBossRespone;
-
 	int			mMonsterWave;
+
+	float		mTimer;
 
 public:
 	virtual void Update();

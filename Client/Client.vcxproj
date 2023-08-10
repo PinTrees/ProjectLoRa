@@ -171,6 +171,7 @@
     <ClInclude Include="CirclingBall.h" />
     <ClInclude Include="CirclingBall_Obj.h" />
     <ClInclude Include="CKeyMgr.h" />
+    <ClInclude Include="ClearUI.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatBall.h" />
     <ClInclude Include="CombatBall_Bullet.h" />
@@ -291,6 +292,7 @@
     <ClCompile Include="CirclingBall.cpp" />
     <ClCompile Include="CirclingBall_Obj.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
+    <ClCompile Include="ClearUI.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatBall.cpp" />
     <ClCompile Include="CombatBall_Bullet.cpp" />

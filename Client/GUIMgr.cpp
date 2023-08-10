@@ -32,8 +32,6 @@ GUIMgr::~GUIMgr()
 }
 
 
-
-
 void GUIMgr::Init()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
@@ -55,6 +53,16 @@ void GUIMgr::Init()
 	CreateObject(mpGameOverUI, GROUP_TYPE::UI); 
 	/// ------------------------------------------
 
+
+	/// 타이머 UI 생성 ----------------------------
+	mTimerText = new TextUI;
+	mTimerText->SetPos(Vect2(vRes.x * 0.5f, 50.f));
+	mTimerText->SetScale(Vect2(0.f, 50.f));
+	mTimerText->SetText(L"00:00");
+	mTimerText->SetColor(RGB(255, 255, 255));
+	mTimerText->SetFontSize(48);
+	CreateObject(mTimerText, GROUP_TYPE::UI);
+	/// ------------------------------------------
 
 	mFrameText = new TextUI;
 	mFrameText->SetPos(Vect2(vRes.x - 80.f, 100.f));
@@ -121,4 +129,12 @@ void GUIMgr::CloseGameOverUI()
 void GUIMgr::SetFrameText(UINT frame)
 {
 	mFrameText->SetText(std::to_wstring(frame) + L" FPS");
+}
+
+
+void GUIMgr::SetTimerText(UINT timer)
+{
+	int minute = timer / 60;
+	int second = timer % 60;
+	mTimerText->SetText(std::to_wstring(minute) + L":" + std::to_wstring(second));
 }

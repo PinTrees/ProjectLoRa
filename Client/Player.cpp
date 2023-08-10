@@ -58,7 +58,8 @@ Player::Player()
 	, mpCoinSound(nullptr)
 {
 	// Load ----------------------
-	mpCoinSound = CResMgr::GetI()->LoadSound(L"Coin_1", L"sound\\coin.wav");
+	mpCoinSound = CResMgr::GetI()->LoadSound(L"Sound_Coin", L"sound\\coin.wav");
+	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
 
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
@@ -236,6 +237,9 @@ void Player::calExp()
 	{
 		++mLevel;
 		mExp = 0;
+
+		if (mpLevelUpSound)
+			mpLevelUpSound->Play();
 
 		HubUIMgr::GetI()->SetLevelText(mLevel);
 		LevelUpUIMgr::GetI()->Choice();
