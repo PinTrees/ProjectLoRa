@@ -24,6 +24,6 @@ public:
 
 public:
     CrossDagger_Obj();
-    ~CrossDagger_Obj();
+    virtual ~CrossDagger_Obj();
 };
 

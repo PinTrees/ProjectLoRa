@@ -20,6 +20,6 @@ public:
 
 public:
     Thunder_Obj();
-    ~Thunder_Obj();
+    virtual ~Thunder_Obj();
 };
 

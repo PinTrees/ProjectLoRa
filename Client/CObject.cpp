@@ -13,14 +13,16 @@
 CObject::CObject()
 	: mvPos(Vect2::zero)
 	, mvScale{}
+
 	, mpCollider(nullptr)
 	, mpAnimator(nullptr)
+	, mpRigidBody(nullptr)
+
 	, mbAlive(true)
 	, mAngle(0.f)
 	, mAngleOffset(0.f)
 	, mFlip(false)
 	, mVisible(true)
-	, mpRigidBody(nullptr)
 	, mAlpha(255)
 {
 }

@@ -30,12 +30,8 @@ public:
 
 
 public:
-	CState(T state)
-		: mState(state)
-		, mpAI(nullptr)
-	{}
-	virtual ~CState()	{}
-
+	CState(T state) : mState(state), mpAI(nullptr) {}
+	virtual ~CState() {}
 
 	friend class AI<T>;
 };

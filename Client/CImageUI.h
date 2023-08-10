@@ -59,6 +59,6 @@ public:
 
 public:
 	CImageUI();
-	~CImageUI() override;
+	virtual ~CImageUI();
 };
 

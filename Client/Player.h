@@ -94,7 +94,7 @@ private:
 
 public:
 	Player();
-	~Player();
+	virtual ~Player() override;
 
 	friend class LevelupUI;
 };

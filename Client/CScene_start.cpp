@@ -90,11 +90,9 @@ void Scene_Start::Update()
 {
 	CScene::Update();
 
-	UINT frmae = CTimeMgr::GetI()->GetFrame();
-	GUIMgr::GetI()->SetFrameText(frmae);
-
 	mTimer += DT;
 	GUIMgr::GetI()->SetTimerText((UINT)mTimer);
+	GUIMgr::GetI()->SetFrameText(CTimeMgr::GetI()->GetFrame());
 
 	if (mbBossRespone)
 		return;

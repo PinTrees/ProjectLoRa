@@ -22,7 +22,6 @@
 
 // GameObject Header
 #include "Bullet.h"
-#include "Gun.h"
 
 // UI Object Header
 #include "CUI.h"
@@ -85,7 +84,7 @@ Player::Player()
 	GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
 	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
 	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
+	//GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
 	GetAnimator()->Play(L"IDLE", true);
 
 	SetScale(Vect2(73.f, 54.f) * 1.5f);

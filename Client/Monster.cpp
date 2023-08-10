@@ -29,7 +29,7 @@
 
 #include "Player.h"
 
-Monster::Monster(MONSTER_TYPE Type, const wstring uid)
+Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	: mtInfo({})
 	, mAI(nullptr)
 	, mType(Type)
@@ -86,10 +86,11 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 3.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		GetCollider()->SetOffsetPos(Vect2::zero);
 
 		SetScale(Vect2(48.f, 48.f) * 1.f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+
+		GetCollider()->SetOffsetPos(Vect2::zero);
 		GetCollider()->SetScale(GetScale() * 0.6f);
 
 		mHpBar->SetPivot(Vect2(0.f, GetScale().y * -0.4f));

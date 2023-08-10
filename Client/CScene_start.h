@@ -35,6 +35,6 @@ private:
 
 public:
 	Scene_Start();
-	~Scene_Start();
+	virtual ~Scene_Start() override;
 };
 

@@ -10,6 +10,7 @@ class PDashState :
 private:
     Vect2 mvDashDir;
 
+
 public:
     virtual void Update() override;
     virtual void Enter() override;

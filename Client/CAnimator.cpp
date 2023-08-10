@@ -37,7 +37,7 @@ void CAnimator::Render(HDC _dc)
 }
 
 
-void CAnimator::CreateAnimation(const wstring& _strName,CTexture* _pTex
+void CAnimator::CreateAnimation(const wstring& _strName, CTexture* _pTex
 	, Vect2 _vLT, Vect2 _vSliceSize, Vect2 _vStep, float _fDuration, UINT _iFreamCount)
 {
 	CAnimation* pAnim  = FindAnimation(_strName);
@@ -65,7 +65,7 @@ void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 
 CAnimation* CAnimator::FindAnimation(const wstring& _strName)
 {
-	map<wstring, CAnimation*>::iterator iter = mMapAnim.find(_strName);
+	auto iter = mMapAnim.find(_strName);
 
 	if (iter == mMapAnim.end())
 		return nullptr;

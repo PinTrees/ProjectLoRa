@@ -30,6 +30,6 @@ public:
 
 public:
     CombatBall_Bullet();
-    ~CombatBall_Bullet();
+    virtual ~CombatBall_Bullet();
 };
 

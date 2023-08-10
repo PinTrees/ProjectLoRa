@@ -85,7 +85,7 @@ CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 
 CTexture* CResMgr::FindTexture(const wstring& _strKey)
 {
-	map<wstring, CRes*>::iterator iter = mMapTex.find(_strKey);
+	auto iter = mMapTex.find(_strKey);
 
 	if (iter == mMapTex.end())
 	{

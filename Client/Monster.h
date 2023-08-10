@@ -85,8 +85,8 @@ private:
 
 
 public:
-	Monster(MONSTER_TYPE mType, const wstring uid);
-	~Monster();
+	Monster(MONSTER_TYPE mType, const wstring& uid);
+	virtual ~Monster() override;
 
 	friend class MonsterFactory;
 };

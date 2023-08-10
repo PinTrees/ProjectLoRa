@@ -27,7 +27,6 @@ public:
 
 public:
     Grenade_Obj();
-    ~Grenade_Obj();
-
+    virtual ~Grenade_Obj();
 };
 

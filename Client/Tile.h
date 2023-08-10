@@ -27,6 +27,6 @@ public:
 
 public:
 	Tile();
-	~Tile();
+	virtual ~Tile() override;
 };
 

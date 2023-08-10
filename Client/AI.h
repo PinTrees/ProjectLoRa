@@ -82,7 +82,7 @@ public:
 		, mOwner(nullptr)
 	{
 	}
-	~AI() 
+	virtual ~AI() 
 	{
 		Safe_Delete_Map(mMapState);
 	}

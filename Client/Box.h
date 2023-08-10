@@ -28,6 +28,6 @@ public:
 
 public:
 	Box();
-	~Box();
+	virtual ~Box() override;
 };
 

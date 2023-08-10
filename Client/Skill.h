@@ -33,7 +33,8 @@ public:
 	float GetSkillTime() { return mSkillTime; }
 
 	void SetIconStr(const wstring& str) { mIconStr = str; }
-	wstring& GetIconStr() { return mIconStr; }
+	const wstring& GetIconStr() { return mIconStr; }
+
 
 public:
 	virtual void Update();
@@ -46,5 +47,5 @@ public:
 
 public: 
 	Skill(SKILL_TYPE type, int _maxLv);
-	~Skill();
+	virtual ~Skill();
 };

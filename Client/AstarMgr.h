@@ -32,6 +32,7 @@ class AstarMgr
 {
 	SINGLE(AstarMgr);
 
+
 private:
 	int mTileX;
 	int mTileY;
@@ -51,6 +52,7 @@ private:
 
 	int mTargetX;
 	int mTargetY;
+
 
 public:
 	void CreatTileMap(int x, int y);
@@ -81,7 +83,7 @@ public:
 
 	void Find();
 
-	vector<Vect2>& GetFinalPosList()
+	const vector<Vect2>& GetFinalPosList()
 	{
 		mFinalPosList.clear();
 

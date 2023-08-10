@@ -45,6 +45,6 @@ public:
 
 public:
     SkillObj();
-    ~SkillObj();
+    virtual ~SkillObj();
 };
 

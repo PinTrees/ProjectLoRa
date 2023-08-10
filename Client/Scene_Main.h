@@ -31,6 +31,6 @@ public:
 
 public:
     Scene_Main();
-    ~Scene_Main();
+    virtual ~Scene_Main() override;
 };
 

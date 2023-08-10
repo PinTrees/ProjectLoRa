@@ -20,7 +20,6 @@ public:
 
 public:
     EnergyBall_Obj();
-    ~EnergyBall_Obj();
-
+    virtual ~EnergyBall_Obj();
 };
 

@@ -28,6 +28,6 @@ public:
 
 public:
     Boomerang_Obj();
-    ~Boomerang_Obj();
+    virtual ~Boomerang_Obj();
 };
 

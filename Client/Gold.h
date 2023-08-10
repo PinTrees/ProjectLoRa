@@ -25,6 +25,6 @@ public:
 
 public:
 	Gold();
-	~Gold();
+	virtual ~Gold() override;
 };
 

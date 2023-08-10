@@ -22,7 +22,6 @@ public:
 
 public:
     CirclingBall_Obj();
-    ~CirclingBall_Obj();
-
+    virtual ~CirclingBall_Obj();
 };
 

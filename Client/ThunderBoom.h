@@ -13,6 +13,6 @@ public:
 
 public:
     ThunderBoom();
-    ~ThunderBoom();
+    virtual ~ThunderBoom();
 };
 

@@ -90,7 +90,6 @@ Particle::Particle(const wstring& _type)
 
 Particle::~Particle()
 {
-
 }
 
 void Particle::Update()
