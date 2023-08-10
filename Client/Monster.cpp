@@ -69,6 +69,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.1f, 2);
 		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
@@ -91,7 +92,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.1f, 2);
 		GetCollider()->SetScale(Vect2(30.f, 35.f) * 1.3f);
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 128.f) * 0.95f);
@@ -199,7 +200,11 @@ void Monster::AddDamage(float damage)
 {
 	mtInfo.curHp -= damage;
 	if (mtInfo.curHp < 0) mtInfo.curHp = 0;
-
+	else 
+	{
+		if(mAI->GetCurStateType() != MONSTER_STATE::HIT)
+			ChangeAIState(mAI, MONSTER_STATE::HIT);
+	}
 
 	Vect2 vOff = Vect2((float)CRandom::GetI()->Next(-20, 20), (float)CRandom::GetI()->Next(-20, 20));
 

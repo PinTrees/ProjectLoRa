@@ -395,6 +395,9 @@
     <Filter Include="FreamWork\UI\Slider\SliderBar">
       <UniqueIdentifier>{56c2d729-4973-4dc5-938d-697e0dd9d5d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\Monster\HitState">
+      <UniqueIdentifier>{7b375fdd-6203-4fa6-8a8c-294d5b74db7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -760,6 +763,9 @@
     <ClInclude Include="CSliderBar.h">
       <Filter>FreamWork\UI\Slider\SliderBar</Filter>
     </ClInclude>
+    <ClInclude Include="HitState.h">
+      <Filter>Game\FSM\Monster\HitState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1111,6 +1117,9 @@
     </ClCompile>
     <ClCompile Include="CSliderBar.cpp">
       <Filter>FreamWork\UI\Slider\SliderBar</Filter>
+    </ClCompile>
+    <ClCompile Include="HitState.cpp">
+      <Filter>Game\FSM\Monster\HitState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

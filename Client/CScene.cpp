@@ -163,9 +163,7 @@ void CScene::Render(HDC _dc)
 			continue;
 		}
 
-		vector<CObject*>::iterator iter = mArrObj[i].begin();
-
-		for (;iter != mArrObj[i].end();)
+		for (auto iter = mArrObj[i].begin(); iter != mArrObj[i].end();)
 		{
 			// Render Object
 			if (!(*iter)->IsDead())

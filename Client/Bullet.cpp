@@ -43,7 +43,7 @@ Bullet::Bullet(const wstring& _type)
 	if (_type == L"1")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 32.f), Vect2(48.f, 0.f), 0.03f, 4);
-		SetScale(Vect2(48.f, 32.f) * 1.5f);
+		SetScale(Vect2(48.f, 32.f) * 1.2f);
 		SetAngleOffset(180);
 	}
 	else if (_type == L"2")
