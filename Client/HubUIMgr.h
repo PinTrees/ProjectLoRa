@@ -6,7 +6,7 @@ class CRow;
 class TextUI;
 class Skill;
 
-
+ 
 class HubUIMgr
 {
 	SINGLE(HubUIMgr)

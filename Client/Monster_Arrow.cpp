@@ -17,14 +17,14 @@ Monster_Arrow::Monster_Arrow()
 {
 	SetName(L"Monster_Arrow");
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(25.f, 25.f));
+	GetCollider()->SetScale(Vect2(25.f, 25.f) * 0.5f);
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_Arrow", L"texture\\effect\\5.bmp");
 	CreateAnimator();
 
 	GetAnimator()->CreateAnimation(L"Monster_Arrow", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
-	SetScale(Vect2(30.f, 30.f) * 5.f);
+	SetScale(Vect2(30.f, 30.f) * 3.f);
 
 	GetAnimator()->Play(L"Monster_Arrow", true);
 }

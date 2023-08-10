@@ -50,16 +50,26 @@ void HubUIMgr::Init()
 	mpSkillUI = new CRow;
 	mpSkillUI->SetPos(Vect2(vRes.x * 0.5f, vRes.y - 50.f));
 	mpSkillUI->SetScale(Vect2(200.f, 50.f));
-	mpSkillUI->SetSpacing(12.f);
+	mpSkillUI->SetSpacing(8.f);
 	mpSkillUI->SetAlignment(ALIGNMENT::CENTER);
 	CreateObject(mpSkillUI, GROUP_TYPE::UI);
 
 	for (int i = 0; i < 10; ++i)
 	{
 		CImageUI* icon = new CImageUI;
-		icon->SetScale(Vect2(50.f, 50.f));
+		icon->SetScale(Vect2(44.f, 44.f));
 		icon->SetColor(RGB(255, 255, 255));
 		icon->SetVisible(false);
+
+		TextUI* pLevelText = new TextUI;
+		pLevelText->SetPos(Vect2(0.f, -25.f));
+		pLevelText->SetText(L"0");
+		pLevelText->SetFontSize(18);
+		pLevelText->SetColor(RGB(255, 255, 255));
+		pLevelText->SetOutlineColor(RGB(0, 0, 0));
+		pLevelText->SetOutlineWidth(2);
+		icon->AddChild(pLevelText);
+
 		mpSkillUI->AddChild(icon);
 	}
 
@@ -85,12 +95,14 @@ void HubUIMgr::BuildSkillUI(vector<Skill*>& skills)
 	auto children = mpSkillUI->GetChild();
 	for (int i = 0; i < children.size(); ++i) {
 		CImageUI* icon = (CImageUI*)children[i];
-		
+		TextUI* levelText = (TextUI*)(icon->GetChild()[0]);
+
 		if (i >= skills.size()) {
 			icon->SetVisible(false);
 			continue;
 		}
 
+		levelText->SetText(L"LV " + std::to_wstring(skills[i]->GetSkillLevel()));
 		icon->SetTexture(CResMgr::GetI()->LoadTexture(L"Skill_Icon_" + skills[i]->GetIconStr(),
 			L"texture\\icon\\" + skills[i]->GetIconStr()));
 		icon->SetVisible(true);

@@ -52,9 +52,9 @@ void HolyArea_Obj::Update()
 		mTheta = 360.f;		// Theta 값이 너무 커지지 않도록 조정한다.
 	}
 
-	Vect2 vPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+	Vect2 vPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
-	SetPos(Vect2(vPos.x - 19.f, vPos.y));
+	SetPos(Vect2(vPos.x, vPos.y));
 	SetAngle(mTheta);					// 오브젝트를 회전시킨다.
 	GetAnimator()->Update();
 	SetAlpha(150);

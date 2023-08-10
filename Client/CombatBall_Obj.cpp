@@ -31,7 +31,7 @@ CombatBall_Obj::CombatBall_Obj()
 	CreateAnimator();
 
 	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(63.f, 75.f), Vect2(63.f, 0.f), 0.07f, 6);
-	SetScale(Vect2(63.f, 75.f) * 1.5f);
+	SetScale(Vect2(63.f, 75.f) * 0.8f);
 
 	GetAnimator()->Play(L"IDLE", true);
 }

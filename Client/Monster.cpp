@@ -95,12 +95,13 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
-		GetCollider()->SetScale(Vect2(30.f, 35.f) * 1.3f);
-		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
-		SetScale(Vect2(128.f, 128.f) * 0.95f);
-		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 
-		mHpBar->SetPivot(Vect2(0.f, -12.f));
+		SetScale(Vect2(128.f, 128.f) * 0.9f);
+		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
+
+		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}
 	else if (mtInfo.UID == L"2")
 	{

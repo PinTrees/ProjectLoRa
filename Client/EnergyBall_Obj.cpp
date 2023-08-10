@@ -24,11 +24,11 @@ EnergyBall_Obj::EnergyBall_Obj()
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"EnergyBall", L"texture\\effect\\10.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"EnergyBall", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.05f, 15);
+	GetAnimator()->CreateAnimation(L"EnergyBall", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.07f, 16);
 	SetScale(Vect2(180.f, 180.f));
 
 	GetAnimator()->Play(L"EnergyBall", true);
-	SetAlpha(255);
+	SetAlpha(220);
 }
 
 EnergyBall_Obj::~EnergyBall_Obj()
@@ -51,6 +51,9 @@ void EnergyBall_Obj::Update()
 	vPos += mvDir * mSpeed * DT;	// 공을 한 방향으로 계속 움직이게 한다.
 
 	SetPos(vPos);
+	GetAnimator()->Update();
+
+	SetAngle(GetAngle() + 200 * DT);		// 오브젝트가 회전하도록 함
 	GetAnimator()->Update();
 }
 

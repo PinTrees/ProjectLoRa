@@ -34,6 +34,7 @@ class BarUI;
 class CImageUI;
 class LevelupUI;
 class CSound;
+class TextUI;
 
 
 class Player :
@@ -49,6 +50,7 @@ private:
 	float		mExp;
 	BarUI*		mExpBar;
 	CImageUI*	mHpBar;
+	TextUI*		mHpText;
 
 	tPlayerInfo			mtInfo;
 	vector<Skill*>		mVecSkill;

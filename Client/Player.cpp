@@ -130,6 +130,14 @@ Player::Player()
 	pHpBarFrame->SetScale(pHpBarUI->GetScale());
 	pHpBarFrame->SetTexture(CResMgr::GetI()->LoadTexture(L"Hp_Bar_Frame", L"texture\\ui\\hp_bar\\hp_bar_frame.bmp"));
 	pHpBarUI->AddChild(pHpBarFrame);
+
+	mHpText = new TextUI;
+	mHpText->SetText(L"0");
+	mHpText->SetFontSize(20);
+	mHpText->SetColor(RGB(255, 255, 255));
+	mHpText->SetOutlineColor(RGB(0, 0, 0));
+	mHpText->SetOutlineWidth(1);
+	pHpBarUI->AddChild(mHpText);
 }
 
 
@@ -173,6 +181,7 @@ void Player::Update()
 	Vect2 vPos = GetPos();
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+	mHpText->SetText(std::to_wstring(mtInfo.curHp));
 
 	if (mtInfo.curHp <= 0)
 	{

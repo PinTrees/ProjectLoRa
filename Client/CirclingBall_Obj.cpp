@@ -42,7 +42,7 @@ void CirclingBall_Obj::Update()
 		return;
 	}
 
-	Vect2 vPlayer = PlayerMgr::GetI()->GetPlayer()->GetPos();
+	Vect2 vPlayer = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
 	Vect2 vPos;
 	vPos.x = cosf(mTheta) * 100.f;
