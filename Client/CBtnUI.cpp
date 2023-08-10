@@ -127,6 +127,7 @@ void CBtnUI::SetText(const wstring& _text)
 	{
 		mText = new TextUI;
 		mText->SetFontSize(24);
+		mText->SetText(_text);
 		AddChild(mText);
 	}
 }

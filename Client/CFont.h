@@ -8,7 +8,7 @@ class CFont :
 {
 private:
     HFONT       mDefaultFont;
-
+    wstring     mFullPath;
 
 public:
     void Load(const wstring& _text, const wstring& _name, int _size);

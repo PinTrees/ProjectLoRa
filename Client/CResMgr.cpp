@@ -120,7 +120,9 @@ CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath,
 	CFont* pFont = FindFont(keyStr);
 
 	if (nullptr != pFont)
+	{
 		return pFont;
+	}
 
 	wstring strFilePath = CPathMgr::GetI()->GetContentPath() + _strRelativePath;
 
@@ -137,7 +139,7 @@ CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath,
 
 CFont* CResMgr::FindFont(const wstring& _strKey)
 {
-	map<wstring, CRes*>::iterator iter = mMapFont.find(_strKey);
+	auto iter = mMapFont.find(_strKey);
 
 	if (iter == mMapFont.end())
 	{

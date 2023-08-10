@@ -12,16 +12,16 @@ CFont::CFont(HDC _dc)
 
 CFont::~CFont()
 {
-	wstring pathStr = CPathMgr::GetI()->GetContentPath() + GetRelativePath();
-	RemoveFontResource(pathStr.c_str());
+	RemoveFontResource(mFullPath.c_str());
 	DeleteObject(mDefaultFont);
 }
 
 
 void CFont::Load(const wstring& filePath, const wstring& name, int size)
 {
-	AddFontResource(filePath.c_str());
-	
+    mFullPath = filePath;
+	AddFontResource(mFullPath.c_str());
+	 
 	// 폰트의 크기값을 리소스 키값 및 폰트 이름에 추가
 	mDefaultFont = CreateFont(size, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,
 		CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, name.c_str());
