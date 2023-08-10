@@ -21,10 +21,10 @@ CirclingBall_Obj::CirclingBall_Obj()
 	GetCollider()->SetScale(Vect2(40.f, 40.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CirclingBall", L"texture\\effect\\4.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CirclingBall", L"texture\\effect\\11.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"CirclingBall", pTex, Vect2(240.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
+	GetAnimator()->CreateAnimation(L"CirclingBall", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 6);
 	SetScale(Vect2(50.f, 50.f));
 
 	GetAnimator()->Play(L"CirclingBall", true);
@@ -51,7 +51,7 @@ void CirclingBall_Obj::Update()
 	SetPos(vPos + vPlayer);			// 공이 플레이어 주변을 빙글빙글 돌도록 세팅한다.
 	GetAnimator()->Update();
 
-	mTheta += 4.f * DT;
+	mTheta += 2.5f * DT;
 
 	if (mTheta >= 360.f)		// Theta 값이 너무 커지지 않도록 함
 		mTheta = 0.f;

@@ -220,7 +220,7 @@ void Monster::AddDamage(float damage)
 
 void Monster::OnCollisionEnter(CCollider* _pOther)
 {
-	CObject* pOtherObj = _pOther->GetObj();
+	/*CObject* pOtherObj = _pOther->GetObj();
 
 	if (pOtherObj->GetName() == L"Missile_Player")
 	{
@@ -231,7 +231,7 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
 
 		CreateForce(fc);
-	}
+	}*/
 }
 
 void Monster::OnCollisionStay(CCollider* _pOther)

@@ -12,22 +12,23 @@
 
 EnergyBall_Obj::EnergyBall_Obj()
 	: mCurDelay()
+	, mSpeed(200.f)
 {
 	SetMaxDelay(3.f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.3f);	// ~초마다 데미지를 입힘
 	SetName(L"EnergyBall");
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(180.f, 180.f));
+	GetCollider()->SetScale(Vect2(128.f, 128.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"EnergyBall", L"texture\\effect\\4.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"EnergyBall", L"texture\\effect\\10.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"EnergyBall", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.03f, 11);
-	SetScale(Vect2(300.f, 300.f));
+	GetAnimator()->CreateAnimation(L"EnergyBall", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.05f, 15);
+	SetScale(Vect2(180.f, 180.f));
 
 	GetAnimator()->Play(L"EnergyBall", true);
-	SetAlpha(150);
+	SetAlpha(255);
 }
 
 EnergyBall_Obj::~EnergyBall_Obj()
@@ -47,8 +48,7 @@ void EnergyBall_Obj::Update()
 
 	Vect2 vPos = GetPos();
 
-	vPos.x += mvDir.x * 300.f * DT;		// 공을 한 방향으로 계속 움직이게 한다.
-	vPos.y += mvDir.y * 300.f * DT;
+	vPos += mvDir * mSpeed * DT;	// 공을 한 방향으로 계속 움직이게 한다.
 
 	SetPos(vPos);
 	GetAnimator()->Update();

@@ -11,6 +11,8 @@ private:
     Vect2       mvDir;      // ¹æÇâ °ª
     float       mCurDelay;
 
+    float       mSpeed;
+
 public:
     void SetDir(Vect2 _dir) { mvDir = _dir; }
 

@@ -27,13 +27,13 @@ CombatBall_Obj::CombatBall_Obj()
 	SetMaxDelay(0.f);
 	SetName(L"CombatBall");
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CombatBall", L"texture\\effect\\5.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CombatBall", L"texture\\effect\\12.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"CombatBall", pTex, Vect2(240.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
-	SetScale(Vect2(50.f, 50.f));
+	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(63.f, 75.f), Vect2(63.f, 0.f), 0.07f, 6);
+	SetScale(Vect2(63.f, 75.f) * 1.5f);
 
-	GetAnimator()->Play(L"CombatBall", true);
+	GetAnimator()->Play(L"IDLE", true);
 }
 
 CombatBall_Obj::~CombatBall_Obj()
