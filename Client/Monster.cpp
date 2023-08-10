@@ -28,6 +28,8 @@
 #include "SelectGDI.h"
 
 #include "Player.h"
+#include "SettingMgr.h"
+
 
 Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	: mtInfo({})
@@ -69,7 +71,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.1f, 2);
+		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
 		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
@@ -92,7 +94,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"RUN", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.1f, 2);
+		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
 		GetCollider()->SetScale(Vect2(30.f, 35.f) * 1.3f);
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 128.f) * 0.95f);
@@ -163,9 +165,8 @@ void Monster::Render(HDC dc)
 	{
 		Vect2 vStartPos = CCamera::GetI()->GetRenderPos(mVecPathPos[0]);
 
-		MoveToEx(dc, vStartPos.x, vStartPos.y, nullptr); // 현재 좌표 설정
-		// 나머지 좌표들을 순회하며 라인을 그립니다.
-		for (size_t i = 1; i < mVecPathPos.size(); ++i)
+		MoveToEx(dc, vStartPos.x, vStartPos.y, nullptr);	// 현재 좌표 설정
+		for (size_t i = 1; i < mVecPathPos.size(); ++i)		// 나머지 좌표들을 순회하며 라인을 그립니다.
 		{
 			Vect2 vDrawPos = CCamera::GetI()->GetRenderPos(mVecPathPos[i]);
 			LineTo(dc, vDrawPos.x, vDrawPos.y);
@@ -208,10 +209,13 @@ void Monster::AddDamage(float damage)
 
 	Vect2 vOff = Vect2((float)CRandom::GetI()->Next(-20, 20), (float)CRandom::GetI()->Next(-20, 20));
 
-	CombatText* pCbTex = new CombatText;
-	pCbTex->SetPos(GetLocalPos());
-	pCbTex->SetText(std::to_wstring((int)damage));
-	CreateObject(pCbTex, GROUP_TYPE::UI);
+	if (SettingMgr::GetI()->GetDamageTextActive())
+	{
+		CombatText* pCbTex = new CombatText;
+		pCbTex->SetPos(GetLocalPos());
+		pCbTex->SetText(std::to_wstring((int)damage));
+		CreateObject(pCbTex, GROUP_TYPE::UI);
+	}
 
 	if (mHitSound)
 		mHitSound->Play();

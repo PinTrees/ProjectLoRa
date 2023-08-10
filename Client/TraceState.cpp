@@ -60,8 +60,8 @@ void TraceState::Update()
 	{
 		mCurDelay = 0.f;
 
-		Vect2 vMonPos = pMonster->GetPos() / TILE_SIZE_RENDER;
-		Vect2 vTargetPos = PlayerMgr::GetI()->GetPlayer()->GetPos() / TILE_SIZE_RENDER;
+		Vect2 vMonPos = pMonster->GetLocalPos() / TILE_SIZE_RENDER;
+		Vect2 vTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos() / TILE_SIZE_RENDER;
 
 		auto tCurFindPathType = SettingMgr::GetI()->GetFindPathType();
 
@@ -89,16 +89,15 @@ void TraceState::Update()
 		}
 	}
 
-	Vect2 vMonsterPos = pMonster->GetPos();
+	Vect2 vMonsterPos = pMonster->GetLocalPos();
+	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
 	if (Vect2::Distance(vMonsterPos, mvTargetPos) < 5.f)
 		return;
 
 	Vect2 dir = mvTargetPos - vMonsterPos;
 	dir.Normalize();
-	GetOwner()->SetPos(vMonsterPos + dir * pMonster->GetInfo().speed * DT);
-
-	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+	GetOwner()->SetPos(pMonster->GetPos() + dir * pMonster->GetInfo().speed * DT);
 
 	//// 플레이어가 몬스터의 인식범위 내부로 진입
 	if (Vect2::Distance(vPlayerPos, vMonsterPos) < pMonster->GetInfo().atkRange)

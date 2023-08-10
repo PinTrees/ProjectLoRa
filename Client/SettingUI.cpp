@@ -110,6 +110,31 @@ SettingUI::SettingUI()
 	mDebugCheckIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
 	mDebugCheckIcon->SetRaycastTarget(false);
 	mDebugBtn->AddChild(mDebugCheckIcon);
+
+	// 데미지 텍스트 옵션 UI -------------------------------------------------------
+	CRow* pDamageRow = new CRow;
+	pDamageRow->SetScale(Vect2(500.f, 60.f));
+	pDamageRow->SetSpacing(16.f);
+	pColumn->AddChild(pDamageRow);
+
+	TextUI* pDamageTitle = new TextUI;
+	pDamageTitle->SetScale(Vect2(230.f, 25.f));
+	pDamageTitle->SetFontSize(22.f);
+	pDamageTitle->SetColor(RGB(255, 255, 255));
+	pDamageTitle->SetText(L"데미지 텍스트 표시");
+	pDamageRow->AddChild(pDamageTitle);
+
+	mDamageTextBtn = new CBtnUI;
+	mDamageTextBtn->SetScale(Vect2(30.f, 30.f));
+	mDamageTextBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Btn_1", L"texture\\ui\\button\\1.bmp"));
+	mDamageTextBtn->SetClickedCallBack(this, OBJECT_FUNC(&SettingUI::SetDamageText));
+	pDamageRow->AddChild(mDamageTextBtn);
+
+	mDamageTextCheckIcon = new CImageUI;
+	mDamageTextCheckIcon->SetScale(Vect2(30.f, 30.f));
+	mDamageTextCheckIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
+	mDamageTextCheckIcon->SetRaycastTarget(false);
+	mDamageTextBtn->AddChild(mDamageTextCheckIcon);
 }
 
 
@@ -148,6 +173,7 @@ void SettingUI::Build()
 	}*/
 
 	mDebugCheckIcon->SetVisible(DEBUG);
+	mDamageTextCheckIcon->SetVisible(SettingMgr::GetI()->GetDamageTextActive());
 }
 
 
@@ -160,5 +186,11 @@ void SettingUI::SetFindPath(DWORD_PTR param)
 void SettingUI::SetDebugMode()
 {
 	CSystemMgr::GetI()->SetDebug(!DEBUG);
+	Build();
+}
+
+void SettingUI::SetDamageText()
+{
+	SettingMgr::GetI()->SetDamageTextActive(!SettingMgr::GetI()->GetDamageTextActive());
 	Build();
 }

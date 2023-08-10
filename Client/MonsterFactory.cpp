@@ -57,11 +57,11 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 		tMonsterInfo info = {};
 		info.atk = 10.f;
-		info.atkRange = 350.f;
+		info.atkRange = 300.f;
 		info.recogRange = 10000.f;
 		info.curHp = info.hp = 100.f * pow(1.002f, mCreateCount);
 		info.speed = 25.f;
-		info.atkSpeed = 2.f;
+		info.atkSpeed = 3.f;
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);

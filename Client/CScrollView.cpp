@@ -30,14 +30,12 @@ CScrollView::CScrollView() // ScrollView 안에 넣을 UI와 ScrollView의 사이즈
 	mpScrollBar->SetScale(Vect2(16.f, 75.f));
 	mpScrollBar->mScrollView = this;
 	mpScrollBar->SetTexture(CResMgr::GetI()->LoadTexture(L"FW_ScrollBar", L"texture\\ui\\scrollview\\scrollbar.bmp"));
-
 	AddChild(mpScrollBar);
-
+	
 	mpScrollRoad = new CImageUI;
 	mpScrollRoad->SetName(L"ScrollRoad");
 	mpScrollRoad->SetScale(Vect2(4.f, 10.f));
 	mpScrollRoad->SetColor(RGB(137, 90, 69));
-	
 	AddChild(mpScrollRoad);
 }
 
@@ -93,8 +91,7 @@ void CScrollView::Update()
 
 		float startY = mRatio * (vScale.y - vScrollBarSize.y);
 		mpScrollBar->SetPos(Vect2(vScrollBarPos.x
-			, vPos.y + startY
-			- (vScale.y * 0.5f)
+			, startY - (vScale.y * 0.5f)
 			+ (vScrollBarSize.y * 0.5f)));
 	}
 
@@ -103,15 +100,13 @@ void CScrollView::Update()
 	{
 		mRatio = 0.f;
 		mpScrollBar->SetPos(Vect2(vScrollBarPos.x
-			, vPos.y - (vScale.y * 0.5f)
-			+ (vScrollBarSize.y * 0.5f)));
+			, (vScale.y * 0.5f) + (vScrollBarSize.y * 0.5f)));
 	}
 	else if(mRatio > 1.f)
 	{
 		mRatio = 1.f;
 		mpScrollBar->SetPos(Vect2(vScrollBarPos.x
-			, vPos.y + (vScale.y * 0.5f)
-			- (vScrollBarSize.y * 0.5f)));
+			, (vScale.y * 0.5f) - (vScrollBarSize.y * 0.5f)));
 	}
 
 
@@ -124,7 +119,7 @@ void CScrollView::Update()
 void CScrollView::Render(HDC _dc)
 {
 	// 버퍼 DC 초기화
-	mpBufferTexture->Clear(RGB(255, 0, 255));
+	mpBufferTexture->Clear(RGB(255, 254, 255));
 	CUI::RenderChild(mpBufferTexture->GetDC());
 
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
@@ -160,7 +155,7 @@ void CScrollView::Render(HDC _dc)
 		, (int)stratY
 		, (int)(vScale.x - renderGapX)
 		, (int)(vScale.y - renderGapY)
-		, RGB(255, 0, 255));
+		, RGB(255, 254, 255));
 
 	mpScrollRoad->Render(_dc);
 	mpScrollBar->Render(_dc);
