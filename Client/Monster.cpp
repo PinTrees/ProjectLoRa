@@ -19,6 +19,7 @@
 #include "CScene.h"
 #include "AI.h"
 #include "Gold.h"
+#include "CSound.h"
 
 // Include UI
 #include "BarUI.h"
@@ -33,7 +34,14 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 	, mAI(nullptr)
 	, mType(Type)
 	, mCurDamageDelay()
+	, mHitSound(nullptr)
+	, mvShadowOffset(Vect2::zero)
+	, mvShadowScale(Vect2::zero)
 {
+	// Load ------------------------
+	mHitSound = CResMgr::GetI()->LoadSound(L"Sound_Hit", L"sound\\atk.wav");
+	mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_2", L"texture\\shadow\\2.bmp");
+
 	SetName(L"Monster");
 	mtInfo.UID = uid;
 
@@ -47,6 +55,9 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 
 	if (mtInfo.UID == L"3")
 	{
+		mvShadowScale = Vect2(45.f, 25.f);
+		mvShadowOffset = Vect2(-5.f, 50.f);
+
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_3_r", L"texture\\monster\\3_r.bmp");
 
 		Vect2 vSliseSize = Vect2(128.f, 130.f);
@@ -58,7 +69,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
 		//GetAnimator()->CreateAnimation(L"CREATE", pTex, Vect2(0.f, 93 * 8.f), vSliseSize, vStepSize, 0.07f, 8);
-		GetCollider()->SetScale(Vect2(30.f, 50.f));
+		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
@@ -67,6 +78,9 @@ Monster::Monster(MONSTER_TYPE Type, const wstring uid)
 	}
 	else if (mtInfo.UID == L"2")
 	{
+		mvShadowScale = Vect2(60.f, 25.f);
+		mvShadowOffset = Vect2(-5.f, 25.f);
+
 		CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_2", L"texture\\monster\\2.bmp");
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 48.f * 1.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
@@ -93,6 +107,23 @@ Monster::~Monster()
 
 void Monster::Render(HDC dc)
 {
+	Vect2 vPos = CCamera::GetI()->GetRenderPos(GetPos());
+	Vect2 vScale = GetScale();
+
+	if (mpShadowTex)
+	{
+		TransparentBlt(dc
+			, (int)(vPos.x + mvShadowOffset.x - mvShadowScale.x * 0.5f)
+			, (int)(vPos.y + mvShadowOffset.y - mvShadowScale.y * 0.5f)
+			, (int)(mvShadowScale.x)
+			, (int)(mvShadowScale.y)
+			, mpShadowTex->GetDC()
+			, 0, 0
+			, (int)mpShadowTex->Width()
+			, (int)mpShadowTex->Heigth()
+			, RGB(255, 0, 255));
+	}
+
 	CompnentRender(dc);
 
 	if (mVecPathPos.empty())
@@ -165,6 +196,13 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
 
 		CreateForce(fc);
+	}
+
+	if (pOtherObj->GetName() != L"ENV"
+		&& pOtherObj->GetName() != L"Monster")
+	{
+		if (mHitSound)
+			mHitSound->Play();
 	}
 }
 

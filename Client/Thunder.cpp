@@ -31,7 +31,7 @@ void Thunder::UseSkill()
 	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
 	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
-	vector<CObject*> vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
 
 	float length = 1000.f;
 	Vect2 monsterPos;

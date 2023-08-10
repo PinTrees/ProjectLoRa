@@ -18,7 +18,8 @@ struct tMonsterInfo
 
 class MonsterFactory;
 class BarUI;
-
+class CSound;
+class CTexture;
 
 
 class Monster :
@@ -36,6 +37,12 @@ private:
 	vector<Vect2>	mVecPathPos;
 
 	float			mCurDamageDelay;
+
+	CSound*			mHitSound;
+	CTexture*		mpShadowTex;
+	Vect2	mvShadowOffset;
+	Vect2	mvShadowScale;
+
 
 public:
 	MONSTER_TYPE GetType() { return mType; }
@@ -65,6 +72,7 @@ public:
 	virtual void OnCollisionEnter(CCollider* _pOther) override;
 	virtual void OnCollisionStay(CCollider* _pOther) override;
 	virtual void OnDestroy() override;
+
 
 public:
 	virtual void Update() override;

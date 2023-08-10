@@ -33,6 +33,7 @@ int CSound::Load(const wstring& _strPath)
 	else
 		assert(nullptr);
 
+	SetPosition(0);
 	return S_OK;
 }
 

@@ -60,7 +60,6 @@ Player::Player()
 	// Load ----------------------
 	mpCoinSound = CResMgr::GetI()->LoadSound(L"Coin_1", L"sound\\coin.wav");
 
-
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
 
