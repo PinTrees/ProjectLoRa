@@ -180,6 +180,9 @@ void Monster::AddDamage(float damage)
 	pCbTex->SetPos(GetLocalPos());
 	pCbTex->SetText(std::to_wstring((int)damage));
 	CreateObject(pCbTex, GROUP_TYPE::UI);
+
+	if (mHitSound)
+		mHitSound->Play();
 }
 
 
@@ -196,13 +199,6 @@ void Monster::OnCollisionEnter(CCollider* _pOther)
 		fc.pos = pOtherObj->GetLocalPos() - (GetLocalPos() - pOtherObj->GetLocalPos()).Normalize() * 3.f;
 
 		CreateForce(fc);
-	}
-
-	if (pOtherObj->GetName() != L"ENV"
-		&& pOtherObj->GetName() != L"Monster")
-	{
-		if (mHitSound)
-			mHitSound->Play();
 	}
 }
 

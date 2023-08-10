@@ -78,6 +78,7 @@ public:
 	void AddSkill(Skill* _skill);
 	void UseSkill();
 	void AddDamage(float _damage) { mtInfo.curHp -= _damage; }
+	const vector<Skill*>& GetSkillList() { return mVecSkill; };
 
 
 public:

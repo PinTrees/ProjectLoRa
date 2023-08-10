@@ -13,8 +13,10 @@
 #include "TextUI.h"
 #include "CColumn.h"
 #include "GameOverUI.h"
+#include "ClearUI.h"
 
 #include "UIMgr.h"
+
 
 
 SINGLE_HEADER(GUIMgr);
@@ -51,6 +53,10 @@ void GUIMgr::Init()
 	mpGameOverUI = new GameOverUI;
 	mpGameOverUI->SetPos(vRes * 0.5f);
 	CreateObject(mpGameOverUI, GROUP_TYPE::UI); 
+
+	mpGameClearUI = new ClearUI;
+	mpGameClearUI->SetPos(vRes * 0.5f);
+	CreateObject(mpGameClearUI, GROUP_TYPE::UI);
 	/// ------------------------------------------
 
 
@@ -91,6 +97,7 @@ void GUIMgr::Init()
 
 	CloseSettingUI();
 	CloseGameOverUI();
+	CloseGameClearUI();
 }
 
 void GUIMgr::ShowSettingUI()
@@ -110,6 +117,8 @@ void GUIMgr::CloseSettingUI()
 }
 
 
+// -----------------------------------------------------
+// 게임 오버 UI -----------------------------------------
 void GUIMgr::ShowGameOverUI()
 {
 	CTimeMgr::GetI()->Stop();
@@ -124,6 +133,28 @@ void GUIMgr::CloseGameOverUI()
 	CTimeMgr::GetI()->Play();
 	mpGameOverUI->SetVisible(false);
 }
+// -----------------------------------------------------
+
+
+
+// -------------------------------------------------------
+// 게임 클리어 UI -----------------------------------------
+void GUIMgr::ShowGameClearUI()
+{
+	CTimeMgr::GetI()->Stop();
+	mpGameClearUI->SetVisible(true);
+	mpGameClearUI->Build();
+	CUIMgr::GetI()->SetTop(mpGameClearUI);
+}
+
+void GUIMgr::CloseGameClearUI()
+{
+	CTimeMgr::GetI()->Play();
+	mpGameClearUI->SetVisible(false);
+}
+// -------------------------------------------------------
+
+
 
 
 void GUIMgr::SetFrameText(UINT frame)
