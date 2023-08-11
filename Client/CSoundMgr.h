@@ -16,7 +16,8 @@ class CSoundMgr
 
 private:
 	LPDIRECTSOUND8	m_pSound;	// 사운드카드 대표 객체
-	CSound* m_pBGM;		// 현재 지정된 BGM Sound
+	CSound* m_pBGM;				// 현재 지정된 BGM Sound
+
 
 public:
 	int Init(void);

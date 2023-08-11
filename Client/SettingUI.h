@@ -41,7 +41,6 @@ public:
 
 public:
 	SettingUI();
-	virtual ~SettingUI() override;
-	SettingUI(SettingUI&) = delete;
+	virtual ~SettingUI();
 };
 

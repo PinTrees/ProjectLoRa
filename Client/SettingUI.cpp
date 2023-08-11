@@ -142,13 +142,18 @@ SettingUI::SettingUI()
 	pVolRow->SetSpacing(16.f);
 	pColumn->AddChild(pVolRow);
 
+	CImageUI* pSoundIcon = new CImageUI;
+	pSoundIcon->SetScale(Vect2(38.f, 38.f));
+	pSoundIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Sound", L"texture\\ui\\icon\\sound.bmp"));
+	pVolRow->AddChild(pSoundIcon);
+
 	mSoundSlider = new CSlider;
 	mSoundSlider->SetScale(Vect2(200.f, 60.f));
 	mSoundSlider->SetChangeValueFunc(this, (SLIDER_OBJ)(&SettingUI::ChangeSoundSliderValue));
 	pVolRow->AddChild(mSoundSlider);
 
 	mVolumText = new TextUI;
-	mVolumText->SetScale(Vect2(100.f, 25.f));
+	mVolumText->SetScale(Vect2(50.f, 25.f));
 	mVolumText->SetFontSize(22.f);
 	mVolumText->SetColor(RGB(255, 255, 255));
 	mVolumText->SetText(L"100");
@@ -215,4 +220,5 @@ void SettingUI::SetDamageText()
 void SettingUI::ChangeSoundSliderValue(int val)
 {
 	mVolumText->SetText(std::to_wstring(val));
+	SettingMgr::GetI()->SetVolume(val);
 }

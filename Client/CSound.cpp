@@ -159,8 +159,8 @@ void CSound::SetPosition(float _fPosition)
 
 void CSound::SetVolumeOffset(int vol)
 {
-	 mVolOffset = vol;
-	 m_pSoundBuffer->SetVolume(m_iVolume + mVolOffset);
+	mVolOffset = vol;
+	m_pSoundBuffer->SetVolume(m_iVolume + mVolOffset);
 }
 
 int CSound::GetDecibel(float _fVolume)

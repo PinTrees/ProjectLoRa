@@ -7,8 +7,9 @@ class SettingMgr
 	SINGLE(SettingMgr);
 
 private:
-	FIND_PATH_TYPE mFindPathType;
-	BOOL	mbDamageText;
+	FIND_PATH_TYPE	mFindPathType;
+	BOOL			mbDamageText;
+	int				mVolume;
 
 
 public:
@@ -17,6 +18,9 @@ public:
 
 	void SetDamageTextActive(BOOL active) { mbDamageText = active; }
 	BOOL GetDamageTextActive() { return mbDamageText; }
+
+	void SetVolume(int vol);
+	int  GetVolume() { return mVolume; }
 
 
 public:
