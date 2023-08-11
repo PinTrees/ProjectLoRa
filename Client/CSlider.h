@@ -2,7 +2,7 @@
 #include "CUI.h"
 
 
-class CTexture;
+class CImageUI;
 class CSliderBar;
 
 
@@ -10,7 +10,7 @@ class CSlider :
 	public CUI
 {
 private:
-	CTexture* mpRoadTex;
+	CImageUI*	mpRoad;
 	CSliderBar* mpSliderBar;
 
 	int mMaxValue;

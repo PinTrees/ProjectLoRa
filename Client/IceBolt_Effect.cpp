@@ -47,6 +47,7 @@ void IceBolt_Effect::Update()
 		if ((Monster*)mvecIcedMon->IsDead())
 		{
 			mvecIcedMon = nullptr;
+
 			GetAnimator()->Play(L"IceBolt_Effect_DeFrost", false);
 			mCurTime = 0.f;
 			mFreeze = true;
@@ -65,8 +66,7 @@ void IceBolt_Effect::Update()
 	{
 		DeleteObject(this);
 
-		if(mvecIcedMon) 
-			((Monster*)mvecIcedMon)->SetFreeze(false);			// 받아놓은 몬스터들을 얼음효과가 풀렸을 때 다시 녹은상태로 만듦
+		if(mvecIcedMon) ((Monster*)mvecIcedMon)->SetFreeze(false);			// 받아놓은 몬스터들을 얼음효과가 풀렸을 때 다시 녹은상태로 만듦
 	}
 
 	GetAnimator()->Update();

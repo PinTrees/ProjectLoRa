@@ -9,8 +9,8 @@ class CSliderBar :
 	public CUI
 {
 private:
-	CSlider* mpOwner;
-	CTexture* mpTex;
+	CSlider*	mpOwner;
+	CTexture*	mpTex;
 
 
 public:

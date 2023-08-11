@@ -17,6 +17,10 @@
 #include "CTimeMgr.h"
 #include "CTexture.h"
 
+#include "Player.h"
+
+
+
 // 해당 오브젝트가 제거되면 해당인덱스에있는 노드추가
 //#include "TileMgr.h"
 
@@ -113,4 +117,83 @@ void Environment::Render(HDC _dc)
 		, RGB(255, 0, 255));
 
 	CompnentRender(_dc);
+}
+
+
+
+void Environment::OnCollisionStay(CCollider* _pOther)
+{
+	CObject* pObj = _pOther->GetObj();
+
+	if (pObj->GetName() == L"Player")
+	{
+		Vect2 vObjPos = _pOther->GetFinalPos();
+		Vect2 vObjSize = _pOther->GetScale();
+
+		Vect2 vPos = GetCollider()->GetFinalPos();
+		Vect2 vSize = GetCollider()->GetScale();
+
+		// 플레이어의 현재 이동 방향을 계산
+		Vect2 playerMovementDirection = ((Player*)pObj)->GetDir() * -1.f;
+
+		if (vObjPos.x < vPos.x - vSize.x / 2.f
+			&& vObjPos.y + vObjSize.y / 2.f > vPos.y - vSize.y / 2.f
+			&& vObjPos.y - vObjSize.y / 2.f < vPos.y + vSize.y / 2.f) // 플레이어가 장애물보다 왼쪽에 있을 때
+		{
+			float fLen = abs(vObjPos.x - vPos.x);
+			float fUp = (vObjSize.x / 2.f + vSize.x / 2.f) - fLen;
+
+			if (playerMovementDirection.x < 0)
+			{
+				vObjPos = pObj->GetPos();
+				vObjPos.x -= fUp;
+				pObj->SetPos(vObjPos);
+			}
+		}
+
+		if (vObjPos.x >= vPos.x + vSize.x / 2.f
+			&& vObjPos.y + vObjSize.y / 2.f > vPos.y - vSize.y / 2.f
+			&& vObjPos.y - vObjSize.y / 2.f < vPos.y + vSize.y / 2.f) // 플레이어가 장애물보다 오른쪽에 있을 때
+		{
+			float fLen = abs(vObjPos.x - vPos.x);
+			float fUp = (vObjSize.x / 2.f + vSize.x / 2.f) - fLen;
+
+			if (playerMovementDirection.x > 0)
+			{
+				vObjPos = pObj->GetPos();
+				vObjPos.x += fUp;
+				pObj->SetPos(vObjPos);
+			}
+		}
+
+		if (vObjPos.y < vPos.y - vSize.y / 2.f
+			&& vObjPos.x - vSize.x / 2.f < vPos.x + vSize.x / 2.f
+			&& vObjPos.x + vSize.x / 2.f > vPos.x - vSize.x / 2.f) // 플레이어가 장애물보다 위에 있을 때
+		{
+			float fLen = abs(vObjPos.y - vPos.y);
+			float fUp = (vObjSize.y / 2.f + vSize.y / 2.f) - fLen;
+
+			if (playerMovementDirection.y < 0)
+			{
+				vObjPos = pObj->GetPos();
+				vObjPos.y -= fUp;
+				pObj->SetPos(vObjPos);
+			}
+		}
+
+		if (vObjPos.y > vPos.y + vSize.y / 2.f
+			&& vObjPos.x - vSize.x / 2.f < vPos.x + vSize.x / 2.f
+			&& vObjPos.x + vSize.x / 2.f > vPos.x - vSize.x / 2.f) // 플레이어가 장애물보다 아래에 있을 때
+		{
+			float fLen = abs(vObjPos.y - vPos.y);
+			float fUp = (vObjSize.y / 2.f + vSize.y / 2.f) - fLen;
+
+			if (playerMovementDirection.y > 0)
+			{
+				vObjPos = pObj->GetPos();
+				vObjPos.y += fUp;
+				pObj->SetPos(vObjPos);
+			}
+		}
+	}
 }

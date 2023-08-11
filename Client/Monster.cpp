@@ -53,6 +53,8 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	CreateCollider();
 	CreateAnimator();
 	CreateRigidBody();
+	GetRigidBody()->SetMess(1.f);
+	GetRigidBody()->SetMaxVelocity(Vect2(50.f, 50.f));
 
 	mHpBar = new BarUI;
 	mHpBar->SetScale(Vect2(40.f, 4.f));

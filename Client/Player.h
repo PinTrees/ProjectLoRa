@@ -68,17 +68,17 @@ public:
 	float GetExp() { return mExp; };
 	void  AddExp(float exp) { mExp += exp; }
 
-	Vect2 GetRunDir() { return mvDir; }
+	Vect2 GetDir() { return mvDir; }
 
 	void SetAI(AI<PLAYER_STATE>* pAI) { mAI = pAI; mAI->SetOwner(this); }
 	AI<PLAYER_STATE>* GetAI() { return mAI; }
 
 
 public:
-	Skill* FindSkill(SKILL_TYPE type);
-	void AddSkill(Skill* _skill);
-	void UseSkill();
-	void AddDamage(float _damage) { mtInfo.curHp -= _damage; }
+	Skill*	FindSkill(SKILL_TYPE type);
+	void	AddSkill(Skill* _skill);
+	void	UseSkill();
+	void	AddDamage(float _damage) { mtInfo.curHp -= _damage; }
 	const vector<Skill*>& GetSkillList() { return mVecSkill; };
 
 

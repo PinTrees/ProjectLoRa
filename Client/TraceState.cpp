@@ -22,7 +22,7 @@
 
 TraceState::TraceState()
 	: CState(MONSTER_STATE::TRACE)
-	, mAstarDelay(0.5f)
+	, mAstarDelay(0.75f)
 	, mCurDelay(0.f)
 	, mvTargetPos(Vect2::zero)
 	, mAttakDelay()

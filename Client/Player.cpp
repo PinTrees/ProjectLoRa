@@ -56,6 +56,8 @@ Player::Player()
 	, mVecSkill({})
 	, mpCoinSound(nullptr)
 {
+	SetName(L"Player");
+
 	// Load ----------------------
 	mpCoinSound = CResMgr::GetI()->LoadSound(L"Sound_Coin", L"sound\\coin.wav");
 	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
@@ -67,7 +69,10 @@ Player::Player()
 	// Create Collider Component
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vect2(-12.f, -8.f));
-	GetCollider()->SetScale(Vect2(30.f, 45.f));
+	GetCollider()->SetScale(Vect2(25.f, 45.f));
+
+	SetScale(Vect2(73.f, 54.f) * 1.7f);
+	SetPivot(Vect2(-15.f, 15.f));
 
 	// Create RigidBody Component
 	CreateRigidBody();
@@ -87,8 +92,6 @@ Player::Player()
 	//GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
 	GetAnimator()->Play(L"IDLE", true);
 
-	SetScale(Vect2(73.f, 54.f) * 1.5f);
-	SetPivot(Vect2(-15.f, 15.f));
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 

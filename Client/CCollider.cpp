@@ -76,8 +76,8 @@ void CCollider::OnCollisionStay(CCollider* _pOther)
 			return;
 
 		Vect2 vDis = (mpOwner->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
-		mpOwner->SetPos(mpOwner->GetPos() + vDis * 100.f * DT);
-		//mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
+		//mpOwner->SetPos(mpOwner->GetPos() + vDis * 50.f * DT);
+		mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
 	}
 }
 

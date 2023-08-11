@@ -67,11 +67,13 @@ void IceBolt_Obj::OnCollisionEnter(CCollider* _pOther)
 
 		CScene* cscene = CSceneMgr::GetI()->GetCurScene();
 
-		vector<CObject*> vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+		const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
 		Vect2 monsterPos;
 
 		for (size_t i = 0; i < vecMon.size(); ++i)
 		{
+			if (vecMon[i]->IsDead()) continue;
+
 			monsterPos = vecMon[i]->GetPos();
 			if (mRange > (monsterPos - pObj->GetPos()).Length())		// 일정 범위안에 있는 몬스터들을 얼음 상태로 만듦
 			{
