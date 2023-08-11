@@ -132,8 +132,10 @@ void Scene_Start::Exit()
 
 void Scene_Start::CreateBoss()
 {
-	Boss* pMonsterObj = (Boss*)MonsterFactory::CreateMonster(MONSTER_TYPE::BOSS, Vect2(PlayerMgr::GetI()->GetPlayer()->GetPos()));
+	Boss* pMonsterObj = (Boss*)MonsterFactory::CreateMonster(MONSTER_TYPE::BOSS, Vect2(1000,1000));
 	AddObject(pMonsterObj, GROUP_TYPE::BOSS);
+
+
 }
 
 void Scene_Start::CreateMonster()

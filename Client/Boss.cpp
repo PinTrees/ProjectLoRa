@@ -4,6 +4,16 @@
 #include "Environment.h"
 #include "Monster.h"
 
+Boss::Boss(const wstring& uid)
+	: Monster(uid)
+{
+
+}
+
+Boss::~Boss()
+{
+}
+
 void Boss::OnCollisionEnter(CCollider* _pOther)
 {
 	CObject* pOtherObj = _pOther->GetObj();
@@ -15,13 +25,4 @@ void Boss::OnCollisionEnter(CCollider* _pOther)
 	
 }
 
-Boss::Boss(const wstring& uid)
-	: Monster(uid)
-{
-
-}
-
-Boss::~Boss()
-{
-}
 

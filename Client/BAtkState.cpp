@@ -13,6 +13,7 @@ BAtkState::~BAtkState()
 
 void BAtkState::Enter()
 {
+
 }
 
 void BAtkState::Update()

@@ -293,6 +293,12 @@
     <Filter Include="Game\FSM\Boss\AtkState">
       <UniqueIdentifier>{f6884840-42ca-402f-9424-b8b8cbae93f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\Boss\SkillAtkState">
+      <UniqueIdentifier>{fd64f3e6-8bbb-4386-95db-9d80ec662003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Monster\Boss_stone">
+      <UniqueIdentifier>{0b52151c-9a16-4ddf-ae63-9d6d9b4a217c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -559,6 +565,12 @@
     <ClInclude Include="BTraceState.h">
       <Filter>Game\FSM\Boss\TraceState</Filter>
     </ClInclude>
+    <ClInclude Include="SkillAtkState.h">
+      <Filter>Game\FSM\Boss\SkillAtkState</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>Game\FSM\Monster\Boss_stone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -817,6 +829,12 @@
     </ClCompile>
     <ClCompile Include="BTraceState.cpp">
       <Filter>Game\FSM\Boss\TraceState</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillAtkState.cpp">
+      <Filter>Game\FSM\Boss\SkillAtkState</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>Game\FSM\Monster\Boss_stone</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@
 #include "TraceState.h"
 #include "DeadState.h"
 #include "AtkState.h"
+#include "SkillAtkState.h"
 // Include Boss State
 #include "BTraceState.h"
 
@@ -59,6 +60,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		Boss* pMonster = new Boss(L"2");
 		pMonster->SetName(L"Boss");
 		pMonster->GetCollider()->SetTrigger(false);
+		pMonster->SetPos(pos);
 
 		tMonsterInfo info = {};
 		info.atk = 50.f;
@@ -71,6 +73,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		pMonster->SetScale(Vect2(300.f, 200.f));
 		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
 		pAI->AddState(new BTraceState);
+		pAI->AddState(new SkillAtkState);
 		pAI->SetCurState(MONSTER_STATE::TRACE);
 
 		pMonster->SetAI(pAI);

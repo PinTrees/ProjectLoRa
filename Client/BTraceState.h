@@ -7,7 +7,9 @@ class BTraceState :
 {
 
 private:
-
+    float fCurSkillCool;
+    float fSkillCool;
+    bool mAvailable;
 
 public:
     virtual void Update() override;

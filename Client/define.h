@@ -58,6 +58,7 @@ enum class GROUP_TYPE
 	PLAYER,
 	MONSTER,
 	BOSS,
+	PROJ_BOSS,
 	PROJ_PLAYER,
 	PROJ_MONSTER,
 
@@ -130,6 +131,7 @@ enum class MONSTER_STATE
 	IDLE,
 	TRACE,
 	Create,
+	SKILLATK,
 	DEAD,
 	ATTACK,
 };

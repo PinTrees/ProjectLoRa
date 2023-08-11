@@ -153,6 +153,8 @@
     <ClInclude Include="BAtkState.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BTraceState.h" />
+    <ClInclude Include="SkillAtkState.h" />
+    <ClInclude Include="Stone.h" />
     <ClInclude Include="TileNode.h" />
     <ClInclude Include="AtkState.h" />
     <ClInclude Include="Box.h" />
@@ -243,6 +245,8 @@
     <ClCompile Include="BAtkState.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BTraceState.cpp" />
+    <ClCompile Include="SkillAtkState.cpp" />
+    <ClCompile Include="Stone.cpp" />
     <ClCompile Include="TileNode.cpp" />
     <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Box.cpp" />

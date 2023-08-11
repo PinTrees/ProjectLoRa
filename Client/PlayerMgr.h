@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Player.h"
+
 class Player;
 
 
@@ -15,6 +17,7 @@ private:
 
 public:
 	void SetPlayer(Player* pPlayer) { mpPlayer = pPlayer; }
+	Vect2 GetTileIndex() { mpPlayer->GetPos() / TILE_SIZE_RENDER; }
 	Player* GetPlayer() { return mpPlayer; }
 };
 
