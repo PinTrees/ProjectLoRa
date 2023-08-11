@@ -7,6 +7,7 @@ HolyArea::HolyArea()
 	: Skill(SKILL_TYPE::HOLYAREA, 6)
 	, mPrevLv(1)
 {
+	SetIconStr(L"5.bmp");
 	SetCoolDown(0.f);
 }
 

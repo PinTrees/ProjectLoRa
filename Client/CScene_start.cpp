@@ -16,6 +16,7 @@
 #include "CPathMgr.h"
 #include "CKeyMgr.h"
 #include "CResMgr.h"
+#include "Random.h"
 
 // ==========================
 // Game Manager Header
@@ -55,12 +56,16 @@
 // UI Components Header
 #include "CBtnUI.h"
 #include "CImageUI.h"
+#include "Boss.h"
 
 
 
 Scene_Start::Scene_Start()
-	: mfMstrDelay(30.f)
+	: mfMstrDelay(25.f)
 	, mfCurDelay(30.f)
+	, mBossDelay(60.f * 0.01f)
+	, mCurBossDelay(0.f)
+	, mbBossRespone(false)
 	, mMonsterWave()
 {
 }
@@ -84,22 +89,43 @@ void Scene_Start::Update()
 {
 	CScene::Update();
 
+	UINT frmae = CTimeMgr::GetI()->GetFrame();
+	GUIMgr::GetI()->SetFrameText(frmae);
+
+	if (mbBossRespone)
+		return;
+
 	mfCurDelay += DT;
+	mCurBossDelay += DT;
+
+	if (mCurBossDelay > mBossDelay)
+	{
+		mbBossRespone = true;
+		mCurBossDelay = 0.f;
+		createBoss();
+	}
 
 	if (mfCurDelay > mfMstrDelay)
 	{
 		mfCurDelay = 0.f;
 		CreateMonster();
 	}
-
-	UINT frmae = CTimeMgr::GetI()->GetFrame();
-	GUIMgr::GetI()->SetFrameText(frmae);
 }
 
 void Scene_Start::Enter()
 {
+	/// Init ------------------------
+	mfMstrDelay = 25.f;
+	mfCurDelay = 30.f;
+	mBossDelay = 60.f * 7.f;
+	mCurBossDelay = 0.f;
+	mbBossRespone = false;
+	mMonsterWave = 0;
+	/// -----------------------------
+
 	LoadTile(this, L"database\\map_1.tile");
 
+	PlayerMgr::GetI()->Init();
 	GUIMgr::GetI()->Init();
 	LevelUpUIMgr::GetI()->Init();
 	HubUIMgr::GetI()->Init();
@@ -123,6 +149,7 @@ void Scene_Start::Enter()
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ENV);
 	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::PROJ_MONSTER, GROUP_TYPE::PLAYER);
+	CCollisionMgr::GetI()->CheckGroup(GROUP_TYPE::GROUND_PLAYER, GROUP_TYPE::MONSTER);
 
 	// Camera Look 지정
 	Vect2 vResolution = CCore::GetI()->GetResolution();
@@ -154,7 +181,7 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x / 2.f;
 	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y / 2.f;
 
-	int MonsterCount = 5 + (float)mMonsterWave * 3.f;
+	int MonsterCount = 5 + (float)mMonsterWave * 0.5f;
 	Vect2 vMonsterInterval = vResolution / MonsterCount;
 
 	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
@@ -198,7 +225,19 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	++mMonsterWave;	// 몬스터 웨이브의 진행 상태만큼 몬스터를 증가하기 위해 사용
 }
 
+void Scene_Start::createBoss()
+{
+	Vect2 vResolution = CCore::GetI()->GetResolution();
 
+	Vect2 vRandomPos = Vect2(rand() % (int)vResolution.x,
+							 rand() % (int)vResolution.x);
+
+	Vect2 vCreatePos = CCamera::GetI()->GetRealPos(vRandomPos);
+
+	Boss* pBoss = new Boss(L"1");
+	pBoss->SetPos(vCreatePos);
+	CreateObject(pBoss, GROUP_TYPE::MONSTER);
+}
 
 
 void Scene_Start::createEnvi()
@@ -216,12 +255,11 @@ void Scene_Start::createEnvi()
 	AstarMgr::GetI()->SetObstacleTile(xPos, yPos);
 	JPSMgr::GetI()->SetCollisionTile(xPos, yPos);
 
-	Environment* pEnvObj = new Environment(L"101");
+	int rand = CRandom::GetI()->Next(3, 5);
+	Environment* pEnvObj = new Environment(std::to_wstring(rand));
 
 	pEnvObj->SetName(L"ENV");
 	pEnvObj->SetPos(vCreatePos);
-	pEnvObj->SetScale(vTileScale);
-	pEnvObj->GetCollider()->SetScale(vTileScale);
 	pEnvObj->GetCollider()->SetTrigger(false);
 	AddObject(pEnvObj, GROUP_TYPE::ENV);
 }
@@ -230,11 +268,15 @@ void Scene_Start::createEnvi()
 
 void Scene_Start::createPlayer()
 {
-	Vect2 vResolution = CCore::GetI()->GetResolution();
+	int tileX = TileMapMgr::GetI()->GetTileMapSizeX();
+	int tiley = TileMapMgr::GetI()->GetTileMapSizeY();
+
+	Vect2 vMapScale = Vect2(tileX * TILE_SIZE_RENDER, tiley * TILE_SIZE_RENDER);
 
 	Player* pPlayer = new Player;
 	pPlayer->SetName(L"Player");
-	pPlayer->SetPos(vResolution * 0.5f);
+	pPlayer->SetPos(vMapScale * 0.5f);
+	//pPlayer->GetCollider()->SetTrigger(false);
 	AddObject(pPlayer, GROUP_TYPE::PLAYER);
 
 	AI<PLAYER_STATE>* pAI = new AI<PLAYER_STATE>;
@@ -248,6 +290,7 @@ void Scene_Start::createPlayer()
 
 	pPlayer->SetAI(pAI);
 
+	CCamera::GetI()->SetFixedLookAt(vMapScale * 0.5f);
 	PlayerMgr::GetI()->SetPlayer(pPlayer);
 	CCamera::GetI()->SetTarget(pPlayer);
 }

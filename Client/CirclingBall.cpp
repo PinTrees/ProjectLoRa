@@ -13,6 +13,7 @@ CirclingBall::CirclingBall()
 	: Skill(SKILL_TYPE::CIRCLING_BALL, 5)
 	, mPrevLv(1)
 {
+	SetIconStr(L"3.bmp"); 
 	SetCoolDown(0.f);		// 쿨타임 세팅
 }
 

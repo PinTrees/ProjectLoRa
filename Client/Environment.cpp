@@ -17,40 +17,53 @@
 #include "CTimeMgr.h"
 #include "CTexture.h"
 
-#include "SelectGDI.h"
+// 해당 오브젝트가 제거되면 해당인덱스에있는 노드추가
+//#include "TileMgr.h"
 
 Environment::Environment(const wstring& _type)
-	: mUID(_type)
+	: mType(_type)
+	, mpShadowTex(nullptr)
+	, mpTex(nullptr)
+	, mvShadowOffset(Vect2::zero)
+	, mvShadowScale(Vect2::zero)
 {
 	CreateCollider();
-	CreateAnimator();
 
 	// Texture 로딩하기
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"ENV_" + mUID, L"texture\\map\\" + mUID + L".bmp");
+	mpTex = CResMgr::GetI()->LoadTexture(L"ENV_" + mType, L"texture\\map\\" + mType + L".bmp");
 
-	if (mUID == L"1")
+	if (mType == L"3")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(64.f, 96.f), Vect2(64.f, 0.f), 0.1f, 4);
-		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
+		mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_4", L"texture\\shadow\\4.bmp");
+		SetScale(Vect2(48.f, 48.f));
+		GetCollider()->SetScale(GetScale() * 0.9f);
+		mvShadowOffset = Vect2(0.f, 15.f);
+		mvShadowScale = Vect2(120.f, 74.f);
 	}
-	else if (mUID == L"2")
+	else if (mType == L"4")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(32.f, 32.f), Vect2(32.f, 0.f), 0.1f, 4);
-		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
-	}
-	else if (mUID == L"101")
-	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.1f, 1);
-		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, -20.f));
+		mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_4", L"texture\\shadow\\4.bmp");
+		SetScale(Vect2(19.f, 17.f) * 2.f);
+		GetCollider()->SetScale(GetScale() * 0.9f);
+		mvShadowOffset = Vect2(0.f, 12.f);
+		mvShadowScale = Vect2(100.f, 55.f);
 	}
 
-	else if (mUID == L"back_1")
+	if (mType == L"101")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 5.f, 1);
+		CreateAnimator();
+		GetAnimator()->CreateAnimation(L"IDLE", mpTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.1f, 1);
 		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
+		GetAnimator()->Play(L"IDLE", true);
 	}
 
-	GetAnimator()->Play(L"IDLE", true);
+	else if (mType == L"back_1")
+	{
+		CreateAnimator();
+		GetAnimator()->CreateAnimation(L"IDLE", mpTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 5.f, 1);
+		GetAnimator()->FindAnimation(L"IDLE")->SetAllFrameOffet(Vect2(0.f, 0.f));
+		GetAnimator()->Play(L"IDLE", true);
+	}
 }
 
 Environment::~Environment()
@@ -59,27 +72,45 @@ Environment::~Environment()
 
 
 
+void Environment::DistoryEnvi()
+{
+	//TileMgr::GetI()->SetWallNode(xIdx, yIdx, false);
+	DeleteObject(this);
+}
+
 void Environment::Update()
 {
-	GetAnimator()->Update();
 }
 
 void Environment::Render(HDC _dc)
 {
-	CompnentRender(_dc);
+	Vect2 vPos = CCamera::GetI()->GetRenderPos(GetPos());
+	Vect2 vScale = GetScale();
 
-	if (DEBUG)
+	if (mpShadowTex)
 	{
-		SelectGDI p = SelectGDI(_dc, PEN_TYPE::RED);
-		SelectGDI b = SelectGDI(_dc, BRUSH_TYPE::HOLLOW);
-
-		Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetPos());
-		Vect2 vScale = GetScale();
-
-		Rectangle(_dc
-			, (int)(vRenderPos.x - vScale.x * 0.5f)
-			, (int)(vRenderPos.y - vScale.y * 0.5f)
-			, (int)(vRenderPos.x + vScale.x * 0.5f)
-			, (int)(vRenderPos.y + vScale.y * 0.5f));
+		TransparentBlt(_dc
+			, (int)(vPos.x + mvShadowOffset.x - mvShadowScale.x * 0.5f)
+			, (int)(vPos.y + mvShadowOffset.y - mvShadowScale.y * 0.5f)
+			, (int)(mvShadowScale.x)
+			, (int)(mvShadowScale.y)
+			, mpShadowTex->GetDC()
+			, 0, 0
+			, (int)mpShadowTex->Width()
+			, (int)mpShadowTex->Heigth()
+			, RGB(255, 0, 255));
 	}
+
+	TransparentBlt(_dc
+		, (int)(vPos.x - vScale.x * 0.5f)
+		, (int)(vPos.y - vScale.y * 0.5f)
+		, (int)(vScale.x)
+		, (int)(vScale.y)
+		, mpTex->GetDC()
+		, 0, 0
+		, (int)mpTex->Width()
+		, (int)mpTex->Heigth()
+		, RGB(255, 0, 255));
+
+	CompnentRender(_dc);
 }

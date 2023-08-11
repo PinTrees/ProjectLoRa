@@ -94,7 +94,7 @@ void CScene::Update()
 }
 
 
-void CScene::UIUpdate()
+void CScene::UpdateUI()
 {
 	vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
 	for (int i = 0; i < arrUI.size(); ++i)

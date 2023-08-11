@@ -5,12 +5,11 @@
 
 
 CColumn::CColumn()
-	: CUI(false)
-	, mAlignment(ALIGNMENT::CENTER)
+    : CUI(false)
+    , mAlignment(ALIGNMENT::CENTER)
     , mSpacing(0.f)
 {
-    // 범위 지정 UI는 마우스 타겟 대상이 아닙니다.
-    SetRaycastTarget(false);
+    SetRaycastTarget(true);
 }
 
 CColumn::~CColumn()
@@ -74,12 +73,13 @@ void CColumn::Update()
         else
             vChildRootPos.y += children[i]->GetScale().y * 0.5f;
 
-        vChildRootPos.y += mSpacing;
+        IsAligmentBottom(mAlignment) ? vChildRootPos.y -= mSpacing
+            : vChildRootPos.y += mSpacing;
     }
 }
 
 void CColumn::Render(HDC dc)
 {
-	CUI::Render(dc);
+    CUI::Render(dc);
     CUI::RenderChild(dc);
 }

@@ -18,6 +18,7 @@
 #include "CAnimation.h"
 #include "RigidBody.h"
 #include "CScene.h"
+#include "CSound.h"
 
 // GameObject Header
 #include "Bullet.h"
@@ -39,6 +40,8 @@
 // Game Manager Header
 #include "HubUIMgr.h"
 #include "LevelUpUIMgr.h"
+#include "PlayerMgr.h"
+#include "CSoundMgr.h"
 
 
 
@@ -46,29 +49,32 @@ Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
 	, mvDir(Vect2(0.f, 0.f))
-	, mCurGun(nullptr)
 	, mExpBar(nullptr)
 	, mLevel(0)
 	, mExp(0.f)
 	, mAI(nullptr)
 	, mtInfo({})
 	, mVecSkill({})
+	, mpCoinSound(nullptr)
 {
+	// Load ----------------------
+	mpCoinSound = CResMgr::GetI()->LoadSound(L"Coin_1", L"sound\\coin.wav");
+
+
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
 
 	// Init Object Component
 	// Create Collider Component
 	CreateCollider();
-	GetCollider()->SetOffsetPos(GetPivot() - Vect2(0.f, 15.f));
-	GetCollider()->SetScale(Vect2(40.f, 35.f));
+	GetCollider()->SetOffsetPos(Vect2(-12.f, -8.f));
+	GetCollider()->SetScale(Vect2(30.f, 45.f));
 
 	// Create RigidBody Component
 	CreateRigidBody();
 	GetRigidBody()->SetMess(1.f);
 	GetRigidBody()->SetMaxVelocity(Vect2(200.f, 200.f));
 	GetRigidBody()->SetAccelAlpha(Vect2(100.f, 100.f));
-
 
 	// Create Animator Component
 	CreateAnimator();
@@ -83,12 +89,8 @@ Player::Player()
 
 	GetAnimator()->Play(L"IDLE", true);
 
-	SetScale(Vect2(73.f, 54.f) * 1.7f);
-	SetPivot(Vect2(-30.f, 35.f));
-
-	mCurGun = new Gun(L"1");
-	mCurGun->SetOwner(this);
-	CreateObject(mCurGun, GROUP_TYPE::PLAYER);
+	SetScale(Vect2(73.f, 54.f) * 1.5f);
+	SetPivot(Vect2(-15.f, 15.f));
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
@@ -147,46 +149,45 @@ void Player::Update()
 	if (mAI)
 		mAI->Update();
 
-	// 수정 필요
-	/*if (mtInfo.curHp <= 0.f)
-	{
-		ChangeAIState(GetAI(), PLAYER_STATE::Die);
-		return;
-	}*/
-
 	GetAnimator()->Update();
-
+	 
 	calExp();
 	mfCurDelay += DT;
-	
+
+	/// 최상단 예외 처리
+	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
+	{
+		return;
+	}
+
+	if (mfCurDelay > mtInfo.atkDelay) {
+		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) {
+			mfCurDelay = 0;
+			ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
+		}
+	}
+
 	UseSkill();
 
 	Vect2 vPos = GetPos();
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
 
+	if (mtInfo.curHp <= 0)
+	{
+		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
+		return;
+	}
+
+
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
 
-
-	if (nullptr !=  mCurGun)
-	{
-		Vect2 vDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - GetPos();
-		mCurGun->SetAngle(vDir.ToAngle());
-	}
 
 	if (KEY_TAP(KEY::SPACE))
 	{
 		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
-	}
-
-	if (KEY_HOLD(KEY::RBTN)
-		&& mfCurDelay >= mCurGun->GetInfo().shotDelay
-		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
-	{
-		mfCurDelay = 0.f;
-		ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
 	}
 
 	mvDir = Vect2::zero;
@@ -196,12 +197,14 @@ void Player::Update()
 	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
 	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
 
+	if (KEY_HOLD(KEY::Q)) mtInfo.curHp = 100.f;
+
 	if (mvDir != Vect2::zero)
 	{
-		if(GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
+		if (GetAI()->GetCurStateType() != PLAYER_STATE::RUN)
 			ChangeAIState(GetAI(), PLAYER_STATE::RUN);
 	}
-	else if(GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
+	else if (GetAI()->GetCurStateType() != PLAYER_STATE::IDLE
 		&& GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK)
 	{
 		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
@@ -213,6 +216,20 @@ void Player::Render(HDC _dc)
 	//컴포넌트 ( 충돌체, ect...	) 가 있는경우 랜더
 	CompnentRender(_dc);
 }
+
+
+void Player::OnCollisionEnter(CCollider* _pOther)
+{
+	if (_pOther->GetObj()->GetName() == L"Gold")
+	{
+		PlayerMgr::GetI()->AddGold(5);
+		HubUIMgr::GetI()->BuildGoldText();
+
+		if (mpCoinSound)
+			mpCoinSound->Play();
+	}
+}
+
 
 void Player::calExp()
 {
@@ -230,17 +247,34 @@ void Player::calExp()
 Skill* Player::FindSkill(SKILL_TYPE type)
 {
 	Skill* result = nullptr;
-	
+
 	for (int i = 0; i < mVecSkill.size(); ++i)
 	{
 		if (mVecSkill[i]->GetType() == type)
 		{
-			Skill* result = mVecSkill[i];
+			result = mVecSkill[i];
 			break;
 		}
 	}
 
 	return result;
+}
+
+void Player::AddSkill(Skill* _skill)
+{
+	auto skill = FindSkill(_skill->GetType());
+
+	if (nullptr == skill)
+	{
+		_skill->AddSkillLevel();
+		mVecSkill.push_back(_skill);
+	}
+	else
+	{
+		skill->AddSkillLevel();
+	}
+
+	HubUIMgr::GetI()->BuildSkillUI(mVecSkill);
 }
 
 

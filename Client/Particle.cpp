@@ -26,8 +26,13 @@ Particle::Particle(const wstring& _type)
 
 	if (_type == L"1")
 	{
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(70.f, 52.f), Vect2(70.f, 0.f), 0.05f, 6);
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(70.f, 52.f), Vect2(70.f, 0.f), 0.05f, 8);
 		SetScale(Vect2(70.f, 52.f) * 1.5f);
+	}
+	if (_type == L"2")
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(40.f, 52.f), Vect2(40.f, 0.f), 0.05f, 6);
+		SetScale(Vect2(40.f, 52.f) * 1.5f);
 	}
 	else if (_type == L"4")
 	{
@@ -64,7 +69,7 @@ Particle::Particle(const wstring& _type)
 	else if (_type == L"105")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.035f, 16);
-		SetScale(Vect2(48.f, 48.f) * 3.f);
+		SetScale(Vect2(48.f, 48.f) * 2.f);
 	}
 
 	else if (_type == L"201")
@@ -75,7 +80,7 @@ Particle::Particle(const wstring& _type)
 	else if (_type == L"202")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(96.f, 96.f), Vect2(96.f, 0.f), 0.05f, 8);
-		SetScale(Vect2(96.f, 96.f) * 2.f);
+		SetScale(Vect2(96.f, 96.f) * 1.f);
 	}
 	GetAnimator()->Play(L"IDLE", false);
 }

@@ -7,6 +7,7 @@
 #include "CTexture.h"	
 #include "CFont.h"
 #include "CSprite.h"
+#include "CSound.h"
 
 
 SINGLE_HEADER(CResMgr);
@@ -23,6 +24,41 @@ CResMgr::~CResMgr()
 	Safe_Delete_Map(mMapFont);
 	Safe_Delete_Map(mMapSprite);
 } 
+
+
+
+CSound* CResMgr::LoadSound(const wstring& _strKey, const wstring& _strRelativePath)
+{
+	CSound* pSound = FindSound(_strKey);
+	if (nullptr != pSound)
+	{
+		return pSound;
+	}
+
+	wstring strFilePath = CPathMgr::GetI()->GetContentPath();
+	strFilePath += _strRelativePath;
+
+	pSound = new CSound;
+	pSound->Load(strFilePath);
+	pSound->SetKey(_strKey);
+	pSound->SetRelativePath(_strRelativePath);
+
+	mMapSound.insert(make_pair(_strKey, pSound));
+
+	return pSound;
+}
+
+CSound* CResMgr::FindSound(const wstring& _strKey)
+{
+	auto iter = mMapTex.find(_strKey);
+
+	if (iter == mMapTex.end())
+	{
+		return nullptr;
+	}
+
+	return (CSound*)iter->second;
+}
 
 
 

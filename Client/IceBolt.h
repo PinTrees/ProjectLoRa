@@ -8,6 +8,7 @@ class IceBolt :
     public Skill
 {
 private:
+    Vect2       mvDir;
 
 public:
     virtual void UseSkill();		// 스킬 사용

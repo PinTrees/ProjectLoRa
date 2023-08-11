@@ -8,6 +8,7 @@ class AtkState :
 private:
     bool        mAtkAvailable;
 
+
 public:
     virtual void Update() override;
     virtual void Enter() override;

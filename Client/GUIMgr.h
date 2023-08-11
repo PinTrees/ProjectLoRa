@@ -5,6 +5,7 @@ class SettingUI;
 class CImageUI;
 class TextUI;
 class CBtnUI;
+class GameOverUI;
 
 
 class GUIMgr
@@ -16,8 +17,8 @@ private:
 	SettingUI*	mpSettinUI;
 
 	TextUI*		mFrameText;
-
 	CBtnUI*		mpSettingBtn;
+	GameOverUI* mpGameOverUI;
 
 
 public:
@@ -25,6 +26,9 @@ public:
 
 	void ShowSettingUI();
 	void CloseSettingUI();
+
+	void ShowGameOverUI();
+	void CloseGameOverUI();
 
 	void SetFrameText(UINT frame);
 };

@@ -20,6 +20,8 @@ enum class KEY
 	S,
 	D,
 
+	Q,
+
 	ALT,
 	CTRL,
 	LSHIFT,

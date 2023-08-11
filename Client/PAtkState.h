@@ -8,6 +8,9 @@ class PAtkState :
 private:
     Vect2 mvDir;
 
+    float mAtkDelay;
+    float mCurDelay;
+
 
 public:
     virtual void Update() override;

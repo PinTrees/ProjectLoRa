@@ -7,6 +7,8 @@ class Skill
 private:
 	SKILL_TYPE mType;
 
+	wstring mIconStr;
+
 	float   mSkillTime;			// 스킬 쿨타임 재는 용도
 	float	mCooldown;			// 쿨타임
 
@@ -30,6 +32,8 @@ public:
 	void SetSkillTime(float _time) { mSkillTime = _time; }
 	float GetSkillTime() { return mSkillTime; }
 
+	void SetIconStr(const wstring& str) { mIconStr = str; }
+	wstring& GetIconStr() { return mIconStr; }
 
 public:
 	virtual void Update();

@@ -4,6 +4,7 @@ struct tLvupEffectData
 {
 	wstring		infoStr;	// 세부설명
 	wstring		titleStr;	// 타이틀
+	wstring		iconStr;
 };
 
 enum class LEVELUP_TYPE

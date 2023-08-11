@@ -6,6 +6,7 @@ struct tMonsterInfo
 {
 	wstring		UID;
 	float		speed;			// 이동속도
+	float		curSpeed;
 	float		hp;				// 체력
 	float		recogRange;		// 인지범위
 	float		atkRange;		// 공격거리
@@ -24,16 +25,21 @@ class BarUI;
 class Monster :
 	public CObject
 {
+protected:
+	tMonsterInfo		mtInfo;
+
 private:
 	MONSTER_TYPE		mType;
-	tMonsterInfo		mtInfo;
 	AI<MONSTER_STATE>*	mAI;
 
-	BarUI*				mHpBar;
+	BarUI* mHpBar;
 
 	vector<Vect2>	mVecPathPos;
 
 	float			mCurDamageDelay;
+	float			mOriginalSpeed;
+
+	bool			mFreeze;
 
 public:
 	MONSTER_TYPE GetType() { return mType; }
@@ -41,15 +47,17 @@ public:
 	float GetSpeed() { return mtInfo.speed; }
 	void SetSpeed(float _fspeed) { mtInfo.speed = _fspeed; }
 
-	const tMonsterInfo GetInfo() { return mtInfo; }
+	const tMonsterInfo& GetInfo() { return mtInfo; }
 
 	void SetAI(AI<MONSTER_STATE>* pAI);
 
+	void SetFreeze(bool freeze) { mFreeze = freeze; }
+
 	void AddDamage(float damage);
-	void SetPath(vector<Vect2>& vecPos) 
-	{ 
+	void SetPath(vector<Vect2>& vecPos)
+	{
 		mVecPathPos.clear();
-		
+
 		Vect2 mTileOffet = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER) * 0.5f;
 
 		for (int i = 0; i < vecPos.size(); ++i)
@@ -75,7 +83,7 @@ private:
 
 
 public:
-	Monster(MONSTER_TYPE mType, const wstring& uid);
+	Monster(MONSTER_TYPE mType, const wstring uid);
 	~Monster();
 
 	friend class MonsterFactory;

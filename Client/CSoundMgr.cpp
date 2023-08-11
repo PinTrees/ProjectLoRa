@@ -17,7 +17,7 @@ CSoundMgr::~CSoundMgr()
 {
 }
 
-int CSoundMgr::init(void)
+int CSoundMgr::Init(void)
 {
 	if (FAILED(DirectSoundCreate8(NULL, &m_pSound, NULL)))
 	{

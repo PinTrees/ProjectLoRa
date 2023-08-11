@@ -1,59 +1,102 @@
-﻿  unity_2QUVROLPRX71QDNL.cpp
-  unity_3IQ235QTNWJK1BZG.cpp
-  unity_3ME8GG54BZDV0LRW.cpp
-  unity_6O3KHN819BHW3901.cpp
-  unity_8C5QMNMRR5NQ1SQM.cpp
-  unity_9ACFRHHGCEQF22GD.cpp
-  unity_C1FBVNGMLMI51K5Q.cpp
-  unity_GJEBB0U18FBS8ETO.cpp
-  unity_JPH4H6UVG0DNAIUN.cpp
-  unity_MZ29PAXGW262UIBZ.cpp
-  unity_OXB6NV3ZDI5EMWLQ.cpp
-  unity_Q3D28KCC7Q4JT7DX.cpp
-  unity_QQBQLH3QDEY8JXRP.cpp
-  unity_T8REHNC5MTK7WY4K.cpp
+﻿  unity_186XIF32QEIA6V3C.cpp
+  unity_34Z1BZ49RDO7UL6N.cpp
+  unity_7RGWK6YPB00MB77M.cpp
+  unity_9WS519AE2HAW49Y5.cpp
+  unity_HI4L4KETTIUYWG08.cpp
+  unity_MP1GWHZEZPO7RE4N.cpp
+  unity_P8D7R0F8IRUW22VS.cpp
+  unity_RI42HSQ5WCA4K90T.cpp
+  unity_UV67QIRWUL8HB5PV.cpp
+  unity_WFOWVGUM5I4CXH5N.cpp
+  unity_WSWRD08VI6G8KJL2.cpp
+  unity_YH6CUE870G4W6B0B.cpp
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene.cpp(73,16): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene.cpp(195,14): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene.cpp(203,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene.cpp(202,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene.cpp(201,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene.cpp(200,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene_Tool.h(38,37): warning C4244: 'return': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\MonsterFactory.cpp(41,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_YH6CUE870G4W6B0B.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\MonsterFactory.cpp(61,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_YH6CUE870G4W6B0B.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\JPSMgr.h(5,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_7RGWK6YPB00MB77M.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_7RGWK6YPB00MB77M.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_UV67QIRWUL8HB5PV.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_UV67QIRWUL8HB5PV.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\TraceState.cpp(77,50): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_186XIF32QEIA6V3C.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\TraceState.cpp(77,39): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_186XIF32QEIA6V3C.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\TraceState.cpp(78,57): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_186XIF32QEIA6V3C.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\TraceState.cpp(78,43): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_186XIF32QEIA6V3C.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CAnimation.cpp(292,18): warning C4477: 'fprintf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다. (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CAnimation.cpp(292,18): message : 서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다. (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_7RGWK6YPB00MB77M.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\JPSMgr.h(5,7): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_7RGWK6YPB00MB77M.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Thunder.cpp(39,51): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_UV67QIRWUL8HB5PV.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\LevelUpUIMgr.cpp(68,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\LevelUpUIMgr.cpp(75,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\LevelUpUIMgr.cpp(82,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\JPSMgr.h(5,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\JPSMgr.h(5,7): message : 'JPSCoord' 선언을 참조하십시오. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Thunder.cpp(38,51): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9ACFRHHGCEQF22GD.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CTexture.cpp(66,27): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다. (소스 파일 컴파일 중 x64\Debug\unity_JPH4H6UVG0DNAIUN.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CTexture.cpp(66,37): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다. (소스 파일 컴파일 중 x64\Debug\unity_JPH4H6UVG0DNAIUN.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Tile.cpp(73,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9ACFRHHGCEQF22GD.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Tile.cpp(72,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9ACFRHHGCEQF22GD.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Tile.cpp(71,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9ACFRHHGCEQF22GD.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Tile.cpp(70,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9ACFRHHGCEQF22GD.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\TraceState.cpp(77,50): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_QQBQLH3QDEY8JXRP.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\TraceState.cpp(77,39): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_QQBQLH3QDEY8JXRP.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\TraceState.cpp(78,57): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_QQBQLH3QDEY8JXRP.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\TraceState.cpp(78,43): warning C4244: '인수': 'float'에서 'Int32'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_QQBQLH3QDEY8JXRP.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\HolyArea_Obj.cpp(60,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_Q3D28KCC7Q4JT7DX.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Gun.cpp(93,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Gun.cpp(96,17): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Gun.cpp(103,28): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Gun.cpp(104,33): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Gun.cpp(105,27): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Random.cpp(17,22): warning C4244: '인수': 'ULONGLONG'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_GJEBB0U18FBS8ETO.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\MonsterFactory.cpp(41,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\MonsterFactory.cpp(61,32): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_C1FBVNGMLMI51K5Q.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\TextUI.cpp(20,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MZ29PAXGW262UIBZ.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\TextUI.cpp(41,82): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MZ29PAXGW262UIBZ.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\LevelUpUIMgr.cpp(68,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\LevelUpUIMgr.cpp(75,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\LevelUpUIMgr.cpp(82,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene.cpp(73,16): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene.cpp(195,14): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene.cpp(203,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene.cpp(202,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene.cpp(201,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene.cpp(200,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene_Tool.h(38,37): warning C4244: 'return': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Monster.cpp(100,38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Monster.cpp(100,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Monster.cpp(105,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\Monster.cpp(105,23): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_6O3KHN819BHW3901.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene_start.cpp(157,19): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene_start.cpp(158,41): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Client\CScene_Tool.cpp(135,22): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_T8REHNC5MTK7WY4K.cpp)
-  Client.vcxproj -> C:\Users\user\Downloads\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\ProjectLoRa-f41a9d2e11c4a4713de750ac3ec201388c28963b\Output\bin_debug\Client.exe
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CSprite.cpp(63,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_WSWRD08VI6G8KJL2.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CSprite.cpp(62,11): warning C4244: '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_WSWRD08VI6G8KJL2.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Boss.cpp(73,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_9WS519AE2HAW49Y5.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Monster.cpp(109,38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Monster.cpp(109,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Monster.cpp(114,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Monster.cpp(114,23): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_MP1GWHZEZPO7RE4N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene_start.cpp(184,19): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene_start.cpp(185,41): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Gun.cpp(93,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다. (소스 파일 컴파일 중 x64\Debug\unity_34Z1BZ49RDO7UL6N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Gun.cpp(96,17): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_34Z1BZ49RDO7UL6N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Gun.cpp(103,28): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_34Z1BZ49RDO7UL6N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Gun.cpp(104,33): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_34Z1BZ49RDO7UL6N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\Gun.cpp(105,27): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_34Z1BZ49RDO7UL6N.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CScene_Tool.cpp(137,22): warning C4244: '=': 'float'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CTexture.cpp(66,27): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CTexture.cpp(66,37): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다. (소스 파일 컴파일 중 x64\Debug\unity_RI42HSQ5WCA4K90T.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xstring(2765,53): warning C4244: '인수': 'wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Elem=char
+          ] (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xstring(2621,17): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*,wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=wchar_t *,
+              _Sent=wchar_t *,
+              _Size=unsigned __int64
+          ] (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CAnimation.cpp(270,25): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CAnimation.cpp(270,17): message : 'CAnimation::Save'에서 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string'에 대한 첫 번째 참조를 확인하세요. (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xstring(2765,53): warning C4244: '인수': 'const wchar_t'에서 'const _Elem'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Elem=char
+          ] (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xstring(2621,17): message : 컴파일되는 함수 템플릿 인스턴스화 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<const wchar_t*,const wchar_t*,_Size_type>(_Iter,const _Sent,_Size)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Size_type=unsigned __int64,
+              _Iter=const wchar_t *,
+              _Sent=const wchar_t *,
+              _Size=unsigned __int64
+          ] (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CAnimation.cpp(276,18): message : 컴파일되는 함수 템플릿 인스턴스화 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_const_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)'에 대한 참조를 확인하세요.
+          with
+          [
+              _Elem=wchar_t,
+              _Iter=std::_String_const_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
+              _Alloc=std::allocator<char>
+          ] (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Client\CAnimation.cpp(276,10): message : 'CAnimation::Save'에서 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string'에 대한 첫 번째 참조를 확인하세요. (소스 파일 컴파일 중 x64\Debug\unity_HI4L4KETTIUYWG08.cpp)
+  라이브러리를 검색하고 있습니다.
+      C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\kernel32.lib 검색 중:
+  라이브러리가 검색되었습니다.
+  Client.vcxproj -> C:\Users\user\Downloads\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\ProjectLoRa-b60a8494c78a2459b62ab6c7ab0273b35884d805\Output\bin_debug\Client.exe

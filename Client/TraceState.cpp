@@ -17,12 +17,12 @@
 #include "CAnimator.h"
 
 #include "SettingMgr.h"
- 
+
 
 
 TraceState::TraceState()
 	: CState(MONSTER_STATE::TRACE)
-	, mAstarDelay(0.3f)
+	, mAstarDelay(0.5f)
 	, mCurDelay(0.f)
 	, mvTargetPos(Vect2::zero)
 	, mAttakDelay()
@@ -96,7 +96,7 @@ void TraceState::Update()
 
 	Vect2 dir = mvTargetPos - vMonsterPos;
 	dir.Normalize();
-	GetOwner()->SetPos(vMonsterPos + dir * pMonster->GetInfo().speed * DT);
+	GetOwner()->SetPos(vMonsterPos + dir * pMonster->GetInfo().curSpeed * DT);
 
 	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 

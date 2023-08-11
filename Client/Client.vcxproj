@@ -154,6 +154,7 @@
     <ClInclude Include="BitArray.h" />
     <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Boomerang_Obj.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CAnimation.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="DatabaseMgr.h" />
     <ClInclude Include="EnergyBall.h" />
     <ClInclude Include="EnergyBall_Obj.h" />
+    <ClInclude Include="GameOverUI.h" />
     <ClInclude Include="Grenade.h" />
     <ClInclude Include="Grenade_Bomb.h" />
     <ClInclude Include="Grenade_Obj.h" />
@@ -195,6 +197,8 @@
     <ClInclude Include="HolyArea_Obj.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="IceBolt.h" />
+    <ClInclude Include="IceBolt_Effect.h" />
+    <ClInclude Include="IceBolt_Obj.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemMgr.h" />
     <ClInclude Include="JPSCollision.h" />
@@ -272,6 +276,7 @@
     <ClCompile Include="AtkState.cpp" />
     <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Boomerang_Obj.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CAnimation.cpp" />
@@ -305,6 +310,7 @@
     <ClCompile Include="DatabaseMgr.cpp" />
     <ClCompile Include="EnergyBall.cpp" />
     <ClCompile Include="EnergyBall_Obj.cpp" />
+    <ClCompile Include="GameOverUI.cpp" />
     <ClCompile Include="Grenade.cpp" />
     <ClCompile Include="Grenade_Bomb.cpp" />
     <ClCompile Include="Grenade_Obj.cpp" />
@@ -313,6 +319,8 @@
     <ClCompile Include="HolyArea_Obj.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="IceBolt.cpp" />
+    <ClCompile Include="IceBolt_Effect.cpp" />
+    <ClCompile Include="IceBolt_Obj.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemMgr.cpp" />
     <ClCompile Include="JPSCollision.cpp" />

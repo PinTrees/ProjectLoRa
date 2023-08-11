@@ -13,17 +13,18 @@
 
 Monster_Arrow::Monster_Arrow()
 	: mCurTime()
+	, mbDestroy(false)
 {
 	SetName(L"Monster_Arrow");
 	CreateCollider();
-	GetCollider()->SetScale(Vect2(50.f, 50.f));
+	GetCollider()->SetScale(Vect2(25.f, 25.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_Arrow", L"texture\\effect\\5.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"Monster_Arrow", pTex, Vect2(0.f, 0.f), Vect2 (48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
-	SetScale(Vect2(50.f, 50.f));
+	GetAnimator()->CreateAnimation(L"Monster_Arrow", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
+	SetScale(Vect2(30.f, 30.f) * 5.f);
 
 	GetAnimator()->Play(L"Monster_Arrow", true);
 }
@@ -39,6 +40,7 @@ void Monster_Arrow::Update()
 	{
 		DeleteObject(this);
 		mCurTime = 0.f;
+		mbDestroy = true;
 		return;
 	}
 
@@ -59,6 +61,8 @@ void Monster_Arrow::Render(HDC _dc)
 
 void Monster_Arrow::OnCollisionEnter(CCollider* _pOther)
 {
+	if (mbDestroy) return;
+
 	CObject* pObject = _pOther->GetObj();
 
 	if (pObject->GetName() == L"Player")

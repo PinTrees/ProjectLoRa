@@ -143,7 +143,7 @@ enum class PLAYER_STATE
 	IDLE,
 	ATTACK,
 	RUN,
-	Die,
+	DIE,
 	DASH,
 };
 
@@ -200,6 +200,7 @@ enum class MONSTER_TYPE
 {
 	SHORT,
 	LONG,
+	BOSS,
 
 	END
 };

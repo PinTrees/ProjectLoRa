@@ -377,11 +377,20 @@
     <Filter Include="Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj">
       <UniqueIdentifier>{dab2af35-4d63-4c01-8fb5-3f2ea4783f8e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\Monster_Arrow">
-      <UniqueIdentifier>{7a4fa389-b659-478e-9843-2541de58ad08}</UniqueIdentifier>
+    <Filter Include="Game\Object\Monster\Monster_Arrow">
+      <UniqueIdentifier>{36f01843-d5ac-4eae-aa69-c909b353a10c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\FSM\Player\Die">
-      <UniqueIdentifier>{18505ff3-5893-4077-ad92-ae2acd710ed3}</UniqueIdentifier>
+      <UniqueIdentifier>{37f924e9-1a32-4037-95b9-2ae1ced06abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Monster\Boss">
+      <UniqueIdentifier>{4eb842e4-7778-4a40-9379-843458f527f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI\GameOverUI">
+      <UniqueIdentifier>{e87119bb-fcdc-4ae6-9765-485405916d50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect">
+      <UniqueIdentifier>{523a8a29-1293-4c22-8825-1d888201e779}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -731,10 +740,22 @@
       <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
     </ClInclude>
     <ClInclude Include="Monster_Arrow.h">
-      <Filter>Game\Object\Monster_Arrow</Filter>
+      <Filter>Game\Object\Monster\Monster_Arrow</Filter>
     </ClInclude>
     <ClInclude Include="PDieState.h">
       <Filter>Game\FSM\Player\Die</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Game\Object\Monster\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUI.h">
+      <Filter>Game\UI\GameOverUI</Filter>
+    </ClInclude>
+    <ClInclude Include="IceBolt_Obj.h">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="IceBolt_Effect.h">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1071,10 +1092,22 @@
       <Filter>Game\Class\SkillObj\02. Thunder_Obj\01. ThunderBoom_Obj</Filter>
     </ClCompile>
     <ClCompile Include="Monster_Arrow.cpp">
-      <Filter>Game\Object\Monster_Arrow</Filter>
+      <Filter>Game\Object\Monster\Monster_Arrow</Filter>
     </ClCompile>
     <ClCompile Include="PDieState.cpp">
       <Filter>Game\FSM\Player\Die</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Game\Object\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUI.cpp">
+      <Filter>Game\UI\GameOverUI</Filter>
+    </ClCompile>
+    <ClCompile Include="IceBolt_Obj.cpp">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="IceBolt_Effect.cpp">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

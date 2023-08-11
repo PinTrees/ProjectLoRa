@@ -171,7 +171,7 @@ void CreateTile(CScene* pScene, UINT xCount, UINT yCount)
 {
 	pScene->DeleteGroup(GROUP_TYPE::TILE);
 
-	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_1", L"texture\\tiles\\1.bmp");
+	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_3", L"texture\\tiles\\3.bmp");
 
 	for (UINT i = 0; i < yCount; ++i)
 	{

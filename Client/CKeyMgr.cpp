@@ -17,6 +17,8 @@ int g_arrVK[(int)KEY::LAST] =
 	'S',
 	'D',
 
+	'Q',
+
 	VK_MENU,	   	//ALT,
 	VK_CONTROL,	   	//CTRL,
 	VK_LSHIFT,	   	//LSHIFT,

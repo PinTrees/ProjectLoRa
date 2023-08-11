@@ -3,9 +3,8 @@
 class CTexture;
 class CSprite;
 class CFont;
+class CSound;
 class CRes;
-
-
 
 
 class CResMgr
@@ -16,8 +15,12 @@ private:
 	map<wstring, CRes*> mMapSprite;
 	map<wstring, CRes*> mMapTex;
 	map<wstring, CRes*> mMapFont;
+	map<wstring, CRes*> mMapSound;
 
 public:
+	CSound* LoadSound(const wstring& _strKey, const wstring& _strRelativePath);
+	CSound* FindSound(const wstring& _strKey);
+
 	CTexture* LoadTexture(const wstring& _strKey, const wstring& _strRelativePath);
 	CTexture* FindTexture(const wstring& _strKey);
 

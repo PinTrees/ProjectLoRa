@@ -74,9 +74,11 @@ void Scene_Tool::Enter()
 	CWrap* pEditWrap = new CWrap;
 	pEditWrap->SetScale(Vect2(pEditPanel->GetScale().x - 50.f, pEditPanel->GetScale().y));
 	pEditWrap->SetPos(Vect2(0.f, 30.f));
+	pEditWrap->SetSpacingWidth(3.f);
+	pEditWrap->SetSpacingHeight(3.f);
 	pScrollView->AddChild(pEditWrap);
 
-	CTexture* tile = CResMgr::GetI()->LoadTexture(L"UI_Tile", L"texture\\tiles\\1.bmp");
+	CTexture* tile = CResMgr::GetI()->LoadTexture(L"TileMap_3", L"texture\\tiles\\3.bmp");
 
 	UINT maxCol = tile->Width() / TILE_SIZE;
 	UINT maxRow = tile->Heigth() / TILE_SIZE;
@@ -85,7 +87,7 @@ void Scene_Tool::Enter()
 	for (int i = 0; i < tileMaxIdx; ++i)
 	{
 		TileBtnUI* pImg = new TileBtnUI;
-		pImg->SetScale(Vect2((int)mTileRenderSize, (int)mTileRenderSize));
+		pImg->SetScale(Vect2((int)mTileRenderSize , (int)mTileRenderSize) * 0.8f);
 		pImg->SetTexture(tile);
 		((TileBtnUI*)pImg)->SetIdx(i);
 		pEditWrap->AddChild(pImg);
@@ -389,7 +391,7 @@ void CreateTile(Scene_Tool* pScene, UINT xCount, UINT yCount)
 {
 	pScene->DeleteGroup(GROUP_TYPE::TILE);
 
-	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_1", L"texture\\tiles\\1.bmp");
+	CTexture* pTileTex = CResMgr::GetI()->LoadTexture(L"TILE_3", L"texture\\tiles\\3.bmp");
 
 	pScene->SetTileX(xCount);
 	pScene->SetTileY(yCount);

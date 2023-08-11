@@ -47,7 +47,7 @@ SettingUI::SettingUI()
 
 	CScrollView* pScroll = new CScrollView;
 	pScroll->SetPos(Vect2(0.f, 25.f));
-	pScroll->SetScale(Vect2(450.f, 350.f));
+	pScroll->SetScale(Vect2(400.f, 350.f));
 	AddChild(pScroll);
 
 	CColumn* pColumn = new CColumn;

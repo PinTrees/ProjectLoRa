@@ -28,7 +28,6 @@ PDashState::~PDashState()
 void PDashState::Enter()
 {
 	Player* pPlayer = (Player*)GetOwner();
-	pPlayer->GetCurGun()->SetVisible(false);
 
 	pPlayer->GetAnimator()->Play(L"DASH_R", false);
 
@@ -52,5 +51,4 @@ void PDashState::Update()
 void PDashState::Exit()
 {
 	Player* pPlayer = (Player*)GetOwner();
-	pPlayer->GetCurGun()->SetVisible(true);
 }

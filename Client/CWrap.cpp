@@ -6,6 +6,8 @@
 
 CWrap::CWrap()
 	: CUI(false)
+	, mSpacingHeight(8.f)
+	, mSpacingWidth(8.f)
 {
 }
 
@@ -23,7 +25,7 @@ void CWrap::Update()
 	vector<CUI*> vecChild = GetChild();
 
 	Vect2 vChildPos;
-	Vect2 vChildOffset = Vect2(10.f, 10.f);
+	Vect2 vChildOffset = Vect2(mSpacingWidth, mSpacingHeight);
 
 	Vect2 LongestChildSize;
 
