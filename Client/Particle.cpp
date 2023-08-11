@@ -69,7 +69,7 @@ Particle::Particle(const wstring& _type)
 	else if (_type == L"105")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.035f, 16);
-		SetScale(Vect2(48.f, 48.f) * 2.f);
+		SetScale(Vect2(48.f, 48.f) * 1.f);
 	}
 
 	else if (_type == L"201")
@@ -90,7 +90,6 @@ Particle::Particle(const wstring& _type)
 
 Particle::~Particle()
 {
-
 }
 
 void Particle::Update()

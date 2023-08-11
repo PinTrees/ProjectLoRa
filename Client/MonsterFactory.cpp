@@ -12,6 +12,7 @@
 #include "TraceState.h"
 #include "DeadState.h"
 #include "AtkState.h"
+#include "HitState.h"
 
 #include "CCollider.h"
 
@@ -27,7 +28,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 	{
 	case MONSTER_TYPE::SHORT:
 	{
-		pMonster = new Monster(type, L"2");
+		pMonster = new Monster(type, L"4");
 
 		pMonster->SetPos(pos);
 		pMonster->CreateRigidBody();
@@ -38,7 +39,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 10.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 100.f * pow(1.002f, mCreateCount);
+		info.curHp = info.hp = 500.f * pow(1.002f, mCreateCount);
 		info.speed = 50.f;
 
 		pMonster->setMonsterInfo(info);
@@ -56,11 +57,11 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 		tMonsterInfo info = {};
 		info.atk = 10.f;
-		info.atkRange = 350.f;
+		info.atkRange = 300.f;
 		info.recogRange = 10000.f;
 		info.curHp = info.hp = 100.f * pow(1.002f, mCreateCount);
 		info.speed = 25.f;
-		info.atkSpeed = 2.f;
+		info.atkSpeed = 3.f;
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
@@ -73,6 +74,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 	pAI->AddState(new TraceState);
 	pAI->AddState(new DeadState);
 	pAI->AddState(new AtkState);
+	pAI->AddState(new HitState);
 	pAI->SetCurState(MONSTER_STATE::IDLE);
 
 	pMonster->SetAI(pAI);

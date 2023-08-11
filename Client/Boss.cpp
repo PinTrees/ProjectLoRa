@@ -21,6 +21,7 @@
 #include "CColumn.h"
 #include "TextUI.h"
 
+#include "GUIMgr.h"
 
 
 Boss::Boss(const wstring& uid)
@@ -111,6 +112,8 @@ void Boss::Update()
 		if (GetAnimator()->GetCurAnimation()->IsFinish()) {
 			DeleteObject(this);
 			DeleteObject(mpHpUI);
+
+			GUIMgr::GetI()->ShowGameClearUI();
 		}
 		return;
 	}

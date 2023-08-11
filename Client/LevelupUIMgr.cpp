@@ -30,6 +30,7 @@ LevelUpUIMgr::~LevelUpUIMgr()
 	}
 
 	mMapLvupEffectData.clear();
+	mMapLvupEffectData_Skill.clear();
 }
 
 

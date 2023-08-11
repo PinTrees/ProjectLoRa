@@ -15,7 +15,7 @@
 
 
 CAnimation::CAnimation()
-	:mpAnimator(nullptr)
+	: mpAnimator(nullptr)
 	, mpBufferTexture(nullptr)
 	, miCurFrm(0)
 	, mfAccTime(0.f)
@@ -25,6 +25,8 @@ CAnimation::CAnimation()
 
 CAnimation::~CAnimation()
 {
+	mVecFrm.clear();
+	mpBufferTexture = nullptr;
 }
 
 
@@ -66,14 +68,10 @@ void CAnimation::Render(HDC _dc)
 		return;
 
 	CObject* pObj = mpAnimator->GetObj();   
-	Vect2 vPos = pObj->GetPos() + mVecFrm[miCurFrm].vOffset; // Add Animation Frame Offset
-
-	// Convert LocalPos to RenderPos
-	vPos = CCamera::GetI()->GetRenderPos(vPos);
-
+	Vect2 vPos = CCamera::GetI()->GetRenderPos(pObj->GetPos() + mVecFrm[miCurFrm].vOffset);	// Add Animation Frame Offset  |  Convert LocalPos to RenderPos
 	Vect2 vScale = pObj->GetScale();
 
-	if (pObj->GetAngle() <= 0.1f)
+	if (pObj->GetAngle() <= 1.f)
 	{
 		BLENDFUNCTION bf = {};
 
@@ -120,13 +118,11 @@ void CAnimation::Render(HDC _dc)
 		transform.eM21 = -sinAngle;
 		transform.eM22 = cosAngle;
 		// 변환 좌표이동 설정
-		transform.eDx = dx;
+		transform.eDx = dx;		
 		transform.eDy = dy;
 		
-		// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
-		SetGraphicsMode(_dc, GM_ADVANCED);
-		// 변환 행렬 설정
-		SetWorldTransform(_dc, &transform);
+		SetGraphicsMode(_dc, GM_ADVANCED);	// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
+		SetWorldTransform(_dc, &transform);	// 변환 행렬 설정
 
 		AlphaBlend(_dc
 			, (int)(-vScale.x * 0.5f)
@@ -139,11 +135,9 @@ void CAnimation::Render(HDC _dc)
 			, (int)(mVecFrm[miCurFrm].vSlice.x)
 			, (int)(mVecFrm[miCurFrm].vSlice.y)
 			, bf);
-
-		// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
-		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);
-		// 변환 행렬 해제
-		SetWorldTransform(_dc, nullptr);
+		
+		ModifyWorldTransform(_dc, nullptr, MWT_IDENTITY);	// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
+		SetWorldTransform(_dc, nullptr);					// 변환 행렬 해제
 	}
 }
 
@@ -153,16 +147,13 @@ void CAnimation::RenderUI(CUI* ui, HDC dc)
 	if (mbFinish)
 		return;
 
-	Vect2 vPos = ui->GetFinalPos() + mVecFrm[miCurFrm].vOffset; // Add Animation Frame Offset
+	Vect2 vPos = ui->GetFinalPos() + mVecFrm[miCurFrm].vOffset;	// Add Animation Frame Offset
 	Vect2 vScale = ui->GetScale();
 
-	// Convert LocalPos to RenderPos
-	if (ui->IsCameraAffected())
-	{
+	if (ui->IsCameraAffected())		// Convert LocalPos to RenderPos
 		vPos = CCamera::GetI()->GetRenderPos(vPos);
-	}
 
-	if (ui->GetAngle() <= 0.1f)
+	if (ui->GetAngle() <= 1.f)
 	{
 		BLENDFUNCTION bf = {};
 
@@ -212,10 +203,8 @@ void CAnimation::RenderUI(CUI* ui, HDC dc)
 		transform.eDx = dx;
 		transform.eDy = dy;
 
-		// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
-		SetGraphicsMode(dc, GM_ADVANCED);
-		// 변환 행렬 설정
-		SetWorldTransform(dc, &transform);
+		SetGraphicsMode(dc, GM_ADVANCED);	// 그래픽 모드 설정 (GM_ADVANCED 고급 그래픽 모드)
+		SetWorldTransform(dc, &transform);	// 변환 행렬 설정
 
 		AlphaBlend(dc
 			, (int)(-vScale.x * 0.5f)
@@ -228,11 +217,9 @@ void CAnimation::RenderUI(CUI* ui, HDC dc)
 			, (int)(mVecFrm[miCurFrm].vSlice.x)
 			, (int)(mVecFrm[miCurFrm].vSlice.y)
 			, bf);
-
-		// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
-		ModifyWorldTransform(dc, nullptr, MWT_IDENTITY);
-		// 변환 행렬 해제
-		SetWorldTransform(dc, nullptr);
+		
+		ModifyWorldTransform(dc, nullptr, MWT_IDENTITY);	// 변환 행렬을 단위 행렬(Identity Matrix)로 초기화
+		SetWorldTransform(dc, nullptr);						// 변환 행렬 해제
 	}
 }
 
@@ -344,7 +331,6 @@ void CAnimation::Load(const wstring& _strRelativePath)
 	wstring strTexPath = wstring(str.begin(), str.end());
 
 	mpBufferTexture = CResMgr::GetI()->LoadTexture(strTexKey, strTexPath);
-
 
 	//// 프레임 개수
 	FScanf(szBuff, pFile);

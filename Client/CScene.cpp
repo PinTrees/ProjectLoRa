@@ -96,7 +96,7 @@ void CScene::Update()
 
 void CScene::UpdateUI()
 {
-	vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
+	const vector<CObject*>& arrUI = GetGroupObject(GROUP_TYPE::UI);
 	for (int i = 0; i < arrUI.size(); ++i)
 	{
 		if (!arrUI[i]->IsDead())
@@ -111,7 +111,7 @@ void CScene::FinalUpdate()
 {
 	if (!CTimeMgr::GetI()->IsPlay())
 	{
-		vector<CObject*> arrUI = GetGroupObject(GROUP_TYPE::UI);
+		const vector<CObject*>& arrUI = GetGroupObject(GROUP_TYPE::UI);
 		for (int i = 0; i < arrUI.size(); ++i)
 		{
 			arrUI[i]->FinalUpdate();
@@ -134,9 +134,9 @@ void CScene::FinalUpdate()
 #define CUR_TILE_SIZE 500
 
 
-void CScene::render_parallax(HDC dc)
+void CScene::render_background(HDC dc)
 {
-	vector<CObject*> parallaxs = GetGroupObject(GROUP_TYPE::BACKGROUND);
+	const vector<CObject*>& parallaxs = GetGroupObject(GROUP_TYPE::BACKGROUND);
 
 	Vect2 vCamPos = CCamera::GetI()->GetLookAt();
 	Vect2 vRes = CCore::GetI()->GetResolution();
@@ -159,13 +159,11 @@ void CScene::Render(HDC _dc)
 		// Render Background
 		if ((UINT)GROUP_TYPE::BACKGROUND == i)
 		{
-			render_parallax(_dc);
+			render_background(_dc);
 			continue;
 		}
 
-		vector<CObject*>::iterator iter = mArrObj[i].begin();
-
-		for (;iter != mArrObj[i].end();)
+		for (auto iter = mArrObj[i].begin(); iter != mArrObj[i].end();)
 		{
 			// Render Object
 			if (!(*iter)->IsDead())

@@ -26,11 +26,11 @@ HolyArea_Obj::HolyArea_Obj()
 	GetCollider()->SetScale(Vect2(80.f, 80.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"HolyArea", L"texture\\effect\\5.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"HolyArea", L"texture\\effect\\10.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"HolyArea", pTex, Vect2(144.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.5f, 1);
-	SetScale(Vect2(100.f, 100.f));
+	GetAnimator()->CreateAnimation(L"HolyArea", pTex, Vect2(80.f, 0.f) * 13, Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.5f, 1);
+	SetScale(Vect2(100.f, 100.f) * 0.5f);
 
 	GetAnimator()->Play(L"HolyArea", true);
 }
@@ -52,9 +52,9 @@ void HolyArea_Obj::Update()
 		mTheta = 360.f;		// Theta 값이 너무 커지지 않도록 조정한다.
 	}
 
-	Vect2 vPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+	Vect2 vPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
-	SetPos(Vect2(vPos.x - 19.f, vPos.y));
+	SetPos(Vect2(vPos.x, vPos.y));
 	SetAngle(mTheta);					// 오브젝트를 회전시킨다.
 	GetAnimator()->Update();
 	SetAlpha(150);

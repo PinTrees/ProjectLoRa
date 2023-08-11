@@ -6,6 +6,7 @@ class CImageUI;
 class TextUI;
 class CBtnUI;
 class GameOverUI;
+class ClearUI;
 
 
 class GUIMgr
@@ -19,6 +20,9 @@ private:
 	TextUI*		mFrameText;
 	CBtnUI*		mpSettingBtn;
 	GameOverUI* mpGameOverUI;
+	ClearUI*	mpGameClearUI;
+
+	TextUI*		mTimerText;
 
 
 public:
@@ -30,6 +34,10 @@ public:
 	void ShowGameOverUI();
 	void CloseGameOverUI();
 
+	void ShowGameClearUI();
+	void CloseGameClearUI();
+
 	void SetFrameText(UINT frame);
+	void SetTimerText(UINT timer);
 };
 

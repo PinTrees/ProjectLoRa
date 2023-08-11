@@ -3,7 +3,6 @@
 
 #include "CKeyMgr.h"
 #include "Player.h"
-#include "Gun.h"
 
 #include "CAnimator.h"
 #include "CAnimation.h"

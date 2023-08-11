@@ -29,5 +29,5 @@ public:
 
 public:
 	CColumn();
-	virtual ~CColumn() override;
+	virtual ~CColumn();
 };

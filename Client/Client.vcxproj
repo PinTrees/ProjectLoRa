@@ -171,6 +171,7 @@
     <ClInclude Include="CirclingBall.h" />
     <ClInclude Include="CirclingBall_Obj.h" />
     <ClInclude Include="CKeyMgr.h" />
+    <ClInclude Include="ClearUI.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CombatBall.h" />
     <ClInclude Include="CombatBall_Bullet.h" />
@@ -181,6 +182,8 @@
     <ClInclude Include="CRow.h" />
     <ClInclude Include="CScrollBar.h" />
     <ClInclude Include="CScrollView.h" />
+    <ClInclude Include="CSlider.h" />
+    <ClInclude Include="CSliderBar.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="CSystemMgr.h" />
@@ -193,12 +196,11 @@
     <ClInclude Include="Grenade_Bomb.h" />
     <ClInclude Include="Grenade_Obj.h" />
     <ClInclude Include="GUIMgr.h" />
+    <ClInclude Include="HitState.h" />
     <ClInclude Include="HolyArea.h" />
     <ClInclude Include="HolyArea_Obj.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="IceBolt.h" />
-    <ClInclude Include="IceBolt_Effect.h" />
-    <ClInclude Include="IceBolt_Obj.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemMgr.h" />
     <ClInclude Include="JPSCollision.h" />
@@ -234,7 +236,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="Gold.h" />
-    <ClInclude Include="Gun.h" />
     <ClInclude Include="BarUI.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MonsterFactory.h" />
@@ -293,6 +294,7 @@
     <ClCompile Include="CirclingBall.cpp" />
     <ClCompile Include="CirclingBall_Obj.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
+    <ClCompile Include="ClearUI.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CombatBall.cpp" />
     <ClCompile Include="CombatBall_Bullet.cpp" />
@@ -303,6 +305,8 @@
     <ClCompile Include="CRow.cpp" />
     <ClCompile Include="CScrollBar.cpp" />
     <ClCompile Include="CScrollView.cpp" />
+    <ClCompile Include="CSlider.cpp" />
+    <ClCompile Include="CSliderBar.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CSystemMgr.cpp" />
@@ -315,12 +319,11 @@
     <ClCompile Include="Grenade_Bomb.cpp" />
     <ClCompile Include="Grenade_Obj.cpp" />
     <ClCompile Include="GUIMgr.cpp" />
+    <ClCompile Include="HitState.cpp" />
     <ClCompile Include="HolyArea.cpp" />
     <ClCompile Include="HolyArea_Obj.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="IceBolt.cpp" />
-    <ClCompile Include="IceBolt_Effect.cpp" />
-    <ClCompile Include="IceBolt_Obj.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemMgr.cpp" />
     <ClCompile Include="JPSCollision.cpp" />
@@ -356,7 +359,6 @@
     <ClCompile Include="FileMgr.cpp" />
     <ClCompile Include="func.cpp" />
     <ClCompile Include="Gold.cpp" />
-    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="BarUI.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MonsterFactory.cpp" />

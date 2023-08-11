@@ -17,6 +17,7 @@ private:
 	map<wstring, CRes*> mMapFont;
 	map<wstring, CRes*> mMapSound;
 
+
 public:
 	CSound* LoadSound(const wstring& _strKey, const wstring& _strRelativePath);
 	CSound* FindSound(const wstring& _strKey);

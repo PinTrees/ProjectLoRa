@@ -22,6 +22,6 @@ public:
 	virtual void OnCollisionEnter(CCollider* _pOther);
 public:
 	Particle(const wstring& _type);
-	~Particle();
+	virtual ~Particle() override;
 };
 

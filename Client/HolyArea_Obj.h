@@ -22,6 +22,6 @@ public:
 
 public:
     HolyArea_Obj();
-    ~HolyArea_Obj();
+    virtual ~HolyArea_Obj();
 };
 

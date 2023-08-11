@@ -10,6 +10,8 @@
 #include "Thunder_Obj.h"
 
 #include "Random.h"
+#include "CSound.h"
+#include "CResMgr.h"
 
 
 Thunder::Thunder()
@@ -17,6 +19,9 @@ Thunder::Thunder()
 {
 	SetIconStr(L"2.bmp");
 	SetCoolDown(1.f);
+
+	mThunderSound = CResMgr::GetI()->LoadSound(L"Sound_Skill_2", L"sound\\skill\\2.wav");
+	mThunderSound->SetVolumeOffset(200);
 }
 
 Thunder::~Thunder()
@@ -31,7 +36,7 @@ void Thunder::UseSkill()
 	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
 	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
-	vector<CObject*> vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
 
 	float length = 1000.f;
 	Vect2 monsterPos;
@@ -52,6 +57,9 @@ void Thunder::UseSkill()
 	//}
 
 	CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
+
+	if (mThunderSound)
+		mThunderSound->Play();
 
 	SetSkillTime(0.f);
 }

@@ -39,7 +39,7 @@ private:
 
 public:
 	TextUI* GetText() { return mText; }
-	void	SetText(const wstring& _text) { mText->SetText(_text); }
+	void	SetText(const wstring& _text);
 
 	void	SetTexture(CTexture* pTex) { mpTexture = pTex; }
 	CTexture* GetTexture() { return mpTexture; }
@@ -76,6 +76,6 @@ public:
 
 public:
 	CBtnUI();
-	virtual ~CBtnUI() override;
+	virtual ~CBtnUI();
 };
 

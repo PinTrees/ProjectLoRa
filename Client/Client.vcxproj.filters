@@ -38,9 +38,6 @@
     <Filter Include="Game\Object\Bullet">
       <UniqueIdentifier>{e045afaf-6396-4eb6-857f-7dc22ef63594}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\Gun">
-      <UniqueIdentifier>{b79e24fc-ba7a-48cf-a49a-652323f10426}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\Scene_Tool">
       <UniqueIdentifier>{52e38cc8-db68-48af-be92-b245c7d37e60}</UniqueIdentifier>
     </Filter>
@@ -389,8 +386,17 @@
     <Filter Include="Game\UI\GameOverUI">
       <UniqueIdentifier>{e87119bb-fcdc-4ae6-9765-485405916d50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect">
-      <UniqueIdentifier>{523a8a29-1293-4c22-8825-1d888201e779}</UniqueIdentifier>
+    <Filter Include="Game\UI\ClearUI">
+      <UniqueIdentifier>{392132ae-eb0c-4b24-8e39-909196518f35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Slider">
+      <UniqueIdentifier>{eb0c26b4-ed12-4f71-b366-18e39d5c3e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreamWork\UI\Slider\SliderBar">
+      <UniqueIdentifier>{56c2d729-4973-4dc5-938d-697e0dd9d5d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Monster\HitState">
+      <UniqueIdentifier>{7b375fdd-6203-4fa6-8a8c-294d5b74db7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -495,9 +501,6 @@
     </ClInclude>
     <ClInclude Include="CPanelUI.h">
       <Filter>FreamWork\UI\Panel</Filter>
-    </ClInclude>
-    <ClInclude Include="Gun.h">
-      <Filter>Game\Object\Gun</Filter>
     </ClInclude>
     <ClInclude Include="FileMgr.h">
       <Filter>FreamWork\Manager\FileMgr</Filter>
@@ -751,11 +754,17 @@
     <ClInclude Include="GameOverUI.h">
       <Filter>Game\UI\GameOverUI</Filter>
     </ClInclude>
-    <ClInclude Include="IceBolt_Obj.h">
-      <Filter>Game\Class\SkillObj\01. IceBolt_Obj</Filter>
+    <ClInclude Include="ClearUI.h">
+      <Filter>Game\UI\ClearUI</Filter>
     </ClInclude>
-    <ClInclude Include="IceBolt_Effect.h">
-      <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
+    <ClInclude Include="CSlider.h">
+      <Filter>FreamWork\UI\Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="CSliderBar.h">
+      <Filter>FreamWork\UI\Slider\SliderBar</Filter>
+    </ClInclude>
+    <ClInclude Include="HitState.h">
+      <Filter>Game\FSM\Monster\HitState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -856,9 +865,6 @@
     </ClCompile>
     <ClCompile Include="CPanelUI.cpp">
       <Filter>FreamWork\UI\Panel</Filter>
-    </ClCompile>
-    <ClCompile Include="Gun.cpp">
-      <Filter>Game\Object\Gun</Filter>
     </ClCompile>
     <ClCompile Include="FileMgr.cpp">
       <Filter>FreamWork\Manager\FileMgr</Filter>
@@ -1103,11 +1109,17 @@
     <ClCompile Include="GameOverUI.cpp">
       <Filter>Game\UI\GameOverUI</Filter>
     </ClCompile>
-    <ClCompile Include="IceBolt_Obj.cpp">
-      <Filter>Game\Class\SkillObj\01. IceBolt_Obj</Filter>
+    <ClCompile Include="ClearUI.cpp">
+      <Filter>Game\UI\ClearUI</Filter>
     </ClCompile>
-    <ClCompile Include="IceBolt_Effect.cpp">
-      <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
+    <ClCompile Include="CSlider.cpp">
+      <Filter>FreamWork\UI\Slider</Filter>
+    </ClCompile>
+    <ClCompile Include="CSliderBar.cpp">
+      <Filter>FreamWork\UI\Slider\SliderBar</Filter>
+    </ClCompile>
+    <ClCompile Include="HitState.cpp">
+      <Filter>Game\FSM\Monster\HitState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

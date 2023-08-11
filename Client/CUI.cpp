@@ -152,15 +152,15 @@ void CUI::Render(HDC dc)
 		GetAnimator()->GetCurAnimation()->RenderUI(this, dc);
 		return;
 	}
-	
-	SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
-	SelectGDI p(dc, PEN_TYPE::RED);
 
 	Vect2 vPos = IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetFinalPos()) : GetFinalPos();
 	Vect2 vScale = GetScale();
 
 	if (DEBUG)
 	{
+		SelectGDI b(dc, BRUSH_TYPE::HOLLOW);
+		SelectGDI p(dc, PEN_TYPE::RED);
+
 		Rectangle
 		(
 			dc,
@@ -288,27 +288,20 @@ CUI* CUI::GetFindChild(CUI* parentUI, const wstring& childUI)
 // 모든 부모 UI들 중 좌표범위 제한이 설정된 UI가 있는지 확인합니다.
 bool CUI::IsFixedChildMouseCheck()
 {
-	vector<CUI*> vecParentUI;
 	CUI* parentUI = this;
+	bool result = false;
 
-	// 모든 부모 UI를 획득
 	while (parentUI)
 	{
-		vecParentUI.push_back(parentUI);
-		parentUI = parentUI->mpParentUI;
-	}
-
-	bool result = false;
-	for (int i = 0; i < vecParentUI.size(); ++i)
-	{
-		if (vecParentUI[i]->mFixedChildMouseCheck)
+		if (parentUI->mFixedChildMouseCheck)
 		{
 			result = true;
 			break;
 		}
+
+		parentUI = parentUI->mpParentUI;
 	}
 
-	vecParentUI.clear();
 	return result;
 }
 
@@ -316,26 +309,17 @@ bool CUI::IsFixedChildMouseCheck()
 // 옵션이 2중 설정되어있다면 최 하위 UI를 반환합니다.
 CUI* CUI::GetFixedChildMouseCheckParent()
 {
-	vector<CUI*> vecParentUI;
 	CUI* parentUI = this;
 
 	while (parentUI)
 	{
-		vecParentUI.push_back(parentUI);
+		if (parentUI->mFixedChildMouseCheck)
+		{
+			break;
+		}
 		parentUI = parentUI->mpParentUI;
 	}
 
-	parentUI = nullptr;
-
-	for (int i = 0; i < vecParentUI.size(); ++i)
-	{
-		if (vecParentUI[i]->mFixedChildMouseCheck)
-		{
-			parentUI = vecParentUI[i];
-		}
-	}
-
-	vecParentUI.clear();
 	return parentUI;
 }
 

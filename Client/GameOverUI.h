@@ -14,6 +14,10 @@ private:
 	TextUI*		mpTitle;
 	CBtnUI*		mpMainSceneBtn;
 
+	float	mFadeDelay;
+	float	mCurDelay;
+	bool	mbFade;
+
 
 public:
 	void Close();
@@ -22,7 +26,11 @@ public:
 
 
 public:
+	virtual void Update() override;
+
+
+public:
 	GameOverUI();
-	~GameOverUI();
+	virtual ~GameOverUI() override;
 };
 

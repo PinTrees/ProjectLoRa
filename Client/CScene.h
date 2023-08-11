@@ -26,14 +26,14 @@ private:
 
 
 protected:
-	void render_parallax(HDC dc);
+	void render_background(HDC dc);
 
 
 public:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }
 
-	// Life Cycle Point Function
+	// Life Cycle Point Function -------------------------------------
 	virtual void Update();			// 매 프레임 마다 호출
 	virtual void UpdateUI();
 	virtual void FinalUpdate();		// 매 마지막 프레임 마다 호츨

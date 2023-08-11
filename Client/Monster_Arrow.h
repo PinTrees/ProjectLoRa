@@ -32,6 +32,6 @@ public:
 
 public:
     Monster_Arrow();
-    ~Monster_Arrow();
+    virtual ~Monster_Arrow() override;
 };
 

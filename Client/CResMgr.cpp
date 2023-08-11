@@ -22,6 +22,7 @@ CResMgr::~CResMgr()
 {
 	Safe_Delete_Map(mMapTex);
 	Safe_Delete_Map(mMapFont);
+	Safe_Delete_Map(mMapSound);
 	Safe_Delete_Map(mMapSprite);
 } 
 
@@ -44,15 +45,14 @@ CSound* CResMgr::LoadSound(const wstring& _strKey, const wstring& _strRelativePa
 	pSound->SetRelativePath(_strRelativePath);
 
 	mMapSound.insert(make_pair(_strKey, pSound));
-
 	return pSound;
 }
 
 CSound* CResMgr::FindSound(const wstring& _strKey)
 {
-	auto iter = mMapTex.find(_strKey);
+	auto iter = mMapSound.find(_strKey);
 
-	if (iter == mMapTex.end())
+	if (iter == mMapSound.end())
 	{
 		return nullptr;
 	}
@@ -85,7 +85,7 @@ CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelati
 
 CTexture* CResMgr::FindTexture(const wstring& _strKey)
 {
-	map<wstring, CRes*>::iterator iter = mMapTex.find(_strKey);
+	auto iter = mMapTex.find(_strKey);
 
 	if (iter == mMapTex.end())
 	{
@@ -119,7 +119,9 @@ CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath,
 	CFont* pFont = FindFont(keyStr);
 
 	if (nullptr != pFont)
+	{
 		return pFont;
+	}
 
 	wstring strFilePath = CPathMgr::GetI()->GetContentPath() + _strRelativePath;
 
@@ -136,7 +138,7 @@ CFont* CResMgr::LoadFont(const wstring& strKey, const wstring& _strRelativePath,
 
 CFont* CResMgr::FindFont(const wstring& _strKey)
 {
-	map<wstring, CRes*>::iterator iter = mMapFont.find(_strKey);
+	auto iter = mMapFont.find(_strKey);
 
 	if (iter == mMapFont.end())
 	{

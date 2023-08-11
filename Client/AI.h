@@ -28,6 +28,7 @@ public:
 	void AddState(CState<T>* pState)
 	{
 		CState<T>* state = GetState(pState->GetType());
+
 		if (nullptr != state)
 			return;
 
@@ -81,7 +82,7 @@ public:
 		, mOwner(nullptr)
 	{
 	}
-	~AI() 
+	virtual ~AI() 
 	{
 		Safe_Delete_Map(mMapState);
 	}

@@ -20,5 +20,5 @@ public:
 
 public:
     PAtkState();
-    ~PAtkState();
+    virtual ~PAtkState();
 };

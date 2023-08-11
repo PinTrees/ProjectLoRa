@@ -12,6 +12,7 @@ PlayerMgr::PlayerMgr()
 
 PlayerMgr::~PlayerMgr()
 {
+	mpPlayer = nullptr;
 }
 
 

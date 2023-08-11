@@ -11,7 +11,6 @@
 #include "CAnimation.h"
 
 #include "Player.h"
-#include "Gun.h"
 
 
 PRunState::PRunState()
@@ -33,7 +32,7 @@ void PRunState::Update()
 	Player* pPlayer = (Player*)GetOwner();
 
 	mvDir = pPlayer->GetRunDir().Normalize();
-	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 180.f * DT);
+	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 150.f * DT);
 	pPlayer->SetFlip(mvDir.x < 1);
 
 	if (pPlayer->GetRunDir().x < 1)

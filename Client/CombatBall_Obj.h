@@ -24,6 +24,6 @@ public:
 
 public:
     CombatBall_Obj();
-    ~CombatBall_Obj();
+    virtual ~CombatBall_Obj();
 };
 

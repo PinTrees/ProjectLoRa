@@ -31,5 +31,5 @@ public:
 
 public:
 	CWrap();
-	~CWrap();
+	virtual ~CWrap() override;
 };

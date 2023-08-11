@@ -62,8 +62,8 @@ public:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }
 
-	CCollider* GetCollider() { return mpCollider; }
-	CAnimator* GetAnimator() { return mpAnimator; }
+	CCollider*	GetCollider() { return mpCollider; }
+	CAnimator*	GetAnimator() { return mpAnimator; }
 	CRigidBody* GetRigidBody() { return mpRigidBody; }
 
 	bool	IsDead() { return !mbAlive; }

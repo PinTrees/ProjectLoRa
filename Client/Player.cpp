@@ -22,7 +22,6 @@
 
 // GameObject Header
 #include "Bullet.h"
-#include "Gun.h"
 
 // UI Object Header
 #include "CUI.h"
@@ -58,8 +57,8 @@ Player::Player()
 	, mpCoinSound(nullptr)
 {
 	// Load ----------------------
-	mpCoinSound = CResMgr::GetI()->LoadSound(L"Coin_1", L"sound\\coin.wav");
-
+	mpCoinSound = CResMgr::GetI()->LoadSound(L"Sound_Coin", L"sound\\coin.wav");
+	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
 
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
@@ -86,7 +85,6 @@ Player::Player()
 	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
 	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
 	//GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
-
 	GetAnimator()->Play(L"IDLE", true);
 
 	SetScale(Vect2(73.f, 54.f) * 1.5f);
@@ -132,6 +130,14 @@ Player::Player()
 	pHpBarFrame->SetScale(pHpBarUI->GetScale());
 	pHpBarFrame->SetTexture(CResMgr::GetI()->LoadTexture(L"Hp_Bar_Frame", L"texture\\ui\\hp_bar\\hp_bar_frame.bmp"));
 	pHpBarUI->AddChild(pHpBarFrame);
+
+	mHpText = new TextUI;
+	mHpText->SetText(L"0");
+	mHpText->SetFontSize(20);
+	mHpText->SetColor(RGB(255, 255, 255));
+	mHpText->SetOutlineColor(RGB(0, 0, 0));
+	mHpText->SetOutlineWidth(1);
+	pHpBarUI->AddChild(mHpText);
 }
 
 
@@ -139,6 +145,9 @@ Player::~Player()
 {
 	if (nullptr != mAI)
 		delete mAI;
+
+	mpCoinSound = nullptr;
+	mpLevelUpSound = nullptr;
 }
 
 
@@ -172,6 +181,7 @@ void Player::Update()
 	Vect2 vPos = GetPos();
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+	mHpText->SetText(std::to_wstring(mtInfo.curHp));
 
 	if (mtInfo.curHp <= 0)
 	{
@@ -237,6 +247,9 @@ void Player::calExp()
 	{
 		++mLevel;
 		mExp = 0;
+
+		if (mpLevelUpSound)
+			mpLevelUpSound->Play();
 
 		HubUIMgr::GetI()->SetLevelText(mLevel);
 		LevelUpUIMgr::GetI()->Choice();

@@ -35,5 +35,5 @@ public:
 
 public:
 	Background();
-	~Background();
+	virtual ~Background() override;
 };

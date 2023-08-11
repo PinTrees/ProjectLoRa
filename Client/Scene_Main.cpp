@@ -31,6 +31,7 @@ Scene_Main::Scene_Main()
 	, mFadeDelay(0.5f)
 	, mCurDelay(0.f)
 	, mFadeDir(1)
+	, mpPlayerThumb(nullptr)
 {
 }
 
@@ -56,6 +57,12 @@ void Scene_Main::Enter()
 	pBackground->SetTexture(CResMgr::GetI()->LoadTexture(L"Background_Start", L"texture\\background\\start.bmp"));
 	AddObject(pBackground, GROUP_TYPE::UI);
 	// ---------------------------------------------------------------------
+
+	mpPlayerThumb = new CImageUI;
+	mpPlayerThumb->SetPos(Vect2(vRes.x * 0.38f, vRes.y * 0.68f));
+	mpPlayerThumb->SetScale(Vect2(83.f, 140.f) * 1.4f);
+	mpPlayerThumb->SetTexture(CResMgr::GetI()->LoadTexture(L"Player_Thumb", L"texture\\player\\thumb.bmp"));
+	AddObject(mpPlayerThumb, GROUP_TYPE::UI);
 
 	// 설정 버튼 생성 -------------------------------------------------------
 	Vect2 vBtnSize = Vect2(36.f, 36.f);

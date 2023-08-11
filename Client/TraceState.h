@@ -21,6 +21,6 @@ public:
 
 public:
     TraceState();
-    ~TraceState();
+    virtual ~TraceState();
 };
 

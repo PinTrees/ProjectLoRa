@@ -13,6 +13,8 @@ private:
     CUI*    mItemUI;
     CImageUI* mPressBack;
 
+    CImageUI* mpPlayerThumb;
+
     float   mFadeDelay;
     float   mCurDelay;
     int     mFadeDir;
@@ -31,6 +33,6 @@ public:
 
 public:
     Scene_Main();
-    ~Scene_Main();
+    virtual ~Scene_Main() override;
 };
 

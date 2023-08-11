@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "PlayerMgr.h"
 
+#include "CSound.h"
+#include "CResMgr.h"
 
 
 
@@ -14,6 +16,9 @@ CrossDagger::CrossDagger()
 {
 	SetIconStr(L"7.bmp");
 	SetCoolDown(3.f);
+
+	mpSound = CResMgr::GetI()->LoadSound(L"Skill_7", L"sound\\skill\\7.wav");
+	mpSound->SetVolumeOffset(-300);
 }
 
 CrossDagger::~CrossDagger()
@@ -36,6 +41,9 @@ void CrossDagger::UseSkill()
 
 		CreateObject(pDagger, GROUP_TYPE::PROJ_PLAYER);
 	}
+
+	if (mpSound)
+		mpSound->Play();
 
 	SetSkillTime(0.f);
 }

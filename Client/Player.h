@@ -34,6 +34,7 @@ class BarUI;
 class CImageUI;
 class LevelupUI;
 class CSound;
+class TextUI;
 
 
 class Player :
@@ -47,15 +48,16 @@ private:
 
 	int			mLevel;
 	float		mExp;
-	BarUI* mExpBar;
-	CImageUI* mHpBar;
+	BarUI*		mExpBar;
+	CImageUI*	mHpBar;
+	TextUI*		mHpText;
 
 	tPlayerInfo			mtInfo;
 	vector<Skill*>		mVecSkill;
-
-	AI<PLAYER_STATE>* mAI;
+	AI<PLAYER_STATE>*	mAI;
 
 	CSound* mpCoinSound;
+	CSound* mpLevelUpSound;
 
 
 public:
@@ -77,6 +79,7 @@ public:
 	void AddSkill(Skill* _skill);
 	void UseSkill();
 	void AddDamage(float _damage) { mtInfo.curHp -= _damage; }
+	const vector<Skill*>& GetSkillList() { return mVecSkill; };
 
 
 public:
@@ -93,7 +96,7 @@ private:
 
 public:
 	Player();
-	~Player();
+	virtual ~Player() override;
 
 	friend class LevelupUI;
 };

@@ -48,5 +48,5 @@ private:
 
 public:
 	Scene_Tool();
-	virtual ~Scene_Tool();
+	virtual ~Scene_Tool() override;
 };

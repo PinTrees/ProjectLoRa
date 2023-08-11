@@ -35,6 +35,6 @@ public:
 
 public:
 	Environment(const wstring& _type);
-	~Environment();
+	virtual ~Environment() override;
 };
 

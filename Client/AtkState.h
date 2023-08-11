@@ -17,6 +17,6 @@ public:
 
 public:
     AtkState();
-    ~AtkState();
+    virtual ~AtkState();
 };
 

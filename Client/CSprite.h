@@ -46,7 +46,7 @@ public:
 
 private:
     CSprite();
-    virtual ~CSprite();
+    virtual ~CSprite() override;
 
     friend class CResMgr;
 };

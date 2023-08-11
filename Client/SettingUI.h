@@ -11,11 +11,12 @@ class SettingUI :
 private:
 	CBtnUI*		mAstarBtn;
 	CBtnUI*		mJPSBtn;
-	CImageUI*	mCurSelectIcon;
 
 	CBtnUI*		mDebugBtn;
 	CImageUI*	mDebugCheckIcon;
 
+	CBtnUI*		mDamageTextBtn;
+	CImageUI*	mDamageTextCheckIcon;
 
 public:
 	void Close();
@@ -26,11 +27,12 @@ public:
 public:
 	void SetFindPath(DWORD_PTR param);
 	void SetDebugMode();
+	void SetDamageText();
 
 
 public:
 	SettingUI();
-	~SettingUI();
+	virtual ~SettingUI() override;
 	SettingUI(SettingUI&) = delete;
 };
 

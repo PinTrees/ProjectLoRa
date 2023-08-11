@@ -13,8 +13,8 @@ ThunderBoom::ThunderBoom()
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Thunder_Bomb", L"texture\\effect\\103.bmp");
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"Boom", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.04f, 9);
-	SetScale(Vect2(48.f, 64.f) * 3.0f);
+	GetAnimator()->CreateAnimation(L"Boom", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.03f, 9);
+	SetScale(Vect2(48.f, 64.f) * 2.5f);
 	GetAnimator()->FindAnimation(L"Boom")->SetAllFrameOffet(Vect2(0.f, GetScale().y * -0.5f));
 
 	GetAnimator()->Play(L"Boom", false);

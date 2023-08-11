@@ -36,6 +36,6 @@ public:
 
 public:
 	Boss(const wstring& uid);
-	~Boss();
+	virtual ~Boss() override;
 };
 

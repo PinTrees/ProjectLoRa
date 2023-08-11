@@ -17,6 +17,7 @@ AstarMgr::~AstarMgr()
         {
             delete mMapNode[i][j];
         }
+        mMapNode[i].clear();
     }
 
     mMapNode.clear();

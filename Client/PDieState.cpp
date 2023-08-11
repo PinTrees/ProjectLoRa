@@ -17,9 +17,6 @@
 
 PDieState::PDieState()
 	: CState(PLAYER_STATE::DIE)
-	, mDelay(1.f)
-	, mCurDelay(0.f)
-	, mbEnd(false)
 {
 }
 
@@ -30,22 +27,12 @@ PDieState::~PDieState()
 void PDieState::Enter()
 {
 	Player* pPlayer = (Player*)GetOwner();
-	CCamera::GetI()->FadeOut(mDelay);
+	GUIMgr::GetI()->ShowGameOverUI();
 }
 
 
 void PDieState::Update()
 {
-	if (mbEnd) return;
-
-	mCurDelay += DT;
-
-	if (mCurDelay >= mDelay)
-	{
-		mbEnd = true;
-		mCurDelay = 0.f;
-		GUIMgr::GetI()->ShowGameOverUI();
-	}
 }
 
 

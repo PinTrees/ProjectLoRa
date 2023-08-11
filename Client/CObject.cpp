@@ -13,14 +13,16 @@
 CObject::CObject()
 	: mvPos(Vect2::zero)
 	, mvScale{}
+
 	, mpCollider(nullptr)
 	, mpAnimator(nullptr)
+	, mpRigidBody(nullptr)
+
 	, mbAlive(true)
 	, mAngle(0.f)
 	, mAngleOffset(0.f)
 	, mFlip(false)
 	, mVisible(true)
-	, mpRigidBody(nullptr)
 	, mAlpha(255)
 {
 }
@@ -114,16 +116,13 @@ void CObject::CompnentRender(HDC _dc)
 	{
 		if (nullptr != mpCollider)
 			mpCollider->Render(_dc);
-	}
 
-	SelectGDI b(_dc, BRUSH_TYPE::RED);
-	SelectGDI p(_dc, PEN_TYPE::RED);
-	  
-	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
-	float pivotSize = 3.f;
+		Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+		float pivotSize = 3.f;
 
-	if (DEBUG)
-	{
+		SelectGDI b(_dc, BRUSH_TYPE::RED);
+		SelectGDI p(_dc, PEN_TYPE::RED);
+
 		Ellipse(_dc
 			, (int)(vRenderPos.x - pivotSize * 0.5f)
 			, (int)(vRenderPos.y - pivotSize * 0.5f)

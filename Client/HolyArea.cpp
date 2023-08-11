@@ -21,8 +21,8 @@ void HolyArea::UseSkill()
 	HolyArea_Obj* area = new HolyArea_Obj;
 	area->SetOwner(this);
 	area->SetPrevLv(GetSkillLevel());
-	area->GetCollider()->SetScale(Vect2(65.f + 50.f * GetSkillLevel(), 65.f + 50.f * GetSkillLevel()));
-	area->SetScale(Vect2(220.f + 100.f * GetSkillLevel(), 220.f + 100.f * GetSkillLevel()));
+	area->GetCollider()->SetScale(Vect2(65.f, 65.f) + Vect2(50.f, 50.f) * GetSkillLevel());
+	area->SetScale(Vect2(80.f, 80.f) + Vect2(50.f, 50.f) * GetSkillLevel());
 
 	CreateObject(area, GROUP_TYPE::GROUND_PLAYER);
 }

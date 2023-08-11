@@ -33,6 +33,7 @@ int CSound::Load(const wstring& _strPath)
 	else
 		assert(nullptr);
 
+	SetPosition(0);
 	return S_OK;
 }
 
@@ -143,7 +144,7 @@ void CSound::Stop(bool _bReset)
 void CSound::SetVolume(float _fVolume)
 {
 	m_iVolume = GetDecibel(_fVolume);
-	m_pSoundBuffer->SetVolume(m_iVolume);
+	m_pSoundBuffer->SetVolume(m_iVolume + mVolOffset);
 }
 
 void CSound::SetPosition(float _fPosition)
@@ -154,6 +155,12 @@ void CSound::SetPosition(float _fPosition)
 	m_pSoundBuffer->SetCurrentPosition(dwBytes);
 
 	Play();
+}
+
+void CSound::SetVolumeOffset(int vol)
+{
+	 mVolOffset = vol;
+	 m_pSoundBuffer->SetVolume(m_iVolume + mVolOffset);
 }
 
 int CSound::GetDecibel(float _fVolume)

@@ -16,6 +16,6 @@ public:
 
 public:
     IdleState();
-    ~IdleState();
+    virtual ~IdleState();
 };
 

@@ -13,8 +13,10 @@
 #include "TextUI.h"
 #include "CColumn.h"
 #include "GameOverUI.h"
+#include "ClearUI.h"
 
 #include "UIMgr.h"
+
 
 
 SINGLE_HEADER(GUIMgr);
@@ -30,8 +32,6 @@ GUIMgr::GUIMgr()
 GUIMgr::~GUIMgr()
 {
 }
-
-
 
 
 void GUIMgr::Init()
@@ -53,8 +53,22 @@ void GUIMgr::Init()
 	mpGameOverUI = new GameOverUI;
 	mpGameOverUI->SetPos(vRes * 0.5f);
 	CreateObject(mpGameOverUI, GROUP_TYPE::UI); 
+
+	mpGameClearUI = new ClearUI;
+	mpGameClearUI->SetPos(vRes * 0.5f);
+	CreateObject(mpGameClearUI, GROUP_TYPE::UI);
 	/// ------------------------------------------
 
+
+	/// 타이머 UI 생성 ----------------------------
+	mTimerText = new TextUI;
+	mTimerText->SetPos(Vect2(vRes.x * 0.5f, 50.f));
+	mTimerText->SetScale(Vect2(0.f, 50.f));
+	mTimerText->SetText(L"00:00");
+	mTimerText->SetColor(RGB(255, 255, 255));
+	mTimerText->SetFontSize(48);
+	CreateObject(mTimerText, GROUP_TYPE::UI);
+	/// ------------------------------------------
 
 	mFrameText = new TextUI;
 	mFrameText->SetPos(Vect2(vRes.x - 80.f, 100.f));
@@ -65,24 +79,24 @@ void GUIMgr::Init()
 	CreateObject(mFrameText, GROUP_TYPE::UI);
 
 
-	CBtnUI* pSettingBtn = new CBtnUI;
-	pSettingBtn->SetScale(Vect2(50.f, 50.f));
-	pSettingBtn->SetPos(Vect2(vRes.x - 50.f, 50.f));
-	pSettingBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_2", L"texture\\ui\\button\\2.bmp"));
-	pSettingBtn->SetClickedCallBack(mpSettinUI, OBJECT_FUNC(&SettingUI::Show));
+	mpSettingBtn = new CBtnUI;
+	mpSettingBtn->SetScale(Vect2(50.f, 50.f));
+	mpSettingBtn->SetPos(Vect2(vRes.x - 50.f, 50.f));
+	mpSettingBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Button_2", L"texture\\ui\\button\\2.bmp"));
+	mpSettingBtn->SetClickedCallBack(mpSettinUI, OBJECT_FUNC(&SettingUI::Show));
+	CreateObject(mpSettingBtn, GROUP_TYPE::UI);
 
 	CImageUI* pImage = new CImageUI;
 	pImage->SetPos(Vect2(0.f, -5.f));
-	pImage->SetScale(pSettingBtn->GetScale() * 0.6f);
+	pImage->SetScale(mpSettingBtn->GetScale() * 0.6f);
 	pImage->SetTexture(CResMgr::GetI()->LoadTexture(L"Setting_Icon", L"texture\\ui\\icon\\setting.bmp"));
 	pImage->SetRaycastTarget(false);
-	pSettingBtn->AddChild(pImage);
-	mpSettingBtn = pSettingBtn;
-	CreateObject(mpSettingBtn, GROUP_TYPE::UI);
+	mpSettingBtn->AddChild(pImage);
 
 
 	CloseSettingUI();
 	CloseGameOverUI();
+	CloseGameClearUI();
 }
 
 void GUIMgr::ShowSettingUI()
@@ -102,6 +116,8 @@ void GUIMgr::CloseSettingUI()
 }
 
 
+// -----------------------------------------------------
+// 게임 오버 UI -----------------------------------------
 void GUIMgr::ShowGameOverUI()
 {
 	CTimeMgr::GetI()->Stop();
@@ -116,9 +132,39 @@ void GUIMgr::CloseGameOverUI()
 	CTimeMgr::GetI()->Play();
 	mpGameOverUI->SetVisible(false);
 }
+// -----------------------------------------------------
+
+
+
+// -------------------------------------------------------
+// 게임 클리어 UI -----------------------------------------
+void GUIMgr::ShowGameClearUI()
+{
+	CTimeMgr::GetI()->Stop();
+	mpGameClearUI->SetVisible(true);
+	mpGameClearUI->Build();
+	CUIMgr::GetI()->SetTop(mpGameClearUI);
+}
+
+void GUIMgr::CloseGameClearUI()
+{
+	CTimeMgr::GetI()->Play();
+	mpGameClearUI->SetVisible(false);
+}
+// -------------------------------------------------------
+
+
 
 
 void GUIMgr::SetFrameText(UINT frame)
 {
 	mFrameText->SetText(std::to_wstring(frame) + L" FPS");
+}
+
+
+void GUIMgr::SetTimerText(UINT timer)
+{
+	int minute = timer / 60;
+	int second = timer % 60;
+	mTimerText->SetText(std::to_wstring(minute) + L":" + std::to_wstring(second));
 }

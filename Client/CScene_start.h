@@ -16,8 +16,9 @@ private:
 	float		mBossDelay;
 
 	bool		mbBossRespone;
-
 	int			mMonsterWave;
+
+	float		mTimer;
 
 public:
 	virtual void Update();
@@ -34,6 +35,6 @@ private:
 
 public:
 	Scene_Start();
-	~Scene_Start();
+	virtual ~Scene_Start() override;
 };
 

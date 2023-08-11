@@ -133,6 +133,7 @@ enum class MONSTER_STATE
 	Create,
 	DEAD,
 	ATTACK,
+	HIT,
 };
 
 
