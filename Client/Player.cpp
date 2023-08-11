@@ -89,6 +89,7 @@ Player::Player()
 
 	SetScale(Vect2(73.f, 54.f) * 1.5f);
 	SetPivot(Vect2(-15.f, 15.f));
+	SetName(L"Player");
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
