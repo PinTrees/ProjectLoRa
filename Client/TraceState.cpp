@@ -98,7 +98,10 @@ void TraceState::Update()
 
 	Vect2 dir = mvTargetPos - vMonsterPos;
 	dir.Normalize();
-	GetOwner()->SetPos(pMonster->GetPos() + dir * pMonster->GetInfo().speed * DT);
+	GetOwner()->SetPos(pMonster->GetPos() + dir * pMonster->GetInfo().curSpeed * DT);
+
+	if (pMonster->GetFreeze())
+		return;
 
 	//// 플레이어가 몬스터의 인식범위 내부로 진입
 	if (Vect2::Distance(vPlayerPos, vMonsterPos) < pMonster->GetInfo().atkRange)

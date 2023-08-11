@@ -5,7 +5,10 @@
 struct tMonsterInfo
 {
 	wstring		UID;
+
+	float		curSpeed;
 	float		speed;			// 이동속도
+
 	float		hp;				// 체력
 	float		recogRange;		// 인지범위
 	float		atkRange;		// 공격거리
@@ -35,13 +38,16 @@ private:
 	BarUI* mHpBar;
 
 	vector<Vect2>	mVecPathPos;
-
+	
 	float			mCurDamageDelay;
+	float			mOriginalSpeed;
+	bool			mFreeze;
+	
+	Vect2			mvShadowOffset;
+	Vect2			mvShadowScale;
 
 	CSound*			mHitSound;
 	CTexture*		mpShadowTex;
-	Vect2	mvShadowOffset;
-	Vect2	mvShadowScale;
 
 
 public:
@@ -66,6 +72,9 @@ public:
 			mVecPathPos.push_back(vecPos[i] * TILE_SIZE_RENDER + mTileOffet);
 		}
 	}
+
+	void SetFreeze(bool freeze);
+	bool GetFreeze() { return mFreeze; }
 
 
 public:

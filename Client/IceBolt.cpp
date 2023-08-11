@@ -1,6 +1,8 @@
 #include "pch.h"
 
 #include "IceBolt.h"
+#include "IceBolt_Obj.h"
+
 #include "CSceneMgr.h"
 #include "PlayerMgr.h"
 
@@ -8,14 +10,14 @@
 
 #include "Player.h"
 
- 
+
 
 
 IceBolt::IceBolt()
 	: Skill(SKILL_TYPE::ICE_BOLT, 5)
 {
 	SetIconStr(L"2.bmp");
-	SetCoolDown(1.f);
+	SetCoolDown(3.f);
 }
 
 IceBolt::~IceBolt()
@@ -24,29 +26,33 @@ IceBolt::~IceBolt()
 
 void IceBolt::UseSkill()
 {
-	//SkillObj* pThunder = new Thunder_Obj;
-	//pThunder->SetOwner(this);
+	IceBolt_Obj* Bolt = new IceBolt_Obj;
+	Bolt->SetOwner(this);
 
-	//CScene* cscene = CSceneMgr::GetI()->GetCurScene();
-	//Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
+	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
-	//vector<CObject*> vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+	vector<CObject*> vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
 
-	//float length = 1000.f;
-	//Vect2 monsterPos;
-	//for (size_t i = 0; i < vecMon.size(); ++i)
-	//{
-	//	monsterPos = vecMon[i]->GetPos();
-	//	if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적 찾기)
-	//	{
-	//		length = (playerPos - monsterPos).Length(); // length 에 값 대입
-	//		pThunder->SetPos(Vect2(monsterPos.x, monsterPos.y - 50.f));
-	//	}
-	//}
+	float length = 1000.f;
+	Vect2 monsterPos;
+	for (size_t i = 0; i < vecMon.size(); ++i)
+	{
+		monsterPos = vecMon[i]->GetPos();
+		if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+		{
+			length = (playerPos - monsterPos).Length(); // length 에 값 대입
+			mvDir = monsterPos - playerPos;
+		}
+	}
 
-	//CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
+	mvDir.Normalize();
+	Bolt->SetDir(mvDir);
+	Bolt->SetPos(PlayerMgr::GetI()->GetPlayer()->GetPos());
+	Bolt->SetAngleOffset(mvDir.ToAngle());
+	CreateObject(Bolt, GROUP_TYPE::PROJ_PLAYER);
 
-	//SetSkillTime(0.f);
+	SetSkillTime(0.f);
 }
 
 void IceBolt::CheckAvailable()

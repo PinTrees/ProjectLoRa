@@ -201,6 +201,8 @@
     <ClInclude Include="HolyArea_Obj.h" />
     <ClInclude Include="HubUIMgr.h" />
     <ClInclude Include="IceBolt.h" />
+    <ClInclude Include="IceBolt_Effect.h" />
+    <ClInclude Include="IceBolt_Obj.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemMgr.h" />
     <ClInclude Include="JPSCollision.h" />
@@ -324,6 +326,8 @@
     <ClCompile Include="HolyArea_Obj.cpp" />
     <ClCompile Include="HubUIMgr.cpp" />
     <ClCompile Include="IceBolt.cpp" />
+    <ClCompile Include="IceBolt_Effect.cpp" />
+    <ClCompile Include="IceBolt_Obj.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemMgr.cpp" />
     <ClCompile Include="JPSCollision.cpp" />

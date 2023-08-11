@@ -398,6 +398,9 @@
     <Filter Include="Game\FSM\Monster\HitState">
       <UniqueIdentifier>{7b375fdd-6203-4fa6-8a8c-294d5b74db7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect">
+      <UniqueIdentifier>{a99436c7-bdfc-4022-acff-499929518aec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -766,6 +769,12 @@
     <ClInclude Include="HitState.h">
       <Filter>Game\FSM\Monster\HitState</Filter>
     </ClInclude>
+    <ClInclude Include="IceBolt_Obj.h">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="IceBolt_Effect.h">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1120,6 +1129,12 @@
     </ClCompile>
     <ClCompile Include="HitState.cpp">
       <Filter>Game\FSM\Monster\HitState</Filter>
+    </ClCompile>
+    <ClCompile Include="IceBolt_Obj.cpp">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="IceBolt_Effect.cpp">
+      <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@
 
 // Include Componets
 #include "CCollider.h"
+#include "RigidBody.h"
 #include "CAnimation.h"
 #include "CAnimator.h"
 #include "CTexture.h"
@@ -48,8 +49,10 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	mtInfo.UID = uid;
 
 	SetName(L"Monster");
+
 	CreateCollider();
 	CreateAnimator();
+	CreateRigidBody();
 
 	mHpBar = new BarUI;
 	mHpBar->SetScale(Vect2(40.f, 4.f));
@@ -188,6 +191,7 @@ void Monster::Render(HDC dc)
 void Monster::Update()
 {
 	mCurDamageDelay += DT;
+	mtInfo.curSpeed = mFreeze ? 0.f : mtInfo.speed;
 
 	GetAnimator()->Update();
 
@@ -231,6 +235,12 @@ void Monster::AddDamage(float damage)
 		mHitSound->Play();
 }
 
+
+void Monster::SetFreeze(bool freeze)
+{
+	mFreeze = freeze;
+	GetRigidBody()->SetKinematic(mFreeze);
+}
 
 void Monster::OnCollisionEnter(CCollider* _pOther)
 {
