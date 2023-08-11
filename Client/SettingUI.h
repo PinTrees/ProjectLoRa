@@ -4,6 +4,9 @@
 
 class CBtnUI;
 class CImageUI;
+class CSlider;
+class TextUI;
+
 
 class SettingUI :
 	public CPanelUI
@@ -18,6 +21,10 @@ private:
 	CBtnUI*		mDamageTextBtn;
 	CImageUI*	mDamageTextCheckIcon;
 
+	CSlider*	mSoundSlider;
+	TextUI*		mVolumText;
+
+
 public:
 	void Close();
 	void Show();
@@ -28,6 +35,8 @@ public:
 	void SetFindPath(DWORD_PTR param);
 	void SetDebugMode();
 	void SetDamageText();
+	
+	void ChangeSoundSliderValue(int val);
 
 
 public:

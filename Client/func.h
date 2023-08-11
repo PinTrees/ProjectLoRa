@@ -68,3 +68,5 @@ void LoadTile(CScene* pScene, const wstring& _fullPath);
 void CreateTile(CScene* pScene, UINT xCount, UINT yCount);
 
 
+
+

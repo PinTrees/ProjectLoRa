@@ -86,6 +86,8 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetScale(Vect2(128.f, 130.f) * 0.8f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+		
+		
 
 		mHpBar->SetPivot(Vect2(0.f, -12.f));
 	}
@@ -103,12 +105,12 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		Vect2 vRtPos = Vect2(1280.f, 128.f);
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
-		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
 		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
 
-		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.1f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
 		SetScale(Vect2(128.f, 128.f) * 0.9f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));

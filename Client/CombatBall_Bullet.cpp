@@ -42,6 +42,8 @@ CombatBall_Bullet::~CombatBall_Bullet()
 
 void CombatBall_Bullet::Update()
 {
+	GetAnimator()->Update();
+
 	if (mCurTime > GetMaxDelay())
 	{
 		DeleteObject(this);
@@ -56,7 +58,6 @@ void CombatBall_Bullet::Update()
 	Vect2 V2 = V0 * mRemainTime + V1 * mCurTime;
 
 	SetPos(V2);
-	GetAnimator()->Update();
 }
 
 void CombatBall_Bullet::Render(HDC _dc)

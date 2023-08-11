@@ -17,7 +17,7 @@
 #include "CSystemMgr.h"
 
 #include "CScrollView.h"
-
+#include "CSlider.h"
 
 
 SettingUI::SettingUI()
@@ -135,14 +135,30 @@ SettingUI::SettingUI()
 	mDamageTextCheckIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
 	mDamageTextCheckIcon->SetRaycastTarget(false);
 	mDamageTextBtn->AddChild(mDamageTextCheckIcon);
+
+	// 사운드 슬라이더 UI ---------------------------------------
+	CRow* pVolRow = new CRow;
+	pVolRow->SetScale(Vect2(500.f, 60.f));
+	pVolRow->SetSpacing(16.f);
+	pColumn->AddChild(pVolRow);
+
+	mSoundSlider = new CSlider;
+	mSoundSlider->SetScale(Vect2(200.f, 60.f));
+	mSoundSlider->SetSliderFunc(this, (SLIDER_OBJ)(&SettingUI::ChangeSoundSliderValue));
+	pVolRow->AddChild(mSoundSlider);
+
+	mVolumText = new TextUI;
+	mVolumText->SetScale(Vect2(100.f, 25.f));
+	mVolumText->SetFontSize(22.f);
+	mVolumText->SetColor(RGB(255, 255, 255));
+	mVolumText->SetText(L"100");
+	pVolRow->AddChild(mVolumText);
 }
 
 
 SettingUI::~SettingUI()
 {
 }
-
-
 
 
 void SettingUI::Close()
@@ -193,4 +209,10 @@ void SettingUI::SetDamageText()
 {
 	SettingMgr::GetI()->SetDamageTextActive(!SettingMgr::GetI()->GetDamageTextActive());
 	Build();
+}
+
+
+void SettingUI::ChangeSoundSliderValue(int val)
+{
+	mVolumText->SetText(std::to_wstring(val));
 }
