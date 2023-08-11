@@ -144,7 +144,7 @@ SettingUI::SettingUI()
 
 	mSoundSlider = new CSlider;
 	mSoundSlider->SetScale(Vect2(200.f, 60.f));
-	mSoundSlider->SetSliderFunc(this, (SLIDER_OBJ)(&SettingUI::ChangeSoundSliderValue));
+	mSoundSlider->SetChangeValueFunc(this, (SLIDER_OBJ)(&SettingUI::ChangeSoundSliderValue));
 	pVolRow->AddChild(mSoundSlider);
 
 	mVolumText = new TextUI;

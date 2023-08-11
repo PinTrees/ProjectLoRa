@@ -16,7 +16,7 @@ private:
 	CSliderBar* mpSliderBar;
 
 	CObject*	mFuncOwner;
-	SLIDER_OBJ	mSliderFunc;
+	SLIDER_OBJ	mChangeValueFunc;
 
 	float mRatio;
 
@@ -32,7 +32,7 @@ public:
 
 	void SetHorSliderValue();
 
-	void SetSliderFunc(CObject* obj, SLIDER_OBJ func) { mFuncOwner = obj; mSliderFunc = func; }
+	void SetChangeValueFunc(CObject* obj, SLIDER_OBJ func) { mFuncOwner = obj; mChangeValueFunc = func; }
 
 
 public:

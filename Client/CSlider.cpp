@@ -39,9 +39,9 @@ void CSlider::SetValue(int val)
 	Vect2 vScrollBarSize = mpSliderBar->GetScale();
 	mpSliderBar->SetPos(Vect2((vScale.x * -0.5f) + (vScrollBarSize.x * 0.5f), 0.f));
 
-	if (mSliderFunc && mFuncOwner)
+	if (mChangeValueFunc && mFuncOwner)
 	{
-		(mFuncOwner->*mSliderFunc)(mCurValue);
+		(mFuncOwner->*mChangeValueFunc)(mCurValue);
 	}
 }
 
@@ -60,9 +60,9 @@ void CSlider::SetHorSliderValue()
 	mCurValue = mCurValue > mMaxValue ? mMaxValue : mCurValue < mLowValue ? mLowValue : mCurValue;
 
 	// 등록 함수 호출
-	if (mSliderFunc && mFuncOwner)
+	if (mChangeValueFunc && mFuncOwner)
 	{
-		(mFuncOwner->*mSliderFunc)(mCurValue);
+		(mFuncOwner->*mChangeValueFunc)(mCurValue);
 	}
 }
 
