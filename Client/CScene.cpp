@@ -154,12 +154,42 @@ void CScene::render_background(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
+	Vect2 vRes = CCore::GetI()->GetResolution();
+	Vect2 vCenterPos = CCamera::GetI()->GetLookAt();
+	vRes = vRes * 1.1f;
+
+	float left	 = vCenterPos.x - vRes.x * 0.5f;
+	float right  = vCenterPos.x + vRes.x * 0.5f;
+	float top	 = vCenterPos.y - vRes.y * 0.5f;
+	float bottom = vCenterPos.y + vRes.y * 0.5f;
+
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
 		// Render Background
 		if ((UINT)GROUP_TYPE::BACKGROUND == i)
 		{
 			render_background(_dc);
+			continue;
+		}
+
+		// Render UI
+		else if ((UINT)GROUP_TYPE::UI == i)
+		{
+			for (auto iter = mArrObj[i].begin(); iter != mArrObj[i].end();)
+			{
+				if (!(*iter)->IsDead())
+				{
+					if ((*iter)->IsVisible()) 
+						(*iter)->Render(_dc);
+					++iter;
+				}
+				// Delete Object
+				else
+				{
+					(*iter)->OnDestroy();
+					iter = mArrObj[i].erase(iter);
+				}
+			}
 			continue;
 		}
 
@@ -170,7 +200,9 @@ void CScene::Render(HDC _dc)
 			{
 				if ((*iter)->IsVisible())
 				{
-					(*iter)->Render(_dc);
+					Vect2 vRenderPos = (*iter)->GetPos();
+					if (vRenderPos.x < left || vRenderPos.x > right || vRenderPos.y < top || vRenderPos.y > bottom) {}
+					else (*iter)->Render(_dc);
 				}
 				++iter;
 			}
@@ -183,24 +215,23 @@ void CScene::Render(HDC _dc)
 		}
 	}
 
+	//// [Debug] Render Force Object
+	//if (DEBUG)
+	//{
+	//	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
+	//	SelectGDI p(_dc, PEN_TYPE::BLUE);
 
-	// [Debug] Render Force Object
-	if (DEBUG)
-	{
-		SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
-		SelectGDI p(_dc, PEN_TYPE::BLUE);
+	//	for (int i = mArrForce.size() - 1; i >= 0; --i)
+	//	{
+	//		Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
 
-		for (int i = mArrForce.size() - 1; i >= 0; --i)
-		{
-			Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mArrForce[i].pos);
-
-			Ellipse(_dc
-				, vRenderPos.x - mArrForce[i].curRadius
-				, vRenderPos.y - mArrForce[i].curRadius
-				, vRenderPos.x + mArrForce[i].curRadius
-				, vRenderPos.y + mArrForce[i].curRadius);
-		}
-	}
+	//		Ellipse(_dc
+	//			, vRenderPos.x - mArrForce[i].curRadius
+	//			, vRenderPos.y - mArrForce[i].curRadius
+	//			, vRenderPos.x + mArrForce[i].curRadius
+	//			, vRenderPos.y + mArrForce[i].curRadius);
+	//	}
+	//}
 }
 
 

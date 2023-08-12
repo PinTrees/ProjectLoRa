@@ -61,7 +61,7 @@
 
 
 Scene_Start::Scene_Start()
-	: mfMstrDelay(15.f)
+	: mfMstrDelay(5.f)
 	, mfCurDelay(30.f)
 	, mBossDelay(60.f * 0.01f)
 	, mCurBossDelay(0.f)
@@ -117,7 +117,7 @@ void Scene_Start::Update()
 void Scene_Start::Enter()
 {
 	/// Init ------------------------
-	mfMstrDelay = 25.f;
+	mfMstrDelay = 10.f;
 	mfCurDelay = 30.f;
 	mBossDelay = 60.f * 7.f;
 	mCurBossDelay = 0.f;

@@ -459,7 +459,7 @@ void Scene_Tool::render_tile(HDC _dc)
 
 	Vect2 vCamLook = CCamera::GetI()->GetLookAt();
 	Vect2 vResolution = CCore::GetI()->GetResolution();
-	Vect2	vLeftTop = vCamLook - vResolution * 0.5f;
+	Vect2 vLeftTop = vCamLook - vResolution * 0.5f;
 
 	int iTileSize = mTileRenderSize;
 
