@@ -9,6 +9,7 @@ class SettingMgr
 private:
 	FIND_PATH_TYPE	mFindPathType;
 	BOOL			mbDamageText;
+	BOOL			mbMonsterHpbarActive;
 	int				mVolume;
 
 
@@ -18,6 +19,9 @@ public:
 
 	void SetDamageTextActive(BOOL active) { mbDamageText = active; }
 	BOOL GetDamageTextActive() { return mbDamageText; }
+
+	void SetMonsterHpbarActive(BOOL active) { mbMonsterHpbarActive = active; }
+	BOOL GetMonsterHpbarActive() { return mbMonsterHpbarActive; }
 
 	void SetVolume(int vol);
 	int  GetVolume() { return mVolume; }

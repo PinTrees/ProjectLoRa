@@ -53,15 +53,12 @@ void TraceState::Update()
 		return;
 	}
 
-	vector<Vect2> vecPosList;
-
 	if (mCurDelay > mAstarDelay)
 	{
 		mCurDelay = 0.f;
 
 		Vect2 vMonPos = pMonster->GetLocalPos() / TILE_SIZE_RENDER;
 		Vect2 vTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos() / TILE_SIZE_RENDER;
-
 		auto tCurFindPathType = SettingMgr::GetI()->GetFindPathType();
 
 		if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
@@ -69,16 +66,16 @@ void TraceState::Update()
 			AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
 			AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
 			AstarMgr::GetI()->Find();
-			vecPosList = AstarMgr::GetI()->GetFinalPosList();
 		}
 		else if (tCurFindPathType == FIND_PATH_TYPE::JPS_B)
 		{
 			JPSMgr::GetI()->SetStartPos(vMonPos.x, vMonPos.y);
 			JPSMgr::GetI()->SetTargetPos(vTargetPos.x, vTargetPos.y);
 			JPSMgr::GetI()->Find();
-			vecPosList = JPSMgr::GetI()->GetFinalPosList();
 		}
 
+		vector<Vect2> vecPosList = tCurFindPathType == FIND_PATH_TYPE::ASTAR ? AstarMgr::GetI()->GetFinalPosList()
+																			 : JPSMgr::GetI()->GetFinalPosList();
 		if (vecPosList.size() > 1)
 		{
 			Vect2 mTileOffet = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER) * 0.5f;
@@ -86,6 +83,8 @@ void TraceState::Update()
 			mvTargetPos = vecPosList[1] * TILE_SIZE_RENDER + mTileOffet;
 			pMonster->SetPath(vecPosList);
 		}
+
+		vecPosList.clear();
 	}
 
 	Vect2 vMonsterPos = pMonster->GetLocalPos();
@@ -96,23 +95,19 @@ void TraceState::Update()
 	if (Vect2::Distance(vMonsterPos, mvTargetPos) < 5.f)
 		return;
 
-	Vect2 dir = mvTargetPos - vMonsterPos;
-	dir.Normalize();
+	Vect2 dir = (mvTargetPos - vMonsterPos).Normalize();
 	GetOwner()->SetPos(pMonster->GetPos() + dir * pMonster->GetInfo().curSpeed * DT);
 
-	if (pMonster->GetFreeze())
+	if (pMonster->GetFreeze() || pMonster->GetType() != MONSTER_TYPE::LONG)
 		return;
 
 	//// 플레이어가 몬스터의 인식범위 내부로 진입
 	if (Vect2::Distance(vPlayerPos, vMonsterPos) < pMonster->GetInfo().atkRange)
 	{
-		if (pMonster->GetType() == MONSTER_TYPE::LONG)
+		if (mAttakDelay > pMonster->GetInfo().atkSpeed)					// 몬스터의 공격속도보다 시간이 더 커지면
 		{
-			if (mAttakDelay > pMonster->GetInfo().atkSpeed)					// 몬스터의 공격속도보다 시간이 더 커지면
-			{
-				ChangeAIState(GetAI(), MONSTER_STATE::ATTACK);				// 공격상태로 전환
-				mAttakDelay = 0.f;											// 딜레이시간을 체크한 이유는 몬스터의 공격모션이 계속 반복되는 것을 방지하기 위함
-			}																// 즉 한번 공격하면 다음 공격상태까지 공격모션을 취하지 않음
+			mAttakDelay = 0.f;											// 딜레이시간을 체크한 이유는 몬스터의 공격모션이 계속 반복되는 것을 방지하기 위함
+			ChangeAIState(GetAI(), MONSTER_STATE::ATTACK);				// 공격상태로 전환
 		}
 	}
 }

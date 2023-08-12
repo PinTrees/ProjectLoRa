@@ -82,13 +82,11 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		
 		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
+		SetScale(Vect2(128.f, 130.f) * 0.95f);
 		GetCollider()->SetScale(Vect2(30.f, 35.f) );
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
-		SetScale(Vect2(128.f, 130.f) * 0.8f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 		
-		
-
 		mHpBar->SetPivot(Vect2(0.f, -12.f));
 	}
 	if (mtInfo.UID == L"4")
@@ -112,7 +110,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 
 		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
-		SetScale(Vect2(128.f, 128.f) * 0.9f);
+		SetScale(Vect2(128.f, 128.f) * 1.1f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
@@ -197,10 +195,19 @@ void Monster::Update()
 	mCurDamageDelay += DT;
 	mtInfo.curSpeed = mFreeze ? 0.f : mtInfo.speed;
 
+	if (mFreeze) mCurFreezeDelay += DT;
+
 	GetAnimator()->Update();
 
 	if (nullptr != mAI)
 		mAI->Update();
+
+	if (mCurFreezeDelay > mFreezeDelay) 
+	{
+		mFreeze = false;
+		mCurFreezeDelay = 0.f;
+		GetRigidBody()->SetKinematic(false);
+	}
 
 	if (nullptr != mHpBar)
 	{
@@ -240,10 +247,12 @@ void Monster::AddDamage(float damage)
 }
 
 
-void Monster::SetFreeze(bool freeze)
+void Monster::SetFreeze(float delay)
 {
-	mFreeze = freeze;
-	GetRigidBody()->SetKinematic(mFreeze);
+	mFreeze = true;
+	mFreezeDelay = delay;
+	mCurDamageDelay = 0.f;
+	GetRigidBody()->SetKinematic(true);
 }
 
 void Monster::OnCollisionEnter(CCollider* _pOther)

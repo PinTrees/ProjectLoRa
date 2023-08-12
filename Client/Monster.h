@@ -41,8 +41,11 @@ private:
 	
 	float			mCurDamageDelay;
 	float			mOriginalSpeed;
-	bool			mFreeze;
 	
+	bool			mFreeze;
+	float			mFreezeDelay;
+	float			mCurFreezeDelay;
+
 	Vect2			mvShadowOffset;
 	Vect2			mvShadowScale;
 
@@ -73,7 +76,7 @@ public:
 		}
 	}
 
-	void SetFreeze(bool freeze);
+	void SetFreeze(float delay);
 	bool GetFreeze() { return mFreeze; }
 
 

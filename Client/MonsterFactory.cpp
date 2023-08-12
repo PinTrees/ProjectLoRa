@@ -39,7 +39,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 10.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 50.f * pow(1.002f, mCreateCount);
+		info.curHp = info.hp = 150.f * pow(1.001f, mCreateCount);
 		info.speed = 50.f;
 
 		pMonster->setMonsterInfo(info);
@@ -59,7 +59,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 10.f;
 		info.atkRange = 300.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 100.f * pow(1.002f, mCreateCount);
+		info.curHp = info.hp = 100.f * pow(1.001f, mCreateCount);
 		info.speed = 25.f;
 		info.atkSpeed = 3.f;
 

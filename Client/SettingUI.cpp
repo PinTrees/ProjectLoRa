@@ -119,8 +119,10 @@ SettingUI::SettingUI()
 
 	TextUI* pDamageTitle = new TextUI;
 	pDamageTitle->SetScale(Vect2(230.f, 25.f));
-	pDamageTitle->SetFontSize(22.f);
-	pDamageTitle->SetColor(RGB(255, 255, 255));
+	pDamageTitle->SetOutlineColor(RGB(255, 255, 255));
+	pDamageTitle->SetOutlineWidth(2);
+	pDamageTitle->SetFontSize(24.f);
+	pDamageTitle->SetColor(RGB(0, 0, 0));
 	pDamageTitle->SetText(L"데미지 텍스트 표시");
 	pDamageRow->AddChild(pDamageTitle);
 
@@ -135,6 +137,33 @@ SettingUI::SettingUI()
 	mDamageTextCheckIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
 	mDamageTextCheckIcon->SetRaycastTarget(false);
 	mDamageTextBtn->AddChild(mDamageTextCheckIcon);
+
+	// 데미지 텍스트 옵션 UI -------------------------------------------------------
+	CRow* pMonHpRow = new CRow;
+	pMonHpRow->SetScale(Vect2(500.f, 60.f));
+	pMonHpRow->SetSpacing(16.f);
+	pColumn->AddChild(pMonHpRow);
+
+	TextUI* pShowMonHpTitle = new TextUI;
+	pShowMonHpTitle->SetScale(Vect2(230.f, 25.f));
+	pShowMonHpTitle->SetOutlineColor(RGB(255, 255, 255));
+	pShowMonHpTitle->SetOutlineWidth(2);
+	pShowMonHpTitle->SetFontSize(24.f);
+	pShowMonHpTitle->SetColor(RGB(0, 0, 0));
+	pShowMonHpTitle->SetText(L"몬스터 체력바 표시");
+	pMonHpRow->AddChild(pShowMonHpTitle);
+
+	mShowHpBarBtn = new CBtnUI;
+	mShowHpBarBtn->SetScale(Vect2(30.f, 30.f));
+	mShowHpBarBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Btn_1", L"texture\\ui\\button\\1.bmp"));
+	mShowHpBarBtn->SetClickedCallBack(this, OBJECT_FUNC(&SettingUI::SetShowMonsterHpBar));
+	pMonHpRow->AddChild(mShowHpBarBtn);
+
+	mShowHpBarTextCheckIcon = new CImageUI;
+	mShowHpBarTextCheckIcon->SetScale(Vect2(30.f, 30.f));
+	mShowHpBarTextCheckIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
+	mShowHpBarTextCheckIcon->SetRaycastTarget(false);
+	mShowHpBarBtn->AddChild(mShowHpBarTextCheckIcon);
 
 	// 사운드 슬라이더 UI ---------------------------------------
 	CRow* pVolRow = new CRow;
@@ -195,6 +224,7 @@ void SettingUI::Build()
 
 	mDebugCheckIcon->SetVisible(DEBUG);
 	mDamageTextCheckIcon->SetVisible(SettingMgr::GetI()->GetDamageTextActive());
+	mShowHpBarTextCheckIcon->SetVisible(SettingMgr::GetI()->GetMonsterHpbarActive());
 }
 
 
@@ -213,6 +243,12 @@ void SettingUI::SetDebugMode()
 void SettingUI::SetDamageText()
 {
 	SettingMgr::GetI()->SetDamageTextActive(!SettingMgr::GetI()->GetDamageTextActive());
+	Build();
+}
+
+void SettingUI::SetShowMonsterHpBar()
+{
+	SettingMgr::GetI()->SetMonsterHpbarActive(!SettingMgr::GetI()->GetMonsterHpbarActive());
 	Build();
 }
 

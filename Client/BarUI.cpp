@@ -5,7 +5,7 @@
 #include "CObject.h"
 
 #include "CCore.h"
-
+#include "SettingMgr.h"
 
 BarUI::BarUI()
 	: CUI(false)
@@ -30,6 +30,9 @@ void BarUI::Render(HDC _dc)
 
 	if (!IsCameraAffected())
 	{
+		if(!SettingMgr::GetI()->GetMonsterHpbarActive())
+			return;
+
 		Vect2 vRes = CCore::GetI()->GetResolution();
 		Vect2 vCamPos = CCamera::GetI()->GetLookAt();
 		Vect2 vGap = vRes * 0.1f;

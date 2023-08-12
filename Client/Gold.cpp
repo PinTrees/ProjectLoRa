@@ -17,7 +17,7 @@ Gold::Gold()
 	, mCurDelay(0.f)
 {
 	SetName(L"Gold");
-	SetScale(Vect2(36.f, 36.f) * 0.7f);
+	SetScale(Vect2(36.f, 36.f) * 0.5f);
 
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(55.f, 55.f));

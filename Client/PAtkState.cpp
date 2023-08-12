@@ -36,7 +36,7 @@ void PAtkState::Enter()
 	Vect2 vPlayerLocalPos = pPlayer->GetLocalPos();
 
 	CScene* pScene = CSceneMgr::GetI()->GetCurScene();
-	vector<CObject*> vecMon = pScene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecMon = pScene->GetGroupObject(GROUP_TYPE::MONSTER);
 
 	if (vecMon.empty()) return;
 
@@ -57,10 +57,10 @@ void PAtkState::Enter()
 
 	pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-		int shotAngle = 30 * 0.5f;
+		int shotAngle = 15 * 0.5f;
 		float angle = vDir.ToAngle() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
 		Vect2 vDir = Vect2::FromAngle(angle);
 

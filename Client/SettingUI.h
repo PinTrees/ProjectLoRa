@@ -21,6 +21,9 @@ private:
 	CBtnUI*		mDamageTextBtn;
 	CImageUI*	mDamageTextCheckIcon;
 
+	CBtnUI*		mShowHpBarBtn;
+	CImageUI*	mShowHpBarTextCheckIcon;
+
 	CSlider*	mSoundSlider;
 	TextUI*		mVolumText;
 
@@ -35,7 +38,8 @@ public:
 	void SetFindPath(DWORD_PTR param);
 	void SetDebugMode();
 	void SetDamageText();
-	
+	void SetShowMonsterHpBar();
+
 	void ChangeSoundSliderValue(int val);
 
 

@@ -74,7 +74,7 @@ void IceBolt_Obj::OnCollisionEnter(CCollider* _pOther)
 			monsterPos = vecMon[i]->GetPos();
 			if (mRange > (monsterPos - pObj->GetPos()).Length())			// 일정 범위안에 있는 몬스터들을 얼음 상태로 만듦
 			{
-				((Monster*)vecMon[i])->SetFreeze(true);
+				((Monster*)vecMon[i])->SetFreeze(3.5f);
 
 				IceBolt_Effect* pIce = new IceBolt_Effect;					// 얼음효과 생성
 				pIce->SetPos(vecMon[i]->GetLocalPos() - Vect2(0.f, pIce->GetScale().y * 0.5f));

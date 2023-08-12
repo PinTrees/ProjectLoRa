@@ -11,10 +11,16 @@ SINGLE_HEADER(SettingMgr);
 
 SettingMgr::SettingMgr()
 	: mFindPathType(FIND_PATH_TYPE::ASTAR)
+    , mbMonsterHpbarActive(false)
 {
 }
 
 SettingMgr::~SettingMgr()
+{
+}
+
+
+void SettingMgr::Init()
 {
 }
 
@@ -32,8 +38,4 @@ void SettingMgr::SetVolume(int vol)
 
          soundResource->SetVolume(mVolume);
      }
-}
-
-void SettingMgr::Init()
-{
 }

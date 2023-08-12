@@ -120,6 +120,7 @@ public:
 	{
 		return Vect2(x * (float)_i, y * (float)_i);
 	}
+
 	Vect2 operator*(float _f)
 	{
 		return Vect2(x * _f, y * _f);
