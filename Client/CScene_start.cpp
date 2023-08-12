@@ -104,13 +104,13 @@ void Scene_Start::Update()
 	{
 		mbBossRespone = true;
 		mCurBossDelay = 0.f;
-		//createBoss();
+		createBoss();
 	}
 
 	if (mfCurDelay > mfMstrDelay)
 	{
 		mfCurDelay = 0.f;
-		//CreateMonster();
+		CreateMonster();
 	}
 }
 

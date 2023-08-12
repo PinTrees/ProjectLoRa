@@ -54,6 +54,7 @@ Player::Player()
 	, mAI(nullptr)
 	, mtInfo({})
 	, mVecSkill({})
+	, mVecMaxLevelSkill{}
 	, mpCoinSound(nullptr)
 {
 	// Load ----------------------
@@ -286,6 +287,11 @@ void Player::AddSkill(Skill* _skill)
 	else
 	{
 		skill->AddSkillLevel();
+
+		if (skill->GetSkillLevel() == skill->GetMaxSkillLv())
+		{
+			mVecMaxLevelSkill.push_back(skill->GetType());
+		}
 	}
 
 	HubUIMgr::GetI()->BuildSkillUI(mVecSkill);

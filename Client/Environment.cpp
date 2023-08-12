@@ -139,9 +139,9 @@ void Environment::OnCollisionStay(CCollider* _pOther)
 
 			pObj->SetPos(vObjPos);
 		}
-		else if (vObjPos.x >= vPos.x + vSize.x / 2.f
+		else if (vObjPos.x > vPos.x + vSize.x / 2.f
 			&& vObjPos.y + vObjSize.y / 2.f > vPos.y - vSize.y / 2.f
-			&& vObjPos.y - vObjSize.y / 2.f < vPos.y + vSize.y / 2.f)			// 플레이어가 장애물보다 오른쪽에 있을 때
+			&& vObjPos.y - vObjSize.y / 2.f < vPos.y + vSize.y / 2.f)				// 플레이어가 장애물보다 오른쪽에 있을 때
 		{
 			float fLen = abs(vObjPos.x - vPos.x);
 			float fUp = (vObjSize.x / 2.f + vSize.x / 2.f) - fLen;
@@ -153,7 +153,7 @@ void Environment::OnCollisionStay(CCollider* _pOther)
 		}
 		else if (vObjPos.y < vPos.y - vSize.y / 2.f
 			&& vObjPos.x - vSize.x / 2.f < vPos.x + vSize.x / 2.f
-			&& vObjPos.x + vSize.x / 2.f > vPos.x - vSize.x / 2.f)			// 플레이어가 장애물보다 위에 있을 때
+			&& vObjPos.x + vSize.x / 2.f > vPos.x - vSize.x / 2.f)					// 플레이어가 장애물보다 위에 있을 때
 		{
 			float fLen = abs(vObjPos.y - vPos.y);
 			float fUp = (vObjSize.y / 2.f + vSize.y / 2.f) - fLen;
@@ -165,7 +165,7 @@ void Environment::OnCollisionStay(CCollider* _pOther)
 		}
 		else if (vObjPos.y > vPos.y + vSize.y / 2.f
 			&& vObjPos.x - vSize.x / 2.f < vPos.x + vSize.x / 2.f
-			&& vObjPos.x + vSize.x / 2.f > vPos.x - vSize.x / 2.f)			// 플레이어가 장애물보다 아래에 있을 때
+			&& vObjPos.x + vSize.x / 2.f > vPos.x - vSize.x / 2.f)					// 플레이어가 장애물보다 아래에 있을 때
 		{
 			float fLen = abs(vObjPos.y - vPos.y);
 			float fUp = (vObjSize.y / 2.f + vSize.y / 2.f) - fLen;

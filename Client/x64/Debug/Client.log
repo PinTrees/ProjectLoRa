@@ -1,6 +1,16 @@
-﻿  unity_R45HH345ED9CJ6P4.cpp
-C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\CTexture.cpp(66,27): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\CTexture.cpp(66,37): warning C4838: 'UINT'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+﻿  unity_0XIRHHJ97S2OZ8OL.cpp
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\JPSHeap.h(5,1): warning C4099: 'JPSCoord': 처음에는 'class'을(를) 사용하여 형식 이름을 표시했는데 이제는 'struct'을(를) 사용하여 표시합니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\JPSPath.h(6,15): warning C4099: 'JPSCoord': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\JPSHeap.h(4,8): message : 'JPSCoord' 선언을 참조하십시오.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\LevelUpUIMgr.cpp(71,17): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\LevelUpUIMgr.cpp(78,26): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\LevelUpUIMgr.cpp(85,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\Monster.cpp(178,38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\Monster.cpp(178,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\Monster.cpp(182,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\Downloads\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\ProjectLoRa-aa42791f6e87eb40a23c28eb5a736f89de4e01a8\Client\Monster.cpp(182,23): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   라이브러리를 검색하고 있습니다.
       C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64\kernel32.lib 검색 중:
   라이브러리가 검색되었습니다.

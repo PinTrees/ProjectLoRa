@@ -54,6 +54,7 @@ private:
 
 	tPlayerInfo			mtInfo;
 	vector<Skill*>		mVecSkill;
+	vector<SKILL_TYPE>	mVecMaxLevelSkill;
 	AI<PLAYER_STATE>*	mAI;
 
 	CSound* mpCoinSound;
@@ -62,6 +63,7 @@ private:
 
 public:
 	tPlayerInfo& GetInfo() { return mtInfo; }
+	vector<SKILL_TYPE>& GetMaxLevelSkill() { return mVecMaxLevelSkill; }
 	void SetInfo(tPlayerInfo _info) { mtInfo = _info; }
 
 	float GetMaxExp() { return 2.f * mLevel + 5.f; };

@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "CTimeMgr.h"
 
+#include "PlayerMgr.h"
+
 #include "CCore.h"
 #include "UIMgr.h"
 #include "CRow.h"
@@ -106,6 +108,7 @@ void LevelUpUIMgr::Init()
 void LevelUpUIMgr::Choice()
 {
 	tLeveUpEvent tEventArr[3];
+	bool ReChoice = false;
 
 	for (int i = 0; i < 3; ++i)
 	{
@@ -123,6 +126,18 @@ void LevelUpUIMgr::Choice()
 		{
 			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)SKILL_TYPE::END);
 			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData_Skill[(SKILL_TYPE)tEventArr[i].lParam];
+
+			Player* player = PlayerMgr::GetI()->GetPlayer();		// 뽑은 스킬이 만렙상태의 스킬타입과 일치하면 다시 뽑도록 함
+			vector<SKILL_TYPE> vecMax = player->GetMaxLevelSkill();
+			
+			for (size_t s = 0; s < vecMax.size(); ++s)
+			{
+				if ((SKILL_TYPE)tEventArr[i].lParam == vecMax[s])
+				{
+					ReChoice = true;
+					break;
+				}
+			}
 		}
 		break;
 		case LEVELUP_TYPE::ITEM:
@@ -131,8 +146,27 @@ void LevelUpUIMgr::Choice()
 			tEventArr[i].type = (LEVELUP_TYPE)LEVELUP_TYPE::SKILL;
 			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)SKILL_TYPE::END);
 			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData_Skill[(SKILL_TYPE)tEventArr[i].lParam];
+
+			Player* player = PlayerMgr::GetI()->GetPlayer();		// 뽑은 스킬이 만렙상태의 스킬타입과 일치하면 다시 뽑도록 함
+			vector<SKILL_TYPE> vecMax = player->GetMaxLevelSkill();
+
+			for (size_t s = 0; s < vecMax.size(); ++s)
+			{
+				if ((SKILL_TYPE)tEventArr[i].lParam == vecMax[s])
+				{
+					ReChoice = true;
+					break;
+				}
+			}
 		}
 		break;
+		}
+
+		if (ReChoice)
+		{
+			--i;
+			ReChoice = false;
+			continue;
 		}
 
 		for (int j = 0; j < i; ++j)

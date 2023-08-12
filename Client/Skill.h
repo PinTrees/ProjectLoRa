@@ -21,7 +21,9 @@ private:
 public:
 	void SetCoolDown(float _cool) { mCooldown = _cool; }
 	float GetCoolDown() { return mCooldown; }
+
 	void SetMaxSkillLv(int _max) { mMaxSkillLv = _max; }
+	int GetMaxSkillLv() { return mMaxSkillLv; }
 
 	void SetAvailable(bool _Ava) { mAvailable = _Ava; }
 	bool GetAvilable() { return mAvailable; }
