@@ -63,8 +63,9 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 
 	if (mtInfo.UID == L"3")
 	{
-		mvShadowScale = Vect2(60.f, 25.f);
-		mvShadowOffset = Vect2(0.f, 70.f);
+		float scale = 0.95f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 70.f) * scale;
 
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_3_r", L"texture\\monster\\3_r.bmp");
 		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_3_l", L"texture\\monster\\3_l.bmp");
@@ -85,7 +86,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
 		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
-		SetScale(Vect2(128.f, 128.f) * 1.f);
+		SetScale(Vect2(128.f, 128.f) * scale);
 		GetCollider()->SetScale(Vect2(30.f, 35.f));
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
@@ -94,8 +95,9 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	}
 	else if (mtInfo.UID == L"4")
 	{
-		mvShadowScale = Vect2(60.f, 25.f);
-		mvShadowOffset = Vect2(0.f, 75.f);
+		float scale = 1.f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 70.f) * scale;
 
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_4_r", L"texture\\monster\\4.bmp");
 		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_4_l", L"texture\\monster\\4_l.bmp");
@@ -116,7 +118,7 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
 		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
-		SetScale(Vect2(128.f, 128.f) * 1.1f);
+		SetScale(Vect2(128.f, 128.f) * scale);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));

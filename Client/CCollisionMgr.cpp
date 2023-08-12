@@ -12,13 +12,11 @@ SINGLE_HEADER(CCollisionMgr);
 CCollisionMgr::CCollisionMgr()
 	:mArrCheck{}
 {
-
 }
 
 
 CCollisionMgr::~CCollisionMgr()
 {
-
 }
 
 
@@ -73,7 +71,7 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 
 			iter = mMapColInfo.find(ID.ID);
 
-			//충돌 정보가 미 등록된 상태인 경우 최초 등록 ( 충돌하지 않았다로)
+			//충돌 정보가 미 등록된 상태인 경우 최초 등록 (충돌하지 않았다로)
 			if (mMapColInfo.end() == iter)
 			{
 				mMapColInfo.insert(make_pair(ID.ID, false));
@@ -126,6 +124,7 @@ void CCollisionMgr::collisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 	}
 }
 
+
 bool CCollisionMgr::isCollision(CCollider* _pLeftCol, CCollider* _pRightCol)
 {
 	Vect2 vLeftPos = _pLeftCol->GetFinalPos();
@@ -134,14 +133,10 @@ bool CCollisionMgr::isCollision(CCollider* _pLeftCol, CCollider* _pRightCol)
 	Vect2 vRightPos = _pRightCol->GetFinalPos();
 	Vect2 vRightScale = _pRightCol->GetScale();
 
-	if (abs(vRightPos.x - vLeftPos.x) < (vLeftScale.x + vRightScale.x) / 2.f
-		&& abs(vRightPos.y - vLeftPos.y) < (vLeftScale.y + vRightScale.y) / 2.f)
-	{
-		return true;
-	}
-
-	return false;
+	return (abs(vRightPos.x - vLeftPos.x) < (vLeftScale.x + vRightScale.x) * 0.5f)
+		&& (abs(vRightPos.y - vLeftPos.y) < (vLeftScale.y + vRightScale.y) * 0.5f);
 }
+
 
 void CCollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 {
