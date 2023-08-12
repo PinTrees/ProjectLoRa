@@ -203,7 +203,7 @@ void Player::Update()
 	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
 	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
 
-	if (KEY_HOLD(KEY::Q)) mtInfo.curHp = 100.f;
+	if (KEY_HOLD(KEY::Q)) mtInfo.curHp = mtInfo.fullHP = 100000000000000.f;
 
 	if (mvDir != Vect2::zero)
 	{

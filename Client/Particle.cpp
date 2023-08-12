@@ -80,7 +80,7 @@ Particle::Particle(const wstring& _type)
 	else if (_type == L"202")
 	{
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(96.f, 96.f), Vect2(96.f, 0.f), 0.05f, 8);
-		SetScale(Vect2(96.f, 96.f) * 1.f);
+		SetScale(Vect2(96.f, 96.f) * 0.8f);
 	}
 	GetAnimator()->Play(L"IDLE", false);
 }
