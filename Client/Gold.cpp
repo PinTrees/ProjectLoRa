@@ -11,16 +11,24 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 
+#include "PlayerMgr.h"
+#include "Player.h"
+#include "HubUIMgr.h"
+
+#include "CSound.h"
+
 
 Gold::Gold()
 	: mDeleteDelay(25.f)
 	, mCurDelay(0.f)
+	, mbGather(false)
+	, mCurGatherDelay(0.f)
 {
 	SetName(L"Gold");
-	SetScale(Vect2(36.f, 36.f) * 0.5f);
 
-	CreateCollider();
-	GetCollider()->SetScale(Vect2(55.f, 55.f));
+	mpCoinSound = CResMgr::GetI()->LoadSound(L"Sound_Coin", L"sound\\coin.wav");
+
+	SetScale(Vect2(36.f, 36.f) * 0.6f);
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Gold_1", L"texture\\gold\\coin_1.bmp");
 
@@ -37,6 +45,7 @@ Gold::~Gold()
 }
 
 
+
 void Gold::Update()
 {
 	mCurDelay += DT;
@@ -48,6 +57,30 @@ void Gold::Update()
 	}
 
 	GetAnimator()->Update();
+
+	if (mbGather)
+	{
+		Vect2 vPos = GetPos();
+		Vect2 vTargetPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+
+		mCurGatherDelay += DT;
+
+		float t = mCurGatherDelay / mGatherDelay;
+		Vect2 lerpPos = vPos + (vTargetPos - vPos) * t;
+
+		SetPos(lerpPos);
+
+		if (mCurGatherDelay > mGatherDelay)
+		{
+			PlayerMgr::GetI()->AddGold(5);
+			HubUIMgr::GetI()->BuildGoldText();
+
+			if (mpCoinSound)
+				mpCoinSound->Play();
+
+			DeleteObject(this);
+		}
+	}
 }
 
 

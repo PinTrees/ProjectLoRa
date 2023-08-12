@@ -48,6 +48,9 @@ private:
 	int			mLevel;
 	float		mExp;
 
+	float	mGoldChekDelay;
+	float	mCurGoldChekDelay;
+
 	BarUI*		mExpBar;
 	CImageUI*	mHpBar;
 	TextUI*		mHpText;

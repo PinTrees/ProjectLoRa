@@ -3,6 +3,7 @@
 #include "CObject.h"
 
 class CCollider;
+class CSound;
 
 class Gold
 	: public CObject
@@ -10,6 +11,22 @@ class Gold
 private:
 	float mDeleteDelay;
 	float mCurDelay;
+
+	float	mGatherDelay;
+	float	mCurGatherDelay;
+	bool	mbGather;
+	CSound* mpCoinSound;
+
+
+public:
+	void SetGather() 
+	{ 
+		if (mbGather)
+			return;
+
+		mbGather = true;
+		mGatherDelay = 0.7f;
+	};
 
 
 public:

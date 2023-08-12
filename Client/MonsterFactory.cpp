@@ -36,11 +36,11 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		pMonster->GetCollider()->SetTrigger(false);
 
 		tMonsterInfo info = {};
-		info.atk = 2.f;
+		info.atk = 7.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 150.f * pow(1.001f, mCreateCount);
-		info.speed = 50.f;
+		info.curHp = info.hp = 200.f * pow(1.001f, mCreateCount);
+		info.speed = 65.f;
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
@@ -56,11 +56,11 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		pMonster->GetCollider()->SetTrigger(false);
 
 		tMonsterInfo info = {};
-		info.atk = 1.f;
-		info.atkRange = 300.f;
+		info.atk = 5.f;
+		info.atkRange = 250.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 500.f * pow(1.001f, mCreateCount);
-		info.speed = 25.f;
+		info.curHp = info.hp = 150.f * pow(1.001f, mCreateCount);
+		info.speed = 45.f;
 		info.atkSpeed = 3.f;
 
 		pMonster->setMonsterInfo(info);

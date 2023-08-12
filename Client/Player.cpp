@@ -33,7 +33,6 @@
 #include "CImageUI.h"
 
 #include "CState.h"
-
 #include "Skill.h"
 
 // Game Manager Header
@@ -41,7 +40,7 @@
 #include "LevelUpUIMgr.h"
 #include "PlayerMgr.h"
 #include "CSoundMgr.h"
-
+#include "Gold.h"
 
 
 Player::Player()
@@ -55,12 +54,13 @@ Player::Player()
 	, mtInfo({})
 	, mVecSkill({})
 	, mVecMaxLevelSkill{}
-	, mpCoinSound(nullptr)
+
+	, mGoldChekDelay(0.7f)
+	, mCurGoldChekDelay(0.f)
 {
 	SetName(L"Player");
 
 	// Load ----------------------
-	mpCoinSound = CResMgr::GetI()->LoadSound(L"Sound_Coin", L"sound\\coin.wav");
 	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
 
 	mtInfo.fullHP = 100.f;
@@ -166,6 +166,7 @@ void Player::Update()
 	GetAnimator()->Update();
 
 	mfCurDelay += DT;
+	mCurGoldChekDelay += DT;
 
 	/// 최상단 예외 처리
 	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
@@ -176,6 +177,22 @@ void Player::Update()
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
 	mHpText->SetText(std::to_wstring(mtInfo.curHp));
+
+	if (mCurGoldChekDelay > mGoldChekDelay)
+	{
+		mCurGoldChekDelay = 0.f;
+
+		Vect2 vPlayerPos = GetPos();
+
+		const vector<CObject*>& vecGolds = CSceneMgr::GetI()->GetCurScene()->GetGroupObject(GROUP_TYPE::GOLD);
+		for (int i = 0; i < vecGolds.size(); ++i)
+		{
+			if (Vect2::Distance(vPlayerPos, vecGolds[i]->GetPos()) < 150.f)
+			{
+				((Gold*)(vecGolds[i]))->SetGather();
+			}
+		}
+	}
 
 	if (mfCurDelay > mtInfo.atkDelay)
 	{
@@ -223,19 +240,9 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-
 void Player::OnCollisionEnter(CCollider* _pOther)
 {
-	if (_pOther->GetObj()->GetName() == L"Gold")
-	{
-		PlayerMgr::GetI()->AddGold(5);
-		HubUIMgr::GetI()->BuildGoldText();
-
-		if (mpCoinSound)
-			mpCoinSound->Play();
-	}
 }
-
 
 void Player::calExp()
 {
