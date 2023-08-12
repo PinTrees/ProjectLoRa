@@ -41,6 +41,7 @@ IceBolt_Effect::~IceBolt_Effect()
 void IceBolt_Effect::Update()
 {
 	mCurTime += DT;
+	GetAnimator()->Update();
 
 	if (mvecIcedMon)
 	{
@@ -68,8 +69,6 @@ void IceBolt_Effect::Update()
 
 		if(mvecIcedMon) ((Monster*)mvecIcedMon)->SetFreeze(false);			// 받아놓은 몬스터들을 얼음효과가 풀렸을 때 다시 녹은상태로 만듦
 	}
-
-	GetAnimator()->Update();
 
 	if (!mFreeze && GetAnimator()->GetCurAnimation()->IsFinish())
 	{

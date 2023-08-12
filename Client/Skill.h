@@ -19,20 +19,22 @@ private:
 	bool	mAvailable;			// 스킬 사용가능 체크 변수
 
 public:
-	void SetCoolDown(float _cool) { mCooldown = _cool; }
-	float GetCoolDown() { return mCooldown; }
-	void SetMaxSkillLv(int _max) { mMaxSkillLv = _max; }
+	void	SetCoolDown(float _cool) { mCooldown = _cool; }
+	float	GetCoolDown() { return mCooldown; }
+	
+	void	SetMaxSkillLv(int _max) { mMaxSkillLv = _max; }
+	int		GetMaxSkillLv() { return mMaxSkillLv; }
 
-	void SetAvailable(bool _Ava) { mAvailable = _Ava; }
-	bool GetAvilable() { return mAvailable; }
+	void	SetAvailable(bool _Ava) { mAvailable = _Ava; }
+	bool	GetAvilable() { return mAvailable; }
 
-	int GetSkillLevel() { return mCurSkillLv; }
+	int		GetSkillLevel() { return mCurSkillLv; }
 	SKILL_TYPE GetType() { return mType; }
 
-	void SetSkillTime(float _time) { mSkillTime = _time; }
-	float GetSkillTime() { return mSkillTime; }
+	void	SetSkillTime(float _time) { mSkillTime = _time; }
+	float	GetSkillTime() { return mSkillTime; }
 
-	void SetIconStr(const wstring& str) { mIconStr = str; }
+	void	SetIconStr(const wstring& str) { mIconStr = str; }
 	const wstring& GetIconStr() { return mIconStr; }
 
 

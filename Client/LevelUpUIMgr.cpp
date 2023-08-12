@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "CTimeMgr.h"
 
+#include "PlayerMgr.h"
+
 #include "CCore.h"
 #include "UIMgr.h"
 #include "CRow.h"
@@ -36,10 +38,10 @@ LevelUpUIMgr::~LevelUpUIMgr()
 
 void LevelUpUIMgr::Init()
 {
-	mMapLvupEffectData[STATEUP_TYPE::FULL_HP_UP]			= { L"최대 체력 증가", L"강인함", L"hp_max.bmp" };
-	mMapLvupEffectData[STATEUP_TYPE::REGENERATION_HP_UP]	= { L"체력 재생 증가", L"생명력", L"hp.bmp" };
-	mMapLvupEffectData[STATEUP_TYPE::MOVE_SPEED_UP]			= { L"이동속도 증가", L"순발력", L"speed.bmp" };
-	mMapLvupEffectData[STATEUP_TYPE::ATK_DAMAGE_UP]			= { L"공격력 증가", L"주문력", L"atk.bmp" };
+	mMapLvupEffectData[STATEUP_TYPE::FULL_HP_UP] = { L"최대 체력 증가", L"강인함", L"hp_max.bmp" };
+	mMapLvupEffectData[STATEUP_TYPE::REGENERATION_HP_UP] = { L"체력 재생 증가", L"생명력", L"hp.bmp" };
+	mMapLvupEffectData[STATEUP_TYPE::MOVE_SPEED_UP] = { L"이동속도 증가", L"순발력", L"speed.bmp" };
+	mMapLvupEffectData[STATEUP_TYPE::ATK_DAMAGE_UP] = { L"공격력 증가", L"주문력", L"atk.bmp" };
 	//mMapLvupEffectData[STATEUP_TYPE::ATK_SPEED_UP]			= { L"공격속도 증가", L"신속" };
 	//mMapLvupEffectData[STATEUP_TYPE::ATK_RANGE_UP]			= { L"사거리 증가", L"판단력" };
 	//mMapLvupEffectData[STATEUP_TYPE::SHOT_SPEED_UP]			= { L"탄속 증가", L"절대집중" };
@@ -50,15 +52,15 @@ void LevelUpUIMgr::Init()
 	//mMapLvupEffectData[STATEUP_TYPE::SPLITCOUNT_UP]			= { L"분열되는 총알의 개수 증가", L"__Test__" };
 	//mMapLvupEffectData[STATEUP_TYPE::BOUNTCECOUNT_UP]		= { L"총알이 벽에 튕기는 횟수 증가", L"__Test__" };
 
-	mMapLvupEffectData_Skill[SKILL_TYPE::ICE_BOLT]		= { L"적에게 얼음 창을 발사합니다.", L"아이스볼트", L"2.bmp" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::ENERGY_BALL]	= { L"적에게 에너지 구체를 발사합니다.", L"에너지볼", L"4.bmp"};
-	mMapLvupEffectData_Skill[SKILL_TYPE::THUNDER]		= { L"무작위 적 번개 공격", L"번개", L"2.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::ICE_BOLT] = { L"적에게 얼음 창을 발사합니다.", L"아이스볼트", L"2.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::ENERGY_BALL] = { L"적에게 에너지 구체를 발사합니다.", L"에너지볼", L"4.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::THUNDER] = { L"무작위 적 번개 공격", L"번개", L"2.bmp" };
 	mMapLvupEffectData_Skill[SKILL_TYPE::CIRCLING_BALL] = { L"플레이어 주위를 맴도는 공", L"서클링볼", L"3.bmp" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::HOLYAREA]		= { L"플레이어 주위에 가까운 적을 공격", L"성역", L"5.bmp" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::GRENADE]		= { L"적에게 수류탄을 투척합니다.", L"수류탄", L"6.bmp" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::CROSS_DAGGER]	= { L"표창 발사 공격", L"표창", L"7.bmp" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::BOOMERANG]		= { L"부메랑 발사 공격", L"부메랑", L"8.bmp" };
-	mMapLvupEffectData_Skill[SKILL_TYPE::COMBAT_BALL]	= { L"테스트 스킬 8 업그레이드", L"전투오브", L"9.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::HOLYAREA] = { L"플레이어 주위에 가까운 적을 공격", L"성역", L"5.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::GRENADE] = { L"적에게 수류탄을 투척합니다.", L"수류탄", L"6.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::CROSS_DAGGER] = { L"표창 발사 공격", L"표창", L"7.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::BOOMERANG] = { L"부메랑 발사 공격", L"부메랑", L"8.bmp" };
+	mMapLvupEffectData_Skill[SKILL_TYPE::COMBAT_BALL] = { L"테스트 스킬 8 업그레이드", L"전투오브", L"9.bmp" };
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
@@ -89,7 +91,7 @@ void LevelUpUIMgr::Init()
 	pRowUI->SetPos(Vect2::zero);
 	pRowUI->SetScale(vRes);
 	pRowUI->SetSpacing(48.f);
-    pImg->AddChild(pRowUI);
+	pImg->AddChild(pRowUI);
 
 	for (int i = 0; i < mCurLvupUI.size(); ++i)
 	{
@@ -106,6 +108,7 @@ void LevelUpUIMgr::Init()
 void LevelUpUIMgr::Choice()
 {
 	tLeveUpEvent tEventArr[3];
+	bool ReChoice = false;
 
 	for (int i = 0; i < 3; ++i)
 	{
@@ -123,6 +126,18 @@ void LevelUpUIMgr::Choice()
 		{
 			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)SKILL_TYPE::END);
 			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData_Skill[(SKILL_TYPE)tEventArr[i].lParam];
+
+			Player* player = PlayerMgr::GetI()->GetPlayer();		// 뽑은 스킬이 만렙상태의 스킬타입과 일치하면 다시 뽑도록 함
+			const vector<SKILL_TYPE>& vecMax = player->GetMaxLevelSkill();
+
+			for (size_t s = 0; s < vecMax.size(); ++s)
+			{
+				if ((SKILL_TYPE)tEventArr[i].lParam == vecMax[s])
+				{
+					ReChoice = true;
+					break;
+				}
+			}
 		}
 		break;
 		case LEVELUP_TYPE::ITEM:
@@ -131,8 +146,27 @@ void LevelUpUIMgr::Choice()
 			tEventArr[i].type = (LEVELUP_TYPE)LEVELUP_TYPE::SKILL;
 			tEventArr[i].lParam = CRandom::GetI()->Next(0, (int)SKILL_TYPE::END);
 			tEventArr[i].wParam = (DWORD_PTR)&mMapLvupEffectData_Skill[(SKILL_TYPE)tEventArr[i].lParam];
+
+			Player* player = PlayerMgr::GetI()->GetPlayer();		// 뽑은 스킬이 만렙상태의 스킬타입과 일치하면 다시 뽑도록 함
+			vector<SKILL_TYPE> vecMax = player->GetMaxLevelSkill();
+
+			for (size_t s = 0; s < vecMax.size(); ++s)
+			{
+				if ((SKILL_TYPE)tEventArr[i].lParam == vecMax[s])
+				{
+					ReChoice = true;
+					break;
+				}
+			}
 		}
 		break;
+		}
+
+		if (ReChoice)
+		{
+			--i;
+			ReChoice = false;
+			continue;
 		}
 
 		for (int j = 0; j < i; ++j)

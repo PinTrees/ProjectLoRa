@@ -48,7 +48,7 @@ void SkillObj::OnCollisionStay(CCollider* _pOther)
 	float damage = player->GetInfo().atkDamage;
 	damage *= mpOwner->GetSkillLevel();
 
-	if (pObj->GetName() == L"Monster")		// 스킬 오브젝트가 몬스터와 만나면 데미지를 입힘
+	if (pObj->GetName() == L"Monster")			// 스킬 오브젝트가 몬스터와 만나면 데미지를 입힘
 	{
 		mCurDamageDelay += DT;
 

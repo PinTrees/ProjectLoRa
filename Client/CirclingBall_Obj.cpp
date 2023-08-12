@@ -17,17 +17,18 @@ CirclingBall_Obj::CirclingBall_Obj()
 	SetMaxDelay(0.f);		// 스킬 지속시간이 필요 없기 때문에 0으로 세팅
 	SetDamageDelay(0.2f);	// ~초마다 데미지를 입힘
 	SetName(L"CirclingBall");
+	
+	CreateAnimator();
 	CreateCollider();
+	
 	GetCollider()->SetScale(Vect2(40.f, 40.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CirclingBall", L"texture\\effect\\11.bmp");
-	CreateAnimator();
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CirclingBall", L"texture\\effect\\12.bmp");
+	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(63.f, 75.f), Vect2(63.f, 0.f), 0.07f, 6);
+	SetScale(Vect2(63.f, 75.f) * 1.2f);
 
-	GetAnimator()->CreateAnimation(L"CirclingBall", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 6);
-	SetScale(Vect2(50.f, 50.f));
-
-	GetAnimator()->Play(L"CirclingBall", true);
+	GetAnimator()->Play(L"IDLE", true);
 }
 
 CirclingBall_Obj::~CirclingBall_Obj()

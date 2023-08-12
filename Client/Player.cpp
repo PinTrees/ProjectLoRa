@@ -54,6 +54,7 @@ Player::Player()
 	, mAI(nullptr)
 	, mtInfo({})
 	, mVecSkill({})
+	, mVecMaxLevelSkill{}
 	, mpCoinSound(nullptr)
 {
 	SetName(L"Player");
@@ -161,41 +162,34 @@ void Player::Update()
 	if (mAI)
 		mAI->Update();
 
-	GetAnimator()->Update();
-	 
 	calExp();
+	GetAnimator()->Update();
+
 	mfCurDelay += DT;
 
 	/// 최상단 예외 처리
 	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
-	{
 		return;
-	}
 
-	if (mfCurDelay > mtInfo.atkDelay) {
-		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) {
+	UseSkill();
+
+	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
+	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+	mHpText->SetText(std::to_wstring(mtInfo.curHp));
+
+	if (mfCurDelay > mtInfo.atkDelay)
+	{
+		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) 
+		{
 			mfCurDelay = 0;
 			ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
 		}
 	}
 
-	UseSkill();
-
 	Vect2 vPos = GetPos();
-	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
-	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
-	mHpText->SetText(std::to_wstring(mtInfo.curHp));
-
-	if (mtInfo.curHp <= 0)
-	{
-		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
-		return;
-	}
-
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
-
 
 	if (KEY_TAP(KEY::SPACE))
 	{
@@ -204,7 +198,6 @@ void Player::Update()
 	}
 
 	mvDir = Vect2::zero;
-
 	if (KEY_HOLD(KEY::W)) mvDir += Vect2::up;
 	if (KEY_HOLD(KEY::S)) mvDir += Vect2::down;
 	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
@@ -288,6 +281,11 @@ void Player::AddSkill(Skill* _skill)
 	else
 	{
 		skill->AddSkillLevel();
+
+		if (skill->GetSkillLevel() == skill->GetMaxSkillLv())
+		{
+			mVecMaxLevelSkill.push_back(skill->GetType());
+		}
 	}
 
 	HubUIMgr::GetI()->BuildSkillUI(mVecSkill);
@@ -307,5 +305,20 @@ void Player::UseSkill()
 		}
 
 		mVecSkill[i]->Update();
+	}
+}
+
+void Player::AddDamage(float _damage)
+{
+	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
+		return;
+
+	mtInfo.curHp -= _damage;
+
+	if (mtInfo.curHp <= 0)
+	{
+		mtInfo.curHp = 0.f;
+		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
+		return;
 	}
 }

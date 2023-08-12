@@ -30,38 +30,25 @@ Thunder::~Thunder()
 
 void Thunder::UseSkill()
 {
-	SkillObj* pThunder = new Thunder_Obj;
-	pThunder->SetOwner(this);
-
 	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
-	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
-
 	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
 
-	float length = 1000.f;
-	Vect2 monsterPos;
-
-	int monIdx = CRandom::GetI()->Next(0, vecMon.size());
-
 	if (vecMon.size() > 0)
+	{
+		SkillObj* pThunder = new Thunder_Obj;
+		pThunder->SetOwner(this);
+
+		int monIdx = CRandom::GetI()->Next(0, vecMon.size());
 		pThunder->SetPos(vecMon[monIdx]->GetLocalPos());
+		CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
 
-	//for (size_t i = 0; i < vecMon.size(); ++i)
-	//{
-	//	monsterPos = vecMon[i]->GetLocalPos();
-	//	if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적 찾기)
-	//	{
-	//		length = (playerPos - monsterPos).Length(); // length 에 값 대입
-	//		pThunder->SetPos(monsterPos);
-	//	}
-	//}
+		if (mThunderSound)
+		{
+			mThunderSound->Play();
+		}
+	}
 
-	CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
-
-	if (mThunderSound)
-		mThunderSound->Play();
-
-	SetSkillTime(0.f);
+	SetSkillTime(0.8f * GetSkillLevel() / 5);
 }
 
 void Thunder::CheckAvailable()

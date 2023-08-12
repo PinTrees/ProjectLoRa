@@ -21,12 +21,14 @@ public:
     void SetCurvePoint(Vect2 _curvPoint) { mvCurvePoint = _curvPoint; }
     void SetTarget(Vect2 _target) { mvTarget = _target; }
 
+
 public:
     virtual void Update();
     virtual void Render(HDC _dc);
 
     virtual void OnCollisionEnter(CCollider* _pOther);
     virtual void OnCollisionStay(CCollider* _pOther); // 충돌 중인 경우 호출되는 함수
+
 
 public:
     CombatBall_Bullet();

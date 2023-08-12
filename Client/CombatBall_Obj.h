@@ -18,9 +18,11 @@ private:
 public:
     void SetPrevLv(int _Lv) { mPrevLv = _Lv; }
 
+
 public:
     virtual void Update();
     virtual void Render(HDC _dc);
+
 
 public:
     CombatBall_Obj();
