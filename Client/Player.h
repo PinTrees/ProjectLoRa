@@ -8,6 +8,8 @@ struct tPlayerInfo
 {
 	float	fullHP = 100.f;				// 최대체력
 	float	curHp = 0.f;				// 체력
+	float	fullMP = 100.f;				// 최대마나
+	float	curMP = 100.f;				// 마나
 	float	regenerationHP = 0.f;		// 체력재생
 	float	moveSpeed = 300.f;			// 이동 속도
 	float	atkDamage = 20.f;			// 공격력
@@ -44,11 +46,13 @@ class Player :
 private:
 	float	mfDelay;
 	float	mfCurDelay;
+	float	mMpDelay;
 	Vect2	mvDir;
 
 	int			mLevel;
 	float		mExp;
 	BarUI*		mExpBar;
+	BarUI*		mMpBar;
 	CImageUI*	mHpBar;
 	TextUI*		mHpText;
 

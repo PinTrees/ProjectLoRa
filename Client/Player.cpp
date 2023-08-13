@@ -47,6 +47,7 @@
 Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
+	, mMpDelay()
 	, mvDir(Vect2(0.f, 0.f))
 	, mExpBar(nullptr)
 	, mLevel(0)
@@ -101,6 +102,14 @@ Player::Player()
 	mExpBar->SetPos(Vect2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
+
+	// Mp Bar
+	mMpBar = new BarUI;
+	mMpBar->SetCameraAffected(true);
+	mMpBar->SetScale(Vect2(250.f, 10.f));
+	mMpBar->SetPos(Vect2(152.f, 85.f));
+	mMpBar->SetColor(RGB(0, 0, 255));
+	CreateObject(mMpBar, GROUP_TYPE::UI);
 
 	// Player HP UI Parent
 	CRow* pRow = new CRow;
@@ -181,11 +190,22 @@ void Player::Update()
 		}
 	}
 
+	if (mtInfo.curMP < 100.f)
+	{
+		mMpDelay += DT;
+		if (mMpDelay > 2.f)
+		{
+			mtInfo.curMP += 10.f;
+			mMpDelay = 0.f;
+		}
+	}
+
 	UseSkill();
 
 	Vect2 vPos = GetPos();
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+	mMpBar->SetFillAmount(mtInfo.curMP / mtInfo.fullMP);
 	mHpText->SetText(std::to_wstring(mtInfo.curHp));
 
 	if (mtInfo.curHp <= 0)
@@ -195,8 +215,9 @@ void Player::Update()
 	}
 
 
-	if (KEY_TAP(KEY::SPACE))
+	if (mtInfo.curMP >= 30.f && KEY_TAP(KEY::SPACE))
 	{
+		mtInfo.curMP -= 30.f;
 		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}
