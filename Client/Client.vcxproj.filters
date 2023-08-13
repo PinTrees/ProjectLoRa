@@ -401,6 +401,24 @@
     <Filter Include="Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect">
       <UniqueIdentifier>{a99436c7-bdfc-4022-acff-499929518aec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\FSM\Boss">
+      <UniqueIdentifier>{3f6fb735-9d1a-4026-a297-98a98f9c6c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Boss\Trace">
+      <UniqueIdentifier>{d4df34dd-1b8a-479a-85ac-3de337775e0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Boss\Atk">
+      <UniqueIdentifier>{4181feef-cc45-403b-a2a0-479bc89cb97e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Boss\Skill">
+      <UniqueIdentifier>{f99b8299-9a2e-4cb7-9341-d2a80ad38fb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Monster\Boss\Ston">
+      <UniqueIdentifier>{0d167d69-0f3f-41ee-9fb8-632c6d6c6eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FSM\Boss\Dead">
+      <UniqueIdentifier>{e4c81c41-fb83-4096-a60c-1cc9055f4980}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -775,6 +793,21 @@
     <ClInclude Include="IceBolt_Effect.h">
       <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
     </ClInclude>
+    <ClInclude Include="BTraceState.h">
+      <Filter>Game\FSM\Boss\Trace</Filter>
+    </ClInclude>
+    <ClInclude Include="BAtkState.h">
+      <Filter>Game\FSM\Boss\Atk</Filter>
+    </ClInclude>
+    <ClInclude Include="BSkillAtkState.h">
+      <Filter>Game\FSM\Boss\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>Game\Object\Monster\Boss\Ston</Filter>
+    </ClInclude>
+    <ClInclude Include="BDeadState.h">
+      <Filter>Game\FSM\Boss\Dead</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1135,6 +1168,21 @@
     </ClCompile>
     <ClCompile Include="IceBolt_Effect.cpp">
       <Filter>Game\Class\SkillObj\01. IceBolt_Obj\01. IceBolt_Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="BTraceState.cpp">
+      <Filter>Game\FSM\Boss\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="BAtkState.cpp">
+      <Filter>Game\FSM\Boss\Atk</Filter>
+    </ClCompile>
+    <ClCompile Include="BSkillAtkState.cpp">
+      <Filter>Game\FSM\Boss\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>Game\Object\Monster\Boss\Ston</Filter>
+    </ClCompile>
+    <ClCompile Include="BDeadState.cpp">
+      <Filter>Game\FSM\Boss\Dead</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

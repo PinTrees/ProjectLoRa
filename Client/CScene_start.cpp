@@ -242,8 +242,7 @@ void Scene_Start::createBoss()
 
 	Vect2 vCreatePos = CCamera::GetI()->GetRealPos(vRandomPos);
 
-	Boss* pBoss = new Boss(L"1");
-	pBoss->SetPos(vCreatePos);
+	Boss* pBoss = (Boss*)MonsterFactory::CreateMonster(MONSTER_TYPE::BOSS, vCreatePos);
 	CreateObject(pBoss, GROUP_TYPE::MONSTER);
 }
 

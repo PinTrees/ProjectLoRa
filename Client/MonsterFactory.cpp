@@ -14,6 +14,11 @@
 #include "AtkState.h"
 #include "HitState.h"
 
+#include "Boss.h"
+#include "BSkillAtkState.h"
+#include "BTraceState.h"
+#include "BDeadState.h"
+
 #include "CCollider.h"
 
 
@@ -44,6 +49,16 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
+
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
+		pAI->AddState(new IdleState);
+		pAI->AddState(new TraceState);
+		pAI->AddState(new DeadState);
+		pAI->AddState(new AtkState);
+		pAI->AddState(new HitState);
+		pAI->SetCurState(MONSTER_STATE::IDLE);
+
+		pMonster->SetAI(pAI);
 	}
 	break;
 	case MONSTER_TYPE::LONG: 
@@ -65,19 +80,43 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
+
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
+		pAI->AddState(new IdleState);
+		pAI->AddState(new TraceState);
+		pAI->AddState(new DeadState);
+		pAI->AddState(new AtkState);
+		pAI->AddState(new HitState);
+		pAI->SetCurState(MONSTER_STATE::IDLE);
+
+		pMonster->SetAI(pAI);
+	}
+	break;
+	case MONSTER_TYPE::BOSS:
+	{
+		pMonster = new Boss(L"2");
+		pMonster->SetName(L"Monster");
+		pMonster->GetCollider()->SetTrigger(false);
+		pMonster->SetPos(pos);
+
+		tMonsterInfo info = {};
+		info.atk = 50.f;
+		info.atkRange = 50.f;
+		info.recogRange = 10000.f;
+		info.curHp = info.hp = 5000.f;
+		info.speed = 100.f;
+		pMonster->setMonsterInfo(info);
+
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
+		pAI->AddState(new BTraceState);
+		pAI->AddState(new BSkillAtkState);
+		pAI->AddState(new BDeadState);
+		pAI->SetCurState(MONSTER_STATE::TRACE);
+
+		pMonster->SetAI(pAI);
 	}
 	break;
 	}
-
-	AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
-	pAI->AddState(new IdleState);
-	pAI->AddState(new TraceState);
-	pAI->AddState(new DeadState);
-	pAI->AddState(new AtkState);
-	pAI->AddState(new HitState);
-	pAI->SetCurState(MONSTER_STATE::IDLE);
-
-	pMonster->SetAI(pAI);
 
 	assert(pMonster);
 

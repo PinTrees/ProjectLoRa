@@ -153,8 +153,8 @@ void CScene::Update()
 				{
 					CCollider* curCollider = mArrObj[i][j]->GetCollider();
 
-					Vect2 vPos = mArrObj[i][j]->GetPos();
-					Vect2 vScale = mArrObj[i][j]->GetPos();
+					Vect2 vPos = curCollider->GetFinalPos();
+					Vect2 vScale = curCollider->GetScale();
 
 					UINT x = curCollider->GetBSPX();
 					UINT y = curCollider->GetBSPY();

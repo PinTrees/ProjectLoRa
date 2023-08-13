@@ -51,15 +51,15 @@ Boss::Boss(const wstring& uid)
 	GetAnimator()->CreateAnimation(L"ATK", pTex, vLeftTop * 2.f, vSliseSize, vStepSize, 0.07f, 8);
 	GetAnimator()->CreateAnimation(L"DEAD", pTex, vLeftTop * 4.f, vSliseSize, vStepSize, 0.07f, 7);
 	GetAnimator()->CreateAnimation(L"CREATE", pTex, vLeftTop * 8.f, vSliseSize, vStepSize, 0.07f, 8);
-
-	GetCollider()->SetScale(Vect2(100.f, 220.f));
-	GetCollider()->SetOffsetPos(Vect2(170.f, 90.f));
-
 	GetAnimator()->Play(L"RUN", true);
 
-	SetScale(vSliseSize * 4.5f);
-	SetPivot(Vect2(170.f, 130.f));
+	float scaleFactor = 0.75f;
 
+	GetCollider()->SetScale(Vect2(100.f, 200.f) * scaleFactor);
+	GetCollider()->SetOffsetPos(Vect2(170.f, 90.f) * scaleFactor);
+	
+	SetScale(vSliseSize * 4.5f * scaleFactor);
+	SetPivot(Vect2(170.f, 130.f) * scaleFactor);
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 

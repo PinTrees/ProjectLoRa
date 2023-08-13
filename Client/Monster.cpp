@@ -223,7 +223,7 @@ void Monster::AddDamage(float damage)
 		if (mHitSound)
 			mHitSound->Play();
 	}
-	else 
+	else if(mType != MONSTER_TYPE::BOSS)
 	{
 		if (mAI->GetCurStateType() != MONSTER_STATE::HIT)
 		{
@@ -248,6 +248,9 @@ void Monster::AddDamage(float damage)
 
 void Monster::SetFreeze(float delay)
 {
+	if (mType == MONSTER_TYPE::BOSS) 
+		return;
+
 	mFreeze = true;
 	mFreezeDelay = delay;
 	mCurDamageDelay = 0.f;

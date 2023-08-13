@@ -220,9 +220,9 @@ void Player::Update()
 
 	Vect2 vPos = GetPos();
 
-	if (mtInfo.curMP >= 10.f && KEY_TAP(KEY::SPACE))
+	if (mtInfo.curMP >= 60.f && KEY_TAP(KEY::SPACE))
 	{
-		mtInfo.curMP -= 10.f;
+		mtInfo.curMP -= 60.f;
 		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}
