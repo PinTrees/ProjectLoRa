@@ -117,7 +117,7 @@ void Scene_Start::Update()
 void Scene_Start::Enter()
 {
 	/// Init ------------------------
-	mfMstrDelay = 5.f;
+	mfMstrDelay = 7.f;
 	mfCurDelay = 30.f;
 	mBossDelay = 60.f * 7.f;
 	mCurBossDelay = 0.f;
@@ -187,50 +187,47 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	// 몬스터를 소환할 가장자리 위치 설정
-	float edgeDistance = 100.f;				// 가장자리로부터의 거리
+	float edgeDistance = 150.f;  // 가장자리로부터의 거리
 
 	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x / 2.f;
 	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y / 2.f;
 
-	int MonsterCount = 5 + (float)mMonsterWave * 0.5f;
-	Vect2 vMonsterInterval = vResolution / MonsterCount;
+	int MonsterCount = 1 + (float)mMonsterWave * 1.f;
+	MonsterCount = MonsterCount > 20 ? 20 : MonsterCount;
+
+	float ellipseWidth = vResolution.x + edgeDistance * 2.0f;  // 타원형의 가로 크기
+	float ellipseHeight = vResolution.y + edgeDistance * 2.0f; // 타원형의 세로 크기
+
+	Vect2 vCenter(xPos + vResolution.x * 0.5f, yPos + vResolution.y * 0.5f);
+
 
 	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
 	{
-		Vect2 vCreatePos1 = Vect2(xPos - edgeDistance, yPos + vMonsterInterval.y * i);		// 좌측 화면에서 몬스터를 생성
-		Monster* pShort = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
+		float angle = i * (360.0f / MonsterCount) + 20.f;  // 각도를 계산
+
+		float x = vCenter.x + (ellipseWidth / 2.0f) * cos(angle * PI / 180.0f);
+		float y = vCenter.y - (ellipseHeight / 2.0f) * sin(angle * PI / 180.0f);
+
+		Vect2 vCreatePos(x, y);
+		 
+		// 몬스터 생성 및 추가
+		Monster* pShort = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos);
 		AddObject(pShort, GROUP_TYPE::MONSTER);
-
-		vCreatePos1 = Vect2(xPos + vResolution.x + edgeDistance, yPos + vMonsterInterval.y * i);	// 우측 화면에서 몬스터를 생성
-		Monster* pShort1 = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
-		AddObject(pShort1, GROUP_TYPE::MONSTER);
-
-		vCreatePos1 = Vect2(xPos + vMonsterInterval.x * i, yPos - edgeDistance);			// 화면 상단에서 몬스터를 생성
-		Monster* pShort2 = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
-		AddObject(pShort2, GROUP_TYPE::MONSTER);
-
-		vCreatePos1 = Vect2(xPos + vMonsterInterval.x * i, yPos + vResolution.y + edgeDistance);	// 화면 하단에서 몬스터를 생성
-		Monster* pShort3 = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos1);
-		AddObject(pShort3, GROUP_TYPE::MONSTER);
 	}
 
-	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 원거리 공격 몬스터를 생성 (4방면에서 생성됨)
+
+	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
 	{
-		Vect2 vCreatePos = Vect2(xPos - edgeDistance, yPos + vMonsterInterval.y * i);
+		float angle = i * (360.0f / MonsterCount);  // 각도를 계산
+
+		float x = vCenter.x + (ellipseWidth / 2.0f) * cos(angle * PI / 180.0f);
+		float y = vCenter.y - (ellipseHeight / 2.0f) * sin(angle * PI / 180.0f);
+
+		Vect2 vCreatePos(x, y);
+
+		// 몬스터 생성 및 추가
 		Monster* pLong = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
 		AddObject(pLong, GROUP_TYPE::MONSTER);
-
-		vCreatePos = Vect2(xPos + vResolution.x + edgeDistance, yPos + vMonsterInterval.y * i);
-		Monster* pLong2 = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
-		AddObject(pLong2, GROUP_TYPE::MONSTER);
-
-		vCreatePos = Vect2(xPos + vMonsterInterval.x * i, yPos - edgeDistance);
-		Monster* pLong3 = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
-		AddObject(pLong3, GROUP_TYPE::MONSTER);
-
-		vCreatePos = Vect2(xPos + vMonsterInterval.x * i, yPos + vResolution.y + edgeDistance);
-		Monster* pLong4 = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
-		AddObject(pLong4, GROUP_TYPE::MONSTER);
 	}
 
 	++mMonsterWave;	// 몬스터 웨이브의 진행 상태만큼 몬스터를 증가하기 위해 사용
