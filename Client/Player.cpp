@@ -48,6 +48,7 @@ Player::Player()
 	, mfDelay(0.03f)
 	, mvDir(Vect2(0.f, 0.f))
 	, mExpBar(nullptr)
+	, mMpDelay()
 	, mLevel(0)
 	, mExp(0.f)
 	, mAI(nullptr)
@@ -103,6 +104,13 @@ Player::Player()
 	mExpBar->SetPos(Vect2(vRes.x * 0.5f, vRes.y - mExpBar->GetScale().y * 0.5f));
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
+
+	mMpBar = new BarUI;
+	mMpBar->SetCameraAffected(true);
+	mMpBar->SetScale(Vect2(250.f, 10.f));
+	mMpBar->SetPos(Vect2(152.f, 85.f));
+	mMpBar->SetColor(RGB(0, 0, 255));
+	CreateObject(mMpBar, GROUP_TYPE::UI);
 
 	// Player HP UI Parent
 	CRow* pRow = new CRow;
@@ -168,6 +176,9 @@ void Player::Update()
 	mfCurDelay += DT;
 	mCurGoldChekDelay += DT;
 
+	mtInfo.curMP += 10.f * DT;
+	mtInfo.curMP = mtInfo.curMP > mtInfo.fullMP ? mtInfo.fullMP : mtInfo.curMP;
+
 	/// 최상단 예외 처리
 	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
 		return;
@@ -176,6 +187,7 @@ void Player::Update()
 
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+	mMpBar->SetFillAmount(mtInfo.curMP / mtInfo.fullMP);
 	mHpText->SetText(std::to_wstring(mtInfo.curHp));
 
 	if (mCurGoldChekDelay > mGoldChekDelay)
@@ -194,6 +206,9 @@ void Player::Update()
 		}
 	}
 
+	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
+		return;
+
 	if (mfCurDelay > mtInfo.atkDelay)
 	{
 		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) 
@@ -205,11 +220,9 @@ void Player::Update()
 
 	Vect2 vPos = GetPos();
 
-	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
-		return;
-
-	if (KEY_TAP(KEY::SPACE))
+	if (mtInfo.curMP >= 10.f && KEY_TAP(KEY::SPACE))
 	{
+		mtInfo.curMP -= 10.f;
 		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}

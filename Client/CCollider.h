@@ -19,12 +19,16 @@ private:
 	int			miCol;			
 
 	bool		mIsTrigger;		// 해당 충돌체의 겹침 여부 
+	bool		mIsActive;
 
 
 public:
 	void SetBSP(UINT x, UINT y) { mBspX = x; mBspY = y; };
 	UINT GetBSPX() { return mBspX; };
 	UINT GetBSPY() { return mBspY; };
+
+	void SetActive(bool _active) { mIsActive = _active; }
+	bool GetActive() { return mIsActive; }
 
 	void SetOffsetPos(Vect2 _vPos) { mvOffsetPos = _vPos; }
 	void SetScale(Vect2 _vScale) { mvScale= _vScale; }

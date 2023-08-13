@@ -44,6 +44,16 @@ Particle::Particle(const wstring& _type)
 		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 9);
 		SetScale(Vect2(48.f, 48.f) * 1.5f);
 	}
+	else if (_type == L"6")		// 순간이동
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(36.f, 36.f), Vect2(36.f, 0.f), 0.07f, 5);
+		SetScale(Vect2(48.f, 48.f) * 2.5f);
+	}
+	else if (_type == L"7")		// 순간이동
+	{
+		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(36.f, 36.f), Vect2(36.f, 0.f), 0.07f, 6);
+		SetScale(Vect2(48.f, 48.f) * 2.5f);
+	}
 
 	// 101 ~ 105 전류 이펙트
 	else if (_type == L"101")

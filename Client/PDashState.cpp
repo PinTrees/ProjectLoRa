@@ -11,10 +11,14 @@
 #include "CAnimation.h"
 
 #include "Player.h"
+#include "PlayerMgr.h"
+#include "CCollider.h"
+#include "Particle.h"
 
 
 PDashState::PDashState()
 	: CState(PLAYER_STATE::DASH)
+	, mDashTime()
 {
 }
 
@@ -30,24 +34,47 @@ void PDashState::Enter()
 
 	pPlayer->GetAnimator()->Play(L"DASH_R", false);
 
+	pPlayer->SetVisible(false);
+	pPlayer->GetCollider()->SetActive(false);
+
+	CCamera::GetI()->SetTarget(nullptr);
+
 	mvDashDir = CCamera::GetI()->GetRealPos(MOUSE_POS) - pPlayer->GetPos();
 	mvDashDir.Normalize();
+
+	Particle* pEffect = new Particle(L"7");
+	pEffect->SetPos(pPlayer->GetPos());
+	CreateObject(pEffect, GROUP_TYPE::EFFECT);
 }
 
 void PDashState::Update()
 {
+	mDashTime += DT;
+
 	Player* pPlayer = (Player*)GetOwner();
 
 	Vect2 vPos = pPlayer->GetPos();
-	pPlayer->SetPos(vPos + mvDashDir * 700.f * DT);
+	Vect2 vTargetPos = vPos + mvDashDir * 250.f * mDashTime;
 
-	if (pPlayer->GetAnimator()->GetCurAnimation()->IsFinish())
+	if (mDashTime > 0.5f)
 	{
+		mDashTime = 0.f;
+		pPlayer->SetPos(vTargetPos);
+		CCamera::GetI()->SetLookAt(pPlayer->GetPos());
 		ChangeAIState(GetAI(), PLAYER_STATE::IDLE);
+
+		Particle* pEffect = new Particle(L"6");
+		pEffect->SetPos(pPlayer->GetPos());
+		CreateObject(pEffect, GROUP_TYPE::EFFECT);
 	}
 }
 
 void PDashState::Exit()
 {
 	Player* pPlayer = (Player*)GetOwner();
+
+	pPlayer->SetVisible(true);
+	pPlayer->GetCollider()->SetActive(true);
+
+	CCamera::GetI()->SetTarget(pPlayer);
 }

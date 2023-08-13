@@ -117,7 +117,7 @@ void Scene_Start::Update()
 void Scene_Start::Enter()
 {
 	/// Init ------------------------
-	mfMstrDelay = 7.f;
+	mfMstrDelay = 5.f;
 	mfCurDelay = 30.f;
 	mBossDelay = 60.f * 7.f;
 	mCurBossDelay = 0.f;
@@ -187,13 +187,13 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	// 몬스터를 소환할 가장자리 위치 설정
-	float edgeDistance = 150.f;  // 가장자리로부터의 거리
+	float edgeDistance = 250.f;  // 가장자리로부터의 거리
 
-	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x / 2.f;
-	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y / 2.f;
+	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x * 0.5f;
+	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y * 0.5f;
 
-	int MonsterCount = 1 + (float)mMonsterWave * 1.f;
-	MonsterCount = MonsterCount > 20 ? 20 : MonsterCount;
+	int MonsterCount = 3 + (float)mMonsterWave * 1.f;
+	MonsterCount = MonsterCount > 100 ? 100 : MonsterCount;
 
 	float ellipseWidth = vResolution.x + edgeDistance * 2.0f;  // 타원형의 가로 크기
 	float ellipseHeight = vResolution.y + edgeDistance * 2.0f; // 타원형의 세로 크기
@@ -205,8 +205,8 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	{
 		float angle = i * (360.0f / MonsterCount) + 20.f;  // 각도를 계산
 
-		float x = vCenter.x + (ellipseWidth / 2.0f) * cos(angle * PI / 180.0f);
-		float y = vCenter.y - (ellipseHeight / 2.0f) * sin(angle * PI / 180.0f);
+		float x = vCenter.x + (ellipseWidth * 0.45f) * cos(angle * PI / 180.0f);
+		float y = vCenter.y - (ellipseHeight * 0.45f) * sin(angle * PI / 180.0f);
 
 		Vect2 vCreatePos(x, y);
 		 

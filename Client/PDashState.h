@@ -9,6 +9,7 @@ class PDashState :
 {
 private:
     Vect2 mvDashDir;
+    float mDashTime;
 
 
 public:

@@ -7,15 +7,18 @@
 
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "PlayerMgr.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
+
+#include "Player.h"
 
 SINGLE_HEADER(CCamera);
 
 CCamera::CCamera()
 	:mpTargetObj(nullptr)
-	, mfTime(1.f)
+	, mfTime(0.3f)
 	, mfSpeed(0.f)
 	, mfAccTime(0.f)
 	, mEffectTex(nullptr)
@@ -29,7 +32,7 @@ CCamera::~CCamera()
 
 void CCamera::Init()
 {
-    Vect2 vRes =	CCore::GetI()->GetResolution();
+	Vect2 vRes = CCore::GetI()->GetResolution();
 	mEffectTex = CResMgr::GetI()->CreateTexture(L"CamEffectTex", (UINT)vRes.x, (UINT)vRes.y);
 }
 
@@ -48,7 +51,7 @@ void CCamera::Update()
 		}
 	}
 
-	
+
 	if (KEY_HOLD(KEY::UP))
 		mvLookAt.y -= DT * 500.f;
 	if (KEY_HOLD(KEY::DOWN))
@@ -77,7 +80,7 @@ void CCamera::Render(HDC dc)
 	if (amount > 1.f) amount = 1.f;
 	if (amount < 0.f) amount = 0.f;
 
-	int alpha = 0;	
+	int alpha = 0;
 
 	if (CAM_EFFECT::FADE_OUT == effect.effect)
 	{
@@ -111,7 +114,7 @@ void CCamera::Render(HDC dc)
 
 
 	// tEffectLv Delete
-	if (effect.duration < effect.time)
+	if (effect.duration <= effect.time)
 	{
 		mEffects.pop_front();
 	}
@@ -121,10 +124,10 @@ void CCamera::Render(HDC dc)
 void CCamera::calDiff()
 {
 	// 이전 LookAt 과 현재 look 의 차이값을 보정해서 현재의 LookAt을 구한다.
-	
+
 	mfAccTime += DT;
 
-	if (mfTime <= mfAccTime )
+	if (mfTime <= mfAccTime)
 	{
 		mvCurLookAt = mvLookAt;
 	}
@@ -134,9 +137,11 @@ void CCamera::calDiff()
 		mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * mfSpeed * DT;
 	}
 
+	//// 카메라를 일정한 속력으로 천천히 이동시킴
+	//Vect2 vLookDir = mvLookAt - mvPrevLookAt;
 
-	//Lerp(mvPrevLookAt, mvLookAt,)
-
+	//if (vLookDir.Length() > 0.5f)
+	//	mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * 500.f * DT;
 
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();
