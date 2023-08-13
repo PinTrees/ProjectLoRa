@@ -7,15 +7,18 @@
 
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "PlayerMgr.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
+
+#include "Player.h"
 
 SINGLE_HEADER(CCamera);
 
 CCamera::CCamera()
 	:mpTargetObj(nullptr)
-	, mfTime(1.f)
+	, mfTime(0.3f)
 	, mfSpeed(0.f)
 	, mfAccTime(0.f)
 	, mEffectTex(nullptr)
@@ -111,7 +114,7 @@ void CCamera::Render(HDC dc)
 
 
 	// tEffectLv Delete
-	if (effect.duration < effect.time)
+	if (effect.duration <= effect.time)
 	{
 		mEffects.pop_front();
 	}
@@ -134,9 +137,11 @@ void CCamera::calDiff()
 		mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * mfSpeed * DT;
 	}
 
+	//// 카메라를 일정한 속력으로 천천히 이동시킴
+	//Vect2 vLookDir = mvLookAt - mvPrevLookAt;
 
-	//Lerp(mvPrevLookAt, mvLookAt,)
-
+	//if (vLookDir.Length() > 0.5f)
+	//	mvCurLookAt = mvPrevLookAt + vLookDir.Normalize() * 500.f * DT;
 
 
 	Vect2 vResolution = CCore::GetI()->GetResolution();

@@ -9,7 +9,7 @@ class PDashState :
 {
 private:
     Vect2 mvDashDir;
-
+    float mDashTime;
 
 public:
     virtual void Update() override;

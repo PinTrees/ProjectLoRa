@@ -124,6 +124,7 @@ void LevelupUI::statusUp(STATEUP_TYPE state)
 	{
 	case STATEUP_TYPE::FULL_HP_UP:					// 최대 체력 증가
 		pPlayer->mtInfo.fullHP += 10.f;
+		pPlayer->mtInfo.curHp = pPlayer->mtInfo.fullHP;
 		break;
 	case STATEUP_TYPE::REGENERATION_HP_UP:			// 체력 재생 증가
 		pPlayer->mtInfo.regenerationHP += 10.f;

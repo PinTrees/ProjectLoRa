@@ -18,6 +18,7 @@ CCollider::CCollider()
 	, miID(giNextID++)
 	, miCol(0)
 	, mIsTrigger(true)
+	, mIsActive(true)
 {
 }
 
@@ -28,6 +29,7 @@ CCollider::CCollider(const CCollider& _origin)
 	, miID(giNextID++)
 	, miCol(0)
 	, mIsTrigger(_origin.mIsTrigger)
+	, mIsActive(_origin.mIsActive)
 {
 }
 
@@ -67,7 +69,10 @@ void CCollider::Render(HDC _dc)
 
 void CCollider::OnCollisionStay(CCollider* _pOther)
 {
-	mpOwner->OnCollisionStay(_pOther);
+	if (mIsActive && _pOther->GetActive())
+	{
+		mpOwner->OnCollisionStay(_pOther);
+	}
 
 	if (!mIsTrigger && !_pOther->GetTrigger() 
 		&& mpOwner->GetRigidBody())
@@ -84,13 +89,18 @@ void CCollider::OnCollisionStay(CCollider* _pOther)
 void CCollider::OnCollisionEnter(CCollider* _pOther)
 {
 	++miCol;
-	mpOwner->OnCollisionEnter(_pOther);
+	if (mIsActive && _pOther->GetActive())
+	{
+		mpOwner->OnCollisionEnter(_pOther);
+	}
 }
 
 void CCollider::OnCollisionExit(CCollider* _pOther)
 {
 	--miCol;
-	mpOwner->OnCollisionExit(_pOther);
-
+	if (mIsActive && _pOther->GetActive())
+	{
+		mpOwner->OnCollisionExit(_pOther);
+	}
 }
 

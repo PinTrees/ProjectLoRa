@@ -16,6 +16,7 @@ private:
 	int			miCol;			
 
 	bool		mIsTrigger;		// 해당 충돌체의 겹침 여부 
+	bool		mIsActive;		// 충돌체 활성화
 
 
 public:
@@ -24,6 +25,9 @@ public:
 
 	void SetTrigger(bool _trigger) { mIsTrigger = _trigger; }
 	bool GetTrigger() { return mIsTrigger; }
+
+	void SetActive(bool _active) { mIsActive = _active; }
+	bool GetActive() { return mIsActive; }
 
 	Vect2 GetFinalPos() { return mvFinalPos; }
 	Vect2 GetOffsetPos() { return mvOffsetPos; }

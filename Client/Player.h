@@ -87,7 +87,10 @@ public:
 public:
 	virtual void Update() override;
 	virtual void Render(HDC _dc) override;
+
 	virtual void OnCollisionEnter(CCollider* _pOther) override;
+	virtual void OnCollisionStay(CCollider* _pOther) {}		// In Collision
+	virtual void OnCollisionExit(CCollider* _pOther) {}		// Exit Collision
 
 
 private:

@@ -171,6 +171,9 @@ void Player::Update()
 		return;
 	}
 
+	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
+		return;
+
 	if (mfCurDelay > mtInfo.atkDelay) {
 		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) {
 			mfCurDelay = 0;
@@ -190,10 +193,6 @@ void Player::Update()
 		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
 		return;
 	}
-
-
-	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
-		return;
 
 
 	if (KEY_TAP(KEY::SPACE))
