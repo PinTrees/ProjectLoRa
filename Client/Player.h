@@ -69,7 +69,7 @@ public:
 	tPlayerInfo& GetInfo() { return mtInfo; }
 	void SetInfo(tPlayerInfo _info) { mtInfo = _info; }
 
-	float GetMaxExp() { return 1.f * mLevel + 1.f; };
+	float GetMaxExp() { return 2.f * mLevel + 1.f; };
 	float GetExp() { return mExp; };
 	void  AddExp(float exp) { mExp += exp; }
 

@@ -117,7 +117,7 @@ void Scene_Start::Update()
 void Scene_Start::Enter()
 {
 	/// Init ------------------------
-	mfMstrDelay = 10.f;
+	mfMstrDelay = 5.f;
 	mfCurDelay = 30.f;
 	mBossDelay = 60.f * 7.f;
 	mCurBossDelay = 0.f;
@@ -126,6 +126,12 @@ void Scene_Start::Enter()
 	/// -----------------------------
 
 	LoadTile(this, L"database\\map_1.tile");
+
+	int mapX = TileMapMgr::GetI()->GetTileMapSizeX();
+	int mapY = TileMapMgr::GetI()->GetTileMapSizeY();
+
+	CScene::InitBSP(Vect2(mapX * TILE_SIZE_RENDER, mapY * TILE_SIZE_RENDER), 10, 10);
+
 
 	PlayerMgr::GetI()->Init();
 	GUIMgr::GetI()->Init();

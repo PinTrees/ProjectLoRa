@@ -12,6 +12,9 @@ private:
 	Vect2		mvFinalPos;		// finalupdate 에서 매프레임마다 계산
 	Vect2		mvScale;		// 충돌체의 크기정보
 
+	UINT		mBspX;
+	UINT		mBspY;
+
 	UINT		miID;			// 충돌체 고유한 ID 값
 	int			miCol;			
 
@@ -19,6 +22,10 @@ private:
 
 
 public:
+	void SetBSP(UINT x, UINT y) { mBspX = x; mBspY = y; };
+	UINT GetBSPX() { return mBspX; };
+	UINT GetBSPY() { return mBspY; };
+
 	void SetOffsetPos(Vect2 _vPos) { mvOffsetPos = _vPos; }
 	void SetScale(Vect2 _vScale) { mvScale= _vScale; }
 

@@ -16,6 +16,9 @@ using std::array;
 using std::map;
 using std::make_pair;
 
+#include<unordered_map>
+using std::unordered_map;
+
 #include <list>
 using std::list;
 

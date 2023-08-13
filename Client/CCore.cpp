@@ -100,12 +100,13 @@ void CCore::RUN()
 	// UI Update
 	CUIMgr::GetI()->Update();
 
-
 	// ==================
 	// Scene Update Block
 	// ==================
+	bool isSceneUpdate = false;
 	if(CTimeMgr::GetI()->IsPlay())
 	{
+		isSceneUpdate = true;
 		CSceneMgr::GetI()->Update();
 	}
 
@@ -116,7 +117,7 @@ void CCore::RUN()
 	// ======================
 	// Collision Update Block
 	// ======================
-	if (CTimeMgr::GetI()->IsPlay())
+	if (CTimeMgr::GetI()->IsPlay() && isSceneUpdate)
 	{
 		CCollisionMgr::GetI()->Update();
 	}

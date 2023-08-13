@@ -64,6 +64,8 @@ public:
 	{
 		x = x < 0 ? 0 : x;
 		y = y < 0 ? 0 : y;
+		x = x >= mTileX ? mTileX - 1 : x;
+		y = y >= mTileY ? mTileY - 1 : y;
 
 		mTargetX = x;
 		mTargetY = y;
@@ -74,7 +76,6 @@ public:
 	{ 
 		x = x < 0 ? 0 : x;
 		y = y < 0 ? 0 : y;
-
 		x = x >= mTileX ? mTileX - 1 : x;
 		y = y >= mTileY ? mTileY - 1 : y;
 

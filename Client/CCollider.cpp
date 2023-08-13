@@ -10,6 +10,9 @@
 
 // Include Components
 #include "RigidBody.h"
+#include "CSceneMgr.h"
+#include "CScene.h"
+
 
 UINT CCollider::giNextID = 0;
 
