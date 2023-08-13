@@ -20,8 +20,6 @@ class Boss :
 	public Monster
 {
 private:
-	BOSS_STATE	mCurState;
-
 	CImageUI*	mpHpBar;
 	CColumn*	mpHpUI;
 

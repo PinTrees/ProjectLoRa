@@ -37,23 +37,30 @@ void PAtkState::Enter()
 
 	CScene* pScene = CSceneMgr::GetI()->GetCurScene();
 	const vector<CObject*>& vecMon = pScene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecBoss = pScene->GetGroupObject(GROUP_TYPE::BOSS);
 
-	if (vecMon.empty()) return;
-
-	float length = 1000.f;
-	Vect2 monsterPos;
 	Vect2 vDir;
-	for (size_t i = 0; i < vecMon.size(); ++i)
-	{
-		float fDistance = Vect2::Distance(vecMon[i]->GetLocalPos(), vPlayerLocalPos);
-		if (fDistance < length)	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
-		{
-			length = fDistance;
-			vDir = vecMon[i]->GetLocalPos() - vPlayerLocalPos;
-		}
-	}
+	Vect2 monsterPos;
 
-	vDir.Normalize();
+	if (vecMon.size() > 0)
+	{
+		float length = 1000.f;
+		for (size_t i = 0; i < vecMon.size(); ++i)
+		{
+			float fDistance = Vect2::Distance(vecMon[i]->GetLocalPos(), vPlayerLocalPos);
+			if (fDistance < length)	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+			{
+				length = fDistance;
+				vDir = vecMon[i]->GetLocalPos() - vPlayerLocalPos;
+			}
+		}
+		vDir.Normalize();
+	}
+	else if (vecBoss.size() > 0)
+	{
+		monsterPos = vecBoss[0]->GetLocalPos();
+		vDir = vecBoss[0]->GetLocalPos() - vPlayerLocalPos;
+	}
 
 	pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
 

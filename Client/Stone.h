@@ -14,6 +14,8 @@ private:
     float       mArrivalTime;       // 목표지점에 도착할 때 까지의 시간
     float       mRemainTime;        // 1 - mCurTime
 
+    bool mIsAtk;
+
     //CSound* mpSound;
 
 public:

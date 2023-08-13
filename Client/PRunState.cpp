@@ -32,7 +32,7 @@ void PRunState::Update()
 	Player* pPlayer = (Player*)GetOwner();
 
 	mvDir = pPlayer->GetDir().Normalize();
-	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 150.f * DT);
+	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 120.f * DT);
 	pPlayer->SetFlip(mvDir.x < 1);
 
 	if (pPlayer->GetDir().x < 1)

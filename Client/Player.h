@@ -13,7 +13,9 @@ struct tPlayerInfo
 	float	curMP = 100.f;				// 마나
 
 	float	regenerationHP = 0.f;		// 체력재생
+
 	float	moveSpeed = 300.f;			// 이동 속도
+
 	float	atkDamage = 20.f;			// 공격력
 	float	atkSpeed = 10.f;			// 공격스피드
 	float	atkRange = 500.f;			// 사거리

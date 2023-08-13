@@ -17,6 +17,8 @@
 
 // Include Manager Header
 #include "PlayerMgr.h"
+#include "GUIMgr.h"
+
 
 
 BDeadState::BDeadState()
@@ -32,34 +34,20 @@ BDeadState::~BDeadState()
 
 void BDeadState::Enter()
 {
-	//Vect2 vOwnerPos = GetOwner()->GetLocalPos();
-	//Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
+	Vect2 vOwnerPos = GetOwner()->GetLocalPos();
+	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
-	//GetOwner()->GetAnimator()->Play(vOwnerPos.x > vPlayerPos.x ? L"DEAD_L" : L"DEAD_R", false);
-
-	//PlayerMgr::GetI()->GetPlayer()->AddExp(2.f);
+	GetOwner()->GetAnimator()->Play(vOwnerPos.x > vPlayerPos.x ? L"DEAD_L" : L"DEAD_R", false);
 }
 
 
 void BDeadState::Update()
 {
-	//if (GetOwner()->GetAnimator()->GetCurAnimation()->IsFinish())
-	//{
-	//	DeleteObject(GetOwner());
-
-	//	if (CRandom::GetI()->Next(0, 100) < 80)
-	//	{
-	//		Gold* pGold = new Gold;
-	//		pGold->SetPos(GetOwner()->GetLocalPos());
-	//		CreateObject(pGold, GROUP_TYPE::GOLD);
-	//	}
-	//	else if (CRandom::GetI()->Next(0, 100) < 4)
-	//	{
-	//		Box* pBox = new Box;
-	//		pBox->SetPos(GetOwner()->GetLocalPos());
-	//		CreateObject(pBox, GROUP_TYPE::GOLD);
-	//	}
-	//}
+	if (GetOwner()->GetAnimator()->GetCurAnimation()->IsFinish())
+	{
+		DeleteObject(GetOwner());
+		GUIMgr::GetI()->ShowGameClearUI();
+	}
 }
 
 

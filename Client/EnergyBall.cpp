@@ -22,30 +22,47 @@ EnergyBall::~EnergyBall()
 
 void EnergyBall::UseSkill()
 {
-	EnergyBall_Obj* Ball = new EnergyBall_Obj;
-	Ball->SetOwner(this);
-
 	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
 	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
 	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecBoss = cscene->GetGroupObject(GROUP_TYPE::BOSS);
 
-	float length = 1000.f;
-	Vect2 monsterPos;
-	for (size_t i = 0; i < vecMon.size(); ++i)
+	if (vecMon.size() > 0)
 	{
-		monsterPos = vecMon[i]->GetPos();
-		if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+		EnergyBall_Obj* Ball = new EnergyBall_Obj;
+		Ball->SetOwner(this);
+
+		float length = 1000.f;
+		Vect2 monsterPos;
+		for (size_t i = 0; i < vecMon.size(); ++i)
 		{
-			length = (playerPos - monsterPos).Length(); // length 에 값 대입
-			mvDir = monsterPos - playerPos;
+			monsterPos = vecMon[i]->GetPos();
+			if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+			{
+				length = (playerPos - monsterPos).Length(); // length 에 값 대입
+				mvDir = monsterPos - playerPos;
+			}
 		}
+
+		mvDir.Normalize();
+		Ball->SetDir(mvDir);
+		Ball->SetPos(PlayerMgr::GetI()->GetPlayer()->GetPos());
+		CreateObject(Ball, GROUP_TYPE::PROJ_PLAYER);
+	}
+	else if (vecBoss.size() > 0)
+	{
+		EnergyBall_Obj* Ball = new EnergyBall_Obj;
+		Ball->SetOwner(this);
+
+		Vect2 monsterPos = vecBoss[0]->GetPos();
+		mvDir = (monsterPos - playerPos).Normalize();
+
+		Ball->SetDir(mvDir);
+		Ball->SetPos(PlayerMgr::GetI()->GetPlayer()->GetPos());
+		CreateObject(Ball, GROUP_TYPE::PROJ_PLAYER);
 	}
 
-	mvDir.Normalize();
-	Ball->SetDir(mvDir);
-	Ball->SetPos(PlayerMgr::GetI()->GetPlayer()->GetPos());
-	CreateObject(Ball, GROUP_TYPE::PROJ_PLAYER);
 
 	SetSkillTime(0.f);
 }

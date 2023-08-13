@@ -31,6 +31,12 @@ class Monster :
 protected:
 	tMonsterInfo		mtInfo;
 
+	Vect2			mvShadowOffset;
+	Vect2			mvShadowScale;
+
+	CSound*			mHitSound;
+	CTexture*		mpShadowTex;
+
 private:
 	MONSTER_TYPE		mType;
 	AI<MONSTER_STATE>*	mAI;
@@ -46,12 +52,6 @@ private:
 	float			mFreezeDelay;
 	float			mCurFreezeDelay;
 
-	Vect2			mvShadowOffset;
-	Vect2			mvShadowScale;
-
-	CSound*			mHitSound;
-	CTexture*		mpShadowTex;
-
 
 public:
 	MONSTER_TYPE GetType() { return mType; }
@@ -62,6 +62,7 @@ public:
 	const tMonsterInfo& GetInfo() { return mtInfo; }
 
 	void SetAI(AI<MONSTER_STATE>* pAI);
+	AI<MONSTER_STATE>* GetAI() { return mAI; };
 
 	void AddDamage(float damage);
 	void SetPath(vector<Vect2>& vecPos)

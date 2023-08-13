@@ -32,6 +32,7 @@ void Thunder::UseSkill()
 {
 	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
 	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecBoss = cscene->GetGroupObject(GROUP_TYPE::BOSS);
 
 	if (vecMon.size() > 0)
 	{
@@ -46,6 +47,16 @@ void Thunder::UseSkill()
 		{
 			mThunderSound->Play();
 		}
+	}
+	else if (vecBoss.size() > 0)
+	{
+		SkillObj* pThunder = new Thunder_Obj;
+		pThunder->SetOwner(this);
+
+		pThunder->SetPos(vecBoss[0]->GetLocalPos());
+		CreateObject(pThunder, GROUP_TYPE::PROJ_PLAYER);
+
+		if (mThunderSound)	mThunderSound->Play();
 	}
 
 	SetSkillTime(0.8f * GetSkillLevel() / 5);

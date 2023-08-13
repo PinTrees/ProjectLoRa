@@ -28,36 +28,55 @@ void Grenade::UseSkill()
 	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
 	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecBoss = cscene->GetGroupObject(GROUP_TYPE::BOSS);
 
-	float length = 1000.f;
-	Vect2 monsterPos;
-	Vect2 mvTarget;
+	Vect2 mvTarget = Vect2::zero;
+	Vect2 curvPoint;
 
-	for (size_t i = 0; i < vecMon.size(); ++i)
+	if (vecMon.size() > 0)
 	{
-		monsterPos = vecMon[i]->GetPos();
-		if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+		float length = 1000.f;
+		Vect2 monsterPos;
+
+		for (size_t i = 0; i < vecMon.size(); ++i)
 		{
-			length = (playerPos - monsterPos).Length(); // length 에 값 대입
-			mvTarget = monsterPos;
+			monsterPos = vecMon[i]->GetPos();
+			if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+			{
+				length = (playerPos - monsterPos).Length(); // length 에 값 대입
+				mvTarget = monsterPos;
+			}
 		}
+
+		float curv_x = (mvTarget.x - playerPos.x) / 2.f;			// 몬스터와 플레이어의 중간거리를 구한다.
+		float curv_y = (mvTarget.y - playerPos.y) / 2.f - 500.f;	// 수류탄이 높게 뜬 후 떨어지게 하기위해 추가로 500.f 를 감소시킨다.
+
+		curvPoint.x = playerPos.x + curv_x;		// 커브 지점의 좌표를 찍는다.
+		curvPoint.y = playerPos.y + curv_y;
+	}
+	else if (vecBoss.size() > 0)
+	{
+		mvTarget = vecBoss[0]->GetLocalPos();
+		
+		float curv_x = (mvTarget.x - playerPos.x) / 2.f;			// 몬스터와 플레이어의 중간거리를 구한다.
+		float curv_y = (mvTarget.y - playerPos.y) / 2.f - 500.f;	// 수류탄이 높게 뜬 후 떨어지게 하기위해 추가로 500.f 를 감소시킨다.
+
+		curvPoint.x = playerPos.x + curv_x;		// 커브 지점의 좌표를 찍는다.
+		curvPoint.y = playerPos.y + curv_y;
 	}
 
-	float curv_x = (mvTarget.x - playerPos.x) / 2.f;			// 몬스터와 플레이어의 중간거리를 구한다.
-	float curv_y = (mvTarget.y - playerPos.y) / 2.f - 500.f;	// 수류탄이 높게 뜬 후 떨어지게 하기위해 추가로 500.f 를 감소시킨다.
 
-	Vect2 curvPoint;
-	curvPoint.x = playerPos.x + curv_x;		// 커브 지점의 좌표를 찍는다.
-	curvPoint.y = playerPos.y + curv_y;
+	if (mvTarget != Vect2::zero)
+	{
+		Grenade_Obj* grenade = new Grenade_Obj;
 
-	Grenade_Obj* grenade = new Grenade_Obj;
+		grenade->SetOwner(this);
+		grenade->SetStartPoint(playerPos);
+		grenade->SetCurvePoint(curvPoint);
+		grenade->SetTargetPoint(mvTarget);
 
-	grenade->SetOwner(this);
-	grenade->SetStartPoint(playerPos);
-	grenade->SetCurvePoint(curvPoint);
-	grenade->SetTargetPoint(mvTarget);
-
-	CreateObject(grenade, GROUP_TYPE::PROJ_PLAYER);
+		CreateObject(grenade, GROUP_TYPE::PROJ_PLAYER);
+	}
 
 	SetSkillTime(0.f);
 }
