@@ -17,6 +17,7 @@
 
 // Include Manager Header
 #include "PlayerMgr.h"
+#include "Monster.h"
 
 
 DeadState::DeadState()
@@ -37,7 +38,10 @@ void DeadState::Enter()
 
 	GetOwner()->GetAnimator()->Play(vOwnerPos.x > vPlayerPos.x ? L"DEAD_L" : L"DEAD_R", false);
 
-	PlayerMgr::GetI()->GetPlayer()->AddExp(2.f);
+	if (((Monster*)GetOwner())->GetType() == MONSTER_TYPE::LOCK)
+		return;
+
+	PlayerMgr::GetI()->GetPlayer()->AddExp(1.f);
 }
 
 

@@ -141,13 +141,13 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 4.f, vSliseSize, vStepSize, 0.07f, 10);
-		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 3);
 		GetAnimator()->CreateAnimation(L"DEAD_R", pTex_r, vLtPos * 9.f, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 8.f, vSliseSize, vStepSize, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 8.f, vSliseSize, vStepSize, 0.07f, 3);
 
 		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 4.f), vSliseSize, vStepSize * -1.f, 0.07f, 10);
-		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 9.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 9.f), vSliseSize, vStepSize * -1.f, 0.07f, 3);
+		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 3);
 		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
 		GetRigidBody()->IsKinematic();

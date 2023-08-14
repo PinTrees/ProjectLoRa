@@ -39,7 +39,8 @@ TraceState::~TraceState()
 
 void TraceState::Enter()
 {
-	mvTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
+	if (mvTargetPos == Vect2::zero)
+		mvTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 }
 
 
@@ -68,8 +69,6 @@ void TraceState::Update()
 		pMonster->SetPos(pMonster->GetPos() + vDir * DT * pMonster->GetInfo().curSpeed);
 		return;
 	}
-
-
 
 	if (mCurDelay > mAstarDelay)
 	{
@@ -108,7 +107,6 @@ void TraceState::Update()
 
 		vecPosList.clear();
 	}
-
 
 	if (Vect2::Distance(vMonsterPos, mvTargetPos) < 5.f)
 		return;

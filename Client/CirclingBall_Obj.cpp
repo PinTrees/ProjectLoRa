@@ -46,8 +46,8 @@ void CirclingBall_Obj::Update()
 	Vect2 vPlayer = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
 	Vect2 vPos;
-	vPos.x = cosf(mTheta) * 100.f;
-	vPos.y = sinf(mTheta) * 100.f;
+	vPos.x = cosf(mTheta) * (100.f + 18.f * GetOwner()->GetSkillLevel());
+	vPos.y = sinf(mTheta) * (100.f + 18.f * GetOwner()->GetSkillLevel());
 
 	SetPos(vPos + vPlayer);			// 공이 플레이어 주변을 빙글빙글 돌도록 세팅한다.
 	GetAnimator()->Update();

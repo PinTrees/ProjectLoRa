@@ -92,7 +92,6 @@ void Scene_Start::Update()
 
 	mTimer += DT;
 	GUIMgr::GetI()->SetTimerText((UINT)mTimer);
-	GUIMgr::GetI()->SetFrameText(CTimeMgr::GetI()->GetFrame());
 
 	if (mbBossRespone)
 		return;
@@ -112,6 +111,14 @@ void Scene_Start::Update()
 		mfCurDelay = 0.f;
 		CreateMonster();
 	}
+
+	CScene::SortYPositionObject(GROUP_TYPE::MONSTER);
+}
+
+void Scene_Start::UpdateUI()
+{
+	CScene::UpdateUI();
+	GUIMgr::GetI()->SetFrameText(CTimeMgr::GetI()->GetFrame());
 }
 
 void Scene_Start::Enter()
@@ -196,7 +203,7 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x * 0.5f;
 	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y * 0.5f;
 
-	int MonsterCount = 10 + (float)mMonsterWave * 1.f;
+	int MonsterCount = 1 + (float)mMonsterWave * 1.f;
 	MonsterCount = MonsterCount > 100 ? 100 : MonsterCount;
 
 	float ellipseWidth = vResolution.x + edgeDistance * 2.0f;  // 타원형의 가로 크기
@@ -219,9 +226,9 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	}
 
 
-	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
+	for (int i = 0; i < MonsterCount / 2; ++i) // 화면의 끝에서 원거리 공격 몬스터를 생성 (4방면에서 생성됨)
 	{
-		float angle = i * (360.0f / MonsterCount);  // 각도를 계산
+		float angle = i * (360.0f / MonsterCount / 2);  // 각도를 계산
 
 		float x = vCenter.x + (ellipseWidth / 2.0f) * cos(angle * PI / 180.0f);
 		float y = vCenter.y - (ellipseHeight / 2.0f) * sin(angle * PI / 180.0f);

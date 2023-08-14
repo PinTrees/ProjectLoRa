@@ -22,6 +22,7 @@ private:
 
 public:
 	virtual void Update();
+	virtual void UpdateUI() override;
 	virtual void Enter();
 	virtual void Exit();
 

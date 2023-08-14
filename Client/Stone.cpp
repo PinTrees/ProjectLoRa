@@ -92,7 +92,7 @@ void Stone::Update()
 void Stone::Render(HDC dc)
 {
 	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvTargetPoint);
-	Vect2 vScale = Vect2(100.f, 50.f) * 1.5f;
+	Vect2 vScale = Vect2(100.f, 100.f) * 1.5f;
 	Vect2 vOffset = Vect2(0.f, 25.f);
 	float pivotSize = 3.f;
 
@@ -103,7 +103,7 @@ void Stone::Render(HDC dc)
 		bf.BlendOp = AC_SRC_OVER;
 		bf.BlendFlags = 0;
 		bf.AlphaFormat = AC_SRC_ALPHA;
-		bf.SourceConstantAlpha = mIsAtk ? 0 : 100;
+		bf.SourceConstantAlpha = mIsAtk ? 0 : 68;
 
 		AlphaBlend(dc
 			, (int)(vRenderPos.x + vOffset.x - vScale.x * 0.5f)

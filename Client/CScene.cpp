@@ -337,3 +337,53 @@ void CScene::DeleteAll()
 		DeleteGroup((GROUP_TYPE)i);
 	}
 }
+
+
+
+void CScene::SortYPositionObject(GROUP_TYPE _eTYpe)
+{
+	vector<CObject*>& vecObj = mArrObj[(UINT)_eTYpe];
+	int size = vecObj.size();
+
+	if (size <= 1) {
+		return;
+	}
+
+	QuickSortYPosition(vecObj, 0, size - 1);
+}
+
+
+void CScene::QuickSortYPosition(vector<CObject*>& arr, int low, int high)
+{
+	if (low < high)
+	{
+		int pivotIndex = Partition(arr, low, high);
+		QuickSortYPosition(arr, low, pivotIndex - 1);
+		QuickSortYPosition(arr, pivotIndex + 1, high);
+	}
+}
+
+int CScene::Partition(vector<CObject*>& arr, int low, int high)
+{
+	float pivot = arr[high]->GetPos().y;
+	int i = (low - 1);
+
+	for (int j = low; j <= high - 1; j++)
+	{
+		if (arr[j]->GetPos().y < pivot)
+		{
+			i++;
+			Swap(arr[i], arr[j]);
+		}
+	}
+
+	Swap(arr[i + 1], arr[high]);
+	return (i + 1);
+}
+
+void CScene::Swap(CObject*& a, CObject*& b)
+{
+	CObject* temp = a;
+	a = b;
+	b = temp;
+}

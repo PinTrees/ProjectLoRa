@@ -42,19 +42,6 @@ public:
 	void SetName(const wstring& _strName) { mStrName = _strName; }
 	const wstring& GetName() { return mStrName; }
 
-	// 공간 분할 충돌 확인
-	void InitBSP(Vect2 scale, UINT width, UINT height);
-	CCollider* FindBSPObj(UINT w, UINT h, UINT idx, CCollider* col);
-	void AddBSPObj(UINT w, UINT h, UINT idx, CCollider* col);
-	void RemoveBSPObj(UINT w, UINT h, UINT idx, CCollider* col);
-
-	bool IsBSP() { return mbBSP; }
-	UINT GetBspWidth() { return mBspWidth; }
-	UINT GetBspHeight() { return mBspHeight; }
-
-	const unordered_map<UINT, CCollider*>& GetCollisionGropObject(UINT x, UINT y, UINT idx) { return mCollisionHashMap[x][y][idx]; }
-
-
 	// Life Cycle Point Function -------------------------------------
 	virtual void Update();			// 매 프레임 마다 호출
 	virtual void UpdateUI();
@@ -77,6 +64,27 @@ public:
 
 	void DeleteGroup(GROUP_TYPE _eTarget);
 	void DeleteAll();
+
+	// 공간 분할 충돌 확인 -------------------------------------
+	void InitBSP(Vect2 scale, UINT width, UINT height);
+	CCollider* FindBSPObj(UINT w, UINT h, UINT idx, CCollider* col);
+	void AddBSPObj(UINT w, UINT h, UINT idx, CCollider* col);
+	void RemoveBSPObj(UINT w, UINT h, UINT idx, CCollider* col);
+
+	bool IsBSP() { return mbBSP; }
+	UINT GetBspWidth() { return mBspWidth; }
+	UINT GetBspHeight() { return mBspHeight; }
+
+	const unordered_map<UINT, CCollider*>& GetCollisionGropObject(UINT x, UINT y, UINT idx) { return mCollisionHashMap[x][y][idx]; }
+
+	// 오브젝트 정렬 -------------------------------------
+	void SortYPositionObject(GROUP_TYPE _eTYpe);
+
+
+private:
+	void QuickSortYPosition(vector<CObject*>& arr, int low, int high);
+	int  Partition(vector<CObject*>& arr, int low, int high);
+	void Swap(CObject*& a, CObject*& b);
 
 
 public:
