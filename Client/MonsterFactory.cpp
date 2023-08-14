@@ -36,7 +36,6 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		pMonster = new Monster(type, L"4");
 
 		pMonster->SetPos(pos);
-		pMonster->CreateRigidBody();
 		pMonster->SetName(L"Monster");
 		pMonster->GetCollider()->SetTrigger(false);
 
@@ -66,7 +65,6 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		pMonster = new Monster(type, L"3");
 
 		pMonster->SetPos(pos); 
-		pMonster->CreateRigidBody();
 		pMonster->SetName(L"Monster");
 		pMonster->GetCollider()->SetTrigger(false);
 
@@ -80,6 +78,35 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
+
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
+		pAI->AddState(new IdleState);
+		pAI->AddState(new TraceState);
+		pAI->AddState(new DeadState);
+		pAI->AddState(new AtkState);
+		pAI->AddState(new HitState);
+		pAI->SetCurState(MONSTER_STATE::IDLE);
+
+		pMonster->SetAI(pAI);
+	}
+	break;
+	case MONSTER_TYPE::LOCK:
+	{
+		pMonster = new Monster(type, L"5");
+
+		pMonster->SetPos(pos);
+		pMonster->SetName(L"Monster");
+		pMonster->GetCollider()->SetTrigger(false);
+
+		tMonsterInfo info = {};
+		info.atk = 5.f;
+		info.atkRange = 250.f;
+		info.recogRange = 10000.f;
+		info.curHp = info.hp = 500.f * pow(1.001f, mCreateCount);
+		info.atkSpeed = 3.f;
+		info.speed = 25.f;
+
+		pMonster->setMonsterInfo(info);
 
 		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
 		pAI->AddState(new IdleState);

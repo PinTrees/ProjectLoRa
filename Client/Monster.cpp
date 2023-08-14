@@ -125,6 +125,42 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 
 		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}
+	else if (mtInfo.UID == L"5")
+	{
+		float scale = 1.f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 70.f) * scale;
+
+		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_5_r", L"texture\\monster\\5_r.bmp");
+		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_5_l", L"texture\\monster\\5_l.bmp");
+
+		Vect2 vSliseSize = Vect2(128.f, 128.f);
+		Vect2 vStepSize = Vect2(128.f, 0.f);
+		Vect2 vLtPos = Vect2(0.f, 128.f);
+		Vect2 vRtPos = Vect2(1280.f, 128.f);
+
+		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 4.f, vSliseSize, vStepSize, 0.07f, 10);
+		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD_R", pTex_r, vLtPos * 9.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 8.f, vSliseSize, vStepSize, 0.07f, 2);
+
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 4.f), vSliseSize, vStepSize * -1.f, 0.07f, 10);
+		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 9.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
+
+		GetRigidBody()->IsKinematic();
+		GetRigidBody()->SetMess(1.5f);
+		GetRigidBody()->SetMaxVelocity(Vect2(10.f, 10.f));
+		
+		SetScale(Vect2(128.f, 128.f) * scale);
+		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
+
+		mHpBar->SetPivot(Vect2(0.f, -15.f));
+	}
 
 	GetAnimator()->Play(L"IDLE", true);
 }

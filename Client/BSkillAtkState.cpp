@@ -48,7 +48,7 @@ void BSkillAtkState::Enter()
 	curvPoint.x = vBoss.x + curv_x;		// 커브 지점의 좌표를 찍는다.
 	curvPoint.y = vBoss.y + curv_y;
 
-	for (size_t i = 0; i < 8; i++)
+	for (size_t i = 0; i < 12; i++)
 	{
 		Stone* stone = new Stone;
 

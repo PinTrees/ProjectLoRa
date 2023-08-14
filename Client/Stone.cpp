@@ -38,7 +38,7 @@ Stone::Stone()
 	GetAnimator()->FindAnimation(L"ATK")->SetAllFrameOffet(Vect2(0.f, -50.f));
 	SetScale(Vect2(150.f, 150.f));
 
-	GetAnimator()->Play(L"Grenade", true);
+	//GetAnimator()->Play(L"Grenade", true);
 }
 
 Stone::~Stone()
@@ -59,31 +59,34 @@ void Stone::Update()
 		return;
 	}
 
-	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
 	if (mCurTime > 1)				// 지정한 시간이 지나면
 	{
+		//Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
+
 		mCurTime = 0;
-		Vect2 r = playerPos - mvTargetPoint;
+		GetAnimator()->Play(L"ATK", false);
+		mIsAtk = true;
+		/*Vect2 r = playerPos - mvTargetPoint;
 		if (r.Length() < HITRANGE)
 		{
 			PlayerMgr::GetI()->GetPlayer()->AddDamage(10.f);
 		}
-		mIsAtk = true;
-		GetAnimator()->Play(L"ATK", false);
+		
+		SetScale(GetScale() * 1.35f);*/
 		SetScale(GetScale() * 1.35f);
+		
 		return;
 	}
 
-
+	SetPos(mvTargetPoint);
 	mCurTime += DT / mArrivalTime;				// 베지어 곡선을 적용
-	mRemainTime = 1 - mCurTime;
+	//mRemainTime = 1 - mCurTime;
 
-	Vect2 V0 = mvStartPoint * mRemainTime + mvCurvePoint * mCurTime;
-	Vect2 V1 = mvCurvePoint * mRemainTime + mvTargetPoint * mCurTime;
-	Vect2 V2 = V0 * mRemainTime + V1 * mCurTime;
+	//Vect2 V0 = mvStartPoint * mRemainTime + mvCurvePoint * mCurTime;
+	//Vect2 V1 = mvCurvePoint * mRemainTime + mvTargetPoint * mCurTime;
+	//Vect2 V2 = V0 * mRemainTime + V1 * mCurTime;
 
-	SetPos(V2);
 }
 
 void Stone::Render(HDC dc)

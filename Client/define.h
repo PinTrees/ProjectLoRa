@@ -209,5 +209,7 @@ enum class MONSTER_TYPE
 	LONG,
 	BOSS,
 
+	LOCK,
+
 	END
 };

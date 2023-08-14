@@ -204,7 +204,6 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 
 	Vect2 vCenter(xPos + vResolution.x * 0.5f, yPos + vResolution.y * 0.5f);
 
-
 	for (int i = 0; i < MonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
 	{
 		float angle = i * (360.0f / MonsterCount) + 20.f;  // 각도를 계산
@@ -216,7 +215,7 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 		 
 		// 몬스터 생성 및 추가
 		Monster* pShort = MonsterFactory::CreateMonster(MONSTER_TYPE::SHORT, vCreatePos);
-		AddObject(pShort, GROUP_TYPE::MONSTER);
+		CreateObject(pShort, GROUP_TYPE::MONSTER);
 	}
 
 
@@ -231,7 +230,24 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 
 		// 몬스터 생성 및 추가
 		Monster* pLong = MonsterFactory::CreateMonster(MONSTER_TYPE::LONG, vCreatePos);
-		AddObject(pLong, GROUP_TYPE::MONSTER);
+		CreateObject(pLong, GROUP_TYPE::MONSTER);
+	}
+
+	if (mMonsterWave % 5 == 0 && mMonsterWave != 0)
+	{
+		for (int i = 0; i < 88; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
+		{
+			float angle = i * (360.0f / 88);  // 각도를 계산
+
+			float x = vCenter.x + (ellipseWidth / 2.0f) * cos(angle * PI / 180.0f);
+			float y = vCenter.y - (ellipseHeight / 2.0f) * sin(angle * PI / 180.0f);
+
+			Vect2 vCreatePos(x, y);
+
+			// 몬스터 생성 및 추가
+			Monster* pLong = MonsterFactory::CreateMonster(MONSTER_TYPE::LOCK, vCreatePos);
+			CreateObject(pLong, GROUP_TYPE::MONSTER);
+		}
 	}
 
 	++mMonsterWave;	// 몬스터 웨이브의 진행 상태만큼 몬스터를 증가하기 위해 사용

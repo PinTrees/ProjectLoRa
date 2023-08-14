@@ -19,6 +19,7 @@
 #include "SettingMgr.h"
 
 
+#define DESTROY_DELAY 18.f
 
 TraceState::TraceState()
 	: CState(MONSTER_STATE::TRACE)
@@ -26,6 +27,7 @@ TraceState::TraceState()
 	, mCurDelay(0.f)
 	, mvTargetPos(Vect2::zero)
 	, mAttakDelay()
+	, mCurDestroyDelay(0.f)
 {
 }
 
@@ -37,6 +39,7 @@ TraceState::~TraceState()
 
 void TraceState::Enter()
 {
+	mvTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 }
 
 
@@ -44,14 +47,29 @@ void TraceState::Update()
 {
 	mCurDelay += DT;
 	mAttakDelay += DT;
+	mCurDestroyDelay += DT;
 
 	Monster* pMonster = (Monster*)GetOwner();
+	Vect2 vMonsterPos = pMonster->GetLocalPos();
+	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
-	if (pMonster->GetInfo().curHp <= 0)
+	GetOwner()->GetAnimator()->Play(vMonsterPos.x > vPlayerPos.x ? L"RUN_L" : L"RUN_R", true);
+
+	if (pMonster->GetType() == MONSTER_TYPE::LOCK)
 	{
-		ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
+		if (mCurDestroyDelay > DESTROY_DELAY)
+		{
+			mCurDestroyDelay = 0.f;
+			ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
+			return;
+		}
+
+		Vect2 vDir = (mvTargetPos - vMonsterPos).Normalize();
+		pMonster->SetPos(pMonster->GetPos() + vDir * DT * pMonster->GetInfo().curSpeed);
 		return;
 	}
+
+
 
 	if (mCurDelay > mAstarDelay)
 	{
@@ -64,6 +82,7 @@ void TraceState::Update()
 		AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
 		AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
 		AstarMgr::GetI()->Find();
+		vector<Vect2> vecPosList = AstarMgr::GetI()->GetFinalPosList();
 
 		// JPS B 알고리즘 사용안함
 		/*if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
@@ -79,8 +98,6 @@ void TraceState::Update()
 			JPSMgr::GetI()->Find();
 		}*/
 
-		vector<Vect2> vecPosList = tCurFindPathType == FIND_PATH_TYPE::ASTAR ? AstarMgr::GetI()->GetFinalPosList()
-																			 : JPSMgr::GetI()->GetFinalPosList();
 		if (vecPosList.size() > 1)
 		{
 			Vect2 mTileOffet = Vect2(TILE_SIZE_RENDER, TILE_SIZE_RENDER) * 0.5f;
@@ -92,10 +109,6 @@ void TraceState::Update()
 		vecPosList.clear();
 	}
 
-	Vect2 vMonsterPos = pMonster->GetLocalPos();
-	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
-
-	GetOwner()->GetAnimator()->Play(vMonsterPos.x > vPlayerPos.x ? L"RUN_L" : L"RUN_R", true);
 
 	if (Vect2::Distance(vMonsterPos, mvTargetPos) < 5.f)
 		return;
