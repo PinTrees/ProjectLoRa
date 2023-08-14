@@ -27,6 +27,8 @@ private:
 	CSlider*	mSoundSlider;
 	TextUI*		mVolumText;
 
+	CBtnUI*		mResBtn[3];
+	CImageUI*	mResCheckIcon[3];
 
 public:
 	void Close();
@@ -39,6 +41,8 @@ public:
 	void SetDebugMode();
 	void SetDamageText();
 	void SetShowMonsterHpBar();
+	
+	void SetResolution(int i);
 
 	void ChangeSoundSliderValue(int val);
 

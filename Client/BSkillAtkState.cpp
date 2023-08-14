@@ -41,7 +41,7 @@ void BSkillAtkState::Enter()
 	GetOwner()->GetAnimator()->Play(vBoss.x > vPlayer.x ? L"ATK_L" : L"ATK_R", false);
 
 	float curv_x = (vPlayer.x - vBoss.x) / 2.f;			// 몬스터와 플레이어의 중간거리를 구한다.
-	float curv_y = (vPlayer.y - vBoss.y) / 2.f - 1000.f;	// 수류탄이 높게 뜬 후 떨어지게 하기위해 추가로 500.f 를 감소시킨다.
+	float curv_y = (vPlayer.y - vBoss.y) / 2.f - 500.f;	// 수류탄이 높게 뜬 후 떨어지게 하기위해 추가로 500.f 를 감소시킨다.
 
 	Vect2 curvPoint;
 

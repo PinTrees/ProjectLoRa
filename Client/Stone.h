@@ -1,6 +1,9 @@
 #pragma once
 #include "CObject.h"
 
+
+class CTexture;
+
 class Stone :
     public CObject
 {
@@ -13,6 +16,8 @@ private:
     float       mCurTime;
     float       mArrivalTime;       // 목표지점에 도착할 때 까지의 시간
     float       mRemainTime;        // 1 - mCurTime
+
+    CTexture*   mFloorTex;
 
     bool mIsAtk;
 

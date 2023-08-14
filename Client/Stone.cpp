@@ -14,6 +14,7 @@
 #include "SelectGDI.h"
 
 #include "CAnimation.h"
+#include "CTexture.h"
 
 #define HITRANGE 100.f
 
@@ -23,9 +24,10 @@ Stone::Stone()
 	, mRemainTime()
 	, mIsAtk(false)
 {
-	//mpSound = CResMgr::GetI()->LoadSound(L"Skill_6", L"sound\\skill\\6_2.wav");
 	//mpSound->SetVolumeOffset(-300);
 	SetName(L"Stone");
+
+	mFloorTex = CResMgr::GetI()->LoadTexture(L"Boss_Skill_G", L"texture\\monster\\rang.bmp");
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Grenade", L"texture\\effect\\2.bmp");
 	CTexture* pTex_1 = CResMgr::GetI()->LoadTexture(L"Skill_Boss_1", L"texture\\effect\\13.bmp");
@@ -84,22 +86,35 @@ void Stone::Update()
 	SetPos(V2);
 }
 
-void Stone::Render(HDC _dc)
+void Stone::Render(HDC dc)
 {
-	CompnentRender(_dc);
-
-	SelectGDI b(_dc, BRUSH_TYPE::HOLLOW);
-	SelectGDI p(_dc, PEN_TYPE::RED);
-
 	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(mvTargetPoint);
+	Vect2 vScale = Vect2(100.f, 50.f) * 1.5f;
+	Vect2 vOffset = Vect2(0.f, 25.f);
 	float pivotSize = 3.f;
 
-	Ellipse(_dc
-		, (int)(vRenderPos.x - HITRANGE * 0.5f)
-		, (int)(vRenderPos.y - HITRANGE * 0.5f)
-		, (int)(vRenderPos.x + HITRANGE * 0.5f)
-		, (int)(vRenderPos.y + HITRANGE * 0.5f));
+	if (mFloorTex)
+	{
+		BLENDFUNCTION bf = {};
 
+		bf.BlendOp = AC_SRC_OVER;
+		bf.BlendFlags = 0;
+		bf.AlphaFormat = AC_SRC_ALPHA;
+		bf.SourceConstantAlpha = mIsAtk ? 0 : 100;
+
+		AlphaBlend(dc
+			, (int)(vRenderPos.x + vOffset.x - vScale.x * 0.5f)
+			, (int)(vRenderPos.y + vOffset.y - vScale.y * 0.5f)
+			, (int)(vScale.x)
+			, (int)(vScale.y)
+			, mFloorTex->GetDC()
+			, 0, 0
+			, (int)mFloorTex->Width()
+			, (int)mFloorTex->Heigth()
+			, bf);
+	}
+
+	CompnentRender(dc);
 }
 
 void Stone::OnCollisionEnter(CCollider* _pOther)

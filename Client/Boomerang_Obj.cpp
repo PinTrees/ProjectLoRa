@@ -6,7 +6,7 @@
 
 #include "CCollider.h"
 #include "CAnimator.h"
-
+#include "CCore.h"
 
 
 
@@ -46,17 +46,19 @@ void Boomerang_Obj::Update()
 		return;
 	}
 
-	if (mCollision)		// 적과 부딪혔다면
+	Vect2 vRes = CCore::GetI()->GetResolution();
+	Vect2 vRenderPos = CCamera::GetI()->GetRenderPos(GetLocalPos());
+
+	if (vRes.y < vRenderPos.y || 0 > vRenderPos.y)
 	{
-		mSpeed -= mAccel * DT;		// 반대방향으로 가속도를 더함
+		mvDir = mvDir * Vect2(1.f, -1.f);
+	}
+	else if (vRes.x < vRenderPos.x || 0 > vRenderPos.x)
+	{
+		mvDir = mvDir * Vect2(-1.f, 1.f);
 	}
 
-	Vect2 vPos = GetPos();
-
-	vPos.x += mvDir.x * mSpeed * DT;
-	vPos.y += mvDir.y * mSpeed * DT;
-
-	SetPos(vPos);
+	SetPos(GetPos() + mvDir * mSpeed * DT);
 	SetAngle(mObjAngle);
 
 	mCurTime += DT;

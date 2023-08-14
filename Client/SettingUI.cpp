@@ -18,6 +18,7 @@
 
 #include "CScrollView.h"
 #include "CSlider.h"
+#include "CCore.h"
 
 
 SettingUI::SettingUI()
@@ -50,7 +51,7 @@ SettingUI::SettingUI()
 	AddChild(pScroll);
 
 	CColumn* pColumn = new CColumn;
-	pColumn->SetScale(Vect2(450.f, 500.f));
+	pColumn->SetScale(Vect2(450.f, 650.f));
 	pScroll->AddChild(pColumn);
 
 	TextUI* pPathSetting = new TextUI;
@@ -80,23 +81,18 @@ SettingUI::SettingUI()
 	pRow->AddChild(mJPSBtn);
 
 	// Debug UI
-	TextUI* pDebugSetting = new TextUI;
-	pDebugSetting->SetScale(Vect2(0.f, 50.f));
-	pDebugSetting->SetFontSize(28.f);
-	pDebugSetting->SetColor(RGB(255, 255, 255));
-	pDebugSetting->SetText(L"개발자 설정");
-	pColumn->AddChild(pDebugSetting);
-
 	CRow* pDebugRow = new CRow;
 	pDebugRow->SetScale(Vect2(500.f, 60.f));
 	pDebugRow->SetSpacing(16.f);
 	pColumn->AddChild(pDebugRow);
 
 	TextUI* pDebugText = new TextUI;
-	pDebugText->SetScale(Vect2(150.f, 25.f));
+	pDebugText->SetScale(Vect2(230.f, 25.f));
+	pDebugText->SetOutlineColor(RGB(255, 255, 255));
+	pDebugText->SetOutlineWidth(2);
 	pDebugText->SetFontSize(24.f);
-	pDebugText->SetColor(RGB(150, 150, 150));
-	pDebugText->SetText(L"Debug Mode");
+	pDebugText->SetColor(RGB(0, 0, 0));
+	pDebugText->SetText(L"개발자 설정 표시");
 	pDebugRow->AddChild(pDebugText);
 
 	mDebugBtn = new CBtnUI;
@@ -166,6 +162,13 @@ SettingUI::SettingUI()
 	mShowHpBarBtn->AddChild(mShowHpBarTextCheckIcon);
 
 	// 사운드 슬라이더 UI ---------------------------------------
+	TextUI* pSoundTitle = new TextUI;
+	pSoundTitle->SetScale(Vect2(0.f, 100.f));
+	pSoundTitle->SetFontSize(28.f);
+	pSoundTitle->SetColor(RGB(255, 255, 255));
+	pSoundTitle->SetText(L"사운드");
+	pColumn->AddChild(pSoundTitle);
+
 	CRow* pVolRow = new CRow;
 	pVolRow->SetScale(Vect2(500.f, 60.f));
 	pVolRow->SetSpacing(16.f);
@@ -187,6 +190,51 @@ SettingUI::SettingUI()
 	mVolumText->SetColor(RGB(255, 255, 255));
 	mVolumText->SetText(L"100");
 	pVolRow->AddChild(mVolumText);
+
+	TextUI* pResTitle = new TextUI;
+	pResTitle->SetScale(Vect2(0.f, 100.f));
+	pResTitle->SetFontSize(28.f);
+	pResTitle->SetColor(RGB(255, 255, 255));
+	pResTitle->SetText(L"해상도");
+	pColumn->AddChild(pResTitle);
+
+	wstring resTex[3] =
+	{
+		L"1280 X 720",
+		L"1920 X 1080",
+		L"전체화면",
+	};
+
+	for (int i = 0; i < 3; ++i)
+	{
+		CRow* pResRow = new CRow;
+		pResRow->SetScale(Vect2(500.f, 38.f));
+		pResRow->SetSpacing(16.f);
+		pColumn->AddChild(pResRow);
+
+		TextUI* pResText = new TextUI;
+		pResText->SetScale(Vect2(230.f, 25.f));
+		pResText->SetOutlineColor(RGB(255, 255, 255));
+		pResText->SetOutlineWidth(2);
+		pResText->SetFontSize(24.f);
+		pResText->SetColor(RGB(0, 0, 0));
+		pResText->SetText(resTex[i]);
+		pResRow->AddChild(pResText);
+
+		mResBtn[i] = new CBtnUI;
+		mResBtn[i]->SetScale(Vect2(30.f, 30.f));
+		mResBtn[i]->SetTexture(CResMgr::GetI()->LoadTexture(L"Btn_1", L"texture\\ui\\button\\1.bmp"));
+		mResBtn[i]->SetClickedCallBack(this, OBJECT_FUNC_P(&SettingUI::SetResolution), (DWORD_PTR)i);
+		pResRow->AddChild(mResBtn[i]);
+
+		mResCheckIcon[i] = new CImageUI;
+		mResCheckIcon[i]->SetScale(Vect2(30.f, 30.f));
+		mResCheckIcon[i]->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Check", L"texture\\ui\\icon\\check.bmp"));
+		mResCheckIcon[i]->SetRaycastTarget(false);
+		mResCheckIcon[i]->SetVisible(i == 0);
+
+		mResBtn[i]->AddChild(mResCheckIcon[i]);
+	}
 }
 
 
@@ -250,6 +298,11 @@ void SettingUI::SetShowMonsterHpBar()
 {
 	SettingMgr::GetI()->SetMonsterHpbarActive(!SettingMgr::GetI()->GetMonsterHpbarActive());
 	Build();
+}
+
+void SettingUI::SetResolution(int i)
+{
+	//CCore::GetI()->ChangeWindowSize(Vect2(1080, 1080), false);
 }
 
 
