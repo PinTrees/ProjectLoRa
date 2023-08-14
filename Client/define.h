@@ -55,9 +55,10 @@ enum class GROUP_TYPE
 
 	GROUND_PLAYER,
 
+	SHADOW,
+
 	ENV,
 	GOLD,
-
 
 	PLAYER,
 	MONSTER,

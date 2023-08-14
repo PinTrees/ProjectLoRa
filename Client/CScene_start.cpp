@@ -196,7 +196,7 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x * 0.5f;
 	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y * 0.5f;
 
-	int MonsterCount = 3 + (float)mMonsterWave * 1.f;
+	int MonsterCount = 10 + (float)mMonsterWave * 1.f;
 	MonsterCount = MonsterCount > 100 ? 100 : MonsterCount;
 
 	float ellipseWidth = vResolution.x + edgeDistance * 2.0f;  // 타원형의 가로 크기

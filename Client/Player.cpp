@@ -41,6 +41,7 @@
 #include "PlayerMgr.h"
 #include "CSoundMgr.h"
 #include "Gold.h"
+#include "CombatText.h"
 
 
 Player::Player()
@@ -188,7 +189,10 @@ void Player::Update()
 	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
 	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
 	mMpBar->SetFillAmount(mtInfo.curMP / mtInfo.fullMP);
-	mHpText->SetText(std::to_wstring(mtInfo.curHp));
+
+	wstring hpText = std::to_wstring(mtInfo.curHp);
+
+	mHpText->SetText(hpText.substr(0, hpText.find('.')));
 
 	if (mCurGoldChekDelay > mGoldChekDelay)
 	{
@@ -328,12 +332,17 @@ void Player::UseSkill()
 	}
 }
 
-void Player::AddDamage(float _damage)
+void Player::AddDamage(float damage)
 {
 	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
 		return;
 
-	mtInfo.curHp -= _damage;
+	CombatText* pCbTex = new CombatText;
+	pCbTex->SetPos(GetLocalPos());
+	pCbTex->SetText(std::to_wstring((int)damage));
+	CreateObject(pCbTex, GROUP_TYPE::UI);
+
+	mtInfo.curHp -= damage;
 
 	if (mtInfo.curHp <= 0)
 	{

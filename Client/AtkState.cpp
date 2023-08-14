@@ -54,6 +54,7 @@ void AtkState::Update()
 
 		Monster_Arrow* arrow = new Monster_Arrow;
 
+		arrow->SetDamage(monster->GetInfo().atk);
 		arrow->SetPos(GetOwner()->GetPos());
 		arrow->SetDir(Dir);
 		arrow->SetOwner(monster);

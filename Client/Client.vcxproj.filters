@@ -419,6 +419,9 @@
     <Filter Include="Game\FSM\Boss\Dead">
       <UniqueIdentifier>{e4c81c41-fb83-4096-a60c-1cc9055f4980}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI\InfoDialog">
+      <UniqueIdentifier>{50114622-9ad3-4c65-bd9c-d760bd773393}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -808,6 +811,9 @@
     <ClInclude Include="BDeadState.h">
       <Filter>Game\FSM\Boss\Dead</Filter>
     </ClInclude>
+    <ClInclude Include="HelpDialogUI.h">
+      <Filter>Game\UI\InfoDialog</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1183,6 +1189,9 @@
     </ClCompile>
     <ClCompile Include="BDeadState.cpp">
       <Filter>Game\FSM\Boss\Dead</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpDialogUI.cpp">
+      <Filter>Game\UI\InfoDialog</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

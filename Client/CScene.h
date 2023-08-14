@@ -21,6 +21,7 @@ protected:
 	vector<CObject*> mArrObj[(UINT)GROUP_TYPE::END];
 	vector<vector<vector<unordered_map<UINT, CCollider*>>>> mCollisionHashMap;
 
+
 private:
 	wstring			 mStrName;		//Scene 이름
 	vector<tForce>	 mArrForce;		// 씬 오브젝트 물리 폭발 관리

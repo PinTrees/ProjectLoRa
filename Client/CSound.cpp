@@ -19,7 +19,10 @@ CSound::~CSound()
 int CSound::Load(const wstring& _strPath)
 {
 	if (nullptr == CSoundMgr::GetI()->GetSoundDevice())
-		assert(nullptr); // 사운드 객체 생성되지 않음
+		return S_FALSE;
+
+	//if (nullptr == CSoundMgr::GetI()->GetSoundDevice())
+	//	assert(nullptr); // 사운드 객체 생성되지 않음
 
 	// 확장자 이름 구별하기
 	wchar_t szExt[10] = { 0 };
@@ -27,8 +30,9 @@ int CSound::Load(const wstring& _strPath)
 
 	if (!wcscmp(szExt, L".wav")) // WAV 파일 로드
 	{
-		if (false == LoadWaveSound(_strPath))
-			assert(nullptr);
+		LoadWaveSound(_strPath);
+		//if (false == LoadWaveSound(_strPath))
+		//	assert(nullptr);
 	}
 	else
 		assert(nullptr);
@@ -40,7 +44,6 @@ int CSound::Load(const wstring& _strPath)
 bool CSound::LoadWaveSound(const wstring& _strPath)
 {
 	HMMIO	hFile; // File Handle
-
 	wstring strFilePath = _strPath;
 
 	//CreateFile
@@ -70,8 +73,6 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 	mmioAscend(hFile, &pChild, 0);
 	pChild.ckid = mmioFOURCC('d', 'a', 't', 'a');
 	mmioDescend(hFile, &pChild, &pParent, MMIO_FINDCHUNK);
-
-
 
 	memset(&m_tBuffInfo, 0, sizeof(DSBUFFERDESC));
 	m_tBuffInfo.dwBufferBytes = pChild.cksize;
@@ -110,6 +111,9 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 
 void CSound::Play(bool _bLoop)
 {
+	if (nullptr == m_pSoundBuffer)
+		return;
+
 	// Play 함수의 1번째 2번째 인자는 0 으로 이미 예약되어있다.
 	// 3번째 변수는 사운드를 반복재생 할 것인지 아닌지를 결정한다.
 	m_pSoundBuffer->SetCurrentPosition(0);
@@ -134,6 +138,9 @@ void CSound::PlayToBGM(bool _bLoop)
 
 void CSound::Stop(bool _bReset)
 {
+	if (nullptr == m_pSoundBuffer)
+		return;
+
 	m_pSoundBuffer->Stop();
 
 	if (_bReset)
@@ -143,12 +150,18 @@ void CSound::Stop(bool _bReset)
 
 void CSound::SetVolume(float _fVolume)
 {
+	if (nullptr == m_pSoundBuffer)
+		return;
+
 	m_iVolume = GetDecibel(_fVolume);
 	m_pSoundBuffer->SetVolume(m_iVolume + mVolOffset);
 }
 
 void CSound::SetPosition(float _fPosition)
 {
+	if (nullptr == m_pSoundBuffer)
+		return;
+
 	Stop(true);
 
 	DWORD dwBytes = (DWORD)((_fPosition / 100.f) * (float)m_tBuffInfo.dwBufferBytes);
@@ -159,6 +172,9 @@ void CSound::SetPosition(float _fPosition)
 
 void CSound::SetVolumeOffset(int vol)
 {
+	if (nullptr == m_pSoundBuffer)
+		return;
+
 	mVolOffset = vol;
 	m_pSoundBuffer->SetVolume(m_iVolume + mVolOffset);
 }

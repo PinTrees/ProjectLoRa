@@ -18,19 +18,19 @@ IceBolt_Effect::IceBolt_Effect()
 	, mFreeze(false)
 	, mvecIcedMon{}
 {
-	SetMaxDelay(2.7f);		// 스킬 지속시간 세팅
-	SetName(L"IceBolt_Effect");
+	SetMaxDelay(2.7f);			// 스킬 지속시간 세팅
+	SetName(L"IceBolt_Effect"); // 
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"IceBolt_Effect", L"texture\\effect\\9.bmp");
+	SetAlpha(180);
+	SetScale(Vect2(48.f, 64.f) * 1.5f);
+
 	CreateAnimator();
 
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"IceBolt_Effect", L"texture\\effect\\9.bmp");
 	GetAnimator()->CreateAnimation(L"IceBolt_Effect_Freeze", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.07f, 10);
 	GetAnimator()->CreateAnimation(L"IceBolt_Effect_Freezing", pTex, Vect2(432.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.6f, 1);
 	GetAnimator()->CreateAnimation(L"IceBolt_Effect_DeFrost", pTex, Vect2(480.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.07f, 6);
 	
-	SetScale(Vect2(48.f, 64.f) * 1.5f);
-	SetAlpha(180);
-
 	GetAnimator()->Play(L"IceBolt_Effect_Freeze", false);
 }
 

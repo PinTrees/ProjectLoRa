@@ -4,7 +4,6 @@ class CCollider;
 
 union COLLIDER_ID
 {
-
 	struct 
 	{
 		UINT Left_id;

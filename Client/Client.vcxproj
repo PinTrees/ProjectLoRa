@@ -200,6 +200,7 @@
     <ClInclude Include="Grenade_Bomb.h" />
     <ClInclude Include="Grenade_Obj.h" />
     <ClInclude Include="GUIMgr.h" />
+    <ClInclude Include="HelpDialogUI.h" />
     <ClInclude Include="HitState.h" />
     <ClInclude Include="HolyArea.h" />
     <ClInclude Include="HolyArea_Obj.h" />
@@ -330,6 +331,7 @@
     <ClCompile Include="Grenade_Bomb.cpp" />
     <ClCompile Include="Grenade_Obj.cpp" />
     <ClCompile Include="GUIMgr.cpp" />
+    <ClCompile Include="HelpDialogUI.cpp" />
     <ClCompile Include="HitState.cpp" />
     <ClCompile Include="HolyArea.cpp" />
     <ClCompile Include="HolyArea_Obj.cpp" />

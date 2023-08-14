@@ -61,7 +61,12 @@ void TraceState::Update()
 		Vect2 vTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos() / TILE_SIZE_RENDER;
 		auto tCurFindPathType = SettingMgr::GetI()->GetFindPathType();
 
-		if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
+		AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
+		AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
+		AstarMgr::GetI()->Find();
+
+		// JPS B 알고리즘 사용안함
+		/*if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
 		{
 			AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
 			AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
@@ -72,7 +77,7 @@ void TraceState::Update()
 			JPSMgr::GetI()->SetStartPos(vMonPos.x, vMonPos.y);
 			JPSMgr::GetI()->SetTargetPos(vTargetPos.x, vTargetPos.y);
 			JPSMgr::GetI()->Find();
-		}
+		}*/
 
 		vector<Vect2> vecPosList = tCurFindPathType == FIND_PATH_TYPE::ASTAR ? AstarMgr::GetI()->GetFinalPosList()
 																			 : JPSMgr::GetI()->GetFinalPosList();

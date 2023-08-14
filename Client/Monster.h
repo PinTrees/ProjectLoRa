@@ -31,8 +31,8 @@ class Monster :
 protected:
 	tMonsterInfo		mtInfo;
 
-	Vect2			mvShadowOffset;
-	Vect2			mvShadowScale;
+	Vect2				mvShadowOffset;
+	Vect2				mvShadowScale;
 
 	CSound*			mHitSound;
 	CTexture*		mpShadowTex;
