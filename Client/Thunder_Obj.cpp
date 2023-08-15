@@ -23,6 +23,7 @@ Thunder_Obj::Thunder_Obj()
 {
 	SetMaxDelay(0.5f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.9f);	// ~초마다 데미지를 입힘
+	SetDamage(30.f);
 
 	SetName(L"Thunder");
 	SetScale(Vect2(48.f, 400.f) * 2.f);

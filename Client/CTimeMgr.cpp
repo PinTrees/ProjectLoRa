@@ -38,6 +38,7 @@ void CTimeMgr::Update()
 
 	// 이전카운트 값을 현재값으로 갱신 (다음번에 계산을 위해서)
 	m_PrevCount = m_CurCount;
+	m_iFPS = 1.f / m_dDT;
 
 //#ifdef _DEBUG
 //	//if (m_dDT > (1. / 60.))
@@ -59,6 +60,5 @@ void CTimeMgr::Render()
 		//wchar_t szBuffer[255] = {};
 		//swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDT);
 		//SetWindowText(CCore::GetI()->GetMainHwnd(), szBuffer);
-
 	}
 }

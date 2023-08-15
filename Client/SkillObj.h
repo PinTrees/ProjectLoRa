@@ -10,7 +10,9 @@ class SkillObj :
     public CObject
 {
 private:
-    Skill* mpOwner;
+    Skill*      mpOwner;
+
+    float       mDamage;
 
     float       mCurDamageDelay;    // 데미지를 입히는 시간을 재는 용도
     float       mMaxDelay;			// 지속 시간
@@ -24,6 +26,9 @@ private:
 public:
     void SetOwner(Skill* _owner) { mpOwner = _owner; }
     Skill* GetOwner() { return mpOwner; }
+
+    void SetDamage(float _damage) { mDamage = _damage; }
+    float GetDamage() { return mDamage; }
 
     void SetDamageDelay(float _ddelay) { mDamageDelay = _ddelay; mCurDamageDelay = _ddelay; } // 첫 스킬 데미지가 바로 들어가도록 초기화
 

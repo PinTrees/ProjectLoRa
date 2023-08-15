@@ -33,7 +33,6 @@
 #include "CImageUI.h"
 
 #include "CState.h"
-
 #include "Skill.h"
 
 // Game Manager Header
@@ -41,25 +40,33 @@
 #include "LevelUpUIMgr.h"
 #include "PlayerMgr.h"
 #include "CSoundMgr.h"
-
+#include "Gold.h"
+#include "CombatText.h"
 
 
 Player::Player()
 	: mfCurDelay(0.f)
 	, mfDelay(0.03f)
-	, mMpDelay()
 	, mvDir(Vect2(0.f, 0.f))
 	, mExpBar(nullptr)
+	, mHpDelay()
+	, mMpDelay()
 	, mLevel(0)
 	, mExp(0.f)
 	, mAI(nullptr)
 	, mtInfo({})
 	, mVecSkill({})
 	, mVecMaxLevelSkill{}
-	, mpCoinSound(nullptr)
+	, mVecMaxLevelStatus{}
+	, mArrStatusLevel{}
+	, mArrStatusMaxLevel{}
+
+	, mGoldChekDelay(0.7f)
+	, mCurGoldChekDelay(0.f)
 {
+	SetName(L"Player");
+
 	// Load ----------------------
-	mpCoinSound = CResMgr::GetI()->LoadSound(L"Sound_Coin", L"sound\\coin.wav");
 	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
 
 	mtInfo.fullHP = 100.f;
@@ -69,7 +76,10 @@ Player::Player()
 	// Create Collider Component
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vect2(-12.f, -8.f));
-	GetCollider()->SetScale(Vect2(30.f, 45.f));
+	GetCollider()->SetScale(Vect2(25.f, 45.f));
+
+	SetScale(Vect2(73.f, 54.f) * 1.7f);
+	SetPivot(Vect2(-15.f, 15.f));
 
 	// Create RigidBody Component
 	CreateRigidBody();
@@ -89,9 +99,6 @@ Player::Player()
 	//GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
 	GetAnimator()->Play(L"IDLE", true);
 
-	SetScale(Vect2(73.f, 54.f) * 1.5f);
-	SetPivot(Vect2(-15.f, 15.f));
-	SetName(L"Player");
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
@@ -103,7 +110,6 @@ Player::Player()
 	mExpBar->SetColor(RGB(255, 222, 0));
 	CreateObject(mExpBar, GROUP_TYPE::UI);
 
-	// Mp Bar
 	mMpBar = new BarUI;
 	mMpBar->SetCameraAffected(true);
 	mMpBar->SetScale(Vect2(250.f, 10.f));
@@ -149,6 +155,10 @@ Player::Player()
 	mHpText->SetOutlineColor(RGB(0, 0, 0));
 	mHpText->SetOutlineWidth(1);
 	pHpBarUI->AddChild(mHpText);
+
+	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::FULL_HP_UP] = 1;
+	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::REGENERATION_HP_UP] = 1;
+	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::ATK_DAMAGE_UP] = 1;
 }
 
 
@@ -169,67 +179,90 @@ void Player::Update()
 	if (mAI)
 		mAI->Update();
 
-	GetAnimator()->Update();
-	 
 	calExp();
+	GetAnimator()->Update();
+
 	mfCurDelay += DT;
+	mCurGoldChekDelay += DT;
+
+	if (mtInfo.curHp < mtInfo.fullHP)				// 현재 체력이 최대 체력보다 적을 때
+	{
+		mHpDelay += DT;
+
+		if (mHpDelay > 5.f)							// 3초가 지나면
+		{
+			mtInfo.curHp += mtInfo.regenerationHP;  // 체력 재생
+
+			if (mtInfo.curHp > mtInfo.fullHP)		// 체력재생했지만 최대체력보다 넘어가면
+			{
+				mtInfo.curHp = mtInfo.fullHP;		// 최대체력으로 세팅
+			}
+
+			mHpDelay = 0.f;
+		}
+	}
+
+	mtInfo.curMP += 10.f * DT;
+	mtInfo.curMP = mtInfo.curMP > mtInfo.fullMP ? mtInfo.fullMP : mtInfo.curMP;
 
 	/// 최상단 예외 처리
 	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
-	{
 		return;
+
+	UseSkill();
+
+	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
+	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
+	mMpBar->SetFillAmount(mtInfo.curMP / mtInfo.fullMP);
+
+	wstring hpText = std::to_wstring(mtInfo.curHp);
+
+	mHpText->SetText(hpText.substr(0, hpText.find('.')));
+
+	if (mCurGoldChekDelay > mGoldChekDelay)
+	{
+		mCurGoldChekDelay = 0.f;
+
+		Vect2 vPlayerPos = GetPos();
+
+		const vector<CObject*>& vecGolds = CSceneMgr::GetI()->GetCurScene()->GetGroupObject(GROUP_TYPE::GOLD);
+		for (int i = 0; i < vecGolds.size(); ++i)
+		{
+			if (Vect2::Distance(vPlayerPos, vecGolds[i]->GetPos()) < 150.f)
+			{
+				((Gold*)(vecGolds[i]))->SetGather();
+			}
+		}
 	}
 
 	if (mAI->GetCurStateType() == PLAYER_STATE::DASH)
 		return;
 
-	if (mfCurDelay > mtInfo.atkDelay) {
-		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) {
+	if (mfCurDelay > mtInfo.atkDelay)
+	{
+		if (GetAI()->GetCurStateType() != PLAYER_STATE::ATTACK) 
+		{
 			mfCurDelay = 0;
 			ChangeAIState(GetAI(), PLAYER_STATE::ATTACK);
 		}
 	}
 
-	if (mtInfo.curMP < 100.f)
-	{
-		mMpDelay += DT;
-		if (mMpDelay > 2.f)
-		{
-			mtInfo.curMP += 10.f;
-			mMpDelay = 0.f;
-		}
-	}
-
-	UseSkill();
-
 	Vect2 vPos = GetPos();
-	mExpBar->SetFillAmount(GetExp() / GetMaxExp());
-	mHpBar->SetFilledAmount(mtInfo.curHp / mtInfo.fullHP);
-	mMpBar->SetFillAmount(mtInfo.curMP / mtInfo.fullMP);
-	mHpText->SetText(std::to_wstring(mtInfo.curHp));
 
-	if (mtInfo.curHp <= 0)
+	if (mtInfo.curMP >= 60.f && KEY_TAP(KEY::SPACE))
 	{
-		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
-		return;
-	}
-
-
-	if (mtInfo.curMP >= 30.f && KEY_TAP(KEY::SPACE))
-	{
-		mtInfo.curMP -= 30.f;
+		mtInfo.curMP -= 60.f;
 		ChangeAIState(GetAI(), PLAYER_STATE::DASH);
 		return;
 	}
 
 	mvDir = Vect2::zero;
-
 	if (KEY_HOLD(KEY::W)) mvDir += Vect2::up;
 	if (KEY_HOLD(KEY::S)) mvDir += Vect2::down;
 	if (KEY_HOLD(KEY::A)) mvDir += Vect2::left;
 	if (KEY_HOLD(KEY::D)) mvDir += Vect2::right;
 
-	if (KEY_HOLD(KEY::Q)) mtInfo.curHp = 100.f;
+	if (KEY_HOLD(KEY::Q)) mtInfo.curHp = mtInfo.fullHP = 100000000000000.f;
 
 	if (mvDir != Vect2::zero)
 	{
@@ -249,19 +282,9 @@ void Player::Render(HDC _dc)
 	CompnentRender(_dc);
 }
 
-
 void Player::OnCollisionEnter(CCollider* _pOther)
 {
-	if (_pOther->GetObj()->GetName() == L"Gold")
-	{
-		PlayerMgr::GetI()->AddGold(5);
-		HubUIMgr::GetI()->BuildGoldText();
-
-		if (mpCoinSound)
-			mpCoinSound->Play();
-	}
 }
-
 
 void Player::calExp()
 {
@@ -303,6 +326,11 @@ void Player::AddSkill(Skill* _skill)
 	{
 		_skill->AddSkillLevel();
 		mVecSkill.push_back(_skill);
+
+		if (_skill->GetSkillLevel() == _skill->GetMaxSkillLv())
+		{
+			mVecMaxLevelSkill.push_back(_skill->GetType());
+		}
 	}
 	else
 	{
@@ -331,5 +359,25 @@ void Player::UseSkill()
 		}
 
 		mVecSkill[i]->Update();
+	}
+}
+
+void Player::AddDamage(float damage)
+{
+	if (mAI->GetCurStateType() == PLAYER_STATE::DIE)
+		return;
+
+	CombatText* pCbTex = new CombatText;
+	pCbTex->SetPos(GetLocalPos());
+	pCbTex->SetText(std::to_wstring((int)damage));
+	CreateObject(pCbTex, GROUP_TYPE::UI);
+
+	mtInfo.curHp -= damage;
+
+	if (mtInfo.curHp <= 0)
+	{
+		mtInfo.curHp = 0.f;
+		ChangeAIState(GetAI(), PLAYER_STATE::DIE);
+		return;
 	}
 }

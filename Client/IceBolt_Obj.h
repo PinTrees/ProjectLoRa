@@ -1,5 +1,7 @@
 #pragma once
 #include "SkillObj.h"
+
+
 class IceBolt_Obj :
     public SkillObj
 {
@@ -8,8 +10,10 @@ private:
     float       mCurDelay;
     float       mRange;
 
+
 public:
     void SetDir(Vect2 _dir) { mvDir = _dir; }
+
 
 public:
     virtual void Update();
@@ -18,8 +22,9 @@ public:
     virtual void OnCollisionEnter(CCollider* _pOther);
     virtual void OnCollisionStay(CCollider* _pOther) {};
 
+
 public:
     IceBolt_Obj();
-    ~IceBolt_Obj();
+    virtual ~IceBolt_Obj();
 };
 

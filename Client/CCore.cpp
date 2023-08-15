@@ -100,12 +100,13 @@ void CCore::RUN()
 	// UI Update
 	CUIMgr::GetI()->Update();
 
-
 	// ==================
 	// Scene Update Block
 	// ==================
+	bool isSceneUpdate = false;
 	if(CTimeMgr::GetI()->IsPlay())
 	{
+		isSceneUpdate = true;
 		CSceneMgr::GetI()->Update();
 	}
 
@@ -116,7 +117,7 @@ void CCore::RUN()
 	// ======================
 	// Collision Update Block
 	// ======================
-	if (CTimeMgr::GetI()->IsPlay())
+	if (CTimeMgr::GetI()->IsPlay() && isSceneUpdate)
 	{
 		CCollisionMgr::GetI()->Update();
 	}
@@ -194,6 +195,9 @@ void CCore::SetActiveMenu(bool active)
 
 void CCore::ChangeWindowSize(Vect2 vResoulution, bool menuActive)
 {
+	mPtResolution.x = vResoulution.x;
+	mPtResolution.y = vResoulution.y;
+
 	RECT rt = { 0,0, (LONG)vResoulution.x, (LONG)vResoulution.y };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, menuActive);	// menubar height size not include
 	SetWindowPos(mhWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);

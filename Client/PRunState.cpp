@@ -31,11 +31,11 @@ void PRunState::Update()
 {
 	Player* pPlayer = (Player*)GetOwner();
 
-	mvDir = pPlayer->GetRunDir().Normalize();
-	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 150.f * DT);
+	mvDir = pPlayer->GetDir().Normalize();
+	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 120.f * DT);
 	pPlayer->SetFlip(mvDir.x < 1);
 
-	if (pPlayer->GetRunDir().x < 1)
+	if (pPlayer->GetDir().x < 1)
 	{
 		pPlayer->GetAnimator()->Play(L"RUN_L", true);
 	}

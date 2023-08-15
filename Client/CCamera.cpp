@@ -32,7 +32,7 @@ CCamera::~CCamera()
 
 void CCamera::Init()
 {
-    Vect2 vRes =	CCore::GetI()->GetResolution();
+	Vect2 vRes = CCore::GetI()->GetResolution();
 	mEffectTex = CResMgr::GetI()->CreateTexture(L"CamEffectTex", (UINT)vRes.x, (UINT)vRes.y);
 }
 
@@ -51,7 +51,7 @@ void CCamera::Update()
 		}
 	}
 
-	
+
 	if (KEY_HOLD(KEY::UP))
 		mvLookAt.y -= DT * 500.f;
 	if (KEY_HOLD(KEY::DOWN))
@@ -80,7 +80,7 @@ void CCamera::Render(HDC dc)
 	if (amount > 1.f) amount = 1.f;
 	if (amount < 0.f) amount = 0.f;
 
-	int alpha = 0;	
+	int alpha = 0;
 
 	if (CAM_EFFECT::FADE_OUT == effect.effect)
 	{
@@ -124,10 +124,10 @@ void CCamera::Render(HDC dc)
 void CCamera::calDiff()
 {
 	// 이전 LookAt 과 현재 look 의 차이값을 보정해서 현재의 LookAt을 구한다.
-	
+
 	mfAccTime += DT;
 
-	if (mfTime <= mfAccTime )
+	if (mfTime <= mfAccTime)
 	{
 		mvCurLookAt = mvLookAt;
 	}

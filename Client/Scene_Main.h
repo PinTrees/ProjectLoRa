@@ -4,20 +4,21 @@
 
 class CUI;
 class CImageUI;
-
+class HelpDialogUI;
 
 class Scene_Main :
     public CScene
 {
 private:
-    CUI*    mItemUI;
-    CImageUI* mPressBack;
+    CUI*        mItemUI;
+    CImageUI*   mPressBack;
+    CImageUI*   mpPlayerThumb;
 
-    CImageUI* mpPlayerThumb;
+    HelpDialogUI* mDialogHelp;
 
-    float   mFadeDelay;
-    float   mCurDelay;
-    int     mFadeDir;
+    float       mFadeDelay;
+    float       mCurDelay;
+    int         mFadeDir;
 
 
 private:
@@ -27,8 +28,11 @@ private:
 
     
 public:
-    void OpenItemDataUI();
+    void OpenHelpDialog();
     void CloseItemDataUI();
+
+    void OpenInfoDialog();
+    void CloseInfoDialog();
 
 
 public:

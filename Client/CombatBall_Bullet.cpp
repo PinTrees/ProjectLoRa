@@ -17,20 +17,20 @@
 CombatBall_Bullet::CombatBall_Bullet()
 	: mCurTime()
 	, mRemainTime()
-	, mArrivalTime(1.5f)
+	, mArrivalTime(1.2f)
 {
 	SetMaxDelay(1.f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.f);
+	SetDamage(5.f);
 	SetName(L"CombatBall_Bullet");
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(20.f, 20.f) * 1.2f);
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CombatBall", L"texture\\effect\\12.bmp");
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CombatBall", L"texture\\effect\\11.bmp");
 	CreateAnimator();
-
-	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(63.f, 75.f), Vect2(63.f, 0.f), 0.1f, 6);
-	SetScale(Vect2(50.f, 50.f) * 1.f);
+	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.05f, 6);
+	SetScale(Vect2(50.f, 50.f) * 0.9f);
 
 	GetAnimator()->Play(L"IDLE", true);
 }
@@ -42,6 +42,8 @@ CombatBall_Bullet::~CombatBall_Bullet()
 
 void CombatBall_Bullet::Update()
 {
+	GetAnimator()->Update();
+
 	if (mCurTime > GetMaxDelay())
 	{
 		DeleteObject(this);
@@ -56,7 +58,6 @@ void CombatBall_Bullet::Update()
 	Vect2 V2 = V0 * mRemainTime + V1 * mCurTime;
 
 	SetPos(V2);
-	GetAnimator()->Update();
 }
 
 void CombatBall_Bullet::Render(HDC _dc)
@@ -70,7 +71,7 @@ void CombatBall_Bullet::OnCollisionEnter(CCollider* _pOther) // 초당 피해가 아닌
 	CObject* pObj = _pOther->GetObj();
 	Player* player = PlayerMgr::GetI()->GetPlayer();
 
-	float damage = player->GetInfo().atkDamage;
+	float damage = player->GetInfo().atkDamage * 0.5f + (float)GetOwner()->GetSkillLevel() * GetDamage() * 0.5f;
 	damage *= GetOwner()->GetSkillLevel();
 
 	if (pObj->GetName() == L"Monster")		// 스킬 오브젝트가 몬스터와 만나면 데미지를 입힘

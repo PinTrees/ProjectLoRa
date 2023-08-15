@@ -19,6 +19,7 @@ private:
 
 
 public:
+	const map<wstring, CRes*>& GetSoundResource() { return mMapSound; }
 	CSound* LoadSound(const wstring& _strKey, const wstring& _strRelativePath);
 	CSound* FindSound(const wstring& _strKey);
 

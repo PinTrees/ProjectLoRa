@@ -10,6 +10,7 @@
 
 #include "Monster.h"
 
+
 IceBolt_Effect::IceBolt_Effect()
 	: mCurTime()
 	, mFreezeTime(3.f)
@@ -17,17 +18,19 @@ IceBolt_Effect::IceBolt_Effect()
 	, mFreeze(false)
 	, mvecIcedMon{}
 {
-	SetMaxDelay(2.7f);		// 스킬 지속시간 세팅
-	SetName(L"IceBolt_Effect");
+	SetMaxDelay(2.7f);			// 스킬 지속시간 세팅
+	SetName(L"IceBolt_Effect"); // 
 
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"IceBolt_Effect", L"texture\\effect\\9.bmp");
+	SetAlpha(180);
+	SetScale(Vect2(48.f, 64.f) * 1.5f);
+
 	CreateAnimator();
 
-	GetAnimator()->CreateAnimation(L"IceBolt_Effect_Freeze", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.1f, 10);
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"IceBolt_Effect", L"texture\\effect\\9.bmp");
+	GetAnimator()->CreateAnimation(L"IceBolt_Effect_Freeze", pTex, Vect2(0.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.07f, 10);
 	GetAnimator()->CreateAnimation(L"IceBolt_Effect_Freezing", pTex, Vect2(432.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.6f, 1);
-	GetAnimator()->CreateAnimation(L"IceBolt_Effect_DeFrost", pTex, Vect2(480.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.08f, 6);
-	SetScale(Vect2(60.f, 70.f));
-
+	GetAnimator()->CreateAnimation(L"IceBolt_Effect_DeFrost", pTex, Vect2(480.f, 0.f), Vect2(48.f, 64.f), Vect2(48.f, 0.f), 0.07f, 6);
+	
 	GetAnimator()->Play(L"IceBolt_Effect_Freeze", false);
 }
 
@@ -38,6 +41,20 @@ IceBolt_Effect::~IceBolt_Effect()
 void IceBolt_Effect::Update()
 {
 	mCurTime += DT;
+	GetAnimator()->Update();
+
+	if (mvecIcedMon)
+	{
+		if ((Monster*)mvecIcedMon->IsDead())
+		{
+			mvecIcedMon = nullptr;
+
+			GetAnimator()->Play(L"IceBolt_Effect_DeFrost", false);
+			mCurTime = 0.f;
+			mFreeze = true;
+		}
+	}
+	
 
 	if (!mFreeze && mCurTime >= mFreezeTime)
 	{
@@ -49,14 +66,7 @@ void IceBolt_Effect::Update()
 	if (mFreeze && mCurTime >= mDeFrostTime)
 	{
 		DeleteObject(this);
-
-		for (size_t i = 0; i < mvecIcedMon.size(); ++i)
-		{
-			((Monster*)mvecIcedMon[i])->SetFreeze(false);			// 받아놓은 몬스터들을 얼음효과가 풀렸을 때 다시 녹은상태로 만듦
-		}
 	}
-
-	GetAnimator()->Update();
 
 	if (!mFreeze && GetAnimator()->GetCurAnimation()->IsFinish())
 	{

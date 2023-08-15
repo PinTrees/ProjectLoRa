@@ -16,22 +16,25 @@
 HolyArea_Obj::HolyArea_Obj()
 	: mPrevLv()
 	, mTheta(360.f)
-	, mAlpha()
-	, mPlusAlpha(70.f)
+	, mFadeDelay(0.2f)
+	, mCurDelay(0.f)
 {
+	SetName(L"HolyArea");
+
 	SetMaxDelay(0.f);		// 스킬 지속시간이 필요 없기 때문에 0으로 세팅
 	SetDamageDelay(0.2f);	// ~초마다 데미지를 입힘
-	SetName(L"HolyArea");
-	CreateCollider();
-	GetCollider()->SetScale(Vect2(80.f, 80.f));
-	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
-
-	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"HolyArea", L"texture\\effect\\10.bmp");
-	CreateAnimator();
-
-	GetAnimator()->CreateAnimation(L"HolyArea", pTex, Vect2(80.f, 0.f) * 13, Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.5f, 1);
+	SetDamage(5.f);
 	SetScale(Vect2(100.f, 100.f) * 0.5f);
 
+	CreateAnimator();
+	CreateCollider();
+
+	GetCollider()->SetScale(Vect2(80.f, 80.f));
+	GetCollider()->SetOffsetPos(Vect2::zero);
+
+	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"HolyArea", L"texture\\effect\\10.bmp");
+
+	GetAnimator()->CreateAnimation(L"HolyArea", pTex, Vect2(80.f, 0.f) * 13, Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.5f, 1);
 	GetAnimator()->Play(L"HolyArea", true);
 }
 
@@ -41,6 +44,11 @@ HolyArea_Obj::~HolyArea_Obj()
 
 void HolyArea_Obj::Update()
 {
+	mCurDelay += DT * mFadeDir;
+
+	if (mCurDelay >= mFadeDelay) mFadeDir = -1.f;
+	else if (mCurDelay <= 0.f) mFadeDir = 1.f;
+
 	if (mPrevLv < GetOwner()->GetSkillLevel())			// 레벨업을 하면 스킬을 새로 사용하기 위해 현재 오브젝트를 삭제
 	{
 		DeleteObject(this);
@@ -57,7 +65,9 @@ void HolyArea_Obj::Update()
 	SetPos(Vect2(vPos.x, vPos.y));
 	SetAngle(mTheta);					// 오브젝트를 회전시킨다.
 	GetAnimator()->Update();
-	SetAlpha(150);
+
+	float ratio = mCurDelay / mFadeDelay;
+	SetAlpha(100 * ratio + 120);
 
 	mTheta -= 120.f * DT;
 }

@@ -32,7 +32,11 @@ DeadState::~DeadState()
 
 void DeadState::Enter()
 {
-	GetOwner()->GetAnimator()->Play(L"DEAD", false);
+	Vect2 vOwnerPos = GetOwner()->GetLocalPos();
+	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
+
+	GetOwner()->GetAnimator()->Play(vOwnerPos.x > vPlayerPos.x ? L"DEAD_L" : L"DEAD_R", false);
+
 	PlayerMgr::GetI()->GetPlayer()->AddExp(2.f);
 }
 

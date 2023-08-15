@@ -10,11 +10,11 @@
 
 
 CombatBall::CombatBall()
-	: Skill(SKILL_TYPE::COMBAT_BALL, 8)
+	: Skill(SKILL_TYPE::COMBAT_BALL, /*8*/1)
 	, mPrevLv(1)
 {
 	SetIconStr(L"9.bmp");
-	SetCoolDown(0.15f);
+	SetCoolDown(1.f);
 }
 
 CombatBall::~CombatBall()
@@ -41,4 +41,12 @@ void CombatBall::CheckAvailable()
 		SetAvailable(true);
 		mPrevLv = GetSkillLevel();
 	}
+}
+
+void CombatBall::AddSkillLevel()
+{
+	Skill::AddSkillLevel();
+
+	float newCoolDown = GetCoolDown() - 0.1f * GetSkillLevel();
+	SetCoolDown(newCoolDown);
 }

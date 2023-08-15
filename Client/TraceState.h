@@ -10,6 +10,7 @@ private:
     float mCurDelay;
     float mAttakDelay;
 
+    float mCurDestroyDelay;
     Vect2 mvTargetPos;
 
 

@@ -68,6 +68,7 @@ void CEventMgr::excute(const tEvent& _eve)
 		// Object 를 Dead 상태로 변경
 		// 삭제예정 오브젝트들을 모아둔다.
 		CObject* pDeadObj = (CObject*)_eve.lParam;
+		mDeleteList.push_back(pDeadObj->GetName());
 		pDeadObj->SetDead();
 		mVecDeadObj.push_back(pDeadObj);
 	}

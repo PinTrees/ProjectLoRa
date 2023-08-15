@@ -1,7 +1,6 @@
 #pragma once
 #include "CUI.h"
 
-typedef void(*SLID_FUNC) (DWORD_PTR);
 
 class CTexture;
 class CSlider;
@@ -13,14 +12,9 @@ private:
 	CSlider*	mpOwner;
 	CTexture*	mpTex;
 
-	Vect2		mvDragStartPos;
+	Vect2           mvDragStartPos;
+	bool            mbDrag;
 
-	SLID_FUNC	mpFunc;
-	DWORD_PTR	mParam;
-
-public:
-	void SetOwner(CSlider* owner) { mpOwner = owner; }
-	void SetTexture(CTexture* pTex) { mpTex = pTex; }
 
 public:
 	virtual void Update() override;
@@ -30,17 +24,13 @@ public:
 	virtual void MouseLbtnDown() override;
 	virtual void MouseLbtnUp() override;
 
-	void SetFunc(SLID_FUNC func, DWORD_PTR param)
-	{
-		mpFunc = func;
-		mParam = param;
-	}
-
 	CLONE(CSliderBar);
 
 
 public:
 	CSliderBar();
 	virtual ~CSliderBar();
+
+	friend class CSlider;
 };
 

@@ -9,11 +9,12 @@
 #include "CScene.h"
 
 #include "CSound.h"
+#include "Random.h"
 #include "CResMgr.h"
 
 
 Boomerang::Boomerang()
-	: Skill(SKILL_TYPE::BOOMERANG, 6)
+	: Skill(SKILL_TYPE::BOOMERANG, /*6*/1)
 {
 	SetIconStr(L"8.bmp");
 	SetCoolDown(2.f);
@@ -33,22 +34,7 @@ void Boomerang::UseSkill()
 	CScene* cscene = CSceneMgr::GetI()->GetCurScene();
 	Vect2 playerPos = PlayerMgr::GetI()->GetPlayer()->GetPos();
 
-	const vector<CObject*>& vecMon = cscene->GetGroupObject(GROUP_TYPE::MONSTER);
-
-	float length = 1000.f;
-	Vect2 monsterPos;
-	Vect2 vDir;
-	for (size_t i = 0; i < vecMon.size(); ++i)
-	{
-		monsterPos = vecMon[i]->GetPos();
-		if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
-		{
-			length = (playerPos - monsterPos).Length(); // length 에 값 대입
-			vDir = monsterPos - playerPos;
-		}
-	}
-
-	vDir.Normalize();
+	Vect2 vDir = Vect2(CRandom::GetI()->Next(-50, 50), CRandom::GetI()->Next(-50, 50)).Normalize();
 
 	Boomerang_Obj* boomerang = new Boomerang_Obj;
 	boomerang->SetDir(vDir);
@@ -69,4 +55,12 @@ void Boomerang::CheckAvailable()
 	{
 		SetAvailable(true);
 	}
+}
+
+void Boomerang::AddSkillLevel()
+{
+	Skill::AddSkillLevel();
+
+	float newCoolDown = GetCoolDown() - 0.25f * GetSkillLevel();
+	SetCoolDown(newCoolDown);
 }

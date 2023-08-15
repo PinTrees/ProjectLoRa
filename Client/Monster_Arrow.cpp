@@ -14,6 +14,7 @@
 Monster_Arrow::Monster_Arrow()
 	: mCurTime()
 	, mbDestroy(false)
+	, mDamage(0.f)
 {
 	SetName(L"Monster_Arrow");
 	CreateCollider();
@@ -36,9 +37,14 @@ Monster_Arrow::~Monster_Arrow()
 
 void Monster_Arrow::Update()
 {
-	if (mCurTime > 3.f)					// 일정시간이 지나면 오브젝트가 사라짐
+	if (mbDestroy)
 	{
 		DeleteObject(this);
+		return;
+	}
+
+	if (mCurTime > 3.f)					// 일정시간이 지나면 오브젝트가 사라짐
+	{
 		mCurTime = 0.f;
 		mbDestroy = true;
 		return;
@@ -61,16 +67,14 @@ void Monster_Arrow::Render(HDC _dc)
 
 void Monster_Arrow::OnCollisionEnter(CCollider* _pOther)
 {
-	if (mbDestroy) return;
-
 	CObject* pObject = _pOther->GetObj();
 
 	if (pObject->GetName() == L"Player")
 	{
+		mbDestroy = true;
+
 		Player* pPlayer = PlayerMgr::GetI()->GetPlayer();
 		Monster* pMonster = (Monster*)GetOwner();
-
-		pPlayer->AddDamage(pMonster->GetInfo().atk);
-		DeleteObject(this);
+		pPlayer->AddDamage(mDamage);
 	}
 }

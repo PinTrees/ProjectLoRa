@@ -11,6 +11,10 @@
 #include "CColumn.h"
 #include "CImageUI.h"
 #include "CWrap.h"
+#include "CScrollView.h"
+#include "HelpDialogUI.h"
+
+#include "DatabaseMgr.h"
 
 // Resource Header
 #include "CSprite.h"
@@ -32,18 +36,22 @@ Scene_Main::Scene_Main()
 	, mCurDelay(0.f)
 	, mFadeDir(1)
 	, mpPlayerThumb(nullptr)
+	, mDialogHelp(nullptr)
 {
 }
 
 
 Scene_Main::~Scene_Main()
 {
+	DatabaseMgr::Dispose();
 }
 
 
 
 void Scene_Main::Enter()
 {
+	DatabaseMgr::GetI()->Init();
+
 	Vect2 vRes = CCore::GetI()->GetResolution();
 	
 	CSprite* pPanelSprite = CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.png");
@@ -85,8 +93,15 @@ void Scene_Main::Enter()
 	pSkillInfoBtn->SetScale(vBtnSize);
 	pSkillInfoBtn->SetOriginalMouseCheck(true);
 	pSkillInfoBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Q_W", L"texture\\ui\\icon\\q.bmp"));
-	pSkillInfoBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Main::OpenItemDataUI);
+	pSkillInfoBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Main::OpenHelpDialog);
 	pHCol->AddChild(pSkillInfoBtn);
+
+	CBtnUI* pHelpBtn = new CBtnUI;
+	pHelpBtn->SetScale(vBtnSize);
+	pHelpBtn->SetOriginalMouseCheck(true);
+	pHelpBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Q_W", L"texture\\ui\\icon\\q.bmp"));
+	pHelpBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Main::OpenInfoDialog);
+	pHCol->AddChild(pHelpBtn);
 	// ---------------------------------------------------------------------
 
 	CColumn* pCol = new CColumn;
@@ -125,7 +140,6 @@ void Scene_Main::Enter()
 	mPressBack->AddChild(pStartText);
 	// ---------------------------------------------------------------------
 
-
 	// 게임 시작 버튼 생성 ---------------------------------------------------
 	CBtnUI* pGameStartBtn = new CBtnUI;
 	pGameStartBtn->SetScale(Vect2(200.f, 50.f));
@@ -134,6 +148,14 @@ void Scene_Main::Enter()
 	pGameStartBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_3", L"texture\\ui\\button\\3.bmp"));
 	pGameStartBtn->SetClickedCallBack(&ChangeSceneStart, 0, 0);
 	pCol->AddChild(pGameStartBtn);
+	// ---------------------------------------------------------------------
+
+	// 게임 도움말 다이얼로그 생성 -------------------------------------------
+	mDialogHelp = new HelpDialogUI;
+	mDialogHelp->SetPos(vRes * 0.5f);
+	AddObject(mDialogHelp, GROUP_TYPE::UI);
+
+	CloseInfoDialog();
 	// ---------------------------------------------------------------------
 }
 
@@ -167,34 +189,40 @@ void Scene_Main::Exit()
 
 
 
-void Scene_Main::OpenItemDataUI()
+void Scene_Main::OpenHelpDialog()
 {
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
 	CPanelUI* pPanelUI = new CPanelUI;
 	pPanelUI->SetFixedPos(false);
-	pPanelUI->SetScale(Vect2(800.f, 700.f));
+	pPanelUI->SetScale(Vect2(500.f, 500.f));
 	pPanelUI->SetPos(Vect2(vRes.x * 0.5f, vRes.y * 0.5f));
 	pPanelUI->SetTexture(CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.bmp"));
 
+
+	CScrollView* pScrollView = new CScrollView;
+	pScrollView->SetPos(Vect2(0.f, 25.f));
+	pScrollView->SetScale(Vect2(pPanelUI->GetScale().x * 0.85f, 350.f));
+	pPanelUI->AddChild(pScrollView);
+
 	CWrap* pWrap = new CWrap;
 	pWrap->SetPos(Vect2(0.f, 128.f));
-	pWrap->SetScale(Vect2(800.f, 700.f));
-	pPanelUI->AddChild(pWrap);
+	pWrap->SetScale(Vect2(pScrollView->GetScale().x, 650.f));
+	pScrollView->AddChild(pWrap);
 
 	for (int i = 0; i < 100; ++i)
 	{
 		CImageUI* pImg = new CImageUI;
-		pImg->SetScale(Vect2(50.f, 50.f));
+		pImg->SetScale(Vect2(38.f, 38.f));
 		pImg->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Item_" + std::to_wstring(i + 1), L"texture\\item\\26_" + std::to_wstring(i + 1) + L".bmp"));
 		pWrap->AddChild(pImg);
 	}
 
 	CBtnUI* pCloseBtn = new CBtnUI;
-	pCloseBtn->SetPos(Vect2(0.f, 300.f));
-	pCloseBtn->SetScale(Vect2(200.f, 50.f));
+	pCloseBtn->SetPos(Vect2(0.f, 200.f));
+	pCloseBtn->SetScale(Vect2(150.f, 42.f));
 	pCloseBtn->SetText(L"닫기");
-	pCloseBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_1", L"texture\\ui\\button_1.bmp"));
+	pCloseBtn->SetTexture(CResMgr::GetI()->LoadTexture(L"UI_Btn_3", L"texture\\ui\\button\\3.bmp"));
 	pCloseBtn->SetClickedCallBack(this, (SCENE_FUNC)&Scene_Main::CloseItemDataUI);
 	pPanelUI->AddChild(pCloseBtn);
 
@@ -211,6 +239,18 @@ void Scene_Main::CloseItemDataUI()
 	CUIMgr::GetI()->SetFocusUI(nullptr);
 	DeleteObject(mItemUI);
 	mItemUI = nullptr;
+}
+
+
+void Scene_Main::OpenInfoDialog()
+{
+	mDialogHelp->SetVisible(true);
+	CUIMgr::GetI()->SetTop(mDialogHelp);
+}
+
+void Scene_Main::CloseInfoDialog()
+{
+	mDialogHelp->SetVisible(false);
 }
 
 

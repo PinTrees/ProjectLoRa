@@ -15,6 +15,7 @@ Grenade_Bomb::Grenade_Bomb()
 {
 	SetMaxDelay(2.7f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.9f);	// ~초마다 데미지를 입힘
+	SetDamage(10.f);
 	SetName(L"Grenade_Bomb");
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(60.f, 40.f) * 3.f);

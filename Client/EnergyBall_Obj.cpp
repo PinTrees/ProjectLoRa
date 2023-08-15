@@ -16,6 +16,7 @@ EnergyBall_Obj::EnergyBall_Obj()
 {
 	SetMaxDelay(3.f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.3f);	// ~초마다 데미지를 입힘
+	SetDamage(6.f);
 	SetName(L"EnergyBall");
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(128.f, 128.f));

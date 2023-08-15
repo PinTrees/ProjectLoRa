@@ -4,6 +4,9 @@
 
 class CBtnUI;
 class CImageUI;
+class CSlider;
+class TextUI;
+
 
 class SettingUI :
 	public CPanelUI
@@ -18,6 +21,15 @@ private:
 	CBtnUI*		mDamageTextBtn;
 	CImageUI*	mDamageTextCheckIcon;
 
+	CBtnUI*		mShowHpBarBtn;
+	CImageUI*	mShowHpBarTextCheckIcon;
+
+	CSlider*	mSoundSlider;
+	TextUI*		mVolumText;
+
+	CBtnUI*		mResBtn[3];
+	CImageUI*	mResCheckIcon[3];
+
 public:
 	void Close();
 	void Show();
@@ -28,11 +40,15 @@ public:
 	void SetFindPath(DWORD_PTR param);
 	void SetDebugMode();
 	void SetDamageText();
+	void SetShowMonsterHpBar();
+	
+	void SetResolution(int i);
+
+	void ChangeSoundSliderValue(int val);
 
 
 public:
 	SettingUI();
-	virtual ~SettingUI() override;
-	SettingUI(SettingUI&) = delete;
+	virtual ~SettingUI();
 };
 

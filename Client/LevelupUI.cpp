@@ -127,41 +127,48 @@ void LevelupUI::statusUp(STATEUP_TYPE state)
 		pPlayer->mtInfo.curHp = pPlayer->mtInfo.fullHP;
 		break;
 	case STATEUP_TYPE::REGENERATION_HP_UP:			// 체력 재생 증가
-		pPlayer->mtInfo.regenerationHP += 10.f;
+		pPlayer->mtInfo.regenerationHP += 5.f;
 		break;
-	case STATEUP_TYPE::MOVE_SPEED_UP:					// 이동속도 증가
-		pPlayer->mtInfo.moveSpeed += 20.f;
-		break;
+	//case STATEUP_TYPE::MOVE_SPEED_UP:					// 이동속도 증가
+	//	pPlayer->mtInfo.moveSpeed += 20.f;
+	//	break;
 	case STATEUP_TYPE::ATK_DAMAGE_UP:					// 공격력 증가
 		pPlayer->mtInfo.atkDamage += 15.f;
 		break;
-	case STATEUP_TYPE::ATK_SPEED_UP:					// 공격속도 증가
-		pPlayer->mtInfo.atkSpeed += 10.f;
-		break;
-	case STATEUP_TYPE::ATK_RANGE_UP:					// 사거리 증가
-		pPlayer->mtInfo.atkRange += 100.f;
-		break;
-	case STATEUP_TYPE::SHOT_SPEED_UP:					// 탄속 증가
-		pPlayer->mtInfo.shotSpeed += 50.f;
-		break;
-	case STATEUP_TYPE::RELOAD_SPEED_UP:				// 장전속도 증가
-		pPlayer->mtInfo.reloadSpeed += 20.f;
-		break;
-	case STATEUP_TYPE::SHOT_ANGLE_UP:					// 명중률 증가
-		pPlayer->mtInfo.shotAngle += 10.f;
-		break;
-	case STATEUP_TYPE::SHOT_COUNT_UP:					// 발사되는 탄알 수 증가
-		pPlayer->mtInfo.shotCount += 2.f;
-		break;
-	case STATEUP_TYPE::PENETRATION_UP:				// 적을 관통하는 횟수 증가
-		pPlayer->mtInfo.penetration += 1;
-		break;
-	case STATEUP_TYPE::SPLITCOUNT_UP:					// 분열되는 총알 개수 증가
-		pPlayer->mtInfo.splitCount += 1;
-		break;
-	case STATEUP_TYPE::BOUNTCECOUNT_UP:				// 벽을 튕기는 횟수 증가
-		pPlayer->mtInfo.bounceCount += 1;
-		break;
+	//case STATEUP_TYPE::ATK_SPEED_UP:					// 공격속도 증가
+	//	pPlayer->mtInfo.atkSpeed += 10.f;
+	//	break;
+	//case STATEUP_TYPE::ATK_RANGE_UP:					// 사거리 증가
+	//	pPlayer->mtInfo.atkRange += 100.f;
+	//	break;
+	//case STATEUP_TYPE::SHOT_SPEED_UP:					// 탄속 증가
+	//	pPlayer->mtInfo.shotSpeed += 50.f;
+	//	break;
+	//case STATEUP_TYPE::RELOAD_SPEED_UP:				// 장전속도 증가
+	//	pPlayer->mtInfo.reloadSpeed += 20.f;
+	//	break;
+	//case STATEUP_TYPE::SHOT_ANGLE_UP:					// 명중률 증가
+	//	pPlayer->mtInfo.shotAngle += 10.f;
+	//	break;
+	//case STATEUP_TYPE::SHOT_COUNT_UP:					// 발사되는 탄알 수 증가
+	//	pPlayer->mtInfo.shotCount += 2.f;
+	//	break;
+	//case STATEUP_TYPE::PENETRATION_UP:				// 적을 관통하는 횟수 증가
+	//	pPlayer->mtInfo.penetration += 1;
+	//	break;
+	//case STATEUP_TYPE::SPLITCOUNT_UP:					// 분열되는 총알 개수 증가
+	//	pPlayer->mtInfo.splitCount += 1;
+	//	break;
+	//case STATEUP_TYPE::BOUNTCECOUNT_UP:				// 벽을 튕기는 횟수 증가
+	//	pPlayer->mtInfo.bounceCount += 1;
+	//	break;
+	}
+
+	pPlayer->mArrStatusLevel[(UINT)state] += 1;
+	
+	if (pPlayer->mArrStatusLevel[(UINT)state] == pPlayer->mArrStatusMaxLevel[(UINT)state])
+	{
+		pPlayer->mVecMaxLevelStatus.push_back(state);
 	}
 }
 

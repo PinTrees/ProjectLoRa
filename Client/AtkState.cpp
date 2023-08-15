@@ -31,7 +31,10 @@ AtkState::~AtkState()
 
 void AtkState::Enter()
 {
-	GetOwner()->GetAnimator()->Play(L"ATK", false);
+	Vect2 vOwnerPos = GetOwner()->GetLocalPos();
+	Vect2 vPlayerPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
+
+	GetOwner()->GetAnimator()->Play(vOwnerPos.x > vPlayerPos.x ? L"ATK_L" : L"ATK_R", false);
 }
 
 
@@ -41,7 +44,6 @@ void AtkState::Update()
 
 	if (monster->GetType() == MONSTER_TYPE::SHORT)
 	{
-
 	}
 	else if (monster->GetType() == MONSTER_TYPE::LONG				// 원거리 적이 공격할 준비가 되면 공격
 		&& mAtkAvailable)											// bool 변수를 사용한 이유는 attack상태에서 공격을 여러번하는 것을 막기 위함
@@ -52,6 +54,7 @@ void AtkState::Update()
 
 		Monster_Arrow* arrow = new Monster_Arrow;
 
+		arrow->SetDamage(monster->GetInfo().atk);
 		arrow->SetPos(GetOwner()->GetPos());
 		arrow->SetDir(Dir);
 		arrow->SetOwner(monster);

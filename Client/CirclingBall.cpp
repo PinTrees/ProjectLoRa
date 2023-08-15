@@ -10,7 +10,7 @@
 
 
 CirclingBall::CirclingBall()
-	: Skill(SKILL_TYPE::CIRCLING_BALL, 5)
+	: Skill(SKILL_TYPE::CIRCLING_BALL, /*5*/1)
 	, mPrevLv(1)
 {
 	SetIconStr(L"3.bmp"); 

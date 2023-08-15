@@ -11,7 +11,7 @@
 
 
 CrossDagger::CrossDagger()
-	: Skill(SKILL_TYPE::CROSS_DAGGER, 8)
+	: Skill(SKILL_TYPE::CROSS_DAGGER, /*8*/1)
 	, mCount(4)
 {
 	SetIconStr(L"7.bmp");
@@ -54,4 +54,12 @@ void CrossDagger::CheckAvailable()
 	{
 		SetAvailable(true);
 	}
+}
+
+void CrossDagger::AddSkillLevel()
+{
+	Skill::AddSkillLevel();
+
+	float newCoolDown = GetCoolDown() - 0.2f * GetSkillLevel();
+	SetCoolDown(newCoolDown);
 }

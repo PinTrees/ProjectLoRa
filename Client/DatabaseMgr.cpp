@@ -18,13 +18,14 @@ SINGLE_HEADER(DatabaseMgr);
 
 
 DatabaseMgr::DatabaseMgr()
+	: mArrSkill{}
 {
 
 }
 
 DatabaseMgr::~DatabaseMgr()
 {
-	for (int i = 0; i < (UINT)SKILL_TYPE::END; ++i)
+	for (UINT i = 0; i < (UINT)SKILL_TYPE::END; ++i)
 	{
 		if (nullptr != mArrSkill[i])
 			delete mArrSkill[i];

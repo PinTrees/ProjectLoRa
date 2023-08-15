@@ -5,7 +5,7 @@
 SINGLE_HEADER(CSystemMgr);
 
 CSystemMgr::CSystemMgr()
-	: mbDebug(true)
+	: mbDebug(false)
 {
 }
 

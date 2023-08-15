@@ -13,6 +13,7 @@ private:
 
 public:
 	Skill* GetSkill(SKILL_TYPE type);
+	Skill** GetSkillList() { return mArrSkill; }
 
 
 public:

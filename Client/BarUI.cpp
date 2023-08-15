@@ -4,6 +4,8 @@
 #include "CCamera.h"
 #include "CObject.h"
 
+#include "CCore.h"
+#include "SettingMgr.h"
 
 BarUI::BarUI()
 	: CUI(false)
@@ -24,11 +26,28 @@ void BarUI::Update()
 
 void BarUI::Render(HDC _dc)
 {
-	SelectGDI b(_dc, BRUSH_TYPE::BLACK);
-
 	Vect2 vRenderPos = !IsCameraAffected() ? CCamera::GetI()->GetRenderPos(GetLocalPos() + GetFinalPos()) : GetLocalPos() + GetFinalPos();
+
+	if (!IsCameraAffected())
+	{
+		if(!SettingMgr::GetI()->GetMonsterHpbarActive())
+			return;
+
+		Vect2 vRes = CCore::GetI()->GetResolution();
+		Vect2 vCamPos = CCamera::GetI()->GetLookAt();
+		Vect2 vGap = vRes * 0.1f;
+		
+		if (vRenderPos.x < -vGap.x || vRenderPos.x > vRes.x + vGap.x
+			|| vRenderPos.y < -vGap.y || vRenderPos.y > vRes.y + vGap.y)
+		{
+			return;
+		}
+	}
+
 	Vect2 vSize = GetScale();
 	float amountX = vSize.x * mFillAmount;
+
+	SelectGDI b(_dc, BRUSH_TYPE::BLACK);
 
 	Rectangle(_dc
 		, (int)(vRenderPos.x - vSize.x * 0.5f)

@@ -48,15 +48,13 @@ CScrollView::~CScrollView()
 
 void CScrollView::SetVerticalScroll()
 {
-	Vect2 vPos = GetPos();
 	Vect2 vScale = GetScale();
-
 	Vect2 vScrollBarPos = mpScrollBar->GetPos();
 	Vect2 vScrollBarSize = mpScrollBar->GetScale();
 
 	// 스크롤바의 좌표와 스크롤뷰의 크기를 사용하여 mRatio 값을 계산하고,
 	// 스크롤바의 크기만큼 비율에서 제거합니다.
-	mRatio = (vScrollBarPos.y - vPos.y + (vScale.y - vScrollBarSize.y) * 0.5f) / (vScale.y - vScrollBarSize.y);
+	mRatio = (vScrollBarPos.y + (vScale.y - vScrollBarSize.y) * 0.5f) / (vScale.y - vScrollBarSize.y);
 }
 
 
@@ -99,14 +97,12 @@ void CScrollView::Update()
 	if (mRatio < 0.f)
 	{
 		mRatio = 0.f;
-		mpScrollBar->SetPos(Vect2(vScrollBarPos.x
-			, (vScale.y * 0.5f) + (vScrollBarSize.y * 0.5f)));
+		mpScrollBar->SetPos(Vect2(vScrollBarPos.x, (vScale.y * -0.5f) + (vScrollBarSize.y * 0.5f)));
 	}
 	else if(mRatio > 1.f)
 	{
 		mRatio = 1.f;
-		mpScrollBar->SetPos(Vect2(vScrollBarPos.x
-			, (vScale.y * 0.5f) - (vScrollBarSize.y * 0.5f)));
+		mpScrollBar->SetPos(Vect2(vScrollBarPos.x, (vScale.y * 0.5f) - (vScrollBarSize.y * 0.5f)));
 	}
 
 

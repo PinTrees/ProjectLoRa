@@ -13,6 +13,7 @@
 
 // Include Componets
 #include "CCollider.h"
+#include "RigidBody.h"
 #include "CAnimation.h"
 #include "CAnimator.h"
 #include "CTexture.h"
@@ -48,8 +49,12 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 	mtInfo.UID = uid;
 
 	SetName(L"Monster");
+
 	CreateCollider();
 	CreateAnimator();
+	CreateRigidBody();
+	GetRigidBody()->SetMess(1.f);
+	GetRigidBody()->SetMaxVelocity(Vect2(50.f, 50.f));
 
 	mHpBar = new BarUI;
 	mHpBar->SetScale(Vect2(40.f, 4.f));
@@ -58,36 +63,41 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 
 	if (mtInfo.UID == L"3")
 	{
-		mvShadowScale = Vect2(45.f, 25.f);
-		mvShadowOffset = Vect2(-5.f, 50.f);
+		float scale = 0.95f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 70.f) * scale;
 
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_3_r", L"texture\\monster\\3_r.bmp");
 		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_3_l", L"texture\\monster\\3_l.bmp");
 
-		Vect2 vSliseSize = Vect2(128.f, 130.f);
+		Vect2 vSliseSize = Vect2(128.f, 128.f);
 		Vect2 vStepSize = Vect2(128.f, 0.f);
-		Vect2 vLtPos = Vect2(0.f, 130.f);
-		Vect2 vRtPos = Vect2(2560.f, 130.f);
+		Vect2 vLtPos = Vect2(0.f, 128.f);
+		Vect2 vRtPos = Vect2(2560.f, 128.f);
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 8);
 		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
-		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
-		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 3.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"DEAD_R", pTex_r, vLtPos * 9.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 8.f, vSliseSize, vStepSize, 0.07f, 2);
 		
-		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 1.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 9.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
-		GetCollider()->SetScale(Vect2(30.f, 35.f) );
+		SetScale(Vect2(128.f, 128.f) * scale);
+		GetCollider()->SetScale(Vect2(30.f, 35.f));
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
-		SetScale(Vect2(128.f, 130.f) * 0.8f);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
-
+		
 		mHpBar->SetPivot(Vect2(0.f, -12.f));
 	}
-	if (mtInfo.UID == L"4")
+	else if (mtInfo.UID == L"4")
 	{
-		mvShadowScale = Vect2(45.f, 25.f);
-		mvShadowOffset = Vect2(0.f, 60.f);
+		float scale = 1.f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 70.f) * scale;
 
 		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_4_r", L"texture\\monster\\4.bmp");
 		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_4_l", L"texture\\monster\\4_l.bmp");
@@ -98,39 +108,58 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		Vect2 vRtPos = Vect2(1280.f, 128.f);
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
-		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.1f, 7);
-		GetAnimator()->CreateAnimation(L"ATK", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"DEAD", pTex_r, vLtPos * 9, vSliseSize, vStepSize, 0.07f, 4);
-		GetAnimator()->CreateAnimation(L"HIT", pTex_r, vLtPos * 8, vSliseSize, vStepSize, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD_R", pTex_r, vLtPos * 9.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 8.f, vSliseSize, vStepSize, 0.07f, 2);
 
-		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, (vRtPos - vStepSize) * 1.f, vSliseSize, vStepSize * -1.f, 0.1f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 1.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 9.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
 
-		SetScale(Vect2(128.f, 128.f) * 0.9f);
+		SetScale(Vect2(128.f, 128.f) * scale);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
 		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
 		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 
 		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}
-	else if (mtInfo.UID == L"2")
+	else if (mtInfo.UID == L"5")
 	{
-		mvShadowScale = Vect2(60.f, 25.f);
-		mvShadowOffset = Vect2(-5.f, 25.f);
+		float scale = 1.f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 70.f) * scale;
 
-		CTexture* pTex = CResMgr::GetI()->LoadTexture(L"Monster_2", L"texture\\monster\\2.bmp");
+		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_5_r", L"texture\\monster\\5_r.bmp");
+		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_5_l", L"texture\\monster\\5_l.bmp");
 
-		GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 48.f * 1.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		GetAnimator()->CreateAnimation(L"RUN", pTex, Vect2(0.f, 48.f * 3.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		GetAnimator()->CreateAnimation(L"ATK", pTex, Vect2(0.f, 0.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
-		GetAnimator()->CreateAnimation(L"DEAD", pTex, Vect2(0.f, 48.f), Vect2(48.f, 48.f), Vect2(48.f, 0.f), 0.1f, 4);
+		Vect2 vSliseSize = Vect2(128.f, 128.f);
+		Vect2 vStepSize = Vect2(128.f, 0.f);
+		Vect2 vLtPos = Vect2(0.f, 128.f);
+		Vect2 vRtPos = Vect2(1280.f, 128.f);
 
-		SetScale(Vect2(48.f, 48.f) * 1.f);
+		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 4.f, vSliseSize, vStepSize, 0.07f, 10);
+		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 6.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD_R", pTex_r, vLtPos * 9.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 8.f, vSliseSize, vStepSize, 0.07f, 2);
+
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 4.f), vSliseSize, vStepSize * -1.f, 0.07f, 10);
+		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 9.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 8.f), vSliseSize, vStepSize * -1.f, 0.07f, 2);
+		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 3.f), vSliseSize, vStepSize * -1.f, 0.07f, 7);
+
+		GetRigidBody()->IsKinematic();
+		GetRigidBody()->SetMess(1.5f);
+		GetRigidBody()->SetMaxVelocity(Vect2(10.f, 10.f));
+		
+		SetScale(Vect2(128.f, 128.f) * scale);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
+		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
 
-		GetCollider()->SetOffsetPos(Vect2::zero);
-		GetCollider()->SetScale(GetScale() * 0.6f);
-
-		mHpBar->SetPivot(Vect2(0.f, GetScale().y * -0.4f));
+		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}
 
 	GetAnimator()->Play(L"IDLE", true);
@@ -148,7 +177,6 @@ Monster::~Monster()
 void Monster::Render(HDC dc)
 {
 	Vect2 vPos = CCamera::GetI()->GetRenderPos(GetPos());
-	Vect2 vScale = GetScale();
 
 	if (mpShadowTex)
 	{
@@ -166,13 +194,13 @@ void Monster::Render(HDC dc)
 
 	CompnentRender(dc);
 
-	if (mVecPathPos.empty())
-		return;
-
-	SelectGDI p = SelectGDI(dc, PEN_TYPE::BLUE);
-
 	if (DEBUG)
 	{
+		if (mVecPathPos.empty())
+			return;
+
+		SelectGDI p = SelectGDI(dc, PEN_TYPE::BLUE);
+
 		Vect2 vStartPos = CCamera::GetI()->GetRenderPos(mVecPathPos[0]);
 
 		MoveToEx(dc, vStartPos.x, vStartPos.y, nullptr);	// 현재 좌표 설정
@@ -188,11 +216,21 @@ void Monster::Render(HDC dc)
 void Monster::Update()
 {
 	mCurDamageDelay += DT;
+	mtInfo.curSpeed = mFreeze ? 0.f : mtInfo.speed;
+
+	if (mFreeze) mCurFreezeDelay += DT;
 
 	GetAnimator()->Update();
 
 	if (nullptr != mAI)
 		mAI->Update();
+
+	if (mCurFreezeDelay > mFreezeDelay) 
+	{
+		mFreeze = false;
+		mCurFreezeDelay = 0.f;
+		GetRigidBody()->SetKinematic(false);
+	}
 
 	if (nullptr != mHpBar)
 	{
@@ -209,28 +247,51 @@ void Monster::SetAI(AI<MONSTER_STATE>* pAI)
 
 void Monster::AddDamage(float damage)
 {
-	mtInfo.curHp -= damage;
-	if (mtInfo.curHp < 0) mtInfo.curHp = 0;
-	else 
-	{
-		if(mAI->GetCurStateType() != MONSTER_STATE::HIT)
-			ChangeAIState(mAI, MONSTER_STATE::HIT);
-	}
+	if (mAI->GetCurStateType() == MONSTER_STATE::DEAD)
+		return;
 
-	Vect2 vOff = Vect2((float)CRandom::GetI()->Next(-20, 20), (float)CRandom::GetI()->Next(-20, 20));
+	mtInfo.curHp -= damage;
+
+	if (mtInfo.curHp < 0)
+	{
+		ChangeAIState(mAI, MONSTER_STATE::DEAD);
+
+		if (mHitSound)
+			mHitSound->Play();
+	}
+	else if(mType != MONSTER_TYPE::BOSS)
+	{
+		if (mAI->GetCurStateType() != MONSTER_STATE::HIT)
+		{
+			ChangeAIState(mAI, MONSTER_STATE::HIT);
+
+			if (mHitSound)
+				mHitSound->Play();
+		}
+	}
 
 	if (SettingMgr::GetI()->GetDamageTextActive())
 	{
+		//Vect2 vOff = Vect2((float)CRandom::GetI()->Next(-20, 20), (float)CRandom::GetI()->Next(-20, 20));
+
 		CombatText* pCbTex = new CombatText;
 		pCbTex->SetPos(GetLocalPos());
 		pCbTex->SetText(std::to_wstring((int)damage));
 		CreateObject(pCbTex, GROUP_TYPE::UI);
 	}
-
-	if (mHitSound)
-		mHitSound->Play();
 }
 
+
+void Monster::SetFreeze(float delay)
+{
+	if (mType == MONSTER_TYPE::BOSS) 
+		return;
+
+	mFreeze = true;
+	mFreezeDelay = delay;
+	mCurDamageDelay = 0.f;
+	GetRigidBody()->SetKinematic(true);
+}
 
 void Monster::OnCollisionEnter(CCollider* _pOther)
 {

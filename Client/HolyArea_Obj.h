@@ -9,9 +9,12 @@ class HolyArea_Obj :
 {
 private:
     float       mTheta;             // 각도
-    float       mAlpha;             // 명암
-    float       mPlusAlpha;         // 명암에 추가하는 값
     int         mPrevLv;
+
+    float       mFadeDelay;
+    float       mCurDelay;
+    float       mFadeDir;
+
 
 public:
     void SetPrevLv(int _lv) { mPrevLv = _lv; }

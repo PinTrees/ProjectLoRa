@@ -36,31 +36,38 @@ void PAtkState::Enter()
 	Vect2 vPlayerLocalPos = pPlayer->GetLocalPos();
 
 	CScene* pScene = CSceneMgr::GetI()->GetCurScene();
-	vector<CObject*> vecMon = pScene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecMon = pScene->GetGroupObject(GROUP_TYPE::MONSTER);
+	const vector<CObject*>& vecBoss = pScene->GetGroupObject(GROUP_TYPE::BOSS);
 
-	if (vecMon.empty()) return;
-
-	float length = 1000.f;
-	Vect2 monsterPos;
 	Vect2 vDir;
-	for (size_t i = 0; i < vecMon.size(); ++i)
-	{
-		float fDistance = Vect2::Distance(vecMon[i]->GetLocalPos(), vPlayerLocalPos);
-		if (fDistance < length)	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
-		{
-			length = fDistance;
-			vDir = vecMon[i]->GetLocalPos() - vPlayerLocalPos;
-		}
-	}
+	Vect2 monsterPos;
 
-	vDir.Normalize();
+	if (vecMon.size() > 0)
+	{
+		float length = 1000.f;
+		for (size_t i = 0; i < vecMon.size(); ++i)
+		{
+			float fDistance = Vect2::Distance(vecMon[i]->GetLocalPos(), vPlayerLocalPos);
+			if (fDistance < length)	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
+			{
+				length = fDistance;
+				vDir = vecMon[i]->GetLocalPos() - vPlayerLocalPos;
+			}
+		}
+		vDir.Normalize();
+	}
+	else if (vecBoss.size() > 0)
+	{
+		monsterPos = vecBoss[0]->GetLocalPos();
+		vDir = vecBoss[0]->GetLocalPos() - vPlayerLocalPos;
+	}
 
 	pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-		int shotAngle = 30 * 0.5f;
+		int shotAngle = 15 * 0.5f;
 		float angle = vDir.ToAngle() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
 		Vect2 vDir = Vect2::FromAngle(angle);
 

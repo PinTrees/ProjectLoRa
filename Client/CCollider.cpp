@@ -10,6 +10,9 @@
 
 // Include Components
 #include "RigidBody.h"
+#include "CSceneMgr.h"
+#include "CScene.h"
+
 
 UINT CCollider::giNextID = 0;
 
@@ -81,8 +84,7 @@ void CCollider::OnCollisionStay(CCollider* _pOther)
 			return;
 
 		Vect2 vDis = (mpOwner->GetLocalPos() - _pOther->GetObj()->GetLocalPos()).Normalize();
-		mpOwner->SetPos(mpOwner->GetPos() + vDis * 100.f * DT);
-		//mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
+		mpOwner->GetRigidBody()->AddForce(vDis * 100.f);
 	}
 }
 

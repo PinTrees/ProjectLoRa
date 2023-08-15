@@ -1,28 +1,27 @@
 #include "pch.h"
 #include "CSlider.h"
-#include "CSliderBar.h"
 
 #include "CResMgr.h"
-
 #include "CTexture.h"
+#include "CImageUI.h"
+
+#include "CSliderBar.h"
+
 
 CSlider::CSlider()
 	: CUI(false)
-	, mpRoadTex(nullptr)
-	, mpSliderBar(nullptr)
-	, mMaxValue()
-	, mLowValue()
-	, mCurValue()
+	, mCurValue(0)
+	, mLowValue(0)
+	, mMaxValue(100)
 {
-	SetFixedChildMouseCheck(true);
+	mpRoad = new CImageUI;
+	mpRoad->SetName(L"SliderRoad");
+	mpRoad->SetScale(Vect2(4.f, 4.f));
+	mpRoad->SetColor(RGB(137, 90, 69));
+	AddChild(mpRoad);
 
-	//mpRoadTex = CResMgr::GetI()->LoadTexture(L"", L"");
-
-	mpSliderBar = new CSliderBar;	// 스크롤 바 생성 및 설정
-	mpSliderBar->SetName(L"mpSliderBar");
-	mpSliderBar->SetScale(Vect2(16.f, 16.f));
-	mpSliderBar->SetOwner(this);
-	mpSliderBar->SetTexture(CResMgr::GetI()->LoadTexture(L"mpSliderBar", L"texture\\ui\\scrollview\\scrollbar.bmp"));
+	mpSliderBar = new CSliderBar;
+	mpSliderBar->mpOwner = this;
 	AddChild(mpSliderBar);
 }
 
@@ -31,15 +30,70 @@ CSlider::~CSlider()
 }
 
 
+void CSlider::SetValue(int val)
+{
+	mCurValue = val;
+
+	Vect2 vScale = GetScale();
+	Vect2 vScrollBarPos = mpSliderBar->GetPos();
+	Vect2 vScrollBarSize = mpSliderBar->GetScale();
+	mpSliderBar->SetPos(Vect2((vScale.x * -0.5f) + (vScrollBarSize.x * 0.5f), 0.f));
+
+	if (mChangeValueFunc && mFuncOwner)
+	{
+		(mFuncOwner->*mChangeValueFunc)(mCurValue);
+	}
+}
+
+void CSlider::SetHorSliderValue()
+{
+	Vect2 vScale = GetScale();
+
+	Vect2 vScrollBarPos = mpSliderBar->GetPos();
+	Vect2 vScrollBarSize = mpSliderBar->GetScale();
+
+	// 스크롤바의 좌표와 스크롤뷰의 크기를 사용하여 mRatio 값을 계산하고,
+	// 스크롤바의 크기만큼 비율에서 제거합니다.
+	mRatio = (vScrollBarPos.x + (vScale.x - vScrollBarSize.x) * 0.5f) / (vScale.x - vScrollBarSize.x);
+	mCurValue = (mMaxValue - mLowValue) * mRatio + mLowValue;
+
+	mCurValue = mCurValue > mMaxValue ? mMaxValue : mCurValue < mLowValue ? mLowValue : mCurValue;
+
+	// 등록 함수 호출
+	if (mChangeValueFunc && mFuncOwner)
+	{
+		(mFuncOwner->*mChangeValueFunc)(mCurValue);
+	}
+}
+
+
 void CSlider::Update()
 {
+	CUI::Update();
 
+	mpRoad->SetScale(Vect2(GetScale().x, 4.f));
+
+	Vect2 vScale = GetScale();
+	Vect2 vScrollBarPos = mpSliderBar->GetPos();
+	Vect2 vScrollBarSize = mpSliderBar->GetScale();
+
+	// 스크롤바 이동 영역 제한
+	if (mRatio < 0.f)
+	{
+		mRatio = 0.f;
+		mpSliderBar->SetPos(Vect2((vScale.x * -0.5f) + (vScrollBarSize.x * 0.5f), vScrollBarPos.y));
+	}
+	else if (mRatio > 1.f)
+	{
+		mRatio = 1.f;
+		mpSliderBar->SetPos(Vect2((vScale.x * 0.5f) - (vScrollBarSize.x * 0.5f), vScrollBarPos.y));
+	}
 }
+
 
 void CSlider::Render(HDC dc)
 {
-	mpSliderBar->Render(dc);
-
 	CUI::Render(dc);
+	CUI::RenderChild(dc);
 }
 

@@ -12,22 +12,29 @@ private:
 	Vect2		mvFinalPos;		// finalupdate 에서 매프레임마다 계산
 	Vect2		mvScale;		// 충돌체의 크기정보
 
+	UINT		mBspX;
+	UINT		mBspY;
+
 	UINT		miID;			// 충돌체 고유한 ID 값
 	int			miCol;			
 
 	bool		mIsTrigger;		// 해당 충돌체의 겹침 여부 
-	bool		mIsActive;		// 충돌체 활성화
+	bool		mIsActive;
 
 
 public:
+	void SetBSP(UINT x, UINT y) { mBspX = x; mBspY = y; };
+	UINT GetBSPX() { return mBspX; };
+	UINT GetBSPY() { return mBspY; };
+
+	void SetActive(bool _active) { mIsActive = _active; }
+	bool GetActive() { return mIsActive; }
+
 	void SetOffsetPos(Vect2 _vPos) { mvOffsetPos = _vPos; }
 	void SetScale(Vect2 _vScale) { mvScale= _vScale; }
 
 	void SetTrigger(bool _trigger) { mIsTrigger = _trigger; }
 	bool GetTrigger() { return mIsTrigger; }
-
-	void SetActive(bool _active) { mIsActive = _active; }
-	bool GetActive() { return mIsActive; }
 
 	Vect2 GetFinalPos() { return mvFinalPos; }
 	Vect2 GetOffsetPos() { return mvOffsetPos; }

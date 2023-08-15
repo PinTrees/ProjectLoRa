@@ -45,8 +45,13 @@ private:
 	map<STATEUP_TYPE, tLvupEffectData>	mMapLvupEffectData;
 	map<SKILL_TYPE, tLvupEffectData>	mMapLvupEffectData_Skill;
 
-	array<LevelupUI*, 3>					mCurLvupUI;
-	CUI*	mLevelUpUIPanel;
+	array<LevelupUI*, 3>					mCurLvupUI3;
+	array<LevelupUI*, 2>					mCurLvupUI2;
+	LevelupUI*								mCurLvupUI1;
+
+	CUI*	mLevelUpUIPanel3;
+	CUI*	mLevelUpUIPanel2;
+	CUI*	mLevelUpUIPanel1;
 
 public:
 	void Init();

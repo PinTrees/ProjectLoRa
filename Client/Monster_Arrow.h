@@ -13,8 +13,11 @@ private:
     float           mCurTime;
     bool            mbDestroy;
 
+    float           mDamage;
+
 
 public:
+    void SetDamage(float damage) { mDamage = damage; }
     void SetDir(Vect2 _dir) { mvDir = _dir; }
 
     void SetOwner(CObject* _owner) { mpOwner = _owner; }
