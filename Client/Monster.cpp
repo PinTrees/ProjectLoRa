@@ -156,8 +156,8 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		
 		SetScale(Vect2(128.f, 128.f) * scale);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
-		GetCollider()->SetScale(Vect2(20.f, 35.f) * 1.3f);
-		GetCollider()->SetOffsetPos(Vect2(0.f, 25.f));
+		GetCollider()->SetScale(Vect2(30.f, 30.f) * 1.3f);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 50.f));
 
 		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}

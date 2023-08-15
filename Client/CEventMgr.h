@@ -22,8 +22,6 @@ private:
 	vector<tEvent>		mVecEvent;
 	vector<CObject*>	mVecDeadObj;
 
-	vector<wstring>		mDeleteList;
-
 
 public:
 	void Update();

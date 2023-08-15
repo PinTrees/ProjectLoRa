@@ -62,7 +62,7 @@ void PAtkState::Enter()
 		vDir = vecBoss[0]->GetLocalPos() - vPlayerLocalPos;
 	}
 
-	pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
+	//pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
 
 	for (int i = 0; i < 3; ++i)
 	{

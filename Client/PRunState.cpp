@@ -35,14 +35,7 @@ void PRunState::Update()
 	pPlayer->SetPos(pPlayer->GetPos() + mvDir * 120.f * DT);
 	pPlayer->SetFlip(mvDir.x < 1);
 
-	if (pPlayer->GetDir().x < 1)
-	{
-		pPlayer->GetAnimator()->Play(L"RUN_L", true);
-	}
-	else
-	{
-		pPlayer->GetAnimator()->Play(L"RUN_R", true);
-	}
+	pPlayer->GetAnimator()->Play(pPlayer->GetDir().x < 1 ? L"RUN_L" : L"RUN_R", true);
 }
 
 void PRunState::Exit()

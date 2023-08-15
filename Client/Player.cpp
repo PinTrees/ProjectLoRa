@@ -71,8 +71,6 @@ Player::Player()
 	// Init Object Component
 	// Create Collider Component
 	CreateCollider();
-	GetCollider()->SetOffsetPos(Vect2(-12.f, -8.f));
-	GetCollider()->SetScale(Vect2(25.f, 45.f));
 
 	SetScale(Vect2(73.f, 54.f) * 1.7f);
 	SetPivot(Vect2(-15.f, 15.f));
@@ -86,13 +84,29 @@ Player::Player()
 	// Create Animator Component
 	CreateAnimator();
 
-	GetAnimator()->LoadAnimation(L"animation\\player_idle.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_run_r.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_run_l.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_atk_r.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_atk_l.anim");
-	GetAnimator()->LoadAnimation(L"animation\\player_dash_r.anim");
-	//GetAnimator()->LoadAnimation(L"animation\\player_die.anim");
+	CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Player_r", L"texture\\player_r.bmp");
+	CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Player_l", L"texture\\player_l.bmp");
+
+	Vect2 vSliseSize = Vect2(170.f, 210.f);
+	Vect2 vStepSize = Vect2(170.f, 0.f);
+	Vect2 vLtPos = Vect2(0.f, 210.f);
+	Vect2 vRtPos = Vect2(1024.f, 210.f);
+
+	GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.2f, 4);
+	GetAnimator()->CreateAnimation(L"RUN_L", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 5);
+
+	GetAnimator()->CreateAnimation(L"RUN_R", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 1.f), vSliseSize, vStepSize * -1.f, 0.1f, 5);
+
+	GetRigidBody()->IsKinematic();
+	GetRigidBody()->SetMess(1.5f);
+	GetRigidBody()->SetMaxVelocity(Vect2(10.f, 10.f));
+
+	float scale = 0.5f;
+	SetScale(Vect2(170.f, 210.f) * scale);
+	SetPivot(Vect2(0.f, 0.f));
+	GetCollider()->SetOffsetPos(Vect2(0.f, 20.f));
+	GetCollider()->SetScale(Vect2(30.f, 50.f));
+
 	GetAnimator()->Play(L"IDLE", true);
 
 

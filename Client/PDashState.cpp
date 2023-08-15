@@ -32,7 +32,7 @@ void PDashState::Enter()
 {
 	Player* pPlayer = (Player*)GetOwner();
 
-	pPlayer->GetAnimator()->Play(L"DASH_R", false);
+	//pPlayer->GetAnimator()->Play(L"DASH_R", false);
 
 	pPlayer->SetVisible(false);
 	pPlayer->GetCollider()->SetActive(false);
