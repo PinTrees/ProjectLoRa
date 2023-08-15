@@ -278,6 +278,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SelectGDI.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="WaveMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
@@ -404,6 +405,7 @@
     <ClCompile Include="TraceState.cpp" />
     <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
+    <ClCompile Include="WaveMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

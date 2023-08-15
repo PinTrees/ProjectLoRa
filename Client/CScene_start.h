@@ -28,7 +28,6 @@ public:
 
 
 private:
-	void CreateMonster();
 	void createBoss();
 	void createEnvi();
 	void createPlayer();

@@ -21,6 +21,8 @@ CrossDagger_Obj::CrossDagger_Obj()
 {
 	SetMaxDelay(2.f);
 	SetName(L"CrossDagger");
+	SetDamage(20.f);
+
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(30.f, 30.f) * 1.5f);
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
@@ -69,7 +71,7 @@ void CrossDagger_Obj::OnCollisionEnter(CCollider* _pOther)	// 초마다 피해를 입히
 	CObject* pObj = _pOther->GetObj();
 	Player* player = PlayerMgr::GetI()->GetPlayer();
 
-	float damage = player->GetInfo().atkDamage;
+	float damage = player->GetInfo().atkDamage * 0.5f + (float)GetOwner()->GetSkillLevel() * GetDamage() * 0.5f;
 	damage *= GetOwner()->GetSkillLevel();
 
 	if (pObj->GetName() == L"Monster")		// 스킬 오브젝트가 몬스터와 만나면 데미지를 입힘

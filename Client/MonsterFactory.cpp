@@ -20,6 +20,7 @@
 #include "BDeadState.h"
 
 #include "CCollider.h"
+#include "WaveMgr.h"
 
 
 int MonsterFactory::mCreateCount = 0;
@@ -43,7 +44,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 7.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 200.f * pow(1.001f, mCreateCount);
+		info.curHp = info.hp = 100.f + 50 * WaveMgr::GetI()->GetCurWaveCount();
 		info.speed = 45.f;
 
 		pMonster->setMonsterInfo(info);
@@ -72,7 +73,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 5.f;
 		info.atkRange = 250.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 150.f * pow(1.001f, mCreateCount);
+		info.curHp = info.hp = 50.f + 40 * WaveMgr::GetI()->GetCurWaveCount();
 		info.speed = 25.f;
 		info.atkSpeed = 3.f;
 
@@ -102,7 +103,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 5.f;
 		info.atkRange = 250.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 750.f * pow(1.001f, mCreateCount);
+		info.curHp = info.hp = 750.f * 100 * WaveMgr::GetI()->GetCurWaveCount();
 		info.atkSpeed = 3.f;
 		info.speed = 25.f;
 

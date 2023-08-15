@@ -24,6 +24,7 @@ HolyArea_Obj::HolyArea_Obj()
 	SetMaxDelay(0.f);		// 스킬 지속시간이 필요 없기 때문에 0으로 세팅
 	SetDamageDelay(0.2f);	// ~초마다 데미지를 입힘
 	SetScale(Vect2(100.f, 100.f) * 0.5f);
+	SetDamage(5.f);
 
 	CreateAnimator();
 	CreateCollider();

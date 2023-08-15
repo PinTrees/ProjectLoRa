@@ -22,6 +22,8 @@ CombatBall_Bullet::CombatBall_Bullet()
 	SetMaxDelay(1.f);		// 스킬 지속시간 세팅
 	SetDamageDelay(0.f);
 	SetName(L"CombatBall_Bullet");
+	SetDamage(5.f);
+
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(20.f, 20.f) * 1.2f);
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
@@ -70,7 +72,7 @@ void CombatBall_Bullet::OnCollisionEnter(CCollider* _pOther) // 초당 피해가 아닌
 	CObject* pObj = _pOther->GetObj();
 	Player* player = PlayerMgr::GetI()->GetPlayer();
 
-	float damage = player->GetInfo().atkDamage;
+	float damage = player->GetInfo().atkDamage * 0.5f + (float)GetOwner()->GetSkillLevel() * GetDamage() * 0.5f;
 	damage *= GetOwner()->GetSkillLevel();
 
 	if (pObj->GetName() == L"Monster")		// 스킬 오브젝트가 몬스터와 만나면 데미지를 입힘

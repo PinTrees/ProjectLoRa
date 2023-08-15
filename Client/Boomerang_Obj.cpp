@@ -20,6 +20,8 @@ Boomerang_Obj::Boomerang_Obj()
 	SetMaxDelay(4.f);
 	SetDamageDelay(0.1f);
 	SetName(L"Boomerang");
+	SetDamage(15.f);
+
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(80.f, 80.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));

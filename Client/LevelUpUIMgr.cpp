@@ -107,6 +107,22 @@ void LevelUpUIMgr::Init()
 
 void LevelUpUIMgr::Choice()
 {
+	Player* player = PlayerMgr::GetI()->GetPlayer();
+
+	const vector<STATEUP_TYPE>& vecMaxState = player->GetMaxLevelStatus();
+	const vector<SKILL_TYPE>& vecMaxSkill = player->GetMaxLevelSkill();
+
+	if (vecMaxState.size() == (size_t)STATEUP_TYPE::END			// 모든 스탯과 스킬이 maxlevel 일 경우 함수를 탈출
+		&& vecMaxSkill.size() == (size_t)SKILL_TYPE::END)
+		return;
+
+	int count = 3;
+
+	if ((int)(((size_t)STATEUP_TYPE::END - vecMaxState.size()) + ((size_t)SKILL_TYPE::END - vecMaxSkill.size())) < 3)
+	{
+		count = (int)(((size_t)STATEUP_TYPE::END - vecMaxState.size()) + ((size_t)SKILL_TYPE::END - vecMaxSkill.size()));
+	}
+
 	tLeveUpEvent tEventArr[3];
 	bool ReChoice = false;
 

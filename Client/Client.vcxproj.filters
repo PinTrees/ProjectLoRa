@@ -422,6 +422,9 @@
     <Filter Include="Game\UI\InfoDialog">
       <UniqueIdentifier>{50114622-9ad3-4c65-bd9c-d760bd773393}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Manager\WaveMgr">
+      <UniqueIdentifier>{cc33e9fe-1dfa-4101-b3c8-05b15c1240f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -814,6 +817,9 @@
     <ClInclude Include="HelpDialogUI.h">
       <Filter>Game\UI\InfoDialog</Filter>
     </ClInclude>
+    <ClInclude Include="WaveMgr.h">
+      <Filter>Game\Manager\WaveMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1192,6 +1198,9 @@
     </ClCompile>
     <ClCompile Include="HelpDialogUI.cpp">
       <Filter>Game\UI\InfoDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveMgr.cpp">
+      <Filter>Game\Manager\WaveMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

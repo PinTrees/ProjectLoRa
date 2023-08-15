@@ -64,6 +64,7 @@ Player::Player()
 
 	// Load ----------------------
 	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
+	mpShadowTex = CResMgr::GetI()->LoadTexture(L"Shadow_2", L"texture\\shadow\\2.bmp");
 
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
@@ -101,14 +102,17 @@ Player::Player()
 	GetRigidBody()->SetMess(1.5f);
 	GetRigidBody()->SetMaxVelocity(Vect2(10.f, 10.f));
 
-	float scale = 0.5f;
+	float scale = 0.45f;
+
+	mvShadowScale = Vect2(150.f, 75.f) * scale;
+	mvShadowOffset = Vect2(0.f, 110.f) * scale;
+
 	SetScale(Vect2(170.f, 210.f) * scale);
 	SetPivot(Vect2(0.f, 0.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 20.f));
 	GetCollider()->SetScale(Vect2(30.f, 50.f));
 
 	GetAnimator()->Play(L"IDLE", true);
-
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
@@ -267,6 +271,22 @@ void Player::Update()
 
 void Player::Render(HDC _dc)
 {
+	Vect2 vPos = CCamera::GetI()->GetRenderPos(GetPos());
+
+	if (mpShadowTex)
+	{
+		TransparentBlt(_dc
+			, (int)(vPos.x + mvShadowOffset.x - mvShadowScale.x * 0.5f)
+			, (int)(vPos.y + mvShadowOffset.y - mvShadowScale.y * 0.5f)
+			, (int)(mvShadowScale.x)
+			, (int)(mvShadowScale.y)
+			, mpShadowTex->GetDC()
+			, 0, 0
+			, (int)mpShadowTex->Width()
+			, (int)mpShadowTex->Heigth()
+			, RGB(255, 0, 255));
+	}
+
 	//컴포넌트 ( 충돌체, ect...	) 가 있는경우 랜더
 	CompnentRender(_dc);
 }

@@ -48,28 +48,37 @@ class Player :
 private:
 	float	mfDelay;
 	float	mfCurDelay;
+	float	mHpDelay;
 	float	mMpDelay;
 	Vect2	mvDir;
 
-	int			mLevel;
-	float		mExp;
+	int		mLevel;
+	int		mArrStatusLevel[(UINT)STATEUP_TYPE::END];
+	int		mArrStatusMaxLevel[(UINT)STATEUP_TYPE::END];
+	float	mExp;
 
 	float	mGoldChekDelay;
 	float	mCurGoldChekDelay;
 
-	BarUI*		mExpBar;
-	BarUI*		mMpBar;
-	CImageUI*	mHpBar;
-	TextUI*		mHpText;
+	BarUI* mExpBar;
+	BarUI* mMpBar;
+	CImageUI* mHpBar;
+	TextUI* mHpText;
 
-	tPlayerInfo			mtInfo;
-	vector<Skill*>		mVecSkill;
-	vector<SKILL_TYPE>	mVecMaxLevelSkill;
+	tPlayerInfo				mtInfo;
+	vector<Skill*>			mVecSkill;
+	vector<STATEUP_TYPE>	mVecMaxLevelStatus;
+	vector<SKILL_TYPE>		mVecMaxLevelSkill;
 
-	AI<PLAYER_STATE>*	mAI;
+	AI<PLAYER_STATE>* mAI;
 
 	CSound* mpCoinSound;
 	CSound* mpLevelUpSound;
+
+	Vect2		mvShadowOffset;
+	Vect2		mvShadowScale;
+
+	CTexture*	mpShadowTex;
 
 
 public:
@@ -85,11 +94,15 @@ public:
 	void SetAI(AI<PLAYER_STATE>* pAI) { mAI = pAI; mAI->SetOwner(this); }
 	AI<PLAYER_STATE>* GetAI() { return mAI; }
 
+	int* GetArrStatusLevel() { return mArrStatusLevel; }
+	int* GetArrStatusMaxLevel() { return mArrStatusMaxLevel; }
+
 	vector<SKILL_TYPE>& GetMaxLevelSkill() { return mVecMaxLevelSkill; }
+	vector<STATEUP_TYPE>& GetMaxLevelStatus() { return mVecMaxLevelStatus; }
 
 
 public:
-	Skill*	FindSkill(SKILL_TYPE type);
+	Skill* FindSkill(SKILL_TYPE type);
 	void	AddSkill(Skill* _skill);
 	void	UseSkill();
 	void	AddDamage(float _damage);

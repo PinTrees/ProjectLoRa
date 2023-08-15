@@ -45,7 +45,17 @@ void IceBolt_Effect::Update()
 
 	if (mvecIcedMon)
 	{
-		if ((Monster*)mvecIcedMon->IsDead())
+		SetPos(mvecIcedMon->GetLocalPos() - Vect2(0.f, GetScale().y * 0.5f));
+
+		if (mvecIcedMon->IsDead())
+		{
+			mvecIcedMon = nullptr;
+
+			GetAnimator()->Play(L"IceBolt_Effect_DeFrost", false);
+			mCurTime = 0.f;
+			mFreeze = true;
+		}
+		else if(!((Monster*)mvecIcedMon)->GetFreeze())
 		{
 			mvecIcedMon = nullptr;
 
@@ -55,15 +65,7 @@ void IceBolt_Effect::Update()
 		}
 	}
 	
-
-	if (!mFreeze && mCurTime >= mFreezeTime)
-	{
-		GetAnimator()->Play(L"IceBolt_Effect_DeFrost", false);
-		mCurTime = 0.f;
-		mFreeze = true;
-	}
-
-	if (mFreeze && mCurTime >= mDeFrostTime)
+	if (mFreeze && GetAnimator()->GetCurAnimation()->IsFinish())
 	{
 		DeleteObject(this);
 	}

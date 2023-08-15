@@ -21,6 +21,8 @@ IceBolt_Obj::IceBolt_Obj()
 {
 	SetMaxDelay(3.f);		// 스킬 지속시간 세팅
 	SetName(L"IceBolt");
+	SetDamage(3.f); 
+	
 	CreateCollider();
 	GetCollider()->SetScale(Vect2(80.f, 80.f));
 	GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
@@ -77,7 +79,6 @@ void IceBolt_Obj::OnCollisionEnter(CCollider* _pOther)
 				((Monster*)vecMon[i])->SetFreeze(3.5f);
 
 				IceBolt_Effect* pIce = new IceBolt_Effect;					// 얼음효과 생성
-				pIce->SetPos(vecMon[i]->GetLocalPos() - Vect2(0.f, pIce->GetScale().y * 0.5f));
 				pIce->SetTargetMonster(vecMon[i]);							// 얼어있는 몬스터를 벡터로 받아놓음
 				CreateObject(pIce, GROUP_TYPE::PROJ_PLAYER);
 			}
