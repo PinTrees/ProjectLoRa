@@ -41,6 +41,10 @@ void TraceState::Enter()
 {
 	if (mvTargetPos == Vect2::zero)
 		mvTargetPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
+
+	Monster* pMonster = (Monster*)GetOwner();
+	if (pMonster->GetType() == MONSTER_TYPE::ELITE)
+		mAstarDelay = 0.2f;
 }
 
 
@@ -82,20 +86,6 @@ void TraceState::Update()
 		AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
 		AstarMgr::GetI()->Find();
 		vector<Vect2> vecPosList = AstarMgr::GetI()->GetFinalPosList();
-
-		// JPS B 알고리즘 사용안함
-		/*if (tCurFindPathType == FIND_PATH_TYPE::ASTAR)
-		{
-			AstarMgr::GetI()->SetStartPos((int)vMonPos.x, (int)vMonPos.y);
-			AstarMgr::GetI()->SetTargetPos((int)vTargetPos.x, (int)vTargetPos.y);
-			AstarMgr::GetI()->Find();
-		}
-		else if (tCurFindPathType == FIND_PATH_TYPE::JPS_B)
-		{
-			JPSMgr::GetI()->SetStartPos(vMonPos.x, vMonPos.y);
-			JPSMgr::GetI()->SetTargetPos(vTargetPos.x, vTargetPos.y);
-			JPSMgr::GetI()->Find();
-		}*/
 
 		if (vecPosList.size() > 1)
 		{

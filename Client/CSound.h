@@ -3,7 +3,6 @@
 #include "CSoundMgr.h"
 
 
-
 class CSound :
 	public CRes
 {

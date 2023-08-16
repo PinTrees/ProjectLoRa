@@ -32,6 +32,35 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 
 	switch (type)
 	{
+	case MONSTER_TYPE::ELITE:
+	{
+		pMonster = new Monster(type, L"6");
+
+		pMonster->SetPos(pos);
+		pMonster->SetName(L"Monster");
+		pMonster->GetCollider()->SetTrigger(false);
+
+		tMonsterInfo info = {};
+		info.atk = 20.f;
+		info.atkRange = 50.f;
+		info.recogRange = 10000.f;
+		info.curHp = info.hp = 200.f + 30 * WaveMgr::GetI()->GetCurWaveCount();
+		info.speed = 150.f;
+
+		pMonster->setMonsterInfo(info);
+		pMonster->GetRigidBody()->SetMess(1.f);
+
+		AI<MONSTER_STATE>* pAI = new AI<MONSTER_STATE>;
+		pAI->AddState(new IdleState);
+		pAI->AddState(new TraceState);
+		pAI->AddState(new DeadState);
+		pAI->AddState(new AtkState);
+		pAI->AddState(new HitState);
+		pAI->SetCurState(MONSTER_STATE::IDLE);
+
+		pMonster->SetAI(pAI);
+	}
+	break;
 	case MONSTER_TYPE::SHORT:
 	{
 		pMonster = new Monster(type, L"4");
@@ -44,8 +73,8 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 7.f;
 		info.atkRange = 50.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 100.f + 50 * WaveMgr::GetI()->GetCurWaveCount();
-		info.speed = 45.f;
+		info.curHp = info.hp = 100.f + 30 * WaveMgr::GetI()->GetCurWaveCount();
+		info.speed = 60.f;
 
 		pMonster->setMonsterInfo(info);
 		pMonster->GetRigidBody()->SetMess(1.f);
@@ -73,7 +102,7 @@ Monster* MonsterFactory::CreateMonster(MONSTER_TYPE type, Vect2 pos)
 		info.atk = 5.f;
 		info.atkRange = 250.f;
 		info.recogRange = 10000.f;
-		info.curHp = info.hp = 50.f + 40 * WaveMgr::GetI()->GetCurWaveCount();
+		info.curHp = info.hp = 50.f + 20 * WaveMgr::GetI()->GetCurWaveCount();
 		info.speed = 25.f;
 		info.atkSpeed = 3.f;
 

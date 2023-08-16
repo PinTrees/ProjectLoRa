@@ -102,7 +102,7 @@ Player::Player()
 	GetRigidBody()->SetMess(1.5f);
 	GetRigidBody()->SetMaxVelocity(Vect2(10.f, 10.f));
 
-	float scale = 0.45f;
+	float scale = 0.42f;
 
 	mvShadowScale = Vect2(150.f, 75.f) * scale;
 	mvShadowOffset = Vect2(0.f, 110.f) * scale;

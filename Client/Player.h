@@ -24,7 +24,7 @@ struct tPlayerInfo
 	float	shotAngle = 0.f;			// 발사 각도(명중률)
 	float	shotCount = 1.f;			// 발사 총알 개수
 
-	float   atkDelay = 0.75f;
+	float   atkDelay = 0.7f;
 
 	UINT	penetration = 0;			// 관통 수
 	UINT	splitCount = 0;				// 분열 수

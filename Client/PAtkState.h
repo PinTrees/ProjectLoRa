@@ -2,6 +2,7 @@
 #include "CState.h"
 
 
+
 class PAtkState :
     public CState<PLAYER_STATE>
 {
@@ -10,6 +11,8 @@ private:
 
     float mAtkDelay;
     float mCurDelay;
+
+    int     mCount;
 
 
 public:

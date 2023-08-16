@@ -38,7 +38,7 @@ void WaveMgr::CreateWave()
 	float xPos = PlayerMgr::GetI()->GetPlayer()->GetPos().x - vResolution.x * 0.5f;
 	float yPos = PlayerMgr::GetI()->GetPlayer()->GetPos().y - vResolution.y * 0.5f;
 
-	int MonsterCount = 1 + (float)mCurWaveCount * 1.f;
+	int MonsterCount = 1 + (float)mCurWaveCount * 0.5f;
 	MonsterCount = MonsterCount > 100 ? 100 : MonsterCount;
 
 	float ellipseWidth = vResolution.x + edgeDistance * 2.0f;  // 타원형의 가로 크기
@@ -60,10 +60,25 @@ void WaveMgr::CreateWave()
 		CreateObject(pShort, GROUP_TYPE::MONSTER);
 	}
 
-
-	for (int i = 0; i < MonsterCount / 2; ++i) // 화면의 끝에서 원거리 공격 몬스터를 생성 (4방면에서 생성됨)
+	int eliteMonsterCount = MonsterCount * 0.33f;
+	for (int i = 0; i < eliteMonsterCount; ++i) // 화면의 끝에서 근거리 공격 몬스터를 생성 (4방면에서 생성됨)
 	{
-		float angle = i * (360.0f / MonsterCount / 2);  // 각도를 계산
+		float angle = i * (360.0f / eliteMonsterCount) + 20.f;  // 각도를 계산
+
+		float x = vCenter.x + (ellipseWidth / 2.f) * cos(angle * PI / 180.0f);
+		float y = vCenter.y - (ellipseHeight / 2.f) * sin(angle * PI / 180.0f);
+
+		Vect2 vCreatePos(x, y);
+
+		// 몬스터 생성 및 추가
+		Monster* pShort = MonsterFactory::CreateMonster(MONSTER_TYPE::ELITE, vCreatePos);
+		CreateObject(pShort, GROUP_TYPE::MONSTER);
+	}
+
+	int rangeMonsterCount = MonsterCount * 0.5f;
+	for (int i = 0; i < rangeMonsterCount; ++i) // 화면의 끝에서 원거리 공격 몬스터를 생성 (4방면에서 생성됨)
+	{
+		float angle = i * (360.0f / rangeMonsterCount);  // 각도를 계산
 
 		float x = vCenter.x + (ellipseWidth / 2.0f) * cos(angle * PI / 180.0f);
 		float y = vCenter.y - (ellipseHeight / 2.0f) * sin(angle * PI / 180.0f);

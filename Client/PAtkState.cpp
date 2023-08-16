@@ -19,7 +19,7 @@
 PAtkState::PAtkState()
 	: CState(PLAYER_STATE::ATTACK)
 	, mCurDelay(0.f)
-	, mAtkDelay(0.f)
+	, mAtkDelay(0.05f)
 {
 }
 
@@ -51,7 +51,7 @@ void PAtkState::Enter()
 			if (fDistance < length)	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
 			{
 				length = fDistance;
-				vDir = vecMon[i]->GetLocalPos() - vPlayerLocalPos;
+				vDir = vecMon[i]->GetPos() - vPlayerLocalPos;
 			}
 		}
 		vDir.Normalize();
@@ -62,12 +62,13 @@ void PAtkState::Enter()
 		vDir = vecBoss[0]->GetLocalPos() - vPlayerLocalPos;
 	}
 
+	mvDir = vDir;
 	//pPlayer->GetAnimator()->Play(monsterPos.x > vPlayerPos.x ? L"ATK_R" : L"ATK_L", true);
 
 	for (int i = 0; i < 3; ++i)
 	{
 		// 일정 발사각 범위 내의 랜덤한 방향을 생성합니다.
-		int shotAngle = 15 * 0.5f;
+		int shotAngle = 10 * 0.5f;
 		float angle = vDir.ToAngle() + (float)CRandom::GetI()->Next(shotAngle * -1, shotAngle); // 랜덤한 각도
 		Vect2 vDir = Vect2::FromAngle(angle);
 

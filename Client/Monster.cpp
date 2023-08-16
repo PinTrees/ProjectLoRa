@@ -161,6 +161,38 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 
 		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}
+	else if (mtInfo.UID == L"6")
+	{
+		float scale = 1.f;
+		mvShadowScale = Vect2(50.f, 25.f) * scale;
+		mvShadowOffset = Vect2(0.f, 50.f) * scale;
+
+		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_6_r", L"texture\\monster\\6_r.bmp");
+		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_6_l", L"texture\\monster\\6_l.bmp");
+
+		Vect2 vSliseSize = Vect2(180.f, 180.f);
+		Vect2 vStepSize = Vect2(180.f, 0.f);
+		Vect2 vLtPos = Vect2(0.f, 180.f);
+		Vect2 vRtPos = Vect2(1024.f, 180.f);
+
+		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"RUN_L", pTex_r, vLtPos * 1.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"ATK_R", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD_R", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 1);
+		GetAnimator()->CreateAnimation(L"HIT_R", pTex_r, vLtPos * 2.f, vSliseSize, vStepSize, 0.07f, 3);
+
+		GetAnimator()->CreateAnimation(L"RUN_R", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 1.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
+		GetAnimator()->CreateAnimation(L"DEAD_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 0.f), vSliseSize, vStepSize * -1.f, 0.07f, 1);
+		GetAnimator()->CreateAnimation(L"HIT_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 2.f), vSliseSize, vStepSize * -1.f, 0.07f, 3);
+		GetAnimator()->CreateAnimation(L"ATK_L", pTex_l, Vect2(vRtPos.x - vStepSize.x, vRtPos.y * 0.f), vSliseSize, vStepSize * -1.f, 0.07f, 4);
+
+		SetScale(Vect2(88.f, 88.f) * scale);
+		SetPivot(Vect2(0.f, 40.f));
+		GetCollider()->SetScale(Vect2(35.f, 60.f) * scale);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 0.f));
+
+		mHpBar->SetPivot(Vect2(0.f, -15.f));
+	}
 
 	GetAnimator()->Play(L"IDLE", true);
 }

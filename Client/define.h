@@ -210,6 +210,7 @@ enum class MONSTER_TYPE
 	BOSS,
 
 	LOCK,
+	ELITE,
 
 	END
 };

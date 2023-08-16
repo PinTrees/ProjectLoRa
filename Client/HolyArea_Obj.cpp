@@ -62,7 +62,7 @@ void HolyArea_Obj::Update()
 
 	Vect2 vPos = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
-	SetPos(Vect2(vPos.x, vPos.y));
+	SetPos(Vect2(vPos.x, vPos.y + 40.f));
 	SetAngle(mTheta);					// 오브젝트를 회전시킨다.
 	GetAnimator()->Update();
 

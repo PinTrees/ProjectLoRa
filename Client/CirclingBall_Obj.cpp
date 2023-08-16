@@ -27,7 +27,7 @@ CirclingBall_Obj::CirclingBall_Obj()
 
 	CTexture* pTex = CResMgr::GetI()->LoadTexture(L"CirclingBall", L"texture\\effect\\12.bmp");
 	GetAnimator()->CreateAnimation(L"IDLE", pTex, Vect2(0.f, 0.f), Vect2(63.f, 75.f), Vect2(63.f, 0.f), 0.07f, 6);
-	SetScale(Vect2(63.f, 75.f) * 1.2f);
+	SetScale(Vect2(63.f, 75.f) * 1.1f);
 
 	GetAnimator()->Play(L"IDLE", true);
 }
@@ -47,8 +47,8 @@ void CirclingBall_Obj::Update()
 	Vect2 vPlayer = PlayerMgr::GetI()->GetPlayer()->GetLocalPos();
 
 	Vect2 vPos;
-	vPos.x = cosf(mTheta) * (100.f + 15.f * GetOwner()->GetSkillLevel());
-	vPos.y = sinf(mTheta) * (100.f + 15.f * GetOwner()->GetSkillLevel());
+	vPos.x = cosf(mTheta) * (80.f + 10.f * GetOwner()->GetSkillLevel());
+	vPos.y = sinf(mTheta) * (80.f + 10.f * GetOwner()->GetSkillLevel());
 
 	SetPos(vPos + vPlayer);			// 공이 플레이어 주변을 빙글빙글 돌도록 세팅한다.
 	GetAnimator()->Update();

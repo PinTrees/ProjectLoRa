@@ -58,7 +58,7 @@ void CombatBall_Obj::Update()
 	Vect2 vDir = (vPlayer - GetPos()).Normalize();	// 오브젝트를 플레이어쪽으로 이동시키기 위해 방향값을 구함
 
 	SetPos(Vect2(GetPos() + vDir * DT * mSpeed));	// 오브젝트를 천천히 이동시킴
-	mSpeed = 100.f;
+	mSpeed = Vect2::Distance(vPlayer, GetPos()) > 50.f ? 100.f : 50.f;
 
 	if (mCurTime > GetOwner()->GetCoolDown())	// 일정시간마다 총알을 생성
 	{

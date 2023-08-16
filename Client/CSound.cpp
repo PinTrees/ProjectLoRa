@@ -19,10 +19,7 @@ CSound::~CSound()
 int CSound::Load(const wstring& _strPath)
 {
 	if (nullptr == CSoundMgr::GetI()->GetSoundDevice())
-		return S_FALSE;
-
-	//if (nullptr == CSoundMgr::GetI()->GetSoundDevice())
-	//	assert(nullptr); // 사운드 객체 생성되지 않음
+		assert(nullptr); // 사운드 객체 생성되지 않음
 
 	// 확장자 이름 구별하기
 	wchar_t szExt[10] = { 0 };
@@ -30,9 +27,10 @@ int CSound::Load(const wstring& _strPath)
 
 	if (!wcscmp(szExt, L".wav")) // WAV 파일 로드
 	{
+		if (false == LoadWaveSound(_strPath))
+			assert(nullptr);
+
 		LoadWaveSound(_strPath);
-		//if (false == LoadWaveSound(_strPath))
-		//	assert(nullptr);
 	}
 	else
 		assert(nullptr);
@@ -90,8 +88,7 @@ bool CSound::LoadWaveSound(const wstring& _strPath)
 	void* pWrite2 = NULL;
 	DWORD dwlength1, dwlength2;
 
-	m_pSoundBuffer->Lock(0, pChild.cksize, &pWrite1, &dwlength1
-		, &pWrite2, &dwlength2, 0L);
+	m_pSoundBuffer->Lock(0, pChild.cksize, &pWrite1, &dwlength1, &pWrite2, &dwlength2, 0L);
 
 	if (pWrite1 != nullptr)
 		mmioRead(hFile, (char*)pWrite1, dwlength1);
@@ -167,7 +164,7 @@ void CSound::SetPosition(float _fPosition)
 	DWORD dwBytes = (DWORD)((_fPosition / 100.f) * (float)m_tBuffInfo.dwBufferBytes);
 	m_pSoundBuffer->SetCurrentPosition(dwBytes);
 
-	Play();
+	//Play();
 }
 
 void CSound::SetVolumeOffset(int vol)

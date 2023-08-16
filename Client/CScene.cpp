@@ -236,14 +236,14 @@ void CScene::render_background(HDC dc)
 
 void CScene::Render(HDC _dc)
 {
-	//Vect2 vRes = CCore::GetI()->GetResolution();
-	//Vect2 vCenterPos = CCamera::GetI()->GetLookAt();
-	//vRes = vRes * 1.1f;
+	Vect2 vRes = CCore::GetI()->GetResolution();
+	Vect2 vCenterPos = CCamera::GetI()->GetLookAt();
+	vRes = vRes * 1.2f;
 
-	//float left	 = vCenterPos.x - vRes.x * 0.5f;
-	//float right  = vCenterPos.x + vRes.x * 0.5f;
-	//float top	 = vCenterPos.y - vRes.y * 0.5f;
-	//float bottom = vCenterPos.y + vRes.y * 0.5f;
+	float left	 = vCenterPos.x - vRes.x * 0.5f;
+	float right  = vCenterPos.x + vRes.x * 0.5f;
+	float top	 = vCenterPos.y - vRes.y * 0.5f;
+	float bottom = vCenterPos.y + vRes.y * 0.5f;
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
@@ -282,10 +282,14 @@ void CScene::Render(HDC _dc)
 			{
 				if ((*iter)->IsVisible())
 				{
-					//Vect2 vRenderPos = (*iter)->GetPos();
-					//if (vRenderPos.x < left || vRenderPos.x > right || vRenderPos.y < top || vRenderPos.y > bottom) {}
-					//else 
-					(*iter)->Render(_dc);
+					Vect2 vRenderPos = (*iter)->GetPos();
+					if (vRenderPos.x < left || vRenderPos.x > right || vRenderPos.y < top || vRenderPos.y > bottom)
+					{
+					}
+					else
+					{
+						(*iter)->Render(_dc);
+					}
 				}
 				++iter;
 			}

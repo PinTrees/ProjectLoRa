@@ -21,7 +21,7 @@
 
 // Core Manager Header
 #include "UIMgr.h"
-
+#include "CSoundMgr.h"
 #include "CCore.h"
 
 
@@ -43,6 +43,7 @@ Scene_Main::Scene_Main()
 
 Scene_Main::~Scene_Main()
 {
+	CSoundMgr::Dispose();
 	DatabaseMgr::Dispose();
 }
 
@@ -50,6 +51,7 @@ Scene_Main::~Scene_Main()
 
 void Scene_Main::Enter()
 {
+	CSoundMgr::GetI()->Init();
 	DatabaseMgr::GetI()->Init();
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
