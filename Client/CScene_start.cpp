@@ -40,6 +40,9 @@
 #include "CCollider.h"
 #include "CTexture.h"
 #include "CCamera.h"
+#include "CSound.h"
+
+#include "CSoundMgr.h"
 
 
 // Player State Header
@@ -66,13 +69,23 @@ Scene_Start::Scene_Start()
 	, mBossDelay(60.f * 0.01f)
 	, mCurBossDelay(0.f)
 	, mbBossRespone(false)
+	, mbBossDead(false)
 	, mMonsterWave()
 	, mTimer(0.f)
+	, mpBGM(nullptr)
+	, mpBGM_BOSS(nullptr)
+	, mpBGM_CLEAR(nullptr)
 {
+	mpBGM = CResMgr::GetI()->LoadSound(L"Bgm_1", L"sound\\bgm_1.wav");
+	mpBGM_BOSS = CResMgr::GetI()->LoadSound(L"Bgm_boss", L"sound\\bgm_boss.wav");
+	mpBGM_CLEAR = CResMgr::GetI()->LoadSound(L"Bgm_gameclear", L"sound\\game_clear.wav");
 }
 
 Scene_Start::~Scene_Start()
 {
+	mpBGM = nullptr;
+	mpBGM_BOSS = nullptr;
+	mpBGM_CLEAR = nullptr;
 	// 싱글톤 메모리 해제
 	LevelUpUIMgr::Dispose();
 	PlayerMgr::Dispose();
@@ -94,6 +107,14 @@ void Scene_Start::Update()
 	GUIMgr::GetI()->SetTimerText((UINT)mTimer);
 	GUIMgr::GetI()->SetFrameText(CTimeMgr::GetI()->GetFrame());
 
+	if (mbBossDead)
+	{
+		mbBossDead = false;
+		mpBGM->Stop();
+		mpBGM = mpBGM_CLEAR;
+		mpBGM->Play();
+	}
+
 	if (mbBossRespone)
 		return;
 
@@ -104,6 +125,11 @@ void Scene_Start::Update()
 	{
 		mbBossRespone = true;
 		mCurBossDelay = 0.f;
+		if (mpBGM_BOSS)
+		{
+			mpBGM->Stop();
+			mpBGM = mpBGM_BOSS;
+		}
 		createBoss();
 	}
 
@@ -171,12 +197,16 @@ void Scene_Start::Enter()
 	CCamera::GetI()->SetLookAt(vResolution / 2.f);
 	CCamera::GetI()->FadeOut(0.1f);
 	CCamera::GetI()->FadeIn(2.f);
+
+	if (mpBGM)
+		mpBGM->Play(true);
 }
 
 
 //현재씬을 나갈때 실행되는 함수
 void Scene_Start::Exit()
 {
+	mpBGM->Stop();
 	DeleteAll();
 	CCollisionMgr::GetI()->Reset();
 	CCamera::GetI()->SetTarget(nullptr);
@@ -255,6 +285,9 @@ void Scene_Start::CreateMonster() // 몬스터 웨이브 생성
 
 void Scene_Start::createBoss()
 {
+	if (mpBGM_BOSS)
+		mpBGM_BOSS->Play();
+
 	Vect2 vResolution = CCore::GetI()->GetResolution();
 
 	Vect2 vRandomPos = Vect2(rand() % (int)vResolution.x,

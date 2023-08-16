@@ -15,7 +15,7 @@
 
 
 Thunder::Thunder()
-	: Skill(SKILL_TYPE::THUNDER, /*5*/1)
+	: Skill(SKILL_TYPE::THUNDER, 5)
 {
 	SetIconStr(L"2.bmp");
 	SetCoolDown(5.f);
@@ -59,7 +59,7 @@ void Thunder::UseSkill()
 		if (mThunderSound)	mThunderSound->Play();
 	}
 
-	SetSkillTime(0.8f * GetSkillLevel() / 5);
+	SetSkillTime(0.f);
 }
 
 void Thunder::CheckAvailable()

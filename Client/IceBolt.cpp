@@ -14,7 +14,7 @@
 
 
 IceBolt::IceBolt()
-	: Skill(SKILL_TYPE::ICE_BOLT, /*5*/1)
+	: Skill(SKILL_TYPE::ICE_BOLT, 5)
 {
 	SetIconStr(L"2.bmp");
 	SetCoolDown(3.f);
@@ -42,7 +42,7 @@ void IceBolt::UseSkill()
 		if (length > (playerPos - monsterPos).Length())	// 플레이어와 몬스터의 길이가 length 보다 작을 때 (가장 가까운 적을 찾는다)
 		{
 			length = (playerPos - monsterPos).Length(); // length 에 값 대입
-			mvDir = monsterPos - playerPos;
+			mvDir = monsterPos - playerPos; 
 		}
 	}
 

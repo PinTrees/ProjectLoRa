@@ -10,7 +10,7 @@
 
 
 CombatBall::CombatBall()
-	: Skill(SKILL_TYPE::COMBAT_BALL, /*8*/1)
+	: Skill(SKILL_TYPE::COMBAT_BALL, 8)
 	, mPrevLv(1)
 {
 	SetIconStr(L"9.bmp");

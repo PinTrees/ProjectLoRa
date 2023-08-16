@@ -3,15 +3,18 @@
 #include "CCollider.h"
 #include "Environment.h"
 #include "Monster.h"
+#include "CScene_start.h"
 
 #include "CCore.h"
 
 #include "CAnimation.h"
 #include "CAnimator.h"
+#include "CSound.h"
 #include "CTexture.h"
-#include "CResMgr.h"
 
+#include "CResMgr.h"
 #include "PlayerMgr.h"
+#include "CSceneMgr.h"
 #include "Player.h"
 
 #include "CTimeMgr.h"
@@ -124,6 +127,8 @@ void Boss::Update()
 
 	if (GetAI()->GetCurStateType() == MONSTER_STATE::DEAD)
 	{
+		CScene* pCurScene = CSceneMgr::GetI()->GetCurScene();
+		((Scene_Start*)pCurScene)->SetClear(true);
 		return;
 	}
 

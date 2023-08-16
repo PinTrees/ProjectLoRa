@@ -167,7 +167,7 @@ void CSound::SetPosition(float _fPosition)
 	DWORD dwBytes = (DWORD)((_fPosition / 100.f) * (float)m_tBuffInfo.dwBufferBytes);
 	m_pSoundBuffer->SetCurrentPosition(dwBytes);
 
-	Play();
+	//Play();
 }
 
 void CSound::SetVolumeOffset(int vol)

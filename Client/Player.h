@@ -74,7 +74,7 @@ private:
 
 	CSound* mpCoinSound;
 	CSound* mpLevelUpSound;
-
+	CSound* mpBGM;
 
 public:
 	tPlayerInfo& GetInfo() { return mtInfo; }

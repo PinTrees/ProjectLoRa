@@ -4,7 +4,7 @@
 #include "CCollider.h"
 
 HolyArea::HolyArea()
-	: Skill(SKILL_TYPE::HOLYAREA, /*6*/1)
+	: Skill(SKILL_TYPE::HOLYAREA, 6)
 	, mPrevLv(1)
 {
 	SetIconStr(L"5.bmp");

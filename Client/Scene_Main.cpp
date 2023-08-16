@@ -3,6 +3,7 @@
 
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "CSoundMgr.h"
 
 // UI Header
 #include "CBtnUI.h"
@@ -18,6 +19,7 @@
 
 // Resource Header
 #include "CSprite.h"
+#include "CSound.h"
 
 // Core Manager Header
 #include "UIMgr.h"
@@ -37,12 +39,15 @@ Scene_Main::Scene_Main()
 	, mFadeDir(1)
 	, mpPlayerThumb(nullptr)
 	, mDialogHelp(nullptr)
+	, mpMainBGM(nullptr)
 {
+	mpMainBGM = CResMgr::GetI()->LoadSound(L"Bgm_Main", L"sound\\bgm_main.wav");
 }
 
 
 Scene_Main::~Scene_Main()
 {
+	mpMainBGM = nullptr;
 	DatabaseMgr::Dispose();
 }
 
@@ -51,6 +56,9 @@ Scene_Main::~Scene_Main()
 void Scene_Main::Enter()
 {
 	DatabaseMgr::GetI()->Init();
+
+	if (mpMainBGM)
+		mpMainBGM->Play();
 
 	Vect2 vRes = CCore::GetI()->GetResolution();
 	
@@ -184,6 +192,7 @@ void Scene_Main::Update()
 
 void Scene_Main::Exit()
 {
+	mpMainBGM->Stop();
 	DeleteAll();
 }
 

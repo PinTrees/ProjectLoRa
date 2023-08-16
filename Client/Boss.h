@@ -14,6 +14,7 @@ enum class BOSS_STATE
 
 class CImageUI;
 class CColumn;
+class CSound;
 
 
 class Boss :
@@ -22,7 +23,6 @@ class Boss :
 private:
 	CImageUI*	mpHpBar;
 	CColumn*	mpHpUI;
-
 
 public:
 	virtual void Update() override;

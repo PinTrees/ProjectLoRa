@@ -79,10 +79,10 @@ int CCore::Initialize(HWND _hWnd, POINT _ptResolution)
 	CTimeMgr::GetI()->Init();
 	CKeyMgr::GetI()->Init();
 	CCamera::GetI()->Init();
+	CSoundMgr::GetI()->Init();
 	CSceneMgr::GetI()->Init();
 	CRandom::GetI()->Init();
 	CSystemMgr::GetI();
-	CSoundMgr::GetI()->Init();
 
 	return S_OK;
 }

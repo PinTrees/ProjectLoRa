@@ -5,6 +5,7 @@
 class CUI;
 class CImageUI;
 class HelpDialogUI;
+class CSound;
 
 class Scene_Main :
     public CScene
@@ -20,6 +21,7 @@ private:
     float       mCurDelay;
     int         mFadeDir;
 
+    CSound*     mpMainBGM;
 
 private:
     virtual void Update();

@@ -68,6 +68,8 @@ Player::Player()
 
 	// Load ----------------------
 	mpLevelUpSound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
+	mpBGM = CResMgr::GetI()->LoadSound(L"Bgm_1", L"sound\\bgm_1.wav");
+	mpBGM->Play();
 
 	mtInfo.fullHP = 100.f;
 	mtInfo.curHp = mtInfo.fullHP;
@@ -156,9 +158,9 @@ Player::Player()
 	mHpText->SetOutlineWidth(1);
 	pHpBarUI->AddChild(mHpText);
 
-	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::FULL_HP_UP] = 1;
-	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::REGENERATION_HP_UP] = 1;
-	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::ATK_DAMAGE_UP] = 1;
+	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::FULL_HP_UP] = 6;
+	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::REGENERATION_HP_UP] = 6;
+	mArrStatusMaxLevel[(UINT)STATEUP_TYPE::ATK_DAMAGE_UP] = 6;
 }
 
 

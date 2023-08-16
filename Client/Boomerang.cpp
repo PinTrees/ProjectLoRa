@@ -14,7 +14,7 @@
 
 
 Boomerang::Boomerang()
-	: Skill(SKILL_TYPE::BOOMERANG, /*6*/1)
+	: Skill(SKILL_TYPE::BOOMERANG, 6)
 {
 	SetIconStr(L"8.bmp");
 	SetCoolDown(2.f);

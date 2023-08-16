@@ -10,7 +10,7 @@
 #include "EnergyBall_Obj.h"
 
 EnergyBall::EnergyBall()
-	: Skill(SKILL_TYPE::ENERGY_BALL, /*5*/1)
+	: Skill(SKILL_TYPE::ENERGY_BALL, 5)
 {
 	SetIconStr(L"4.bmp");
 	SetCoolDown(5.f);		// 스킬 쿨타임 세팅

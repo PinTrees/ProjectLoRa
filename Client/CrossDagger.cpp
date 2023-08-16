@@ -11,7 +11,7 @@
 
 
 CrossDagger::CrossDagger()
-	: Skill(SKILL_TYPE::CROSS_DAGGER, /*8*/1)
+	: Skill(SKILL_TYPE::CROSS_DAGGER, 8)
 	, mCount(4)
 {
 	SetIconStr(L"7.bmp");
