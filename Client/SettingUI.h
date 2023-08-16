@@ -27,6 +27,9 @@ private:
 	CSlider*	mSoundSlider;
 	TextUI*		mVolumText;
 
+	CSlider*	mBgmSoundSlider;
+	TextUI*		mBgmVolumText;
+
 	CBtnUI*		mResBtn[3];
 	CImageUI*	mResCheckIcon[3];
 
@@ -45,6 +48,7 @@ public:
 	void SetResolution(int i);
 
 	void ChangeSoundSliderValue(int val);
+	void ChangeBGMSoundSliderValue(int val);
 
 
 public:

@@ -34,8 +34,20 @@ void SettingMgr::SetVolume(int vol)
      for (auto iter = mapSounds.begin(); iter != mapSounds.end(); ++iter)
      {
          wstring soundName = iter->first;
+
+         if (soundName == L"Sound_BGM")
+             continue;
+
          CSound* soundResource = (CSound*)(iter->second);
 
          soundResource->SetVolume(mVolume);
      }
+}
+
+void SettingMgr::SetBGMVolume(int vol)
+{
+    mBgmVolume = vol;
+
+    CSound* soundResource = CResMgr::GetI()->FindSound(L"Sound_BGM");
+    soundResource->SetVolume(mBgmVolume);
 }

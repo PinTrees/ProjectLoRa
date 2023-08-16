@@ -10,7 +10,7 @@
 #include "EnergyBall_Obj.h"
 
 EnergyBall::EnergyBall()
-	: Skill(SKILL_TYPE::ENERGY_BALL, 5)
+	: Skill(SKILL_TYPE::ENERGY_BALL, 10)
 {
 	SetIconStr(L"4.bmp");
 	SetCoolDown(5.f);		// 스킬 쿨타임 세팅
@@ -47,6 +47,7 @@ void EnergyBall::UseSkill()
 
 		mvDir.Normalize();
 		Ball->SetDir(mvDir);
+		Ball->SetScale(Ball->GetScale() * (1.f + (2.0f * GetSkillLevel() / GetMaxSkillLv())));
 		Ball->SetPos(PlayerMgr::GetI()->GetPlayer()->GetPos());
 		CreateObject(Ball, GROUP_TYPE::PROJ_PLAYER);
 	}
@@ -60,11 +61,11 @@ void EnergyBall::UseSkill()
 
 		Ball->SetDir(mvDir);
 		Ball->SetPos(PlayerMgr::GetI()->GetPlayer()->GetPos());
+		Ball->SetScale(Ball->GetScale() * (1.f + (2.0f * GetSkillLevel() / GetMaxSkillLv())));
 		CreateObject(Ball, GROUP_TYPE::PROJ_PLAYER);
 	}
 
-
-	SetSkillTime(0.f);
+	SetSkillTime(0.f + 3.f * GetSkillLevel() / GetMaxSkillLv());
 }
 
 void EnergyBall::CheckAvailable()

@@ -7,6 +7,7 @@ class TextUI;
 class CBtnUI;
 class GameOverUI;
 class ClearUI;
+class CSound;
 
 
 class GUIMgr
@@ -23,6 +24,7 @@ private:
 	ClearUI*	mpGameClearUI;
 
 	TextUI*		mTimerText;
+	CSound*		mClearScound;
 
 
 public:

@@ -27,7 +27,7 @@ EnergyBall_Obj::EnergyBall_Obj()
 	CreateAnimator();
 
 	GetAnimator()->CreateAnimation(L"EnergyBall", pTex, Vect2(0.f, 0.f), Vect2(80.f, 80.f), Vect2(80.f, 0.f), 0.07f, 16);
-	SetScale(Vect2(180.f, 180.f));
+	SetScale(Vect2(180.f, 180.f) * 0.9f);
 
 	GetAnimator()->Play(L"EnergyBall", true);
 	SetAlpha(220);

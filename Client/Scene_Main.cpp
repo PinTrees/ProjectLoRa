@@ -23,6 +23,7 @@
 #include "UIMgr.h"
 #include "CSoundMgr.h"
 #include "CCore.h"
+#include "CSound.h"
 
 
 void ChangeSceneStart(DWORD_PTR, DWORD_PTR);
@@ -58,6 +59,10 @@ void Scene_Main::Enter()
 	
 	CSprite* pPanelSprite = CResMgr::GetI()->LoadSprite(L"UI_panel_1", L"texture\\ui\\panel_1.png");
 	pPanelSprite->SetRenderMode(SPRITE_RENDER_TYPE::POINT);
+
+	mBgmSound = CResMgr::GetI()->LoadSound(L"Sound_BGM", L"sound\\bgm.wav");
+	mBgmSound->SetVolumeOffset(350);
+	mBgmSound->PlayToBGM(true);
 
 	// 배경 이미지 생성 -----------------------------------------------------
 	CImageUI* pBackground = new CImageUI;

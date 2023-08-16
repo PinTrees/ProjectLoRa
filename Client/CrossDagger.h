@@ -8,7 +8,7 @@ class CrossDagger :
     public Skill
 {
 private:
-    CSound* mpSound;
+    CSound*     mpSound;
     int         mCount;             // 표창 개수
 
 public:

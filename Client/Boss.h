@@ -28,6 +28,7 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC dc) override;
 	virtual void OnCollisionEnter(CCollider* _pOther) override;
+	virtual void OnCollisionStay(CCollider* other) override;
 
 	CLONE(Boss);
 

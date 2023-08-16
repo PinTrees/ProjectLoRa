@@ -11,7 +11,7 @@
 
 
 CrossDagger::CrossDagger()
-	: Skill(SKILL_TYPE::CROSS_DAGGER, 8)
+	: Skill(SKILL_TYPE::CROSS_DAGGER, 10)
 	, mCount(4)
 {
 	SetIconStr(L"7.bmp");
@@ -45,7 +45,7 @@ void CrossDagger::UseSkill()
 	if (mpSound)
 		mpSound->Play();
 
-	SetSkillTime(0.f);
+	SetSkillTime(0.f + 2.65f * GetSkillLevel() / GetMaxSkillLv());
 }
 
 void CrossDagger::CheckAvailable()

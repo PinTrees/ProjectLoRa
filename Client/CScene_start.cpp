@@ -132,6 +132,7 @@ void Scene_Start::Enter()
 	mCurBossDelay = 0.f;
 	mbBossRespone = false;
 	mMonsterWave = 0;
+	mTimer = 0;
 	/// -----------------------------
 
 	LoadTile(this, L"database\\map_1.tile");

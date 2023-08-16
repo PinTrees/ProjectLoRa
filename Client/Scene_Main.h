@@ -5,11 +5,14 @@
 class CUI;
 class CImageUI;
 class HelpDialogUI;
+class CSound;
+
 
 class Scene_Main :
     public CScene
 {
 private:
+    CSound*     mBgmSound;
     CUI*        mItemUI;
     CImageUI*   mPressBack;
     CImageUI*   mpPlayerThumb;

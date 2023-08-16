@@ -24,6 +24,7 @@ WaveMgr::~WaveMgr()
 
 void WaveMgr::Init()
 {
+	mCurWaveCount = 0;
 }
 
 

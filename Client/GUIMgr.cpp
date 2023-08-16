@@ -16,7 +16,7 @@
 #include "ClearUI.h"
 
 #include "UIMgr.h"
-
+#include "CSound.h"
 
 
 SINGLE_HEADER(GUIMgr);
@@ -36,6 +36,8 @@ GUIMgr::~GUIMgr()
 
 void GUIMgr::Init()
 {
+	mClearScound = CResMgr::GetI()->LoadSound(L"Sound_Clear", L"sound\\clear.wav");
+
 	Vect2 vRes = CCore::GetI()->GetResolution();
 
 	mpBackground = new CImageUI;
@@ -140,6 +142,7 @@ void GUIMgr::CloseGameOverUI()
 // 게임 클리어 UI -----------------------------------------
 void GUIMgr::ShowGameClearUI()
 {
+	mClearScound->Play();
 	CTimeMgr::GetI()->Stop();
 	mpGameClearUI->SetVisible(true);
 	mpGameClearUI->Build();

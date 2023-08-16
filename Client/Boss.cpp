@@ -168,3 +168,8 @@ void Boss::OnCollisionEnter(CCollider* _pOther)
 		CreateObject(pParticle, GROUP_TYPE::EFFECT);
 	}
 }
+
+void Boss::OnCollisionStay(CCollider* other)
+{
+	Monster::OnCollisionStay(other);
+}

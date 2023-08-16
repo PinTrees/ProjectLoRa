@@ -11,6 +11,7 @@ private:
 	BOOL			mbDamageText;
 	BOOL			mbMonsterHpbarActive;
 	int				mVolume;
+	int				mBgmVolume;
 
 
 public:
@@ -26,6 +27,8 @@ public:
 	void SetVolume(int vol);
 	int  GetVolume() { return mVolume; }
 
+	void SetBGMVolume(int vol);
+	int  GetBGMVolume() { return mBgmVolume; }
 
 public:
 	void Init();

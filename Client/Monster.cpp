@@ -131,13 +131,13 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		mvShadowScale = Vect2(50.f, 25.f) * scale;
 		mvShadowOffset = Vect2(0.f, 70.f) * scale;
 
-		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_5_r", L"texture\\monster\\5_r.bmp");
-		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_5_l", L"texture\\monster\\5_l.bmp");
+		CTexture* pTex_r = CResMgr::GetI()->LoadTexture(L"Monster_5_R", L"texture\\monster\\5_r.bmp");
+		CTexture* pTex_l = CResMgr::GetI()->LoadTexture(L"Monster_5_LL", L"texture\\monster\\5_l.bmp");
 
 		Vect2 vSliseSize = Vect2(128.f, 128.f);
 		Vect2 vStepSize = Vect2(128.f, 0.f);
 		Vect2 vLtPos = Vect2(0.f, 128.f);
-		Vect2 vRtPos = Vect2(1280.f, 128.f);
+		Vect2 vRtPos = Vect2(1664.f, 128.f);
 
 		GetAnimator()->CreateAnimation(L"IDLE", pTex_r, vLtPos * 0.f, vSliseSize, vStepSize, 0.07f, 7);
 		GetAnimator()->CreateAnimation(L"RUN_R", pTex_r, vLtPos * 4.f, vSliseSize, vStepSize, 0.07f, 10);
@@ -156,8 +156,8 @@ Monster::Monster(MONSTER_TYPE Type, const wstring& uid)
 		
 		SetScale(Vect2(128.f, 128.f) * scale);
 		SetPivot(Vect2(0.f, GetScale().y * 0.5f));
-		GetCollider()->SetScale(Vect2(30.f, 30.f) * 1.3f);
-		GetCollider()->SetOffsetPos(Vect2(0.f, 50.f));
+		GetCollider()->SetScale(Vect2(30.f, 50.f) * 1.3f);
+		GetCollider()->SetOffsetPos(Vect2(0.f, 35.f));
 
 		mHpBar->SetPivot(Vect2(0.f, -15.f));
 	}
@@ -291,15 +291,12 @@ void Monster::AddDamage(float damage)
 		if (mHitSound)
 			mHitSound->Play();
 	}
-	else if(mType != MONSTER_TYPE::BOSS)
+	else if(mType != MONSTER_TYPE::BOSS && mAI->GetCurStateType() != MONSTER_STATE::HIT)
 	{
-		if (mAI->GetCurStateType() != MONSTER_STATE::HIT)
-		{
-			ChangeAIState(mAI, MONSTER_STATE::HIT);
+		ChangeAIState(mAI, MONSTER_STATE::HIT);
 
-			if (mHitSound)
-				mHitSound->Play();
-		}
+		if (mHitSound)
+			mHitSound->Play();
 	}
 
 	if (SettingMgr::GetI()->GetDamageTextActive())

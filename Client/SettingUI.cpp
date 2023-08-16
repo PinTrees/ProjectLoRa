@@ -191,6 +191,37 @@ SettingUI::SettingUI()
 	mVolumText->SetText(L"100");
 	pVolRow->AddChild(mVolumText);
 
+	// BGM 볼륨 슬라이더 ------------------------------------
+	TextUI* pBgmSoundTitle = new TextUI;
+	pBgmSoundTitle->SetScale(Vect2(0.f, 100.f));
+	pBgmSoundTitle->SetFontSize(28.f);
+	pBgmSoundTitle->SetColor(RGB(255, 255, 255));
+	pBgmSoundTitle->SetText(L"BGM 사운드");
+	pColumn->AddChild(pBgmSoundTitle);
+
+	CRow* pBGMVolRow = new CRow;
+	pBGMVolRow->SetScale(Vect2(500.f, 60.f));
+	pBGMVolRow->SetSpacing(16.f);
+	pColumn->AddChild(pBGMVolRow);
+
+	CImageUI* pBGMSoundIcon = new CImageUI;
+	pBGMSoundIcon->SetScale(Vect2(38.f, 38.f));
+	pBGMSoundIcon->SetTexture(CResMgr::GetI()->LoadTexture(L"Icon_Sound", L"texture\\ui\\icon\\sound.bmp"));
+	pBGMVolRow->AddChild(pBGMSoundIcon);
+
+	mBgmSoundSlider = new CSlider;
+	mBgmSoundSlider->SetScale(Vect2(200.f, 60.f));
+	mBgmSoundSlider->SetChangeValueFunc(this, (SLIDER_OBJ)(&SettingUI::ChangeBGMSoundSliderValue));
+	pBGMVolRow->AddChild(mBgmSoundSlider);
+
+	mBgmVolumText = new TextUI;
+	mBgmVolumText->SetScale(Vect2(50.f, 25.f));
+	mBgmVolumText->SetFontSize(22.f);
+	mBgmVolumText->SetColor(RGB(255, 255, 255));
+	mBgmVolumText->SetText(L"100");
+	pBGMVolRow->AddChild(mBgmVolumText);
+
+
 	TextUI* pResTitle = new TextUI;
 	pResTitle->SetScale(Vect2(0.f, 100.f));
 	pResTitle->SetFontSize(28.f);
@@ -310,4 +341,10 @@ void SettingUI::ChangeSoundSliderValue(int val)
 {
 	mVolumText->SetText(std::to_wstring(val));
 	SettingMgr::GetI()->SetVolume(val);
+}
+
+void SettingUI::ChangeBGMSoundSliderValue(int val)
+{
+	mBgmVolumText->SetText(std::to_wstring(val));
+	SettingMgr::GetI()->SetBGMVolume(val);
 }
